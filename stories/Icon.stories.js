@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Icon } from "../aura-design-system";
-import "../aura-design-system/css/style.css";
+import { Icon } from "..";
+import "../css/style.css";
 
 export default {
   title: "Atoms/Icon",

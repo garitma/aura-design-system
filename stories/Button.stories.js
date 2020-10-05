@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Button } from "../aura-design-system";
-import "../aura-design-system/css/style.css";
+import { Button } from "..";
+import "../css/style.css";
 
 export default {
   title: "Atoms/Button",
@@ -44,6 +44,6 @@ export const Hyperlink = Template.bind({});
 
 Hyperlink.args = {
   type: "link",
-  label: "Button fill Hyperlink",
+  label: "This is an Anchor <a/>",
   mode: "fill",
 };
