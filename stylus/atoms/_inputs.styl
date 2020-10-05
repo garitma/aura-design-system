@@ -1,0 +1,123 @@
+// Copyright (c) 2020, garitma.com.
+// Inputs
+// Licensed under MIT - see LICENSE.txt 
+// Aura Design System
+
+.inputer
+    @extend .inside-pad
+    position relative
+    margin-bottom aura
+    &-group
+        position: relative;
+        box-sizing: border-box;
+        label
+            position absolute
+            transform-origin: top left
+            transform: translate(aura*2, aura) scale(.7);
+    label, input 
+        transition: all .1s ease-in-out
+        touch-action: manipulation
+    
+    textarea 
+        mixin-border-radius(aura * 0.5)
+        @extend p
+        width 100%
+        border 0
+        background-color darken(Realse, 2%)
+        box-sizing border-box
+        box-shadow none
+        color Root
+        font-family inherit
+        height 106px
+        padding aura * 2
+        &:focus
+            background Realse
+            outline none
+    
+    select
+        font-family inherit
+        height aura * 4
+        padding aura *2
+        line-height aura * 4
+
+    input 
+        mixin-border-radius(aura * 0.5)
+        width 100%
+        background-color darken(Realse, 2%)
+        border 0
+        box-sizing border-box
+        box-shadow none
+        color Root
+        font-family inherit
+        height aura * 4
+        padding aura *2
+        line-height aura * 4
+        cursor: text;
+        @extend p
+        &:focus
+            background Realse
+            outline 0
+
+
+    input:placeholder-shown + label 
+        cursor: text;
+        max-width: 66.66%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transform-origin: left bottom;
+        opacity 0
+        z-index -1
+
+    input:not(:placeholder-shown) + label 
+        opacity 1
+        cursor pointer
+        z-index 0
+    
+    .switch 
+        position: relative;
+        display: inline-block;
+        width: aura * 5;
+        height: aura * 2.5;
+        input 
+            opacity: 0;
+            width: 0;
+            height: 0;
+
+    .slider 
+        @extend .white
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        transition: .4s;
+        &:before
+            position: absolute;
+            content: "";
+            height: aura * 2;
+            width: aura * 2;
+            left: 4px;
+            bottom: 4px;
+            @extend .black
+            -webkit-transition: .4s;
+            transition: .4s;
+    
+
+    input:checked + .slider 
+        background-color: var(--base-color)!important
+
+    input:checked + .slider:before 
+        @extend .black
+
+    input:checked + .slider:before 
+        transform: translateX(aura * 2.5);
+    
+    .slider.round 
+        mixin-border-radius(aura *3)
+    
+
+    .slider.round:before 
+        mixin-border-radius(50%)
+    

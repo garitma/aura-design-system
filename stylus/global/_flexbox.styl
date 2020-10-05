@@ -1,0 +1,35 @@
+// Copyright (c) 2020, garitma.com.
+// Flexbox
+// Licensed under MIT - see LICENSE.txt 
+// Aura Design System
+
+flexsize = (1..12)
+
+.halo
+    display flex
+    flex-wrap wrap
+    position relative
+    justify-content flex-start
+    flex-direction row
+
+    .layer
+        width: 100%
+        position: relative
+
+
+for i in flexsize 
+    .layer.small-{i}
+        flex: 0 0 ((100% / 12) * i)
+
+@media only screen and (min-width: $small)
+    for i in flexsize 
+        .layer.medium-{i}
+            flex: 0 0 ((100% / 12) * i)
+
+@media only screen and (min-width: $large)
+    for i in flexsize 
+        .layer.large-{i}
+            flex: 0 0 ((100% / 12) * i)
+
+.reverse
+    flex-direction: row-reverse;

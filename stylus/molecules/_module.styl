@@ -1,0 +1,65 @@
+// Copyright (c) 2020, garitma.com.
+// Module
+// Licensed under MIT - see LICENSE.txt 
+// Aura Design System
+
+.mod
+    @extend .white
+    mixin-border-radius(aura)
+    box-sizing border-box
+    position relative
+    &-media
+        position relative
+        overflow hidden
+        mixin-border-radius-sides(aura, aura, 0, 0)
+        img
+            @extend .container
+            max-width: 100%;
+            display: block;
+            position: relative;
+            object-fit: cover;
+            mixin-border-radius-sides(aura, aura, 0, 0)
+        &.left
+            mixin-border-radius-sides(aura, 0, 0, aura)
+            img
+                mixin-border-radius-sides(aura, 0, 0, aura)
+
+
+.block-img
+    @extend .mod-media
+    mixin-border-radius(aura)
+
+div[data-type="static_image"]
+    @extend .mod-media
+    mixin-border-radius(aura)
+    img
+        width: 100%
+
+.zoom
+    img 
+        transform-origin 50% 65%;
+        transition transform 0.5s, filter 3s ease-in-out;
+        filter brightness(100%);
+
+
+.zoom:hover 
+    img 
+        filter brightness(110%);
+        transform scale(1.05);
+
+.mod-detail
+    mixin-border-radius(aura)
+    @extend .white
+    padding aura * 2
+    display flex
+    flex-direction: column
+    flex-grow: 1    
+
+.mod-title
+    @extend .h5
+
+.mod-action
+    mixin-border-radius-sides(0, 0, aura, aura)
+    @extend .centertxt
+        
+

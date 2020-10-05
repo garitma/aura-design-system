@@ -1,0 +1,58 @@
+// Copyright (c) 2020, garitma.com.
+// Buttons
+// Licensed under MIT - see LICENSE.txt 
+// Aura Design System
+
+.interactive
+    min-width 48px
+    min-height 48px 
+
+.button
+    mixin-align-items(center)
+    mixin-border-radius(aura)
+    mixin-transition(300ms, background, cubic-bezier(0.4, 0, 0.6, 1) linear)
+    font-weight 600
+    display inline-flex
+    height (aura * 2) * 2
+    padding 0 (aura * 2)
+    border 2px solid
+    
+
+.button-fill
+    @extend .button
+    border-color var(--base-color)
+    color Dark
+    background-color var(--base-color)
+    &:hover:not(.disable)
+        color var(--base-color)
+        background-color var(--dark)
+
+.button-pill
+    @extend .button
+    color var(--base-color)
+    border-color var(--base-color)
+    background-color transparent
+    &:hover:not(.disable)
+        background-color var(--base-color)
+        color var(--dark)
+
+.button-link
+    @extend .button
+    @extend .black-text
+    border: 0
+    color: Root
+    text-decoration: underline
+    background-color transparent
+    &:hover:not(.disable)
+        @extend .black-text
+    
+a
+    text-decoration: none
+    color var(--root)
+    cursor pointer
+    &:visited:not(.button):not(.button-pill):not(.button-link):not(.disable-button):not(.button-fill)
+        color var(--root)
+    
+button
+    @extend p
+    cursor pointer 

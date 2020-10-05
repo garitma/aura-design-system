@@ -1,0 +1,60 @@
+// Copyright (c) 2020, garitma.com.
+// Mixins
+// Licensed under MIT - see LICENSE.txt 
+// Aura Design System
+
+mixin-transition(property, duration, easing) 
+	transition property duration easing
+	-webkit-transition property duration easing
+	-moz-transition property duration easing
+
+mixin-stransition(duration)
+	-o-transition duration
+	-ms-transition duration
+	-moz-transition duration
+	-webkit-transition duration
+	transition duration
+
+mixin-border-radius(radius) 
+	border-radius radius
+	-webkit-border-radius radius
+	-moz-border-radius radius
+
+mixin-border-radius-sides(topleft, topright, bottomright, bottomleft) 
+	border-top-left-radius topleft
+	border-top-right-radius topright
+	border-bottom-right-radius bottomright
+	border-bottom-left-radius bottomleft
+	-webkit-border-top-left-radius topleft
+	-webkit-border-top-right-radius topright
+	-webkit-border-bottom-right-radius bottomright
+	-webkit-border-bottom-left-radius bottomleft
+	-moz-border-radius-topleft topleft
+	-moz-border-radius-topright topright
+	-moz-border-radius-bottomright bottomright
+	-moz-border-radius-bottomleft bottomleft
+
+mixin-align-items(align)
+	-webkit-box-align align
+	-ms-flex-align align
+	align-items align
+
+mixin-user-select(value)
+	-webkit-user-select value
+	-moz-user-select value
+	-ms-user-select value
+	user-select value
+
+mixin-flex()
+	display -webkit-box
+	display -moz-box
+	display -ms-flexbox
+	display -webkit-flex
+	display flex
+
+mixin-visual-scale( visualScale, DecreaseScaleMedium, DecreaseScaleSmall )
+	font-size visualScale * DecreaseScaleSmall
+	@media only screen and (min-width: $small)
+		font-size visualScale * DecreaseScaleMedium
+	@media only screen and (min-width: $large)
+		font-size visualScale

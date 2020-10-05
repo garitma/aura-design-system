@@ -1,0 +1,29 @@
+.aureole
+    display: grid;
+    grid-gap: aura;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr)
+    @media only screen and (max-width: $small)
+        grid-template-columns: minmax(0, 1fr)
+    &.one
+        grid-template-columns: minmax(0, 1fr)
+    &.two
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)
+        @media only screen and (max-width: $small)
+            grid-template-columns: minmax(0, 1fr)
+    &.field
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    &.list
+        grid-template-columns: minmax(0, 1fr)
+        @media only screen and (max-width: $small)
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr)
+    &.tag
+        grid-template-columns: repeat(auto-fill, minmax(auto, 100px));
+    &.feature-first div:nth-child(1), .first
+        grid-column: span 2
+        @media only screen and (max-width: $small)
+            grid-column: span 1
+
+        
+
+
+       

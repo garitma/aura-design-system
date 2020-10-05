@@ -1,0 +1,39 @@
+// Copyright (c) 2020, garitma.com.
+// Page
+// Licensed under MIT - see LICENSE.txt 
+
+// Aura Design System
+html
+    margin: 0
+    padding: 0
+body
+    margin: 0
+    padding: 0
+    min-width 320px
+    max-width 100%
+    overflow-x hidden  
+
+main 
+    min-height 100vh
+    padding 0
+    margin 0 auto 
+    display flex
+    flex-direction column
+    justify-content center
+    max-width: 2550px
+
+.page
+    padding: 0
+    flex: 1
+    display: flex
+    flex-direction: column
+    justify-content: flex-start
+    @extend .white
+    @extend .black-text
+        
+
+*
+    touch-action: manipulation;
+    &::selection
+        color: Root
+        background: darken(TealGreen, 5%)
