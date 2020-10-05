@@ -7,15 +7,12 @@
   "license": "MIT",
   "devDependencies": {
     "@babel/core": "^7.11.6",
-    "@storybook/addon-actions": "^6.0.26",
-    "@storybook/addon-essentials": "^6.0.26",
-    "@storybook/addon-links": "^6.0.26",
-    "@storybook/react": "^6.0.26",
-    "@storybook/svelte": "^6.0.26",
+    "@storybook/addon-actions": "^6.0.25",
+    "@storybook/addon-essentials": "^6.0.25",
+    "@storybook/addon-links": "^6.0.25",
+    "@storybook/react": "^6.0.25",
     "babel-loader": "^8.1.0",
-    "react-is": "^16.13.1",
-    "svelte": "^3.29.0",
-    "svelte-loader": "^2.13.6"
+    "react-is": "^16.13.1"
   },
   "dependencies": {
     "next": "^9.5.3",
