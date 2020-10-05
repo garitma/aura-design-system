@@ -1,2 +1,11 @@
-# aura-design-system
-# aura-design-system
+# Aura Design System por Garitma
+
+Bienvenido a [Aura Design System](https://auradesignsystem.com) creado por [Garitma](https://garitma.com).
+
+## Licencia
+
+MIT
+
+## Got feedback?
+
+Please open a new <a href="https://github.com/garitma/aura-design-system/issues">GitHub Issue</a>.
