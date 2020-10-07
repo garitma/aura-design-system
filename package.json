@@ -21,6 +21,7 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -c .storybook -o public"
+    "build-storybook": "build-storybook -c .storybook -o public",
+    "stylus-dev": "stylus -w stylus/style.styl -o css/style.css"
   }
 }

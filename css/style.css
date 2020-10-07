@@ -1595,7 +1595,7 @@ button {
 .inputer-group label {
   position: absolute;
   transform-origin: top left;
-  transform: translate(26px, 13px) scale(0.7);
+  transform: translate(6.5px, -13px);
 }
 .inputer label,
 .inputer input {

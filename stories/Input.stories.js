@@ -23,3 +23,10 @@ export const WithPlaceholder = Template.bind({});
 WithPlaceholder.args = {
   placeholder: "Placeholder",
 };
+
+export const WithIcon = Template.bind({});
+
+WithIcon.args = {
+  placeholder: "With icon and with place holder",
+  icon: "heart-fill",
+};

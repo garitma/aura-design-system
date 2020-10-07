@@ -5,8 +5,12 @@ import PropTypes from "prop-types";
  * Icon component
  */
 
-const Icon = ({ sprite, ...props }) => {
-  return <div className={`glyphsSprite ${sprite}`} {...props}></div>;
+const Icon = ({ sprite, typehead, ...props }) => {
+  const typeheadMode = typehead ? "action left-4 disable" : "";
+
+  return (
+    <div className={`glyphsSprite ${sprite} ${typeheadMode}`} {...props}></div>
+  );
 };
 
 Icon.propTypes = {
