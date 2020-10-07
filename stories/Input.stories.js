@@ -8,11 +8,7 @@ export default {
   component: Input,
 };
 
-const Template = (args) => (
-  <form className="inputer">
-    <Input {...args} />
-  </form>
-);
+const Template = (args) => <Input {...args} />;
 
 export const Naked = Template.bind({});
 
@@ -24,9 +20,16 @@ WithPlaceholder.args = {
   placeholder: "Placeholder",
 };
 
+export const WithOutLabel = Template.bind({});
+
+WithOutLabel.args = {
+  placeholder: "With out label",
+  label: false,
+};
+
 export const WithIcon = Template.bind({});
 
 WithIcon.args = {
-  placeholder: "With icon and with place holder",
+  placeholder: "With icon",
   icon: "heart-fill",
 };
