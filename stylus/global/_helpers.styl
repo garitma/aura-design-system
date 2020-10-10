@@ -72,15 +72,7 @@ div[data-oembed-type="video"] iframe
 .fluid
     width 100%
 
-.action
-    position absolute
-    top 50%
-    left 50%
-    transform translate(-50%, -50%)
-    &.left-4
-        left aura * 4
-    &.left-1
-        left aura * 1
+
 
 
 .typeahead
@@ -127,6 +119,18 @@ div[data-oembed-type="video"] iframe
         top 0
     &.bottom
         bottom 0
+
+.action
+    position absolute
+    top 50%
+    left 50%
+    transform translate(-50%, -50%)
+    &.left
+        left aura * 4
+        right auto
+    &.right
+        right aura * 4
+        left auto
 
 @media only screen and (max-width: $small)
     .hide-small

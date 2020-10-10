@@ -24,7 +24,7 @@ const Input = ({ placeholder, className, dialog, dialogColor = "yellow", label, 
           />
           {placeholder && label && <label htmlFor={name}>{placeholder}</label>}
           {dialog && <span className="disable">{dialog}</span>}
-          {icon && <Icon sprite={icon} typehead />}
+          {icon && <Icon sprite={icon} className="action left disable"/>}
         </div>
       </div>
       
