@@ -6,8 +6,12 @@ import Icon from "./Icon";
  * Icon component
  */
 
-const Input = ({ placeholder, dialog, label, icon, name, ...props }) => {
+const Input = ({ placeholder, className, dialog, dialogColor = "yellow", label, icon, name, ...props }) => {
+
+  const inputAllClassName = `${className || ""} ${icon ? "typeahead" : ""} ${dialog ? dialogColor : ""}`
+
   return (
+
     <div className="inputer">
       <div className={`inputer-group`}>
         <div className="halo">
@@ -15,18 +19,14 @@ const Input = ({ placeholder, dialog, label, icon, name, ...props }) => {
             name={name}
             aria-label={placeholder}
             placeholder={placeholder}
-            className={`${icon && "typeahead"}`}
+            className={inputAllClassName}
             {...props}
           />
           {placeholder && label && <label htmlFor={name}>{placeholder}</label>}
+          {dialog && <span className="disable">{dialog}</span>}
           {icon && <Icon sprite={icon} typehead />}
         </div>
       </div>
-      {dialog &&
-        <div className="mod yellow wallpad centertxt">
-          {dialog}
-        </div>
-      }
       
     </div>
   );
@@ -36,11 +36,14 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   label: PropTypes.bool,
   dialog: PropTypes.string,
+  dialogColor: PropTypes.oneOf([
+    "blue",
+    "green",
+    "yellow",
+    "orange",
+    "pink"
+  ]),
   icon: PropTypes.oneOf([
-    "arrowDown",
-    "arrowLeft",
-    "arrowRight",
-    "arrowUp",
     "bag",
     "bag-add",
     "box",

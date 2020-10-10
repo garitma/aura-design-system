@@ -24,7 +24,7 @@ export const WithDialog = Template.bind({});
 
 WithDialog.args = {
   placeholder: "Placeholder",
-  dialog: "Dialog text"
+  dialog: "⚠️ Oooops, something happened text"
 };
 
 export const WithOutLabel = Template.bind({});
@@ -37,7 +37,7 @@ WithOutLabel.args = {
 export const WithIcon = Template.bind({});
 
 WithIcon.args = {
-  placeholder: "With icon",
-  icon: "heart-fill",
+  placeholder: "Instagram username",
+  icon: "instagram",
 };
 

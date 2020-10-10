@@ -10,8 +10,11 @@
     &-group
         position: relative;
         box-sizing: border-box;
-        label
+        label:not(.original)
             position absolute
+            transform-origin: top left
+            transform: translate(aura*0.5, aura * -1);
+        span:not(.original)
             transform-origin: top left
             transform: translate(aura*0.5, aura * -1);
     label, input 
@@ -47,8 +50,9 @@
         border 0
         box-sizing border-box
         box-shadow none
-        color Root
+        color var(--root)
         font-family inherit
+        font: inherit;
         height aura * 4
         padding aura *2
         line-height aura * 4
@@ -85,7 +89,7 @@
             height: 0;
 
     .slider 
-        @extend .white
+        background-color var(--white)
         position: absolute;
         cursor: pointer;
         top: 0;
@@ -100,7 +104,7 @@
             width: aura * 2;
             left: 4px;
             bottom: 4px;
-            @extend .black
+            background-color var(--black)
             -webkit-transition: .4s;
             transition: .4s;
     
@@ -109,7 +113,7 @@
         background-color: var(--base-color)!important
 
     input:checked + .slider:before 
-        @extend .black
+        background-color var(--black)
 
     input:checked + .slider:before 
         transform: translateX(aura * 2.5);
