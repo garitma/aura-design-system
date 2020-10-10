@@ -8,14 +8,24 @@
     min-height 48px 
 
 .button
+    -webkit-writing-mode: horizontal-tb !important
+    box-sizing: border-box
+    margin: 0em
+    letter-spacing: normal
+    word-spacing: normal
+    text-transform: none
+    text-indent: 0px
+    text-shadow: none
+    font: inherit
     mixin-align-items(center)
     mixin-border-radius(aura)
     mixin-transition(300ms, background, cubic-bezier(0.4, 0, 0.6, 1) linear)
-    font-weight 600
+    font-weight: 600
     display inline-flex
     height (aura * 2) * 2
     padding 0 (aura * 2)
     border 2px solid
+   
     
 
 .button-fill
@@ -54,5 +64,4 @@ a
         color var(--root)
     
 button
-    @extend p
     cursor pointer 

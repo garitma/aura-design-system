@@ -20,6 +20,13 @@ WithPlaceholder.args = {
   placeholder: "Placeholder",
 };
 
+export const WithDialog = Template.bind({});
+
+WithDialog.args = {
+  placeholder: "Placeholder",
+  dialog: "Dialog text"
+};
+
 export const WithOutLabel = Template.bind({});
 
 WithOutLabel.args = {
@@ -33,3 +40,4 @@ WithIcon.args = {
   placeholder: "With icon",
   icon: "heart-fill",
 };
+

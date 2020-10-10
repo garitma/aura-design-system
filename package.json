@@ -22,6 +22,6 @@
   "scripts": {
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -c .storybook -o public",
-    "dev-stylus": "stylus -w stylus/style.styl -o css/style.css"
+    "dev-stylus": "stylus -w --compress stylus/style.styl -o css/style.css"
   }
 }

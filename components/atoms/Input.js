@@ -6,7 +6,7 @@ import Icon from "./Icon";
  * Icon component
  */
 
-const Input = ({ placeholder, label, icon, name, ...props }) => {
+const Input = ({ placeholder, dialog, label, icon, name, ...props }) => {
   return (
     <div className="inputer">
       <div className={`inputer-group`}>
@@ -22,6 +22,12 @@ const Input = ({ placeholder, label, icon, name, ...props }) => {
           {icon && <Icon sprite={icon} typehead />}
         </div>
       </div>
+      {dialog &&
+        <div className="mod yellow wallpad centertxt">
+          {dialog}
+        </div>
+      }
+      
     </div>
   );
 };
@@ -29,6 +35,7 @@ const Input = ({ placeholder, label, icon, name, ...props }) => {
 Input.propTypes = {
   placeholder: PropTypes.string,
   label: PropTypes.bool,
+  dialog: PropTypes.string,
   icon: PropTypes.oneOf([
     "arrowDown",
     "arrowLeft",
