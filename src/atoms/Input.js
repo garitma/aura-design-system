@@ -7,9 +7,19 @@ import { Icon } from "..";
  * Icon component
  */
 
-const Input = ({ placeholder, className, dialog, dialogColor, label, icon, name, ...props }) => {
-
-  const inputAllClassName = `${className || ""} ${icon ? "typeahead" : ""} ${dialog ? dialogColor : ""}`
+const Input = ({
+  placeholder,
+  className,
+  dialog,
+  dialogColor,
+  label,
+  icon,
+  name,
+  ...props
+}) => {
+  const inputAllClassName = `${className || ""} ${icon ? "typeahead" : ""} ${
+    dialog ? dialogColor : ""
+  }`;
 
   return (
     <div className="inputer">
@@ -24,7 +34,7 @@ const Input = ({ placeholder, className, dialog, dialogColor, label, icon, name,
           />
           {placeholder && label && <label htmlFor={name}>{placeholder}</label>}
           {dialog && <span className="disable">{dialog}</span>}
-          {icon && <Icon sprite={icon} className="action left disable"/>}
+          {icon && <Icon sprite={icon} className="action left disable" />}
         </div>
       </div>
     </div>
@@ -35,13 +45,7 @@ Input.propTypes = {
   placeholder: PropTypes.string,
   label: PropTypes.bool,
   dialog: PropTypes.string,
-  dialogColor: PropTypes.oneOf([
-    "blue",
-    "green",
-    "yellow",
-    "orange",
-    "pink"
-  ]),
+  dialogColor: PropTypes.oneOf(["blue", "green", "yellow", "orange", "pink"]),
   icon: PropTypes.oneOf([
     "bag",
     "bag-add",
@@ -63,8 +67,8 @@ Input.propTypes = {
     "store",
     "twitter",
     "user",
-    "youtube",
-  ]),
+    "youtube"
+  ])
 };
 
 Input.defaultProps = {

@@ -3,7 +3,11 @@
   "version": "1.0.4",
   "description": "Garitma's Design system",
   "main": "./lib/index.js",
-  "keywords": [],
+  "files": [
+    "README.md",
+    "lib",
+    "css"
+  ],
   "author": "Garitma <hola@garitma.com",
   "license": "MIT",
   "homepage": "https://auradesignsystem.com",
@@ -43,8 +47,12 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
+    "dev-stylus": "stylus -w --compress stylus/style.styl -o css/style.css",
     "build-storybook": "build-storybook -c .storybook -o public",
-    "build": "babel src --out-dir lib",
-    "dev-stylus": "stylus -w --compress stylus/style.styl -o css/style.css"
-  }
+    "build": "babel src --out-dir lib && npm run copy-types",
+    "copy-types": "cp types/components/*.d.ts lib",
+    "release": "npm run build && npm publish",
+    "prettier": "prettier --write \"{src,test,stories}/**/*.js\""
+  },
+  "keywords": []
 }

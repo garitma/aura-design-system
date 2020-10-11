@@ -26,14 +26,14 @@ Button.propTypes = {
   type: PropTypes.oneOf(["button", "reset", "submit", "menu", "link"]),
   mode: PropTypes.oneOf(["fill", "pill", "link"]),
   label: PropTypes.string.isRequired,
-  fluid: PropTypes.bool,
+  fluid: PropTypes.bool
 };
 
 Button.defaultProps = {
   type: "button",
   label: "Button",
   mode: "fill",
-  fluid: false,
+  fluid: false
 };
 
 export default Button;

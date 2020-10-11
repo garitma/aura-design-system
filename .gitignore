@@ -129,3 +129,6 @@ out/
 
 # Storybook statib build
 .vercel
+
+# Logs
+lib

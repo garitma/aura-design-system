@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
  */
 
 const Icon = ({ sprite, className, ...props }) => {
-
   return (
     <div className={`glyphsSprite ${sprite} ${className}`} {...props}></div>
   );
@@ -47,8 +46,8 @@ Icon.propTypes = {
     "store",
     "twitter",
     "user",
-    "youtube",
-  ]),
+    "youtube"
+  ])
 };
 
 export default Icon;
