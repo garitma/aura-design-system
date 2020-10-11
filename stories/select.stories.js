@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Select } from "..";
+import { Select } from "../src";
 import "../css/style.css";
 
 export default {

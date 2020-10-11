@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Icon } from "..";
+import { Icon } from "../src";
 import "../css/style.css";
 
 export default {

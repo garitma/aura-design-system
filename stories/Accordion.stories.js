@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Accordion } from "..";
+import { Accordion } from "../src";
 import "../css/style.css";
 
 export default {

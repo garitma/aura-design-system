@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button } from "..";
+import { Button } from "../src";
 import "../css/style.css";
 
 export default {
