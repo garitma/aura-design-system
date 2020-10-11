@@ -11,6 +11,7 @@ const Select = ({
   options,
   placeholder,
   dialog,
+  dialogMessage,
   dialogColor,
   name,
   label,
@@ -46,24 +47,25 @@ const Select = ({
         {placeholder && label && labelInit && (
           <label htmlFor={name}>{placeholder}</label>
         )}
-        {dialog && <span className="dialog disable">{dialog}</span>}
+        {dialog && <span>{dialogMessage}</span>}
       </div>
     </div>
   );
 };
 
-Select.prototype = {
-  option: PropTypes.array,
-  dialog: PropTypes.string,
-  label: PropTypes.bool,
+Select.propTypes = {
+  options: PropTypes.array,
   placeholder: PropTypes.string,
-  dialogColor: PropTypes.oneOf(["blue", "green", "yellow", "orange", "pink"])
+  label: PropTypes.bool,
+  dialog: PropTypes.bool,
+  dialogMessage: PropTypes.string
 };
 
 Select.defaultProps = {
   options: [],
   dialogColor: "yellow",
   label: true
-};
+}
+
 
 export default Select;

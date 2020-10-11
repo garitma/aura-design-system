@@ -6,17 +6,20 @@
 .inputer
     @extend .inside-pad
     position relative
-    margin-bottom aura
+    margin-bottom aura * 1.5
     &-group
         position: relative;
         box-sizing: border-box;
         label:not(.original)
             position absolute
             transform-origin: top left
-            transform: translate(aura*0.5, aura * -1);
-        span:not(.original), .dialog
+            transform: translate(0, aura * -1);
+        span:not(.original), 
             transform-origin: top left
-            transform: translate(aura*0.5, aura * -1);
+            transform: translate(aura*0.5, aura);
+            bottom 0
+            position: absolute
+
     label, input 
         transition: all .1s ease-in-out
         touch-action: manipulation

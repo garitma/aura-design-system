@@ -14,9 +14,9 @@ export const Naked = Template.bind({});
 
 Naked.args = {};
 
-export const withPlaceholder = Template.bind({});
+export const WithPlaceholder = Template.bind({});
 
-withPlaceholder.args = {
+WithPlaceholder.args = {
   placeholder: "Select with placeholder"
 };
 
@@ -41,5 +41,6 @@ withDialog.args = {
     ["key2", "value2"],
     ["key3", "value3"]
   ],
-  dialog: "⚠️ Oooops, something happened text"
+  dialog: true,
+  dialogMessage: "⚠️ Oooops, something happened text"
 };

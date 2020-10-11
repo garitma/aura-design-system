@@ -12,6 +12,7 @@ const Input = ({
   className,
   dialog,
   dialogColor,
+  dialogMessage,
   label,
   icon,
   name,
@@ -33,7 +34,7 @@ const Input = ({
             {...props}
           />
           {placeholder && label && <label htmlFor={name}>{placeholder}</label>}
-          {dialog && <span className="disable">{dialog}</span>}
+          {dialog && <span>{dialogMessage}</span>}
           {icon && <Icon sprite={icon} className="action left disable" />}
         </div>
       </div>
@@ -44,8 +45,9 @@ const Input = ({
 Input.propTypes = {
   placeholder: PropTypes.string,
   label: PropTypes.bool,
-  dialog: PropTypes.string,
+  dialog: PropTypes.bool,
   dialogColor: PropTypes.oneOf(["blue", "green", "yellow", "orange", "pink"]),
+  dialogMessage: PropTypes.string,
   icon: PropTypes.oneOf([
     "bag",
     "bag-add",

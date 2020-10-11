@@ -24,7 +24,8 @@ export const WithDialog = Template.bind({});
 
 WithDialog.args = {
   placeholder: "Placeholder",
-  dialog: "⚠️ Oooops, something happened text"
+  dialog: true,
+  dialogMessage: "⚠️ Oooops, something happened text"
 };
 
 export const WithOutLabel = Template.bind({});
