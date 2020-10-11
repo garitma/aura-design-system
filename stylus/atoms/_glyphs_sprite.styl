@@ -2,11 +2,15 @@
 // Glyphs Sprite
 // Licensed under MIT - see LICENSE.txt 
 // Aura Design System
+
+*:root
+    --sprite: url("https://images.prismic.io/garitma/614ed5af-628a-4372-96be-2fd730bd3603_sprite_glyphs.png?auto=compress,format")
+
 .dark-mode
-    .glyphsSprite
-        background-image url("https://images.prismic.io/garitma/5650698d-d476-4211-b630-ab7744a7bbb7_sprite_glyphs-dark.png?auto=compress,format")
+    --sprite: url("https://images.prismic.io/garitma/5650698d-d476-4211-b630-ab7744a7bbb7_sprite_glyphs-dark.png?auto=compress,format")
+    
 .glyphsSprite
-    background-image url("https://images.prismic.io/garitma/614ed5af-628a-4372-96be-2fd730bd3603_sprite_glyphs.png?auto=compress,format")
+    background-image var(--sprite)
     background-size 265px 260px
     background-repeat no-repeat
     height 24px

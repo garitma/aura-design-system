@@ -26,3 +26,11 @@ withOption.args = {
   placeholder: "Select with options",
   options: [["key", "value"], ["key", "value2"], ["key", "value3"], ["key", "value3"]]
 };
+
+export const withDialog = Template.bind({});
+
+withDialog.args = {
+  placeholder: "Select with options",
+  options: [["key", "value"], ["key2", "value2"], ["key3", "value3"]],
+  dialog: "⚠️ Oooops, something happened text"
+};
