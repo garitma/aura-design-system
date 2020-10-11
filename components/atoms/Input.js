@@ -1,17 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+
 import Icon from "./Icon";
 
 /**
  * Icon component
  */
 
-const Input = ({ placeholder, className, dialog, dialogColor = "yellow", label, icon, name, ...props }) => {
+const Input = ({ placeholder, className, dialog, dialogColor, label, icon, name, ...props }) => {
 
   const inputAllClassName = `${className || ""} ${icon ? "typeahead" : ""} ${dialog ? dialogColor : ""}`
 
   return (
-
     <div className="inputer">
       <div className={`inputer-group`}>
         <div className="halo">
@@ -27,7 +27,6 @@ const Input = ({ placeholder, className, dialog, dialogColor = "yellow", label, 
           {icon && <Icon sprite={icon} className="action left disable"/>}
         </div>
       </div>
-      
     </div>
   );
 };
@@ -70,6 +69,7 @@ Input.propTypes = {
 
 Input.defaultProps = {
   label: true,
+  dialogColor: "yellow"
 };
 
 export default Input;
