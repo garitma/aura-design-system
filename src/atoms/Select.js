@@ -47,7 +47,7 @@ const Select = ({
         {placeholder && label && labelInit && (
           <label htmlFor={name}>{placeholder}</label>
         )}
-        {dialog && <span>{dialogMessage}</span>}
+        {dialog && <span className="dark-mode"><small className="yellow-text">{dialogMessage}</small></span>}
       </div>
     </div>
   );

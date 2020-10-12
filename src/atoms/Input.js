@@ -34,7 +34,7 @@ const Input = ({
             {...props}
           />
           {placeholder && label && <label htmlFor={name}>{placeholder}</label>}
-          {dialog && <span>{dialogMessage}</span>}
+          {dialog && <span className="dark-mode"><small className="yellow-text">{dialogMessage}</small></span>}
           {icon && <Icon sprite={icon} className="action left disable" />}
         </div>
       </div>
