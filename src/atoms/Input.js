@@ -25,17 +25,19 @@ const Input = ({
   return (
     <div className="inputer">
       <div className={`inputer-group`}>
-        <div className="halo">
-          <input
-            name={name}
-            aria-label={placeholder}
-            placeholder={placeholder}
-            className={inputAllClassName}
-            {...props}
-          />
-          {placeholder && label && <label htmlFor={name}>{placeholder}</label>}
+        <div className="input-group">
+          <div className="halo">
+            <input
+              name={name}
+              aria-label={placeholder}
+              placeholder={placeholder}
+              className={inputAllClassName}
+              {...props}
+            />
+            {placeholder && label && <label htmlFor={name}>{placeholder}</label>}
+            {icon && <Icon sprite={icon} className="action left disable" />}
+          </div>
           {dialog && <span className="dark-mode"><small className="yellow-text">{dialogMessage}</small></span>}
-          {icon && <Icon sprite={icon} className="action left disable" />}
         </div>
       </div>
     </div>

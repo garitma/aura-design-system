@@ -13,7 +13,7 @@
         label:not(.original)
             position absolute
             transform-origin: top left
-            transform: translate(0, aura * -1);
+            transform: translate(0, aura * -2);
         span
             transform-origin top left
             transform translate( aura * 0.5, aura * -1 )
@@ -55,9 +55,8 @@
         padding aura *2
         line-height aura * 4
         cursor: text;
-        @extend p
         &:focus
-            background Realse
+            background var(--realse)
             outline 0
 
 
