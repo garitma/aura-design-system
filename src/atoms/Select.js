@@ -10,6 +10,7 @@ import { Icon } from "..";
 const Select = ({
   options,
   placeholder,
+  disabled,
   dialog,
   dialogMessage,
   dialogColor,
@@ -18,8 +19,12 @@ const Select = ({
   className,
   ...props
 }) => {
+  
   const [labelInit, setLabelInit] = useState(false);
-  const selectAllClasName = `${className || ""} ${dialog ? dialogColor : ""}`;
+
+  const classConnect = [className]
+  if (dialog) {classConnect.push(dialogColor)}
+  if (disabled) {classConnect.push("disable")}
 
   return (
     <div className="inputer">
@@ -27,8 +32,9 @@ const Select = ({
         <div className="halo">
           <select
             name={name}
-            className={selectAllClasName}
+            className={classConnect.join(" ")}
             onClick={() => setLabelInit(true)}
+            disabled={disabled}
             {...props}
           >
             {placeholder && !labelInit ? (
@@ -42,12 +48,16 @@ const Select = ({
               </option>
             ))}
           </select>
-          <Icon sprite="arrowDown" className="right action  disable" />
+          <Icon sprite="arrowDown" className="right action disable" />
         </div>
         {placeholder && label && labelInit && (
           <label htmlFor={name}>{placeholder}</label>
         )}
-        {dialog && <span className="dark-mode"><small className="yellow-text">{dialogMessage}</small></span>}
+        {dialog && 
+            <span className="dark-mode">
+              <small className={`${dialogColor}-text`}>{dialogMessage}</small>
+            </span>
+        }
       </div>
     </div>
   );
@@ -56,6 +66,7 @@ const Select = ({
 Select.propTypes = {
   options: PropTypes.array,
   placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
   label: PropTypes.bool,
   dialog: PropTypes.bool,
   dialogMessage: PropTypes.string

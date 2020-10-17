@@ -10,6 +10,7 @@ import { Icon } from "..";
 const Input = ({
   placeholder,
   className,
+  disabled,
   dialog,
   dialogColor,
   dialogMessage,
@@ -18,9 +19,12 @@ const Input = ({
   name,
   ...props
 }) => {
-  const inputAllClassName = `${className || ""} ${icon ? "typeahead" : ""} ${
-    dialog ? dialogColor : ""
-  }`;
+
+  const classConnect = [className]
+
+  if (dialog) { classConnect.push(dialogColor)}
+  if (disabled) { classConnect.push("disable")}
+  if (icon) { classConnect.push("typeahead")}
 
   return (
     <div className="inputer">
@@ -31,13 +35,18 @@ const Input = ({
               name={name}
               aria-label={placeholder}
               placeholder={placeholder}
-              className={inputAllClassName}
+              disabled={disabled}
+              className={classConnect.join(' ')}
               {...props}
             />
             {placeholder && label && <label htmlFor={name}>{placeholder}</label>}
             {icon && <Icon sprite={icon} className="action left disable" />}
           </div>
-          {dialog && <span className="dark-mode"><small className="yellow-text">{dialogMessage}</small></span>}
+          {dialog && 
+            <span className="dark-mode">
+              <small className={`${dialogColor}-text`}>{dialogMessage}</small>
+            </span>
+          }
         </div>
       </div>
     </div>
@@ -46,9 +55,10 @@ const Input = ({
 
 Input.propTypes = {
   placeholder: PropTypes.string,
+  disabled: PropTypes.bool,
   label: PropTypes.bool,
   dialog: PropTypes.bool,
-  dialogColor: PropTypes.oneOf(["blue", "green", "yellow", "orange", "pink"]),
+  dialogColor: PropTypes.oneOf(["blue", "green", "yellow", "orange"]),
   dialogMessage: PropTypes.string,
   icon: PropTypes.oneOf([
     "bag",

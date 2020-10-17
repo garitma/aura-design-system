@@ -6,8 +6,11 @@ import PropTypes from "prop-types";
  */
 
 const Icon = ({ sprite, className, ...props }) => {
+
+  const classConnect = ["glyphsSprite", sprite, className]
+
   return (
-    <div className={`glyphsSprite ${sprite} ${className}`} {...props}></div>
+    <div className={classConnect.join(' ')} {...props}></div>
   );
 };
 
@@ -31,13 +34,6 @@ Icon.propTypes = {
     "key",
     "link",
     "location",
-    "logo",
-    "logo-aura",
-    "logo-aura-l",
-    "logo-elg",
-    "logo-firma",
-    "logo-g",
-    "logo-gmtc",
     "mail",
     "menu",
     "pay",
