@@ -6,7 +6,8 @@
   "files": [
     "README.md",
     "lib",
-    "css"
+    "css",
+    "utils"
   ],
   "author": "Garitma <hola@garitma.com",
   "license": "MIT",

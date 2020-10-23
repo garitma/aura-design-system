@@ -10,8 +10,20 @@ export default {
 
 const Template = args => <Image {...args} />;
 
-export const Naked = Template.bind({});
+export const defaultImage = Template.bind({});
 
-Naked.args = {
-  src: "http://via.placeholder.com/1140x570"
+defaultImage.args = {
+  src:
+    "https://images.prismic.io/garitma/5881fad5f6db536e6ed7e4ae980f05c92504d8d0_huele-a-deseo.jpg?auto=compress,format"
+};
+
+export const withPlaceholder = Template.bind({});
+
+withPlaceholder.args = {
+  src:
+    "https://images.prismic.io/garitma/5881fad5f6db536e6ed7e4ae980f05c92504d8d0_huele-a-deseo.jpg?auto=compress,format",
+  placeholder:
+    "https://images.prismic.io/garitma/5881fad5f6db536e6ed7e4ae980f05c92504d8d0_huele-a-deseo.jpg?auto=compress,format&w=10&dpr=1",
+  height: "320",
+  with: "260"
 };

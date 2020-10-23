@@ -28,6 +28,13 @@
 .block-img
     @extend .mod-media
     mixin-border-radius(aura)
+        img
+            mixin-border-radius(aura)
+    &-square
+        @extend .mod-media
+        @extend .square
+        img
+            @extend .square
 
 div[data-type="static_image"]
     @extend .mod-media
