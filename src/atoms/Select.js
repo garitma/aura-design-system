@@ -19,12 +19,15 @@ const Select = ({
   className,
   ...props
 }) => {
-  
   const [labelInit, setLabelInit] = useState(false);
 
-  const classConnect = [className]
-  if (dialog) {classConnect.push(dialogColor)}
-  if (disabled) {classConnect.push("disable")}
+  const classConnect = [className];
+  if (dialog) {
+    classConnect.push(dialogColor);
+  }
+  if (disabled) {
+    classConnect.push("disable");
+  }
 
   return (
     <div className="inputer">
@@ -32,7 +35,7 @@ const Select = ({
         <div className="halo">
           <select
             name={name}
-            className={classConnect.join(" ")}
+            className={classConnect.join(" ").trim()}
             onClick={() => setLabelInit(true)}
             disabled={disabled}
             {...props}
@@ -53,11 +56,11 @@ const Select = ({
         {placeholder && label && labelInit && (
           <label htmlFor={name}>{placeholder}</label>
         )}
-        {dialog && 
-            <span className="dark-mode">
-              <small className={`${dialogColor}-text`}>{dialogMessage}</small>
-            </span>
-        }
+        {dialog && (
+          <span className="dark-mode">
+            <small className={`${dialogColor}-text`}>{dialogMessage}</small>
+          </span>
+        )}
       </div>
     </div>
   );
@@ -76,7 +79,6 @@ Select.defaultProps = {
   options: [],
   dialogColor: "yellow",
   label: true
-}
-
+};
 
 export default Select;

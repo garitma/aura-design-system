@@ -19,12 +19,17 @@ const Input = ({
   name,
   ...props
 }) => {
+  const classConnect = [className];
 
-  const classConnect = [className]
-
-  if (dialog) { classConnect.push(dialogColor)}
-  if (disabled) { classConnect.push("disable")}
-  if (icon) { classConnect.push("typeahead")}
+  if (dialog) {
+    classConnect.push(dialogColor);
+  }
+  if (disabled) {
+    classConnect.push("disable");
+  }
+  if (icon) {
+    classConnect.push("typeahead");
+  }
 
   return (
     <div className="inputer">
@@ -36,17 +41,19 @@ const Input = ({
               aria-label={placeholder}
               placeholder={placeholder}
               disabled={disabled}
-              className={classConnect.join(' ')}
+              className={classConnect.join(" ").trim()}
               {...props}
             />
-            {placeholder && label && <label htmlFor={name}>{placeholder}</label>}
+            {placeholder && label && (
+              <label htmlFor={name}>{placeholder}</label>
+            )}
             {icon && <Icon sprite={icon} className="action left disable" />}
           </div>
-          {dialog && 
+          {dialog && (
             <span className="dark-mode">
               <small className={`${dialogColor}-text`}>{dialogMessage}</small>
             </span>
-          }
+          )}
         </div>
       </div>
     </div>
