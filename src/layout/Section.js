@@ -21,27 +21,31 @@ const Section = ({
 }) => {
   const classConnect = [className, space];
   const subClassConnect = [subClassName, container];
-  const styleConnect = [style]
+  const styleConnect = [style];
 
   if (color) {
     classConnect.push(color);
   }
 
-  if(backgroundImage) {
-    styleConnect.push(`backgroundImage: ${backgroundImage}`)
+  if (backgroundImage) {
+    styleConnect.push(`backgroundImage: ${backgroundImage}`);
   }
-  if(backgroundPosition) {
-    styleConnect.push(`backgroundPosition: ${backgroundPosition}`)
+  if (backgroundPosition) {
+    styleConnect.push(`backgroundPosition: ${backgroundPosition}`);
   }
-  if(backgroundSize) {
-    styleConnect.push(`backgroundSize: ${backgroundSize}`)
+  if (backgroundSize) {
+    styleConnect.push(`backgroundSize: ${backgroundSize}`);
   }
-  if(backgroundRepeat) {
-    styleConnect.push(`backgroundRepeat: ${backgroundRepeat}`)
+  if (backgroundRepeat) {
+    styleConnect.push(`backgroundRepeat: ${backgroundRepeat}`);
   }
 
   return (
-    <section className={classConnect.join(" ").trim()} style={{styleConnect}} {...props}>
+    <section
+      className={classConnect.join(" ").trim()}
+      style={{ styleConnect }}
+      {...props}
+    >
       <div className={subClassConnect.join(" ").trim()}>{children}</div>
     </section>
   );

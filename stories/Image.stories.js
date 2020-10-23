@@ -13,5 +13,5 @@ const Template = args => <Image {...args} />;
 export const Naked = Template.bind({});
 
 Naked.args = {
-    src: "http://via.placeholder.com/1140x570"
+  src: "http://via.placeholder.com/1140x570"
 };
