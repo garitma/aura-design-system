@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useInputValue } from "hooks/useInputValue";
+import { useInputValue } from "./useInputValue";
 
 export const useForm = initialValues => {
   let data = {};
