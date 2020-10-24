@@ -46,10 +46,10 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "dev-stylus": "stylus -w --compress stylus/style.styl -o css/style.css",
+    "dev-stylus": "stylus -w --compress stylus/style.styl -o stylus/style.css",
     "build-storybook": "build-storybook -c .storybook -o public",
-    "build": "babel src --out-dir lib && npm run copy-types && stylus --compress stylus/style.styl -o lib/style.css",
-    "copy-types": "cp types/components/*.d.ts lib",
+    "build": "babel src --out-dir core && npm run copy-types && stylus --compress stylus/style.styl -o core/style.css",
+    "copy-types": "cp types/components/*.d.ts core",
     "release": "npm run build && npm publish",
     "prettier": "prettier --write \"{src,test,stories}/**/*.js\""
   },

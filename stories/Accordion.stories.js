@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Accordion } from "../src";
-import "../css/style.css";
+import "../stylus/style.css";
 
 export default {
   title: "Molecules/Acordion",

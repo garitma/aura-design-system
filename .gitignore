@@ -131,4 +131,4 @@ out/
 .vercel
 
 # Logs
-lib
+core

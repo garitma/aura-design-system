@@ -13,9 +13,10 @@ const Button = ({
   type,
   mode,
   fluid,
+  link,
   ...props
 }) => {
-  const ButtonTag = type === "link" ? "a" : "button";
+  const ButtonTag = link ? "a" : "button";
   const classConnect = [className, `button-${mode}`];
   if (fluid) {
     classConnect.push("fluid");
@@ -41,7 +42,7 @@ const Button = ({
 
 Button.propTypes = {
   type: PropTypes.oneOf(["button", "reset", "submit", "menu", "link"]),
-  mode: PropTypes.oneOf(["fill", "pill", "link"]),
+  mode: PropTypes.oneOf(["fill", "pill", "link", "menu"]),
   label: PropTypes.any,
   fluid: PropTypes.bool,
   disabled: PropTypes.bool
