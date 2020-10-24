@@ -7,7 +7,7 @@ import { Buttom } from ".."
  * Menu
  */
 
- const Menu = ({container, className, menu, ...props}) => {
+ const Menu = ({childre, container, className, menu, ...props}) => {
 
     const classConnect = [className]
 
@@ -18,33 +18,10 @@ import { Buttom } from ".."
     return (
         <div className={classConnect.join(" ").trim()} {...props}>
             <ul className="nav-list fluid">
-                {menu.map(
-                    (item, index) => {
-                        <li key={index}>
-                            <Buttom 
-                                label={item.text}
-                                href={item.href}
-                                as={item.as}
-                                target={item.target} 
-                                mode="menu" 
-                                link 
-                            />
-                        </li>
-                    }
-                )}
+                {childre}
             </ul>
         </div>
  )}
 
- Menu.defaultProps = {
-    menu: [
-        {
-            text: "example",
-            href: "/",
-            as: "/",
-            target: "",
-        }
-    ]
- }
 
  export default Menu
