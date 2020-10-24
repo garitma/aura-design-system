@@ -10,7 +10,7 @@ const Image = ({
   placeholder,
   ...props
 }) => {
-  const loadedImage = useProgressiveImage(src)
+  const loadedImage = useProgressiveImage(src);
   const lazyImage = loadedImage || placeholder;
   const classConnect = [className];
   const subClassNameConnect = [];
@@ -18,9 +18,9 @@ const Image = ({
   if (subClassName) {
     subClassNameConnect.push(subClassName);
   }
-  
+
   if (!loadedImage) {
-    subClassNameConnect.push("fluid")
+    subClassNameConnect.push("fluid");
   }
 
   if (mode) {

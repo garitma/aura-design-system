@@ -1,27 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Buttom } from ".."
+import { Buttom } from "..";
 
 /**
  * Menu
  */
 
- const Menu = ({childre, container, className, menu, ...props}) => {
+const Menu = ({ childre, container, className, menu, ...props }) => {
+  const classConnect = [className];
 
-    const classConnect = [className]
+  if (container) {
+    classConnect.push(container);
+  }
 
-    if(container) {
-        classConnect.push(container)
-    }
+  return (
+    <div className={classConnect.join(" ").trim()} {...props}>
+      <ul className="nav-list fluid">{childre}</ul>
+    </div>
+  );
+};
 
-    return (
-        <div className={classConnect.join(" ").trim()} {...props}>
-            <ul className="nav-list fluid">
-                {childre}
-            </ul>
-        </div>
- )}
-
-
- export default Menu
+export default Menu;

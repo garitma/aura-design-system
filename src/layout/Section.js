@@ -27,10 +27,7 @@ const Section = ({
   }
 
   return (
-    <section
-      className={classConnect.join(" ").trim()}
-      {...props}
-    >
+    <section className={classConnect.join(" ").trim()} {...props}>
       <div className={subClassConnect.join(" ").trim()}>{children}</div>
     </section>
   );

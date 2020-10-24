@@ -8,8 +8,8 @@ export { default as Footer } from "./organisms/Footer";
 export { default as Section } from "./layout/Section";
 export { default as Grid } from "./layout/Grid";
 
-export { useInputValue as useInputValue } from "./utils/useInputValue";
-export { useForm as useForm } from "./utils/useForm";
-export { useFormReset as useFormReset } from "./utils/useForm";
-export { useFormIsValid as useFormIsValid } from "./utils/useForm";
+export { useInputValue } from "./utils/useInputValue";
+export { useForm } from "./utils/useForm";
+export { useFormReset } from "./utils/useForm";
+export { useFormIsValid } from "./utils/useForm";
 export { default as useProgressiveImage } from "./utils/useProgressiveImage";

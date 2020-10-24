@@ -20,14 +20,7 @@ const Grid = ({ children, className, col, ...props }) => {
 };
 
 Grid.propTypes = {
-  col: PropTypes.oneOf([
-    "one",
-    "two",
-    "field",
-    "list",
-    "tag",
-    "feature-first"
-  ])
+  col: PropTypes.oneOf(["one", "two", "field", "list", "tag", "feature-first"])
 };
 
 export default Grid;
