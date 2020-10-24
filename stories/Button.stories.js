@@ -12,21 +12,18 @@ const Template = args => <Button {...args} />;
 
 export const Fill = Template.bind({});
 Fill.args = {
-  type: "button",
   label: "Button fill",
   mode: "fill"
 };
 
 export const Pill = Template.bind({});
 Pill.args = {
-  type: "button",
   label: "Button pill",
   mode: "pill"
 };
 
 export const Link = Template.bind({});
 Link.args = {
-  type: "button",
   label: "Button link",
   mode: "link"
 };
@@ -34,7 +31,6 @@ Link.args = {
 export const Fluid = Template.bind({});
 
 Fluid.args = {
-  type: "button",
   label: "Button fill fluid",
   mode: "fill",
   fluid: true
@@ -43,7 +39,7 @@ Fluid.args = {
 export const Hyperlink = Template.bind({});
 
 Hyperlink.args = {
-  type: "link",
-  label: "This is an Anchor <a/>",
+  link: true,
+  label: "This is an Anchor",
   mode: "fill"
 };

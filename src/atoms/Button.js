@@ -10,7 +10,6 @@ const Button = ({
   className,
   disabled,
   label,
-  type,
   mode,
   fluid,
   link,
@@ -27,7 +26,6 @@ const Button = ({
 
   return (
     <ButtonTag
-      type={type}
       className={classConnect.join(" ").trim()}
       disabled={disabled}
       {...props}
@@ -41,15 +39,14 @@ const Button = ({
 };
 
 Button.propTypes = {
-  type: PropTypes.oneOf(["button", "reset", "submit", "menu", "link"]),
   mode: PropTypes.oneOf(["fill", "pill", "link", "menu"]),
   label: PropTypes.any,
   fluid: PropTypes.bool,
+  link: PropTypes.bool,
   disabled: PropTypes.bool
 };
 
 Button.defaultProps = {
-  type: "button",
   label: "Button",
   mode: "fill",
   fluid: false,

@@ -5,11 +5,11 @@ import PropTypes from "prop-types";
  * Grid
  */
 
-const Grid = ({ children, className, colums, ...props }) => {
+const Grid = ({ children, className, col, ...props }) => {
   const classConnect = ["aureole", className];
 
-  if (colums) {
-    classConnect.push(colums);
+  if (col) {
+    classConnect.push(col);
   }
 
   return (
@@ -20,7 +20,7 @@ const Grid = ({ children, className, colums, ...props }) => {
 };
 
 Grid.propTypes = {
-  colums: PropTypes.oneOf([
+  col: PropTypes.oneOf([
     "one",
     "two",
     "field",

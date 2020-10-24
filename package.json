@@ -1,11 +1,11 @@
 {
   "name": "aura-design-system",
-  "version": "1.0.7",
+  "version": "1.0.10",
   "description": "Garitma's Design system",
-  "main": "./lib/index.js",
+  "main": "./core/index.js",
   "files": [
     "README.md",
-    "lib"
+    "core"
   ],
   "author": "Garitma <hola@garitma.com",
   "license": "MIT",
