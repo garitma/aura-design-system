@@ -23,3 +23,5 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {};
+
+export default Header

@@ -7,8 +7,8 @@ import { Buttom } from "..";
  * Menu
  */
 
-const Menu = ({ childre, container, className, menu, ...props }) => {
-  const classConnect = [className];
+const Menu = ({ children, container, className, ...props }) => {
+  const classConnect = [className, "fluid"];
 
   if (container) {
     classConnect.push(container);
@@ -16,7 +16,7 @@ const Menu = ({ childre, container, className, menu, ...props }) => {
 
   return (
     <div className={classConnect.join(" ").trim()} {...props}>
-      <ul className="nav-list fluid">{childre}</ul>
+      <ul className="nav-list fluid">{children}</ul>
     </div>
   );
 };
