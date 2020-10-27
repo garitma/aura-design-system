@@ -5,38 +5,34 @@ import PropTypes from "prop-types";
  * Primary UI component for user interaction
  */
 
-const Button = ({
-  children,
-  className,
-  disabled,
-  label,
-  mode,
-  fluid,
-  link,
-  ...props
-}) => {
-  const ButtonTag = link ? "a" : "button";
-  const classConnect = [className, `button-${mode}`];
-  if (fluid) {
-    classConnect.push("fluid");
-  }
-  if (disabled) {
-    classConnect.push("disable");
-  }
+const Button = React.forwardRef(
+  (
+    { children, className, disabled, label, mode, fluid, link, ...props },
+    ref
+  ) => {
+    const ButtonTag = link ? `<a ref="${ref}>` : "button";
+    const classConnect = [className, `button-${mode}`];
+    if (fluid) {
+      classConnect.push("fluid");
+    }
+    if (disabled) {
+      classConnect.push("disable");
+    }
 
-  return (
-    <ButtonTag
-      className={classConnect.join(" ").trim()}
-      disabled={disabled}
-      {...props}
-    >
-      <span className={`container`}>
-        {label}
-        {children}
-      </span>
-    </ButtonTag>
-  );
-};
+    return (
+      <ButtonTag
+        className={classConnect.join(" ").trim()}
+        disabled={disabled}
+        {...props}
+      >
+        <span className={`container`}>
+          {label}
+          {children}
+        </span>
+      </ButtonTag>
+    );
+  }
+);
 
 Button.propTypes = {
   mode: PropTypes.oneOf(["fill", "pill", "link", "menu"]),

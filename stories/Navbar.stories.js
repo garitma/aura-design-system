@@ -11,26 +11,34 @@ export default {
 export const Default = () => (
   <>
     <Navbar>
-        <ul className="nav-list">
-          <li className="item logo">
-            <Icon className="logo" />
-          </li>
-          <li className="item">
-            <div className="mod">
-              <Button mode="link" label link>
-                <Icon sprite="search" />
-              </Button>
-            </div>
-          </li>
-        </ul>
+      <ul className="nav-list">
+        <li className="item logo">
+          <Icon className="logo" />
+        </li>
+        <li className="item">
+          <div className="mod">
+            <Button mode="link" label link>
+              <Icon sprite="search" />
+            </Button>
+          </div>
+        </li>
+      </ul>
     </Navbar>
     <Header text="Header">
       <Menu>
-        <li><Button label="Menu item" mode="menu" link/></li>
-        <li><Button label="Menu item" mode="menu" link/></li>
-        <li><Button label="Menu item" mode="menu" link/></li>
-        <li><Button label="Menu item" mode="menu" link/></li>
+        <li>
+          <Button label="Menu item" mode="menu" link />
+        </li>
+        <li>
+          <Button label="Menu item" mode="menu" link />
+        </li>
+        <li>
+          <Button label="Menu item" mode="menu" link />
+        </li>
+        <li>
+          <Button label="Menu item" mode="menu" link />
+        </li>
       </Menu>
     </Header>
   </>
-) 
+);

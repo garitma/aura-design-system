@@ -24,4 +24,4 @@ Header.propTypes = {
 
 Header.defaultProps = {};
 
-export default Header
+export default Header;
