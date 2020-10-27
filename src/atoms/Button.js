@@ -10,7 +10,7 @@ const Button = React.forwardRef(
     { children, className, disabled, label, mode, fluid, link, ...props },
     ref
   ) => {
-    const ButtonTag = link ? `<a ref="${ref}>` : "button";
+    const ButtonTag = link ? `a` : "button";
     const classConnect = [className, `button-${mode}`];
     if (fluid) {
       classConnect.push("fluid");
@@ -23,6 +23,7 @@ const Button = React.forwardRef(
       <ButtonTag
         className={classConnect.join(" ").trim()}
         disabled={disabled}
+        ref={ref}
         {...props}
       >
         <span className={`container`}>

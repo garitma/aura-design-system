@@ -1,6 +1,6 @@
 {
   "name": "aura-design-system",
-  "version": "1.0.12",
+  "version": "1.0.14",
   "description": "Garitma's Design system",
   "main": "./core/index.js",
   "files": [
