@@ -44,7 +44,6 @@ Button.propTypes = {
 };
 
 Button.defaultProps = {
-  label: "Button",
   mode: "fill",
   fluid: false,
   disabled: false

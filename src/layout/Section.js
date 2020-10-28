@@ -19,6 +19,7 @@ const Section = ({
   backgroundRepeat,
   ...props
 }) => {
+  const SectionTag = passDiv ? `div` : "section";
   const classConnect = [className, space];
   const subClassConnect = [subClassName, container];
 
@@ -27,9 +28,9 @@ const Section = ({
   }
 
   return (
-    <section className={classConnect.join(" ").trim()} {...props}>
+    <SectionTag className={classConnect.join(" ").trim()} {...props}>
       <div className={subClassConnect.join(" ").trim()}>{children}</div>
-    </section>
+    </SectionTag>
   );
 };
 Section.propTypes = {

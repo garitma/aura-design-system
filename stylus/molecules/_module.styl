@@ -4,69 +4,43 @@
 // Aura Design System
 
 .mod
-    background-color var(--white)
-    mixin-border-radius(aura)
+    background-color var(--aura-white)
+    mixin-border-radius(var(--aura-radius))
     box-sizing border-box
     position relative
+    overflow hidden
     &-media
         position relative
         overflow hidden
-        mixin-border-radius-sides(aura, aura, 0, 0)
         img
             @extend .container
             max-width: 100%;
             display: block;
             position: relative;
             object-fit: cover;
-            mixin-border-radius-sides(aura, aura, 0, 0)
-        &.left
-            mixin-border-radius-sides(aura, 0, 0, aura)
-            img
-                mixin-border-radius-sides(aura, 0, 0, aura)
-
+    &-detail
+        mixin-border-radius(var(--aura-radius))
+        background-color var(--aura-white)
+        padding aura * 2
+        display flex
+        flex-direction: column
+        flex-grow: 1
+    &-title
+        @extend .h5 
+    &-action
+        @extend .centertxt 
 
 .block-img
     @extend .mod-media
-    mixin-border-radius(aura)
-        img
-            mixin-border-radius(aura)
-    &-square
-        @extend .mod-media
-        @extend .square
-        img
-            @extend .square
+    mixin-border-radius(var(--aura-radius))
 
 div[data-type="static_image"]
-    @extend .mod-media
-    mixin-border-radius(aura)
+    @extend .block-img
     img
         width: 100%
 
-.zoom
-    img 
-        transform-origin 50% 65%;
-        transition transform 0.5s, filter 3s ease-in-out;
-        filter brightness(100%);
 
-
-.zoom:hover 
-    img 
-        filter brightness(110%);
-        transform scale(1.05);
-
-.mod-detail
-    mixin-border-radius(aura)
-    background-color var(--white)
-    padding aura * 2
-    display flex
-    flex-direction: column
-    flex-grow: 1    
-
-.mod-title
-    @extend .h5
-
-.mod-action
-    mixin-border-radius-sides(0, 0, aura, aura)
-    @extend .centertxt
+    
+  
         
 

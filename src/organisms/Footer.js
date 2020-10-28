@@ -10,7 +10,7 @@ import { Section } from "..";
 const Footer = ({ children, ...props }) => {
   return (
     <footer {...props}>
-      <Section>{children}</Section>
+      <Section passDiv>{children}</Section>
     </footer>
   );
 };

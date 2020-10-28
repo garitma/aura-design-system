@@ -30,38 +30,38 @@
 
 .button-fill
     @extend .button
-    border-color var(--base-color)
+    border-color var(--aura-base-color)
     color Dark
-    background-color var(--base-color)
+    background-color var(--aura-base-color)
     &:hover:not(.disable)
-        color var(--base-color)
-        background-color var(--dark)
+        color var(--aura-base-color)
+        background-color var(--aura-dark)
 
 .button-pill
     @extend .button
-    color var(--base-color)
-    border-color var(--base-color)
+    color var(--aura-base-color)
+    border-color var(--aura-base-color)
     background-color transparent
     &:hover:not(.disable)
-        background-color var(--base-color)
-        color var(--dark)
+        background-color var(--aura-base-color)
+        color var(--aura-dark)
 
 .button-link
     @extend .button
-    color: var(--root)
+    color: var(--aura-root)
     border: 0
     text-decoration: underline
     background-color transparent
     &:hover:not(.disable)
-        color: var(--base-color)
+        color: var(--aura-base-color)
         
     
 a
     text-decoration: none
-    color var(--root)
+    color var(--aura-root)
     cursor pointer
     &:visited:not(.button):not(.button-pill):not(.button-link):not(.disable-button):not(.button-fill)
-        color var(--root)
+        color var(--aura-root)
     
 button
     cursor pointer 
