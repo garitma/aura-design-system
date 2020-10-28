@@ -13,10 +13,7 @@ const Section = ({
   space,
   container,
   style,
-  backgroundImage,
-  backgroundPosition,
-  backgroundSize,
-  backgroundRepeat,
+  passDiv,
   ...props
 }) => {
   const SectionTag = passDiv ? `div` : "section";
