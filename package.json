@@ -4,6 +4,7 @@
   "description": "Garitma's Design system",
   "main": "./core/index.js",
   "files": [
+    "LICENSE",
     "README.md",
     "core"
   ],
