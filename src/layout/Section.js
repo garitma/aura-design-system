@@ -12,7 +12,6 @@ const Section = ({
   color,
   space,
   container,
-  style,
   passDiv,
   ...props
 }) => {
@@ -32,7 +31,7 @@ const Section = ({
 };
 Section.propTypes = {
   subClassName: PropTypes.string,
-  space: PropTypes.oneOf(["pad", "inside-pad", "aura", "wall-pad"]),
+  space: PropTypes.oneOf(["p0", "pad", "inside-pad", "aura", "wall-pad"]),
   container: PropTypes.oneOf(["smash", "smesh", "smish", "smosh", "smush"])
 };
 
