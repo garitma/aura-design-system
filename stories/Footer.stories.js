@@ -1,6 +1,8 @@
 import React from "react";
 
-import { Footer, Grid, Icon } from "../src/organisms/footer";
+import Footer from "../src/organisms/footer";
+import Grid from "../src/layout/grid";
+import Icon from "../src/atoms/icon";
 import "../stylus/style.css";
 
 export default {

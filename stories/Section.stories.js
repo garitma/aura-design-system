@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Section } from "../src/layout/section";
+import Section from "../src/layout/section";
 import "../stylus/style.css";
 
 export default {

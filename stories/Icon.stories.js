@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Icon } from "../src/atoms/icon";
+import Icon from "../src/atoms/icon";
 import "../stylus/style.css";
 
 export default {

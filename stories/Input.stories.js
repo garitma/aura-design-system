@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Input } from "../src/atoms/input";
+import Input from "../src/atoms/input";
 import "../stylus/style.css";
 
 export default {

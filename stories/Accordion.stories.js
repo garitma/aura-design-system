@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Accordion } from "../src/atoms/Button";
+import Accordion from "../src/molecules/accordion";
 import "../stylus/style.css";
 
 export default {

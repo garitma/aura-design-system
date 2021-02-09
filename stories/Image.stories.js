@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Image } from "../src/atoms/image";
+import Image from "../src/atoms/image";
 import "../stylus/style.css";
 
 export default {
