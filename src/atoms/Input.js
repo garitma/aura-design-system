@@ -8,12 +8,15 @@ import Icon from "./icon";
  */
 
 const Input = ({
+  isDisabled,
+  isNaked,
+  isWaiting,
+  isHelping,
+  waitingText,
+  helpText,
+  HelpTextColor,
   placeholder,
   className,
-  disabled,
-  dialog,
-  dialogColor,
-  dialogMessage,
   label,
   icon,
   name,
@@ -21,14 +24,20 @@ const Input = ({
 }) => {
   const classConnect = [className];
 
-  if (dialog) {
-    classConnect.push(dialogColor);
-  }
-  if (disabled) {
-    classConnect.push("disable");
-  }
   if (icon) {
     classConnect.push("typeahead");
+  }
+
+  if (isHelping) {
+    classConnect.push(HelpTextColor);
+  }
+
+  if (isDisabled) {
+    classConnect.push("disable");
+  }
+
+  if (isNaked) {
+    classConnect.push("naked");
   }
 
   return (
@@ -40,7 +49,7 @@ const Input = ({
               name={name}
               aria-label={placeholder}
               placeholder={placeholder}
-              disabled={disabled}
+              disabled={isDisabled}
               className={classConnect.join(" ").trim()}
               {...props}
             />
@@ -49,9 +58,9 @@ const Input = ({
             )}
             {icon && <Icon sprite={icon} className="action left disable" />}
           </div>
-          {dialog && (
+          {isHelping && (
             <span className="dark-mode">
-              <small className={`${dialogColor}-text`}>{dialogMessage}</small>
+              <small className={`${HelpTextColor}-text`}>{helpText}</small>
             </span>
           )}
         </div>
@@ -62,7 +71,7 @@ const Input = ({
 
 Input.propTypes = {
   placeholder: PropTypes.string,
-  disabled: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   label: PropTypes.bool,
   dialog: PropTypes.bool,
   dialogColor: PropTypes.oneOf(["blue", "green", "yellow", "orange"]),

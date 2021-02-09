@@ -13,10 +13,14 @@
         label:not(.original)
             position absolute
             transform-origin: top left
-            transform: translate(0, aura * -2);
+            transform: translate(aura * 2, 0);
         span
             transform-origin top left
             transform translate( aura * 0.5, aura * -1 )
+        .typeahead
+            padding-left aura * 6
+            & + label
+                transform: translate(aura * 6, 0);
 
 
     label, input 
@@ -41,8 +45,6 @@
         &:focus
             background var(--aura-realse)
             outline none
-    
-   
 
     input 
         mixin-border-radius(aura * 0.5)
@@ -61,29 +63,21 @@
         &:focus
             background var(--aura-realse)
             outline 0
-
-
-    input:placeholder-shown + label 
-        cursor: text;
-        max-width: 66.66%;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        transform-origin: left bottom;
-        opacity 0
-        z-index -1
-
-    input:not(:placeholder-shown) + label 
-        opacity 1
-        cursor pointer
-        z-index 0
+        &:not(:placeholder-shown):not(.naked)
+            padding aura *2.5 aura *2 aura *1.5 aura *2
+        &:placeholder-shown + label 
+            cursor: text;
+            max-width: 66.66%;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transform-origin: left bottom;
+            opacity 0
+            z-index -1
+        &:not(:placeholder-shown) + label 
+            opacity 1
+            cursor pointer
+            z-index 0
+        
     
-    .switch 
-        position: relative;
-        display: inline-block;
-        width: aura * 5;
-        height: aura * 2.5;
-        input 
-            opacity: 0;
-            width: 0;
-            height: 0;
+    

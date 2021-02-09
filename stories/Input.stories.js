@@ -12,7 +12,9 @@ const Template = (args) => <Input {...args} />;
 
 export const Naked = Template.bind({});
 
-Naked.args = {};
+Naked.args = {
+  className: "naked",
+};
 
 export const WithPlaceholder = Template.bind({});
 
