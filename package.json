@@ -2,7 +2,7 @@
   "name": "aura-design-system",
   "version": "1.0.22",
   "description": "Garitma's Design system",
-  "main": "./core/index.js",
+  "main": "./core",
   "files": [
     "LICENSE",
     "README.md",
@@ -47,7 +47,7 @@
   },
   "scripts": {
     "storybook": "start-storybook -p 6006",
-    "dev-stylus": "stylus -w --compress stylus/style.styl -o stylus/style.css",
+    "stylus": "stylus -w --compress stylus/style.styl -o stylus/style.css",
     "build-storybook": "build-storybook -c .storybook -o public",
     "build": "babel src --out-dir core && npm run copy-types && stylus --compress stylus/style.styl -o core/style.css",
     "copy-types": "cp types/components/*.d.ts core",

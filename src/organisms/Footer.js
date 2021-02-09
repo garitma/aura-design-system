@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Section } from "..";
+import Section from "../layout/section";
 
 /**
  * Footer component

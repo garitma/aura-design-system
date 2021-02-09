@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Icon } from "..";
+import Icon from "./icon";
 
 /**
  * Icon component
@@ -88,13 +88,13 @@ Input.propTypes = {
     "store",
     "twitter",
     "user",
-    "youtube"
-  ])
+    "youtube",
+  ]),
 };
 
 Input.defaultProps = {
   label: true,
-  dialogColor: "yellow"
+  dialogColor: "yellow",
 };
 
 export default Input;

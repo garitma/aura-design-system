@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import { Icon } from "..";
+import Icon from "./icon";
 
 /**
  * Select component
@@ -72,13 +72,13 @@ Select.propTypes = {
   disabled: PropTypes.bool,
   label: PropTypes.bool,
   dialog: PropTypes.bool,
-  dialogMessage: PropTypes.string
+  dialogMessage: PropTypes.string,
 };
 
 Select.defaultProps = {
   options: [],
   dialogColor: "yellow",
-  label: true
+  label: true,
 };
 
 export default Select;

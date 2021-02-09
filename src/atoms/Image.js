@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import useProgressiveImage from "../utils/useProgressiveImage";
+import useProgressiveSource from "../utils/useProgressiveSource";
 
 const Image = ({
   className,
@@ -10,7 +10,7 @@ const Image = ({
   placeholder,
   ...props
 }) => {
-  const loadedImage = useProgressiveImage(src);
+  const loadedImage = useProgressiveSource(src);
   const lazyImage = loadedImage || placeholder;
   const classConnect = [className];
   const subClassNameConnect = [];
@@ -41,11 +41,11 @@ const Image = ({
 Image.propTypes = {
   mode: PropTypes.oneOf(["block-img", "block-img-square", "mod-media"]),
   src: PropTypes.string,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
 };
 
 Image.defaultProps = {
-  mode: "block-img"
+  mode: "block-img",
 };
 
 export default Image;

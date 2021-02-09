@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Footer, Grid, Icon } from "../src";
+import { Footer, Grid, Icon } from "../src/organisms/footer";
 import "../stylus/style.css";
 
 export default {
   title: "Organisms/Footer",
-  component: Footer
+  component: Footer,
 };
 
 export const Default = () => (
