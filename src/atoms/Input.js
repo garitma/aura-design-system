@@ -91,8 +91,6 @@ Input.propTypes = {
   ]),
 };
 
-Input.defaultProps = {
-  isLabelable: true,
-};
+Input.defaultProps = {};
 
 export default Input;
