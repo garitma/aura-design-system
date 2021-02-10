@@ -18,3 +18,25 @@ export type AuraColors =
   "lemon-green" |
   "green" |
   "yellow"
+
+export type AuraIcons = "bag" |
+"bag-add" |
+"box" |
+"close" |
+"facebook" |
+"giphy" |
+"heart" |
+"heart-fill" |
+"heart-fill-black" |
+"instagram" |
+"key" |
+"link" |
+"location" |
+"mail" |
+"menu" |
+"pay" |
+"search" |
+"store" |
+"twitter" |
+"user" |
+"youtube" 
