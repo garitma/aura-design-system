@@ -1,6 +1,18 @@
-![cover](https://images.prismic.io/garitma/fab89786-299e-4738-aa9e-738b8b29893f_aura-design-system-meditate.png?auto=compress,format?auto=format&w=320)
-<br/>
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat)](https://github.com/prettier/prettier)
+<p align="center">
+  <a href="https://auradesignsystem">
+    <img src="https://images.prismic.io/garitma/fab89786-299e-4738-aa9e-738b8b29893f_aura-design-system-meditate.png?auto=compress,format?auto=format&w=320" alt="Aura Desing System logo" width="300" />
+  </a>
+</p>
+
+<br>
+
+<p align="center">
+  <img alt="Bundle Size" src="https://img.shields.io/bundlephobia/minzip/aura-design-system"/>
+  <img alt="MIT License" src="https://img.shields.io/github/license/garitma/aura-design-system"/>
+  <img alt="NPM Downloads" src="https://img.shields.io/npm/dt/aura-design-system"/>
+  <img alt="Code Style: Prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat"/>
+</p>
+<br />
 
 # Aura Design system
 
@@ -83,7 +95,7 @@ import { Section, Button, Input, Icon } from "aura-design-system";
 
 You should create a `custom-style.css` and replace the aura tokens for whatever you want.
 
-## Licencia
+## License
 
 MIT
 

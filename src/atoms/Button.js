@@ -7,47 +7,60 @@ import PropTypes from "prop-types";
 
 const Button = React.forwardRef(
   (
-    { children, className, disabled, label, mode, fluid, href, ...props },
+    {
+      isDisabled,
+      isFluid,
+      isWaiting,
+      waitingText,
+      mode,
+      label,
+      className,
+      href,
+      children,
+      ...props
+    },
     ref
   ) => {
-    const ButtonTag = href ? `a` : "button";
+    const AuraButton = href || mode === "menu" ? `a` : "button";
     const classConnect = [className, `button-${mode}`];
-    if (fluid) {
+    if (isFluid) {
       classConnect.push("fluid");
     }
-    if (disabled) {
-      classConnect.push("disable");
+    if (isDisabled || isWaiting) {
+      classConnect.push("disabled");
     }
 
     return (
-      <ButtonTag
+      <AuraButton
         className={classConnect.join(" ").trim()}
-        disabled={disabled}
+        disabled={isDisabled || isWaiting}
         ref={ref}
         href={href}
         {...props}
       >
         <span className={`container`}>
-          {label}
+          {isWaiting ? waitingText : label}
           {children}
         </span>
-      </ButtonTag>
+      </AuraButton>
     );
   }
 );
 
 Button.propTypes = {
+  isFluid: PropTypes.bool,
+  isWaiting: PropTypes.bool,
+  isDisabled: PropTypes.bool,
   mode: PropTypes.oneOf(["fill", "pill", "link", "menu"]),
-  label: PropTypes.any,
-  fluid: PropTypes.bool,
-  link: PropTypes.bool,
-  disabled: PropTypes.bool,
+  label: PropTypes.string,
 };
 
 Button.defaultProps = {
+  isDisabled: false,
+  isFluid: false,
+  isWaiting: false,
+  waitingText: "Loading...",
   mode: "fill",
-  fluid: false,
-  disabled: false,
 };
 
 export default Button;
