@@ -2,10 +2,11 @@ import * as React from 'react';
 import { SharedBasic } from './utils';
 
 export interface ButtonProps extends SharedBasic {
-    disabled?: boolean;
+    isFluid?: boolean;
+    isWaiting: boolean;
+    isDisabled: boolean;
     label?: string;
-    link?: boolean;
-    fluid?: boolean;
+    mode: "fill" | "pill" | "menu" | "link"
     node?: React.ReactNode;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
