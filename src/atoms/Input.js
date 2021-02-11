@@ -10,6 +10,7 @@ const Input = ({
   isDisabled,
   isHelping,
   isLabelable,
+  helpMode,
   helpText,
   leftIcon,
   placeholder,
@@ -25,6 +26,11 @@ const Input = ({
 
   if (isDisabled) {
     classConnect.push("disabled");
+  }
+
+  if (isHelping) {
+    classConnect.push("help");
+    classConnect.push(helpMode);
   }
 
   if (!isLabelable) {
@@ -51,7 +57,7 @@ const Input = ({
           )}
         </div>
         {isHelping && (
-          <span className="dark-mode">
+          <span className={`${helpMode}-text`}>
             <small>{helpText}</small>
           </span>
         )}
@@ -64,6 +70,7 @@ Input.propTypes = {
   isDisabled: PropTypes.bool,
   isLabelable: PropTypes.bool,
   isHelping: PropTypes.bool,
+  helpMode: PropTypes.oneOf(["warning", "info", "danger", "success"]),
   helpText: PropTypes.string,
   placeholder: PropTypes.string,
   leftIcon: PropTypes.oneOf([
@@ -91,6 +98,8 @@ Input.propTypes = {
   ]),
 };
 
-Input.defaultProps = {};
+Input.defaultProps = {
+  helpMode: "warning",
+};
 
 export default Input;

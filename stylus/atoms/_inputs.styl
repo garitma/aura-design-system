@@ -33,7 +33,7 @@
         @extend p
         width 100%
         border 0
-        background-color var(--aura-realse)
+        background-color var(--aura-input-bg)
         box-sizing border-box
         box-shadow none
         color var(--aura-root)
@@ -43,13 +43,13 @@
         height 106px
         padding aura * 2
         &:focus
-            background var(--aura-realse)
+            background var(--aura-input-bg)
             outline none
 
     input 
         mixin-border-radius(aura * 0.5)
         width 100%
-        background-color var(--aura-realse)
+        background-color var(--aura-input-bg)
         border 0
         box-sizing border-box
         box-shadow none
@@ -61,8 +61,10 @@
         line-height aura * 4
         cursor: text;
         &:focus
-            background var(--aura-realse)
+            background var(--aura-input-bg)
             outline 0
+        &::placeholder
+            color: var(--aura-input-placeholder-color);
         &:not(:placeholder-shown):not(.naked)
             padding aura *2.5 aura *2 aura *1.5 aura *2
         &:placeholder-shown + label 
@@ -78,6 +80,7 @@
             opacity 1
             cursor pointer
             z-index 0
+      
         
     
     
