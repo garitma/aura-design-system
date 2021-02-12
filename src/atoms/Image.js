@@ -39,7 +39,7 @@ const Image = ({
 };
 
 Image.propTypes = {
-  mode: PropTypes.oneOf(["block-img", "block-img-square", "mod-media"]),
+  mode: PropTypes.oneOf(["block-img", "mod-media"]),
   src: PropTypes.string,
   placeholder: PropTypes.string,
 };

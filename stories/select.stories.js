@@ -8,7 +8,13 @@ export default {
   component: Select,
 };
 
-const Template = (args) => <Select {...args} />;
+const Template = (args) => (
+  <Select {...args}>
+    <option value="Option 1">Option 1</option>
+    <option value="Option 2">Option 2</option>
+    <option value="Option 3">Option 3</option>
+  </Select>
+);
 
 export const Naked = Template.bind({});
 
@@ -17,30 +23,12 @@ Naked.args = {};
 export const WithPlaceholder = Template.bind({});
 
 WithPlaceholder.args = {
-  placeholder: "Select with placeholder",
+  placeholder: "Select option",
 };
 
-export const withOption = Template.bind({});
+export const WithDialog = Template.bind({});
 
-withOption.args = {
-  placeholder: "Select with options",
-  options: [
-    ["key", "value"],
-    ["key", "value2"],
-    ["key", "value3"],
-    ["key", "value3"],
-  ],
-};
-
-export const withDialog = Template.bind({});
-
-withDialog.args = {
-  placeholder: "Select with options",
-  options: [
-    ["key", "value"],
-    ["key2", "value2"],
-    ["key3", "value3"],
-  ],
-  dialog: true,
-  dialogMessage: "⚠️ Oooops, something happened text",
+WithDialog.args = {
+  isHelping: true,
+  helpText: "⚠️ Oooops, something happened text",
 };
