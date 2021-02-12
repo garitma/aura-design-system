@@ -56,6 +56,7 @@ Select.propTypes = {
   placeholder: PropTypes.string,
   isDisabled: PropTypes.bool,
   isHelping: PropTypes.bool,
+  helpText: PropTypes.string,
   helpMode: PropTypes.oneOf(["warning", "info", "danger", "success"]),
 };
 

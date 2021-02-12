@@ -33,13 +33,13 @@ export const Fluid = Template.bind({});
 Fluid.args = {
   label: "Button fill fluid",
   mode: "fill",
-  fluid: true,
+  isFluid: true,
 };
 
 export const Hyperlink = Template.bind({});
 
 Hyperlink.args = {
-  link: true,
+  href: "#",
   label: "This is an Anchor",
   mode: "fill",
 };

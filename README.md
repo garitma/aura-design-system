@@ -60,14 +60,13 @@ identifies this field you can remove the import from `index.html`.
 
 ```js
 import "aura-design-system/core/style.css";
-import { Section, Button, Input, Icon } from "aura-design-system";
 ```
 
 #### Theming
 
 ```css
 *:root {
-  --aura-font-stack: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+  -aura-font-stack: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
     "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   --aura-snow: #fafafa;
@@ -84,10 +83,30 @@ import { Section, Button, Input, Icon } from "aura-design-system";
   --aura-lemon-green: #f3fee8;
   --aura-yellow: #fefbe8;
   --aura-cold-grey: #e8e7ed;
-  --aura-base-color: #262626;
-  --aura-root: #262626;
-  --aura-dark: #fff;
-  --aura-realse: #f6f7f9;
+  --aura-grey: #f6f7f9;
+  --aura-bg: var(--aura-white);
+  --aura-accents-0: var(--aura-black);
+  --aura-accents-1: var(--aura-cold-grey);
+  --aura-accents-2: var(--aura-grey);
+  --aura-dark: var(--aura-white);
+  --aura-accents-primary: var(--aura-black);
+  --aura-accents-secondary: #0882ba;
+  --aura-accents-success: #08ba82;
+  --aura-accents-success-bg: var(--aura-teal-green);
+  --aura-accents-info: #8b9afa;
+  --aura-accents-info-bg: var(--aura-purple);
+  --aura-accents-warning: #baa208;
+  --aura-accents-warning-bg: var(--aura-yellow);
+  --aura-accents-danger: #ba4108;
+  --aura-accents-danger-bg: var(--aura-orange);
+  --aura-accents-radius: var(--aura-radius);
+  --aura-input-radius: var(--aura-radius);
+  --aura-button-radius: var(--aura-radius);
+  --aura-input-bg: var(--aura-grey);
+  --aura-input-placeholder-color: rgba(38, 38, 38, 0.2);
+  --aura-radius: 13px;
+  --aura-link-color: var(--aura-fg);
+  --aura-opacity: 0.5;
 }
 ```
 
