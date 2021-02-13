@@ -1,6 +1,5 @@
 import React from "react";
 
-import Footer from "../src/organisms/footer";
 import Grid from "../src/layout/grid";
 import Section from "../src/layout/section";
 import Icon from "../src/atoms/icon";
@@ -8,7 +7,6 @@ import "../stylus/style.css";
 
 export default {
   title: "Organisms/Footer",
-  component: Footer,
 };
 
 export const Default = () => (

@@ -18,15 +18,6 @@ header = aura * 4
     height header
     max-height header
     mixin-user-select(none)
-    &.pin
-        position fixed
-
-    .nav-wrapper
-        margin 0 auto
-        max-width smush
-        padding (aura * 2)
-        position relative
-        z-index 2
 
 .v-list
     li
@@ -56,17 +47,6 @@ header = aura * 4
         background no-repeat
         text-decoration none
         outline-offset -7px
-        &.logo
-            @extend .logo-circle
-        &.close
-            position fixed
-            right aura
-        &.menu-toggle-button
-            z-index 4
-            text-decoration none
-            cursor pointer
-        &.bag
-            text-align right 
 
 .button-menu
     display block
@@ -82,35 +62,8 @@ header = aura * 4
         border: 0
         font-weight: 700
         padding-left: (aura * 3.5)
-.SubHeader
-    .menu-item
-        opacity 0.3
-        &:hover
-            opacity 1
-    
-        
-.bagview
-    position: absolute
-    display: none
-    min-height: 90px
-    max-width: 288px
-    z-index: 2
-    right (aura * 0.5)
-    margin-top: aura
 
 
-.open
-    .bagview
-        display block
-    .menu-overley
-        position fixed
-        left 0
-        right 0
-        top 0
-        bottom 0
-        content ''
-        z-index 3
-        cursor pointer
         
         
 

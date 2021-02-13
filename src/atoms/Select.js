@@ -30,7 +30,7 @@ const Select = ({
 
   return (
     <div className="inputer">
-      <div className="inputer-group select-group">
+      <div className="inputer-group">
         <div className="halo">
           <select
             className={classConnect.join(" ").trim()}
