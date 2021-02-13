@@ -165,10 +165,14 @@ export const WithNavMenuWithRightButtonWithBackgroundWithOpen = () => (
     <div className="smush anchor">
       <ul className="mod-detail pin right aureole one">
         <li>
-          <a className="button-menu"> Dropdown menu item</a>
+          <a>
+            <span className="glyphsSprite user before" /> John Doe
+          </a>
         </li>
         <li>
-          <a className="button-menu"> Dropdown menu item</a>
+          <a>
+            <span className="glyphsSprite mail before" /> johndoe@mail.com
+          </a>
         </li>
       </ul>
     </div>
