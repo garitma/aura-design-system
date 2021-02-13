@@ -7,7 +7,6 @@
 <br>
 
 <p align="center">
-  <img alt="Bundle Size" src="https://img.shields.io/bundlephobia/minzip/aura-design-system"/>
   <img alt="MIT License" src="https://img.shields.io/github/license/garitma/aura-design-system"/>
   <img alt="NPM Downloads" src="https://img.shields.io/npm/dt/aura-design-system"/>
   <img alt="Code Style: Prettier" src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat"/>
