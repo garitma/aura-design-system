@@ -3,7 +3,7 @@ import React from "react";
 import "../stylus/style.css";
 
 export default {
-  title: "Organisms/Header",
+  title: "Organisms/Header"
 };
 
 export const Default = () => (
@@ -101,7 +101,7 @@ export const WithNavMenuWithRightButtonWithBackground = () => (
     className="aura"
     style={{
       backgroundImage:
-        "url(https://images.prismic.io/garitma/a1b3faf2-cdb0-4bc4-b515-877c0da12a96_header_aura_design_system_garitma.jpg?auto=compress,format)",
+        "url(https://images.prismic.io/garitma/a1b3faf2-cdb0-4bc4-b515-877c0da12a96_header_aura_design_system_garitma.jpg?auto=compress,format)"
     }}
   >
     <div className="smush aura">
@@ -145,7 +145,7 @@ export const WithNavMenuWithRightButtonWithBackgroundWithOpen = () => (
     className="aura anchor"
     style={{
       backgroundImage:
-        "url(https://images.prismic.io/garitma/a1b3faf2-cdb0-4bc4-b515-877c0da12a96_header_aura_design_system_garitma.jpg?auto=compress,format)",
+        "url(https://images.prismic.io/garitma/a1b3faf2-cdb0-4bc4-b515-877c0da12a96_header_aura_design_system_garitma.jpg?auto=compress,format)"
     }}
   >
     <div className="smush aura">

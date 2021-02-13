@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
 import { useInputValue } from "./useInputValue";
 
-export const useForm = (initialValues) => {
+export const useForm = initialValues => {
   let data = {};
 
   for (const value in initialValues) {
     data = {
       ...data,
-      [value]: useInputValue(initialValues[value]),
+      [value]: useInputValue(initialValues[value])
     };
   }
 
   return data;
 };
 
-export const useFormReset = (data) => {
+export const useFormReset = data => {
   for (const value in data) {
     data[value].reset(), data[value].setTouch(false);
   }

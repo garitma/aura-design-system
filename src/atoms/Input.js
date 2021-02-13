@@ -94,12 +94,12 @@ Input.propTypes = {
     "store",
     "twitter",
     "user",
-    "youtube",
-  ]),
+    "youtube"
+  ])
 };
 
 Input.defaultProps = {
-  helpMode: "warning",
+  helpMode: "warning"
 };
 
 export default Input;

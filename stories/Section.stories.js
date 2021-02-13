@@ -5,10 +5,10 @@ import "../stylus/style.css";
 
 export default {
   title: "Layout/Section",
-  component: Section,
+  component: Section
 };
 
-const Template = (args) => (
+const Template = args => (
   <Section {...args}>
     <p>
       This is a long child. Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -26,18 +26,18 @@ export const defaultConfig = Template.bind({});
 
 export const withColor = Template.bind({});
 withColor.args = {
-  color: "blue",
+  color: "blue"
 };
 
 export const withContainer = Template.bind({});
 withContainer.args = {
   color: "purple",
-  container: "smish",
+  container: "smish"
 };
 
 export const withSpacingOption = Template.bind({});
 
 withSpacingOption.args = {
   color: "teal-green",
-  space: "aura",
+  space: "aura"
 };

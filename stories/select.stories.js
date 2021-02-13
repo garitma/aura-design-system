@@ -5,10 +5,10 @@ import "../stylus/style.css";
 
 export default {
   title: "Atoms/Select",
-  component: Select,
+  component: Select
 };
 
-const Template = (args) => (
+const Template = args => (
   <Select {...args}>
     <option value="Option 1">Option 1</option>
     <option value="Option 2">Option 2</option>
@@ -23,12 +23,12 @@ Naked.args = {};
 export const WithPlaceholder = Template.bind({});
 
 WithPlaceholder.args = {
-  placeholder: "Select option",
+  placeholder: "Select option"
 };
 
 export const WithDialog = Template.bind({});
 
 WithDialog.args = {
   isHelping: true,
-  helpText: "⚠️ Oooops, something happened text",
+  helpText: "⚠️ Oooops, something happened text"
 };

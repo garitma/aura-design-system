@@ -57,11 +57,11 @@ Select.propTypes = {
   isDisabled: PropTypes.bool,
   isHelping: PropTypes.bool,
   helpText: PropTypes.string,
-  helpMode: PropTypes.oneOf(["warning", "info", "danger", "success"]),
+  helpMode: PropTypes.oneOf(["warning", "info", "danger", "success"])
 };
 
 Select.defaultProps = {
-  helpMode: "warning",
+  helpMode: "warning"
 };
 
 export default Select;

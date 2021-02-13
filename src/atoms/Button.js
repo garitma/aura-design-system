@@ -52,7 +52,7 @@ Button.propTypes = {
   isWaiting: PropTypes.bool,
   isDisabled: PropTypes.bool,
   mode: PropTypes.oneOf(["fill", "pill", "link", "menu"]),
-  label: PropTypes.string,
+  label: PropTypes.string
 };
 
 Button.defaultProps = {
@@ -60,7 +60,7 @@ Button.defaultProps = {
   isFluid: false,
   isWaiting: false,
   waitingText: "Loading...",
-  mode: "fill",
+  mode: "fill"
 };
 
 export default Button;

@@ -6,7 +6,7 @@ import Icon from "../src/atoms/icon";
 import "../stylus/style.css";
 
 export default {
-  title: "Organisms/Footer",
+  title: "Organisms/Footer"
 };
 
 export const Default = () => (

@@ -41,11 +41,11 @@ const Image = ({
 Image.propTypes = {
   mode: PropTypes.oneOf(["block-img", "mod-media"]),
   src: PropTypes.string,
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.string
 };
 
 Image.defaultProps = {
-  mode: "block-img",
+  mode: "block-img"
 };
 
 export default Image;
