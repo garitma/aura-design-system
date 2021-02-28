@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from "react"
+import PropTypes from "prop-types"
 
 /**
  * Wrap
@@ -15,29 +15,29 @@ const Section = ({
   passDiv,
   ...props
 }) => {
-  const SectionTag = passDiv ? `div` : "section";
-  const classConnect = [className, space];
-  const subClassConnect = [subClassName, container];
+  const SectionTag = passDiv ? `div` : "section"
+  const classConnect = [className, space]
+  const subClassConnect = [subClassName, container]
 
   if (color) {
-    classConnect.push(color);
+    classConnect.push(color)
   }
 
   return (
     <SectionTag className={classConnect.join(" ").trim()} {...props}>
       <div className={subClassConnect.join(" ").trim()}>{children}</div>
     </SectionTag>
-  );
-};
+  )
+}
 Section.propTypes = {
   subClassName: PropTypes.string,
   space: PropTypes.oneOf(["p0", "pad", "inside-pad", "aura", "wall-pad"]),
-  container: PropTypes.oneOf(["smash", "smesh", "smish", "smosh", "smush"])
-};
+  container: PropTypes.oneOf(["smash", "smesh", "smish", "smosh", "smush"]),
+}
 
 Section.defaultProps = {
   space: "pad",
-  container: "smush"
-};
+  container: "smush",
+}
 
-export default Section;
+export default Section

@@ -1,13 +1,13 @@
-import React from "react";
+import React from "react"
 
-import Grid from "../src/layout/grid";
-import Section from "../src/layout/section";
-import Icon from "../src/atoms/icon";
-import "../stylus/style.css";
+import Grid from "../src/layout/grid"
+import Section from "../src/layout/section"
+import Icon from "../src/atoms/icon"
+import "../stylus/style.css"
 
 export default {
-  title: "Organisms/Footer"
-};
+  title: "Organisms/Footer",
+}
 
 export const Default = () => (
   <footer>
@@ -44,4 +44,4 @@ export const Default = () => (
       </Grid>
     </Section>
   </footer>
-);
+)

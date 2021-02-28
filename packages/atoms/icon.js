@@ -1,15 +1,15 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from "react"
+import PropTypes from "prop-types"
 
 /**
  * Icon component
  */
 
 const Icon = ({ sprite, className, ...props }) => {
-  const classConnect = ["glyphsSprite", sprite, className];
+  const classConnect = ["glyphsSprite", sprite, className]
 
-  return <div className={classConnect.join(" ").trim()} {...props}></div>;
-};
+  return <div className={classConnect.join(" ").trim()} {...props}></div>
+}
 
 Icon.propTypes = {
   sprite: PropTypes.oneOf([
@@ -39,8 +39,9 @@ Icon.propTypes = {
     "store",
     "twitter",
     "user",
-    "youtube"
-  ])
-};
+    "youtube",
+    "poweroff",
+  ]),
+}
 
-export default Icon;
+export default Icon

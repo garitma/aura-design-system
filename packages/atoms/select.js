@@ -1,7 +1,7 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react"
+import PropTypes from "prop-types"
 
-import Icon from "./icon";
+import Icon from "./icon"
 
 /**
  * Select component
@@ -17,15 +17,15 @@ const Select = ({
   children,
   ...props
 }) => {
-  const classConnect = [className];
+  const classConnect = [className]
 
   if (isDisabled) {
-    classConnect.push("disabled");
+    classConnect.push("disabled")
   }
 
   if (isHelping) {
-    classConnect.push("help");
-    classConnect.push(helpMode);
+    classConnect.push("help")
+    classConnect.push(helpMode)
   }
 
   return (
@@ -49,19 +49,19 @@ const Select = ({
         </span>
       )}
     </div>
-  );
-};
+  )
+}
 
 Select.propTypes = {
   placeholder: PropTypes.string,
   isDisabled: PropTypes.bool,
   isHelping: PropTypes.bool,
   helpText: PropTypes.string,
-  helpMode: PropTypes.oneOf(["warning", "info", "danger", "success"])
-};
+  helpMode: PropTypes.oneOf(["warning", "info", "danger", "success"]),
+}
 
 Select.defaultProps = {
-  helpMode: "warning"
-};
+  helpMode: "warning",
+}
 
-export default Select;
+export default Select

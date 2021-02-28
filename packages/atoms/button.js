@@ -1,5 +1,5 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from "react"
+import PropTypes from "prop-types"
 
 /**
  * Primary UI component for user interaction
@@ -19,15 +19,15 @@ const Button = React.forwardRef(
       children,
       ...props
     },
-    ref
+    ref,
   ) => {
-    const AuraButton = href || mode === "menu" ? `a` : "button";
-    const classConnect = [className, `button-${mode}`];
+    const AuraButton = href || mode === "menu" ? `a` : "button"
+    const classConnect = [className, `button-${mode}`]
     if (isFluid) {
-      classConnect.push("fluid");
+      classConnect.push("fluid")
     }
     if (isDisabled || isWaiting) {
-      classConnect.push("disabled");
+      classConnect.push("disabled")
     }
 
     return (
@@ -43,24 +43,24 @@ const Button = React.forwardRef(
           {children}
         </span>
       </AuraButton>
-    );
-  }
-);
+    )
+  },
+)
 
 Button.propTypes = {
   isFluid: PropTypes.bool,
   isWaiting: PropTypes.bool,
   isDisabled: PropTypes.bool,
   mode: PropTypes.oneOf(["fill", "pill", "link", "menu"]),
-  label: PropTypes.string
-};
+  label: PropTypes.string,
+}
 
 Button.defaultProps = {
   isDisabled: false,
   isFluid: false,
   isWaiting: false,
   waitingText: "Loading...",
-  mode: "fill"
-};
+  mode: "fill",
+}
 
-export default Button;
+export default Button

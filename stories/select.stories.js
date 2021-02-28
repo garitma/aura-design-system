@@ -1,12 +1,12 @@
-import React from "react";
+import React from "react"
 
-import Select from "../src/atoms/select";
-import "../stylus/style.css";
+import Select from "../src/atoms/select"
+import "../stylus/style.css"
 
 export default {
   title: "Atoms/Select",
-  component: Select
-};
+  component: Select,
+}
 
 const Template = args => (
   <Select {...args}>
@@ -14,21 +14,21 @@ const Template = args => (
     <option value="Option 2">Option 2</option>
     <option value="Option 3">Option 3</option>
   </Select>
-);
+)
 
-export const Naked = Template.bind({});
+export const Naked = Template.bind({})
 
-Naked.args = {};
+Naked.args = {}
 
-export const WithPlaceholder = Template.bind({});
+export const WithPlaceholder = Template.bind({})
 
 WithPlaceholder.args = {
-  placeholder: "Select option"
-};
+  placeholder: "Select option",
+}
 
-export const WithDialog = Template.bind({});
+export const WithDialog = Template.bind({})
 
 WithDialog.args = {
   isHelping: true,
-  helpText: "⚠️ Oooops, something happened text"
-};
+  helpText: "⚠️ Oooops, something happened text",
+}

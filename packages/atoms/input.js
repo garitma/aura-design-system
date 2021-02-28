@@ -1,6 +1,6 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Icon from "../atoms/icon";
+import React from "react"
+import PropTypes from "prop-types"
+import Icon from "../atoms/icon"
 
 /**
  * Input component
@@ -18,23 +18,23 @@ const Input = ({
   name,
   ...props
 }) => {
-  const classConnect = [className];
+  const classConnect = [className]
 
   if (leftIcon) {
-    classConnect.push("typeahead");
+    classConnect.push("typeahead")
   }
 
   if (isDisabled) {
-    classConnect.push("disabled");
+    classConnect.push("disabled")
   }
 
   if (isHelping) {
-    classConnect.push("help");
-    classConnect.push(helpMode);
+    classConnect.push("help")
+    classConnect.push(helpMode)
   }
 
   if (!isLabelable) {
-    classConnect.push("naked");
+    classConnect.push("naked")
   }
 
   return (
@@ -63,8 +63,8 @@ const Input = ({
         )}
       </div>
     </div>
-  );
-};
+  )
+}
 
 Input.propTypes = {
   isDisabled: PropTypes.bool,
@@ -94,12 +94,12 @@ Input.propTypes = {
     "store",
     "twitter",
     "user",
-    "youtube"
-  ])
-};
+    "youtube",
+  ]),
+}
 
 Input.defaultProps = {
-  helpMode: "warning"
-};
+  helpMode: "warning",
+}
 
-export default Input;
+export default Input

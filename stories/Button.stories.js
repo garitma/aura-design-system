@@ -1,45 +1,45 @@
-import React from "react";
+import React from "react"
 
-import Button from "../src/button";
-import "../stylus/style.css";
+import Button from "../src/button"
+import "../stylus/style.css"
 
 export default {
   title: "Atoms/Button",
-  component: Button
-};
+  component: Button,
+}
 
-const Template = args => <Button {...args} />;
+const Template = args => <Button {...args} />
 
-export const Fill = Template.bind({});
+export const Fill = Template.bind({})
 Fill.args = {
   label: "Button fill",
-  mode: "fill"
-};
+  mode: "fill",
+}
 
-export const Pill = Template.bind({});
+export const Pill = Template.bind({})
 Pill.args = {
   label: "Button pill",
-  mode: "pill"
-};
+  mode: "pill",
+}
 
-export const Link = Template.bind({});
+export const Link = Template.bind({})
 Link.args = {
   label: "Button link",
-  mode: "link"
-};
+  mode: "link",
+}
 
-export const Fluid = Template.bind({});
+export const Fluid = Template.bind({})
 
 Fluid.args = {
   label: "Button fill fluid",
   mode: "fill",
-  isFluid: true
-};
+  isFluid: true,
+}
 
-export const Hyperlink = Template.bind({});
+export const Hyperlink = Template.bind({})
 
 Hyperlink.args = {
   href: "#",
   label: "This is an Anchor",
-  mode: "fill"
-};
+  mode: "fill",
+}

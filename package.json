@@ -2,7 +2,11 @@
   "name": "aura-design-system",
   "version": "1.1.1",
   "description": "Garitma's Design system",
-  "main": "./core",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
   "files": [
     "LICENSE",
     "README.md",
@@ -13,7 +17,7 @@
   "homepage": "https://auradesignsystem.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/garitma/aura-design-system.git"
+    "url": "git+https://github.com/garitma/aura-design-system.git"
   },
   "bugs": {
     "url": "https://github.com/garitma/aura-design-system/issues"
@@ -45,10 +49,10 @@
     "storybook": "start-storybook -p 6006",
     "stylus": "stylus -w --compress stylus/style.styl -o stylus/style.css",
     "build-storybook": "build-storybook -c .storybook -o public",
-    "build": "babel src --out-dir core && npm run copy-types && stylus --compress stylus/style.styl -o core/style.css",
+    "build": "babel packages --out-dir core && npm run copy-types && stylus --compress stylus/style.styl -o core/style.css",
     "copy-types": "cp types/components/*.d.ts core",
     "release": "npm run build && npm publish",
-    "prettier": "prettier --write \"{src,test,stories}/**/*.js\"",
+    "prettier": "prettier --write \"{packages,test,stories}/**/*.js\"",
     "git-reset": "git reset --hard HEAD",
     "git-clean": "git clean -d -x -e node_modules -e packages -f"
   },

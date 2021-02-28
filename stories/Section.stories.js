@@ -1,12 +1,12 @@
-import React from "react";
+import React from "react"
 
-import Section from "../src/layout/section";
-import "../stylus/style.css";
+import Section from "../src/layout/section"
+import "../stylus/style.css"
 
 export default {
   title: "Layout/Section",
-  component: Section
-};
+  component: Section,
+}
 
 const Template = args => (
   <Section {...args}>
@@ -20,24 +20,24 @@ const Template = args => (
       mollit anim id est laborum.
     </p>
   </Section>
-);
+)
 
-export const defaultConfig = Template.bind({});
+export const defaultConfig = Template.bind({})
 
-export const withColor = Template.bind({});
+export const withColor = Template.bind({})
 withColor.args = {
-  color: "blue"
-};
+  color: "blue",
+}
 
-export const withContainer = Template.bind({});
+export const withContainer = Template.bind({})
 withContainer.args = {
   color: "purple",
-  container: "smish"
-};
+  container: "smish",
+}
 
-export const withSpacingOption = Template.bind({});
+export const withSpacingOption = Template.bind({})
 
 withSpacingOption.args = {
   color: "teal-green",
-  space: "aura"
-};
+  space: "aura",
+}

@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useState } from "react"
+import PropTypes from "prop-types"
 
 /**
  * Acoording component
  */
 
 const According = ({ title, content, children }) => {
-  const [active, setActive] = useState(false);
+  const [active, setActive] = useState(false)
 
   return (
     <div className={`accor ${active ? "on" : ""}`}>
@@ -18,14 +18,14 @@ const According = ({ title, content, children }) => {
       </div>
       <div className={`accor-detail`}>{children || content}</div>
     </div>
-  );
-};
+  )
+}
 
 According.propTypes = {
   title: PropTypes.string,
-  content: PropTypes.string
-};
+  content: PropTypes.string,
+}
 
-According.defaultProps = {};
+According.defaultProps = {}
 
-export default According;
+export default According
