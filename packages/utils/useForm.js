@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react"
-import { useInputValue } from "./useInputValue"
 
 export const useInputValue = initialValue => {
   const [value, setValue] = useState(initialValue)
