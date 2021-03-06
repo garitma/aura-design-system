@@ -1,14 +1,18 @@
 import React from "react"
 
-import Accordion from "../src/molecules/accordion"
-import "../stylus/style.css"
+import Accordion from "../packages/molecules/accordion"
+import SpriteProvider from "../packages/provider/spriteProvider"
 
 export default {
   title: "Molecules/Acordion",
   component: Accordion,
 }
 
-const Template = args => <Accordion {...args} />
+const Template = args => (
+  <SpriteProvider>
+    <Accordion {...args} />
+  </SpriteProvider>
+)
 
 export const Basic = Template.bind({})
 Basic.args = {

@@ -1,14 +1,18 @@
 import React from "react"
 
-import Input from "../src/atoms/input"
-import "../stylus/style.css"
+import Input from "../packages/atoms/input"
+import SpriteProvider from "../packages/provider/spriteProvider"
 
 export default {
   title: "Atoms/Input",
   component: Input,
 }
 
-const Template = args => <Input {...args} />
+const Template = args => (
+  <SpriteProvider>
+    <Input {...args} />
+  </SpriteProvider>
+)
 
 export const WithPlaceholder = Template.bind({})
 

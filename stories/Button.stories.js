@@ -1,14 +1,18 @@
 import React from "react"
+import SpriteProvider from "../packages/provider/spriteProvider"
 
-import Button from "../src/button"
-import "../stylus/style.css"
+import Button from "../packages/button"
 
 export default {
   title: "Atoms/Button",
   component: Button,
 }
 
-const Template = args => <Button {...args} />
+const Template = args => (
+  <SpriteProvider>
+    <Button {...args} />
+  </SpriteProvider>
+)
 
 export const Fill = Template.bind({})
 Fill.args = {

@@ -1,14 +1,18 @@
 import React from "react"
 
-import Icon from "../src/atoms/icon"
-import "../stylus/style.css"
+import Icon from "../packages/atoms/icon"
+import SpriteProvider from "../packages/provider/spriteProvider"
 
 export default {
   title: "Atoms/Icon",
   component: Icon,
 }
 
-const Template = args => <Icon {...args} />
+const Template = args => (
+  <SpriteProvider>
+    <Icon {...args} />
+  </SpriteProvider>
+)
 
 export const Sprite = Template.bind({})
 Sprite.args = {

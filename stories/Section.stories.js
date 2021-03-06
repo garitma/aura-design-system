@@ -1,7 +1,6 @@
 import React from "react"
 
-import Section from "../src/layout/section"
-import "../stylus/style.css"
+import Section from "../packages/section"
 
 export default {
   title: "Layout/Section",

@@ -1,3 +1,5 @@
+import "../stylus/style.css"
+
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   layout: "padded",
@@ -7,4 +9,4 @@ export const parameters = {
         ? 0
         : a[1].id.localeCompare(b[1].id, undefined, { numeric: true }),
   },
-};
+}
