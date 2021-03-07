@@ -49,7 +49,7 @@
     "storybook": "start-storybook -p 6006",
     "stylus": "stylus -w --compress stylus/style.styl -o stylus/style.css",
     "build-storybook": "build-storybook -c .storybook -o public",
-    "build": "babel packages --out-dir core && npm run copy-types && stylus --compress stylus/style.styl -o core/style.css && stylus --compress stylus/vendors.styl -o core/vendors.css",
+    "build": "babel packages --out-dir core && npm run copy-types && stylus --compress stylus/style.styl -o core/style.css",
     "copy-types": "cp types/components/*.d.ts core",
     "release": "npm run build && npm publish",
     "prettier": "prettier --write \"{packages,test,stories}/**/*.js\"",

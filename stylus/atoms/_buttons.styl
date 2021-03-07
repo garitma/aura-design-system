@@ -46,19 +46,22 @@
 
 .button-link
     @extend .button
-    color: var(--aura-accents-0)
+    color: var(--aura-accents-10)
     border: 0
     text-decoration: underline
     background-color transparent
     &:hover:not(.disabled)
         color: var(--aura-base-color)
+        background-color: var(--aura-accents-1)
         
 a
     text-decoration: none
-    color var(--aura-accents-0)
+    color var(--aura-accents-10)
     cursor pointer
-    &:visited:not(.button):not(.button-pill):not(.button-link):not(.disable-button):not(.button-fill)
+    &:hover:not(.button):not(.button-pill):not(.button-link):not(.disable-button):not(.button-fill)
         color var(--aura-accents-primary)
+     &:visited:not(.button):not(.button-pill):not(.button-link):not(.disable-button):not(.button-fill)
+        color: inherit
     
 button
     cursor pointer 
