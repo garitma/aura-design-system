@@ -1,6 +1,6 @@
 {
   "name": "aura-design-system",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "Garitma's Design system",
   "workspaces": {
     "packages": [
@@ -51,7 +51,7 @@
     "build-storybook": "build-storybook -c .storybook -o public",
     "build": "babel packages --out-dir core && npm run copy-types && stylus --compress stylus/style.styl -o core/style.css && cp -R packages/static core",
     "copy-types": "cp types/components/*.d.ts core",
-    "release": "npm run build && npm publish",
+    "deploy": "npm run build && npm publish",
     "prettier": "prettier --write \"{packages,test,stories}/**/*.js\"",
     "git-reset": "git reset --hard HEAD",
     "git-clean": "git clean -d -x -e node_modules -e packages -f"
