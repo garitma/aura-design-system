@@ -11,6 +11,21 @@
         @media only screen and (max-width: $small)
             &:not(.fixed)
                 grid-template-columns: minmax(0, 1fr)
+    &.fourd
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0,1fr);
+        @media only screen and (max-width: $small)
+            &:not(.fixed)
+                grid-template-columns: minmax(0, 1fr)
+    &.box
+        grid-template-columns: 6fr 2fr 2fr;
+        @media only screen and (max-width: $small)
+            &:not(.fixed)
+                grid-template-columns: minmax(0, 1fr)
+    &.box-2
+         grid-template-columns: 6fr 2fr;
+         @media only screen and (max-width: $small)
+            &:not(.fixed)
+                grid-template-columns: minmax(0, 1fr)
     &.blog
         grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
         @media only screen and (max-width: $small)

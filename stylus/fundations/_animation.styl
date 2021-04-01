@@ -3,14 +3,7 @@
 // Licensed under MIT - see LICENSE.txt 
 // Aura Design System
 
-         
-$pulse = pulse
 $floating = floating
-
-@keyframes {pulse}
-  for i in 0..10
-    {10% * i}
-      opacity (i/10)
 
 @keyframes {floating}
   from {
@@ -22,10 +15,6 @@ $floating = floating
   to {
     transform: translate(0, -0px);
   }
-
-.pulse
-    animation-name: pulse
-    animation-duration: 0.2s
 
 .floating
   animation-name: floating;
