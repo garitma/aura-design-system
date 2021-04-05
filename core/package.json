@@ -1,12 +1,7 @@
 {
     "name": "aura-design",
-    "version": "0.0.1",
+    "version": "0.0.3",
     "description": "Garitma's Design system",
-    "files": [
-      "LICENSE",
-      "README.md",
-      "."
-    ],
     "author": "Garitma <hola@garitma.com",
     "license": "MIT",
     "homepage": "https://auradesignsystem.com",

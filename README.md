@@ -15,18 +15,22 @@
 
 # Aura Design system
 
-Welcome to the source code repository for [Garitma Aura Design System](https://auradesignsystem.com/), brought to you by [Garitma](https://garitma.com/).
+Welcome to the source code repository for
+[Garitma Aura Design System](https://auradesignsystem.com/), brought to you by
+[Garitma](https://garitma.com/).
 
 Aura Design System is...
 
 - Tailored for building Garitma apps: Using the Aura like a space unit.
-- Space-oriented design system. Each object has a halo of light that surrounds it, it's aura.
+- Space-oriented design system. Each object has a halo of light that surrounds
+  it, it's aura.
 
 An aura is equal to `13px`.
 
 Therefore 2 units would be equal to `26px`.
 
-The configuration of these units is free while keeping in whole units or half (1 or 1.5).
+The configuration of these units is free while keeping in whole units or half (1
+or 1.5).
 
 ## Install
 
@@ -42,7 +46,7 @@ npm i aura-design-system
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="path/to/aura-desing-system/core/style.css" />
+    <link rel="stylesheet" href="path/to/aura-desing/style.css" />
   </head>
   <body>
     <script src="path/to/your/bundle.js"></script>
@@ -52,13 +56,14 @@ npm i aura-design-system
 
 ##### Note
 
-`style.css` exposes css via `style` field in `package.json`, if you have another tool for CSS that
-identifies this field you can remove the import from `index.html`.
+`style.css` exposes css via `style` field in `package.json`, if you have another
+tool for CSS that identifies this field you can remove the import from
+`index.html`.
 
 #### Javascript
 
 ```js
-import "aura-design-system/core/style.css";
+import "aura-design/style.css"
 ```
 
 #### Theming
@@ -111,7 +116,8 @@ import "aura-design-system/core/style.css";
 
 ##### Note
 
-You should create a `custom-style.css` and replace the aura tokens for whatever you want.
+You should create a `custom-style.css` and replace the aura tokens for whatever
+you want.
 
 ## License
 
@@ -119,4 +125,5 @@ MIT
 
 ## Got feedback?
 
-Please open a new <a href="https://github.com/garitma/aura-design-system/issues">GitHub Issue</a>.
+Please open a new
+<a href="https://github.com/garitma/aura-design-system/issues">GitHub Issue</a>.
