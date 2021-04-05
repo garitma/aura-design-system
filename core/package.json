@@ -1,0 +1,28 @@
+{
+    "name": "aura-design",
+    "version": "0.0.1",
+    "description": "Garitma's Design system",
+    "files": [
+      "LICENSE",
+      "README.md",
+      "."
+    ],
+    "author": "Garitma <hola@garitma.com",
+    "license": "MIT",
+    "homepage": "https://auradesignsystem.com",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/garitma/aura-design-system.git"
+    },
+    "bugs": {
+      "url": "https://github.com/garitma/aura-design-system/issues"
+    },
+    "keywords": [
+      "react",
+      "react-component",
+      "uikit",
+      "ui-library",
+      "ui-components"
+    ]
+  }
+  

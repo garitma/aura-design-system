@@ -49,9 +49,9 @@
     "storybook": "start-storybook -p 6006",
     "stylus": "stylus -w --compress stylus/style.styl -o stylus/style.css",
     "build-storybook": "build-storybook -c .storybook -o public",
-    "build": "babel packages --out-dir core && npm run copy-types && stylus --compress stylus/style.styl -o core/style.css && cp -R packages/static core",
+    "build": "babel packages --out-dir core && cp README.md core && npm run copy-types && stylus --compress stylus/style.styl -o core/style.css && cp -R packages/static core ",
     "copy-types": "cp types/components/*.d.ts core",
-    "deploy": "npm run build && npm publish",
+    "deploy": "npm run build && cd core && npm publish",
     "prettier": "prettier --write \"{packages,test,stories}/**/*.js\"",
     "git-reset": "git reset --hard HEAD",
     "git-clean": "git clean -d -x -e node_modules -e packages -f"

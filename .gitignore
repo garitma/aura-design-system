@@ -131,4 +131,6 @@ out/
 .vercel
 
 # Logs
-core
+
+core/*
+!core/package.json
