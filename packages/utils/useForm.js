@@ -42,3 +42,58 @@ export const useFormIsValid = (data, schema) => {
 
   return isValid
 }
+
+export const useStatus = () => {
+  const [status, setStatus] = useState({
+    isWaiting: false,
+    isSubmited: false,
+    info: { isError: false, msg: null },
+  })
+
+  const isWaiting = event =>
+    setStatus(prevStatus => ({ ...prevStatus, isWaiting: event }))
+
+  const toggleIsWaiting = () =>
+    setStatus(prevStatus => ({
+      ...prevStatus,
+      isWaiting: !status.isWaiting,
+    }))
+
+  const isSubmited = event =>
+    setStatus(prevStatus => ({ ...prevStatus, isSubmited: event }))
+
+  const toggleIsSubmited = () =>
+    setStatus(prevStatus => ({
+      ...prevStatus,
+      isSubmited: !status.isSubmited,
+    }))
+
+  const isError = event =>
+    setStatus(prevStatus => ({
+      ...prevStatus,
+      info: {
+        error: event,
+        ...prevStatus.info,
+      },
+    }))
+
+  const toggleIsError = () =>
+    setStatus(prevStatus => ({
+      ...prevStatus,
+      info: {
+        error: !prevStatus.info.isError,
+        ...prevStatus.info,
+      },
+    }))
+
+  return {
+    status,
+    setStatus,
+    isWaiting,
+    isSubmited,
+    isError,
+    toggleIsWaiting,
+    toggleIsSubmited,
+    toggleIsError,
+  }
+}

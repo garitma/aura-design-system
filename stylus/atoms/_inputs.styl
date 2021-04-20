@@ -26,10 +26,10 @@
     label, input 
         transition: all .1s ease-in-out
         touch-action: manipulation
-        mixin-border-radius(aura * 0.5)
+        mixin-border-radius(var(--aura-input-radius))
     
     textarea 
-        mixin-border-radius(aura * 0.5)
+        mixin-border-radius(var(--aura-input-radius))
         @extend p
         width 100%
         border 0
