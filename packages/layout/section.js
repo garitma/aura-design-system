@@ -31,7 +31,7 @@ const Section = ({
 }
 Section.propTypes = {
   subClassName: PropTypes.string,
-  space: PropTypes.oneOf(["p0", "pad", "inside-pad", "aura", "wall-pad"]),
+  space: PropTypes.oneOf(["p0", "pad", "inside-pad", "aura", "wall-pad", ""]),
   container: PropTypes.oneOf([
     "smish",
     "smosh",
@@ -40,6 +40,7 @@ Section.propTypes = {
     "smush",
     "smuesh",
     "smesh",
+    "",
   ]),
 }
 

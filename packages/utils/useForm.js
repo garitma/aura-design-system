@@ -86,9 +86,22 @@ export const useStatus = () => {
       },
     }))
 
+  const setMessage = message =>
+    setStatus(prevStatus => ({
+      ...prevStatus,
+      info: {
+        message: message,
+        ...prevStatus.info,
+      },
+    }))
+
+  const message = status.info.msg
+
   return {
-    status,
+    state: status,
     setStatus,
+    message,
+    setMessage,
     isWaiting,
     isSubmited,
     isError,

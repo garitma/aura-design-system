@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
  */
 
 const Icon = ({ sprite, className, ...props }) => {
-  const classConnect = ["glyphsSprite", sprite, className]
+  const classConnect = ["icon", sprite, className]
 
   return <div className={classConnect.join(" ").trim()} {...props}></div>
 }

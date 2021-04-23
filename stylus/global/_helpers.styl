@@ -4,13 +4,11 @@
 // Licensed under MIT - see LICENSE.txt 
 // Aura Design System
 
-.uline {
+.uline 
   text-decoration: underline;
-}
 
-.ulinea a:not(.button-link, .button-fill) {
+.ulinea a:not(.button-link, .button-fill) 
   text-decoration: underline;
-}
 
 .logo-circle
     padding 9px!important
@@ -40,7 +38,6 @@
 .righttxt
     text-align right 
 
-
 .valign
     mixin-flex()
     justify-content center
@@ -54,7 +51,6 @@
 
 .fluid
     width 100%!important
-
 
 .square
     mixin-border-radius(0!important)
@@ -73,6 +69,10 @@
     transition opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)
     &:hover
         opacity 1
+    
+.interactive
+    min-width 48px
+    min-height 48px 
 
 .typeahead
     padding-left aura * 6!important
@@ -147,6 +147,10 @@
 
 @media only screen and (max-width: $small)
     .hide-small
+        display none
+
+@media screen and (max-width: $small) and (min-width: $large)
+    .hide-medium
         display none
 
 @media only screen and (min-width: $large)

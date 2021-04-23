@@ -3,10 +3,6 @@
 // Licensed under MIT - see LICENSE.txt 
 // Aura Design System
 
-.interactive
-    min-width 48px
-    min-height 48px 
-
 .button
     -webkit-writing-mode: horizontal-tb !important
     box-sizing: border-box
@@ -53,14 +49,27 @@
     &:hover:not(.disabled)
         color: var(--aura-base-color)
         background-color: var(--aura-accents-1)
+
+.button-menu
+    display block
+    padding (aura * 0.5) aura
+    @extend .h6
+    font-weight bold
+    text-decoration none
+    transform translateZ(0)
+    transition opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)
+    white-space: nowrap
+    & input
+        max-width 260px
+        border: 0
+        font-weight: 700
+        padding-left: (aura * 3.5)
         
 a
     text-decoration: none
     color var(--aura-accents-10)
     cursor pointer
-    &:hover:not(.button):not(.button-pill):not(.button-link):not(.button-fill):not(.button-menu)
-        color var(--aura-accents-primary)
-     &:visited:not(.button):not(.button-pill):not(.button-link):not(.button-fill):not(.button-menu)
+    &:visited:not(.button):not(.button-pill):not(.button-link):not(.button-fill):not(.button-menu)
         color: inherit
     
 button
