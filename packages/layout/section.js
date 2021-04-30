@@ -32,16 +32,7 @@ const Section = ({
 Section.propTypes = {
   subClassName: PropTypes.string,
   space: PropTypes.oneOf(["p0", "pad", "inside-pad", "aura", "wall-pad", ""]),
-  container: PropTypes.oneOf([
-    "smish",
-    "smosh",
-    "smash",
-    "smaush",
-    "smush",
-    "smuesh",
-    "smesh",
-    "",
-  ]),
+  container: PropTypes.oneOf(["smish", "smosh", "smash", "smush", "smesh", ""]),
 }
 
 Section.defaultProps = {
