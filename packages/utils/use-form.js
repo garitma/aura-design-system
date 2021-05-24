@@ -27,6 +27,19 @@ export const useForm = initialValues => {
   return data
 }
 
+export const useFormValues = formData => {
+  let formValues = {}
+
+  for (const value in formData) {
+    formValues = {
+      ...formValues,
+      [value]: formData[value].value,
+    }
+  }
+
+  return formValues
+}
+
 export const useFormReset = data => {
   for (const value in data) {
     data[value].reset(), data[value].setTouch(false)

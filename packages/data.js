@@ -1,1 +1,1 @@
-module.exports = require("./utils/useDataView")
+module.exports = require("./utils/use-data-view")

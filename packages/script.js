@@ -1,1 +1,1 @@
-module.exports = require("./utils/useScript")
+module.exports = require("./utils/use-script")
