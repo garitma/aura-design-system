@@ -22,6 +22,15 @@ export const withTwoColumns = () => (
   </div>
 )
 
+export const withFourdColumns = () => (
+  <div className="aureole fourd">
+    <div className="pad blue" />
+    <div className="pad blue" />
+    <div className="pad blue" />
+    <div className="pad blue" />
+  </div>
+)
+
 export const withTwoColumnsFixed = () => (
   <div className="aureole two fixed">
     <div className="pad blue" />

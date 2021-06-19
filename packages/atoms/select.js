@@ -43,11 +43,7 @@ const Select = ({
           <Icon sprite="arrowDown" className="right action disable" />
         </div>
       </div>
-      {isHelping && (
-        <span className={`${helpMode}-text`}>
-          <small>{helpText}</small>
-        </span>
-      )}
+      {isHelping && <span className={`${helpMode}-text`}>{helpText}</span>}
     </div>
   )
 }

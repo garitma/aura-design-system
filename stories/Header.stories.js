@@ -11,9 +11,7 @@ export const Default = () => (
       <div className="smush aura">
         <ul className="nav-list">
           <li className="item logo-circle">
-            <a className="">
-              <div className="glyphsSprite logo" />
-            </a>
+            <a className="button-menu">Logo</a>
           </li>
           <li></li>
         </ul>
@@ -31,9 +29,7 @@ export const WithNavMenu = () => (
       <div className="smush aura">
         <ul className="nav-list">
           <li className="item logo-circle">
-            <a className="">
-              <div className="glyphsSprite logo" />
-            </a>
+            <a className="button-menu">Logo</a>
           </li>
           <li className="mod"></li>
         </ul>
@@ -67,13 +63,11 @@ export const WithNavMenuWithRightButton = () => (
       <div className="smush aura">
         <ul className="nav-list">
           <li className="item logo-circle">
-            <a className="">
-              <div className="glyphsSprite logo" />
-            </a>
+            <a className="button-menu">Logo</a>
           </li>
           <li className="mod">
             <a className="button-link">
-              <div className="glyphsSprite menu" />
+              <div className="icon menu" />
             </a>
           </li>
         </ul>
@@ -113,13 +107,11 @@ export const WithNavMenuWithRightButtonWithBackground = () => (
       <div className="smush aura">
         <ul className="nav-list">
           <li className="item logo-circle">
-            <a className="">
-              <div className="glyphsSprite logo" />
-            </a>
+            <a className="button-menu">Logo</a>
           </li>
           <li className="mod">
             <a className="button-link">
-              <div className="glyphsSprite menu" />
+              <div className="icon menu" />
             </a>
           </li>
         </ul>
@@ -159,13 +151,11 @@ export const WithNavMenuWithRightButtonWithBackgroundWithOpen = () => (
       <div className="smush aura">
         <ul className="nav-list">
           <li className="item logo-circle">
-            <a className="">
-              <div className="glyphsSprite logo" />
-            </a>
+            <a className="button-menu">Logo</a>
           </li>
           <li className="mod">
             <a className="button-link">
-              <div className="glyphsSprite menu" />
+              <div className="icon menu" />
             </a>
           </li>
         </ul>
@@ -174,12 +164,12 @@ export const WithNavMenuWithRightButtonWithBackgroundWithOpen = () => (
         <ul className="mod-detail pin right aureole one">
           <li>
             <a>
-              <span className="glyphsSprite user before" /> John Doe
+              <span className="icon user before" /> John Doe
             </a>
           </li>
           <li>
             <a>
-              <span className="glyphsSprite mail before" /> johndoe@mail.com
+              <span className="icon mail before" /> johndoe@mail.com
             </a>
           </li>
         </ul>

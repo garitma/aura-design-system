@@ -15,9 +15,6 @@ export const Default = () => (
       <Section>
         <Grid col="two">
           <div className="one smosh">
-            <div className="centertxt-small">
-              <Icon className="logo" />
-            </div>
             <p className="centertxt-small">
               © 2020 Garitma. Todos los derechos reservados
             </p>

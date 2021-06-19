@@ -1,6 +1,6 @@
 import React from "react"
 
-import Icon from "../packages/atoms/icon"
+import Icon from "../packages/atoms/icon.tsx"
 import SpriteProvider from "../packages/provider/spriteProvider"
 
 export default {
