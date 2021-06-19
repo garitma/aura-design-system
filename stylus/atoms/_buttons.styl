@@ -27,18 +27,16 @@
     border-color var(--aura-accents-primary)
     color var(--aura-dark)
     background-color var(--aura-accents-primary)
-    &:hover:not(.disabled)
-        color var(--aura-accents-primary)
-        background-color initial
+    &:hover:not(:disabled)
+        background-color var(--aura-accents-9)
 
 .button-pill
     @extend .button
     color var(--aura-accents-primary)
     border-color var(--aura-accents-primary)
     background-color transparent
-    &:hover:not(.disabled)
-        background-color var(--aura-accents-primary)
-        color var(--aura-dark)
+    &:hover:not(:disabled)
+        background-color var(--aura-accents-1)
 
 .button-link
     @extend .button
@@ -46,7 +44,7 @@
     border: 0
     text-decoration: underline
     background-color transparent
-    &:hover:not(.disabled)
+    &:hover:not(:disabled)
         color: var(--aura-base-color)
         background-color: var(--aura-accents-1)
 

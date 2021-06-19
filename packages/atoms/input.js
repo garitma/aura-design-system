@@ -1,6 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Icon from "../atoms/icon"
+import Icon, { iconList } from "../atoms/icon"
 
 /**
  * Input component
@@ -56,11 +56,7 @@ const Input = ({
             <Icon sprite={leftIcon} className="action left disabled" />
           )}
         </div>
-        {isHelping && (
-          <span className={`${helpMode}-text`}>
-            <small>{helpText}</small>
-          </span>
-        )}
+        {isHelping && <span className={`${helpMode}-text`}>{helpText}</span>}
       </div>
     </div>
   )
@@ -73,29 +69,7 @@ Input.propTypes = {
   helpMode: PropTypes.oneOf(["warning", "info", "danger", "success"]),
   helpText: PropTypes.string,
   placeholder: PropTypes.string,
-  leftIcon: PropTypes.oneOf([
-    "bag",
-    "bag-add",
-    "box",
-    "close",
-    "facebook",
-    "giphy",
-    "heart",
-    "heart-fill",
-    "heart-fill-black",
-    "instagram",
-    "key",
-    "link",
-    "location",
-    "mail",
-    "menu",
-    "pay",
-    "search",
-    "store",
-    "twitter",
-    "user",
-    "youtube",
-  ]),
+  leftIcon: PropTypes.oneOf(iconList),
 }
 
 Input.defaultProps = {

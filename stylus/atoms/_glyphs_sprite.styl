@@ -3,10 +3,12 @@
 // Licensed under MIT - see LICENSE.txt 
 // Aura Design System
 
+.dark .icon, .dark.icon  
+    filter: invert(1);
 
 .icon
     background-image var(--aura-sprite)
-    background-size 265px 260px
+    background-size 265px 96px
     background-repeat no-repeat
     height 24px
     width 24px
@@ -16,118 +18,94 @@
         margin-left .3em
     &.before
          margin-right .3em
-    &.point
-        background-color White
-        mixin-border-radius(aura)
-    &.logo
-        background-position 0 -48px
-        width 48px
-        height 48px
-    &.logo-g
-        background-position 0 -96px
-        width 48px
-        height 48px
-    &.logo-elg
-        background-position 0 -144px
-        width 222px
-        height 25px
-    &.logo-aura
-        background-position 0 -196px
-        width 48px
-        height 48px
-    &.logo-firma
-        background-position -47px -197px
-        width 48px
-        height 48px
-    &.logo-gmtc
-        background-position -100px -200px
-        width 133px
-        height 25px
-    &.logo-aura-l
-        background-position 0 -170px
-        width 222px
-        height 28px    
-    &.twitter
-        background-position 0 -24px
-    &.facebook
-        background-position -24px -24px
-    &.instagram
-        background-position -48px -24px
-    &.youtube
-        background-position -72px -24px
-    &.menu
-        background-position -96px -24px
     &.search
-        background-position -130px 0
+        background-position 0 0
     &.arrowDown
-        background-position -154px 0
+        background-position -24px 0
     &.arrowRight
-        background-position -154px 0
+        background-position -24px 0
         transform rotate(-90deg)
     &.arrowLeft
-        background-position -154px 0
+        background-position -24px 0
         transform rotate(90deg)
     &.arrowUp
-        background-position -154px 0
-        transform rotate(180deg)
-    &.play
-        background-position -48px -48px
-        width 96px
-        height 96px
-        cursor pointer
-        transition opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)
-    &.download
-        background-position -145px -48px
-        width 96px
-        height 96px
-        cursor pointer
-        transition opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)
-    &.link
-        background-position -144px -24px
-    &.close
-        background-position -120px -24px
-    &.giphy
-        background-position -168px -24px
-    &.bag
-        background-position -202px 0
+        background-position -24px 0
+        transform rotate(180deg)  
     &.mail
-        background-position -178px 0
-    &.key
-        background-position -226px 0
+        background-position -48px 0
     &.user
-        background-position -192px -24px
-    &.heart
-        background-position -216px -24px
+        background-position -72px 0
+    &.bag
+        background-position -96px 0
+    &.bagAdd
+        background-position -120px 0
+    &.gift
+        background-position -144px 0
+    &.link
+        background-position -168px 0
+    &.close
+        background-position -192px 0
+    &.menu
+        background-position -216px 0
     &.box
-        background-position -240px -24px
-    &.heart-fill
-        background-position -240px -48px
-    &.store
-        background-position -240px -72px
+        background-position -240px 0
+    &.heart
+        background-position 0 -24px
+    &.heartFill
+        background-position -24px -24px
+    &.heartFillBlack
+        background-position -48px -24px
+    &.shop
+        background-position -72px -24px
     &.pay
-        background-position -240px -96px
+        background-position -96px -24px
     &.location
-        background-position -240px -120px
-    &.bag-add
-        background-position -240px -144px
-    &.heart-fill-black
-        background-position -240px -168px    
-    &.poweroff 
-        background-position: -239px -214px;
-    &.circle 
-        background-position: -216px -226px;
-    &.checked 
-        background-position: -192px -226px;
+        background-position -120px -24px
+    &.key
+        background-position -144px -24px
     &.arrowAltLeft
-        background-position: -167px -226px;
-    &.arrowAltRight
-        background-position: -167px -226px;
-        transform: rotate(180deg);
-     
-
-       
-
-
+        background-position -168px -24px
+    &.arrowAltRigth
+        background-position -168px -24px
+        transform rotate(180deg)
+    &.check
+        background-position -192px -24px
+    &.circle
+        background-position -216px -24px
+    &.poweroff
+        background-position -240px -24px
+    &.secure
+        background-position 0 -48px
+    &.openLink
+        background-position -24px -48px
+    &.view
+        background-position -48px -48px
+    &.viewOff
+        background-position -72px -48px
+    &.copy
+        background-position -96px -48px
+    &.delete
+        background-position -120px -48px
+    &.edit
+        background-position -144px -48px
+    &.bell
+        background-position -168px -48px
+    &.github
+        background-position -192px -48px
+    &.youtube
+        background-position -216px -48px
+    &.instagram
+        background-position -240px -48px
+    &.twitter
+        background-position 0 -72px
+    &.facebook
+        background-position -24px -72px
+    &.giphly
+        background-position -48px -72px
+    &.stock
+        background-position -72px -72px
+    
+   
 
  
     
