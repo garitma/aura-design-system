@@ -1,0 +1,76 @@
+import Button from "../atoms/button"
+
+type Props = {
+  isVisible?: boolean,
+  isValid?: boolean,
+  isCTA?: boolean,
+  onClose: () => void,
+  onAccept?: () => void,
+  onDecline?: () => void,
+  acceptText?: string,
+  declineText?: string,
+  title?: string,
+  description?: string,
+  children: | JSX.Element
+            | JSX.Element[]
+            | string
+            | string[],
+}
+
+const Modal = ({
+  isVisible,
+  isValid = true,
+  isCTA = true,
+  onClose,
+  onAccept,
+  onDecline,
+  acceptText,
+  declineText,
+  title,
+  description,
+  children,
+}: Props ) => {
+  return isVisible ? (
+    <div className="hold top left right bottom">
+      <div className="overley accents-3 disabled" onClick={onClose} />
+      <div className="valign vfluid pad smash">
+        <div className="mod anchor z-10">
+          <Button className="pin right top" mode="link" onClick={onClose}>
+            <div className="icon close" />
+          </Button>
+          <div className="mod-detail">
+            {title && <p className="mod-title">{title}</p>}
+            {description && <p>{description}</p>}
+            {children}
+            {isCTA && (
+              <div className="mod-cta">
+                <div className="aura" />
+                <div className="aureole two reverse">
+                  <Button
+                    target="_blank"
+                    onClick={onAccept}
+                    className="one"
+                    isDisabled={!isValid}
+                  >
+                    {acceptText}
+                  </Button>
+                  <Button
+                    mode="pill"
+                    onClick={onDecline || onClose}
+                    className="two"
+                  >
+                    {declineText}
+                  </Button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  ) : (
+    <></>
+  )
+}
+
+export default Modal

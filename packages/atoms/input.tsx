@@ -1,10 +1,24 @@
 import React from "react"
 import PropTypes from "prop-types"
-import Icon, { iconList } from "../atoms/icon"
+import Icon from "./icon"
 
 /**
  * Input component
  */
+
+type HelpType = 'warning' | "info" | "danger" | "success"
+
+type Props = {
+  isDisabled?: boolean,
+  isHelping?: boolean,
+  isLabelable?: boolean,
+  helpMode?: HelpType,
+  helpText?: string,
+  leftIcon?: any,
+  placeholder?: string,
+  className?: string,
+  name: string,
+}
 
 const Input = ({
   isDisabled,
@@ -17,7 +31,7 @@ const Input = ({
   className,
   name,
   ...props
-}) => {
+}: Props) => {
   const classConnect = [className]
 
   if (leftIcon) {
@@ -60,16 +74,6 @@ const Input = ({
       </div>
     </div>
   )
-}
-
-Input.propTypes = {
-  isDisabled: PropTypes.bool,
-  isLabelable: PropTypes.bool,
-  isHelping: PropTypes.bool,
-  helpMode: PropTypes.oneOf(["warning", "info", "danger", "success"]),
-  helpText: PropTypes.string,
-  placeholder: PropTypes.string,
-  leftIcon: PropTypes.oneOf(iconList),
 }
 
 Input.defaultProps = {

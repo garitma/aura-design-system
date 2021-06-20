@@ -1,6 +1,6 @@
 import React from "react"
 
-import Input from "../packages/atoms/input"
+import Input from "../packages/atoms/input.tsx"
 import SpriteProvider from "../packages/provider/spriteProvider"
 
 export default {

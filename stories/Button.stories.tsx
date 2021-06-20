@@ -1,14 +1,15 @@
 import React from "react"
-import SpriteProvider from "../packages/provider/spriteProvider"
+import { Story, Meta } from '@storybook/react';
 
-import Button from "../packages/button"
+import SpriteProvider from "../packages/provider/spriteProvider"
+import Button, {ButtonProps} from "../packages/atoms/button"
 
 export default {
   title: "Atoms/Button",
   component: Button,
-}
+} as Meta;
 
-const Template = args => (
+const Template: Story<ButtonProps> = args => (
   <SpriteProvider>
     <Button {...args} />
   </SpriteProvider>
