@@ -1,5 +1,3 @@
-import React, { useState } from "react"
-
 import Icon from "./icon"
 import {SharedBasic, HelpType, AuraIcons} from "../utils/types"
 

@@ -68,6 +68,8 @@ export type ButtonType = "link" | "fill" | "pill" | "menu"
 
 export type Target = "_self" | "_blank" | "_parent" | "_top" | "framename"
 
-export type Space = "p0" | "pad" | "inside-pad" | "aura" | "wall-pad"
+export type AuraSpace = "p0" | "pad" | "inside-pad" | "aura" | "wall-pad"
 
-export type Container = "smash" | "smesh" | "smish" | "smosh" | "smush"
+export type AuraContainer = "smash" | "smesh" | "smish" | "smosh" | "smush"
+
+export type AuraGrid = "one" | "two" | "three" | "fourd" | "five" | "six" | "box" | "box-2" | "blog" | "docs" | "field" | "tag"

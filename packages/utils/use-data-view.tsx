@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export const timeConvert = num => {
+export const timeConvert = (num: number) => {
   const time = Math.trunc(num)
   const hours = Math.floor(time / 60)
   const minutes = ("0" + (time % 60)).slice(-2)
@@ -8,7 +8,7 @@ export const timeConvert = num => {
   return hours + ":" + minutes
 }
 
-export const compare = (num, comparator, context) => {
+export const compare = (num: number, comparator: number, context: string) => {
   const result = Math.trunc(num - comparator)
   const displayData = context
     ? context === "time"
@@ -24,7 +24,7 @@ export const compare = (num, comparator, context) => {
   if (result < 0) {
     return (
       <span>
-        {displayData} decrease <i className="glyphsSprite arrowDown"></i>
+        {displayData} decrease <i className="icon arrowDown"></i>
       </span>
     )
   }
@@ -32,15 +32,17 @@ export const compare = (num, comparator, context) => {
   if (result > 0) {
     return (
       <span>
-        {displayData} increase <i className="glyphsSprite arrowUp"></i>
+        {displayData} increase <i className="icon arrowUp"></i>
       </span>
     )
   }
+
+  return <span>0 something went wrong</span>
 }
 
 export const paginateData = (allData = [], pageSize = 12) => {
   const [archivePageSize, setArchivePageSize] = useState(pageSize)
-  const [data, setData] = useState(allData)
+  const [data] = useState(allData)
   const [page, setPage] = useState(1)
   const totalResultsSize = allData?.length
   const totalPages = Math.ceil(totalResultsSize / archivePageSize)
@@ -72,7 +74,7 @@ export const paginateData = (allData = [], pageSize = 12) => {
   }
 }
 
-export const useDataView = initialData => {
+export const useDataView = (initialData: { [value: string]: never[] | undefined }) => {
   let allData = {}
 
   for (const value in initialData) {

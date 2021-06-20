@@ -1,16 +1,15 @@
-import React from "react"
+import {SharedBasic, AuraIcons} from "../utils/types"
 
 /**
  * Icon component
  */
 
-
-type Props = {
-  sprite?: string;
+export interface IconProps extends SharedBasic {
+  sprite?: AuraIcons;
   className?: string;
 }
 
-const Icon = ({ sprite, className, ...props }: Props) => {
+const Icon = ({ sprite, className, ...props }: IconProps) => {
   const classConnect: string[] = ["icon", sprite!, className!]
 
   return <div className={classConnect.join(" ").trim()} {...props}></div>

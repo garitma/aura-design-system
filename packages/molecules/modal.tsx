@@ -1,6 +1,8 @@
+import {Fragment} from "react";
 import Button from "../atoms/button"
+import {SharedBasic} from "../utils/types"
 
-type Props = {
+export interface ModalProps extends SharedBasic {
   isVisible?: boolean,
   isValid?: boolean,
   isCTA?: boolean,
@@ -11,11 +13,8 @@ type Props = {
   declineText?: string,
   title?: string,
   description?: string,
-  children: | JSX.Element
-            | JSX.Element[]
-            | string
-            | string[],
 }
+
 
 const Modal = ({
   isVisible,
@@ -29,7 +28,7 @@ const Modal = ({
   title,
   description,
   children,
-}: Props ) => {
+}: ModalProps ) => {
   return isVisible ? (
     <div className="hold top left right bottom">
       <div className="overley accents-3 disabled" onClick={onClose} />
@@ -69,7 +68,7 @@ const Modal = ({
       </div>
     </div>
   ) : (
-    <></>
+    <Fragment></Fragment>
   )
 }
 

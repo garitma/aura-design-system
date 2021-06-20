@@ -1,4 +1,3 @@
-import React from "react"
 import { Target, SharedBasic, ButtonType } from "../utils/types"
 
 /**
@@ -18,11 +17,11 @@ export interface ButtonProps extends SharedBasic {
 }
 
 const Button = ({
-  isDisabled,
-  isFluid,
-  isWaiting,
-  waitingText,
-  mode,
+  isDisabled = false,
+  isFluid = false,
+  isWaiting = false,
+  waitingText = "...",
+  mode = "fill",
   label,
   className,
   href,
@@ -30,7 +29,7 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   const AuraButton = href || mode === "menu" ? `a` : "button"
-  const classConnect = [className, `button-${mode}`]
+  const classConnect: string[] = [className!, `button-${mode}`]
 
   if (isFluid) {
     classConnect.push("fluid")
@@ -54,12 +53,5 @@ const Button = ({
   )
 }
 
-Button.defaultProps = {
-  isDisabled: false,
-  isFluid: false,
-  isWaiting: false,
-  waitingText: "...",
-  mode: "fill",
-}
 
 export default Button
