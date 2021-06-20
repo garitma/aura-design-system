@@ -17,8 +17,6 @@
       "suppressImplicitAnyIndexErrors": true,
       "allowSyntheticDefaultImports": false
     },
-    "include": [
-      "packages"
-    ],
+    "include": ["atoms", "layout", "molecules", "static", "utils"],
     "exclude": ["node_modules", "dist"]
   }
