@@ -7,6 +7,12 @@
     "style.css",
     "button.js",
     "button.d.ts",
+    "input.js",
+    "input.d.ts",
+    "section.js",
+    "section.d.ts",
+    "grid.js",
+    "grid.d.ts",
     "README.md"
   ],
   "author": "Garitma <hola@garitma.com",
