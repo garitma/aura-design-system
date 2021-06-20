@@ -13,6 +13,10 @@
     "section.d.ts",
     "grid.js",
     "grid.d.ts",
+    "icon.js",
+    "icon.d.ts",
+    "select.js",
+    "select.d.ts",
     "README.md"
   ],
   "author": "Garitma <hola@garitma.com",

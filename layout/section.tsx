@@ -17,8 +17,8 @@ const Section = ({
   className,
   subClassName,
   color,
-  space,
-  container,
+  space = "pad",
+  container = "smush",
   passDiv,
   ...props
 }: SectionProps) => {
