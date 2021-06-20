@@ -132,5 +132,4 @@ out/
 
 # Logs
 
-core/*
-!core/package.json
+dist/*
