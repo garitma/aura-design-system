@@ -1,11 +1,23 @@
 import React, { useState } from "react"
-import PropTypes from "prop-types"
 
 import Icon from "./icon"
+import {SharedBasic, HelpType, AuraIcons} from "../utils/types"
 
 /**
  * Select component
  */
+
+ export interface SelectProps extends SharedBasic {
+  isDisabled?: boolean,
+  isHelping?: boolean,
+  isLabelable?: boolean,
+  helpMode?: HelpType,
+  helpText?: string,
+  leftIcon?: AuraIcons,
+  placeholder?: string,
+  name: string,
+}
+
 
 const Select = ({
   isDisabled,
@@ -16,7 +28,7 @@ const Select = ({
   className,
   children,
   ...props
-}) => {
+}: SelectProps) => {
   const classConnect = [className]
 
   if (isDisabled) {
@@ -48,13 +60,6 @@ const Select = ({
   )
 }
 
-Select.propTypes = {
-  placeholder: PropTypes.string,
-  isDisabled: PropTypes.bool,
-  isHelping: PropTypes.bool,
-  helpText: PropTypes.string,
-  helpMode: PropTypes.oneOf(["warning", "info", "danger", "success"]),
-}
 
 Select.defaultProps = {
   helpMode: "warning",

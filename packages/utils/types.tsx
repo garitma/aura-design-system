@@ -64,6 +64,8 @@ export type AuraIcons =
 
 export type HelpType = "warning" | "info" | "danger" | "success"
 
+export type ButtonType = "link" | "fill" | "pill" | "menu" 
+
 export type Target = "_self" | "_blank" | "_parent" | "_top" | "framename"
 
 export type Space = "p0" | "pad" | "inside-pad" | "aura" | "wall-pad"

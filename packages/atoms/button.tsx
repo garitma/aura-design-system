@@ -1,5 +1,5 @@
 import React from "react"
-import { Target, SharedBasic } from "../utils/types"
+import { Target, SharedBasic, ButtonType } from "../utils/types"
 
 /**
  * Primary UI component for user interaction
@@ -11,7 +11,7 @@ export interface ButtonProps extends SharedBasic {
   isWaiting?: boolean
   onClick?: () => void
   waitingText?: string
-  mode?: any
+  mode?: ButtonType
   label?: string
   href?: string
   target?: Target
@@ -31,6 +31,7 @@ const Button = ({
 }: ButtonProps) => {
   const AuraButton = href || mode === "menu" ? `a` : "button"
   const classConnect = [className, `button-${mode}`]
+
   if (isFluid) {
     classConnect.push("fluid")
   }

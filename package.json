@@ -22,41 +22,8 @@
   "bugs": {
     "url": "https://github.com/garitma/aura-design-system/issues"
   },
-  "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.11.6",
-    "@babel/preset-env": "^7.9.5",
-    "@babel/preset-react": "^7.9.4",
-    "@storybook/addon-actions": "^6.2.9",
-    "@storybook/addon-essentials": "^6.2.9",
-    "@storybook/addon-info": "^5.3.21",
-    "@storybook/addon-knobs": "^6.2.9",
-    "@storybook/addon-links": "^6.2.9",
-    "@storybook/addon-notes": "^5.3.21",
-    "@storybook/react": "^6.2.9",
-    "@testing-library/react": "^10.0.3",
-    "@types/classnames": "^2.2.10",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.14.8",
-    "@types/react-dom": "^16.9.13",
-    "babel-core": "^7.0.0-bridge.0",
-    "babel-loader": "^8.1.0",
-    "prettier": "^1.19.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-is": "^16.13.1",
-    "typescript": "^4.3.4"
-  },
   "scripts": {
-    "storybook": "start-storybook -p 6006",
-    "stylus": "stylus -w --compress stylus/style.styl -o stylus/style.css",
-    "build-storybook": "build-storybook -c .storybook -o public",
-    "build": "babel packages --out-dir core && cp README.md core && npm run copy-types && stylus --compress stylus/style.styl -o core/style.css && cp -R packages/static core ",
-    "copy-types": "cp types/components/*.d.ts core",
-    "deploy": "npm run build && cd core && npm publish",
-    "prettier": "prettier --write \"{packages,test,stories}/**/*.js\"",
-    "git-reset": "git reset --hard HEAD",
-    "git-clean": "git clean -d -x -e node_modules -e packages -f"
+    "stylus": "stylus -w --compress stylus/style.styl -o stylus/style.css"
   },
   "keywords": [
     "react",
@@ -64,5 +31,12 @@
     "uikit",
     "ui-library",
     "ui-components"
-  ]
+  ],
+  "devDependencies": {
+    "@types/react": "^17.0.11",
+    "@types/react-dom": "^17.0.8",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "typescript": "^4.3.4"
+  }
 }

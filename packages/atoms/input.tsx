@@ -1,22 +1,20 @@
 import React from "react"
-import PropTypes from "prop-types"
+
 import Icon from "./icon"
+import {SharedBasic, HelpType, AuraIcons} from "../utils/types"
 
 /**
  * Input component
  */
 
-type HelpType = 'warning' | "info" | "danger" | "success"
-
-type Props = {
+ export interface InputProps extends SharedBasic {
   isDisabled?: boolean,
   isHelping?: boolean,
   isLabelable?: boolean,
   helpMode?: HelpType,
   helpText?: string,
-  leftIcon?: any,
+  leftIcon?: AuraIcons,
   placeholder?: string,
-  className?: string,
   name: string,
 }
 
@@ -31,7 +29,7 @@ const Input = ({
   className,
   name,
   ...props
-}: Props) => {
+}: InputProps) => {
   const classConnect = [className]
 
   if (leftIcon) {
