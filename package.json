@@ -17,6 +17,10 @@
     "icon.d.ts",
     "select.js",
     "select.d.ts",
+    "data.js",
+    "data.d.ts",
+    "form.js",
+    "form.d.ts",
     "README.md"
   ],
   "author": "Garitma <hola@garitma.com",
