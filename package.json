@@ -1,6 +1,6 @@
 {
   "name": "aura-design",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Garitma's Design system",
   "files": [
     "dist",
@@ -35,7 +35,7 @@
   },
   "scripts": {
     "stylus": "stylus -w --compress stylus/style.styl -o ./style.css",
-    "build": "rm -rf dist && tsc && stylus --compress stylus/style.styl -o ./style.css"
+    "build": "rm -rf dist && tsc --module commonjs && stylus --compress stylus/style.styl -o ./style.css"
   },
   "keywords": [
     "react",

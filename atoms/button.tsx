@@ -1,4 +1,4 @@
-import { Target, SharedBasic, ButtonType } from "../utils/types"
+import { Target, SharedBasic, ButtonType } from "../types/global"
 
 /**
  * Primary UI component for user interaction

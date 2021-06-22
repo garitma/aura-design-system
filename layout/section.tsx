@@ -1,4 +1,4 @@
-import { AuraColors, AuraContainer, AuraSpace, SharedBasic } from "../utils/types"
+import { AuraColors, AuraContainer, AuraSpace, SharedBasic } from "../types/global"
 
 /**
  * Section

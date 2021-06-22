@@ -1,7 +1,7 @@
 import {InputHTMLAttributes} from "react";
 
 import Icon from "./icon";
-import { SharedBasic, HelpType, AuraIcons } from "../utils/types";
+import { SharedBasic, HelpType, AuraIcons, AnyFn } from "../types/global";
 
 /**
  * Input component
@@ -35,6 +35,13 @@ const Input = ({
   ...props
 }: InputProps) => {
   const classConnect: string[] = [className!];
+
+  const handleOnClickRightIcon = (event: any) => {
+    event.preventDefault();
+    if(onClickRightIcon){
+      onClickRightIcon()
+    }
+  }
 
   if (leftIcon) {
     classConnect.push("typeahead");
@@ -71,13 +78,11 @@ const Input = ({
           {leftIcon && (
             <Icon sprite={leftIcon} className="action left disabled" />
           )}
-          {rightIcon && onClickRightIcon ? (
-            <button className="button-link pin right" onClick={onClickRightIcon}>
+          {rightIcon && onClickRightIcon && (
+            <button className="button-link pin right" onClick={(event) => handleOnClickRightIcon(event)}>
               <Icon sprite={rightIcon} />
             </button>
-          ) : (
-              <Icon sprite={rightIcon} className="action right disabled wall-pad" />
-          )}
+          )} 
         </div>
         {isHelping && <span className={`${helpMode}-text`}>{helpText}</span>}
       </div>

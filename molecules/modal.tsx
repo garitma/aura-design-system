@@ -1,6 +1,6 @@
 import {Fragment} from "react";
 import Button from "../atoms/button"
-import {SharedBasic} from "../utils/types"
+import {SharedBasic} from "../types/global"
 
 export interface ModalProps extends SharedBasic {
   isVisible?: boolean,

@@ -1,5 +1,5 @@
 import Icon from "./icon"
-import {SharedBasic, HelpType, AuraIcons} from "../utils/types"
+import {SharedBasic, HelpType, AuraIcons} from "../types/global"
 
 /**
  * Select component

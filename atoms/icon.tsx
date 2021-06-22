@@ -1,4 +1,4 @@
-import {SharedBasic, AuraIcons} from "../utils/types"
+import {SharedBasic, AuraIcons} from "../types/global"
 
 /**
  * Icon component
