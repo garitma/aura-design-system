@@ -1,7 +1,7 @@
 import {InputHTMLAttributes} from "react";
 
 import Icon from "./icon";
-import { SharedBasic, HelpType, AuraIcons, AnyFn } from "../types/global";
+import { SharedBasic, HelpType, AuraIcons } from "../types/global";
 
 /**
  * Input component
@@ -79,7 +79,7 @@ const Input = ({
             <Icon sprite={leftIcon} className="action left disabled" />
           )}
           {rightIcon && onClickRightIcon && (
-            <button className="button-link pin right" onClick={(event) => handleOnClickRightIcon(event)}>
+            <button className="button-link pin right" onClick={(event) => handleOnClickRightIcon(event)} type="button">
               <Icon sprite={rightIcon} />
             </button>
           )} 
