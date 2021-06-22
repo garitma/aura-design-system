@@ -1,3 +1,4 @@
+import * as React from "react"
 import { Target, SharedBasic, ButtonType } from "../types/global"
 
 /**
@@ -16,7 +17,7 @@ export interface ButtonProps extends SharedBasic {
   target?: Target
 }
 
-const Button = ({
+const Button = React.forwardRef(({
   isDisabled = false,
   isFluid = false,
   isWaiting = false,
@@ -27,7 +28,7 @@ const Button = ({
   href,
   children,
   ...props
-}: ButtonProps) => {
+}: ButtonProps, ref: any) => {
   const AuraButton = href || mode === "menu" ? `a` : "button"
   const classConnect: string[] = [className!, `button-${mode}`]
 
@@ -43,6 +44,7 @@ const Button = ({
       className={classConnect.join(" ").trim()}
       disabled={isDisabled || isWaiting}
       href={href}
+      ref={ref}
       {...props}
     >
       <span className={`container`}>
@@ -51,7 +53,7 @@ const Button = ({
       </span>
     </AuraButton>
   )
-}
+})
 
 
 export default Button
