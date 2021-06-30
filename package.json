@@ -5,6 +5,7 @@
   "files": [
     "dist",
     "style.css",
+    "index.d.ts",
     "button.js",
     "button.d.ts",
     "input.js",
@@ -21,6 +22,10 @@
     "data.d.ts",
     "form.js",
     "form.d.ts",
+    "modal.js",
+    "modal.d.ts",
+    "accordion.js",
+    "accordion.d.ts",
     "README.md"
   ],
   "author": "Garitma <hola@garitma.com",
