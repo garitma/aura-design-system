@@ -1,1 +1,1 @@
-module.exports = require("./dist/molecules/accordion");
+module.exports = require("./dist/molecules/modal");

@@ -5,7 +5,7 @@ export const useInputValue = (initialValue: any) => {
   const [error, setError] = useState("");
   const [touch, setTouch] = useState(false);
 
-  const onChange = (e: { target: { value: any; }; }) => {
+  const onChange = (e: { target: { value: any } }) => {
     setValue(e.target.value), setTouch(true);
   };
   const reset = () => setValue("");
@@ -44,7 +44,7 @@ export const useForm = (initialValues: any) => {
   return data;
 };
 
-export const useFormValues = (formData: { [x: string]: { value: any; }; }) => {
+export const useFormValues = (formData: { [key: string]: { value: any } }) => {
   let formValues = {};
 
   for (const value in formData) {
@@ -56,8 +56,6 @@ export const useFormValues = (formData: { [x: string]: { value: any; }; }) => {
 
   return formValues;
 };
-
-
 
 export const useFormIsValid = (data: any, schema: any) => {
   const [isValid, setIsValid] = useState(false);
@@ -76,25 +74,13 @@ export const useStatus = () => {
     info: { isError: false, msg: null },
   });
 
-  const isWaiting = (event: any) =>
+  const isWaiting = (event: boolean) =>
     setStatus((prevStatus) => ({ ...prevStatus, isWaiting: event }));
 
-  const toggleIsWaiting = () =>
-    setStatus((prevStatus) => ({
-      ...prevStatus,
-      isWaiting: !status.isWaiting,
-    }));
-
-  const isSubmited = (event: any) =>
+  const isSubmited = (event: boolean) =>
     setStatus((prevStatus) => ({ ...prevStatus, isSubmited: event }));
 
-  const toggleIsSubmited = () =>
-    setStatus((prevStatus) => ({
-      ...prevStatus,
-      isSubmited: !status.isSubmited,
-    }));
-
-  const isError = (event: any) =>
+  const isError = (event: boolean) =>
     setStatus((prevStatus) => ({
       ...prevStatus,
       info: {
@@ -103,20 +89,11 @@ export const useStatus = () => {
       },
     }));
 
-  const toggleIsError = () =>
+  const setMessage = (message: string) =>
     setStatus((prevStatus) => ({
       ...prevStatus,
       info: {
-        error: !prevStatus.info.isError,
-        ...prevStatus.info,
-      },
-    }));
-
-  const setMessage = (message: any) =>
-    setStatus((prevStatus) => ({
-      ...prevStatus,
-      info: {
-        message: message,
+        msg: message,
         ...prevStatus.info,
       },
     }));
@@ -131,8 +108,5 @@ export const useStatus = () => {
     isWaiting,
     isSubmited,
     isError,
-    toggleIsWaiting,
-    toggleIsSubmited,
-    toggleIsError,
   };
 };
