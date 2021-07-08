@@ -9,12 +9,12 @@ export interface AccordionProps extends SharedBasic {
 const Accordion = ({ title, children } : AccordionProps)  => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="hide-medium hide-large">
+    <div>
       <div className="aura anchor">
         <span className="h5">{title}</span>
         <div className="pin right top bottom valign">
           <Button mode="link" onClick={() => setIsOpen(!isOpen)}>
-            <Icon sprite={isOpen ? "arrowUp" : "arrowDown"} />
+            <Icon sprite={isOpen ? "arrowUp" : "arrowDown"} className="t03"/>
           </Button>
         </div>
       </div>
