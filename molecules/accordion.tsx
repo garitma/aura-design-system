@@ -10,7 +10,7 @@ const Accordion = ({ title, children } : AccordionProps)  => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <div>
-      <div className="aura anchor">
+      <div className="aura anchor" onClick={() => setIsOpen(!isOpen)}>
         <span className="h5">{title}</span>
         <div className="pin right top bottom valign">
           <Button mode="link" onClick={() => setIsOpen(!isOpen)}>
@@ -18,7 +18,7 @@ const Accordion = ({ title, children } : AccordionProps)  => {
           </Button>
         </div>
       </div>
-      {isOpen && <ul>{children}</ul>}
+      {isOpen && <div>{children}</div>}
     </div>
   );
 };
