@@ -12,7 +12,7 @@ const Header = ({ text }) => {
             <Link href="/">
               <a className="halo">
                 <Image
-                  src="https://images.prismic.io/garitma%2F05577a45-7699-442d-bce7-1cb85fbbf552_favicon-aura.png?auto=compress,format&w=96"
+                  src="/logo.png"
                   width={48}
                   height={48}
                   priority={true}

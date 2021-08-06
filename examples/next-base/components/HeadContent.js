@@ -1,32 +1,19 @@
-import Head from "next/head";
-
-import { SITE_URL, SITE_NAME, SOCIAL, SITE_DESCRIPTIO } from "@utils/constants";
-
-const Meta = ({ title, excerpt, slug, image }) => {
+const HeadContent = () => {
   return (
-    <Head>
-      <meta name="robots" content="index,follow" />
-      <meta name="googlebot" content="index,follow" />
-      <title>{title ? `${title} | ${SITE_NAME}` : SITE_NAME}</title>
-      <meta
-        property="og:title"
-        content={title ? `${title} | ${SITE_NAME}` : SITE_NAME}
+    <>
+      <link
+        rel="shortcut icon"
+        sizes="16x16 24x24 32x32 48x48 64x64"
+        href="/favicon.ico"
       />
-      <link rel="canonical" href={`${SITE_URL}${slug ? slug : ""}`} />
-      <meta property="og:url" content={`${SITE_URL}${slug ? slug : ""}`} />
-      <meta name="description" content={excerpt || SITE_DESCRIPTIO} />
-      <meta property="og:description" content={excerpt || SITE_DESCRIPTIO} />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content={SITE_URL} />
-      <meta property="og:type" content="website" />
+      <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+      <meta content="yes" name="apple-mobile-web-app-capable" />
       <meta
-        property="og:image:alt"
-        content={excerpt || `Open grap de ${SITE_NAME}`}
+        name="apple-mobile-web-app-status-bar-style"
+        content="black-translucent"
       />
-      <meta property="og:image:width" content="1920" />
-      <meta property="og:image:height" content="1080" />
-    </Head>
+    </>
   );
 };
 
-export default Meta;
+export default HeadContent;

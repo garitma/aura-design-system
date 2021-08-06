@@ -4,6 +4,7 @@ import NProgress from "nprogress";
 
 import Header from "@components/Header";
 import Footer from "@components/Footer";
+import Meta from "@components/Meta";
 
 Router.events.on("routeChangeStart", () => {
   NProgress.start();
@@ -17,14 +18,10 @@ Router.events.on("routeChangeError", () => {
   NProgress.done();
 });
 
-const Layout = ({
-  children,
-  preview,
-
-  text,
-}) => (
+const Layout = ({ children, preview, text, seo }) => (
   <main>
     <div className="page">
+      <Meta {...seo} />
       <Header preview={preview} text={text} />
       <div className="page-body">{children}</div>
       <Footer />
