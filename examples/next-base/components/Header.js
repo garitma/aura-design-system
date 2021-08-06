@@ -24,7 +24,7 @@ const Header = ({ text }) => {
           <li className="mod">
             <Button
               mode="link"
-              href="https://github.com/garitma/aura-design-system"
+              href="https://github.com/garitma/aura-design-system/tree/main/examples/next-base"
               target="_blank"
               rel="noopener"
             >

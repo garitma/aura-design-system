@@ -29,7 +29,7 @@ const Home = () => {
             </div>
           </a>
           <a
-            href="https://github.com/garitma/aura-design-system/examples"
+            href="https://github.com/garitma/aura-design-system/tree/main/examples"
             target="_blank"
             className="mod"
           >
@@ -40,6 +40,39 @@ const Home = () => {
               <p>
                 Discover and deploy boilerplate example Aura Design System
                 projects.
+              </p>
+            </div>
+          </a>
+          <a
+            href="https://auradesignsystem.com"
+            target="_blank"
+            className="mod"
+          >
+            <div className="mod-detail">
+              <h3 className="mod-title mb0">
+                Let's be clear, I don't care about you{" "}
+                <i className="icon arrowAltRigth" />
+              </h3>
+              <p>
+                Aura Design System is built under its own rules, it is very
+                structured and not very flexible, designed to solve my problems.
+                If my problems are yours too, welcome.
+              </p>
+            </div>
+          </a>
+          <a
+            href="https://auradesignsystem.com/docs/getting-started"
+            target="_blank"
+            className="mod"
+          >
+            <div className="mod-detail">
+              <h3 className="mod-title mb0">
+                Before you start - Disclaimer{" "}
+                <i className="icon arrowAltRigth" />
+              </h3>
+              <p>
+                This library is CSS centric with Object-Oriented CSS (OOCSS) and
+                Atomic Desing metodology.
               </p>
             </div>
           </a>
