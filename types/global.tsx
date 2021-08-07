@@ -18,6 +18,19 @@ export type AuraColors =
   | "lemon-green"
   | "green"
   | "yellow"
+  | "white"
+  | "--aura-accents-0" 
+  | "--aura-accents-1" 
+  | "--aura-accents-2" 
+  | "--aura-accents-3" 
+  | "--aura-accents-4" 
+  | "--aura-accents-5"
+  | "--aura-accents-6"
+  | "--aura-accents-7"
+  | "--aura-accents-8"
+  | "--aura-accents-9"
+  | "--aura-accents-10"
+
 
 export type AuraIcons =
   | "search"
@@ -59,7 +72,7 @@ export type AuraIcons =
   | "instagram"
   | "twitter"
   | "facebook"
-  | "giphly"
+  | "giphy"
   | "stock"
 
 export type HelpType = "warning" | "info" | "danger" | "success"

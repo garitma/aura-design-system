@@ -1,10 +1,13 @@
+import * as React from "react";
+
 import { AuraColors, AuraContainer, AuraSpace, SharedBasic } from "../types/global"
+
 
 /**
  * Section
  */
 
-export interface SectionProps extends SharedBasic {
+export interface SectionProps extends SharedBasic, React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
   subClassName?: string,
   color?: AuraColors,
   space?: AuraSpace,
