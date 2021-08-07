@@ -6,7 +6,7 @@ import { SharedBasic, AuraGrid } from "../types/global"
 
  export interface GridProps extends SharedBasic {
   col: AuraGrid
-  isFixed: boolean
+  isFixed?: boolean
  }
 
 const Grid = ({ children, className, col,isFixed, ...props }: GridProps) => {

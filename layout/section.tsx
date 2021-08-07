@@ -5,11 +5,11 @@ import { AuraColors, AuraContainer, AuraSpace, SharedBasic } from "../types/glob
  */
 
 export interface SectionProps extends SharedBasic {
-  subClassName: string,
-  color: AuraColors,
-  space: AuraSpace,
-  container: AuraContainer,
-  passDiv: boolean,
+  subClassName?: string,
+  color?: AuraColors,
+  space?: AuraSpace,
+  container?: AuraContainer,
+  passDiv?: boolean,
 }
 
 const Section = ({
@@ -24,7 +24,7 @@ const Section = ({
 }: SectionProps) => {
   const SectionTag = passDiv ? `div` : "section"
   const classConnect: string[] = [className!, space]
-  const subClassConnect: string[] = [subClassName, container]
+  const subClassConnect: string[] = [subClassName!, container]
 
   if (color) {
     classConnect.push(color)
