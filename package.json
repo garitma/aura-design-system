@@ -1,6 +1,6 @@
 {
   "name": "aura-design",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Garitma's Design system",
   "files": [
     "dist",
@@ -26,6 +26,8 @@
     "modal.d.ts",
     "accordion.js",
     "accordion.d.ts",
+    "global.js",
+    "global.d.ts",
     "README.md"
   ],
   "author": "Garitma <hola@garitma.com",
