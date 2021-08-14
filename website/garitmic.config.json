@@ -1,0 +1,19 @@
+{
+  "siteName": "Aura Design System",
+  "siteDescription": "Build beautiful products. Aura Design System is Garitma's open source space-oriented design system. Each object has a halo of light that surrounds it, it's aura.",
+  "siteURL": "https://auradesignsystem.com",
+  "layoutUid": "aura-design-system",
+  "apiEndpoint": "https://garitma.cdn.prismic.io/api/v2",
+  "apiGraphqlEndpoint": "https://garitma.prismic.io/graphql",
+  "favIcon": "https://images.prismic.io/garitma%2F05577a45-7699-442d-bce7-1cb85fbbf552_favicon-aura.png?auto=compress,format",
+  "contactEmail": "hola@garitma.com",
+  "lang": "en-us",
+  "timeZone": "UTC-5",
+  "dateFormat": "LL",
+  "ArchivePageSize": "12",
+  "social": {
+    "instagram": "auradesignsystem",
+    "twitter": "aura_system",
+    "openGrap": "https://images.prismic.io/garitma/b4421ceb-02a4-493a-a036-0ab9e8a4f0b2_open-graph.png?auto=compress,format"
+  }
+}

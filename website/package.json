@@ -1,0 +1,35 @@
+{
+  "name": "next-aura-design-system",
+  "version": "1.0.0",
+  "description": "Aura Design System is Garitma's open source space-oriented design system. Each object has a halo of light that surrounds it, it's aura.",
+  "author": {
+    "name": "Garitma",
+    "email": "hola@garitma.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@prismicio/client": "^5.1.0",
+    "aura-design": "^0.1.7",
+    "graphql": "^15.5.0",
+    "graphql-request": "^3.4.0",
+    "next": "^11.0.1",
+    "nprogress": "^0.2.0",
+    "prismic-reactjs": "^1.3.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-highlight": "^0.14.0",
+    "react-use-clipboard": "^1.0.7"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/garitma/next-aura-design-system"
+  },
+  "devDependencies": {
+    "@next/bundle-analyzer": "^10.1.3"
+  }
+}

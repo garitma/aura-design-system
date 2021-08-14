@@ -1,0 +1,30 @@
+@font-face {
+  font-family: "iAWriterMonoS";
+  src: url("/fonts/iAWriterMonoS-Regular.woff2") format("woff2"),
+    url("/fonts/iAWriterMonoS-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+*:root {
+  --aura-font-stack: ryo-gothic-plusn, sans-serif;
+}
+
+span.code {
+  color: var(--aura-accents-info) !important;
+  background-color: var(--aura-accents-info-bg) !important;
+}
+
+@media only screen and (min-width: 767px) and (max-width: 1155px) {
+  .hide-medium {
+    display: none;
+  }
+}
+
+.ulinea a.not-line {
+  text-decoration: none !important;
+}
+
+.iAWriterMonoS pre {
+  font-family: "iAWriterMonoS" !important;
+}
