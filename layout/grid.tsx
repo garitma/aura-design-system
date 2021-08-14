@@ -1,30 +1,29 @@
-import { SharedBasic, AuraGrid } from "../types/global"
+import { SharedBasic, AuraGrid } from "../types/global";
 
 /**
  * Grid
  */
 
- export interface GridProps extends SharedBasic {
-  col: AuraGrid
-  isFixed?: boolean
- }
+export interface GridProps extends SharedBasic {
+  col: AuraGrid;
+  isFixed?: boolean;
+}
 
-const Grid = ({ children, className, col,isFixed, ...props }: GridProps) => {
-  const classConnect = ["aureole", className]
+const Grid = ({ children, className, col, isFixed, ...props }: GridProps) => {
+  const classConnect = ["aureole", className];
 
   if (col) {
-    classConnect.push(col)
+    classConnect.push(col);
   }
   if (isFixed) {
-    classConnect.push("fixed")
+    classConnect.push("fixed");
   }
 
   return (
     <div className={classConnect.join(" ")} {...props}>
       {children}
     </div>
-  )
-}
+  );
+};
 
-
-export default Grid
+export default Grid;

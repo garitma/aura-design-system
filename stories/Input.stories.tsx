@@ -47,3 +47,12 @@ WithIcon.args = {
   leftIcon: "mail",
   isLabelable: false,
 }
+
+export const WithRightIcon = Template.bind({})
+
+WithRightIcon.args = {
+  placeholder: "password",
+  leftIcon: "key",
+  rightIcon: "view",
+  onClickRightIcon: () => {}
+}

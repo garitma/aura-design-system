@@ -30,5 +30,11 @@ const Template: Story<GridProps> = (args) => (
   );
   
   export const defaultConfig = Template.bind({});
+
+  export const fixedGrid = Template.bind({});
+
+  fixedGrid.args = {
+    isFixed: true
+  }
   
   
