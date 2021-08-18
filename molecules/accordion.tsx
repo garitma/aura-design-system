@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Button from "../atoms/button";
 import Icon from "../atoms/icon";
 import { SharedBasic, AuraHeadline } from "../types/global";
 
