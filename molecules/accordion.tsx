@@ -1,12 +1,13 @@
 import { useState } from "react";
 import Icon from "../atoms/icon";
-import { SharedBasic, AuraHeadline } from "../types/global";
+import { SharedBasic, AuraHeadline, AuraColors } from "../types/global";
 
 export interface AccordionProps extends SharedBasic {
   title: string;
   headline: AuraHeadline;
+  color?: AuraColors
 }
-const Accordion = ({ title, children, headline = "h6" }: AccordionProps) => {
+const Accordion = ({ title, children, headline = "h6", color, }: AccordionProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const classNameConnect: string[] = [
     "aura",
@@ -14,9 +15,12 @@ const Accordion = ({ title, children, headline = "h6" }: AccordionProps) => {
     "lefttxt",
     "b0",
     "fluid",
-    "white",
     headline,
   ];
+
+  if(color) {
+    classNameConnect.push(color)
+  }
 
   return (
     <div className="fluid">
