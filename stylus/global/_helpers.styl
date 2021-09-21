@@ -43,9 +43,6 @@
     justify-content center
     flex-direction column
 
-.halign
-    justify-content center!important
-
 .vfluid
     height 100%!important
 
@@ -58,10 +55,6 @@
 .square
     mixin-border-radius(0!important)
 
-.responsive-image
-    max-width 100%
-    height auto
-
 .disabled
     opacity var(--aura-opacity)
     cursor default
@@ -72,19 +65,9 @@
     transition opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)
     &:hover
         opacity 1
-    
-.interactive
-    min-width 48px
-    min-height 48px 
 
 .typeahead
     padding-left aura * 6!important
-
-.hide
-    display none!important
-
-.show
-    display block!important
 
 .flowx
     width: 100%;
@@ -151,9 +134,6 @@
 .t03 
     transition: all 0.3s ease-in;  
 
-.b0 {
-    border: 0 !important
-}
 
 @media only screen and (max-width: $small)
     .hide-small
