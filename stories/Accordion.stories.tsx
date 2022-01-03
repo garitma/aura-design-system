@@ -12,12 +12,10 @@ export default {
 } as Meta;
 
 const Template: Story<AccordionProps> = (args) => (
-  <WithIcons>
     <Accordion {...args} >
       Posponer el amor como la alarma que abres y luego la pospones
       indefinidamente hasta que es muy tarde.
     </Accordion>
-  </WithIcons>
 );
 
 export const defaultConfig = Template.bind({});

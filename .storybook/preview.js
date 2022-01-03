@@ -1,4 +1,15 @@
 import "../style.css";
+import { addDecorator } from "@storybook/react";
+
+import WithIcons from "../hoc/WithIcons";
+import { NoticeContexProvider } from "../utils/use-notice";
+
+const StorybookWrapper = (storyFn) => (
+  <NoticeContexProvider>
+    <WithIcons>{storyFn()}</WithIcons>
+  </NoticeContexProvider>
+);
+addDecorator(StorybookWrapper);
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

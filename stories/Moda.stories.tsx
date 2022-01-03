@@ -16,13 +16,13 @@ const Template: Story<ModalProps> = (args) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <WithIcons>
+    <>
       <Button onClick={() => setIsOpen(true)} label="Open modal" />
       <Modal {...args} isVisible={isOpen} onClose={() => setIsOpen(false)}>
         Hay un costo de vida que debemos pagar. Una escena viva, te leo en
         imágenes y te veo en letras algo así parecido a la distancia.
       </Modal>
-    </WithIcons>
+    </>
   );
 };
 
