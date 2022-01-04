@@ -34,7 +34,7 @@ const MyImage = ({
 
   return (
     <Image
-      src={src.replace("https://images.prismic.io/somosgentedigital-path/", "")}
+      src={src}
       width={width}
       height={height}
       loader={loader}

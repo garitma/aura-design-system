@@ -12,7 +12,7 @@ export interface IconProps extends SharedBasic {
 const Icon = ({ sprite, className, ...props }: IconProps) => {
   const classConnect: string[] = ["icon", sprite!, className!]
 
-  return <div className={classConnect.join(" ").trim()} {...props}></div>
+  return <i className={classConnect.join(" ").trim()} {...props}></i>
 }
 
 

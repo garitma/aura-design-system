@@ -1,21 +1,21 @@
-import Icon from "./icon"
-import {SharedBasic, HelpType, AuraIcons} from "../types/global"
+import { useRef } from "react";
+import Icon from "./icon";
+import { SharedBasic, HelpType, AuraIcons } from "../types/global";
 
 /**
  * Select component
  */
 
- export interface SelectProps extends SharedBasic {
-  isDisabled?: boolean,
-  isHelping?: boolean,
-  isLabelable?: boolean,
-  helpMode?: HelpType,
-  helpText?: string,
-  leftIcon?: AuraIcons,
-  placeholder?: string,
-  name: string,
+export interface SelectProps extends SharedBasic {
+  isDisabled?: boolean;
+  isHelping?: boolean;
+  isLabelable?: boolean;
+  helpMode?: HelpType;
+  helpText?: string;
+  leftIcon?: AuraIcons;
+  placeholder?: string;
+  name: string;
 }
-
 
 const Select = ({
   isDisabled,
@@ -27,15 +27,15 @@ const Select = ({
   children,
   ...props
 }: SelectProps) => {
-  const classConnect = [className]
+  const classConnect = [className];
 
   if (isDisabled) {
-    classConnect.push("disabled")
+    classConnect.push("disabled");
   }
 
   if (isHelping) {
-    classConnect.push("help")
-    classConnect.push(helpMode)
+    classConnect.push("help");
+    classConnect.push(helpMode);
   }
 
   return (
@@ -55,12 +55,11 @@ const Select = ({
       </div>
       {isHelping && <span className={`${helpMode}-text`}>{helpText}</span>}
     </div>
-  )
-}
-
+  );
+};
 
 Select.defaultProps = {
   helpMode: "warning",
-}
+};
 
-export default Select
+export default Select;
