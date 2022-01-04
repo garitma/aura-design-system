@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Input from "../atoms/input";
+import Input, { InputProps } from "../atoms/input";
 
-const InputPassword = ({ ...props }) => {
+const InputPassword = ({ ...props }: InputProps) => {
   const [isView, setIsView] = useState(false);
 
   return (

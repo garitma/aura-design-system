@@ -1,13 +1,14 @@
 import {Fragment} from "react";
-import Button from "../atoms/button"
+
 import {SharedBasic} from "../types/global"
+import Button from "../atoms/button"
 
 export interface ModalProps extends SharedBasic {
   isVisible?: boolean,
   isValid?: boolean,
   isCTA?: boolean,
   onClose: () => void,
-  onAccept?: () => void,
+  onAccept?: (event?: any) => void,
   onDecline?: () => void,
   acceptText?: string,
   declineText?: string,

@@ -1,7 +1,31 @@
 import { useState } from "react";
+
+import { SharedBasic, AuraColors } from "../types/global";
 import Button from "../atoms/button";
 import Grid from "../layout/grid";
 import Modal from "./Modal";
+
+export interface ModuleFieldProps extends SharedBasic {
+  title?: string,
+  desc?: string,
+  notice?: string,
+  color?: AuraColors,
+  modalChildren?: any,
+  modalTitle?: string,
+  modalOnAccept?: (event: React.SyntheticEvent) => void,
+  modalDescription?: string,
+  modalOnAcceptText?: string,
+  modalOnDeclineText?: string,
+  onFirsSubmit?: () => void,
+  onAcceptText?: string,
+  onCancel?: () => void,
+  isOneColumn?: boolean,
+  isHiddenCancel?: boolean,
+  isModalable?: boolean,
+  isTwoSteps?: boolean,
+  isValid?: boolean,
+  isModalValid?: boolean,
+}
 
 const ModuleField = ({
   children,
@@ -11,11 +35,11 @@ const ModuleField = ({
   color = "teal-green",
   modalChildren,
   modalTitle,
-  modalOnAccept,
+  modalOnAccept = () => {},
   modalDescription,
   modalOnAcceptText,
   modalOnDeclineText,
-  onFirsSubmit,
+  onFirsSubmit = () => {},
   onAcceptText,
   onCancel,
   isOneColumn,
@@ -24,14 +48,14 @@ const ModuleField = ({
   isTwoSteps,
   isValid,
   isModalValid,
-}) => {
+}: ModuleFieldProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const handleOnPress = async (event) => {
+  const handleOnPress = async (event: React.SyntheticEvent) => {
     event.preventDefault();
     if (isModalable) {
       if (isTwoSteps) {
-        const check = await onFirsSubmit();
+        const check: any = await onFirsSubmit();
         if (check) {
           setIsOpen(!isOpen);
         }
@@ -43,7 +67,7 @@ const ModuleField = ({
     }
   };
 
-  const handleOnSubmit = (event) => {
+  const handleOnSubmit = (event: React.SyntheticEvent) => {
     setIsOpen(!isOpen);
     modalOnAccept(event);
   };
@@ -73,7 +97,7 @@ const ModuleField = ({
                   <Button
                     mode="fill"
                     isDisabled={!isValid}
-                    onClick={(event) => isModalable && handleOnPress(event)}
+                    onClick={(event: React.SyntheticEvent) => isModalable && handleOnPress(event)}
                   >
                     {onAcceptText}
                   </Button>
@@ -90,7 +114,7 @@ const ModuleField = ({
           acceptText={modalOnAcceptText}
           declineText={modalOnDeclineText}
           description={modalDescription}
-          onAccept={(event) => handleOnSubmit(event)}
+          onAccept={(event: React.SyntheticEvent) => handleOnSubmit(event)}
           onDecline={() => setIsOpen(!isOpen)}
           onClose={() => setIsOpen(!isOpen)}
           isValid={isModalValid}

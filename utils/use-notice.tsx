@@ -1,14 +1,45 @@
 import { createContext, useState, useContext } from "react";
+import WithNoticeBox from "../hoc/WithNoticeBox";
 
-export const NoticeContext = createContext({});
-export const useNotice = () => useContext(NoticeContext)
+import { HelpType } from "../types/global";
 
-type Props = {
-  children: React.ReactNode 
-}
+export type NoticeProps = {
+  id: string;
+  title: string;
+  description: string;
+  delay: number;
+  type: HelpType;
+  src: string;
+};
 
-export const NoticeContexProvider = ({ children }: Props )  => {
-  const [notices, setNotices] = useState([]);
+export type NoticeContextProps = {
+  notices: any;
+  deleteNotice: (notice: number) => void;
+  addNotice: (
+    description: string,
+    type: HelpType,
+    title: string,
+    src: string,
+    delay: number
+  ) => void;
+};
+
+export const NoticeContext = createContext<NoticeContextProps>({
+  notices: [],
+  deleteNotice: () => {},
+  addNotice: () => {},
+});
+
+export const useNotice = () => useContext(NoticeContext);
+
+type NoticeContexProviderProps = {
+  children: React.ReactNode;
+};
+
+export const NoticeContexProvider = ({
+  children,
+}: NoticeContexProviderProps) => {
+  const [notices, setNotices] = useState<{}[]>([]);
 
   const deleteNotice = (index: number) => {
     let newNotices = [...notices];
@@ -18,14 +49,15 @@ export const NoticeContexProvider = ({ children }: Props )  => {
 
   const addNotice = (
     description: string,
-    type = "success",
+    type: HelpType = "success",
     title: string,
     src: string,
-    delay = 3000
+    delay: number = 3000
   ) => {
-    let id = Math.trunc(Math.random() * 1000000);
-    let newNotices: any = [...notices];
-    let notice: any = { id, title, description, delay, type, src };
+    let id =
+      Math.trunc(Math.random() * 1000000).toString() + Date.now().toString();
+    let newNotices: {}[] = [...notices];
+    let notice: NoticeProps = { id, title, description, delay, type, src };
     newNotices.push(notice);
     setNotices(newNotices);
   };
@@ -34,12 +66,11 @@ export const NoticeContexProvider = ({ children }: Props )  => {
     <NoticeContext.Provider
       value={{
         notices,
-        setNotices,
         deleteNotice,
         addNotice,
       }}
     >
-      {children}
+      <WithNoticeBox>{children}</WithNoticeBox>
     </NoticeContext.Provider>
   );
 };

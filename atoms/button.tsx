@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Target, SharedBasic, ButtonType } from "../types/global"
+import { Target, SharedBasic, ButtonMode, ButtonType } from "../types/global"
 
 /**
  * Primary UI component for user interaction
@@ -9,12 +9,13 @@ export interface ButtonProps extends SharedBasic {
   isDisabled?: boolean
   isFluid?: boolean
   isWaiting?: boolean
-  onClick?: () => void
+  onClick?: (event?: any) => void
   waitingText?: string
-  mode?: ButtonType
+  mode?: ButtonMode
   label?: string
   href?: string
   target?: Target
+  type?: ButtonType
 }
 
 const Button = React.forwardRef(({

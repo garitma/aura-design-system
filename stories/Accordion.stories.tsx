@@ -3,7 +3,6 @@ import React from "react";
 import { Story, Meta } from "@storybook/react";
 
 import Accordion, { AccordionProps } from "../molecules/accordion";
-import WithIcons from "../hoc/WithIcons.js";
 
 export default {
   title: "Molecule/Accordion",

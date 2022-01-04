@@ -17,6 +17,6 @@
       "suppressImplicitAnyIndexErrors": true,
       "allowSyntheticDefaultImports": false
     },
-    "include": ["atoms", "layout", "molecules", "static", "utils", "global.tsx"],
+    "include": ["atoms", "layout", "molecules", "static", "utils", "global.tsx", "./index.d.ts"],
     "exclude": ["node_modules", "dist"]
   }

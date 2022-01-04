@@ -4,7 +4,6 @@ import { Story, Meta } from "@storybook/react";
 
 import Modal, { ModalProps } from "../molecules/modal";
 import Button from "../atoms/button";
-import WithIcons from "../hoc/WithIcons.js";
 
 export default {
   title: "Molecule/Modal",

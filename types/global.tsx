@@ -77,7 +77,9 @@ export type AuraIcons =
 
 export type HelpType = "warning" | "info" | "danger" | "success"
 
-export type ButtonType = "link" | "fill" | "pill" | "menu" 
+export type ButtonMode = "link" | "fill" | "pill" | "menu"
+
+export type ButtonType = "button" | "submit" | "reset"
 
 export type Target = "_self" | "_blank" | "_parent" | "_top" | "framename"
 
