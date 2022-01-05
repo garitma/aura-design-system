@@ -1,4 +1,3 @@
-import { useRef } from "react";
 import Icon from "./icon";
 import { SharedBasic, HelpType, AuraIcons } from "../types/global";
 
