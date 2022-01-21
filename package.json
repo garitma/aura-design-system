@@ -1,6 +1,6 @@
 {
   "name": "aura-design",
-  "version": "0.1.23",
+  "version": "0.1.25",
   "description": "Garitma's Design system",
   "files": [
     "dist",
@@ -57,7 +57,7 @@
     "**/react": "17.0.2",
     "**/react-dom": "17.0.2"
   },
-  "dependencies": {
+  "devDependencies": {
     "@babel/core": "^7.15.0",
     "@storybook/addon-actions": "^6.4.9",
     "@storybook/addon-essentials": "^6.4.9",

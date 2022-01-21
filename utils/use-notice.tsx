@@ -40,9 +40,10 @@ export const NoticeContexProvider = ({
 }: NoticeContexProviderProps) => {
   const [notices, setNotices] = useState<{}[]>([]);
 
-  const deleteNotice = () => {
-
-    return setNotices([]);
+  const deleteNotice = (index: any) => {
+    let newNotices = [...notices];
+    newNotices.splice(index, 1);
+    return setNotices(newNotices);
   };
 
   const addNotice = (
