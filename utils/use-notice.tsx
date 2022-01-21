@@ -1,5 +1,4 @@
 import { createContext, useState, useContext } from "react";
-import WithNoticeBox from "../hoc/WithNoticeBox";
 
 import { HelpType } from "../types/global";
 
@@ -41,10 +40,9 @@ export const NoticeContexProvider = ({
 }: NoticeContexProviderProps) => {
   const [notices, setNotices] = useState<{}[]>([]);
 
-  const deleteNotice = (index: number) => {
-    let newNotices = [...notices];
-    newNotices.splice(index, 1);
-    return setNotices(newNotices);
+  const deleteNotice = () => {
+
+    return setNotices([]);
   };
 
   const addNotice = (
@@ -54,8 +52,7 @@ export const NoticeContexProvider = ({
     src: string,
     delay: number = 3000
   ) => {
-    let id =
-      Math.trunc(Math.random() * 1000000).toString() + Date.now().toString();
+    let id = Math.trunc(Math.random() * 1000000).toString();
     let newNotices: {}[] = [...notices];
     let notice: NoticeProps = { id, title, description, delay, type, src };
     newNotices.push(notice);
@@ -70,7 +67,7 @@ export const NoticeContexProvider = ({
         addNotice,
       }}
     >
-      <WithNoticeBox>{children}</WithNoticeBox>
+      {children}
     </NoticeContext.Provider>
   );
 };

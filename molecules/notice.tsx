@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 
+import { useNotice } from "../utils/use-notice";
 import Button from "../atoms/button";
 import { SharedBasic } from "../types/global";
 
@@ -13,10 +14,11 @@ export interface NoticeProps extends SharedBasic {
 const Notice = ({
   doc,
   index,
-  deleteNotice,
   width = "100%",
   ...props
 }: NoticeProps) => {
+  const { deleteNotice } = useNotice();
+
   useEffect(() => {
     let timer = setTimeout(() => deleteNotice(index), doc?.delay);
     return () => {
