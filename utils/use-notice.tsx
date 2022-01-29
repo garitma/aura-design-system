@@ -29,7 +29,11 @@ export const NoticeContext = createContext<NoticeContextProps>({
   addNotice: () => {},
 });
 
-export const useNotice = () => useContext(NoticeContext);
+export const useNotice = () => {
+  const { addNotice } = useContext(NoticeContext);
+
+  return addNotice;
+};
 
 type NoticeContexProviderProps = {
   children: React.ReactNode;
