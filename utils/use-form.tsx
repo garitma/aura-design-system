@@ -117,3 +117,6 @@ export const useStatus = () => {
     resetStatus,
   };
 };
+
+export const isInvalidSchema = (schema: any) =>
+  Object.values(schema).some((item) => item === false);
