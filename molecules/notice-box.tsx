@@ -2,7 +2,7 @@ import { useNotice } from "../utils/use-notice";
 import Notice from "./notice";
 
 const NoticeBox = () => {
-  const { notices } = useNotice();
+  const { notices } : any = useNotice();
   if (notices.length > 0) {
     return (
       <div className="hold left right top centertxt">

@@ -17,7 +17,8 @@ const Notice = ({
   width = "100%",
   ...props
 }: NoticeProps) => {
-  const { deleteNotice } = useNotice();
+  
+  const { deleteNotice } : any = useNotice();
 
   useEffect(() => {
     let timer = setTimeout(() => deleteNotice(index), doc?.delay);
