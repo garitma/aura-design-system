@@ -64,7 +64,7 @@ const SidebarMenu = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <ul className="hide-small">
+      <ul className="hide-small sticky">
         <Menu />
       </ul>
       <div className="hide-medium hide-large">
