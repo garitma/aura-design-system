@@ -33,3 +33,7 @@ span.code {
   position: sticky;
   top: 13px;
 }
+
+hr {
+  border: 0;
+}

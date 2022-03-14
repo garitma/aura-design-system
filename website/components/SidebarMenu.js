@@ -2,10 +2,12 @@ import { useState } from "react";
 import Link from "next/link";
 import Icon from "aura-design/icon";
 import Button from "aura-design/button";
+import Accordion from "aura-design/accordion";
 
 const Menu = ({ setIsOpen }) => {
   return (
     <>
+    <span>Welcome!</span>
       <li>
         <Link href="/docs/getting-started">
           <a
@@ -56,6 +58,8 @@ const Menu = ({ setIsOpen }) => {
           </a>
         </Link>
       </li>
+      <hr className="aura" />
+      <span>Components</span>
     </>
   );
 };
@@ -68,19 +72,11 @@ const SidebarMenu = () => {
         <Menu />
       </ul>
       <div className="hide-medium hide-large">
-        <div className="aura anchor">
-          <span className="h5">Documentation</span>
-          <div className="pin right top bottom valign">
-            <Button mode="link" onClick={() => setIsOpen(!isOpen)}>
-              <Icon sprite={isOpen ? "arrowUp" : "arrowDown"} />
-            </Button>
-          </div>
-        </div>
-        {isOpen && (
+        <Accordion title="Documentation" headlineSize="h5">
           <ul>
             <Menu setIsOpen={setIsOpen} />
           </ul>
-        )}
+        </Accordion>
       </div>
     </>
   );

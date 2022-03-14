@@ -238,10 +238,10 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha1-x57Zf380y48robyXkLzDZkdLS3k=
 
-aura-design@^0.1.21:
-  version "0.1.21"
-  resolved "https://registry.yarnpkg.com/aura-design/-/aura-design-0.1.21.tgz#daf14290e1327e70a04aec21903fd3209d9430c5"
-  integrity sha512-hexnJnPNdTx1Fn8UsD4/VH8LPWAOPwEDVO/YfriwwQQSRbE9EPA2XnTayTCsksM6WHUJdPm6tWuhQoDBt6x9Rg==
+aura-design@^0.1.27:
+  version "0.1.27"
+  resolved "https://registry.yarnpkg.com/aura-design/-/aura-design-0.1.27.tgz#46f664664e25bf0f5ed8423cd91542d8909fedff"
+  integrity sha512-cajecDbEL/998Pwxs58u/U9M3gHaKqugD2msrtHDuCfQs9O7txuNn/C3ofVvC9pVU08GtP/0Mwkfpz7RCHBmFQ==
 
 available-typed-arrays@^1.0.5:
   version "1.0.5"
