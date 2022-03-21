@@ -1,19 +1,16 @@
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 import Icon from "aura-design/icon";
 import Button from "aura-design/button";
 import Accordion from "aura-design/accordion";
 
-const Menu = ({ setIsOpen }) => {
+const Menu = ({ handleOnClose }) => {
   return (
     <>
-    <span>Welcome!</span>
+      <span>Welcome!</span>
       <li>
         <Link href="/docs/getting-started">
-          <a
-            className="button-menu"
-            onClick={() => (setIsOpen ? setIsOpen(false) : {})}
-          >
+          <a className="button-menu" onClick={(e) => console.log(e)}>
             Getting started
           </a>
         </Link>
@@ -22,7 +19,7 @@ const Menu = ({ setIsOpen }) => {
         <Link href="/docs/design-principles">
           <a
             className="button-menu"
-            onClick={() => (setIsOpen ? setIsOpen(false) : {})}
+            onClick={() => (handleOnClose ? handleOnClose() : {})}
           >
             Design principles
           </a>
@@ -32,7 +29,7 @@ const Menu = ({ setIsOpen }) => {
         <Link href="/docs/spacing">
           <a
             className="button-menu"
-            onClick={() => (setIsOpen ? setIsOpen(false) : {})}
+            onClick={() => (handleOnClose ? handleOnClose() : {})}
           >
             Spacing
           </a>
@@ -42,7 +39,7 @@ const Menu = ({ setIsOpen }) => {
         <Link href="/docs/color">
           <a
             className="button-menu"
-            onClick={() => (setIsOpen ? setIsOpen(false) : {})}
+            onClick={() => (handleOnClose ? handleOnClose() : {})}
           >
             Color
           </a>
@@ -52,7 +49,7 @@ const Menu = ({ setIsOpen }) => {
         <Link href="/docs/iconography">
           <a
             className="button-menu"
-            onClick={() => (setIsOpen ? setIsOpen(false) : {})}
+            onClick={() => (handleOnClose ? handleOnClose() : {})}
           >
             Iconography
           </a>
@@ -60,12 +57,26 @@ const Menu = ({ setIsOpen }) => {
       </li>
       <hr className="aura" />
       <span>Components</span>
+      <li>
+        <Link href="/docs/button">
+          <a
+            className="button-menu"
+            onClick={() => (handleOnClose ? handleOnClose() : {})}
+          >
+            Button
+          </a>
+        </Link>
+      </li>
     </>
   );
 };
 
 const SidebarMenu = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const handleOnClose = () => {
+    const details = document.querySelector("details");
+    details.removeAttribute("open");
+  };
+
   return (
     <>
       <ul className="hide-small sticky">
@@ -74,7 +85,7 @@ const SidebarMenu = () => {
       <div className="hide-medium hide-large">
         <Accordion title="Documentation" headlineSize="h5">
           <ul>
-            <Menu setIsOpen={setIsOpen} />
+            <Menu handleOnClose={handleOnClose} />
           </ul>
         </Accordion>
       </div>
