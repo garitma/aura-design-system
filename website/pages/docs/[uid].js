@@ -10,6 +10,7 @@ import SidebarMenu from "@components/SidebarMenu";
 import CodeBox from "@components/CodeBox";
 import RichContent from "@components/RichContent";
 import Highlighted from "@components/Highlighted";
+import TableRows from "@components/TableRow";
 import SinglePagination from "@components/SinglePagination";
 
 const Documents = ({ doc }) => {
@@ -48,6 +49,12 @@ const Documents = ({ doc }) => {
                       return <CodeBox doc={item} key={index} />;
                     case "DocumentBodyHighlighted_text":
                       return <Highlighted doc={item} key={index} />;
+                    case "DocumentBodyTable":
+                      return <TableRows doc={item} key={index} isHeadline />;
+                    case "DocumentBodyTable_row":
+                      return <TableRows doc={item} key={index} />;
+                    case "DocumentBodyTable_footer":
+                      return <TableRows doc={item} key={index} isFooter/>;
                     default:
                       return;
                   }

@@ -101,6 +101,21 @@ export async function getDocument(uid, previewData) {
                 highlight_title
               }
             }
+            ... on DocumentBodyTable {
+              fields {
+                column
+              }
+            }
+            ... on DocumentBodyTable_row {
+              fields {
+                column
+              }
+            }
+            ... on DocumentBodyTable_footer {
+              fields {
+                column
+              }
+            }
           }
           _meta {
             uid

@@ -7,11 +7,16 @@ const Header = ({ text }) => {
   return (
     <header
       className="blue aura"
-      style={{
-        backgroundImage:
-          "url(https://images.prismic.io/garitma/f87649d7-9c04-482c-8065-5896201ced9d_mint-aura.jpg?auto=compress,format)",
-      }}
+      style={{ overflow: "hidden", position: "relative" }}
     >
+      <div>
+        <Image
+          src="https://images.prismic.io/garitma/f87649d7-9c04-482c-8065-5896201ced9d_mint-aura.jpg?auto=compress,format"
+          layout="fill"
+          objectFit="cover"
+          priority={true}
+        />
+      </div>
       <div className="smush wall-pad">
         <ul className="nav-list">
           <li className="logo-circle">
@@ -39,7 +44,7 @@ const Header = ({ text }) => {
           </li>
         </ul>
       </div>
-      <div>
+      <div className="anchor zIndex10">
         <h1 className="light centertxt mt0 mb0">{text}</h1>
       </div>
     </header>
