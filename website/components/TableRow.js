@@ -1,7 +1,6 @@
 import { RichText } from "prismic-reactjs";
 
 const TableRow = ({ isHeadline, isFooter, doc }) => {
-  console.log(doc.fields.length);
   return (
     <>
       {doc.fields[0].column && (
