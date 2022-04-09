@@ -392,10 +392,10 @@
   "resolved" "https://registry.npmjs.org/asynckit/-/asynckit-0.4.0.tgz"
   "version" "0.4.0"
 
-"aura-design@^0.1.30":
-  "integrity" "sha512-zr81vYxi87KvAi8LRbprSU0AwPD37SqVIHYfUFjGy/qo8r9J1xyDiOHs2mQVm+U0lc2RRCRMMGT4Y3p30POAnA=="
-  "resolved" "https://registry.npmjs.org/aura-design/-/aura-design-0.1.30.tgz"
-  "version" "0.1.30"
+"aura-design@^0.1.31":
+  "integrity" "sha512-o03hw6Aq6cNq3Q+R4mWLeUgmj+je/WTZHL906+rA/urzWKE6+MwU6QdLaZ4W8dk6FoX38ZNmPWsZmdI6N7Q+7Q=="
+  "resolved" "https://registry.npmjs.org/aura-design/-/aura-design-0.1.31.tgz"
+  "version" "0.1.31"
 
 "available-typed-arrays@^1.0.5":
   "integrity" "sha512-DMD0KiN46eipeziST1LPP/STfDU0sufISXmjSgvVsoU2tqxctQeASejWcfNtxYKqETM1UxQ8sp2OrSBWpHY6sw=="
