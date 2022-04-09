@@ -56,21 +56,23 @@
         background-color: var(--aura-link-hover)
 
 .button-menu
-    display block
-    padding (aura * 0.5) aura
+    @extend .button
     @extend .h6
-    font-weight bold
-    text-decoration none
-    transform translateZ(0)
-    transition opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)
-    white-space: nowrap
-        
+    font-weight: bold
+    padding: (aura * 0.5) aura
+    border: 0
+    text-decoration: none
+    
+
 a
     text-decoration: none
     color var(--aura-accents-10)
     cursor pointer
     &:visited:not(.button):not(.button-pill):not(.button-link):not(.button-fill):not(.button-menu)
         color: inherit
+    &:active
+        outline 2px dotted var(--aura-outline)
+        outline-offset: 3px
     
 button
     cursor pointer
