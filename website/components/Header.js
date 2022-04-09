@@ -6,8 +6,8 @@ import Button from "aura-design/button";
 const Header = ({ text }) => {
   return (
     <header
-      className="blue aura"
-      style={{ overflow: "hidden", position: "relative" }}
+      className="blue aura anchor"
+      style={{ overflow: "hidden" }}
     >
       <div>
         <Image
@@ -44,7 +44,7 @@ const Header = ({ text }) => {
           </li>
         </ul>
       </div>
-      <div className="anchor zIndex10">
+      <div className="anchor">
         <h1 className="light centertxt mt0 mb0">{text}</h1>
       </div>
     </header>

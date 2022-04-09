@@ -47,6 +47,7 @@ const HeadContent = () => (
       name="apple-mobile-web-app-status-bar-style"
       content="black-translucent"
     />
+    <link rel="preload" as="image" href="/sprite_glyphs.png" />
     <script
       async
       src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}

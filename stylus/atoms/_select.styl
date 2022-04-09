@@ -4,6 +4,7 @@
 // Aura Design System
 
 select:not(.default)
+       color var(--aura-accents-10)
        background-color var(--aura-input-bg)
        width: 100%
        font-family inherit
@@ -17,4 +18,7 @@ select:not(.default)
        -moz-appearance: none
        appearance: none
        mixin-border-radius(var(--aura-input-radius))
+       &:focus
+              outline 2px dotted var(--aura-outline) 
+              outline-offset: 3px;
               

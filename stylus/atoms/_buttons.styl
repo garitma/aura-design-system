@@ -21,6 +21,13 @@
     height (aura * 2) * 2
     padding 0 (aura * 2)
     border 2px solid
+    transition: transform 250ms cubic-bezier(.2,.8,.4,1);
+    &:hover
+        transform: scale(1.03);
+    &:active
+        transform: scale(0.97);
+        outline 2px dotted var(--aura-outline)
+        outline-offset: 3px
 
 .button-fill
     @extend .button
@@ -28,7 +35,7 @@
     color var(--aura-dark)
     background-color var(--aura-accents-primary)
     &:hover:not(:disabled)
-        background-color var(--aura-accents-8)
+        background-color var(--aura-button-hover)
 
 .button-pill
     @extend .button
@@ -36,7 +43,7 @@
     border-color var(--aura-accents-primary)
     background-color transparent
     &:hover:not(:disabled)
-        background-color var(--aura-accents-1)
+        background-color var(--aura-link-hover)
 
 .button-link
     @extend .button
@@ -46,7 +53,7 @@
     background-color transparent
     &:hover:not(:disabled)
         color: var(--aura-base-color)
-        background-color: var(--aura-accents-1)
+        background-color: var(--aura-link-hover)
 
 .button-menu
     display block
@@ -66,4 +73,6 @@ a
         color: inherit
     
 button
-    cursor pointer 
+    cursor pointer
+   
+

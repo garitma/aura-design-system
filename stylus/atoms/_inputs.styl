@@ -36,14 +36,14 @@ textarea:not(.default)
     box-sizing border-box
     box-shadow none
     color var(--aura-accents-10)
-    color Root
     font-family inherit
     font: inherit;
     height 106px
     padding aura * 2
     &:focus
         background var(--aura-input-bg)
-        outline none
+        outline 2px dotted var(--aura-outline) 
+        outline-offset: 3px;
     &::placeholder 
         color: var(--aura-input-placeholder-color);
 
@@ -63,7 +63,8 @@ input:not(.default)
     cursor: text;
     &:focus
         background var(--aura-input-bg)
-        outline 0
+        outline 2px dotted var(--aura-outline) 
+        outline-offset: 3px;
     &::placeholder
         color: var(--aura-input-placeholder-color);
     &:not(:placeholder-shown):not(.naked)
