@@ -10,7 +10,10 @@ const Menu = ({ handleOnClose }) => {
       <span>Welcome!</span>
       <li>
         <Link href="/docs/getting-started">
-          <a className="button-menu" onClick={(e) => console.log(e)}>
+          <a
+            className="button-menu"
+            onClick={() => (handleOnClose ? handleOnClose() : {})}
+          >
             Getting started
           </a>
         </Link>
