@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useLayoutEffect } from "react";
 import Router from "next/router";
 import NProgress from "nprogress";
 
@@ -27,17 +27,20 @@ const Layout = ({
   path,
   excerpt,
   isArchive,
-}) => (
-  <main>
-    {isArchive
-      ? formatMetaArchives(meta, path, text, excerpt)
-      : formatMeta(meta)}
-    <div className="page">
-      <Header preview={preview} doc={data} text={text} />
-      <div className="page-body">{children}</div>
-      <Footer doc={data} />
-    </div>
-  </main>
-);
+}) => {
+
+  return (
+    <main>
+      {isArchive
+        ? formatMetaArchives(meta, path, text, excerpt)
+        : formatMeta(meta)}
+      <div className="page">
+        <Header preview={preview} doc={data} text={text} />
+        <div className="page-body">{children}</div>
+        <Footer doc={data} />
+      </div>
+    </main>
+  );
+};
 
 export default Layout;

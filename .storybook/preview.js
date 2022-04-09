@@ -1,7 +1,7 @@
 import "../style.css";
 import { addDecorator } from "@storybook/react";
 
-import WithIcons from "../hoc/WithIcons";
+import WithIcons from "../hoc/with-icons";
 import { NoticeContexProvider } from "../utils/use-notice";
 
 const StorybookWrapper = (storyFn) => (

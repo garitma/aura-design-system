@@ -28,6 +28,8 @@
     "accordion.d.ts",
     "global.js",
     "global.d.ts",
+    "motion.js",
+    "motion.d.ts",
     "README.md"
   ],
   "author": "Garitma <hola@garitma.com",
