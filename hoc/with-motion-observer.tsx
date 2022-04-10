@@ -5,9 +5,8 @@ import { SharedBasic } from "../types/global";
 const WithMotionObserver = ({ children }: SharedBasic) => {
   useEffect(() => {
     if (typeof window !== "undefined") {
-      const motions = document.querySelectorAll("[class~='motion']");
-
-      motions.forEach((element) => element.classList.remove("mounted"));
+      const motions = document.querySelectorAll("[class*='motion']");
+   
       const observer = new window.IntersectionObserver((entries) => {
         const { isIntersecting } = entries[0];
         if (isIntersecting) {
