@@ -21,7 +21,7 @@ const Documents = ({ doc }) => {
           <div className="pad purple">
             <SidebarMenu />
           </div>
-          <div className="pad accents-1 h6">
+          <article className="pad accents-1 h6">
             <div className="smash">
               <h1>{RichText.asText(doc?.title || [])}</h1>
               <div>
@@ -62,7 +62,7 @@ const Documents = ({ doc }) => {
               </div>
               <SinglePagination doc={doc} />
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </Layout>
