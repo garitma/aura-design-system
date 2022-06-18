@@ -4,7 +4,7 @@
 // Aura Design System
 
 .inputer
-    @extend .inside-pad
+    @extend .inside-pad   
     position relative
     margin-bottom aura * 1.5
     &-group
@@ -40,6 +40,8 @@ textarea:not(.default)
     font: inherit;
     height 106px
     padding aura * 2
+    &:disabled
+        @extend .disabled
     &:focus
         background var(--aura-input-bg)
         outline 2px dotted var(--aura-outline) 
@@ -82,6 +84,8 @@ input:not(.default)
         opacity 1
         cursor pointer
         z-index 0
+    &:disabled
+        @extend .disabled
       
         
     

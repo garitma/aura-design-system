@@ -22,6 +22,8 @@
     padding 0 (aura * 2)
     border 2px solid
     transition: transform 250ms cubic-bezier(.2,.8,.4,1);
+    &:disabled
+        @extend .disabled
     &:hover
         transform: scale(1.03);
     &:active
