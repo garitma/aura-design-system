@@ -40,24 +40,30 @@ export const compare = (num: number, comparator: number, context: string) => {
   return <span>0 something went wrong</span>
 }
 
-export const paginateData = (allData = [], pageSize = 12) => {
-  const [archivePageSize, setArchivePageSize] = useState(pageSize)
-  const [data] = useState(allData)
-  const [page, setPage] = useState(1)
-  const totalResultsSize = allData?.length
-  const totalPages = Math.ceil(totalResultsSize / archivePageSize)
-  const cursorInit = (page - 1) * archivePageSize
-  const cursorEnd = page * archivePageSize
-  const hasNextPage = totalPages > page
-  const hasPrevPage = 1 < page
-  const hasPagination = totalPages > 1
-  const prevPage = () => hasPrevPage && setPage(page - 1)
-  const nextPage = () => hasNextPage && setPage(page + 1)
+export const usePaginateData = (allData = [], pageSize = 12) => {
+  
+  const [archivePageSize, setArchivePageSize] = useState(pageSize);
+  const [data, setData] = useState(allData);
+  const [page, setPage] = useState(1);
+  const totalResultsSize = allData?.length;
+  const totalPages = Math.ceil(totalResultsSize / archivePageSize);
+  const cursorInit = (page - 1) * archivePageSize;
+  const cursorEnd = page * archivePageSize;
+  const hasNextPage = totalPages > page;
+  const hasPrevPage = 1 < page;
+  const hasPagination = totalPages > 1;
+  const prevPage = () => hasPrevPage && setPage(page - 1);
+  const nextPage = () => hasNextPage && setPage(page + 1);
 
-  const onScreenData = data.slice(cursorInit, cursorEnd)
+  const mutate = () => {
+    setData(allData)
+  }
+
+  const screenData = data.slice(cursorInit, cursorEnd);
 
   return {
-    onScreenData,
+    screenData,
+    data,
     nextPage,
     prevPage,
     archivePageSize,
@@ -71,8 +77,9 @@ export const paginateData = (allData = [], pageSize = 12) => {
     hasNextPage,
     hasPrevPage,
     hasPagination,
-  }
-}
+    mutate
+  };
+};
 
 export const useDataView = (initialData: { [value: string]: never[] | undefined }) => {
   let allData = {}
@@ -80,7 +87,7 @@ export const useDataView = (initialData: { [value: string]: never[] | undefined 
   for (const value in initialData) {
     allData = {
       ...allData,
-      [value]: paginateData(initialData[value]),
+      [value]: usePaginateData(initialData[value]),
     }
   }
 
