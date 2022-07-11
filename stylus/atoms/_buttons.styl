@@ -22,6 +22,8 @@
     padding 0 (aura * 2)
     border 2px solid
     transition: transform 250ms cubic-bezier(.2,.8,.4,1);
+    &:disabled
+        @extend .disabled
     &:hover
         transform: scale(1.03);
     &:active
@@ -57,13 +59,11 @@
 
 .button-menu
     @extend .button
-    @extend .h6
+    mixin-visual-scale(visualScale-h6, 0.9, 0.9)
     font-weight: bold
     padding: (aura * 0.5) aura
     border: 0
     text-decoration: none
-    
-
 a
     text-decoration: none
     color var(--aura-accents-10)
