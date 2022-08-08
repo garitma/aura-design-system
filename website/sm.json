@@ -1,0 +1,7 @@
+{
+  "apiEndpoint": "https://garitma.prismic.io/api/v2",
+  "libraries": [
+    "@/slices"
+  ],
+  "_latest": "0.4.2"
+}

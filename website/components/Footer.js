@@ -72,7 +72,7 @@ const Footer = () => {
                 <a
                   target="_blank"
                   rel="noopener"
-                  href="https://garitma.com/informacion-legal"
+                  href="http://privacy.garitma.com"
                 >
                   Terms of use
                 </a>
@@ -81,7 +81,7 @@ const Footer = () => {
                 <a
                   target="_blank"
                   rel="noopener"
-                  href="https://garitma.com/informacion-legal"
+                  href="http://privacy.garitma.com"
                 >
                   Privacy policies
                 </a>

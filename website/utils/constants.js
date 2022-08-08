@@ -16,6 +16,5 @@ export const SOCIAL = {
 };
 export const SITE_DESCRIPTIO =
   "Historias y vivencias de la ciudad de Garitma York donde encontrarás arte, diseño, cómics, cine,";
-export const API_URL_KIT = "https://garitma.cdn.prismic.io/api/v2";
-export const GRAPHQL_API_URL = "https://garitma.prismic.io/graphql";
-export const API_TOKEN = process.env.ACCESS_TOKEN;
+
+export const PRISMIC_ACCESS_TOKEN = process.env.PRISMIC_ACCESS_TOKEN;

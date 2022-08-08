@@ -3,6 +3,11 @@ const withBundleAnalyzer = require("@next/bundle-analyzer")({
 });
 module.exports = withBundleAnalyzer({
   target: "serverless",
+  i18n: {
+    locales: ["en-us"],
+    defaultLocale: "en-us",
+    localeDetection: false,
+  },
   images: {
     loader: "imgix",
     path: "",

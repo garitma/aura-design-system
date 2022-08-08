@@ -37,3 +37,11 @@ span.code {
 hr {
   border: 0;
 }
+
+.table-group {
+  overflow-x: auto;
+}
+
+.table-group .halo {
+  min-width: 600px;
+}

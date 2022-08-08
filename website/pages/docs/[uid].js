@@ -2,9 +2,9 @@ import { useEffect } from "react";
 import Icon from "aura-design/icon";
 import Link from "next/link";
 import Image from "next/image";
-import { RichText } from "prismic-reactjs";
+import * as prismicH from "@prismicio/helpers";
 
-import { getDocument, getAllPostsWithSlug } from "@utils/prismic-graphql";
+import { createClient, linkResolver } from "@utils/prismic-rest";
 import Layout from "@components/Layout";
 import SidebarMenu from "@components/SidebarMenu";
 import CodeBox from "@components/CodeBox";
@@ -14,8 +14,38 @@ import TableRows from "@components/TableRow";
 import SinglePagination from "@components/SinglePagination";
 
 const Documents = ({ doc }) => {
+  const seo = {
+    title: prismicH.asText(doc.data.title),
+    excerpt: prismicH.asText(doc.data.excerpt),
+  };
+
+  const formatBody = () => {
+    let newBody = [];
+    let tableTransition = [];
+
+    for (const slice of doc.data.body) {
+      if (["table", "table_row", "table_footer"].includes(slice.slice_type)) {
+        tableTransition.push(slice);
+        if (["table_footer"].includes(slice.slice_type)) {
+          let virtualSlice = {
+            primary: null,
+            items: tableTransition,
+            id: tableTransition.map((item) => item.id).join("-"),
+            slice_type: "table_group",
+          };
+          newBody.push(virtualSlice);
+          virtualSlice = [];
+        }
+      } else {
+        newBody.push(slice);
+      }
+    }
+
+    return newBody;
+  };
+
   return (
-    <Layout text="Aura Design System" meta={doc}>
+    <Layout text="Aura Design System" seo={seo}>
       <div>
         <div className="aureole docs">
           <div className="pad purple">
@@ -23,21 +53,21 @@ const Documents = ({ doc }) => {
           </div>
           <article className="pad accents-1 h6">
             <div className="smash">
-              <h1>{RichText.asText(doc?.title || [])}</h1>
+              <h1>{prismicH.asText(doc.data.title)}</h1>
               <div>
-                {doc?.body?.map((item, index) => {
-                  switch (item?.__typename) {
-                    case "DocumentBodyText":
+                {formatBody().map((item, index) => {
+                  switch (item?.slice_type) {
+                    case "text":
                       return (
                         <RichContent
                           doc={item}
-                          key={index}
+                          key={item.id}
                           className="ulinea"
                         />
                       );
-                    case "DocumentBodyImage":
+                    case "image":
                       return (
-                        <div className="centertxt pad" key={index}>
+                        <div className="centertxt pad" key={item.id}>
                           <Image
                             src={item?.primary?.image?.url}
                             height={item?.primary?.image?.dimensions?.height}
@@ -45,16 +75,40 @@ const Documents = ({ doc }) => {
                           />
                         </div>
                       );
-                    case "DocumentBodyCode_snippet":
-                      return <CodeBox doc={item} key={index} />;
-                    case "DocumentBodyHighlighted_text":
-                      return <Highlighted doc={item} key={index} />;
-                    case "DocumentBodyTable":
-                      return <TableRows doc={item} key={index} isHeadline />;
-                    case "DocumentBodyTable_row":
-                      return <TableRows doc={item} key={index} />;
-                    case "DocumentBodyTable_footer":
-                      return <TableRows doc={item} key={index} isFooter/>;
+                    case "code_snippet":
+                      return <CodeBox doc={item} key={item.id} />;
+                    case "highlighted_text":
+                      return <Highlighted doc={item} key={item.id} />;
+                    case "highlighted_text":
+                      return <Highlighted doc={item} key={item.id} />;
+                    case "table_group":
+                      return (
+                        <div className="table-group" key={item.id}>
+                          {item.items.map((item, index) => {
+                            switch (item?.slice_type) {
+                              case "table":
+                                return (
+                                  <TableRows
+                                    doc={item}
+                                    key={index}
+                                    isHeadline
+                                  />
+                                );
+                              case "table_footer":
+                                return (
+                                  <TableRows
+                                    doc={item}
+                                    key={item.id}
+                                    isFooter
+                                  />
+                                );
+                              default:
+                                return <TableRows doc={item} key={item.id} />;
+                            }
+                          })}
+                        </div>
+                      );
+
                     default:
                       return;
                   }
@@ -69,23 +123,40 @@ const Documents = ({ doc }) => {
   );
 };
 
-export async function getStaticProps({ params, preview = false, previewData }) {
-  const doc = await getDocument(params.uid, previewData);
+export const getStaticProps = async ({
+  params,
+  preview = false,
+  previewData,
+  locale,
+}) => {
+  try {
+    const client = createClient({ previewData });
 
-  return {
-    props: {
-      preview,
-      doc: doc.document,
-    },
-  };
-}
+    const doc = await client.getByUID("document", params.uid, { lang: locale });
+
+    if (!doc) {
+      return { notFound: true };
+    }
+
+    return {
+      props: {
+        doc,
+        preview,
+      },
+      revalidate: 60 * 3,
+    };
+  } catch (e) {
+    return { notFound: true };
+  }
+};
 
 export async function getStaticPaths() {
-  const allDocuments = await getAllPostsWithSlug();
+  const client = createClient();
+  const doc = await client.getAllByType("document", { lang: "*" });
 
   return {
-    paths: allDocuments?.map(({ node }) => `/docs/${node._meta.uid}`) || [],
-    fallback: true,
+    paths: doc.map((item) => prismicH.asLink(item, linkResolver)),
+    fallback: "blocking",
   };
 }
 

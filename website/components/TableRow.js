@@ -1,16 +1,16 @@
-import { RichText } from "prismic-reactjs";
+import * as prismicH from "@prismicio/helpers";
 
 const TableRow = ({ isHeadline, isFooter, doc }) => {
   return (
     <>
-      {doc.fields[0].column && (
+      {doc.items[0].column && (
         <div className={`halo ${isHeadline ? "teal-green" : "snow"}`}>
-          {doc.fields.map((item, index) => (
+          {doc.items.map((item, index) => (
             <div
               key={index}
-              className={`layer small-${Math.ceil(12 / doc.fields.length)}`}
+              className={`layer small-${Math.ceil(12 / doc.items.length)}`}
             >
-              <div className="aura">{RichText.asText(item.column)}</div>
+              <div className="aura">{prismicH.asText(item.column)}</div>
             </div>
           ))}
         </div>

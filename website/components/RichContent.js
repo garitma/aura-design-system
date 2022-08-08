@@ -1,9 +1,9 @@
-import { RichText } from "prismic-reactjs";
+import { PrismicRichText } from "@prismicio/react";
 
 const RichContent = ({ doc, ...props }) => {
   return (
     <div className="ulinea" {...props}>
-      {RichText.render(doc?.primary?.rich_text || [])}
+      <PrismicRichText field={doc?.primary?.rich_text} />
     </div>
   );
 };

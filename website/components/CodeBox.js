@@ -1,11 +1,11 @@
 import Icon from "aura-design/icon";
 import Highlight from "react-highlight";
 import useClipboard from "react-use-clipboard";
-import { RichText } from "prismic-reactjs";
+import * as prismicH from "@prismicio/helpers";
 
 const CodeBox = ({ doc, ...props }) => {
   const [isCopied, setCopied] = useClipboard(
-    RichText.asText(doc?.primary?.code_snippet || []),
+    prismicH.asText(doc?.primary?.code_snippet || []),
     {
       successDuration: 1300,
     }
@@ -17,7 +17,7 @@ const CodeBox = ({ doc, ...props }) => {
       <Highlight
         className={`aura iAWriterMonoS ${doc?.primary?.languaje.toLowerCase()}`}
       >
-        {RichText.render(doc?.primary?.code_snippet || [])}
+        {prismicH.asText(doc?.primary?.code_snippet || [])}
       </Highlight>
       <div className="pin left right top aura hljs-header righttxt">
         <span className="wall-pad pin left">
