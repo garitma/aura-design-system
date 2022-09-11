@@ -15,6 +15,6 @@ export const SOCIAL = {
     "https://images.prismic.io/garitma/b4421ceb-02a4-493a-a036-0ab9e8a4f0b2_open-graph.png?auto=compress,format",
 };
 export const SITE_DESCRIPTIO =
-  "Historias y vivencias de la ciudad de Garitma York donde encontrarás arte, diseño, cómics, cine,";
+  "Aura Design System is Garitma's open source space-oriented design system. Each object has a halo of light that surrounds it, it's aura.";
 
 export const PRISMIC_ACCESS_TOKEN = process.env.PRISMIC_ACCESS_TOKEN;
