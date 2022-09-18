@@ -49,7 +49,7 @@ const Home = ({ page, preview, layout }) => (
       <div className="aureole two">
         <div className="one ">
           <img
-            src="https://images.prismic.io/garitma/6f807f50-18b2-4fc7-9be8-9f57a42d933f_giphy.webp?auto=compress,format"
+            src="https://media.giphy.com/media/WS4hvm24jMvyn8VYtC/giphy.gif"
             width={320}
             height={320}
           />
