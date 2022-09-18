@@ -7,14 +7,14 @@ import Layout from "@components/Layout";
 
 const Home = ({ page, preview, layout }) => (
   <Layout text="Aura Design System">
-    <Section color="teal-green" container="smash" subClassName="centertxt">
-      <h1 className="mb0 motion-fadeUp mounted">Build beautiful products</h1>
-      <p className="motion-fadeUp mounted">
+    <Section color="teal-green" container="smash" subClassName="motion-fadeUp mounted centertxt">
+      <h1 className="mb0 ">Build beautiful products</h1>
+      <p className="">
         Aura Design System is Garitma's <b>open source</b> space-oriented design
         system. Each object has a halo of light that surrounds it, it's aura.
       </p>
       <div className="smosh">
-        <div className="aureole two motion-fadeUp mounted">
+        <div className="aureole two ">
           <Link
             href={{
               pathname: "/docs/[uid]",
@@ -35,7 +35,7 @@ const Home = ({ page, preview, layout }) => (
         </div>
       </div>
 
-      <div className="container motion-fadeUp mounted">
+      <div className="container ">
         <Image
           src="https://images.prismic.io/garitma/fab89786-299e-4738-aa9e-738b8b29893f_aura-design-system-meditate.png?auto=compress,format"
           width={320}
@@ -45,16 +45,16 @@ const Home = ({ page, preview, layout }) => (
         />
       </div>
     </Section>
-    <Section color="pink" >
+    <Section subClassName="motion-fadeUp mounted" color="pink" >
       <div className="aureole two">
-        <div className="one motion-fadeUp mounted">
+        <div className="one ">
           <img
             src="https://images.prismic.io/garitma/6f807f50-18b2-4fc7-9be8-9f57a42d933f_giphy.webp?auto=compress,format"
             width={320}
             height={320}
           />
         </div>
-        <div className="two motion-fadeUp">
+        <div className="two ">
           <h2>
             There is something you should know in time
           </h2>
@@ -104,7 +104,7 @@ const Home = ({ page, preview, layout }) => (
         the colors.
       </pre>
     </Section>
-    <Section color="purple" subClassName="motion-fadeUp"  className="centertxt">
+    <Section color="purple" subClassName="motion-fadeUp mounted"  className="centertxt">
       <div>
         <Image
           src="https://images.prismic.io/garitma/1d0668d0-b0ff-4d2b-af15-2a1dde5235f9_keyvisual-aura-design-system.png?auto=compress,format"
