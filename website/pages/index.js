@@ -45,7 +45,7 @@ const Home = ({ page, preview, layout }) => (
         />
       </div>
     </Section>
-    <Section color="pink">
+    <Section color="pink" >
       <div className="aureole two">
         <div className="one motion-fadeUp mounted">
           <img
@@ -54,19 +54,19 @@ const Home = ({ page, preview, layout }) => (
             height={320}
           />
         </div>
-        <div className="two">
-          <h2 className="motion-fadeUp mounted">
+        <div className="two motion-fadeUp">
+          <h2>
             There is something you should know in time
           </h2>
-          <h3 className="light motion-fadeUp">
+          <h3 className="light">
             Let's be clear, I don't care about you
           </h3>
-          <p className="motion-fadeUp">
+          <p>
             Aura Design System is built under its own rules, it is very
             structured and not very flexible, designed to solve my problems. If
             my problems are yours too, welcome.
           </p>
-          <div className="motion-fadeUp">
+          <div>
             <Link href="/docs/[uid].js" as="/docs/getting-started">
               <Button type="link" label="Get Started" mode="fill" />
             </Link>
@@ -74,9 +74,9 @@ const Home = ({ page, preview, layout }) => (
         </div>
       </div>
     </Section>
-    <Section subClassName="centertxt" color="purple">
-      <h3 className="motion-fadeUp">Aura</h3>
-      <pre className="smosh h6 motion-fadeUp">
+    <Section subClassName="motion-fadeUp center-text"  color="purple">
+      <h3>Aura</h3>
+      <pre className="smosh h6">
         The halo of light that surrounds us
         <br />
         silent.
@@ -104,8 +104,8 @@ const Home = ({ page, preview, layout }) => (
         the colors.
       </pre>
     </Section>
-    <Section color="purple" className="centertxt">
-      <div className="motion-fadeUp">
+    <Section color="purple" subClassName="motion-fadeUp"  className="centertxt">
+      <div>
         <Image
           src="https://images.prismic.io/garitma/1d0668d0-b0ff-4d2b-af15-2a1dde5235f9_keyvisual-aura-design-system.png?auto=compress,format"
           width={1920}
@@ -113,11 +113,11 @@ const Home = ({ page, preview, layout }) => (
         />
       </div>
       <Section passDiv>
-        <p className="motion-fadeUp mounted">
+        <p>
           The magic of the love is the silent and the magic of de design are the
           blank spaces.
         </p>
-        <div className="motion-fadeUp mounted">
+        <div>
           <Link
             href={{
               pathname: "/docs/[uid]",
