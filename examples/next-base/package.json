@@ -4,11 +4,11 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "aura-design": "^0.1.14",
-    "next": "^11.0.1",
+    "aura-design": "latest",
+    "next": "latest",
     "nprogress": "^0.2.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "scripts": {
     "dev": "next",
