@@ -6,7 +6,7 @@ import Button from "aura-design/button";
 const Header = ({ text }) => {
   return (
     <header className="purple aura">
-      <div className="smush aura">
+      <div className="smush wall-pad">
         <ul className="nav-list">
           <li className="logo-circle">
             <Link href="/">
@@ -34,7 +34,7 @@ const Header = ({ text }) => {
         </ul>
       </div>
       <div>
-        <h1 className="light centertxt">{text}</h1>
+        <div>{text && <h1 className="light centertxt mt0 mb0">{text}</h1>}</div>
       </div>
     </header>
   );
