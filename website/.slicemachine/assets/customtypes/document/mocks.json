@@ -1,0 +1,30 @@
+{
+  "id": "mock-doc-id",
+  "url": null,
+  "type": "document",
+  "href": null,
+  "tags": [],
+  "first_publication_date": "1970-01-01T00:00:01+0000",
+  "last_publication_date": "1970-01-01T00:00:01+0000",
+  "slugs": [],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "title": [
+      {
+        "type": "paragraph",
+        "text": "Velit consequat labore tempor non officia et occaecat culpa et. Commodo commodo do ut laboris sunt sunt aute aliqua qui ullamco.",
+        "spans": []
+      }
+    ],
+    "date": "2019-06-23",
+    "excerpt": [
+      {
+        "type": "paragraph",
+        "text": "Ea dolore laborum aute ipsum aliquip excepteur. Pariatur voluptate est laborum mollit reprehenderit proident enim sunt amet nulla dolor laborum sint sint exercitation. Adipisicing do minim cupidatat.",
+        "spans": []
+      }
+    ]
+  }
+}
