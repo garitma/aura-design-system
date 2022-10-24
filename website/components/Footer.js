@@ -31,7 +31,7 @@ const Footer = () => {
               <span className="h4 light">Aura Design System</span>
             </div>
             <p className="centertxt-small">
-              © 2021 Garitma. All rights reserved
+              © 2022 Garitma. All rights reserved
             </p>
           </div>
           <div className="two smosh">
