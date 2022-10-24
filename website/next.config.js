@@ -1,16 +1,26 @@
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-});
-module.exports = withBundleAnalyzer({
-  target: "serverless",
-  i18n: {
-    locales: ["en-us"],
-    defaultLocale: "en-us",
-    localeDetection: false,
-  },
-  images: {
-    loader: "imgix",
-    path: "",
-    deviceSizes: [320, 420, 768, 1024, 1200],
-  },
-});
+
+const prismic = require("@prismicio/client");
+
+const sm = require("./sm.json");
+
+/**
+ * @returns {import('next').NextConfig}
+ */
+module.exports = async () => {
+  const client = prismic.createClient(sm.apiEndpoint);
+
+  const repository = await client.getRepository();
+  const locales = repository.languages.map((lang) => lang.id);
+
+  return {
+    reactStrictMode: true,
+    i18n: {
+      locales,
+      defaultLocale: locales[0],
+    },
+    images: {
+      loader: "imgix",
+      path: "",
+    },
+  };
+};

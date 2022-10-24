@@ -1,0 +1,32 @@
+{
+  "_cts": {
+    "document": {}
+  },
+  "slices": {
+    "RichText": {
+      "default": {
+        "primary": {
+          "rich_text": {
+            "config": {
+              "patternType": "PARAGRAPH",
+              "blocks": 1
+            }
+          }
+        }
+      }
+    },
+    "CodeBox": {
+      "default": {
+        "primary": {
+          "code_snippet": {
+            "config": {
+              "patternType": "PARAGRAPH",
+              "blocks": 1
+            }
+          }
+        }
+      }
+    },
+    "Highlighted": {}
+  }
+}

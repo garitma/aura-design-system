@@ -1,5 +1,5 @@
 {
-  "apiEndpoint": "https://garitma.prismic.io/api/v2",
+  "apiEndpoint": "https://auradesign.prismic.io/api/v2",
   "libraries": [
     "@/slices"
   ],

@@ -5,7 +5,7 @@ import Link from "next/link";
 import { PrismicProvider } from "@prismicio/react";
 import { PrismicPreview } from "@prismicio/next";
 
-import { linkResolver, repositoryName } from "@utils/prismic-rest";
+import { linkResolver, repositoryName } from "@utils/prismic-client";
 import "../public/style.css";
 import "../public/aura.css";
 

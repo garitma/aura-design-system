@@ -1,0 +1,42 @@
+{
+  "id": "code_box",
+  "type": "SharedSlice",
+  "name": "CodeBox",
+  "description": "CodeBox",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "CodeBox",
+      "primary": {
+        "languaje": {
+          "type": "Select",
+          "config": {
+            "label": "Languaje",
+            "placeholder": "",
+            "options": [
+              "JSX",
+              "JS",
+              "HTML",
+              "CSS",
+              "BASH"
+            ]
+          }
+        },
+        "code_snippet": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Code Snippet",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "preformatted"
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}
