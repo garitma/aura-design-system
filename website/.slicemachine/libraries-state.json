@@ -1,5 +1,209 @@
 {
   "slices": {
-    "components": {}
+    "components": {
+      "code_box": {
+        "library": "slices",
+        "id": "code_box",
+        "name": "CodeBox",
+        "description": "CodeBox",
+        "model": {
+          "id": "code_box",
+          "type": "SharedSlice",
+          "name": "CodeBox",
+          "description": "CodeBox",
+          "variations": [
+            {
+              "id": "default",
+              "name": "Default",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "CodeBox",
+              "primary": {
+                "languaje": {
+                  "type": "Select",
+                  "config": {
+                    "label": "Languaje",
+                    "placeholder": "",
+                    "options": [
+                      "JSX",
+                      "JS",
+                      "HTML",
+                      "CSS",
+                      "BASH"
+                    ]
+                  }
+                },
+                "code_snippet": {
+                  "type": "StructuredText",
+                  "config": {
+                    "label": "Code Snippet",
+                    "placeholder": "",
+                    "allowTargetBlank": false,
+                    "multi": "preformatted"
+                  }
+                }
+              },
+              "items": {},
+              "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+            }
+          ]
+        },
+        "mocks": {
+          "default": {
+            "variation": "default",
+            "version": "sktwi1xtmkfgx8626",
+            "items": [
+              {}
+            ],
+            "primary": {
+              "languaje": "CSS",
+              "code_snippet": [
+                {
+                  "type": "paragraph",
+                  "text": "Enim pariatur et voluptate dolore laboris commodo eiusmod.",
+                  "spans": []
+                }
+              ]
+            },
+            "slice_type": "code_box"
+          }
+        },
+        "meta": {
+          "fileName": "index",
+          "extension": "js"
+        },
+        "screenshotPaths": {}
+      },
+      "highlighted": {
+        "library": "slices",
+        "id": "highlighted",
+        "name": "Highlighted",
+        "description": "Highlighted",
+        "model": {
+          "id": "highlighted",
+          "type": "SharedSlice",
+          "name": "Highlighted",
+          "description": "Highlighted",
+          "variations": [
+            {
+              "id": "default",
+              "name": "Default",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "Highlighted",
+              "primary": {
+                "title": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "heading1",
+                    "label": "Title",
+                    "placeholder": "This is where it all begins..."
+                  }
+                },
+                "description": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "Description",
+                    "placeholder": "A nice description of your feature"
+                  }
+                }
+              },
+              "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
+              "items": {}
+            }
+          ]
+        },
+        "mocks": {
+          "default": {
+            "variation": "default",
+            "version": "sktwi1xtmkfgx8626",
+            "items": [
+              {}
+            ],
+            "primary": {
+              "title": [
+                {
+                  "type": "heading1",
+                  "text": "Method",
+                  "spans": []
+                }
+              ],
+              "description": [
+                {
+                  "type": "paragraph",
+                  "text": "Qui ullamco labore in laboris minim in nulla. Adipisicing occaecat anim pariatur duis. Aute eiusmod eiusmod exercitation dolor mollit.",
+                  "spans": []
+                }
+              ]
+            },
+            "slice_type": "highlighted"
+          }
+        },
+        "meta": {
+          "fileName": "index",
+          "extension": "js"
+        },
+        "screenshotPaths": {}
+      },
+      "rich_text": {
+        "library": "slices",
+        "id": "rich_text",
+        "name": "RichText",
+        "description": "RichText",
+        "model": {
+          "id": "rich_text",
+          "type": "SharedSlice",
+          "name": "RichText",
+          "description": "RichText",
+          "variations": [
+            {
+              "id": "default",
+              "name": "Default",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "RichText",
+              "primary": {
+                "rich_text": {
+                  "type": "StructuredText",
+                  "config": {
+                    "label": "Rich Text",
+                    "placeholder": "",
+                    "allowTargetBlank": true,
+                    "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                  }
+                }
+              },
+              "items": {},
+              "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+            }
+          ]
+        },
+        "mocks": {
+          "default": {
+            "variation": "default",
+            "version": "sktwi1xtmkfgx8626",
+            "items": [
+              {}
+            ],
+            "primary": {
+              "rich_text": [
+                {
+                  "type": "paragraph",
+                  "text": "Irure occaecat veniam elit.",
+                  "spans": []
+                }
+              ]
+            },
+            "slice_type": "rich_text"
+          }
+        },
+        "meta": {
+          "fileName": "index",
+          "extension": "js"
+        },
+        "screenshotPaths": {}
+      }
+    }
   }
 }

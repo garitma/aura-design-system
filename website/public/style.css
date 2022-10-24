@@ -15,6 +15,10 @@ span.code {
   background-color: var(--aura-accents-info-bg) !important;
 }
 
+.hljs {
+  padding: 39px 13px!important;
+}
+
 @media only screen and (min-width: 767px) and (max-width: 1155px) {
   .hide-medium {
     display: none;
