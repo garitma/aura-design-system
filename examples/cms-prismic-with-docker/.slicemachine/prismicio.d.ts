@@ -6,6 +6,46 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = {
     [KeyType in keyof T]: T[KeyType];
 };
+/** Content for Footer documents */
+interface FooterDocumentData {
+    /**
+     * Copyright field in *Footer*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: footer.copyright
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    copyright: prismicT.KeyTextField;
+    /**
+     * Slice Zone field in *Footer*
+     *
+     * - **Field Type**: Slice Zone
+     * - **Placeholder**: *None*
+     * - **API ID Path**: footer.body[]
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/slices
+     *
+     */
+    body: prismicT.SliceZone<FooterDocumentDataBodySlice>;
+}
+/**
+ * Slice for *Footer → Slice Zone*
+ *
+ */
+type FooterDocumentDataBodySlice = FooterColumnSlice;
+/**
+ * Footer document from Prismic
+ *
+ * - **API ID**: `footer`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type FooterDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<FooterDocumentData>, "footer", Lang>;
 /** Content for Home documents */
 interface HomeDocumentData {
     /**
@@ -30,12 +70,244 @@ interface HomeDocumentData {
  * @typeParam Lang - Language API ID of the document.
  */
 export type HomeDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
-export type AllDocumentTypes = HomeDocument;
+/** Content for Menu Tab documents */
+interface MenuTabDocumentData {
+    /**
+     * Title field in *Menu Tab*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: This is title of the tab...
+     * - **API ID Path**: menu-tab.title
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    title: prismicT.KeyTextField;
+    /**
+     * Slice Zone field in *Menu Tab*
+     *
+     * - **Field Type**: Slice Zone
+     * - **Placeholder**: *None*
+     * - **API ID Path**: menu-tab.slices[]
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/slices
+     *
+     */
+    slices: prismicT.SliceZone<MenuTabDocumentDataSlicesSlice>;
+}
+/**
+ * Slice for *Menu Tab → Slice Zone*
+ *
+ */
+type MenuTabDocumentDataSlicesSlice = MenuSubTabSlice;
+/**
+ * Menu Tab document from Prismic
+ *
+ * - **API ID**: `menu-tab`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type MenuTabDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<MenuTabDocumentData>, "menu-tab", Lang>;
+/** Content for Menu documents */
+interface MenuDocumentData {
+    /**
+     * topPromoBanner field in *Menu*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: Banner a the top of the page..
+     * - **API ID Path**: menu.topPromoBanner
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    topPromoBanner: prismicT.KeyTextField;
+    /**
+     * Logo field in *Menu*
+     *
+     * - **Field Type**: Image
+     * - **Placeholder**: *None*
+     * - **API ID Path**: menu.logo
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/image
+     *
+     */
+    logo: prismicT.ImageField<never>;
+    /**
+     * MenuTabs field in *Menu*
+     *
+     * - **Field Type**: Group
+     * - **Placeholder**: *None*
+     * - **API ID Path**: menu.menuTabs[]
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/group
+     *
+     */
+    menuTabs: prismicT.GroupField<Simplify<MenuDocumentDataMenuTabsItem>>;
+}
+/**
+ * Item in Menu → MenuTabs
+ *
+ */
+export interface MenuDocumentDataMenuTabsItem {
+    /**
+     * menuTab field in *Menu → MenuTabs*
+     *
+     * - **Field Type**: Content Relationship
+     * - **Placeholder**: *None*
+     * - **API ID Path**: menu.menuTabs[].menuTab
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    menuTab: prismicT.RelationField<"menu-tab">;
+}
+/**
+ * Menu document from Prismic
+ *
+ * - **API ID**: `menu`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/custom-types
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type MenuDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<MenuDocumentData>, "menu", Lang>;
+export type AllDocumentTypes = FooterDocument | HomeDocument | MenuTabDocument | MenuDocument;
+/**
+ * Primary content in FooterColumn → Primary
+ *
+ */
+interface FooterColumnSliceDefaultSlicePrimary {
+    /**
+     * Section Title field in *FooterColumn → Primary*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: footer_column.primary.section_title
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    section_title: prismicT.KeyTextField;
+}
+/**
+ * Item in FooterColumn → Items
+ *
+ */
+export interface FooterColumnSliceDefaultSliceItem {
+    /**
+     * Link field in *FooterColumn → Items*
+     *
+     * - **Field Type**: Content Relationship
+     * - **Placeholder**: *None*
+     * - **API ID Path**: footer_column.items[].link
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    link: prismicT.RelationField;
+    /**
+     * Link Label field in *FooterColumn → Items*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: footer_column.items[].link_label
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    link_label: prismicT.KeyTextField;
+}
+/**
+ * Default slice variation for FooterColumn Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: `FooterColumn`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type FooterColumnSliceDefaultSlice = prismicT.SharedSliceVariation<"default-slice", Simplify<FooterColumnSliceDefaultSlicePrimary>, Simplify<FooterColumnSliceDefaultSliceItem>>;
+/**
+ * Slice variation for *FooterColumn*
+ *
+ */
+type FooterColumnSliceVariation = FooterColumnSliceDefaultSlice;
+/**
+ * FooterColumn Shared Slice
+ *
+ * - **API ID**: `footer_column`
+ * - **Description**: `FooterColumn`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type FooterColumnSlice = prismicT.SharedSlice<"footer_column", FooterColumnSliceVariation>;
+/**
+ * Primary content in MenuSubTab → Primary
+ *
+ */
+interface MenuSubTabSliceDefaultSlicePrimary {
+    /**
+     * Section Title field in *MenuSubTab → Primary*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: menu_sub_tab.primary.sectionTitle
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    sectionTitle: prismicT.KeyTextField;
+}
+/**
+ * Item in MenuSubTab → Items
+ *
+ */
+export interface MenuSubTabSliceDefaultSliceItem {
+    /**
+     * Sub Section Title field in *MenuSubTab → Items*
+     *
+     * - **Field Type**: Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: menu_sub_tab.items[].subSectionTitle
+     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+     *
+     */
+    subSectionTitle: prismicT.KeyTextField;
+    /**
+     * Sub Section Link field in *MenuSubTab → Items*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: menu_sub_tab.items[].subSectionLink
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    subSectionLink: prismicT.LinkField;
+}
+/**
+ * Default slice variation for MenuSubTab Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: `MenuSubTab`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type MenuSubTabSliceDefaultSlice = prismicT.SharedSliceVariation<"default-slice", Simplify<MenuSubTabSliceDefaultSlicePrimary>, Simplify<MenuSubTabSliceDefaultSliceItem>>;
+/**
+ * Slice variation for *MenuSubTab*
+ *
+ */
+type MenuSubTabSliceVariation = MenuSubTabSliceDefaultSlice;
+/**
+ * MenuSubTab Shared Slice
+ *
+ * - **API ID**: `menu_sub_tab`
+ * - **Description**: `MenuSubTab`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type MenuSubTabSlice = prismicT.SharedSlice<"menu_sub_tab", MenuSubTabSliceVariation>;
 declare module "@prismicio/client" {
     interface CreateClient {
         (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
     }
     namespace Content {
-        export type { HomeDocumentData, HomeDocument, AllDocumentTypes };
+        export type { FooterDocumentData, FooterDocumentDataBodySlice, FooterDocument, HomeDocumentData, HomeDocument, MenuTabDocumentData, MenuTabDocumentDataSlicesSlice, MenuTabDocument, MenuDocumentData, MenuDocumentDataMenuTabsItem, MenuDocument, AllDocumentTypes, FooterColumnSliceDefaultSlicePrimary, FooterColumnSliceDefaultSliceItem, FooterColumnSliceDefaultSlice, FooterColumnSliceVariation, FooterColumnSlice, MenuSubTabSliceDefaultSlicePrimary, MenuSubTabSliceDefaultSliceItem, MenuSubTabSliceDefaultSlice, MenuSubTabSliceVariation, MenuSubTabSlice };
     }
 }

@@ -1,5 +1,169 @@
 {
-  "slices": {
-    "components": {}
+  "slices/navigation": {
+    "components": {
+      "footer_column": {
+        "library": "slices/navigation",
+        "id": "footer_column",
+        "name": "FooterColumn",
+        "description": "FooterColumn",
+        "model": {
+          "id": "footer_column",
+          "type": "SharedSlice",
+          "name": "FooterColumn",
+          "description": "FooterColumn",
+          "variations": [
+            {
+              "id": "default-slice",
+              "name": "Default slice",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "FooterColumn",
+              "primary": {
+                "section_title": {
+                  "config": {
+                    "label": "Section Title",
+                    "placeholder": ""
+                  },
+                  "type": "Text"
+                }
+              },
+              "items": {
+                "link": {
+                  "config": {
+                    "label": "Link",
+                    "placeholder": "",
+                    "select": "document",
+                    "allowTargetBlank": false
+                  },
+                  "type": "Link"
+                },
+                "link_label": {
+                  "config": {
+                    "label": "Link Label",
+                    "placeholder": ""
+                  },
+                  "type": "Text"
+                }
+              },
+              "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+            }
+          ]
+        },
+        "mocks": {
+          "default-slice": {
+            "variation": "default-slice",
+            "version": "sktwi1xtmkfgx8626",
+            "items": [
+              {
+                "link": {
+                  "id": "mock_document_id",
+                  "link_type": "Document",
+                  "type": "mock",
+                  "tags": [],
+                  "lang": "en-us",
+                  "slug": null,
+                  "first_publication_date": "1970-01-01T00:00:01+0000",
+                  "last_publication_date": "1970-01-01T01:00:00+0000"
+                },
+                "link_label": "origin"
+              }
+            ],
+            "primary": {
+              "section_title": "warm"
+            },
+            "slice_type": "footer_column"
+          }
+        },
+        "meta": {
+          "fileName": "index",
+          "extension": "js"
+        },
+        "screenshotPaths": {
+          "default-slice": {
+            "path": "/Users/pablopvsky/Documents/APP/aura-design-system/examples/cms-prismic-with-docker/slices/navigation/FooterColumn/default-slice/preview.png",
+            "width": 442,
+            "height": 356
+          }
+        }
+      },
+      "menu_sub_tab": {
+        "library": "slices/navigation",
+        "id": "menu_sub_tab",
+        "name": "MenuSubTab",
+        "description": "MenuSubTab",
+        "model": {
+          "id": "menu_sub_tab",
+          "type": "SharedSlice",
+          "name": "MenuSubTab",
+          "description": "MenuSubTab",
+          "variations": [
+            {
+              "id": "default-slice",
+              "name": "Default slice",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "MenuSubTab",
+              "primary": {
+                "sectionTitle": {
+                  "config": {
+                    "label": "Section Title",
+                    "placeholder": ""
+                  },
+                  "type": "Text"
+                }
+              },
+              "items": {
+                "subSectionTitle": {
+                  "config": {
+                    "label": "Sub Section Title",
+                    "placeholder": ""
+                  },
+                  "type": "Text"
+                },
+                "subSectionLink": {
+                  "type": "Link",
+                  "config": {
+                    "label": "Sub Section Link",
+                    "placeholder": "",
+                    "select": null
+                  }
+                }
+              },
+              "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+            }
+          ]
+        },
+        "mocks": {
+          "default-slice": {
+            "variation": "default-slice",
+            "version": "sktwi1xtmkfgx8626",
+            "items": [
+              {
+                "subSectionTitle": "coach",
+                "subSectionLink": {
+                  "link_type": "Web",
+                  "url": "https://slicemachine.dev"
+                }
+              }
+            ],
+            "primary": {
+              "sectionTitle": "negative"
+            },
+            "slice_type": "menu_sub_tab"
+          }
+        },
+        "meta": {
+          "fileName": "index",
+          "extension": "js"
+        },
+        "screenshotPaths": {
+          "default-slice": {
+            "path": "/Users/pablopvsky/Documents/APP/aura-design-system/examples/cms-prismic-with-docker/slices/navigation/MenuSubTab/default-slice/preview.png",
+            "width": 358,
+            "height": 372
+          }
+        }
+      }
+    }
   }
 }

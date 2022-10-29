@@ -3,6 +3,7 @@
   "apiEndpoint": "https://aura-design-cms-prismic-with-docker.prismic.io/api/v2",
   "localSliceSimulatorURL": "http://localhost:3000/slice-simulator",
   "libraries": [
-    "@/slices"
+    "@/slices/marketing",
+    "@/slices/navigation"
   ]
 }
