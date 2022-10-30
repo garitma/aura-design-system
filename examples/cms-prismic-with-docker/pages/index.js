@@ -1,86 +1,41 @@
 import Section from "aura-design/section";
 import Grid from "aura-design/grid";
+import { SliceZone } from "@prismicio/react";
+import * as prismicH from "@prismicio/helpers";
 
+import { components as marketingComponents } from "@slices/marketing/index";
+import { createClient } from "@utils/prismic-client";
 import Layout from "@components/Layout";
 
-const Home = () => {
+const __allComponents = { ...marketingComponents };
+
+const Home = ({ doc }) => {
   return (
-    <Layout text="Aura Design Next Base">
-      <Section color="yellow" className="centertxt">
-        <h2>Welcome to my imagination</h2>
-        <p>
-          Get started by editing{" "}
-          <span className="wall-pad info info-text">public/style.css</span>
-        </p>
-      </Section>
-      <Section color="blue">
-        <Grid col="two">
-          <a
-            href="https://auradesignsystem.com"
-            target="_blank"
-            className="mod"
-          >
-            <div className="mod-detail">
-              <h3 className="mod-title mb0">
-                Documentation <i className="icon arrowAltRigth" />
-              </h3>
-              <p>
-                Find in-depth information about Aura Design System features.
-              </p>
-            </div>
-          </a>
-          <a
-            href="https://github.com/garitma/aura-design-system/tree/main/examples"
-            target="_blank"
-            className="mod"
-          >
-            <div className="mod-detail">
-              <h3 className="mod-title mb0">
-                Examples <i className="icon arrowAltRigth" />
-              </h3>
-              <p>
-                Discover and deploy boilerplate example Aura Design System
-                projects.
-              </p>
-            </div>
-          </a>
-          <a
-            href="https://auradesignsystem.com"
-            target="_blank"
-            className="mod"
-          >
-            <div className="mod-detail">
-              <h3 className="mod-title mb0">
-                Let's be clear, I don't care about you{" "}
-                <i className="icon arrowAltRigth" />
-              </h3>
-              <p>
-                Aura Design System is built under its own rules, it is very
-                structured and not very flexible, designed to solve my problems.
-                If my problems are yours too, welcome.
-              </p>
-            </div>
-          </a>
-          <a
-            href="https://auradesignsystem.com/docs/getting-started"
-            target="_blank"
-            className="mod"
-          >
-            <div className="mod-detail">
-              <h3 className="mod-title mb0">
-                Before you start - Disclaimer{" "}
-                <i className="icon arrowAltRigth" />
-              </h3>
-              <p>
-                This library is CSS centric with Object-Oriented CSS (OOCSS) and
-                Atomic Desing metodology.
-              </p>
-            </div>
-          </a>
-        </Grid>
-      </Section>
+    <Layout text={prismicH.asText(doc.data.title)}>
+      <SliceZone slices={doc.data.slices} components={__allComponents} />
     </Layout>
   );
 };
+
+export async function getStaticProps({ previewData, locale, locales }) {
+  const client = createClient(previewData);
+
+  //Querying page
+  const document = await client
+    .getSingle("home", { lang: locale })
+    .catch((e) => {
+      return null;
+    });
+  if (!document) {
+    return {
+      notFound: true,
+    };
+  }
+  return {
+    props: {
+      doc: document,
+    }, // will be passed to the page component as props
+  };
+}
 
 export default Home;

@@ -1,4 +1,245 @@
 {
+  "slices/marketing": {
+    "components": {
+      "section_grid_cards": {
+        "library": "slices/marketing",
+        "id": "section_grid_cards",
+        "name": "SectionGridCards",
+        "description": "SectionGridCards",
+        "model": {
+          "id": "section_grid_cards",
+          "type": "SharedSlice",
+          "name": "SectionGridCards",
+          "description": "SectionGridCards",
+          "variations": [
+            {
+              "id": "default",
+              "name": "Default",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "SectionGridCards",
+              "primary": {
+                "color": {
+                  "type": "Select",
+                  "config": {
+                    "label": "color",
+                    "placeholder": "",
+                    "options": [
+                      "white",
+                      "yellow",
+                      "green",
+                      "lemon-green",
+                      "pink-purple",
+                      "pink",
+                      "orange-rose",
+                      "orange",
+                      "purple",
+                      "snow",
+                      "teal-green",
+                      "blue"
+                    ]
+                  }
+                },
+                "columns": {
+                  "type": "Select",
+                  "config": {
+                    "label": "columns",
+                    "placeholder": "",
+                    "options": [
+                      "one",
+                      "two",
+                      "three"
+                    ]
+                  }
+                }
+              },
+              "items": {
+                "title": {
+                  "type": "StructuredText",
+                  "config": {
+                    "label": "title",
+                    "placeholder": "",
+                    "allowTargetBlank": true,
+                    "single": "heading2,heading3,heading4,heading5,heading6"
+                  }
+                },
+                "description": {
+                  "type": "StructuredText",
+                  "config": {
+                    "label": "description",
+                    "placeholder": "",
+                    "allowTargetBlank": true,
+                    "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                  }
+                },
+                "link": {
+                  "type": "Link",
+                  "config": {
+                    "label": "link",
+                    "placeholder": "",
+                    "select": null
+                  }
+                }
+              },
+              "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+            }
+          ]
+        },
+        "mocks": {
+          "default": {
+            "variation": "default",
+            "version": "sktwi1xtmkfgx8626",
+            "items": [
+              {
+                "title": [
+                  {
+                    "type": "heading2",
+                    "text": "Triangle",
+                    "spans": []
+                  }
+                ],
+                "description": [
+                  {
+                    "type": "paragraph",
+                    "text": "Ea commodo aliquip veniam id qui enim adipisicing anim aute esse anim pariatur occaecat. Ut tempor velit quis veniam mollit ullamco sunt proident officia eiusmod do.",
+                    "spans": []
+                  }
+                ],
+                "link": {
+                  "link_type": "Web",
+                  "url": "http://twitter.com"
+                }
+              }
+            ],
+            "primary": {
+              "color": "2",
+              "columns": "three"
+            },
+            "slice_type": "section_grid_cards"
+          }
+        },
+        "meta": {
+          "fileName": "index",
+          "extension": "js"
+        },
+        "screenshotPaths": {}
+      },
+      "hero_section_split": {
+        "library": "slices/marketing",
+        "id": "hero_section_split",
+        "name": "SectionHeading",
+        "description": "HeroSectionSplit",
+        "model": {
+          "id": "hero_section_split",
+          "type": "SharedSlice",
+          "name": "SectionHeading",
+          "description": "HeroSectionSplit",
+          "variations": [
+            {
+              "id": "default-slice",
+              "name": "Default slice",
+              "docURL": "...",
+              "version": "sktwi1xtmkfgx8626",
+              "description": "HeroSectionSplit",
+              "primary": {
+                "title": {
+                  "type": "StructuredText",
+                  "config": {
+                    "label": "Title",
+                    "placeholder": "This is where it all begins...",
+                    "allowTargetBlank": true,
+                    "single": "heading1"
+                  }
+                },
+                "description": {
+                  "type": "StructuredText",
+                  "config": {
+                    "single": "paragraph",
+                    "label": "Description",
+                    "placeholder": "A nice description of your feature"
+                  }
+                },
+                "color": {
+                  "type": "Select",
+                  "config": {
+                    "label": "color",
+                    "placeholder": "",
+                    "options": [
+                      "white",
+                      "yellow",
+                      "green",
+                      "lemon-green",
+                      "pink-purple",
+                      "pink",
+                      "orange-rose",
+                      "orange",
+                      "purple",
+                      "snow",
+                      "teal-green",
+                      "blue"
+                    ]
+                  }
+                },
+                "align": {
+                  "type": "Select",
+                  "config": {
+                    "label": "align",
+                    "placeholder": "",
+                    "options": [
+                      "center-text",
+                      "left-text",
+                      "right-text"
+                    ]
+                  }
+                }
+              },
+              "items": {},
+              "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+            }
+          ]
+        },
+        "mocks": {
+          "default-slice": {
+            "variation": "default-slice",
+            "version": "sktwi1xtmkfgx8626",
+            "items": [
+              {}
+            ],
+            "primary": {
+              "title": [
+                {
+                  "type": "heading1",
+                  "text": "Ancient",
+                  "spans": []
+                }
+              ],
+              "description": [
+                {
+                  "type": "paragraph",
+                  "text": "Tempor irure aliquip deserunt mollit laboris amet enim exercitation reprehenderit. Consectetur sit minim cillum occaecat voluptate qui eu aliquip amet et ad exercitation ullamco nostrud mollit.",
+                  "spans": []
+                }
+              ],
+              "color": "green",
+              "align": "right-text"
+            },
+            "slice_type": "hero_section_split"
+          }
+        },
+        "meta": {
+          "fileName": "index",
+          "extension": "js"
+        },
+        "screenshotPaths": {
+          "default-slice": {
+            "path": "/Users/pablopvsky/Documents/APP/aura-design-system/examples/cms-prismic-with-docker/.slicemachine/assets/slices/marketing/SectionHeading/default-slice/preview.png",
+            "width": 800,
+            "height": 236
+          }
+        }
+      }
+    }
+  },
   "slices/navigation": {
     "components": {
       "footer_column": {

@@ -59,7 +59,23 @@ interface HomeDocumentData {
      *
      */
     title: prismicT.TitleField;
+    /**
+     * Slice Zone field in *Home*
+     *
+     * - **Field Type**: Slice Zone
+     * - **Placeholder**: *None*
+     * - **API ID Path**: home.slices[]
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/slices
+     *
+     */
+    slices: prismicT.SliceZone<HomeDocumentDataSlicesSlice>;
 }
+/**
+ * Slice for *Home → Slice Zone*
+ *
+ */
+type HomeDocumentDataSlicesSlice = HeroSectionSplitSlice | SectionGridCardsSlice;
 /**
  * Home document from Prismic
  *
@@ -173,6 +189,160 @@ export interface MenuDocumentDataMenuTabsItem {
  */
 export type MenuDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<MenuDocumentData>, "menu", Lang>;
 export type AllDocumentTypes = FooterDocument | HomeDocument | MenuTabDocument | MenuDocument;
+/**
+ * Primary content in SectionGridCards → Primary
+ *
+ */
+interface SectionGridCardsSliceDefaultPrimary {
+    /**
+     * color field in *SectionGridCards → Primary*
+     *
+     * - **Field Type**: Select
+     * - **Placeholder**: *None*
+     * - **API ID Path**: section_grid_cards.primary.color
+     * - **Documentation**: https://prismic.io/docs/core-concepts/select
+     *
+     */
+    color: prismicT.SelectField<"white" | "yellow" | "green" | "lemon-green" | "pink-purple" | "pink" | "orange-rose" | "orange" | "purple" | "snow" | "teal-green" | "blue">;
+    /**
+     * columns field in *SectionGridCards → Primary*
+     *
+     * - **Field Type**: Select
+     * - **Placeholder**: *None*
+     * - **API ID Path**: section_grid_cards.primary.columns
+     * - **Documentation**: https://prismic.io/docs/core-concepts/select
+     *
+     */
+    columns: prismicT.SelectField<"one" | "two" | "three">;
+}
+/**
+ * Item in SectionGridCards → Items
+ *
+ */
+export interface SectionGridCardsSliceDefaultItem {
+    /**
+     * title field in *SectionGridCards → Items*
+     *
+     * - **Field Type**: Title
+     * - **Placeholder**: *None*
+     * - **API ID Path**: section_grid_cards.items[].title
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    title: prismicT.TitleField;
+    /**
+     * description field in *SectionGridCards → Items*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: *None*
+     * - **API ID Path**: section_grid_cards.items[].description
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    description: prismicT.RichTextField;
+    /**
+     * link field in *SectionGridCards → Items*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: section_grid_cards.items[].link
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    link: prismicT.LinkField;
+}
+/**
+ * Default variation for SectionGridCards Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: `SectionGridCards`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type SectionGridCardsSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<SectionGridCardsSliceDefaultPrimary>, Simplify<SectionGridCardsSliceDefaultItem>>;
+/**
+ * Slice variation for *SectionGridCards*
+ *
+ */
+type SectionGridCardsSliceVariation = SectionGridCardsSliceDefault;
+/**
+ * SectionGridCards Shared Slice
+ *
+ * - **API ID**: `section_grid_cards`
+ * - **Description**: `SectionGridCards`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type SectionGridCardsSlice = prismicT.SharedSlice<"section_grid_cards", SectionGridCardsSliceVariation>;
+/**
+ * Primary content in SectionHeading → Primary
+ *
+ */
+interface HeroSectionSplitSliceDefaultSlicePrimary {
+    /**
+     * Title field in *SectionHeading → Primary*
+     *
+     * - **Field Type**: Title
+     * - **Placeholder**: This is where it all begins...
+     * - **API ID Path**: hero_section_split.primary.title
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    title: prismicT.TitleField;
+    /**
+     * Description field in *SectionHeading → Primary*
+     *
+     * - **Field Type**: Rich Text
+     * - **Placeholder**: A nice description of your feature
+     * - **API ID Path**: hero_section_split.primary.description
+     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+     *
+     */
+    description: prismicT.RichTextField;
+    /**
+     * color field in *SectionHeading → Primary*
+     *
+     * - **Field Type**: Select
+     * - **Placeholder**: *None*
+     * - **API ID Path**: hero_section_split.primary.color
+     * - **Documentation**: https://prismic.io/docs/core-concepts/select
+     *
+     */
+    color: prismicT.SelectField<"white" | "yellow" | "green" | "lemon-green" | "pink-purple" | "pink" | "orange-rose" | "orange" | "purple" | "snow" | "teal-green" | "blue">;
+    /**
+     * align field in *SectionHeading → Primary*
+     *
+     * - **Field Type**: Select
+     * - **Placeholder**: *None*
+     * - **API ID Path**: hero_section_split.primary.align
+     * - **Documentation**: https://prismic.io/docs/core-concepts/select
+     *
+     */
+    align: prismicT.SelectField<"center-text" | "left-text" | "right-text">;
+}
+/**
+ * Default slice variation for SectionHeading Slice
+ *
+ * - **API ID**: `default-slice`
+ * - **Description**: `HeroSectionSplit`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type HeroSectionSplitSliceDefaultSlice = prismicT.SharedSliceVariation<"default-slice", Simplify<HeroSectionSplitSliceDefaultSlicePrimary>, never>;
+/**
+ * Slice variation for *SectionHeading*
+ *
+ */
+type HeroSectionSplitSliceVariation = HeroSectionSplitSliceDefaultSlice;
+/**
+ * SectionHeading Shared Slice
+ *
+ * - **API ID**: `hero_section_split`
+ * - **Description**: `HeroSectionSplit`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type HeroSectionSplitSlice = prismicT.SharedSlice<"hero_section_split", HeroSectionSplitSliceVariation>;
 /**
  * Primary content in FooterColumn → Primary
  *
@@ -308,6 +478,6 @@ declare module "@prismicio/client" {
         (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
     }
     namespace Content {
-        export type { FooterDocumentData, FooterDocumentDataBodySlice, FooterDocument, HomeDocumentData, HomeDocument, MenuTabDocumentData, MenuTabDocumentDataSlicesSlice, MenuTabDocument, MenuDocumentData, MenuDocumentDataMenuTabsItem, MenuDocument, AllDocumentTypes, FooterColumnSliceDefaultSlicePrimary, FooterColumnSliceDefaultSliceItem, FooterColumnSliceDefaultSlice, FooterColumnSliceVariation, FooterColumnSlice, MenuSubTabSliceDefaultSlicePrimary, MenuSubTabSliceDefaultSliceItem, MenuSubTabSliceDefaultSlice, MenuSubTabSliceVariation, MenuSubTabSlice };
+        export type { FooterDocumentData, FooterDocumentDataBodySlice, FooterDocument, HomeDocumentData, HomeDocumentDataSlicesSlice, HomeDocument, MenuTabDocumentData, MenuTabDocumentDataSlicesSlice, MenuTabDocument, MenuDocumentData, MenuDocumentDataMenuTabsItem, MenuDocument, AllDocumentTypes, SectionGridCardsSliceDefaultPrimary, SectionGridCardsSliceDefaultItem, SectionGridCardsSliceDefault, SectionGridCardsSliceVariation, SectionGridCardsSlice, HeroSectionSplitSliceDefaultSlicePrimary, HeroSectionSplitSliceDefaultSlice, HeroSectionSplitSliceVariation, HeroSectionSplitSlice, FooterColumnSliceDefaultSlicePrimary, FooterColumnSliceDefaultSliceItem, FooterColumnSliceDefaultSlice, FooterColumnSliceVariation, FooterColumnSlice, MenuSubTabSliceDefaultSlicePrimary, MenuSubTabSliceDefaultSliceItem, MenuSubTabSliceDefaultSlice, MenuSubTabSliceVariation, MenuSubTabSlice };
     }
 }
