@@ -1,0 +1,26 @@
+{
+  "name": "next-base",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@hapi/iron": "^7.0.0",
+    "@magic-sdk/admin": "^1.4.1",
+    "aura-design": "latest",
+    "cookie": "^0.5.0",
+    "magic-sdk": "^10.0.0",
+    "next": "12.3.0",
+    "nprogress": "^0.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "swr": "^1.3.0"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
