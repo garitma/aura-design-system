@@ -25,9 +25,9 @@ const Layout = ({ children, text, seo }) => {
   const auth = useAuth();
 
   useEffect(() => {
-    if (auth.loading) return;
+    if (auth.isLoading) return;
     if (!auth.user) router.push("/login");
-  }, [auth?.loading]);
+  }, [auth?.isLoading]);
 
   if (!auth?.user) {
     return <Loading />;
