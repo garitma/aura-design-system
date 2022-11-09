@@ -18,11 +18,11 @@ Router.events.on("routeChangeError", () => {
   NProgress.done();
 });
 
-const Layout = ({ children, text, seo }) => (
+const Layout = ({ children, text, seo, menu }) => (
   <main>
     <div className="page">
       <Meta {...seo} />
-      <Header text={text} />
+      <Header text={text} menu={menu} />
       <div className="page-body">{children}</div>
       <Footer />
     </div>

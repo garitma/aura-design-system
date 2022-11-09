@@ -8,7 +8,8 @@
         }
       }
     },
-    "footer": {}
+    "footer": {},
+    "menu-tab": {}
   },
   "slices/marketing": {
     "SectionHeading": {

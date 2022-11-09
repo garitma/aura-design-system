@@ -5,13 +5,14 @@ import * as prismicH from "@prismicio/helpers";
 
 import { components as marketingComponents } from "@slices/marketing/index";
 import { createClient } from "@utils/prismic-client";
+import { menuGraphQuery } from "@utils/prismic-graphquery";
 import Layout from "@components/Layout";
 
 const __allComponents = { ...marketingComponents };
 
-const Home = ({ doc }) => {
+const Home = ({ doc, menu }) => {
   return (
-    <Layout text={prismicH.asText(doc.data.title)}>
+    <Layout text={prismicH.asText(doc.data.title)} menu={menu}>
       <SliceZone slices={doc.data.slices} components={__allComponents} />
     </Layout>
   );
@@ -26,13 +27,23 @@ export async function getStaticProps({ previewData, locale, locales }) {
     .catch((e) => {
       return null;
     });
+
   if (!document) {
     return {
       notFound: true,
     };
   }
+
+  //Querying the Menu here so that it can be previewed at the same time as the page (in a release)
+  const menu = await client
+    .getSingle("menu", { lang: locale, graphQuery: menuGraphQuery })
+    .catch((e) => {
+      return {};
+    });
+
   return {
     props: {
+      menu: menu,
       doc: document,
     }, // will be passed to the page component as props
   };

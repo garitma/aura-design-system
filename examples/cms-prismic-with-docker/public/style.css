@@ -52,3 +52,11 @@
   --aura-opacity: 0.5;
   --aura-selector: #d1fdef;
 }
+
+.hidden {
+  display: none!important;
+}
+
+.halo.column {
+  flex-direction: column;
+}

@@ -1,14 +1,19 @@
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Icon from "aura-design/icon";
 import Button from "aura-design/button";
 
-const Header = ({ text }) => {
+import Menu from "@components/Menu";
+
+const Header = ({ text, menu }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <header className="purple aura">
-      <div className="smush wall-pad">
+    <header className="aura purple">
+      <div className="smush aura">
         <ul className="nav-list">
-          <li className="logo-circle">
+          <li className="item">
             <Link href="/">
               <a className="halo">
                 <Image
@@ -21,21 +26,42 @@ const Header = ({ text }) => {
               </a>
             </Link>
           </li>
-          <li className="mod">
-            <Button
-              mode="link"
-              href="https://github.com/garitma/aura-design-system/tree/main/examples/next-base"
-              target="_blank"
-              rel="noopener"
-            >
-              <Icon sprite="github" />
+          <li></li>
+          <li className="hide-large">
+            <Button mode="link" onClick={() => setIsOpen(true)}>
+              <Icon sprite={"menu"} />
             </Button>
+          </li>
+          <li className="hide-medium hide-small">
+            <ul className="nav-list">
+              <Menu
+                onClose={() => setIsOpen(false)}
+                menuTabs={menu.data.menuTabs}
+              />
+            </ul>
           </li>
         </ul>
       </div>
-      <div>
-        <div>{text && <h1 className="light centertxt mt0 mb0">{text}</h1>}</div>
-      </div>
+      {isOpen && (
+        <div className="smush anchor">
+          <ul className="mod-detail hold top right left bottom aureole one centertxt square">
+            <ul className="nav-list">
+              <li></li>
+              <li></li>
+              <li>
+                <Button mode="link" onClick={() => setIsOpen(false)}>
+                  <Icon sprite={"close"} />
+                </Button>
+              </li>
+            </ul>
+            <Menu
+              onClose={() => setIsOpen(false)}
+              menu_tabs={menu_tabs}
+              isMobile
+            />
+          </ul>
+        </div>
+      )}
     </header>
   );
 };

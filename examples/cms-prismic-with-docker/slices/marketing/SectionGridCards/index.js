@@ -13,8 +13,13 @@ import Grid from "aura-design/grid";
 const SectionGridCards = ({ slice }) => (
   <Section color={slice.primary.color}>
     <Grid col={slice.primary.columns}>
-      {slice.items.map((item) => (
-        <a href={item.link.url} target="_blank" className="mod">
+      {slice.items.map((item, index) => (
+        <a
+          href={item.link.url}
+          target="_blank"
+          className="mod"
+          key={`${slice.id}_${index}`}
+        >
           <div className="mod-detail">
             <h3 className="mod-title mb0">
               {prismicH.asText(item.title)} <i className="icon arrowAltRigth" />

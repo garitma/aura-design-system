@@ -100,6 +100,17 @@ interface MenuTabDocumentData {
      */
     title: prismicT.KeyTextField;
     /**
+     * link field in *Menu Tab*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: menu-tab.link
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    link: prismicT.LinkField;
+    /**
      * Slice Zone field in *Menu Tab*
      *
      * - **Field Type**: Slice Zone
