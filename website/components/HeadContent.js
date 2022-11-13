@@ -1,10 +1,10 @@
 import { FAV_ICON } from "@utils/constants";
-import { GA_TRACKING_ID } from "@utils/gtag";
+import Script from "next/script";
 
 const HeadContent = () => (
   <>
-    <script src="//use.typekit.net/gqm2kup.js"></script>
-    <script
+    <Script src="//use.typekit.net/gqm2kup.js" />
+    <Script
       dangerouslySetInnerHTML={{
         __html: `try{Typekit.load({ async: true });}catch(e){}`,
       }}
@@ -48,20 +48,6 @@ const HeadContent = () => (
       content="black-translucent"
     />
     <link rel="preload" as="image" href="/sprite_glyphs.png" />
-    <script
-      async
-      src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
-    />
-    <script
-      dangerouslySetInnerHTML={{
-        __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${GA_TRACKING_ID}');
-          `,
-      }}
-    />
   </>
 );
 
