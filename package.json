@@ -1,6 +1,6 @@
 {
   "name": "aura-design",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Garitma's Design system",
   "files": [
     "dist",
