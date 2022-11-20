@@ -40,7 +40,10 @@ export default function Menu({ onClose, isMobile, menuTabs }) {
                     mode="link"
                     onClick={() => handleOnLink(item)}
                     onMouseOver={() => {
-                      setIsOpen(true), setIndexActive(index);
+                      if (isMobile) return;
+
+                      setIsOpen(true);
+                      setIndexActive(index);
                     }}
                     isFluid={isMobile}
                   >
@@ -87,6 +90,8 @@ export default function Menu({ onClose, isMobile, menuTabs }) {
                   onClick={onClose}
                   isFluid={isMobile}
                   onMouseOver={() => {
+                    if (isMobile) return;
+
                     setIsOpen(false), setIndexActive(null);
                   }}
                 >

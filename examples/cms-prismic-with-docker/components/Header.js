@@ -36,26 +36,24 @@ const Header = ({ menu }) => {
           </li>
         </ul>
       </div>
-      {isOpen && (
-        <div className="smush anchor">
-          <ul className="mod-detail hold top right left bottom aureole one centertxt square">
-            <ul className="nav-list">
-              <li></li>
-              <li></li>
-              <li>
-                <Button mode="link" onClick={() => setIsOpen(false)}>
-                  <Icon sprite={"close"} />
-                </Button>
-              </li>
-            </ul>
-            <Menu
-              onClose={() => setIsOpen(false)}
-              menuTabs={menu.data.menuTabs}
-              isMobile
-            />
+      <div className={`smush anchor ${!isOpen ? "hidden" : "active"}`}>
+        <ul className="mod-detail hold top right left bottom aureole one centertxt square">
+          <ul className="nav-list">
+            <li></li>
+            <li></li>
+            <li>
+              <Button mode="link" onClick={() => setIsOpen(false)}>
+                <Icon sprite={"close"} />
+              </Button>
+            </li>
           </ul>
-        </div>
-      )}
+          <Menu
+            onClose={() => setIsOpen(false)}
+            menuTabs={menu.data.menuTabs}
+            isMobile
+          />
+        </ul>
+      </div>
     </header>
   );
 };
