@@ -1,15 +1,15 @@
 {
-  "id": "hero_section_split",
+  "id": "section_heading",
   "type": "SharedSlice",
   "name": "SectionHeading",
-  "description": "HeroSectionSplit",
+  "description": "SectionHeading",
   "variations": [
     {
-      "id": "default-slice",
-      "name": "Default slice",
+      "id": "default",
+      "name": "Default",
       "docURL": "...",
       "version": "sktwi1xtmkfgx8626",
-      "description": "HeroSectionSplit",
+      "description": "SectionHeading",
       "primary": {
         "title": {
           "type": "StructuredText",

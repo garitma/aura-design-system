@@ -124,23 +124,23 @@
         },
         "screenshotPaths": {}
       },
-      "hero_section_split": {
+      "section_heading": {
         "library": "slices/marketing",
-        "id": "hero_section_split",
+        "id": "section_heading",
         "name": "SectionHeading",
-        "description": "HeroSectionSplit",
+        "description": "SectionHeading",
         "model": {
-          "id": "hero_section_split",
+          "id": "section_heading",
           "type": "SharedSlice",
           "name": "SectionHeading",
-          "description": "HeroSectionSplit",
+          "description": "SectionHeading",
           "variations": [
             {
-              "id": "default-slice",
-              "name": "Default slice",
+              "id": "default",
+              "name": "Default",
               "docURL": "...",
               "version": "sktwi1xtmkfgx8626",
-              "description": "HeroSectionSplit",
+              "description": "SectionHeading",
               "primary": {
                 "title": {
                   "type": "StructuredText",
@@ -230,13 +230,7 @@
           "fileName": "index",
           "extension": "js"
         },
-        "screenshotPaths": {
-          "default-slice": {
-            "path": "/Users/pablopvsky/Documents/APP/aura-design-system/examples/cms-prismic-with-docker/.slicemachine/assets/slices/marketing/SectionHeading/default-slice/preview.png",
-            "width": 800,
-            "height": 236
-          }
-        }
+        "screenshotPaths": {}
       }
     }
   },
@@ -254,8 +248,8 @@
           "description": "FooterColumn",
           "variations": [
             {
-              "id": "default-slice",
-              "name": "Default slice",
+              "id": "default",
+              "name": "Default",
               "docURL": "...",
               "version": "sktwi1xtmkfgx8626",
               "description": "FooterColumn",
@@ -320,8 +314,8 @@
           "extension": "js"
         },
         "screenshotPaths": {
-          "default-slice": {
-            "path": "/Users/pablopvsky/Documents/APP/aura-design-system/examples/cms-prismic-with-docker/slices/navigation/FooterColumn/default-slice/preview.png",
+          "default": {
+            "path": "/Users/pablopvsky/Documents/APP/aura-design-system/examples/cms-prismic-with-docker/slices/navigation/FooterColumn/default/preview.png",
             "width": 442,
             "height": 356
           }
@@ -339,8 +333,8 @@
           "description": "MenuSubTab",
           "variations": [
             {
-              "id": "default-slice",
-              "name": "Default slice",
+              "id": "default",
+              "name": "Default",
               "docURL": "...",
               "version": "sktwi1xtmkfgx8626",
               "description": "MenuSubTab",
@@ -398,8 +392,8 @@
           "extension": "js"
         },
         "screenshotPaths": {
-          "default-slice": {
-            "path": "/Users/pablopvsky/Documents/APP/aura-design-system/examples/cms-prismic-with-docker/slices/navigation/MenuSubTab/default-slice/preview.png",
+          "default": {
+            "path": "/Users/pablopvsky/Documents/APP/aura-design-system/examples/cms-prismic-with-docker/slices/navigation/MenuSubTab/default/preview.png",
             "width": 358,
             "height": 372
           }

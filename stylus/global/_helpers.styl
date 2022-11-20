@@ -141,7 +141,7 @@
     .hide-small
         display none
 
-@media screen and (max-width: $small) and (min-width: $large)
+@media screen and (max-width: $small) and (max-width: $large)
     .hide-medium
         display none
 
@@ -159,4 +159,15 @@
   overflow-y: scroll;
   overflow-x: hidden;
   max-height: 50vh;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.b0 {
+  border: 0 !important;
 }

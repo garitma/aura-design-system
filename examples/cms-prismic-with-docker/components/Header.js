@@ -1,12 +1,12 @@
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import Icon from "aura-design/icon";
 import Button from "aura-design/button";
 
+import Image from "@components/Image";
 import Menu from "@components/Menu";
 
-const Header = ({ text, menu }) => {
+const Header = ({ menu }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -16,13 +16,7 @@ const Header = ({ text, menu }) => {
           <li className="item">
             <Link href="/">
               <a className="halo">
-                <Image
-                  src="https://images.prismic.io/aura-design-cms-prismic-with-docker/b325b91c-0903-4671-98f2-a63f527d9c03_logo.png?auto=compress,format"
-                  width={48}
-                  height={48}
-                  priority={true}
-                  alt="Logo Aura Design"
-                />
+                <Image {...menu.data.logo} priority={true} />
               </a>
             </Link>
           </li>
@@ -32,7 +26,7 @@ const Header = ({ text, menu }) => {
               <Icon sprite={"menu"} />
             </Button>
           </li>
-          <li className="hide-medium hide-small">
+          <li className="hide-small hide-medium">
             <ul className="nav-list">
               <Menu
                 onClose={() => setIsOpen(false)}
@@ -56,7 +50,7 @@ const Header = ({ text, menu }) => {
             </ul>
             <Menu
               onClose={() => setIsOpen(false)}
-              menu_tabs={menu_tabs}
+              menuTabs={menu.data.menuTabs}
               isMobile
             />
           </ul>

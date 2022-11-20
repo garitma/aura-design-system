@@ -3,6 +3,7 @@
 This example shows how to create pages using Next.js, Aura Design System, Prismic io and docker. It shows a normal page with all the configurations. Additionally, it contains instructions for deploying to Google Cloud Run and github actions.
 
 # Configuration
+
 ## Step 1. Create an account and repository on Prismic
 
 First, create a Prismic account and repository with the following command:
@@ -24,7 +25,6 @@ npm run slicemachine
 ```
 
 Slice Machine should be available on <http://localhost:9999> once started.
-
 
 ## Deploy your own
 
@@ -87,17 +87,70 @@ jobs:
             --quiet
 ```
 
-In the github action secrets of the repository `PATH_TO_REPOSITORY/settings/secrets/actions` add the secrets of GCP. 
+how to install [CLI gcloud](https://cloud.google.com/sdk/docs/install?hl=es-419)
 
-    1. CLOUD_RUN_PROJECT_NAME 
-    2. CLOUD_RUN_SERVICE_ACCOUNT 
+Create service:
+
+```bash
+gcloud iam service-accounts create SA_NAME \
+    --description="DESCRIPTION" \
+    --display-name="DISPLAY_NAME"
+```
+
+Add roles service:
+
+```bash
+gcloud projects add-iam-policy-binding PROJECT_ID --member="SA_NAME@PROJECT_ID.iam.gserviceaccount.com" --role="roles/editor"
+```
+
+```bash
+gcloud projects add-iam-policy-binding PROJECT_ID --member="SA_NAME@PROJECT_ID.iam.gserviceaccount.com" --role="roles/run.admin"
+```
+
+```bash
+gcloud projects add-iam-policy-binding PROJECT_ID --member="SA_NAME@PROJECT_ID.iam.gserviceaccount.com" --role="roles/storage.admin"
+```
+
+```bash
+gcloud projects add-iam-policy-binding PROJECT_ID --member="SA_NAME@PROJECT_ID.iam.gserviceaccount.com" --role="roles/iam.serviceAccountUser"
+```
+
+Create and download service account key:
+
+```bash
+gcloud iam service-accounts keys create ~/Downloads/sa-private-key.json \
+    --iam-account="SA_NAME@PROJECT_ID.iam.gserviceaccount.com"
+```
+
+Base64 key:
+
+```bash
+base64 ~/Downloads/sa-private-key.json
+```
+
+how to install [CLI Github](https://cli.github.com)
+
+Add the github action secrets of the repository
+
+    1. CLOUD_RUN_PROJECT_NAME
+    2. CLOUD_RUN_SERVICE_ACCOUNT
     3. CLOUD_RUN_SERVICE_ACCOUNT_EMAIL
 
-Read more about service account [Creating and managing service accounts](https://cloud.google.com/iam/docs/creating-managing-service-accounts?hl=es-419)
+```bash
+gh secret set CLOUD_RUN_PROJECT_NAME -b "PROJECT_ID" -r "REPOSITORY"
+```
+
+```bash
+gh secret set CLOUD_RUN_PROJECT_NAME -b "BASE64_SA_NAME_KEY" -r "REPOSITORY"
+```
+
+```bash
+gh secret set CLOUD_RUN_PROJECT_NAME -b "SA_NAME@PROJECT_ID.iam.gserviceaccount.com" -r "REPOSITORY"
+```
 
 ## How to use
 
-Execute create-next-app with [npm](https://docs.npmjs.com/cli/init), to bootstrap the example:
+Execute create-next-app with [npm](https://docs.npmjs.com/cli/init) to bootstrap the example:
 
 ```bash
 npx create-next-app next-base --use-npm --example "https://github.com/garitma/aura-design-system/tree/main/examples/cms-prismic-with-docker"

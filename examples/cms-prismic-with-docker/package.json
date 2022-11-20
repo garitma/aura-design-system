@@ -26,6 +26,6 @@
   "license": "ISC",
   "devDependencies": {
     "@prismicio/types": "^0.2.3",
-    "slice-machine-ui": "^0.5.1"
+    "slice-machine-ui": "^0.5.2"
   }
 }

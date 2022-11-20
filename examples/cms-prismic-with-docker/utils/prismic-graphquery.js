@@ -5,12 +5,13 @@ export const menuGraphQuery = `{
       logo
       menuTabs{
         menuTab{
-          ...onmenu-tab{
+          ...on menu-tab{
             title
+            link
             slices{
-              ...onmenu_sub_tab{
+              ...on menu_sub_tab{
                 variation{
-                  ...ondefault-slice{
+                  ...on default{
                     primary{
                       sectionTitle
                     }
