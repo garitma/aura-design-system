@@ -100,19 +100,19 @@ gcloud iam service-accounts create SA_NAME \
 Add roles service:
 
 ```bash
-gcloud projects add-iam-policy-binding PROJECT_ID --member="SA_NAME@PROJECT_ID.iam.gserviceaccount.com" --role="roles/editor"
+gcloud projects add-iam-policy-binding PROJECT_ID --member="serviceAccount:SA_NAME@PROJECT_ID.iam.gserviceaccount.com" --role="roles/editor"
 ```
 
 ```bash
-gcloud projects add-iam-policy-binding PROJECT_ID --member="SA_NAME@PROJECT_ID.iam.gserviceaccount.com" --role="roles/run.admin"
+gcloud projects add-iam-policy-binding PROJECT_ID --member="serviceAccount:SA_NAME@PROJECT_ID.iam.gserviceaccount.com" --role="roles/run.admin"
 ```
 
 ```bash
-gcloud projects add-iam-policy-binding PROJECT_ID --member="SA_NAME@PROJECT_ID.iam.gserviceaccount.com" --role="roles/storage.admin"
+gcloud projects add-iam-policy-binding PROJECT_ID --member="serviceAccount:SA_NAME@PROJECT_ID.iam.gserviceaccount.com" --role="roles/storage.admin"
 ```
 
 ```bash
-gcloud projects add-iam-policy-binding PROJECT_ID --member="SA_NAME@PROJECT_ID.iam.gserviceaccount.com" --role="roles/iam.serviceAccountUser"
+gcloud projects add-iam-policy-binding PROJECT_ID --member="serviceAccount:SA_NAME@PROJECT_ID.iam.gserviceaccount.com" --role="roles/iam.serviceAccountUser"
 ```
 
 Create and download service account key:
