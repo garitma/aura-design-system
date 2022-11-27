@@ -9,16 +9,14 @@ const Header = ({ text }) => {
       <div className="smush wall-pad">
         <ul className="nav-list">
           <li className="logo-circle">
-            <Link href="/">
-              <a className="halo">
-                <Image
-                  src="/logo.png"
-                  width={48}
-                  height={48}
-                  priority={true}
-                  alt="Logo Aura Design"
-                />
-              </a>
+            <Link href="/" className="halo">
+              <Image
+                src="/logo.png"
+                width={48}
+                height={48}
+                priority={true}
+                alt="Logo Aura Design"
+              />
             </Link>
           </li>
           <li className="mod">
