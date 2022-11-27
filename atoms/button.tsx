@@ -10,7 +10,7 @@ export interface ButtonProps extends SharedBasic {
   isFluid?: boolean
   isWaiting?: boolean
   onClick?: (event?: any) => void
-  waitingText?: string
+  isWaitingText?: string
   mode?: ButtonMode
   label?: string
   href?: string
@@ -22,7 +22,7 @@ const Button = React.forwardRef(({
   isDisabled = false,
   isFluid = false,
   isWaiting = false,
-  waitingText = "...",
+  isWaitingText = "...",
   mode = "fill",
   label,
   className,
@@ -49,7 +49,7 @@ const Button = React.forwardRef(({
       {...props}
     >
       <span className={`container`}>
-        {isWaiting ? waitingText : label}
+        {isWaiting ? isWaitingText : label}
         {children}
       </span>
     </AuraButton>
