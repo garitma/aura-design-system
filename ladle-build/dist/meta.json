@@ -20,8 +20,8 @@
       "levels": [
         "Button"
       ],
-      "locStart": 5,
-      "locEnd": 5,
+      "locStart": 6,
+      "locEnd": 6,
       "filePath": "stories/button.stories.tsx",
       "meta": {}
     },
@@ -30,8 +30,8 @@
       "levels": [
         "Button"
       ],
-      "locStart": 6,
-      "locEnd": 6,
+      "locStart": 8,
+      "locEnd": 8,
       "filePath": "stories/button.stories.tsx",
       "meta": {}
     },
@@ -40,8 +40,8 @@
       "levels": [
         "Button"
       ],
-      "locStart": 7,
-      "locEnd": 7,
+      "locStart": 10,
+      "locEnd": 10,
       "filePath": "stories/button.stories.tsx",
       "meta": {}
     },
@@ -50,8 +50,8 @@
       "levels": [
         "Button"
       ],
-      "locStart": 8,
-      "locEnd": 8,
+      "locStart": 12,
+      "locEnd": 12,
       "filePath": "stories/button.stories.tsx",
       "meta": {}
     },
@@ -60,8 +60,8 @@
       "levels": [
         "Button"
       ],
-      "locStart": 9,
-      "locEnd": 11,
+      "locStart": 14,
+      "locEnd": 16,
       "filePath": "stories/button.stories.tsx",
       "meta": {}
     },
