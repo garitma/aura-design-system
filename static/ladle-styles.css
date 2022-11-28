@@ -1,3 +1,7 @@
 :root {
-    --ladle-bg-color-secondary: var(--aura-purple)
+  --ladle-bg-color-secondary: var(--aura-purple);
 }
+
+/* .ladle-addons > ul > li:nth-child(1) {
+  display: none !important;
+} */
