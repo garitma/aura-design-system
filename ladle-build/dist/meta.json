@@ -20,8 +20,8 @@
       "levels": [
         "Button"
       ],
-      "locStart": 6,
-      "locEnd": 6,
+      "locStart": 5,
+      "locEnd": 5,
       "filePath": "stories/button.stories.tsx",
       "meta": {}
     },
@@ -30,8 +30,8 @@
       "levels": [
         "Button"
       ],
-      "locStart": 8,
-      "locEnd": 8,
+      "locStart": 6,
+      "locEnd": 6,
       "filePath": "stories/button.stories.tsx",
       "meta": {}
     },
@@ -40,8 +40,8 @@
       "levels": [
         "Button"
       ],
-      "locStart": 10,
-      "locEnd": 10,
+      "locStart": 7,
+      "locEnd": 7,
       "filePath": "stories/button.stories.tsx",
       "meta": {}
     },
@@ -50,8 +50,8 @@
       "levels": [
         "Button"
       ],
-      "locStart": 12,
-      "locEnd": 12,
+      "locStart": 8,
+      "locEnd": 8,
       "filePath": "stories/button.stories.tsx",
       "meta": {}
     },
@@ -60,8 +60,8 @@
       "levels": [
         "Button"
       ],
-      "locStart": 14,
-      "locEnd": 16,
+      "locStart": 9,
+      "locEnd": 11,
       "filePath": "stories/button.stories.tsx",
       "meta": {}
     },
@@ -103,6 +103,36 @@
       "locStart": 16,
       "locEnd": 21,
       "filePath": "stories/input.stories.tsx",
+      "meta": {}
+    },
+    "select--naked": {
+      "name": "Naked",
+      "levels": [
+        "Select"
+      ],
+      "locStart": 4,
+      "locEnd": 10,
+      "filePath": "stories/select.stories.tsx",
+      "meta": {}
+    },
+    "select--with-placeholder": {
+      "name": "With placeholder",
+      "levels": [
+        "Select"
+      ],
+      "locStart": 12,
+      "locEnd": 18,
+      "filePath": "stories/select.stories.tsx",
+      "meta": {}
+    },
+    "select--with-dialog": {
+      "name": "With dialog",
+      "levels": [
+        "Select"
+      ],
+      "locStart": 20,
+      "locEnd": 30,
+      "filePath": "stories/select.stories.tsx",
       "meta": {}
     }
   }
