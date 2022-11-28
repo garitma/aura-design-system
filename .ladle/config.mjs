@@ -4,10 +4,6 @@ export default {
     theme: {
       enabled: false,
       defaultState: "light",
-    },
-    rtl: {
-      enabled: false,
-      defaultState: true,
     }
   },
 };
