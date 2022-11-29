@@ -105,6 +105,46 @@
       "filePath": "stories/input.stories.tsx",
       "meta": {}
     },
+    "section--default": {
+      "name": "Default",
+      "levels": [
+        "Section"
+      ],
+      "locStart": 4,
+      "locEnd": 17,
+      "filePath": "stories/section.stories.tsx",
+      "meta": {}
+    },
+    "section--with-color": {
+      "name": "With color",
+      "levels": [
+        "Section"
+      ],
+      "locStart": 19,
+      "locEnd": 32,
+      "filePath": "stories/section.stories.tsx",
+      "meta": {}
+    },
+    "section--with-container": {
+      "name": "With container",
+      "levels": [
+        "Section"
+      ],
+      "locStart": 34,
+      "locEnd": 63,
+      "filePath": "stories/section.stories.tsx",
+      "meta": {}
+    },
+    "section--with-sub-class-name": {
+      "name": "With sub class name",
+      "levels": [
+        "Section"
+      ],
+      "locStart": 65,
+      "locEnd": 70,
+      "filePath": "stories/section.stories.tsx",
+      "meta": {}
+    },
     "select--naked": {
       "name": "Naked",
       "levels": [
