@@ -46,17 +46,17 @@ export const WithContainer = () => (
       el alma 1 ó 2 veces por herida
     </Section>
     <Section color="lemon-green" container="smash">
-      <h3 className="h6">Smush 740px</h3>
+      <h3 className="h6">Smash 740px</h3>
       Cada abrazo de oso contiene: 1 dosis de amor por cada 2 brazos. Posología:
       Posología: Aplicar un abrazo osado con un apretón fuerte profundamente en
       el alma 1 ó 2 veces por herida
     </Section>
     <Section color="pink" container="smosh">
-      <h3 className="h6">Smush 440px</h3>
+      <h3 className="h6">Smosh 440px</h3>
       Cada abrazo de oso contiene: 1 dosis de amor por cada 2 brazos. Posología:
     </Section>
     <Section color="yellow" container="smish">
-      <h3 className="h6">Smush 250px</h3>
+      <h3 className="h6">Smish 250px</h3>
       Cada abrazo de oso contiene: 1 dosis de amor por cada 2 brazos.
     </Section>
   </>
