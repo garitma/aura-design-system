@@ -87,6 +87,6 @@ export type AuraSpace = "p0" | "pad" | "inside-pad" | "aura" | "wall-pad"
 
 export type AuraContainer = "smash" | "smesh" | "smish" | "smosh" | "smush"
 
-export type AuraGrid = "one" | "two" | "three" | "fourd" | "five" | "six" | "box" | "box-2" | "blog" | "docs" | "field" | "tag"
+export type AuraGrid = "one" | "two" | "three" | "four" | "five" | "six" | "box" | "box-2" | "blog" | "docs" | "field" | "tag"
 
 export type AuraHeadline = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"

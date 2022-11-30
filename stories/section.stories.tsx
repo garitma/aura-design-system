@@ -68,3 +68,11 @@ export const WithSubClassName = () => (
     Cada abrazo de oso contiene: 1 dosis de amor por cada 2 brazos.
   </Section>
 );
+
+export const WithPassDiv = () => (
+  <Section color="blue" passDiv>
+    <h3 className="h6">This section use div html tag as wrapper </h3>
+    Cada abrazo de oso contiene: 1 dosis de amor por cada 2 brazos.
+  </Section>
+);
+
