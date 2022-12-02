@@ -12,3 +12,9 @@ export const WithHeaderSize = () => (
     Cada abrazo de oso contiene: 1 dosis de amor por cada 2 brazos.
   </Accordion>
 );
+
+export const WithColor = () => (
+  <Accordion title="Accordion title" color="teal-green">
+    Cada abrazo de oso contiene: 1 dosis de amor por cada 2 brazos.
+  </Accordion>
+);
