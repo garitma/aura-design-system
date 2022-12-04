@@ -25,6 +25,36 @@
       "filePath": "stories/accordion.stories.tsx",
       "meta": {}
     },
+    "accordion--with-color": {
+      "name": "With color",
+      "levels": [
+        "Accordion"
+      ],
+      "locStart": 16,
+      "locEnd": 20,
+      "filePath": "stories/accordion.stories.tsx",
+      "meta": {}
+    },
+    "alert--warning-alert": {
+      "name": "Warning alert",
+      "levels": [
+        "Alert"
+      ],
+      "locStart": 4,
+      "locEnd": 8,
+      "filePath": "stories/alert.stories.tsx",
+      "meta": {}
+    },
+    "alert--danger-alert": {
+      "name": "Danger alert",
+      "levels": [
+        "Alert"
+      ],
+      "locStart": 10,
+      "locEnd": 14,
+      "filePath": "stories/alert.stories.tsx",
+      "meta": {}
+    },
     "button--button-fill": {
       "name": "Button fill",
       "levels": [
@@ -183,6 +213,16 @@
       "locStart": 16,
       "locEnd": 21,
       "filePath": "stories/input.stories.tsx",
+      "meta": {}
+    },
+    "modal--default-config": {
+      "name": "Default config",
+      "levels": [
+        "Modal"
+      ],
+      "locStart": 5,
+      "locEnd": 22,
+      "filePath": "stories/modal.stories.tsx",
       "meta": {}
     },
     "section--default": {
