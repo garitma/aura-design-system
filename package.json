@@ -63,6 +63,7 @@
     "typescript": "^4.9.3"
   },
   "dependencies": {
-    "@ladle/react": "^2.4.5"
+    "@ladle/react": "^2.4.5",
+    "magic-sdk": "^10.1.0"
   }
 }
