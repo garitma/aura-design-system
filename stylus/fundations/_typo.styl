@@ -22,23 +22,12 @@ body
 
 // Headlines
 
-h1, .h1
-    mixin-visual-scale(visualScale-h1, 0.85, 0.65)
+headlines = (1..6)
 
-h2, .h2
-    mixin-visual-scale(visualScale-h2, 0.85, 0.65)
+for i in headlines
+    h{i}, .h{i}
+        font-size: visualScale-h + i
 
-h3, .h3
-    mixin-visual-scale(visualScale-h3, 0.85, 0.65)
-
-h4, .h4
-    mixin-visual-scale(visualScale-h4, 0.85, 0.65)
-
-h5, .h5
-    mixin-visual-scale(visualScale-h5, 0.85, 0.70)
-
-h6, .h6
-    mixin-visual-scale(visualScale-h6, 0.85, 0.85)
 
 // Content
 
@@ -64,4 +53,7 @@ ul
 
 .regular 
   font-weight: 400 !important;
+
+.bold 
+  font-weight: 700 !important;
 
