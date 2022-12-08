@@ -22,12 +22,15 @@ body
 
 // Headlines
 
-headlines = (1..6)
+h1,h2, h3, h4, h5, h6, p, .h1, .h2, .h3, .h4, .h5, .h6 {
+  font-size: clamp(var(--min), var(--val), var(--max));
+}
 
-for i in headlines
-    h{i}, .h{i}
-        font-size: visualScale-h + i
-
+h1 .h1 {
+  --min: 1em; // minimum value
+  --val: 2.5vw; // preferred value = 2.5% viewport width
+  --max: visualScale-h1; // maximum value
+}
 
 // Content
 
