@@ -20,19 +20,6 @@ mixin-border-radius(radius)
 	-webkit-border-radius radius
 	-moz-border-radius radius
 
-mixin-border-radius-sides(topleft, topright, bottomright, bottomleft) 
-	border-top-left-radius topleft
-	border-top-right-radius topright
-	border-bottom-right-radius bottomright
-	border-bottom-left-radius bottomleft
-	-webkit-border-top-left-radius topleft
-	-webkit-border-top-right-radius topright
-	-webkit-border-bottom-right-radius bottomright
-	-webkit-border-bottom-left-radius bottomleft
-	-moz-border-radius-topleft topleft
-	-moz-border-radius-topright topright
-	-moz-border-radius-bottomright bottomright
-	-moz-border-radius-bottomleft bottomleft
 
 mixin-align-items(align)
 	-webkit-box-align align
@@ -51,10 +38,3 @@ mixin-flex()
 	display -ms-flexbox
 	display -webkit-flex
 	display flex
-
-mixin-visual-scale( visualScale, DecreaseScaleMedium, DecreaseScaleSmall )
-	font-size visualScale * DecreaseScaleSmall
-	@media only screen and (min-width: $small)
-		font-size visualScale * DecreaseScaleMedium
-	@media only screen and (min-width: $large)
-		font-size visualScale
