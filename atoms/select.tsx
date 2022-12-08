@@ -13,7 +13,7 @@ export interface SelectProps extends SharedBasic {
   helpText?: string;
   leftIcon?: AuraIcons;
   placeholder?: string;
-  name: string;
+  name?: string;
 }
 
 const Select = ({

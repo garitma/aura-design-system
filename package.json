@@ -45,8 +45,8 @@
   "scripts": {
     "stylus": "stylus -w --compress stylus/style.styl -o ./style.css",
     "build": "rm -rf dist && tsc --module commonjs && stylus --compress stylus/style.styl -o ./style.css",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "ladle": "npx ladle serve --stories=stories",
+    "build-ladle": "npx ladle build --stories=stories"
   },
   "keywords": [
     "react",
@@ -56,10 +56,14 @@
     "ui-components"
   ],
   "devDependencies": {
+    "@types/react": "^18.0.25",
     "next": "^13.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^4.9.3"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@ladle/react": "^2.4.5",
+    "magic-sdk": "^10.1.0"
+  }
 }

@@ -2,8 +2,8 @@ import Icon from "../atoms/icon";
 import { SharedBasic, AuraHeadline, AuraColors } from "../types/global";
 
 export interface AccordionProps extends SharedBasic {
-  title: string;
-  headerSize: AuraHeadline;
+  title?: string;
+  headerSize?: AuraHeadline;
   color?: AuraColors;
 }
 

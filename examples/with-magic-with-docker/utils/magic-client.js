@@ -14,3 +14,13 @@ export async function authWithEmail(email) {
 
   return authRequest;
 }
+
+export async function logOut() {
+  const res = await fetch("/api/auth/logout", {
+    method: "GET",
+  });
+
+  window.location.href = "/login";
+
+  return res;
+}

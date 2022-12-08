@@ -3,6 +3,8 @@ import Image from "next/image";
 import Icon from "aura-design/icon";
 import Button from "aura-design/button";
 
+import { logOut } from "@utils/magic-client";
+
 const Header = ({ text }) => {
   return (
     <header className="purple aura">
@@ -21,15 +23,22 @@ const Header = ({ text }) => {
               </a>
             </Link>
           </li>
-          <li className="mod">
-            <Button
-              mode="link"
-              href="https://github.com/garitma/aura-design-system/tree/main/examples/next-base"
-              target="_blank"
-              rel="noopener"
-            >
-              <Icon sprite="github" />
-            </Button>
+          <li>
+            <ul className="nav-list">
+              <li className="item">
+                <Button mode="link" onClick={logOut}>Log Out</Button>
+              </li>
+              <li className="mod">
+                <Button
+                  mode="link"
+                  href="https://github.com/garitma/aura-design-system/tree/main/examples/next-base"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <Icon sprite="github" />
+                </Button>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>

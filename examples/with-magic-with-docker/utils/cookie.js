@@ -26,4 +26,13 @@ function getAuthToken(cookies) {
   return cookies[TOKEN_NAME];
 }
 
-export default { setTokenCookie, getAuthToken };
+function removeSession(res) {
+  const cookie = serialize(TOKEN_NAME, "", {
+    maxAge: -1,
+    path: "/",
+  });
+
+  res.setHeader("Set-Cookie", cookie);
+}
+
+export default { setTokenCookie, getAuthToken, removeSession };

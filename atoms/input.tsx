@@ -17,7 +17,7 @@ export interface InputProps extends SharedBasic, InputHTMLAttributes<HTMLInputEl
   rightIcon?: AuraIcons;
   onClickRightIcon?: () => void;
   placeholder?: string;
-  name: string;
+  name?: string;
 }
 
 const Input = ({

@@ -28,7 +28,7 @@ const SignIn = () => {
       const res = await authWithEmail(email.value);
       if (res.ok) {
         status.setIsWaiting(false);
-        router.push("/");
+        window.location.href = "/";
         return;
       } else {
         status.setIsWaiting(false);
@@ -43,7 +43,7 @@ const SignIn = () => {
   };
 
   return (
-    <Section className="anchor pad-divisor purple-to-blue flow-cancel large-background">
+    <Section className="anchor pad-divisor flow-cancel">
       <Head>
         <title>Sign In - Aura Magic Link</title>
         <Script

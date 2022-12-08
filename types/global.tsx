@@ -19,17 +19,17 @@ export type AuraColors =
   | "green"
   | "yellow"
   | "white"
-  | "--aura-accents-0" 
-  | "--aura-accents-1" 
-  | "--aura-accents-2" 
-  | "--aura-accents-3" 
-  | "--aura-accents-4" 
-  | "--aura-accents-5"
-  | "--aura-accents-6"
-  | "--aura-accents-7"
-  | "--aura-accents-8"
-  | "--aura-accents-9"
-  | "--aura-accents-10"
+  | "accents-0" 
+  | "accents-1" 
+  | "accents-2" 
+  | "accents-3" 
+  | "accents-4" 
+  | "accents-5"
+  | "accents-6"
+  | "accents-7"
+  | "accents-8"
+  | "accents-9"
+  | "accents-10"
 
 
 export type AuraIcons =
@@ -87,6 +87,6 @@ export type AuraSpace = "p0" | "pad" | "inside-pad" | "aura" | "wall-pad"
 
 export type AuraContainer = "smash" | "smesh" | "smish" | "smosh" | "smush"
 
-export type AuraGrid = "one" | "two" | "three" | "fourd" | "five" | "six" | "box" | "box-2" | "blog" | "docs" | "field" | "tag"
+export type AuraGrid = "one" | "two" | "three" | "four" | "five" | "six" | "box" | "box-2" | "blog" | "docs" | "field" | "tag"
 
 export type AuraHeadline = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
