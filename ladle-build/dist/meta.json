@@ -175,6 +175,16 @@
       "filePath": "stories/grid.stories.tsx",
       "meta": {}
     },
+    "headline--headlines": {
+      "name": "Headlines",
+      "levels": [
+        "Headline"
+      ],
+      "locStart": 3,
+      "locEnd": 12,
+      "filePath": "stories/headline.stories.tsx",
+      "meta": {}
+    },
     "input--with-placeholder": {
       "name": "With placeholder",
       "levels": [
@@ -223,6 +233,26 @@
       "locStart": 5,
       "locEnd": 22,
       "filePath": "stories/modal.stories.tsx",
+      "meta": {}
+    },
+    "page--pancake": {
+      "name": "Pancake",
+      "levels": [
+        "Page"
+      ],
+      "locStart": 3,
+      "locEnd": 17,
+      "filePath": "stories/page.stories.tsx",
+      "meta": {}
+    },
+    "page--dashboard": {
+      "name": "Dashboard",
+      "levels": [
+        "Page"
+      ],
+      "locStart": 19,
+      "locEnd": 34,
+      "filePath": "stories/page.stories.tsx",
       "meta": {}
     },
     "section--default": {
