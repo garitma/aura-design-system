@@ -1,63 +1,12 @@
 :root {
   --ladle-bg-color-secondary: var(--aura-purple);
   --ladle-color-accent: var(--aura-accents-info);
-  /* --aura-code-purple: #c6a1f5;
-  --aura-code-orange: #f1bfa3;
-  --aura-code-blue: #a0cce7 */
+  --aura-code-purple: #9c5cee;
+  --aura-code-orange: #da6321;
+  --aura-code-blue: #a0cce7 
 }
 
 .ladle-code {
   color: var(--aura-accents-info);
   background-color: var(--aura-accents-info-bg);
 }
-
-/* 
-
-
-div[data-reach-dialog-content],
-.prism-code {
-  background-color: #0d1229 !important;
-  color: #fff !important;
-}
-
-.keyword,
-.punctuation.tag,
-.attr-name {
-  color: var(--aura-code-purple) !important;
-}
-
-.function-variable {
-  color: #f9eea8 !important;
-}
-
-.imports {
-  color: #a8d7f3 !important ;
-}
-
-.class-name {
-  color: #b1f5dc !important;
-}
-
-.punctuation:not(.tag) {
-  color: #f9eea8 !important;
-}
-
-.tag:not(.class-name, .attr-value, .attr-name, .punctuation) {
-  color: #a8d7f3 !important;
-}
-
-.attr-value,
-.string {
-  color: var(--aura-code-orange) !important;
-}
-
-
-.operator {
-  color: #a0cce7 !important;
-}
-
-div[data-reach-dialog-content] .ladle-button {
-  border-color: #a9bcc7 !important;
-} */
-
-
