@@ -14,9 +14,7 @@ body
     overflow-x hidden  
 
 main 
-    min-height 100vh
     padding 0
-    margin 0 auto 
     display flex
     flex-direction column
     justify-content center
@@ -30,6 +28,15 @@ main
     justify-content: flex-start
     background-color var(--aura-accents-0)
     color var(--aura-accents-10)
+    &-pancake
+        display: grid
+        grid-template-rows: auto 1fr auto
+        min-height: 100vh;
+    &-dashboard
+        display: grid
+        grid-template-rows: auto 1fr auto
+        grid-template-columns: 100px 1fr
+        min-height: 100vh;
         
 
 *

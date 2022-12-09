@@ -3,7 +3,6 @@
 // Licensed under MIT - see LICENSE.txt 
 // Aura Design System
 
-
 .white-text
     color var(--aura-white)!important
 
@@ -24,6 +23,6 @@ status = "warning" "info" "danger" "success"
 
 for state in status
   .{state}
-    background-color: var(replace("state", state, --aura-state))
+    background-color: var(replace("state", state, --aura-accents-state-bg))!important
   .{state}-text
-    color: var(replace("state", state, --aura-accents-state-bg))!important
+    color: var(replace("state", state, --aura-accents-state))!important
