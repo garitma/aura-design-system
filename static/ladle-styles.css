@@ -1,9 +1,6 @@
 :root {
   --ladle-bg-color-secondary: var(--aura-purple);
   --ladle-color-accent: var(--aura-accents-info);
-  --aura-code-purple: #9c5cee;
-  --aura-code-orange: #da6321;
-  --aura-code-blue: #a0cce7 
 }
 
 .ladle-code {
