@@ -6,11 +6,11 @@
   "dependencies": {
     "@prismicio/client": "^6.7.1",
     "@prismicio/helpers": "^2.3.5",
-    "@prismicio/next": "^0.1.7",
+    "@prismicio/next": "^1.0.2",
     "@prismicio/react": "^2.5.0",
     "@prismicio/slice-simulator-react": "^0.2.2",
-    "aura-design": "^0.2.4",
-    "next": "12.3.0",
+    "aura-design": "^0.3.0",
+    "next": "^13.0.6",
     "nprogress": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

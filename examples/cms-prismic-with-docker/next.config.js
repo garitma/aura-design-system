@@ -22,8 +22,7 @@ module.exports = async () => {
       defaultLocale: locales[0],
     },
     images: {
-      loader: "imgix",
-      path: "",
+      domains: ['images.prismic.io'],
     },
   };
 };

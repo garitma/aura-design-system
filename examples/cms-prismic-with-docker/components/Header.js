@@ -1,8 +1,9 @@
 import { useState } from "react";
-import Link from "next/link";
+import { PrismicNextImage } from "@prismicio/next";
 import Icon from "aura-design/icon";
 import Button from "aura-design/button";
 
+import Link from "@components/Link";
 import Image from "@components/Image";
 import Menu from "@components/Menu";
 
@@ -14,9 +15,9 @@ const Header = ({ menu }) => {
       <div className="smush aura">
         <ul className="nav-list">
           <li className="item">
-            <Link href="/">
-              <a className="halo">
-                <Image {...menu.data.logo} priority={true} />
+            <Link href="/" className="halo">
+              <a>
+                <PrismicNextImage field={menu.data.logo} />
               </a>
             </Link>
           </li>
