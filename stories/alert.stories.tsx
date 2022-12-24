@@ -3,12 +3,12 @@ import Alert from "../molecules/alert";
 
 export const warningAlert = () => (
   <Alert
-    state={{ info: { message: "This is a warning alert", error: false } }}
+    state={{ info: { message: "This is a warning alert", isError: false } }}
   />
 );
 
 export const dangerAlert = () => (
   <Alert
-    state={{ info: { message: "This is a danger alert", error: true } }}
+    state={{ info: { message: "This is a danger alert", isError: true } }}
   />
 );

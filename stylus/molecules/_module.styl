@@ -9,15 +9,6 @@
     box-sizing border-box
     position relative
     overflow hidden
-    &-media
-        position relative
-        overflow hidden
-        img
-            @extend .container
-            max-width: 100%;
-            display: block;
-            position: relative;
-            object-fit: cover;
     &-detail
         mixin-border-radius(var(--aura-radius))
         background-color var(--aura-module)
@@ -25,10 +16,6 @@
         display flex
         flex-direction: column
         flex-grow: 1
-
-.block-img
-    @extend .mod-media
-    mixin-border-radius(var(--aura-radius))
 
 
 

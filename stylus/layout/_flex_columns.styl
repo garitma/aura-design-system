@@ -1,0 +1,19 @@
+
+flexsize = (1..12)
+
+for i in flexsize 
+    .halo .small-{i}
+        flex-basis: ((100% / 12) * i)
+        max-width: ((100% / 12) * i)
+
+@media only screen and (min-width: $small)
+    for i in flexsize 
+        .halo .medium-{i}
+            flex-basis: ((100% / 12) * i)
+            max-width: ((100% / 12) * i)
+
+@media only screen and (min-width: $large)
+    for i in flexsize 
+        .halo .large-{i}
+            flex-basis: ((100% / 12) * i)
+            max-width: ((100% / 12) * i)

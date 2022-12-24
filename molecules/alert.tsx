@@ -4,7 +4,7 @@ export interface AlertProps extends SharedBasic {
   state?: {
     info: {
       message: string;
-      error?: boolean;
+      isError?: boolean;
     };
   };
   isPushBottom?: boolean;
@@ -21,7 +21,15 @@ const Alert = ({
 }: AlertProps) => {
   const isActive = state?.info?.message || message;
 
-  const classConnect: string[] = [className!, "mod", "aura"];
+  const classConnect: string[] = [className!, "mod", "aura" ];
+
+  console.log(state)
+
+  if(state?.info?.isError ) {
+    classConnect.push("danger-text danger")
+  } else {
+    classConnect.push("info-text info")
+  }
 
   return (
     <>
