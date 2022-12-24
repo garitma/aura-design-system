@@ -5,10 +5,7 @@ import Button from "aura-design/button";
 
 const Header = ({ text }) => {
   return (
-    <header
-      className="blue aura anchor"
-      style={{ overflow: "hidden" }}
-    >
+    <header className="blue aura anchor" style={{ overflow: "hidden" }}>
       <div>
         <Image
           src="https://images.prismic.io/garitma/f87649d7-9c04-482c-8065-5896201ced9d_mint-aura.jpg?auto=compress,format"
@@ -32,15 +29,30 @@ const Header = ({ text }) => {
               </a>
             </Link>
           </li>
-          <li className="mod">
-            <Button
-              mode="link"
-              href="https://github.com/garitma/aura-design-system"
-              target="_blank"
-              rel="noopener"
-            >
-              <Icon sprite="github" />
-            </Button>
+          <li>
+            <ul className="nav-list">
+              <li className="anchor item">
+                <Button
+                  mode="link"
+                  href="https://ladle.auradesignsystem.com"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Ladle
+                </Button>
+              </li>
+              <li className="item">
+                <Button
+                  mode="link"
+                  href="https://github.com/garitma/aura-design-system"
+                  target="_blank"
+                  rel="noopener"
+                  className="mod"
+                >
+                  <Icon sprite="github" />
+                </Button>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
