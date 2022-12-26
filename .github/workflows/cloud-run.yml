@@ -3,7 +3,7 @@ name: next-aura-design
 on:
   push:
     branches:
-      - main
+      - prod
 
 env:
   CLOUD_RUN_PROJECT_ID: ${{ secrets.CLOUD_RUN_PROJECT_NAME }}
