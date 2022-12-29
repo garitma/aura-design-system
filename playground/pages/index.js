@@ -7,7 +7,7 @@ import SandboxCode from "@components/SandboxCode"
 const Home = ({ doc, menu }) => {
   return (
     <Layout menu={menu}>
-      <Grid col="two" className="vfluid">
+      <Grid col="two" className="vfluid gap0">
         <SandboxCode />
       </Grid>
     </Layout>
