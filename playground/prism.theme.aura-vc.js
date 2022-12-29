@@ -1,71 +1,71 @@
-// Original: https://github.com/dracula/visual-studio-code
 // Converted automatically using ./tools/themeFromVsCode
 var theme = {
   plain: {
-    color: "#F8F8F2",
-    backgroundColor: "#282A36",
+    color: "#d4d4d4",
+    backgroundColor: "#0c122b",
   },
   styles: [
     {
-      types: ["prolog", "constant", "builtin"],
+      types: ["comment"],
       style: {
-        color: "rgb(189, 147, 249)",
-      },
-    },
-    {
-      types: ["inserted", "function"],
-      style: {
-        color: "rgb(80, 250, 123)",
-      },
-    },
-    {
-      types: ["deleted"],
-      style: {
-        color: "rgb(255, 85, 85)",
-      },
-    },
-    {
-      types: ["changed"],
-      style: {
-        color: "rgb(255, 184, 108)",
-      },
-    },
-    {
-      types: ["punctuation", "symbol"],
-      style: {
-        color: "#B493E1",
+        fontWeight: "bold",
       },
     },
     {
       types: ["token", "tag", "attr-value"],
       style: {
-        color: "#F1BFA3",
+        color: "#fbbc9f",
       },
     },
     {
-      types: ["string", "char", "tag", "selector"],
+      types: ["comment", "punctuation", "hexcode"],
       style: {
-        color: "#ACDCF8",
+        color: "#CD9FFB",
       },
     },
     {
-      types: ["keyword", "variable"],
+      types: [
+        "variable",
+        "keyword",
+        "tag",
+        "deleted",
+        "builtin",
+        "number",
+        "char",
+        "constant",
+      ],
       style: {
-        color: "rgb(189, 147, 249)",
-        fontStyle: "italic",
+        color: "#9FDEFB",
       },
     },
     {
-      types: ["comment"],
+      types: ["function"],
       style: {
-        color: "#C6A1F5",
-        fontWeight: "bold"
+        color: "#FBEE9F",
       },
     },
     {
-      types: ["attr-name"],
+      types: ["string", "symbol", "inserted"],
       style: {
-        color: "#B493E1",
+        color: "#FBBC9F",
+      },
+    },
+    {
+      types: ["changed"],
+      style: {
+        color: "#9FFBDE",
+      },
+    },
+    {
+      types: ["attr-name", "selector"],
+      style: {
+        color: "#C792EA",
+      },
+    },
+    {
+      types: ["regex"],
+      style: {
+        color: "#89DDFF",
       },
     },
   ],
