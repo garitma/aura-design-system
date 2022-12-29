@@ -1,0 +1,19 @@
+[
+  {
+    "variation": "default-slice",
+    "version": "sktwi1xtmkfgx8626",
+    "items": [
+      {
+        "subSectionTitle": "coach",
+        "subSectionLink": {
+          "link_type": "Web",
+          "url": "https://slicemachine.dev"
+        }
+      }
+    ],
+    "primary": {
+      "sectionTitle": "negative"
+    },
+    "slice_type": "menu_sub_tab"
+  }
+]
