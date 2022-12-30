@@ -11,7 +11,6 @@ import { PrismicPreview } from "@prismicio/next";
 import { linkResolver, repositoryName } from "@utils/prismic-client";
 import { GTM_ID, pageview } from "@utils/gtag";
 import "public/style.css";
-import "public/aura.css";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();

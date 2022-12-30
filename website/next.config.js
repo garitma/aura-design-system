@@ -1,4 +1,3 @@
-
 const prismic = require("@prismicio/client");
 
 const sm = require("./sm.json");
@@ -15,12 +14,15 @@ module.exports = async () => {
   return {
     reactStrictMode: true,
     i18n: {
+      // These are all the locales you want to support in
+      // your application
       locales,
+      // This is the default locale you want to be used when visiting
+      // a non-locale prefixed path e.g. `/hello`
       defaultLocale: locales[0],
     },
     images: {
-      loader: "imgix",
-      path: "",
+      domains: ["images.prismic.io"],
     },
   };
 };

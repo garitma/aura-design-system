@@ -1,7 +1,9 @@
 {
   "apiEndpoint": "https://auradesign.prismic.io/api/v2",
+  "localSliceSimulatorURL": "http://localhost:3000/slice-simulator",
   "libraries": [
-    "@/slices"
+    "@/slices/marketing",
+    "@/slices/navigation"
   ],
   "_latest": "0.4.2"
 }

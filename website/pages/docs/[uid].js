@@ -1,53 +1,25 @@
 import * as prismicH from "@prismicio/helpers";
 import { SliceZone } from "@prismicio/react";
 
-import { components } from "@slices/index";
+import { components } from "@slices/marketing";
 import { createClient, linkResolver } from "@utils/prismic-client";
 import Layout from "@components/Layout";
 
 const Documents = ({ doc }) => {
-  // const seo = {
-  //   title: prismicH.asText(doc.data.title),
-  //   excerpt: prismicH.asText(doc.data.excerpt),
-  // };
-
-  // const formatBody = () => {
-  //   let newBody = [];
-  //   let tableTransition = [];
-
-  //   for (const slice of doc.data.body) {
-  //     if (["table", "table_row", "table_footer"].includes(slice.slice_type)) {
-  //       tableTransition.push(slice);
-  //       if (["table_footer"].includes(slice.slice_type)) {
-  //         let virtualSlice = {
-  //           primary: null,
-  //           items: tableTransition,
-  //           id: tableTransition.map((item) => item.id).join("-"),
-  //           slice_type: "table_group",
-  //         };
-  //         newBody.push(virtualSlice);
-  //         virtualSlice = [];
-  //       }
-  //     } else {
-  //       newBody.push(slice);
-  //     }
-  //   }
-
-  //   return newBody;
-  // };
+   const seo = {
+     title: prismicH.asText(doc.data.title),
+     excerpt: prismicH.asText(doc.data.excerpt),
+   };
 
   return (
-    <Layout text="Aura Design System">
+    <Layout text="Aura Design System" seo={seo}>
       <div>
         <div className="aureole docs">
           <div className="pad purple">{/* <SidebarMenu />  */}</div>
-          <article className="pad accents-1 h6 ulinea">
+          <article className="pad ulinea">
             <div className="smash">
               <h1>{prismicH.asText(doc.data.title)}</h1>
-              <SliceZone
-                slices={doc.data.slices}
-                components={components}
-              />
+              <SliceZone slices={doc.data.slices} components={components} />
             </div>
           </article>
         </div>

@@ -7,7 +7,11 @@ import Layout from "@components/Layout";
 
 const Home = ({ page, preview, layout }) => (
   <Layout text="Aura Design System">
-    <Section color="teal-green" container="smash" subClassName="motion-fadeUp mounted centertxt">
+    <Section
+      color="teal-green"
+      container="smash"
+      className="motion-fadeUp mounted centertxt"
+    >
       <h1 className="mb0 ">Build beautiful products</h1>
       <p className="">
         Aura Design System is Garitma's <b>open source</b> space-oriented design
@@ -45,7 +49,7 @@ const Home = ({ page, preview, layout }) => (
         />
       </div>
     </Section>
-    <Section subClassName="motion-fadeUp mounted" color="pink" >
+    <Section className="motion-fadeUp mounted" color="pink">
       <div className="aureole two">
         <div className="one ">
           <img
@@ -55,12 +59,8 @@ const Home = ({ page, preview, layout }) => (
           />
         </div>
         <div className="two ">
-          <h2>
-            There is something you should know in time
-          </h2>
-          <h3 className="light">
-            Let's be clear, I don't care about you
-          </h3>
+          <h2>There is something you should know in time</h2>
+          <h3 className="light">Let's be clear, I don't care about you</h3>
           <p>
             Aura Design System is built under its own rules, it is very
             structured and not very flexible, designed to solve my problems. If
@@ -74,7 +74,7 @@ const Home = ({ page, preview, layout }) => (
         </div>
       </div>
     </Section>
-    <Section subClassName="motion-fadeUp center-text"  color="purple">
+    <Section className="motion-fadeUp center-text" color="purple">
       <h3>Aura</h3>
       <pre className="smosh h6">
         The halo of light that surrounds us
@@ -104,7 +104,7 @@ const Home = ({ page, preview, layout }) => (
         the colors.
       </pre>
     </Section>
-    <Section color="purple" subClassName="motion-fadeUp mounted"  className="centertxt">
+    <Section color="purple" className="motion-fadeUp mounted centertxt">
       <div>
         <Image
           src="https://images.prismic.io/garitma/1d0668d0-b0ff-4d2b-af15-2a1dde5235f9_keyvisual-aura-design-system.png?auto=compress,format"

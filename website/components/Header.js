@@ -57,7 +57,7 @@ const Header = ({ text }) => {
         </ul>
       </div>
       <div className="anchor">
-        <h1 className="light centertxt mb0 motion-fadeUp mounted">{text}</h1>
+        <h1 className="light centertxt mb0">{text}</h1>
       </div>
     </header>
   );

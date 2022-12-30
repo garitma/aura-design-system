@@ -1,0 +1,33 @@
+{
+  "id": "home",
+  "label": "Home",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "Title",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "single": "heading1"
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "hero_section_split": {
+              "type": "SharedSlice"
+            },
+            "section_grid_cards": {
+              "type": "SharedSlice"
+            }
+          }
+        }
+      }
+    }
+  }
+}

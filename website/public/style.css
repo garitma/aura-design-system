@@ -25,7 +25,7 @@ span.code {
   }
 }
 
-.ulinea a.not-line {
+.ulinea .not-line {
   text-decoration: none !important;
 }
 
@@ -33,19 +33,7 @@ span.code {
   font-family: "iAWriterMonoS" !important;
 }
 
-.sticky {
-  position: sticky;
-  top: 13px;
-}
-
-hr {
-  border: 0;
-}
-
-.table-group {
-  overflow-x: auto;
-}
-
-.table-group .halo {
-  min-width: 600px;
+.code-box {
+  --aura-accents-4: #172353;
+  --aura-link-hover: #141A3D
 }
