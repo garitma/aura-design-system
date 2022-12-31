@@ -31,7 +31,7 @@ const Header = ({ text }) => {
               <li className="mod">
                 <Button
                   mode="link"
-                  href="https://github.com/garitma/aura-design-system/tree/main/examples/next-base"
+                  href="https://github.com/garitma/aura-design-system/tree/canary/examples/with-magic-with-docker"
                   target="_blank"
                   rel="noopener"
                 >

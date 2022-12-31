@@ -8,7 +8,7 @@ Execute create-next-app with [npm](https://docs.npmjs.com/cli/init), to bootstra
 
 
 ```bash
-npx create-next-app with-chrome-extension --use-npm --example "https://github.com/garitma/aura-design-system/tree/main/examples/with-chrome-extension"
+npx create-next-app with-chrome-extension --use-npm --example "https://github.com/garitma/aura-design-system/tree/canary/examples/with-chrome-extension"
 ```
 
 ```bash

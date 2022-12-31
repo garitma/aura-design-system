@@ -30,7 +30,7 @@ const Home = () => {
             </div>
           </a>
           <a
-            href="https://github.com/garitma/aura-design-system/tree/main/examples"
+            href="https://github.com/garitma/aura-design-system/tree/canary/examples"
             target="_blank"
             className="mod"
           >

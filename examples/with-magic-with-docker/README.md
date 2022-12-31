@@ -128,7 +128,7 @@ gh secret set CLOUD_RUN_PROJECT_NAME -b "SA_NAME@PROJECT_ID.iam.gserviceaccount.
 Execute create-next-app with [npm](https://docs.npmjs.com/cli/init), to bootstrap the example:
 
 ```bash
-npx create-next-app next-base --use-npm --example "https://github.com/garitma/aura-design-system/tree/main/examples/next-base"
+npx create-next-app next-base --use-npm --example "https://github.com/garitma/aura-design-system/tree/canary/examples/next-base"
 ```
 
 Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).

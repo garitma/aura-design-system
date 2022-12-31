@@ -22,7 +22,7 @@ const Header = ({ text }) => {
           <li className="mod">
             <Button
               mode="link"
-              href="https://github.com/garitma/aura-design-system/tree/main/examples/next-base"
+              href="https://github.com/garitma/aura-design-system/tree/canary/examples/with-chrome-extension-with-magic"
               target="_blank"
               rel="noopener"
             >

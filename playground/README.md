@@ -152,5 +152,5 @@ gh secret set CLOUD_RUN_PROJECT_NAME -b "SA_NAME@PROJECT_ID.iam.gserviceaccount.
 Execute create-next-app with [npm](https://docs.npmjs.com/cli/init) to bootstrap the example:
 
 ```bash
-npx create-next-app next-base --use-npm --example "https://github.com/garitma/aura-design-system/tree/main/examples/cms-prismic-with-docker"
+npx create-next-app next-base --use-npm --example "https://github.com/garitma/aura-design-system/tree/canary/examples/cms-prismic-with-docker"
 ```
