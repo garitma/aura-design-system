@@ -8,6 +8,11 @@
 
 *:root {
   --aura-font-stack: ryo-gothic-plusn, sans-serif;
+  --aura-accents-4: #0d1229;
+  --aura-accents-3: #172353;
+  --aura-module: #172353;
+  --aura-link-hover: #141a3d;
+  --aura-text-primary: #fff
 }
 
 .ulinea .not-line {
@@ -20,6 +25,16 @@
   --aura-font-stack: "iAWriterMonoS"
 }
 
+.code-box pre {
+  white-space: nowrap!important;
+  max-height: 90vh;
+  overflow: scroll;
+}
+
 .prism-code {
   padding-top: 65px;
+}
+
+.preview {
+  min-height: 70vh;
 }

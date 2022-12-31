@@ -5,21 +5,24 @@ import Button from "aura-design/button";
 
 const Header = ({ text }) => {
   return (
-    <header className="purple aura">
-      <div className="smush wall-pad">
+    <header className="accents-4 white-text aura">
+      <div className="smesh wall-pad">
         <ul className="nav-list">
-          <li className="logo-circle">
+          <li>
             <Link href="/" className="halo">
               <Image
                 src="/logo.png"
-                width={48}
-                height={48}
+                width={64}
+                height={64}
                 priority={true}
                 alt="Logo Aura Design"
               />
+              <span className="valign wall-pad">
+                <span className="warning warning-text wall-pad">Play</span>
+              </span>
             </Link>
           </li>
-          <li className="mod">
+          <li className="mod dark">
             <Button
               mode="link"
               href="https://github.com/garitma/aura-design-system"

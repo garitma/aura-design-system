@@ -1,8 +1,9 @@
 import { useState, useRef, useCallback, Fragment, useEffect } from "react";
+import Icon from "aura-design/icon";
 import sanitizeHtml from "sanitize-html";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import { useEditable } from "use-editable";
-import Icon from "aura-design/icon";
+import useClipboard from "react-use-clipboard";
 
 import auraVC from "prism.theme.aura-vc";
 import "aura-design/style.css";
@@ -21,7 +22,7 @@ const SandboxCode = () => {
   }
   `);
   const [codeHTML, setCodeHTML] = useState(`<!--
-  Welcome to Aura Design Play, the official Aura Design playground!
+  Welcome to Aura Design Playground, the official Aura Design Playground!
 
   Everything here works just as vanilla html and css.
   
@@ -29,15 +30,25 @@ const SandboxCode = () => {
   -->
 
   <section class="vfluid valign blue pad">
-      <div class="mod">
-        <div class="mod-detail">
-          <h3>Card example</h3>
-          <p>This is an playground</p>
+    <div class="pad smosh">
+        <div class="mod">
+          <div class="mod-media zoom">
+            <img src="https://images.prismic.io/garitma/6435685c-7367-4bad-a9f2-8d382e324954_keyvisual.png?auto=compress&fit=crop&w=1200&h=570" />
+          </div>
+          <div class="mod-detail">
+            <h3>Card example</h3>
+            <p>This is a playground description.</p>
+          </div>
         </div>
       </div>
   </section>
 `);
-
+  const [isCopied, setCopied] = useClipboard(
+    { HTML: codeHTML, CSS: codeCSS }[view],
+    {
+      successDuration: 1300,
+    }
+  );
   const tabs = ["HTML", "CSS"];
 
   useEffect(() => setIsMounted(true));
@@ -107,9 +118,11 @@ const SandboxCode = () => {
                 })}
               </li>
               <li>
-                <button className="button-link not-line">
+                <button className="button-link not-line" onClick={setCopied}>
                   <Icon sprite="copy" className="dark before" />{" "}
-                  <span className="white-text">Copy</span>
+                  <span className="white-text">
+                    {isCopied ? "Copied!" : "Copy"}
+                  </span>
                 </button>
               </li>
             </ul>
@@ -129,7 +142,7 @@ const SandboxCode = () => {
                 "m0",
                 "pad",
                 "vfluid",
-                "flow-x",
+                "code",
                 view != "HTML" ? "hidden" : "",
               ]
                 .join(" ")
@@ -193,7 +206,7 @@ const SandboxCode = () => {
             <style>${codeCSS}</style>
             ${clean}
           `}
-            className="fluid vfluid b0"
+            className="fluid vfluid b0 preview"
           >
             <p>Your browser does not support iframes.</p>
           </iframe>

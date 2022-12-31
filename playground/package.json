@@ -10,6 +10,7 @@
     "prism-react-renderer": "^1.3.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-use-clipboard": "^1.0.9",
     "sanitize-html": "^2.8.1",
     "use-editable": "^2.3.3"
   },

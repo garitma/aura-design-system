@@ -27,7 +27,7 @@ const Layout = ({ children, text, seo, menu }) => (
       <Header text={text} menu={menu} />
       <main>{children} </main>
     </div>
-    {/* <Footer /> */}
+    <Footer />
   </div>
 );
 

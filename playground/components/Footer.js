@@ -5,7 +5,7 @@ import Icon from "aura-design/icon";
 
 const Footer = () => {
   return (
-    <footer>
+    <footer className="accents-3 white-text">
       <Section>
         <p className="centertxt">
           Powered by{" "}
