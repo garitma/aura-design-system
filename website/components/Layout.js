@@ -21,7 +21,7 @@ Router.events.on("routeChangeError", () => {
 const Layout = ({ children, preview, data, text, seo }) => {
   return (
     <main>
-      <div className="page">
+      <div className="page-pankake">
         <Meta {...seo} />
         <Header preview={preview} doc={data} text={text} />
         <div className="page-body">{children}</div>
