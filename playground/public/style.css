@@ -26,7 +26,7 @@
 }
 
 .code-box pre {
-  white-space: nowrap!important;
+  white-space: pre!important;
   max-height: 90vh;
   overflow: scroll;
 }
