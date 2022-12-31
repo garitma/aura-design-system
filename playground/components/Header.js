@@ -1,53 +1,38 @@
-import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import Icon from "aura-design/icon";
 import Button from "aura-design/button";
-import Image from "next/image";
 
-import Link from "@components/Link";
-
-const Header = ({ menu }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
+const Header = ({ text }) => {
   return (
-    <header className="aura purple">
-      <div className="smush aura">
+    <header className="purple aura">
+      <div className="smush wall-pad">
         <ul className="nav-list">
-          <li className="item">
+          <li className="logo-circle">
             <Link href="/" className="halo">
-              <a>
-                <Image
-                  src="/logo.png"
-                  width={48}
-                  height={48}
-                  priority={true}
-                  alt="Logo Aura Design"
-                />
-              </a>
+              <Image
+                src="/logo.png"
+                width={48}
+                height={48}
+                priority={true}
+                alt="Logo Aura Design"
+              />
             </Link>
           </li>
-          <li></li>
-          <li className="hide-large">
-            <Button mode="link" onClick={() => setIsOpen(true)}>
-              <Icon sprite={"menu"} />
+          <li className="mod">
+            <Button
+              mode="link"
+              href="https://github.com/garitma/aura-design-system/tree/main/examples/next-base"
+              target="_blank"
+              rel="noopener"
+            >
+              <Icon sprite="github" />
             </Button>
-          </li>
-          <li className="hide-small hide-medium">
-            <ul className="nav-list"></ul>
           </li>
         </ul>
       </div>
-      <div className={`smush anchor ${!isOpen ? "hidden" : "active"}`}>
-        <ul className="mod-detail hold top right left bottom aureole one centertxt square">
-          <ul className="nav-list">
-            <li></li>
-            <li></li>
-            <li>
-              <Button mode="link" onClick={() => setIsOpen(false)}>
-                <Icon sprite={"close"} />
-              </Button>
-            </li>
-          </ul>
-        </ul>
+      <div>
+        <div>{text && <h1 className="light centertxt mt0 mb0">{text}</h1>}</div>
       </div>
     </header>
   );
