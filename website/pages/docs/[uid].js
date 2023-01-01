@@ -6,16 +6,15 @@ import { createClient, linkResolver } from "@utils/prismic-client";
 import Layout from "@components/Layout";
 
 const Documents = ({ doc }) => {
-   const seo = {
-     title: prismicH.asText(doc.data.title),
-     excerpt: prismicH.asText(doc.data.excerpt),
-   };
+  const seo = {
+    title: prismicH.asText(doc.data.title),
+    excerpt: prismicH.asText(doc.data.excerpt),
+  };
 
   return (
     <Layout text="Aura Design System" seo={seo}>
       <div>
-        <div className="aureole docs">
-          <div className="pad purple">{/* <SidebarMenu />  */}</div>
+        <div>
           <article className="pad ulinea">
             <div className="smash">
               <h1>{prismicH.asText(doc.data.title)}</h1>

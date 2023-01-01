@@ -1,0 +1,38 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "section_title": {
+        "__TYPE__": "FieldContent",
+        "value": "plates",
+        "type": "Text"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "link",
+            {
+              "__TYPE__": "LinkContent",
+              "value": {
+                "__TYPE__": "DocumentLink",
+                "id": "mock_document_id"
+              }
+            }
+          ],
+          [
+            "link_label",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "dish",
+              "type": "Text"
+            }
+          ]
+        ]
+      }
+    ]
+  }
+]

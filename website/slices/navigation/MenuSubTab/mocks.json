@@ -1,0 +1,38 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "sectionTitle": {
+        "__TYPE__": "FieldContent",
+        "value": "tank",
+        "type": "Text"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "subSectionTitle",
+            {
+              "__TYPE__": "FieldContent",
+              "value": "horse",
+              "type": "Text"
+            }
+          ],
+          [
+            "subSectionLink",
+            {
+              "__TYPE__": "LinkContent",
+              "value": {
+                "__TYPE__": "ExternalLink",
+                "url": "https://prismic.io"
+              }
+            }
+          ]
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,52 @@
+{
+  "copyright": {
+    "__TYPE__": "FieldContent",
+    "value": "connected",
+    "type": "Text"
+  },
+  "body": {
+    "__TYPE__": "SliceContentType",
+    "value": [
+      {
+        "key": "footer_column$0e273fec-aef5-42c5-85bb-28561085f560",
+        "name": "footer_column",
+        "widget": {
+          "__TYPE__": "SharedSliceContent",
+          "variation": "default",
+          "primary": {
+            "section_title": {
+              "__TYPE__": "FieldContent",
+              "value": "busy",
+              "type": "Text"
+            }
+          },
+          "items": [
+            {
+              "__TYPE__": "GroupItemContent",
+              "value": [
+                [
+                  "link",
+                  {
+                    "__TYPE__": "LinkContent",
+                    "value": {
+                      "__TYPE__": "DocumentLink",
+                      "id": "mock_document_id"
+                    }
+                  }
+                ],
+                [
+                  "link_label",
+                  {
+                    "__TYPE__": "FieldContent",
+                    "value": "fur",
+                    "type": "Text"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

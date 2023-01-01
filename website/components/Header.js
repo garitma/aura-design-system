@@ -1,63 +1,59 @@
-import Link from "next/link";
-import Image from "next/image";
+import { useState } from "react";
+import { PrismicNextImage } from "@prismicio/next";
 import Icon from "aura-design/icon";
 import Button from "aura-design/button";
 
-const Header = ({ text }) => {
+import Link from "@components/Link";
+import Image from "@components/Image";
+import Menu from "@components/Menu";
+
+const Header = ({ menu }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <header className="blue aura anchor" style={{ overflow: "hidden" }}>
-      <div>
-        <Image
-          src="https://images.prismic.io/garitma/f87649d7-9c04-482c-8065-5896201ced9d_mint-aura.jpg?auto=compress,format"
-          layout="fill"
-          objectFit="cover"
-          priority={true}
-        />
-      </div>
-      <div className="smush wall-pad">
+    <header className="aura purple">
+      <div className="smush aura">
         <ul className="nav-list">
-          <li className="logo-circle">
-            <Link href="/">
-              <a className="halo">
-                <Image
-                  src="https://images.prismic.io/garitma%2F05577a45-7699-442d-bce7-1cb85fbbf552_favicon-aura.png?auto=compress,format&w=96"
-                  width={48}
-                  height={48}
-                  priority={true}
-                  alt="Logo Garitma"
-                />
+          <li className="item">
+            <Link href="/" className="halo">
+              <a>
+                <PrismicNextImage field={menu.data.logo} />
               </a>
             </Link>
           </li>
-          <li>
+          <li></li>
+          <li className="hide-large">
+            <Button mode="link" onClick={() => setIsOpen(true)}>
+              <Icon sprite={"menu"} />
+            </Button>
+          </li>
+          <li className="hide-small hide-medium">
             <ul className="nav-list">
-              <li className="anchor item">
-                <Button
-                  mode="link"
-                  href="https://ladle.auradesignsystem.com"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  Ladle
-                </Button>
-              </li>
-              <li className="item">
-                <Button
-                  mode="link"
-                  href="https://github.com/garitma/aura-design-system"
-                  target="_blank"
-                  rel="noopener"
-                  className="mod"
-                >
-                  <Icon sprite="github" />
-                </Button>
-              </li>
+              <Menu
+                onClose={() => setIsOpen(false)}
+                menuTabs={menu.data.menuTabs}
+              />
             </ul>
           </li>
         </ul>
       </div>
-      <div className="anchor">
-        <h1 className="light centertxt mb0">{text}</h1>
+      <div className={`smush anchor ${!isOpen ? "hidden" : "active"}`}>
+        <ul className="mod-detail hold top right left bottom aureole one centertxt square">
+          <ul className="nav-list">
+            <li></li>
+            <li></li>
+            <li>
+              <Button mode="link" onClick={() => setIsOpen(false)}>
+                <Icon sprite={"close"} />
+              </Button>
+            </li>
+          </ul>
+          <Menu
+            onClose={() => setIsOpen(false)}
+            menuTabs={menu.data.menuTabs}
+            isMobile
+          />
+        </ul>
       </div>
     </header>
   );

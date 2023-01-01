@@ -1,0 +1,32 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "languaje": {
+        "__TYPE__": "FieldContent",
+        "type": "Select",
+        "value": "HTML"
+      },
+      "code_snippet": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "preformatted",
+            "content": {
+              "text": "<!--\n  Welcome to Aura Design Playground, the official Aura Design Playground!\n\n  Everything here works just as vanilla html and css.\n  \n  Feel free to play with this example.\n  -->\n\n  <section class=\"vfluid valign blue pad\">\n    <div class=\"pad smosh\">\n        <div class=\"mod\">\n          <div class=\"mod-media zoom\">\n            <img src=\"https://images.prismic.io/garitma/6435685c-7367-4bad-a9f2-8d382e324954_keyvisual.png?auto=compress&fit=crop&w=1200&h=570\" />\n          </div>\n          <div class=\"mod-detail\">\n            <h3>Card example</h3>\n            <p>This is a playground description.</p>\n          </div>\n        </div>\n      </div>\n  </section>",
+              "spans": []
+            },
+            "direction": "ltr"
+          }
+        ]
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

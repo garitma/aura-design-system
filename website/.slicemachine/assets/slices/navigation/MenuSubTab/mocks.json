@@ -1,0 +1,19 @@
+[
+  {
+    "variation": "default",
+    "version": "sktwi1xtmkfgx8626",
+    "items": [
+      {
+        "subSectionTitle": "add",
+        "subSectionLink": {
+          "link_type": "Web",
+          "url": "http://twitter.com"
+        }
+      }
+    ],
+    "primary": {
+      "sectionTitle": "silly"
+    },
+    "slice_type": "menu_sub_tab"
+  }
+]

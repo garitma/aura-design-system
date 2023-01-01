@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React from "react";
 import Router from "next/router";
 import NProgress from "nprogress";
 
@@ -18,17 +18,15 @@ Router.events.on("routeChangeError", () => {
   NProgress.done();
 });
 
-const Layout = ({ children, preview, data, text, seo }) => {
-  return (
-    <main>
-      <div className="page-pankake">
-        <Meta {...seo} />
-        <Header preview={preview} doc={data} text={text} />
-        <div className="page-body">{children}</div>
-        <Footer doc={data} />
-      </div>
-    </main>
-  );
-};
+const Layout = ({ children, text, seo, menu }) => (
+  <main>
+    <div className="page">
+      <Meta {...seo} />
+      <Header text={text} menu={menu} />
+      <div className="page-body">{children}</div>
+      <Footer />
+    </div>
+  </main>
+);
 
 export default Layout;

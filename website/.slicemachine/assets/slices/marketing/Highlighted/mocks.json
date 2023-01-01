@@ -1,0 +1,26 @@
+[
+  {
+    "variation": "default",
+    "version": "sktwi1xtmkfgx8626",
+    "items": [
+      {}
+    ],
+    "primary": {
+      "title": [
+        {
+          "type": "heading1",
+          "text": "Night",
+          "spans": []
+        }
+      ],
+      "description": [
+        {
+          "type": "paragraph",
+          "text": "Incididunt et pariatur eiusmod ullamco. Consequat aliquip eu occaecat minim amet deserunt incididunt ipsum ea culpa. Sit veniam laboris officia et qui reprehenderit irure ad minim veniam.",
+          "spans": []
+        }
+      ]
+    },
+    "slice_type": "highlighted"
+  }
+]
