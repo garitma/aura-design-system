@@ -53,7 +53,7 @@ const SandboxCode = () => {
 
   useEffect(() => setIsMounted(true));
 
-  const clean = sanitizeHtml(codeHTML, {
+  const cleanHTML = sanitizeHtml(codeHTML, {
     allowedTags: [
       "img",
       "div",
@@ -76,6 +76,8 @@ const SandboxCode = () => {
       allowedSchemes: ["http", "https"],
     },
   });
+
+  const cleanCSS = sanitizeHtml(codeCSS);
 
   const onEditableChange = useCallback((code) => {
     setCodeHTML(code.slice(0, -1));
@@ -203,8 +205,8 @@ const SandboxCode = () => {
         {isMounted && (
           <iframe
             srcDoc={`<link rel="stylesheet" href="/sandbox.css"/>
-            <style>${codeCSS}</style>
-            ${clean}
+            <style>${cleanCSS}</style>
+            ${cleanHTML}
           `}
             className="fluid vfluid b0 preview"
           >
