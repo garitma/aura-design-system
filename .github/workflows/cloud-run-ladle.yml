@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - production
+      - production-ladle
 
 env:
   CLOUD_RUN_PROJECT_ID: ${{ secrets.CLOUD_RUN_PROJECT_NAME }}

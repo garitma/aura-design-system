@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - production
+      - production-website
 
 env:
   CLOUD_RUN_PROJECT_ID: ${{ secrets.CLOUD_RUN_PROJECT_NAME }}
