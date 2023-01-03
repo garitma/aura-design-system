@@ -14,7 +14,7 @@
     "react-dom": "^18.2.0"
   },
   "scripts": {
-    "dev": "rm -rf .next && next",
+    "dev": "next",
     "build": "rm -rf .next && next build",
     "start": "next start"
   },
