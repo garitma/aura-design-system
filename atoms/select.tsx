@@ -49,7 +49,7 @@ const Select = ({
             {placeholder && <option value="">{placeholder}</option>}
             {children}
           </select>
-          <Icon sprite="arrowDown" className="right action disable not-event" />
+          <Icon sprite="arrowDown" className="right action disable notevent" />
         </div>
       </div>
       {isHelping && <span className={`${helpMode}-text`}>{helpText}</span>}

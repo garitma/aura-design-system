@@ -4,26 +4,6 @@
 // Aura Design System
 
 $floating = floating
-$fadeup = fadeUp
-
-@keyframes {fadeup}
-  from {
-    transform: translate3d(0, 40px, 0);
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-
-@media (prefers-reduced-motion: no-preference) {
-  .motion-fadeUp.mounted {
-    animation-name: fadeup;
-    animation-duration: 1s;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: both;
-    opacity 0
-  }
-}
 
 @keyframes {floating}
   from {

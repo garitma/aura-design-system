@@ -5,7 +5,6 @@
   "files": [
     "dist",
     "style.css",
-    "style_flex_columns.css",
     "index.d.ts",
     "button.js",
     "button.d.ts",
@@ -45,7 +44,7 @@
   },
   "scripts": {
     "stylus": "stylus -w --compress stylus/style.styl -o ./style.css",
-    "build": "rm -rf dist && tsc --module commonjs && stylus --compress stylus/style.styl -o ./style.css && stylus --compress stylus/style.styl -o ./playground/public/sandbox.css && stylus --compress stylus/flex_columns.styl -o ./style_columns.css",
+    "build": "rm -rf dist && tsc --module commonjs && stylus --compress stylus/style.styl -o ./style.css && stylus --compress stylus/style.styl -o ./playground/public/sandbox.css",
     "ladle": "npx ladle serve --stories=stories",
     "build-ladle": "npx ladle build --stories=stories"
   },

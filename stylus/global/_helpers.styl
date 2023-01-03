@@ -16,16 +16,16 @@
     mixin-border-radius(50%!important) 
     z-index 4!important
 
-.centertxt, .center-text
+.centertxt
     text-align center
     &-small
         @media only screen and (max-width: $small)
             text-align: center
     
-.lefttxt, .left-text
+.lefttxt
     text-align left 
 
-.righttxt, .right-text
+.righttxt
     text-align right 
 
 .valign
@@ -49,7 +49,7 @@
     opacity var(--aura-opacity)
     cursor default
 
-.pre-disabled
+.predisabled
     opacity var(--aura-opacity)
     cursor pointer
     transition opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1)
@@ -59,12 +59,12 @@
 .typeahead
     padding-left aura * 6!important
 
-.flowx, .flow-x
+.flowx
     width: 100%;
     overflow-x: auto;
     overflow-y: hidden;
 
-.flow-cancel
+.flowcancel
     overflow hidden
 
 .truncate
@@ -87,27 +87,19 @@
 .hold
     position fixed
     z-index: 7
-    &.right
-        right 0
-    &.left
-        left 0
-    &.top
-        top 0
-    &.bottom
-        bottom 0
 
 .pin
     position absolute
     z-index: 2
-    &.right
-        right 0
-    &.left
-        left 0
-    &.top
-        top 0
-    &.bottom
-        bottom 0
 
+.right
+    right 0
+.left
+    left 0
+.top
+    top 0
+.bottom
+    bottom 0
 
 .action
     position absolute
@@ -121,7 +113,7 @@
         right aura * 4
         left auto
 
-.z-10 
+.z10 
   z-index: 10;
 
 .hidden
@@ -139,7 +131,7 @@
     .hide-large
         display none
 
-.not-event
+.notevent
     pointer-events: none;
 
 .pointer
