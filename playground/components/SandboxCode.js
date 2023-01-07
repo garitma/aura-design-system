@@ -68,6 +68,9 @@ const SandboxCode = () => {
       "b",
       "i",
       "hr",
+      "button",
+      "input",
+      "select"
     ],
     allowedAttributes: {
       "*": ["class"],

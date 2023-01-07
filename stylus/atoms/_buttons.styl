@@ -3,7 +3,16 @@
 // Licensed under MIT - see LICENSE.txt 
 // Aura Design System
 
-[class*='button-']
+a
+    text-decoration: none
+    color var(--aura-link)
+    &:visited:not([class*='button-'])
+        color: inherit
+    &:active
+        outline: var(--aura-outline)
+        outline-offset: 3px
+
+.button
     cursor pointer
     box-sizing: border-box
     margin: 0px
@@ -28,24 +37,24 @@
         transform: scale(1.03);
     &:active
         transform: scale(0.97);
-        outline 2px dotted var(--aura-outline)
+        outline: var(--aura-outline)
         outline-offset: 3px
-
 .button-fill
+    @extend .button
     border-color var(--aura-accents-primary)
     color var(--aura-text-primary-inverse)
     background-color var(--aura-accents-primary)
     &:hover:not(:disabled)
         background-color var(--aura-button-hover)
-
 .button-pill
+    @extend .button
     color var(--aura-accents-primary)
     border-color var(--aura-accents-primary)
     background-color transparent
     &:hover:not(:disabled)
         background-color var(--aura-link-hover)
-
 .button-link
+    @extend .button
     color: var(--aura-link)
     border: 0
     text-decoration: underline
@@ -53,20 +62,13 @@
     &:hover:not(:disabled)
         color: var(--aura-base-color)
         background-color: var(--aura-link-hover)
-
 .button-menu
+    @extend .button
     font-weight: bold
     padding: (aura * 0.5) aura
     border: 0
     text-decoration: none
-a
-    text-decoration: none
-    color var(--aura-accents-10)
-    &:visited:not([class*='button-'])
-        color: inherit
-    &:active
-        outline 2px dotted var(--aura-outline)
-        outline-offset: 3px
+
     
    
 

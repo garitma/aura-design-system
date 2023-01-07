@@ -23,8 +23,6 @@ const Alert = ({
 
   const classConnect: string[] = [className!, "mod", "aura" ];
 
-  console.log(state)
-
   if(state?.info?.isError ) {
     classConnect.push("danger-text danger")
   } else {
