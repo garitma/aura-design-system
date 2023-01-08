@@ -13,7 +13,7 @@
     cursor default
     margin 0 -10px
     width auto
-    height aura * 4
+    height calc(var(--aura) * 4)
     mixin-flex()
     -webkit-box-pack justify
     -ms-flex-pack justify
@@ -26,7 +26,7 @@
         position relative
         z-index 1
         display inline-block
-        padding 0 aura
+        padding 0 var(--aura)
         opacity 1
         background no-repeat
         text-decoration none

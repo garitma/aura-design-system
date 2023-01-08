@@ -7,19 +7,19 @@ hr
     border: 0
 
 .pad
-    padding: (aura * 3.5) (aura) (aura * 1.5)
+    padding: (aura * 3.5) (var(--aura)) (aura * 1.5)
     @media only screen and (max-width: $small)
-        padding: (aura * 2) aura aura aura
+        padding: (aura * 2) var(--aura) var(--aura) var(--aura)
         &-air
-            padding: (aura * 4) (aura) (aura * 4)
+            padding: (aura * 4) var(--aura) (aura * 4)
 .aura
-    padding: aura
+    padding: var(--aura)
 
 .wall-pad
-    padding 0 aura
+    padding 0 var(--aura)
 
 .uptop-pad
-    padding aura 0
+    padding var(--aura) 0
 
 .mb0
     margin-bottom: 0!important

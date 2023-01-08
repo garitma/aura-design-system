@@ -27,8 +27,8 @@ a
     mixin-transition(300ms, background, cubic-bezier(0.4, 0, 0.6, 1) linear)
     font-weight: 600
     display inline-flex
-    height (aura * 2) * 2
-    padding 0 (aura * 2)
+    height calc(var(--aura) * 4)
+    padding 0 calc(var(--aura) * 2)
     border 2px solid
     transition: transform 250ms cubic-bezier(.2,.8,.4,1);
     &:disabled
@@ -65,7 +65,7 @@ a
 .button-menu
     @extend .button
     font-weight: bold
-    padding: (aura * 0.5) aura
+    padding: calc(var(--aura) * 0.5) var(--aura)
     border: 0
     text-decoration: none
 

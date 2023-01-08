@@ -6,77 +6,88 @@
 // General
 
 html
-    font-family var(--aura-font-stack) 
-    line-height 1.21053
-    -webkit-font-smoothing: antialiased;
-    text-size-adjust: 100%;
-    text-rendering: optimizelegibility;
-    box-sizing: border-box;
+  font-family var(--aura-font-stack) 
+  line-height 1.21053
+  -webkit-font-smoothing: antialiased;
+  text-size-adjust: 100%;
+  text-rendering: optimizelegibility;
+  box-sizing: border-box;
 
 pre
-    font-family var(--aura-font-stack)
+  font-family var(--aura-font-stack)
 
 body
-    mixin-visual-scale(visualScale-base, 1, 1)
+  font-size: visualScale-base
 
 
 // Headlines
 
-h1,h2, h3, h4, h5, h6, p, .h1, .h2, .h3, .h4, .h5, .h6 {
+h1,
+h2, 
+h3, 
+h4, 
+h5, 
+h6, 
+p, 
+.h1, 
+.h2, 
+.h3, 
+.h4, 
+.h5, 
+.h6 {
   font-size: clamp(var(--min), var(--val), var(--max));
   margin: 0
   padding: 0
 }
 
-h1, .h1 {
+h1, 
+.h1 {
   --min: visualScale-h1 * 0.65; 
   --val: 3.03vw + 1rem; 
   --max: visualScale-h1; 
 }
 
-h2, .h2 {
+h2, 
+.h2 {
   --min: visualScale-h2 * 0.65; 
   --val: 3.03vw + 1rem; 
   --max: visualScale-h2; 
 }
 
 
-h3, .h3 {
+h3, 
+.h3 {
   --min: visualScale-h3 * 0.65; 
   --val: 3.03vw + 1rem; 
   --max: visualScale-h3; 
 }
 
-h4, .h4 {
+h4,
+.h4 {
   --min: visualScale-h4 * 0.65; 
   --val: 3.03vw + 1rem; 
   --max: visualScale-h4; 
 }
 
-h5, .h5 {
+h5, 
+.h5 {
   --min: visualScale-h5 * 0.75; 
   --val: 3.03vw + 1rem; 
   --max: visualScale-h5; 
 }
 
-h6, .h6 {
+h6, 
+.h6 {
   --min: visualScale-h6 * 0.85; 
   --val: 3.03vw + 1rem; 
   --max: visualScale-h6; 
 }
 
-h1+h1, h1+h2, h1+h3, h1+h4, h1+h5, h1+h6, h2+h1, h2+h2, h2+h3, h2+h4, h2+h5, h2+h6, h3+h1, h3+h2, h3+h3, h3+h4, h3+h5, h3+h6, h4+h1, h4+h2, h4+h3, h4+h4, h4+h5, h4+h6, h5+h1, h5+h2, h5+h3, h5+h4, h5+h5, h5+h6, h6+h1, h6+h2, h6+h3, h6+h4, h6+h5, h6+h6 {
-    margin-top: aura * 0.5;
-}
-
-h1+*, h2+*, h3+*, h4+*, h5+*, h6+* {
-    margin-top: aura;
-}
 
 // Content
 
 p
-    margin: aura 0
+    margin: var(--aura) 0
 
 blockquote
     font-family var(--aura-font-quotes)
@@ -84,10 +95,19 @@ blockquote
     font-weight 600
     @extend .h4
 
-ul
+ul:not(.default)
     margin 0
     padding 0
     list-style none
+  
+.article h1,
+.article h2,
+.article h3,
+.article h4,
+.article h5,
+.article h6 {
+  margin: var(--aura) 0 
+}
 
 // Weight
 

@@ -6,7 +6,7 @@
 .inputer
     @extend .wall-pad   
     position relative
-    margin-bottom aura * 1.5
+    margin-bottom: calc(var(--aura) * 1.5)
     &-group
         position: relative;
         box-sizing: border-box;
@@ -38,7 +38,7 @@ textarea:not(.default)
     font-family inherit
     font: inherit;
     height 106px
-    padding aura * 2
+    padding calc(var(--aura) * 2)
     &:disabled
         @extend .disabled
     &:focus
@@ -58,9 +58,9 @@ input:not(.default)
     color var(--aura-accents-10)
     font-family inherit
     font: inherit;
-    height aura * 4
-    padding aura *2
-    line-height aura * 4
+    height calc(var(--aura) * 4)
+    padding calc(var(--aura) * 2)
+    line-height calc(var(--aura) * 4)
     cursor: text;
     &:focus
         background var(--aura-input-bg)
@@ -69,7 +69,7 @@ input:not(.default)
     &::placeholder
         color: var(--aura-input-placeholder-color);
     &:not(:placeholder-shown):not(.naked)
-        padding aura *2.5 aura *2 aura *1.5 aura *2
+        padding calc(var(--aura) * 2.5) calc(var(--aura) * 2) calc(var(--aura) * 1.5) calc(var(--aura) * 2)
     &:placeholder-shown + label 
         cursor: text;
         max-width: 66.66%;
