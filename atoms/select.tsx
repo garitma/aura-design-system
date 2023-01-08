@@ -1,5 +1,5 @@
-import Icon from "./icon";
-import { SharedBasic, HelpType, AuraIcons } from "../types/global";
+import { ChevronDownIcon } from "@garitma/icons";
+import { SharedBasic, HelpType } from "../types/global";
 
 /**
  * Select component
@@ -11,7 +11,6 @@ export interface SelectProps extends SharedBasic {
   isLabelable?: boolean;
   helpMode?: HelpType;
   helpText?: string;
-  leftIcon?: AuraIcons;
   placeholder?: string;
   name?: string;
 }
@@ -49,7 +48,13 @@ const Select = ({
             {placeholder && <option value="">{placeholder}</option>}
             {children}
           </select>
-          <Icon sprite="arrowDown" className="right action disable notevent" />
+          <div className="dropdown disable notevent">
+            <ChevronDownIcon
+              className="icon"
+              role="presentation"
+              focusable="false"
+            />
+          </div>
         </div>
       </div>
       {isHelping && <span className={`${helpMode}-text`}>{helpText}</span>}

@@ -6,6 +6,10 @@ details > summary::-webkit-details-marker {
     display: none;
 }
 
-details[open] > summary .arrowDown {
-    transform: rotate(180deg);
+details .dropdown .icon{
+    transition: all 0.3s
+}
+
+details[open] > summary .dropdown .icon {
+    transform: rotate(180deg) translateY(50%);
 }

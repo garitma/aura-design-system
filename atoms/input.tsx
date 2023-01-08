@@ -1,21 +1,19 @@
-import {InputHTMLAttributes} from "react";
+import { InputHTMLAttributes } from "react";
 
-import Icon from "./icon";
-import { SharedBasic, HelpType, AuraIcons } from "../types/global";
+import { SharedBasic, HelpType } from "../types/global";
 
 /**
  * Input component
  */
 
-export interface InputProps extends SharedBasic, InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps
+  extends SharedBasic,
+    InputHTMLAttributes<HTMLInputElement> {
   isDisabled?: boolean;
   isHelping?: boolean;
   isLabelable?: boolean;
   helpMode?: HelpType;
   helpText?: string;
-  leftIcon?: AuraIcons;
-  rightIcon?: AuraIcons;
-  onClickRightIcon?: () => void;
   placeholder?: string;
   name?: string;
 }
@@ -26,26 +24,12 @@ const Input = ({
   isLabelable,
   helpMode = "warning",
   helpText,
-  leftIcon,
-  rightIcon,
-  onClickRightIcon,
   placeholder,
   className,
   name,
   ...props
 }: InputProps) => {
   const classConnect: string[] = [className!];
-
-  const handleOnClickRightIcon = (event: any) => {
-    event.preventDefault();
-    if(onClickRightIcon){
-      onClickRightIcon()
-    }
-  }
-
-  if (leftIcon) {
-    classConnect.push("typeahead");
-  }
 
   if (isDisabled) {
     classConnect.push("disabled");
@@ -75,14 +59,6 @@ const Input = ({
           {placeholder && isLabelable && (
             <label htmlFor={name}>{placeholder}</label>
           )}
-          {leftIcon && (
-            <Icon sprite={leftIcon} className="action left disabled" />
-          )}
-          {rightIcon && onClickRightIcon && (
-            <button className="button-link pin right" onClick={(event) => handleOnClickRightIcon(event)} type="button">
-              <Icon sprite={rightIcon} />
-            </button>
-          )} 
         </div>
         {isHelping && <span className={`${helpMode}-text`}>{helpText}</span>}
       </div>
@@ -90,6 +66,8 @@ const Input = ({
   );
 };
 
-
+Input.defaultProps = {
+  helpMode: "warning",
+};
 
 export default Input;

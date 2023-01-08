@@ -1,6 +1,6 @@
 import React from "react";
-import { User } from "../icons";
+import {UserIcon} from "@garitma/icons"
 
-export const IconUser = () => <User />;
+export const IconUser = () => <UserIcon />;
 
-export const WithFontSize = () => <User className="h1" />;
+export const WithFontSize = () => <UserIcon className="h1" />;

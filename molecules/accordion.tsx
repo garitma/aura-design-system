@@ -1,4 +1,4 @@
-import Icon from "../atoms/icon";
+import { ChevronDownIcon } from "@garitma/icons";
 import { SharedBasic, AuraHeadline, AuraColors } from "../types/global";
 
 export interface AccordionProps extends SharedBasic {
@@ -31,7 +31,13 @@ const Accordion = ({
     <details>
       <summary className={classNameConnect.join(" ").trim()}>
         {title}
-        <Icon sprite={"arrowDown"} className="pin right t03 before wall-pad" />
+        <div className="dropdown disable notevent">
+          <ChevronDownIcon
+            className="icon"
+            role="presentation"
+            focusable="false"
+          />
+        </div>
       </summary>
       {children}
     </details>
