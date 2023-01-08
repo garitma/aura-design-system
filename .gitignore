@@ -129,4 +129,5 @@ out/
 # Logs
 
 dist/*
+icons/dist/*
 
