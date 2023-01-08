@@ -7,9 +7,8 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsup src --dts"
+    "build": "rm -rf dist && tsc --module commonjs"
   },
-  "clean-package": "../clean-package.config.json",
   "publishConfig": {
     "access": "public"
   },
@@ -26,13 +25,5 @@
   },
   "dependencies": {
     "@chakra-ui/icon": "^3.0.14"
-  },
-  "tsup": {
-    "clean": true,
-    "target": "es2019",
-    "format": [
-      "cjs",
-      "esm"
-    ]
   }
 }

@@ -2,9 +2,8 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "outDir": "dist/",
-    "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
-  "include": ["src", "index.ts"],
+  "include": ["atoms", "index.ts"],
   "exclude": ["node_modules", "dist"]
 }
