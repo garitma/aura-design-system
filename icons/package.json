@@ -9,6 +9,7 @@
   "scripts": {
     "build": "tsup src --dts"
   },
+  "clean-package": "../clean-package.config.json",
   "publishConfig": {
     "access": "public"
   },
@@ -24,8 +25,7 @@
     "react": ">=18"
   },
   "dependencies": {
-    "@chakra-ui/icon": "^3.0.14",
-    "tsup": "^6.5.0"
+    "@chakra-ui/icon": "^3.0.14"
   },
   "tsup": {
     "clean": true,
