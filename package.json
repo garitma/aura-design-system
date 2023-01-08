@@ -58,13 +58,12 @@
   ],
   "devDependencies": {
     "@types/react": "^18.0.25",
-    "next": "^13.0.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "typescript": "^4.9.3"
+    "typescript": "^4.9.3",
+    "@ladle/react": "^2.4.5"
   },
   "dependencies": {
-    "@ladle/react": "^2.4.5",
-    "magic-sdk": "^10.1.0"
+    "@chakra-ui/icon": "^3.0.14"
   }
 }
