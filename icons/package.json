@@ -1,10 +1,16 @@
 {
   "name": "@garitma/icons",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "",
-  "main": "dist/index.js",
+  "main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "build": "rm -rf dist && tsc"
+    "build": "tsup src --dts"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "license": "MIT",
   "devDependencies": {
@@ -13,7 +19,20 @@
     "react-dom": "^18.2.0",
     "typescript": "^4.9.3"
   },
+  "peerDependencies": {
+    "@chakra-ui/system": ">=2.0.0",
+    "react": ">=18"
+  },
   "dependencies": {
-    "@chakra-ui/icon": "^3.0.14"
+    "@chakra-ui/icon": "^3.0.14",
+    "tsup": "^6.5.0"
+  },
+  "tsup": {
+    "clean": true,
+    "target": "es2019",
+    "format": [
+      "cjs",
+      "esm"
+    ]
   }
 }
