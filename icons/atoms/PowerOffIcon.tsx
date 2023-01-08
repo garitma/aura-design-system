@@ -1,6 +1,6 @@
 import { createIcon } from "@chakra-ui/icon";
 
-export const PowerOff = createIcon({
+export const PowerOffIcon = createIcon({
   displayName: "PowerOff",
   path: [
     <path d="M12.14.19v.76c4.28.9 7.5 4.71 7.5 9.25 0 5.2-4.24 9.44-9.45 9.44S.75 15.4.75 10.2c0-4.54 3.23-8.35 7.5-9.25V.19C3.55 1.1 0 5.24 0 10.2c0 5.62 4.57 10.19 10.19 10.19s10.2-4.57 10.2-10.19c0-4.96-3.55-9.1-8.25-10.01Z" />,

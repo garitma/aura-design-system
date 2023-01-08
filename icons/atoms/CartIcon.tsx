@@ -1,6 +1,6 @@
 import { createIcon } from "@chakra-ui/icon";
 
-export const Cart = createIcon({
+export const CartIcon = createIcon({
   displayName: "Cart",
   viewBox: "0 0 20 17",
   path: (
