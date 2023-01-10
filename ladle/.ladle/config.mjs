@@ -1,6 +1,6 @@
 export default {
   appendToHead: '<link rel="canonical" href="https://ladle.auradesignsystem.com/">',
-  outDir: "ladle-build/dist",
+  outDir: "./build/dist",
   addons: {
     theme: {
       enabled: false,
