@@ -46,7 +46,7 @@
     "stylus": "stylus -w --compress stylus/style.styl -o ./style.css",
     "stylus:play": "stylus -w --compress stylus/style.styl -o ./playground/public/sandbox.css",
     "build": "rm -rf dist && tsc --module commonjs && stylus --compress stylus/style.styl -o ./style.css && stylus --compress stylus/style.styl -o ./playground/public/sandbox.css",
-    "ladle": "npx ladle serve --stories=stories",
+    "ladle": "npx ladle serve --stories=packages",
     "build-ladle": "npx ladle build --stories=stories"
   },
   "keywords": [
