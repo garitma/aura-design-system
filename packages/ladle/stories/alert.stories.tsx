@@ -1,5 +1,5 @@
 import React from "react";
-import Alert from "../../molecules/alert";
+import Alert from "../../components/alert";
 
 export const warningAlert = () => (
   <Alert

@@ -1,4 +1,6 @@
 #!/bin/bash
+stylus --compress packages/styles/main.styl -o ./dist/main.css 
+
 cd ./dist/components
 for f in ./*; do
     if [[ $f == *.js ]]; then
@@ -33,3 +35,13 @@ mv use-data-view.js data.js
 
 mv use-form.d.ts form.d.ts
 mv use-form.js form.js
+
+touch index.d.ts
+
+
+cd ..
+
+cp README.md ./dist
+cp LICENSE ./dist
+cp package.json ./dist
+

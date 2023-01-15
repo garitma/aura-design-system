@@ -1,10 +1,7 @@
 {
   "name": "aura-design",
-  "version": "0.4.0",
+  "version": "0.4.7",
   "description": "Garitma's Design system",
-  "files": [
-    "dist"
-  ],
   "author": "Garitma <hola@garitma.com",
   "license": "MIT",
   "homepage": "https://auradesignsystem.com",
@@ -16,7 +13,9 @@
     "url": "https://github.com/garitma/aura-design-system/issues"
   },
   "scripts": {
-    "build": "rm -rf dist && tsc --module commonjs && stylus --compress packages/styles/main.styl -o ./dist/main.css && cp README.md ./dist && ./scripts/exports.sh"
+    "dev:css": "stylus --compress -w packages/styles/main.styl -o packages/styles/main.css ",
+    "build": "rm -rf dist && tsc --module commonjs && ./scripts/exports.sh",
+    "publish": "cd dist npm run publish"
   },
   "keywords": [
     "react",

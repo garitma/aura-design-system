@@ -57,7 +57,7 @@ const Select = ({
           </div>
         </div>
       </div>
-      {isHelping && <span className={`${helpMode}-text`}>{helpText}</span>}
+      {isHelping && <div className={`${helpMode}-text wall-pad aura`}>{helpText}</div>}
     </div>
   );
 };

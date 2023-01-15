@@ -1,5 +1,5 @@
 import React from "react";
-import Accordion from "../../packages/components/molecules/accordion";
+import Accordion from "../../components/accordion";
 
 export const WithContent = () => (
   <Accordion title="Accordion title">

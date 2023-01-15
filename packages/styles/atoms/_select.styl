@@ -20,7 +20,6 @@ select:not(.default)
        mixin-border-radius(var(--aura-input-radius))
        &:focus
               outline: var(--aura-outline)
-              outline-offset: 3px;
        &:disabled
               @extend .disabled
 
@@ -28,7 +27,5 @@ select:not(.default)
               position: absolute;
               right: calc(var(--aura) * 2.5)
               left: auto
-              top: calc(var(--aura) * 1.5)
-       & .icon
-              width: calc(var(--aura) * 1.5)
-              height calc(var(--aura) * 1.5)
+              top: 50%;
+              transform: translateY(-50%);

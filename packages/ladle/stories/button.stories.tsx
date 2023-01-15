@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../../atoms/button";
+import Button from "../../components/button";
 
 export const ButtonFill = () => <Button label="Button fill" />;
 export const ButtonPill = () => <Button mode="pill" label="Button Pill" />;

@@ -60,7 +60,7 @@ const Input = ({
             <label htmlFor={name}>{placeholder}</label>
           )}
         </div>
-        {isHelping && <span className={`${helpMode}-text`}>{helpText}</span>}
+        {isHelping && <div className={`${helpMode}-text aura`}>{helpText}</div>}
       </div>
     </div>
   );

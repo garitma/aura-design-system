@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "../../atoms/input";
+import Input from "../../components/input";
 
 export const WithPlaceholder = () => <Input placeholder="Placeholder" />;
 export const WithLabel = () => (
@@ -12,4 +12,3 @@ export const WithDialog = () => (
     helpText="⚠️ Oooops, something happened text"
   />
 );
-

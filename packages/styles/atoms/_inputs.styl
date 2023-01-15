@@ -14,9 +14,6 @@
             position absolute
             transform-origin: top left
             transform: translate(aura * 2, 0);
-        span
-            transform-origin top left
-            transform translate( aura * 0.5, aura * -1 )
         .typeahead
             padding-left aura * 6
             & + label
@@ -44,7 +41,6 @@ textarea:not(.default)
     &:focus
         background var(--aura-input-bg)
         outline: var(--aura-outline)
-        outline-offset: 3px;
     &::placeholder 
         color: var(--aura-input-placeholder-color);
 
@@ -65,7 +61,6 @@ input:not(.default)
     &:focus
         background var(--aura-input-bg)
         outline: var(--aura-outline)
-        outline-offset: 3px;
     &::placeholder
         color: var(--aura-input-placeholder-color);
     &:not(:placeholder-shown):not(.naked)

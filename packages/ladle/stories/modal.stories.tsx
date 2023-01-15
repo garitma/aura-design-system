@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Button from "../../atoms/button";
-import Modal from "../../molecules/modal";
+import Button from "../../components/button";
+import Modal from "../../components/modal";
 
 export const DefaultConfig = () => {
   const [isOpen, setIsOpen] = useState(false);

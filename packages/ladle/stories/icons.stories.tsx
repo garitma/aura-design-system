@@ -1,6 +1,6 @@
 import React from "react";
-import {UserIcon} from "@garitma/icons"
+import {ChevronDownIcon} from "../../icons"
 
-export const IconUser = () => <UserIcon />;
+export const IconUser = () => <ChevronDownIcon />;
 
-export const WithFontSize = () => <UserIcon className="h1" />;
+export const WithFontSize = () => <ChevronDownIcon className="h1" />;

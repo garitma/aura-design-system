@@ -1,5 +1,5 @@
 import React from "react";
-import Grid from "../../layout/grid";
+import Grid from "../../components/grid";
 
 export const withOneColumns = () => (
   <Grid col="one">

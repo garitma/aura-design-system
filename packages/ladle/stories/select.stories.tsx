@@ -1,5 +1,5 @@
 import React from "react";
-import Select from "../../atoms/select";
+import Select from "../../components/select";
 
 export const Naked = () => (
   <Select>

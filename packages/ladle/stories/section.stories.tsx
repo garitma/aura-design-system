@@ -1,5 +1,5 @@
 import React from "react";
-import Section from "../../layout/section";
+import Section from "../../components/section";
 
 export const Default = () => (
   <Section>

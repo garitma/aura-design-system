@@ -2,6 +2,7 @@ import {Fragment} from "react";
 
 import {SharedBasic} from "../types/global";
 import Button from "./button"
+import { CloseIcon } from "../icons/CloseIcon";
 
 export interface ModalProps extends SharedBasic {
   isVisible?: boolean,
@@ -34,9 +35,9 @@ const Modal = ({
     <div className="hold top left right bottom">
       <div className="overley accents-3 disabled" onClick={onClose} />
       <div className="valign vfluid pad smash">
-        <div className="mod anchor z-10">
+        <div className="mod anchor z10">
           <Button className="pin right top" mode="link" onClick={onClose}>
-            <div className="icon close" />
+            <CloseIcon />
           </Button>
           <div className="mod-detail">
             {title && <p className="mod-title">{title}</p>}
