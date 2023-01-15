@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { AuraColors, AuraContainer, AuraSpace, SharedBasic } from "../../types/global";
+import { AuraColors, AuraContainer, AuraSpace, SharedBasic } from "../types/global";
 
 
 /**

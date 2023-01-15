@@ -1,4 +1,4 @@
-import { SharedBasic, AuraGrid } from "../../types/global";
+import { SharedBasic, AuraGrid } from "../types/global";
 
 /**
  * Grid

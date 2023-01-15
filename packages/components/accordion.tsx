@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from "../icons";
-import { SharedBasic, AuraHeadline, AuraColors } from "../../types/global";
+import { SharedBasic, AuraHeadline, AuraColors } from "../types/global";
 
 export interface AccordionProps extends SharedBasic {
   title?: string;

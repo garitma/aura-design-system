@@ -1,6 +1,6 @@
 import { InputHTMLAttributes } from "react";
 
-import { SharedBasic, HelpType } from "../../types/global";
+import { SharedBasic, HelpType } from "../types/global";
 
 /**
  * Input component

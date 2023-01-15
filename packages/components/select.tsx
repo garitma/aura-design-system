@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from "../icons";
-import { SharedBasic, HelpType } from "../../types/global";
+import { SharedBasic, HelpType } from "../types/global";
 
 /**
  * Select component

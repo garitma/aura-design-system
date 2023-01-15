@@ -1,5 +1,5 @@
 import * as React from "react"
-import { Target, SharedBasic, ButtonMode, ButtonType } from "../../types/global";
+import { Target, SharedBasic, ButtonMode, ButtonType } from "../types/global";
 
 /**
  * Primary UI component for user interaction

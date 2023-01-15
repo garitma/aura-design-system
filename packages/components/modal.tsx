@@ -1,6 +1,6 @@
 import {Fragment} from "react";
 
-import {SharedBasic} from "../../types/global";
+import {SharedBasic} from "../types/global";
 import Button from "./button"
 
 export interface ModalProps extends SharedBasic {

@@ -1,4 +1,4 @@
-import { SharedBasic } from "../../types/global";
+import { SharedBasic } from "../types/global";
 
 export interface AlertProps extends SharedBasic {
   state?: {
