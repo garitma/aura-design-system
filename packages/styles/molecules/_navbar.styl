@@ -1,0 +1,41 @@
+// Copyright (c) 2021, garitma.com.
+// Navbar
+// Licensed under MIT - see LICENSE.txt 
+// Aura Design System 
+
+.v-list
+    li
+        @extend .valign
+        @extend .vfluid
+
+.nav-list
+    align-items: center
+    cursor default
+    margin 0 -10px
+    width auto
+    height calc(var(--aura) * 4)
+    mixin-flex()
+    -webkit-box-pack justify
+    -ms-flex-pack justify
+    justify-content space-between
+    mixin-user-select(none)
+
+    .item
+        line-height 2.7
+        letter-spacing -.01em
+        position relative
+        z-index 1
+        display inline-block
+        padding 0 var(--aura)
+        opacity 1
+        background no-repeat
+        text-decoration none
+        outline-offset -7px
+
+
+
+        
+        
+
+
+

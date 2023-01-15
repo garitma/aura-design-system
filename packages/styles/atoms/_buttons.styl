@@ -1,0 +1,74 @@
+// Copyright (c) 2021, garitma.com.
+// Buttons
+// Licensed under MIT - see LICENSE.txt 
+// Aura Design System
+
+a
+    text-decoration: none
+    color var(--aura-link)
+    &:visited:not([class*='button-'])
+        color: inherit
+    &:active
+        outline: var(--aura-outline)
+        outline-offset: 3px
+
+.button
+    cursor pointer
+    box-sizing: border-box
+    margin: 0px
+    letter-spacing: normal
+    word-spacing: normal
+    text-transform: none
+    text-indent: 0px
+    text-shadow: none
+    font: inherit
+    mixin-align-items(center)
+    mixin-border-radius(var(--aura-button-radius))
+    mixin-transition(300ms, background, cubic-bezier(0.4, 0, 0.6, 1) linear)
+    font-weight: 600
+    display inline-flex
+    height calc(var(--aura) * 4)
+    padding 0 calc(var(--aura) * 2)
+    border 2px solid
+    transition: transform 250ms cubic-bezier(.2,.8,.4,1);
+    &:disabled
+        @extend .disabled
+    &:hover
+        transform: scale(1.03);
+    &:active
+        transform: scale(0.97);
+        outline: var(--aura-outline)
+        outline-offset: 3px
+.button-fill
+    @extend .button
+    border-color var(--aura-accents-primary)
+    color var(--aura-text-primary-inverse)
+    background-color var(--aura-accents-primary)
+    &:hover:not(:disabled)
+        background-color var(--aura-button-hover)
+.button-pill
+    @extend .button
+    color var(--aura-accents-primary)
+    border-color var(--aura-accents-primary)
+    background-color transparent
+    &:hover:not(:disabled)
+        background-color var(--aura-link-hover)
+.button-link
+    @extend .button
+    color: var(--aura-link)
+    border: 0
+    text-decoration: underline
+    background-color transparent
+    &:hover:not(:disabled)
+        color: var(--aura-base-color)
+        background-color: var(--aura-link-hover)
+.button-menu
+    @extend .button
+    font-weight: bold
+    padding: calc(var(--aura) * 0.5) var(--aura)
+    border: 0
+    text-decoration: none
+
+    
+   
+

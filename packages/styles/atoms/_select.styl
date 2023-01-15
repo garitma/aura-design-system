@@ -1,0 +1,34 @@
+// Copyright (c) 2021, garitma.com.
+// Select
+// Licensed under MIT - see LICENSE.txt 
+// Aura Design System
+
+select:not(.default)
+       color var(--aura-accents-10)
+       background-color var(--aura-input-bg)
+       width: 100%
+       font-family inherit
+       font: inherit
+       height calc(var(--aura) * 4)
+       padding 0 calc(var(--aura) * 2)
+       line-height calc(var(--aura) * 4)
+       box-sizing: border-box
+       border 0
+       -webkit-appearance: none
+       -moz-appearance: none
+       appearance: none
+       mixin-border-radius(var(--aura-input-radius))
+       &:focus
+              outline: var(--aura-outline)
+              outline-offset: 3px;
+       &:disabled
+              @extend .disabled
+
+.dropdown
+              position: absolute;
+              right: calc(var(--aura) * 2.5)
+              left: auto
+              top: calc(var(--aura) * 1.5)
+       & .icon
+              width: calc(var(--aura) * 1.5)
+              height calc(var(--aura) * 1.5)

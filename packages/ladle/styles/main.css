@@ -1,0 +1,9 @@
+:root {
+  --ladle-bg-color-secondary: var(--aura-purple);
+  --ladle-color-accent: var(--aura-accents-info);
+}
+
+.ladle-code {
+  color: var(--aura-accents-info);
+  background-color: var(--aura-accents-info-bg);
+}

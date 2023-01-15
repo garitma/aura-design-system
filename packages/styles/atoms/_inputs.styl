@@ -1,0 +1,91 @@
+// Copyright (c) 2021, garitma.com.
+// Inputs
+// Licensed under MIT - see LICENSE.txt 
+// Aura Design System
+
+.inputer
+    @extend .wall-pad   
+    position relative
+    margin-bottom: calc(var(--aura) * 1.5)
+    &-group
+        position: relative;
+        box-sizing: border-box;
+        label:not(.default)
+            position absolute
+            transform-origin: top left
+            transform: translate(aura * 2, 0);
+        span
+            transform-origin top left
+            transform translate( aura * 0.5, aura * -1 )
+        .typeahead
+            padding-left aura * 6
+            & + label
+                transform: translate(aura * 6, 0);
+
+
+label:not(.default), input:not(.default) 
+    transition: all .1s ease-in-out
+    touch-action: manipulation
+
+textarea:not(.default) 
+    mixin-border-radius(var(--aura-input-radius))
+    width 100%
+    border 0
+    background-color var(--aura-input-bg)
+    box-sizing border-box
+    box-shadow none
+    color var(--aura-accents-10)
+    font-family inherit
+    font: inherit;
+    height 106px
+    padding calc(var(--aura) * 2)
+    &:disabled
+        @extend .disabled
+    &:focus
+        background var(--aura-input-bg)
+        outline: var(--aura-outline)
+        outline-offset: 3px;
+    &::placeholder 
+        color: var(--aura-input-placeholder-color);
+
+input:not(.default) 
+    mixin-border-radius(var(--aura-input-radius))
+    width 100%
+    background-color var(--aura-input-bg)
+    border 0
+    box-sizing border-box
+    box-shadow none
+    color var(--aura-accents-10)
+    font-family inherit
+    font: inherit;
+    height calc(var(--aura) * 4)
+    padding calc(var(--aura) * 2)
+    line-height calc(var(--aura) * 4)
+    cursor: text;
+    &:focus
+        background var(--aura-input-bg)
+        outline: var(--aura-outline)
+        outline-offset: 3px;
+    &::placeholder
+        color: var(--aura-input-placeholder-color);
+    &:not(:placeholder-shown):not(.naked)
+        padding calc(var(--aura) * 2.5) calc(var(--aura) * 2) calc(var(--aura) * 1.5) calc(var(--aura) * 2)
+    &:placeholder-shown + label 
+        cursor: text;
+        max-width: 66.66%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transform-origin: left bottom;
+        opacity 0
+        z-index -1
+    &:not(:placeholder-shown) + label 
+        opacity 1
+        cursor pointer
+        z-index 0
+    &:disabled
+        @extend .disabled
+      
+        
+    
+    

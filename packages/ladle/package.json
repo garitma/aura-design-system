@@ -1,0 +1,16 @@
+{
+  "name": "ladle",
+  "version": "1.0.0",
+  "scripts": {
+    "ladle": "npx ladle serve --stories=stories",
+    "build-ladle": "npx ladle build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@ladle/react": "^2.4.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
