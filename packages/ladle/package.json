@@ -2,10 +2,10 @@
   "name": "@aura-design/ladle",
   "version": "1.0.0",
   "scripts": {
-    "dev": "npx ladle serve --stories=stories",
-    "build": "npx ladle build --stories=stories",
-    "start": "npx ladle preview",
-    "test": "npx playwright test"
+    "dev": "pnpm ladle serve --stories=stories",
+    "build": "pnpm ladle build --stories=stories",
+    "start": "pnpm ladle preview",
+    "test": "pnpm playwright test"
   },
   "keywords": [],
   "author": "",

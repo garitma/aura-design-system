@@ -15,7 +15,7 @@
     "use-editable": "^2.3.3"
   },
   "scripts": {
-    "dev": "next dev",
+    "dev": "pnpm next dev",
     "build": "next build",
     "start": "next start -p $PORT"
   },

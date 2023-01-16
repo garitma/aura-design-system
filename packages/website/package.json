@@ -22,7 +22,7 @@
     "react-use-clipboard": "^1.0.9"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "pnpm next",
     "build": "next build",
     "start": "next start -p $PORT",
     "slicemachine": "start-slicemachine"
