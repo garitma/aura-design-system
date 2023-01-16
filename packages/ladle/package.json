@@ -1,9 +1,9 @@
 {
-  "name": "ladle",
+  "name": "@aura-design/ladle",
   "version": "1.0.0",
   "scripts": {
-    "ladle": "npx ladle serve --stories=stories",
-    "build-ladle": "npx ladle build",
+    "dev": "npx ladle serve --stories=stories",
+    "build": "npx ladle build",
     "test": "npx playwright test"
   },
   "keywords": [],

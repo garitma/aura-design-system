@@ -70,7 +70,7 @@ const SandboxCode = () => {
       "hr",
       "button",
       "input",
-      "select"
+      "select",
     ],
     allowedAttributes: {
       "*": ["class"],

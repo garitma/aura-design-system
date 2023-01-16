@@ -2,7 +2,6 @@ import Link from "next/link";
 import * as prismicH from "@prismicio/helpers";
 
 const SinglePagination = ({ doc }) => {
-  
   return (
     <div className="pad">
       <ul className="nav-list">

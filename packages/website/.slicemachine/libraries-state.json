@@ -24,13 +24,7 @@
                   "config": {
                     "label": "Languaje",
                     "placeholder": "",
-                    "options": [
-                      "JSX",
-                      "JS",
-                      "HTML",
-                      "CSS",
-                      "BASH"
-                    ]
+                    "options": ["JSX", "JS", "HTML", "CSS", "BASH"]
                   }
                 },
                 "code_snippet": {
@@ -52,9 +46,7 @@
           "default": {
             "variation": "default",
             "version": "sktwi1xtmkfgx8626",
-            "items": [
-              {}
-            ],
+            "items": [{}],
             "primary": {
               "languaje": "HTML",
               "code_snippet": [
@@ -118,9 +110,7 @@
           "default": {
             "variation": "default",
             "version": "sktwi1xtmkfgx8626",
-            "items": [
-              {}
-            ],
+            "items": [{}],
             "primary": {
               "title": [
                 {
@@ -183,9 +173,7 @@
           "default": {
             "variation": "default",
             "version": "sktwi1xtmkfgx8626",
-            "items": [
-              {}
-            ],
+            "items": [{}],
             "primary": {
               "rich_text": [
                 {

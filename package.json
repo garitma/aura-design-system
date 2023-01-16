@@ -13,9 +13,14 @@
     "url": "https://github.com/garitma/aura-design-system/issues"
   },
   "scripts": {
-    "dev:css": "stylus --compress -w packages/styles/main.styl -o packages/styles/main.css ",
+    "dev": "lerna run dev",
     "build": "rm -rf dist && tsc --module commonjs && ./scripts/exports.sh",
-    "publish": "cd dist npm run publish"
+    "publish": "cd dist npm run publish",
+    "clean": "npx lerna clean -y && npx lerna bootstrap && npx lerna exec 'rm -rf ./dist'",
+    "prettier:check": "prettier --check .",
+    "prettier:fix": "prettier --write .",
+    "git:reset": "git reset --hard HEAD",
+    "git:clean": "git clean -d -x -e node_modules -e packages -f"
   },
   "keywords": [
     "react",
@@ -26,11 +31,16 @@
   ],
   "devDependencies": {
     "@types/react": "^18.0.25",
+    "lerna": "^6.4.1",
+    "prettier": "^2.8.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^4.9.3"
   },
   "dependencies": {
     "@chakra-ui/icon": "^3.0.15"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }

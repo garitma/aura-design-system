@@ -17,9 +17,9 @@ test("a11 select--with-dialog", async ({ page }) => {
 });
 
 test("a11 select--with-placeholder", async ({ page }) => {
-    await page.goto("http://localhost:61000/?story=select--with-placeholder");
-    await page.getByTestId("addon-a11y").click();
-  
-    // Expect a title "to contain" a substring.
-    await expect(page.getByRole("dialog")).toHaveText(/There are no/);
-  });
+  await page.goto("http://localhost:61000/?story=select--with-placeholder");
+  await page.getByTestId("addon-a11y").click();
+
+  // Expect a title "to contain" a substring.
+  await expect(page.getByRole("dialog")).toHaveText(/There are no/);
+});

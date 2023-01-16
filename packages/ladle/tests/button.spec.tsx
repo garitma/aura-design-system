@@ -41,9 +41,9 @@ test("a11 button--button-pill", async ({ page }) => {
 });
 
 test("a11 button--button-waiting", async ({ page }) => {
-    await page.goto("http://localhost:61000/?story=button--button-waiting");
-    await page.getByTestId("addon-a11y").click();
-  
-    // Expect a title "to contain" a substring.
-    await expect(page.getByRole("dialog")).toHaveText(/There are no/);
-  });
+  await page.goto("http://localhost:61000/?story=button--button-waiting");
+  await page.getByTestId("addon-a11y").click();
+
+  // Expect a title "to contain" a substring.
+  await expect(page.getByRole("dialog")).toHaveText(/There are no/);
+});

@@ -1,9 +1,8 @@
 import { Magic } from "@magic-sdk/admin";
-import Iron from '@hapi/iron';
+import Iron from "@hapi/iron";
 
 import { MAGIC_TOKEN, MAGIC_ENCRYPTION_SECRET } from "@utils/constants";
-import CookieService from '@utils/cookie';
-
+import CookieService from "@utils/cookie";
 
 let magic = new Magic(MAGIC_TOKEN);
 
@@ -18,7 +17,7 @@ async function repository(req, res) {
       const token = await Iron.seal(
         user,
         MAGIC_ENCRYPTION_SECRET,
-        Iron.defaults,
+        Iron.defaults
       );
       CookieService.setTokenCookie(res, token);
 

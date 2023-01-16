@@ -5,7 +5,7 @@ const Image = ({
   height,
   src,
   url,
-  dimensions, 
+  dimensions,
   fit = "crop",
   ...props
 }) => {

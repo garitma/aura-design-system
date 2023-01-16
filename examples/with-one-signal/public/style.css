@@ -78,17 +78,16 @@
   transition: transform 250ms cubic-bezier(0.2, 0.8, 0.4, 1);
 }
 
-.onesignal-customlink-container .onesignal-customlink-subscribe.button.medium:hover {
+.onesignal-customlink-container
+  .onesignal-customlink-subscribe.button.medium:hover {
   transform: scale(1.03);
   background-color: var(--aura-button-hover);
-  background-color: var(--aura-button-hover)!important;
+  background-color: var(--aura-button-hover) !important;
   box-shadow: none;
 }
 
 .onesignal-customlink-container .onesignal-customlink-explanation.medium {
   font-size: inherit;
   color: var(--aura-accents-10);
-  border-color: var(--aura-accents-10)!important;
+  border-color: var(--aura-accents-10) !important;
 }
-
-

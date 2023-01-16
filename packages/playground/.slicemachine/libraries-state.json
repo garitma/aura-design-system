@@ -45,11 +45,7 @@
                   "config": {
                     "label": "columns",
                     "placeholder": "",
-                    "options": [
-                      "one",
-                      "two",
-                      "three"
-                    ]
+                    "options": ["one", "two", "three"]
                   }
                 }
               },
@@ -185,11 +181,7 @@
                   "config": {
                     "label": "align",
                     "placeholder": "",
-                    "options": [
-                      "center-text",
-                      "left-text",
-                      "right-text"
-                    ]
+                    "options": ["center-text", "left-text", "right-text"]
                   }
                 }
               },
@@ -202,9 +194,7 @@
           "default-slice": {
             "variation": "default-slice",
             "version": "sktwi1xtmkfgx8626",
-            "items": [
-              {}
-            ],
+            "items": [{}],
             "primary": {
               "title": [
                 {

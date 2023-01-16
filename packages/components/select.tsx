@@ -58,7 +58,9 @@ const Select = ({
           </div>
         </div>
       </div>
-      {isHelping && <div className={`${helpMode}-text wall-pad aura`}>{helpText}</div>}
+      {isHelping && (
+        <div className={`${helpMode}-text wall-pad aura`}>{helpText}</div>
+      )}
     </div>
   );
 };

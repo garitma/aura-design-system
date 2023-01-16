@@ -12,7 +12,7 @@
   --aura-accents-3: #172353;
   --aura-module: #172353;
   --aura-link-hover: #141a3d;
-  --aura-text-primary: #fff
+  --aura-text-primary: #fff;
 }
 
 .ulinea .not-line {
@@ -22,11 +22,11 @@
 .code-box {
   --aura-accents-4: #172353;
   --aura-link-hover: #141a3d;
-  --aura-font-stack: "iAWriterMonoS"
+  --aura-font-stack: "iAWriterMonoS";
 }
 
 .code-box pre {
-  white-space: pre!important;
+  white-space: pre !important;
   max-height: 100vh;
   overflow: scroll;
 }

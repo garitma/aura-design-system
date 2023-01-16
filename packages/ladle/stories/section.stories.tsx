@@ -75,4 +75,3 @@ export const WithPassDiv = () => (
     Cada abrazo de oso contiene: 1 dosis de amor por cada 2 brazos.
   </Section>
 );
-

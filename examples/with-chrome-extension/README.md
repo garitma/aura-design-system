@@ -1,6 +1,6 @@
 # Example app using Next JS in a Chrome extension
-This example shows how to create pages using Next.js and Aura Design System. It shows a normal page with all the configurations to export to a chrome extencion.
 
+This example shows how to create pages using Next.js and Aura Design System. It shows a normal page with all the configurations to export to a chrome extencion.
 
 ## How to use
 

@@ -19,7 +19,7 @@ const Home = () => {
 
       <Section color="blue">
         <Grid col="two">
-          <Fade cascade damping={0.1} >
+          <Fade cascade damping={0.1}>
             <a
               href="https://auradesignsystem.com"
               target="_blank"

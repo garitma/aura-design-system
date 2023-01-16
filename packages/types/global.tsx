@@ -1,9 +1,9 @@
-export type AnyFn = (...args: any[]) => any
+export type AnyFn = (...args: any[]) => any;
 
 export interface SharedBasic {
-  className?: string
-  children?: React.ReactNode
-  style?: React.CSSProperties
+  className?: string;
+  children?: React.ReactNode;
+  style?: React.CSSProperties;
 }
 
 export type AuraColors =
@@ -19,18 +19,17 @@ export type AuraColors =
   | "green"
   | "yellow"
   | "white"
-  | "accents-0" 
-  | "accents-1" 
-  | "accents-2" 
-  | "accents-3" 
-  | "accents-4" 
+  | "accents-0"
+  | "accents-1"
+  | "accents-2"
+  | "accents-3"
+  | "accents-4"
   | "accents-5"
   | "accents-6"
   | "accents-7"
   | "accents-8"
   | "accents-9"
-  | "accents-10"
-
+  | "accents-10";
 
 export type AuraIcons =
   | "search"
@@ -73,20 +72,32 @@ export type AuraIcons =
   | "twitter"
   | "facebook"
   | "giphy"
-  | "stock"
+  | "stock";
 
-export type HelpType = "warning" | "info" | "danger" | "success"
+export type HelpType = "warning" | "info" | "danger" | "success";
 
-export type ButtonMode = "link" | "fill" | "pill" | "menu"
+export type ButtonMode = "link" | "fill" | "pill" | "menu";
 
-export type ButtonType = "button" | "submit" | "reset"
+export type ButtonType = "button" | "submit" | "reset";
 
-export type Target = "_self" | "_blank" | "_parent" | "_top" | "framename"
+export type Target = "_self" | "_blank" | "_parent" | "_top" | "framename";
 
-export type AuraSpace = "p0" | "pad" | "inside-pad" | "aura" | "wall-pad"
+export type AuraSpace = "p0" | "pad" | "inside-pad" | "aura" | "wall-pad";
 
-export type AuraContainer = "smash" | "smesh" | "smish" | "smosh" | "smush"
+export type AuraContainer = "smash" | "smesh" | "smish" | "smosh" | "smush";
 
-export type AuraGrid = "one" | "two" | "three" | "four" | "five" | "six" | "box" | "box-2" | "blog" | "docs" | "field" | "tag"
+export type AuraGrid =
+  | "one"
+  | "two"
+  | "three"
+  | "four"
+  | "five"
+  | "six"
+  | "box"
+  | "box-2"
+  | "blog"
+  | "docs"
+  | "field"
+  | "tag";
 
-export type AuraHeadline = "h1" | "h2" | "h3" | "h4" | "h5" | "h6"
+export type AuraHeadline = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";

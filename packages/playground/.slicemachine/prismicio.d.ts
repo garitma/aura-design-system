@@ -4,32 +4,32 @@ import type * as prismicT from "@prismicio/types";
 import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = {
-    [KeyType in keyof T]: T[KeyType];
+  [KeyType in keyof T]: T[KeyType];
 };
 /** Content for Footer documents */
 interface FooterDocumentData {
-    /**
-     * Copyright field in *Footer*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: footer.copyright
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    copyright: prismicT.KeyTextField;
-    /**
-     * Slice Zone field in *Footer*
-     *
-     * - **Field Type**: Slice Zone
-     * - **Placeholder**: *None*
-     * - **API ID Path**: footer.body[]
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/slices
-     *
-     */
-    body: prismicT.SliceZone<FooterDocumentDataBodySlice>;
+  /**
+   * Copyright field in *Footer*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.copyright
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  copyright: prismicT.KeyTextField;
+  /**
+   * Slice Zone field in *Footer*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.body[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/slices
+   *
+   */
+  body: prismicT.SliceZone<FooterDocumentDataBodySlice>;
 }
 /**
  * Slice for *Footer → Slice Zone*
@@ -45,37 +45,44 @@ type FooterDocumentDataBodySlice = FooterColumnSlice;
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type FooterDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<FooterDocumentData>, "footer", Lang>;
+export type FooterDocument<Lang extends string = string> =
+  prismicT.PrismicDocumentWithoutUID<
+    Simplify<FooterDocumentData>,
+    "footer",
+    Lang
+  >;
 /** Content for Home documents */
 interface HomeDocumentData {
-    /**
-     * Title field in *Home*
-     *
-     * - **Field Type**: Title
-     * - **Placeholder**: *None*
-     * - **API ID Path**: home.title
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    title: prismicT.TitleField;
-    /**
-     * Slice Zone field in *Home*
-     *
-     * - **Field Type**: Slice Zone
-     * - **Placeholder**: *None*
-     * - **API ID Path**: home.slices[]
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/slices
-     *
-     */
-    slices: prismicT.SliceZone<HomeDocumentDataSlicesSlice>;
+  /**
+   * Title field in *Home*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  title: prismicT.TitleField;
+  /**
+   * Slice Zone field in *Home*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/slices
+   *
+   */
+  slices: prismicT.SliceZone<HomeDocumentDataSlicesSlice>;
 }
 /**
  * Slice for *Home → Slice Zone*
  *
  */
-type HomeDocumentDataSlicesSlice = HeroSectionSplitSlice | SectionGridCardsSlice;
+type HomeDocumentDataSlicesSlice =
+  | HeroSectionSplitSlice
+  | SectionGridCardsSlice;
 /**
  * Home document from Prismic
  *
@@ -85,42 +92,43 @@ type HomeDocumentDataSlicesSlice = HeroSectionSplitSlice | SectionGridCardsSlice
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type HomeDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
+export type HomeDocument<Lang extends string = string> =
+  prismicT.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 /** Content for Menu Tab documents */
 interface MenuTabDocumentData {
-    /**
-     * Title field in *Menu Tab*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: This is title of the tab...
-     * - **API ID Path**: menu-tab.title
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    title: prismicT.KeyTextField;
-    /**
-     * link field in *Menu Tab*
-     *
-     * - **Field Type**: Link
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu-tab.link
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-     *
-     */
-    link: prismicT.LinkField;
-    /**
-     * Slice Zone field in *Menu Tab*
-     *
-     * - **Field Type**: Slice Zone
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu-tab.slices[]
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/slices
-     *
-     */
-    slices: prismicT.SliceZone<MenuTabDocumentDataSlicesSlice>;
+  /**
+   * Title field in *Menu Tab*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: This is title of the tab...
+   * - **API ID Path**: menu-tab.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  title: prismicT.KeyTextField;
+  /**
+   * link field in *Menu Tab*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu-tab.link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  link: prismicT.LinkField;
+  /**
+   * Slice Zone field in *Menu Tab*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu-tab.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/slices
+   *
+   */
+  slices: prismicT.SliceZone<MenuTabDocumentDataSlicesSlice>;
 }
 /**
  * Slice for *Menu Tab → Slice Zone*
@@ -136,58 +144,63 @@ type MenuTabDocumentDataSlicesSlice = MenuSubTabSlice;
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type MenuTabDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<MenuTabDocumentData>, "menu-tab", Lang>;
+export type MenuTabDocument<Lang extends string = string> =
+  prismicT.PrismicDocumentWithoutUID<
+    Simplify<MenuTabDocumentData>,
+    "menu-tab",
+    Lang
+  >;
 /** Content for Menu documents */
 interface MenuDocumentData {
-    /**
-     * topPromoBanner field in *Menu*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: Banner a the top of the page..
-     * - **API ID Path**: menu.topPromoBanner
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    topPromoBanner: prismicT.KeyTextField;
-    /**
-     * Logo field in *Menu*
-     *
-     * - **Field Type**: Image
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu.logo
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/image
-     *
-     */
-    logo: prismicT.ImageField<never>;
-    /**
-     * MenuTabs field in *Menu*
-     *
-     * - **Field Type**: Group
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu.menuTabs[]
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/group
-     *
-     */
-    menuTabs: prismicT.GroupField<Simplify<MenuDocumentDataMenuTabsItem>>;
+  /**
+   * topPromoBanner field in *Menu*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Banner a the top of the page..
+   * - **API ID Path**: menu.topPromoBanner
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  topPromoBanner: prismicT.KeyTextField;
+  /**
+   * Logo field in *Menu*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/image
+   *
+   */
+  logo: prismicT.ImageField<never>;
+  /**
+   * MenuTabs field in *Menu*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.menuTabs[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/group
+   *
+   */
+  menuTabs: prismicT.GroupField<Simplify<MenuDocumentDataMenuTabsItem>>;
 }
 /**
  * Item in Menu → MenuTabs
  *
  */
 export interface MenuDocumentDataMenuTabsItem {
-    /**
-     * menuTab field in *Menu → MenuTabs*
-     *
-     * - **Field Type**: Content Relationship
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu.menuTabs[].menuTab
-     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-     *
-     */
-    menuTab: prismicT.RelationField<"menu-tab">;
+  /**
+   * menuTab field in *Menu → MenuTabs*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.menuTabs[].menuTab
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  menuTab: prismicT.RelationField<"menu-tab">;
 }
 /**
  * Menu document from Prismic
@@ -198,69 +211,87 @@ export interface MenuDocumentDataMenuTabsItem {
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type MenuDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<MenuDocumentData>, "menu", Lang>;
-export type AllDocumentTypes = FooterDocument | HomeDocument | MenuTabDocument | MenuDocument;
+export type MenuDocument<Lang extends string = string> =
+  prismicT.PrismicDocumentWithoutUID<Simplify<MenuDocumentData>, "menu", Lang>;
+export type AllDocumentTypes =
+  | FooterDocument
+  | HomeDocument
+  | MenuTabDocument
+  | MenuDocument;
 /**
  * Primary content in SectionGridCards → Primary
  *
  */
 interface SectionGridCardsSliceDefaultPrimary {
-    /**
-     * color field in *SectionGridCards → Primary*
-     *
-     * - **Field Type**: Select
-     * - **Placeholder**: *None*
-     * - **API ID Path**: section_grid_cards.primary.color
-     * - **Documentation**: https://prismic.io/docs/core-concepts/select
-     *
-     */
-    color: prismicT.SelectField<"white" | "yellow" | "green" | "lemon-green" | "pink-purple" | "pink" | "orange-rose" | "orange" | "purple" | "snow" | "teal-green" | "blue">;
-    /**
-     * columns field in *SectionGridCards → Primary*
-     *
-     * - **Field Type**: Select
-     * - **Placeholder**: *None*
-     * - **API ID Path**: section_grid_cards.primary.columns
-     * - **Documentation**: https://prismic.io/docs/core-concepts/select
-     *
-     */
-    columns: prismicT.SelectField<"one" | "two" | "three">;
+  /**
+   * color field in *SectionGridCards → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section_grid_cards.primary.color
+   * - **Documentation**: https://prismic.io/docs/core-concepts/select
+   *
+   */
+  color: prismicT.SelectField<
+    | "white"
+    | "yellow"
+    | "green"
+    | "lemon-green"
+    | "pink-purple"
+    | "pink"
+    | "orange-rose"
+    | "orange"
+    | "purple"
+    | "snow"
+    | "teal-green"
+    | "blue"
+  >;
+  /**
+   * columns field in *SectionGridCards → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section_grid_cards.primary.columns
+   * - **Documentation**: https://prismic.io/docs/core-concepts/select
+   *
+   */
+  columns: prismicT.SelectField<"one" | "two" | "three">;
 }
 /**
  * Item in SectionGridCards → Items
  *
  */
 export interface SectionGridCardsSliceDefaultItem {
-    /**
-     * title field in *SectionGridCards → Items*
-     *
-     * - **Field Type**: Title
-     * - **Placeholder**: *None*
-     * - **API ID Path**: section_grid_cards.items[].title
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    title: prismicT.TitleField;
-    /**
-     * description field in *SectionGridCards → Items*
-     *
-     * - **Field Type**: Rich Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: section_grid_cards.items[].description
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    description: prismicT.RichTextField;
-    /**
-     * link field in *SectionGridCards → Items*
-     *
-     * - **Field Type**: Link
-     * - **Placeholder**: *None*
-     * - **API ID Path**: section_grid_cards.items[].link
-     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-     *
-     */
-    link: prismicT.LinkField;
+  /**
+   * title field in *SectionGridCards → Items*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section_grid_cards.items[].title
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  title: prismicT.TitleField;
+  /**
+   * description field in *SectionGridCards → Items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section_grid_cards.items[].description
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  description: prismicT.RichTextField;
+  /**
+   * link field in *SectionGridCards → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section_grid_cards.items[].link
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  link: prismicT.LinkField;
 }
 /**
  * Default variation for SectionGridCards Slice
@@ -270,7 +301,11 @@ export interface SectionGridCardsSliceDefaultItem {
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type SectionGridCardsSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<SectionGridCardsSliceDefaultPrimary>, Simplify<SectionGridCardsSliceDefaultItem>>;
+export type SectionGridCardsSliceDefault = prismicT.SharedSliceVariation<
+  "default",
+  Simplify<SectionGridCardsSliceDefaultPrimary>,
+  Simplify<SectionGridCardsSliceDefaultItem>
+>;
 /**
  * Slice variation for *SectionGridCards*
  *
@@ -284,52 +319,68 @@ type SectionGridCardsSliceVariation = SectionGridCardsSliceDefault;
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type SectionGridCardsSlice = prismicT.SharedSlice<"section_grid_cards", SectionGridCardsSliceVariation>;
+export type SectionGridCardsSlice = prismicT.SharedSlice<
+  "section_grid_cards",
+  SectionGridCardsSliceVariation
+>;
 /**
  * Primary content in SectionHeading → Primary
  *
  */
 interface HeroSectionSplitSliceDefaultSlicePrimary {
-    /**
-     * Title field in *SectionHeading → Primary*
-     *
-     * - **Field Type**: Title
-     * - **Placeholder**: This is where it all begins...
-     * - **API ID Path**: hero_section_split.primary.title
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    title: prismicT.TitleField;
-    /**
-     * Description field in *SectionHeading → Primary*
-     *
-     * - **Field Type**: Rich Text
-     * - **Placeholder**: A nice description of your feature
-     * - **API ID Path**: hero_section_split.primary.description
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    description: prismicT.RichTextField;
-    /**
-     * color field in *SectionHeading → Primary*
-     *
-     * - **Field Type**: Select
-     * - **Placeholder**: *None*
-     * - **API ID Path**: hero_section_split.primary.color
-     * - **Documentation**: https://prismic.io/docs/core-concepts/select
-     *
-     */
-    color: prismicT.SelectField<"white" | "yellow" | "green" | "lemon-green" | "pink-purple" | "pink" | "orange-rose" | "orange" | "purple" | "snow" | "teal-green" | "blue">;
-    /**
-     * align field in *SectionHeading → Primary*
-     *
-     * - **Field Type**: Select
-     * - **Placeholder**: *None*
-     * - **API ID Path**: hero_section_split.primary.align
-     * - **Documentation**: https://prismic.io/docs/core-concepts/select
-     *
-     */
-    align: prismicT.SelectField<"center-text" | "left-text" | "right-text">;
+  /**
+   * Title field in *SectionHeading → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: This is where it all begins...
+   * - **API ID Path**: hero_section_split.primary.title
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  title: prismicT.TitleField;
+  /**
+   * Description field in *SectionHeading → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: A nice description of your feature
+   * - **API ID Path**: hero_section_split.primary.description
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  description: prismicT.RichTextField;
+  /**
+   * color field in *SectionHeading → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section_split.primary.color
+   * - **Documentation**: https://prismic.io/docs/core-concepts/select
+   *
+   */
+  color: prismicT.SelectField<
+    | "white"
+    | "yellow"
+    | "green"
+    | "lemon-green"
+    | "pink-purple"
+    | "pink"
+    | "orange-rose"
+    | "orange"
+    | "purple"
+    | "snow"
+    | "teal-green"
+    | "blue"
+  >;
+  /**
+   * align field in *SectionHeading → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_section_split.primary.align
+   * - **Documentation**: https://prismic.io/docs/core-concepts/select
+   *
+   */
+  align: prismicT.SelectField<"center-text" | "left-text" | "right-text">;
 }
 /**
  * Default slice variation for SectionHeading Slice
@@ -339,7 +390,11 @@ interface HeroSectionSplitSliceDefaultSlicePrimary {
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type HeroSectionSplitSliceDefaultSlice = prismicT.SharedSliceVariation<"default-slice", Simplify<HeroSectionSplitSliceDefaultSlicePrimary>, never>;
+export type HeroSectionSplitSliceDefaultSlice = prismicT.SharedSliceVariation<
+  "default-slice",
+  Simplify<HeroSectionSplitSliceDefaultSlicePrimary>,
+  never
+>;
 /**
  * Slice variation for *SectionHeading*
  *
@@ -353,48 +408,51 @@ type HeroSectionSplitSliceVariation = HeroSectionSplitSliceDefaultSlice;
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type HeroSectionSplitSlice = prismicT.SharedSlice<"hero_section_split", HeroSectionSplitSliceVariation>;
+export type HeroSectionSplitSlice = prismicT.SharedSlice<
+  "hero_section_split",
+  HeroSectionSplitSliceVariation
+>;
 /**
  * Primary content in FooterColumn → Primary
  *
  */
 interface FooterColumnSliceDefaultSlicePrimary {
-    /**
-     * Section Title field in *FooterColumn → Primary*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: footer_column.primary.section_title
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    section_title: prismicT.KeyTextField;
+  /**
+   * Section Title field in *FooterColumn → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer_column.primary.section_title
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  section_title: prismicT.KeyTextField;
 }
 /**
  * Item in FooterColumn → Items
  *
  */
 export interface FooterColumnSliceDefaultSliceItem {
-    /**
-     * Link field in *FooterColumn → Items*
-     *
-     * - **Field Type**: Content Relationship
-     * - **Placeholder**: *None*
-     * - **API ID Path**: footer_column.items[].link
-     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-     *
-     */
-    link: prismicT.RelationField;
-    /**
-     * Link Label field in *FooterColumn → Items*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: footer_column.items[].link_label
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    link_label: prismicT.KeyTextField;
+  /**
+   * Link field in *FooterColumn → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer_column.items[].link
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  link: prismicT.RelationField;
+  /**
+   * Link Label field in *FooterColumn → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer_column.items[].link_label
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  link_label: prismicT.KeyTextField;
 }
 /**
  * Default slice variation for FooterColumn Slice
@@ -404,7 +462,11 @@ export interface FooterColumnSliceDefaultSliceItem {
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type FooterColumnSliceDefaultSlice = prismicT.SharedSliceVariation<"default-slice", Simplify<FooterColumnSliceDefaultSlicePrimary>, Simplify<FooterColumnSliceDefaultSliceItem>>;
+export type FooterColumnSliceDefaultSlice = prismicT.SharedSliceVariation<
+  "default-slice",
+  Simplify<FooterColumnSliceDefaultSlicePrimary>,
+  Simplify<FooterColumnSliceDefaultSliceItem>
+>;
 /**
  * Slice variation for *FooterColumn*
  *
@@ -418,48 +480,51 @@ type FooterColumnSliceVariation = FooterColumnSliceDefaultSlice;
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type FooterColumnSlice = prismicT.SharedSlice<"footer_column", FooterColumnSliceVariation>;
+export type FooterColumnSlice = prismicT.SharedSlice<
+  "footer_column",
+  FooterColumnSliceVariation
+>;
 /**
  * Primary content in MenuSubTab → Primary
  *
  */
 interface MenuSubTabSliceDefaultSlicePrimary {
-    /**
-     * Section Title field in *MenuSubTab → Primary*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu_sub_tab.primary.sectionTitle
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    sectionTitle: prismicT.KeyTextField;
+  /**
+   * Section Title field in *MenuSubTab → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_sub_tab.primary.sectionTitle
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  sectionTitle: prismicT.KeyTextField;
 }
 /**
  * Item in MenuSubTab → Items
  *
  */
 export interface MenuSubTabSliceDefaultSliceItem {
-    /**
-     * Sub Section Title field in *MenuSubTab → Items*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu_sub_tab.items[].subSectionTitle
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    subSectionTitle: prismicT.KeyTextField;
-    /**
-     * Sub Section Link field in *MenuSubTab → Items*
-     *
-     * - **Field Type**: Link
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu_sub_tab.items[].subSectionLink
-     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-     *
-     */
-    subSectionLink: prismicT.LinkField;
+  /**
+   * Sub Section Title field in *MenuSubTab → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_sub_tab.items[].subSectionTitle
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  subSectionTitle: prismicT.KeyTextField;
+  /**
+   * Sub Section Link field in *MenuSubTab → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_sub_tab.items[].subSectionLink
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  subSectionLink: prismicT.LinkField;
 }
 /**
  * Default slice variation for MenuSubTab Slice
@@ -469,7 +534,11 @@ export interface MenuSubTabSliceDefaultSliceItem {
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type MenuSubTabSliceDefaultSlice = prismicT.SharedSliceVariation<"default-slice", Simplify<MenuSubTabSliceDefaultSlicePrimary>, Simplify<MenuSubTabSliceDefaultSliceItem>>;
+export type MenuSubTabSliceDefaultSlice = prismicT.SharedSliceVariation<
+  "default-slice",
+  Simplify<MenuSubTabSliceDefaultSlicePrimary>,
+  Simplify<MenuSubTabSliceDefaultSliceItem>
+>;
 /**
  * Slice variation for *MenuSubTab*
  *
@@ -483,12 +552,51 @@ type MenuSubTabSliceVariation = MenuSubTabSliceDefaultSlice;
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type MenuSubTabSlice = prismicT.SharedSlice<"menu_sub_tab", MenuSubTabSliceVariation>;
+export type MenuSubTabSlice = prismicT.SharedSlice<
+  "menu_sub_tab",
+  MenuSubTabSliceVariation
+>;
 declare module "@prismicio/client" {
-    interface CreateClient {
-        (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
-    }
-    namespace Content {
-        export type { FooterDocumentData, FooterDocumentDataBodySlice, FooterDocument, HomeDocumentData, HomeDocumentDataSlicesSlice, HomeDocument, MenuTabDocumentData, MenuTabDocumentDataSlicesSlice, MenuTabDocument, MenuDocumentData, MenuDocumentDataMenuTabsItem, MenuDocument, AllDocumentTypes, SectionGridCardsSliceDefaultPrimary, SectionGridCardsSliceDefaultItem, SectionGridCardsSliceDefault, SectionGridCardsSliceVariation, SectionGridCardsSlice, HeroSectionSplitSliceDefaultSlicePrimary, HeroSectionSplitSliceDefaultSlice, HeroSectionSplitSliceVariation, HeroSectionSplitSlice, FooterColumnSliceDefaultSlicePrimary, FooterColumnSliceDefaultSliceItem, FooterColumnSliceDefaultSlice, FooterColumnSliceVariation, FooterColumnSlice, MenuSubTabSliceDefaultSlicePrimary, MenuSubTabSliceDefaultSliceItem, MenuSubTabSliceDefaultSlice, MenuSubTabSliceVariation, MenuSubTabSlice };
-    }
+  interface CreateClient {
+    (
+      repositoryNameOrEndpoint: string,
+      options?: prismic.ClientConfig
+    ): prismic.Client<AllDocumentTypes>;
+  }
+  namespace Content {
+    export type {
+      FooterDocumentData,
+      FooterDocumentDataBodySlice,
+      FooterDocument,
+      HomeDocumentData,
+      HomeDocumentDataSlicesSlice,
+      HomeDocument,
+      MenuTabDocumentData,
+      MenuTabDocumentDataSlicesSlice,
+      MenuTabDocument,
+      MenuDocumentData,
+      MenuDocumentDataMenuTabsItem,
+      MenuDocument,
+      AllDocumentTypes,
+      SectionGridCardsSliceDefaultPrimary,
+      SectionGridCardsSliceDefaultItem,
+      SectionGridCardsSliceDefault,
+      SectionGridCardsSliceVariation,
+      SectionGridCardsSlice,
+      HeroSectionSplitSliceDefaultSlicePrimary,
+      HeroSectionSplitSliceDefaultSlice,
+      HeroSectionSplitSliceVariation,
+      HeroSectionSplitSlice,
+      FooterColumnSliceDefaultSlicePrimary,
+      FooterColumnSliceDefaultSliceItem,
+      FooterColumnSliceDefaultSlice,
+      FooterColumnSliceVariation,
+      FooterColumnSlice,
+      MenuSubTabSliceDefaultSlicePrimary,
+      MenuSubTabSliceDefaultSliceItem,
+      MenuSubTabSliceDefaultSlice,
+      MenuSubTabSliceVariation,
+      MenuSubTabSlice,
+    };
+  }
 }

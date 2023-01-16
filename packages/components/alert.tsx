@@ -21,12 +21,12 @@ const Alert = ({
 }: AlertProps) => {
   const isActive = state?.info?.message || message;
 
-  const classConnect: string[] = [className!, "mod", "aura" ];
+  const classConnect: string[] = [className!, "mod", "aura"];
 
-  if(state?.info?.isError ) {
-    classConnect.push("danger-text danger")
+  if (state?.info?.isError) {
+    classConnect.push("danger-text danger");
   } else {
-    classConnect.push("info-text info")
+    classConnect.push("info-text info");
   }
 
   return (

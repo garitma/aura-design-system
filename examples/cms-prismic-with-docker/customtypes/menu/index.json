@@ -30,9 +30,7 @@
             "menuTab": {
               "config": {
                 "label": "menuTab",
-                "customtypes": [
-                  "menu-tab"
-                ],
+                "customtypes": ["menu-tab"],
                 "select": "document"
               },
               "type": "Link"

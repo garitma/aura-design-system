@@ -1,5 +1,5 @@
 import React from "react";
-import {ChevronDownIcon} from "../../icons"
+import { ChevronDownIcon } from "../../icons";
 
 export const IconUser = () => <ChevronDownIcon />;
 

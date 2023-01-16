@@ -1,0 +1,12 @@
+{
+  "name": "@aura-design/styles",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx stylus --compress -w ./main.styl -o ./main.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}

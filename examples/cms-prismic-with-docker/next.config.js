@@ -22,7 +22,7 @@ module.exports = async () => {
       defaultLocale: locales[0],
     },
     images: {
-      domains: ['images.prismic.io'],
+      domains: ["images.prismic.io"],
     },
   };
 };

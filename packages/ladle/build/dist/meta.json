@@ -7,9 +7,7 @@
   "stories": {
     "accordion--with-content": {
       "name": "With content",
-      "levels": [
-        "Accordion"
-      ],
+      "levels": ["Accordion"],
       "locStart": 4,
       "locEnd": 8,
       "filePath": "stories/accordion.stories.tsx",
@@ -17,9 +15,7 @@
     },
     "accordion--with-header-size": {
       "name": "With header size",
-      "levels": [
-        "Accordion"
-      ],
+      "levels": ["Accordion"],
       "locStart": 10,
       "locEnd": 14,
       "filePath": "stories/accordion.stories.tsx",
@@ -27,9 +23,7 @@
     },
     "accordion--with-color": {
       "name": "With color",
-      "levels": [
-        "Accordion"
-      ],
+      "levels": ["Accordion"],
       "locStart": 16,
       "locEnd": 20,
       "filePath": "stories/accordion.stories.tsx",
@@ -37,9 +31,7 @@
     },
     "alert--warning-alert": {
       "name": "Warning alert",
-      "levels": [
-        "Alert"
-      ],
+      "levels": ["Alert"],
       "locStart": 4,
       "locEnd": 8,
       "filePath": "stories/alert.stories.tsx",
@@ -47,9 +39,7 @@
     },
     "alert--danger-alert": {
       "name": "Danger alert",
-      "levels": [
-        "Alert"
-      ],
+      "levels": ["Alert"],
       "locStart": 10,
       "locEnd": 14,
       "filePath": "stories/alert.stories.tsx",
@@ -57,9 +47,7 @@
     },
     "button--button-fill": {
       "name": "Button fill",
-      "levels": [
-        "Button"
-      ],
+      "levels": ["Button"],
       "locStart": 4,
       "locEnd": 4,
       "filePath": "stories/button.stories.tsx",
@@ -67,9 +55,7 @@
     },
     "button--button-pill": {
       "name": "Button pill",
-      "levels": [
-        "Button"
-      ],
+      "levels": ["Button"],
       "locStart": 5,
       "locEnd": 5,
       "filePath": "stories/button.stories.tsx",
@@ -77,9 +63,7 @@
     },
     "button--button-link": {
       "name": "Button link",
-      "levels": [
-        "Button"
-      ],
+      "levels": ["Button"],
       "locStart": 6,
       "locEnd": 6,
       "filePath": "stories/button.stories.tsx",
@@ -87,9 +71,7 @@
     },
     "button--button-fluid": {
       "name": "Button fluid",
-      "levels": [
-        "Button"
-      ],
+      "levels": ["Button"],
       "locStart": 7,
       "locEnd": 7,
       "filePath": "stories/button.stories.tsx",
@@ -97,9 +79,7 @@
     },
     "button--button-disabled": {
       "name": "Button disabled",
-      "levels": [
-        "Button"
-      ],
+      "levels": ["Button"],
       "locStart": 8,
       "locEnd": 8,
       "filePath": "stories/button.stories.tsx",
@@ -107,9 +87,7 @@
     },
     "button--button-waiting": {
       "name": "Button waiting",
-      "levels": [
-        "Button"
-      ],
+      "levels": ["Button"],
       "locStart": 9,
       "locEnd": 11,
       "filePath": "stories/button.stories.tsx",
@@ -117,9 +95,7 @@
     },
     "grid--with-one-columns": {
       "name": "With one columns",
-      "levels": [
-        "Grid"
-      ],
+      "levels": ["Grid"],
       "locStart": 4,
       "locEnd": 15,
       "filePath": "stories/grid.stories.tsx",
@@ -127,9 +103,7 @@
     },
     "grid--with-two-columns": {
       "name": "With two columns",
-      "levels": [
-        "Grid"
-      ],
+      "levels": ["Grid"],
       "locStart": 17,
       "locEnd": 28,
       "filePath": "stories/grid.stories.tsx",
@@ -137,9 +111,7 @@
     },
     "grid--with-three-columns": {
       "name": "With three columns",
-      "levels": [
-        "Grid"
-      ],
+      "levels": ["Grid"],
       "locStart": 30,
       "locEnd": 41,
       "filePath": "stories/grid.stories.tsx",
@@ -147,9 +119,7 @@
     },
     "grid--with-four-columns": {
       "name": "With four columns",
-      "levels": [
-        "Grid"
-      ],
+      "levels": ["Grid"],
       "locStart": 43,
       "locEnd": 54,
       "filePath": "stories/grid.stories.tsx",
@@ -157,9 +127,7 @@
     },
     "grid--with-columns-fixed": {
       "name": "With columns fixed",
-      "levels": [
-        "Grid"
-      ],
+      "levels": ["Grid"],
       "locStart": 56,
       "locEnd": 67,
       "filePath": "stories/grid.stories.tsx",
@@ -167,9 +135,7 @@
     },
     "grid--with-columns-reverse": {
       "name": "With columns reverse",
-      "levels": [
-        "Grid"
-      ],
+      "levels": ["Grid"],
       "locStart": 69,
       "locEnd": 74,
       "filePath": "stories/grid.stories.tsx",
@@ -177,9 +143,7 @@
     },
     "headline--headlines": {
       "name": "Headlines",
-      "levels": [
-        "Headline"
-      ],
+      "levels": ["Headline"],
       "locStart": 3,
       "locEnd": 12,
       "filePath": "stories/headline.stories.tsx",
@@ -187,9 +151,7 @@
     },
     "input--with-placeholder": {
       "name": "With placeholder",
-      "levels": [
-        "Input"
-      ],
+      "levels": ["Input"],
       "locStart": 4,
       "locEnd": 4,
       "filePath": "stories/input.stories.tsx",
@@ -197,9 +159,7 @@
     },
     "input--with-label": {
       "name": "With label",
-      "levels": [
-        "Input"
-      ],
+      "levels": ["Input"],
       "locStart": 5,
       "locEnd": 7,
       "filePath": "stories/input.stories.tsx",
@@ -207,9 +167,7 @@
     },
     "input--with-dialog": {
       "name": "With dialog",
-      "levels": [
-        "Input"
-      ],
+      "levels": ["Input"],
       "locStart": 8,
       "locEnd": 14,
       "filePath": "stories/input.stories.tsx",
@@ -217,9 +175,7 @@
     },
     "input--with-icon": {
       "name": "With icon",
-      "levels": [
-        "Input"
-      ],
+      "levels": ["Input"],
       "locStart": 16,
       "locEnd": 21,
       "filePath": "stories/input.stories.tsx",
@@ -227,9 +183,7 @@
     },
     "modal--default-config": {
       "name": "Default config",
-      "levels": [
-        "Modal"
-      ],
+      "levels": ["Modal"],
       "locStart": 5,
       "locEnd": 22,
       "filePath": "stories/modal.stories.tsx",
@@ -237,9 +191,7 @@
     },
     "page--pancake": {
       "name": "Pancake",
-      "levels": [
-        "Page"
-      ],
+      "levels": ["Page"],
       "locStart": 3,
       "locEnd": 17,
       "filePath": "stories/page.stories.tsx",
@@ -247,9 +199,7 @@
     },
     "page--dashboard": {
       "name": "Dashboard",
-      "levels": [
-        "Page"
-      ],
+      "levels": ["Page"],
       "locStart": 19,
       "locEnd": 34,
       "filePath": "stories/page.stories.tsx",
@@ -257,9 +207,7 @@
     },
     "section--default": {
       "name": "Default",
-      "levels": [
-        "Section"
-      ],
+      "levels": ["Section"],
       "locStart": 4,
       "locEnd": 17,
       "filePath": "stories/section.stories.tsx",
@@ -267,9 +215,7 @@
     },
     "section--with-color": {
       "name": "With color",
-      "levels": [
-        "Section"
-      ],
+      "levels": ["Section"],
       "locStart": 19,
       "locEnd": 32,
       "filePath": "stories/section.stories.tsx",
@@ -277,9 +223,7 @@
     },
     "section--with-container": {
       "name": "With container",
-      "levels": [
-        "Section"
-      ],
+      "levels": ["Section"],
       "locStart": 34,
       "locEnd": 63,
       "filePath": "stories/section.stories.tsx",
@@ -287,9 +231,7 @@
     },
     "section--with-sub-class-name": {
       "name": "With sub class name",
-      "levels": [
-        "Section"
-      ],
+      "levels": ["Section"],
       "locStart": 65,
       "locEnd": 70,
       "filePath": "stories/section.stories.tsx",
@@ -297,9 +239,7 @@
     },
     "section--with-pass-div": {
       "name": "With pass div",
-      "levels": [
-        "Section"
-      ],
+      "levels": ["Section"],
       "locStart": 72,
       "locEnd": 77,
       "filePath": "stories/section.stories.tsx",
@@ -307,9 +247,7 @@
     },
     "select--naked": {
       "name": "Naked",
-      "levels": [
-        "Select"
-      ],
+      "levels": ["Select"],
       "locStart": 4,
       "locEnd": 10,
       "filePath": "stories/select.stories.tsx",
@@ -317,9 +255,7 @@
     },
     "select--with-placeholder": {
       "name": "With placeholder",
-      "levels": [
-        "Select"
-      ],
+      "levels": ["Select"],
       "locStart": 12,
       "locEnd": 18,
       "filePath": "stories/select.stories.tsx",
@@ -327,9 +263,7 @@
     },
     "select--with-dialog": {
       "name": "With dialog",
-      "levels": [
-        "Select"
-      ],
+      "levels": ["Select"],
       "locStart": 20,
       "locEnd": 30,
       "filePath": "stories/select.stories.tsx",

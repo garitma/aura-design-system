@@ -88,9 +88,7 @@ const SignIn = () => {
     return (
       <Section>
         <h1 className="mt0">Please login to use this extensión.</h1>
-        <Button
-          onClick={() => chrome.tabs.create({ url: "index.html" })}
-        >
+        <Button onClick={() => chrome.tabs.create({ url: "index.html" })}>
           Sign In
         </Button>
       </Section>

@@ -1,23 +1,23 @@
 {
-    "compilerOptions": {
-      "target": "esnext",
-      "module": "esnext",
-      "lib": ["dom", "esnext"],
-      "declaration": true,
-      "moduleResolution": "node",
-      "outDir": "dist/",
-      "jsx": "react-jsx",
-      "noUnusedLocals": true,
-      "noUnusedParameters": true,
-      "esModuleInterop": false,
-      "noImplicitReturns": true,
-      "noImplicitThis": true,
-      "noImplicitAny": true,
-      "strictNullChecks": true,
-      "suppressImplicitAnyIndexErrors": true,
-      "allowSyntheticDefaultImports": false,
-      "skipLibCheck": true
-    },
-    "include": ["packages/components","packages/icons", "packages/hooks"],
-    "exclude": ["node_modules", "dist"]
-  }
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "lib": ["dom", "esnext"],
+    "declaration": true,
+    "moduleResolution": "node",
+    "outDir": "dist/",
+    "jsx": "react-jsx",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "esModuleInterop": false,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "allowSyntheticDefaultImports": false,
+    "skipLibCheck": true
+  },
+  "include": ["packages/components", "packages/icons", "packages/hooks"],
+  "exclude": ["node_modules", "dist"]
+}

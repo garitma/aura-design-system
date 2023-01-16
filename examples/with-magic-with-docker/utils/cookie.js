@@ -1,24 +1,24 @@
-import { serialize } from 'cookie';
+import { serialize } from "cookie";
 
-const TOKEN_NAME = 'api_token';
+const TOKEN_NAME = "api_token";
 const MAX_AGE = 60 * 60 * 8;
 
 function createCookie(name, data, options = {}) {
   return serialize(name, data, {
     maxAge: MAX_AGE,
     expires: new Date(Date.now() + MAX_AGE * 1000),
-    secure: process.env.NODE_ENV === 'production',
-    path: '/',
+    secure: process.env.NODE_ENV === "production",
+    path: "/",
     httpOnly: true,
-    sameSite: 'lax',
+    sameSite: "lax",
     ...options,
   });
 }
 
 function setTokenCookie(res, token) {
-  res.setHeader('Set-Cookie', [
+  res.setHeader("Set-Cookie", [
     createCookie(TOKEN_NAME, token),
-    createCookie('authed', true, { httpOnly: false }),
+    createCookie("authed", true, { httpOnly: false }),
   ]);
 }
 

@@ -1,22 +1,21 @@
-import {Fragment} from "react";
+import { Fragment } from "react";
 
-import {SharedBasic} from "../types/global";
-import Button from "./button"
+import { SharedBasic } from "../types/global";
+import Button from "./button";
 import { CloseIcon } from "../icons/CloseIcon";
 
 export interface ModalProps extends SharedBasic {
-  isVisible?: boolean,
-  isValid?: boolean,
-  isCTA?: boolean,
-  onClose: () => void,
-  onAccept?: (event?: any) => void,
-  onDecline?: () => void,
-  acceptText?: string,
-  declineText?: string,
-  title?: string,
-  description?: string,
+  isVisible?: boolean;
+  isValid?: boolean;
+  isCTA?: boolean;
+  onClose: () => void;
+  onAccept?: (event?: any) => void;
+  onDecline?: () => void;
+  acceptText?: string;
+  declineText?: string;
+  title?: string;
+  description?: string;
 }
-
 
 const Modal = ({
   isVisible,
@@ -30,7 +29,7 @@ const Modal = ({
   title,
   description,
   children,
-}: ModalProps ) => {
+}: ModalProps) => {
   return isVisible ? (
     <div className="hold top left right bottom">
       <div className="overley accents-3 disabled" onClick={onClose} />
@@ -71,7 +70,7 @@ const Modal = ({
     </div>
   ) : (
     <Fragment></Fragment>
-  )
-}
+  );
+};
 
-export default Modal
+export default Modal;

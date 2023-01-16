@@ -16,13 +16,7 @@
           "config": {
             "label": "Languaje",
             "placeholder": "",
-            "options": [
-              "JSX",
-              "JS",
-              "HTML",
-              "CSS",
-              "BASH"
-            ]
+            "options": ["JSX", "JS", "HTML", "CSS", "BASH"]
           }
         },
         "code_snippet": {
