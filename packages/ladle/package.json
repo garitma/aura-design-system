@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "ladle": "npx ladle serve --stories=stories",
-    "build-ladle": "npx ladle build"
+    "build-ladle": "npx ladle build",
+    "test": "npx playwright test"
   },
   "keywords": [],
   "author": "",
@@ -12,5 +13,8 @@
     "@ladle/react": "^2.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.29.2"
   }
 }

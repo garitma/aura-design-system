@@ -1,9 +1,9 @@
 import React from "react";
 import Alert from "../../components/alert";
 
-export const warningAlert = () => (
+export const infoAlert = () => (
   <Alert
-    state={{ info: { message: "This is a warning alert", isError: false } }}
+    state={{ info: { message: "This is a info alert", isError: false } }}
   />
 );
 

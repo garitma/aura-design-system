@@ -2,7 +2,7 @@ import React from "react";
 import Select from "../../components/select";
 
 export const Naked = () => (
-  <Select>
+  <Select aria-label="Naked select">
     <option value="Option 1">Option 1</option>
     <option value="Option 2">Option 2</option>
     <option value="Option 3">Option 3</option>

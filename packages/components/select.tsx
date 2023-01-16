@@ -42,6 +42,7 @@ const Select = ({
         <div className="halo">
           <select
             className={classConnect.join(" ").trim()}
+            aria-label={placeholder}
             disabled={isDisabled}
             {...props}
           >
