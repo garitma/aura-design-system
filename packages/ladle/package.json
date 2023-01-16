@@ -5,7 +5,7 @@
     "dev": "pnpm ladle serve --stories=stories",
     "build": "pnpm ladle build --stories=stories",
     "start": "pnpm ladle preview",
-    "test": "pnpm playwright test"
+    "test": "pnpm npx playwright test"
   },
   "keywords": [],
   "author": {

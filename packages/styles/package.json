@@ -3,7 +3,6 @@
   "version": "1.0.1",
   "description": "",
   "main": "index.js",
-  
   "scripts": {
     "dev": "pnpm stylus --compress -w ./main.styl -o ./main.css",
     "build": "pnpm stylus --compress ./main.styl -o ./main.css"
@@ -13,5 +12,8 @@
     "name": "Pablo Orozco",
     "email": "me@pablopvsky.com"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "stylus": "^0.59.0"
+  }
 }
