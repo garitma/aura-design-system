@@ -20,6 +20,9 @@
     "start": "next start -p $PORT"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": {
+    "name": "Pablo Orozco",
+    "email": "me@pablopvsky.com"
+  },
+  "license": "MIT"
 }

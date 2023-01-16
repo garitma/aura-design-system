@@ -3,8 +3,8 @@
   "version": "1.0.1",
   "description": "Aura Design System is Garitma's open source space-oriented design system. Each object has a halo of light that surrounds it, it's aura.",
   "author": {
-    "name": "Garitma",
-    "email": "hola@garitma.com"
+    "name": "Pablo Orozco",
+    "email": "me@pablopvsky.com"
   },
   "license": "MIT",
   "dependencies": {

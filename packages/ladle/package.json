@@ -8,7 +8,10 @@
     "test": "pnpm playwright test"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Pablo Orozco",
+    "email": "me@pablopvsky.com"
+  },
   "license": "MIT",
   "dependencies": {
     "@ladle/react": "^2.4.5",

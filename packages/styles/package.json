@@ -3,11 +3,15 @@
   "version": "1.0.1",
   "description": "",
   "main": "index.js",
+  
   "scripts": {
     "dev": "pnpm stylus --compress -w ./main.styl -o ./main.css",
     "build": "pnpm stylus --compress ./main.styl -o ./main.css"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Pablo Orozco",
+    "email": "me@pablopvsky.com"
+  },
   "license": "MIT"
 }
