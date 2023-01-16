@@ -24,7 +24,8 @@
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "git:reset": "git reset --hard HEAD",
-    "git:clean": "git clean -d -x -e node_modules -e packages -f"
+    "git:clean": "git clean -d -x -e node_modules -e packages -f",
+    "new-version": "pnpm lerna version --conventional-commits --yes"
   },
   "keywords": [
     "react",
