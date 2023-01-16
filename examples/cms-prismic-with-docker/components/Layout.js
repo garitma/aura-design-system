@@ -19,14 +19,12 @@ Router.events.on("routeChangeError", () => {
 });
 
 const Layout = ({ children, text, seo, menu }) => (
-  <main>
-    <div className="page">
+    <div className="page-pancake">
       <Meta {...seo} />
-      <Header text={text} menu={menu} />
-      <div className="page-body">{children}</div>
-      <Footer />
+      <Header text={text} menu={menu}/> 
+      <div>{children}</div>
+       <Footer/> 
     </div>
-  </main>
 );
 
 export default Layout;

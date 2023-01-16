@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { PrismicNextImage } from "@prismicio/next";
-import Icon from "aura-design/icon";
 import Button from "aura-design/button";
+import {CloseIcon} from "aura-design/icons"
 
 import Link from "@components/Link";
 import Image from "@components/Image";
@@ -24,7 +24,7 @@ const Header = ({ menu }) => {
           <li></li>
           <li className="hide-large">
             <Button mode="link" onClick={() => setIsOpen(true)}>
-              <Icon sprite={"menu"} />
+          =
             </Button>
           </li>
           <li className="hide-small hide-medium">
@@ -44,7 +44,7 @@ const Header = ({ menu }) => {
             <li></li>
             <li>
               <Button mode="link" onClick={() => setIsOpen(false)}>
-                <Icon sprite={"close"} />
+                x
               </Button>
             </li>
           </ul>

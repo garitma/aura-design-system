@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Section from "aura-design/section";
 import Grid from "aura-design/grid";
-import Icon from "aura-design/icon";
 
 const Footer = () => {
   return (
