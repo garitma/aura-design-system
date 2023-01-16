@@ -13,19 +13,19 @@
     "url": "https://github.com/garitma/aura-design-system/issues"
   },
   "scripts": {
-    "boostrap": "pnpm lerna bootstrap",
-    "dev": "pnpm lerna run dev",
-    "dev:ladle": "pnpm lerna run dev --scope=@aura-design/ladle --scope=@aura-design/styles",
+    "boostrap": "pnpm npx lerna bootstrap",
+    "dev": "pnpm npx lerna run dev",
+    "dev:ladle": "pnpm npx lerna run dev --scope=@aura-design/ladle --scope=@aura-design/styles",
     "build": "rm -rf dist && tsc --module commonjs && ./scripts/exports.sh",
-    "build:ladle": "pnpm lerna run build --scope=@aura-design/styles --scope=@aura-design/ladle",
-    "start:ladle": "pnpm lerna run start --scope=@aura-design/ladle",
+    "build:ladle": "pnpm npx lerna run build --scope=@aura-design/styles --scope=@aura-design/ladle",
+    "start:ladle": "pnpm npx lerna run start --scope=@aura-design/ladle",
     "publish": "cd dist npm run publish",
-    "clean": "pnpm lerna clean -y && pnpm lerna bootstrap && pnpm lerna exec 'rm -rf ./dist'",
+    "clean": "pnpm npx lerna clean -y && pnpm npx lerna bootstrap && pnpm npx lerna exec 'rm -rf ./dist'",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
     "git:reset": "git reset --hard HEAD",
     "git:clean": "git clean -d -x -e node_modules -e packages -f",
-    "new-version": "pnpm lerna version --conventional-commits --yes"
+    "new-version": "pnpm npx lerna version --conventional-commits --yes"
   },
   "keywords": [
     "react",
