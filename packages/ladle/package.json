@@ -1,6 +1,6 @@
 {
   "name": "@aura-design/ladle",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "scripts": {
     "dev": "pnpm ladle serve --stories=stories",
     "build": "pnpm ladle build --stories=stories",
