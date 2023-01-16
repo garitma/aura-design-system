@@ -39,8 +39,14 @@ npm i aura-design
 ```
 
 ## Documentation
-
+### Website:
 <a href="https://auradesignsystem.com/">https://auradesignsystem.com/</a>
+
+### Stories:
+<a href="https://ladle.auradesignsystem.com/">https://ladle.auradesignsystem.com/</a>
+
+### Playground:
+<a href="https://play.auradesignsystem.com/">https://play.auradesignsystem.com/</a>
 
 ## License
 

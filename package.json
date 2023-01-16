@@ -14,7 +14,10 @@
   },
   "scripts": {
     "dev": "lerna run dev",
+    "dev:ladle": "lerna run dev --scope=@aura-design/ladle --scope=@aura-design/styles",
     "build": "rm -rf dist && tsc --module commonjs && ./scripts/exports.sh",
+    "build:ladle": "lerna run build --scope=@aura-design/styles --scope=@aura-design/ladle",
+    "start:ladle": "lerna run start --scope=@aura-design/ladle",
     "publish": "cd dist npm run publish",
     "clean": "npx lerna clean -y && npx lerna bootstrap && npx lerna exec 'rm -rf ./dist'",
     "prettier:check": "prettier --check .",

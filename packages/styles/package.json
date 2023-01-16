@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx stylus --compress -w ./main.styl -o ./main.css"
+    "dev": "npx stylus --compress -w ./main.styl -o ./main.css",
+    "build": "npx stylus --compress ./main.styl -o ./main.css"
   },
   "keywords": [],
   "author": "",
