@@ -15,8 +15,9 @@
       "noImplicitAny": true,
       "strictNullChecks": true,
       "suppressImplicitAnyIndexErrors": true,
-      "allowSyntheticDefaultImports": false
+      "allowSyntheticDefaultImports": false,
+      "skipLibCheck": true
     },
-    "include": ["atoms", "layout", "molecules", "static", "utils", "hoc", "global.tsx", "./index.d.ts"],
+    "include": ["packages/components","packages/icons", "packages/hooks"],
     "exclude": ["node_modules", "dist"]
   }

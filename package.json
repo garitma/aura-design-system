@@ -1,37 +1,7 @@
 {
   "name": "aura-design",
-  "version": "0.3.1",
+  "version": "0.4.7",
   "description": "Garitma's Design system",
-  "files": [
-    "dist",
-    "style.css",
-    "index.d.ts",
-    "button.js",
-    "button.d.ts",
-    "input.js",
-    "input.d.ts",
-    "section.js",
-    "section.d.ts",
-    "grid.js",
-    "grid.d.ts",
-    "icon.js",
-    "icon.d.ts",
-    "select.js",
-    "select.d.ts",
-    "data.js",
-    "data.d.ts",
-    "form.js",
-    "form.d.ts",
-    "modal.js",
-    "modal.d.ts",
-    "accordion.js",
-    "accordion.d.ts",
-    "global.js",
-    "global.d.ts",
-    "motion.js",
-    "motion.d.ts",
-    "README.md"
-  ],
   "author": "Garitma <hola@garitma.com",
   "license": "MIT",
   "homepage": "https://auradesignsystem.com",
@@ -43,11 +13,9 @@
     "url": "https://github.com/garitma/aura-design-system/issues"
   },
   "scripts": {
-    "stylus": "stylus -w --compress stylus/style.styl -o ./style.css",
-    "stylus:play": "stylus -w --compress stylus/style.styl -o ./playground/public/sandbox.css",
-    "build": "rm -rf dist && tsc --module commonjs && stylus --compress stylus/style.styl -o ./style.css && stylus --compress stylus/style.styl -o ./playground/public/sandbox.css",
-    "ladle": "npx ladle serve --stories=stories",
-    "build-ladle": "npx ladle build --stories=stories"
+    "dev:css": "stylus --compress -w packages/styles/main.styl -o packages/styles/main.css ",
+    "build": "rm -rf dist && tsc --module commonjs && ./scripts/exports.sh",
+    "publish": "cd dist npm run publish"
   },
   "keywords": [
     "react",
@@ -61,5 +29,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^4.9.3"
+  },
+  "dependencies": {
+    "@chakra-ui/icon": "^3.0.15"
   }
 }
