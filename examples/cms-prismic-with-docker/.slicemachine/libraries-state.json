@@ -45,7 +45,11 @@
                   "config": {
                     "label": "columns",
                     "placeholder": "",
-                    "options": ["one", "two", "three"]
+                    "options": [
+                      "one",
+                      "two",
+                      "three"
+                    ]
                   }
                 }
               },
@@ -181,7 +185,11 @@
                   "config": {
                     "label": "align",
                     "placeholder": "",
-                    "options": ["center-text", "left-text", "right-text"]
+                    "options": [
+                      "center-text",
+                      "left-text",
+                      "right-text"
+                    ]
                   }
                 }
               },
@@ -194,7 +202,9 @@
           "default-slice": {
             "variation": "default-slice",
             "version": "sktwi1xtmkfgx8626",
-            "items": [{}],
+            "items": [
+              {}
+            ],
             "primary": {
               "title": [
                 {
@@ -305,7 +315,7 @@
         },
         "screenshotPaths": {
           "default": {
-            "path": "/Users/pablopvsky/Documents/APP/aura-design-system/examples/cms-prismic-with-docker/slices/navigation/FooterColumn/default/preview.png",
+            "path": "/home/andreslopezsgd/Desktop/aura-design-system/examples/cms-prismic-with-docker/slices/navigation/FooterColumn/default/preview.png",
             "width": 442,
             "height": 356
           }
@@ -383,7 +393,7 @@
         },
         "screenshotPaths": {
           "default": {
-            "path": "/Users/pablopvsky/Documents/APP/aura-design-system/examples/cms-prismic-with-docker/slices/navigation/MenuSubTab/default/preview.png",
+            "path": "/home/andreslopezsgd/Desktop/aura-design-system/examples/cms-prismic-with-docker/slices/navigation/MenuSubTab/default/preview.png",
             "width": 358,
             "height": 372
           }
