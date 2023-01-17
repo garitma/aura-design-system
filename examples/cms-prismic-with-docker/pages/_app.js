@@ -2,7 +2,7 @@ import Router from "next/router";
 import Link from "next/link";
 import { PrismicProvider } from "@prismicio/react";
 import { PrismicPreview } from "@prismicio/next";
-import "aura-design/style.css";
+import "aura-design/main.css";
 
 import { repositoryName } from "@utils/prismic-client";
 import "../public/style.css";

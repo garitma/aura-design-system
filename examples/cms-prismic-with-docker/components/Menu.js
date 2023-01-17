@@ -1,8 +1,8 @@
 import { useState, useRef } from "react";
 import Button from "aura-design/button";
-import Icon from "aura-design/icon";
 import { useRouter } from "next/router";
 import * as prismicH from "@prismicio/helpers";
+import {ChevronDownIcon} from "aura-design/icons"
 
 import useClickOutside from "@hooks/useClickOutside";
 import Link from "@components/Link";
@@ -48,7 +48,7 @@ export default function Menu({ onClose, isMobile, menuTabs }) {
                     isFluid={isMobile}
                   >
                     {item.menuTab.data.title}
-                    <Icon sprite="arrowDown" />
+                    <ChevronDownIcon />
                   </Button>
                 </li>
                 <ul

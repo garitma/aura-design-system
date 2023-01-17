@@ -19,10 +19,10 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "hero_section_split": {
+            "section_grid_cards": {
               "type": "SharedSlice"
             },
-            "section_grid_cards": {
+            "section_heading": {
               "type": "SharedSlice"
             }
           }
