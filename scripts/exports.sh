@@ -19,12 +19,12 @@ cd ../hooks
 for f in ./*; do
     if [[ $f == *.js ]]; then
         touch ../"$f"
-        echo "module.exports = require('./components/$(basename -s .js "$f")');" >>../"$f"
+        echo "module.exports = require('./hooks/$(basename -s .js "$f")');" >>../"$f"
     fi
      if [[ $f == *.d.ts ]]; then
         touch ../"$f"
-        echo "export * from './components/$(basename -s .d.ts "$f")'" >>../"$f"
-        echo "export { default } from './components/$(basename -s .d.ts "$f")'" >>../"$f"
+        echo "export * from './hooks/$(basename -s .d.ts "$f")'" >>../"$f"
+        echo "export { default } from './hooks/$(basename -s .d.ts "$f")'" >>../"$f"
     fi
 done
 
