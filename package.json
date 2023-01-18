@@ -1,6 +1,6 @@
 {
   "name": "aura-design",
-  "version": "0.4.9",
+  "version": "0.4.10",
   "description": "Garitma's Design system",
   "author": "Pablo Orozco <me@pablopvsky.com",
   "license": "MIT",
@@ -21,7 +21,7 @@
     "build:ladle": "pnpm npx lerna run build --scope=@aura-design/styles --scope=@aura-design/ladle",
     "start:ladle": "pnpm npx lerna run start --scope=@aura-design/ladle",
     "test:ladle": "pnpm npx lerna run test --scope=@aura-design/ladle",
-    "publish": "cd dist npm run publish",
+    "publish": "cd ./dist && npm run publish",
     "clean": "pnpm npx lerna clean -y && pnpm npx lerna bootstrap && pnpm npx lerna exec 'rm -rf ./dist'",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
@@ -46,6 +46,10 @@
   },
   "dependencies": {
     "@chakra-ui/icon": "^3.0.15"
+  },
+  "peerDependencies": {
+    "@chakra-ui/system": ">=2.0.0",
+    "react": ">=18"
   },
   "workspaces": [
     "packages/*"
