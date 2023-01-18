@@ -1,7 +1,6 @@
 import { useState } from "react";
-import { PrismicNextImage } from "@prismicio/next";
 import Button from "aura-design/button";
-import {CloseIcon} from "aura-design/icons"
+import { CloseIcon } from "aura-design/icons";
 
 import Link from "@components/Link";
 import Image from "@components/Image";
@@ -17,22 +16,24 @@ const Header = ({ menu }) => {
           <li className="item">
             <Link href="/" className="halo">
               <a>
-                <PrismicNextImage field={menu.data.logo} />
+                {menu.data?.logo?.url ? <Image {...menu.data.logo} /> : null}
               </a>
             </Link>
           </li>
           <li></li>
           <li className="hide-large">
             <Button mode="link" onClick={() => setIsOpen(true)}>
-          =
+              =
             </Button>
           </li>
           <li className="hide-small hide-medium">
             <ul className="nav-list">
-              <Menu
-                onClose={() => setIsOpen(false)}
-                menuTabs={menu.data.menuTabs}
-              />
+              {menu?.data?.menuTabs ? (
+                <Menu
+                  onClose={() => setIsOpen(false)}
+                  menuTabs={menu.data.menuTabs}
+                />
+              ) : null}
             </ul>
           </li>
         </ul>
@@ -48,11 +49,13 @@ const Header = ({ menu }) => {
               </Button>
             </li>
           </ul>
-          <Menu
-            onClose={() => setIsOpen(false)}
-            menuTabs={menu.data.menuTabs}
-            isMobile
-          />
+          {menu?.data?.menuTabs ? (
+            <Menu
+              onClose={() => setIsOpen(false)}
+              menuTabs={menu.data.menuTabs}
+              isMobile
+            />
+          ) : null}
         </ul>
       </div>
     </header>
