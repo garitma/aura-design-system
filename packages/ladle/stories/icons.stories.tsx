@@ -1,5 +1,5 @@
 import React from "react";
-import { ChevronDownIcon, CopyIcon } from "../../icons";
+import { ChevronDownIcon, CopyIcon,MenuIcon } from "../../icons";
 
 export const Icon= () => <CopyIcon />;
 
