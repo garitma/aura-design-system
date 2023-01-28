@@ -10,7 +10,7 @@ export interface GridProps extends SharedBasic {
 }
 
 const Grid = ({ children, className, col, isFixed, ...props }: GridProps) => {
-  const classConnect = ["aureole", className];
+  const classConnect: string[] = ["aureole", className!]
 
   if (col) {
     classConnect.push(col);
@@ -20,7 +20,7 @@ const Grid = ({ children, className, col, isFixed, ...props }: GridProps) => {
   }
 
   return (
-    <div className={classConnect.join(" ")} {...props}>
+    <div className={classConnect.join(" ").trim()} {...props}>
       {children}
     </div>
   );

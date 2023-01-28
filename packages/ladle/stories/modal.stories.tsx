@@ -7,15 +7,22 @@ export const DefaultConfig = () => {
 
   return (
     <>
-      <Button onClick={() => setIsOpen(true)} label="Open modal" />
+      <Button onClick={() => setIsOpen(true)} label="Delete Account" />
       <Modal
         isVisible={isOpen}
+        title="Are you absolutely sure?"
+        firstButton={{
+          label: "Cancel",
+          onClick: () => setIsOpen(false),
+        }}
+        secondButton={{
+          label: "Yes, delete account",
+          onClick: () => setIsOpen(false),
+        }}
         onClose={() => setIsOpen(false)}
-        acceptText="Accept Text"
-        declineText="Decline Text"
       >
-        Hay un costo de vida que debemos pagar. Una escena viva, te leo en
-        imágenes y te veo en letras algo así parecido a la distancia.
+        This action cannot be undone. This will permanently delete your account
+        and remove your data from our servers.
       </Modal>
     </>
   );
