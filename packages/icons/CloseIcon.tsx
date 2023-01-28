@@ -1,4 +1,4 @@
-import { createIcon } from "@chakra-ui/icon";
+import { createIcon } from "../components/icon/create-icon";
 
 export const CloseIcon = createIcon({
   displayName: "Close",

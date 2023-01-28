@@ -44,11 +44,7 @@
     "react-dom": "^18.2.0",
     "typescript": "^4.9.3"
   },
-  "dependencies": {
-    "@chakra-ui/icon": "^3.0.15"
-  },
   "peerDependencies": {
-    "@chakra-ui/system": ">=2.0.0",
     "react": ">=18"
   },
   "workspaces": [

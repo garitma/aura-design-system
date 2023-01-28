@@ -16,6 +16,7 @@ export interface InputProps
   helpText?: string;
   placeholder?: string;
   name?: string;
+  classNameContainer?: string
 }
 
 const Input = ({
@@ -26,10 +27,13 @@ const Input = ({
   helpText,
   placeholder,
   className,
+  classNameContainer,
   name,
   ...props
 }: InputProps) => {
+
   const classConnect: string[] = [className!];
+  const classContainerConnect: string[] = [classNameContainer!, "inputer"]
 
   if (isDisabled) {
     classConnect.push("disabled");
@@ -45,7 +49,7 @@ const Input = ({
   }
 
   return (
-    <div className="inputer">
+    <div className={classContainerConnect.join(" ").trim()}>
       <div className={`inputer-group`}>
         <div className="halo">
           <input

@@ -11,7 +11,7 @@ select:not(.default)
        font: inherit
        height calc(var(--aura) * 4)
        padding 0 calc(var(--aura) * 2)
-       line-height calc(var(--aura) * 4)
+       line-height calc(var(--aura) * 4)px
        box-sizing: border-box
        border 0
        -webkit-appearance: none
@@ -24,8 +24,9 @@ select:not(.default)
               @extend .disabled
 
 .dropdown
-              position: absolute;
-              right: calc(var(--aura) * 2.5)
-              left: auto
-              top: 50%;
-              transform: translateY(-50%);
+       position: absolute;
+       display: flex
+       right: calc(var(--aura) * 2.5)
+       left: auto
+       top: 50%;
+       transform: translateY(-50%);

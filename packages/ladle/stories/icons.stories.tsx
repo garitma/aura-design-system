@@ -1,6 +1,6 @@
 import React from "react";
-import { ChevronDownIcon } from "../../icons";
+import { ChevronDownIcon, CopyIcon } from "../../icons";
 
-export const IconUser = () => <ChevronDownIcon />;
+export const Icon= () => <CopyIcon />;
 
-export const WithFontSize = () => <ChevronDownIcon className="h1" />;
+export const WithFontSize = () => <CopyIcon className="h1" />;
