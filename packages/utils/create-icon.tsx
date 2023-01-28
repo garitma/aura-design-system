@@ -1,5 +1,5 @@
 import { Children } from "react";
-import Icon from "./icon";
+import Icon from "../components/icon";
 
 interface CreateIconOptions {
   viewBox?: string;

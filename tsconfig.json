@@ -18,6 +18,6 @@
     "allowSyntheticDefaultImports": false,
     "skipLibCheck": true
   },
-  "include": ["packages/components", "packages/icons", "packages/hooks"],
+  "include": ["packages/components", "packages/icons", "packages/hooks", "packages/utils"],
   "exclude": ["node_modules", "dist"]
 }
