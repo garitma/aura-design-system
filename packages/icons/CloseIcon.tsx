@@ -1,4 +1,4 @@
-import { createIcon } from "../components/icon/create-icon";
+import { createIcon } from "../utils/create-icon";
 
 export const CloseIcon = createIcon({
   displayName: "Close",
