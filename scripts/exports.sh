@@ -28,6 +28,20 @@ for f in ./*; do
     fi
 done
 
+cd ../utils
+
+for f in ./*; do
+    if [[ $f == *.js ]]; then
+        touch ../"$f"
+        echo "module.exports = require('./utils/$(basename -s .js "$f")');" >>../"$f"
+    fi
+     if [[ $f == *.d.ts ]]; then
+        touch ../"$f"
+        echo "export * from './utils/$(basename -s .d.ts "$f")'" >>../"$f"
+        echo "export { default } from './utils/$(basename -s .d.ts "$f")'" >>../"$f"
+    fi
+done
+
 cd ..
 
 mv use-data-view.d.ts data.d.ts
