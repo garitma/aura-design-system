@@ -1,4 +1,4 @@
-import * as React from "react";
+import { forwardRef } from "react";
 import { Target, SharedBasic, ButtonMode, ButtonType } from "../types/global";
 
 /**
@@ -18,7 +18,7 @@ export interface ButtonProps extends SharedBasic {
   type?: ButtonType;
 }
 
-const Button = React.forwardRef(
+const Button = forwardRef(
   (
     {
       isDisabled = false,

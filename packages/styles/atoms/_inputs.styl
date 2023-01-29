@@ -58,6 +58,8 @@ input:not(.default)
     padding calc(var(--aura) * 2)
     line-height calc(var(--aura) * 4)px
     cursor: text;
+    &[type="file"]
+        padding-top: var(--aura)
     &:focus
         background var(--aura-input-bg)
         outline: var(--aura-outline)

@@ -23,13 +23,6 @@ export type AuraColors =
   | "accents-1"
   | "accents-2"
   | "accents-3"
-  | "accents-4"
-  | "accents-5"
-  | "accents-6"
-  | "accents-7"
-  | "accents-8"
-  | "accents-9"
-  | "accents-10";
 
 export type AuraIcons =
   | "search"

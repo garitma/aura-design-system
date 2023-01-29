@@ -5,15 +5,17 @@ import Input from "../../components/input";
 import Button from "../../components/button";
 import Alert from "../../components/alert";
 import Grid from "../../components/grid";
+import Checkbox from "../../components/checkbox";
 
 export const WithHook = () => {
   const formData = useForm({
     firstName: "",
     lastName: "",
     email: "",
+    accept: false,
   });
 
-  const { firstName, lastName, email }: any = formData;
+  const { firstName, lastName, email, accept }: any = formData;
 
   return (
     <div>
@@ -21,6 +23,7 @@ export const WithHook = () => {
         <Input placeholder="Name" {...firstName} />
         <Input placeholder="Last name" {...lastName} />
         <Input placeholder="Email" {...email} />
+        <Checkbox label="Accept terms and conditions." {...accept} />
       </form>
     </div>
   );
