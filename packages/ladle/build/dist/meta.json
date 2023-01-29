@@ -115,6 +115,56 @@
       "filePath": "stories/button.stories.tsx",
       "meta": {}
     },
+    "checkbox--naked": {
+      "name": "Naked",
+      "levels": [
+        "Checkbox"
+      ],
+      "locStart": 5,
+      "locEnd": 5,
+      "filePath": "stories/checkbox.stories.tsx",
+      "meta": {}
+    },
+    "form--with-hook": {
+      "name": "With hook",
+      "levels": [
+        "Form"
+      ],
+      "locStart": 10,
+      "locEnd": 30,
+      "filePath": "stories/form.stories.tsx",
+      "meta": {}
+    },
+    "form--with-grid": {
+      "name": "With grid",
+      "levels": [
+        "Form"
+      ],
+      "locStart": 32,
+      "locEnd": 52,
+      "filePath": "stories/form.stories.tsx",
+      "meta": {}
+    },
+    "form--with-status": {
+      "name": "With status",
+      "levels": [
+        "Form"
+      ],
+      "locStart": 54,
+      "locEnd": 110,
+      "filePath": "stories/form.stories.tsx",
+      "meta": {}
+    },
+    "form--with-validator": {
+      "name": "With validator",
+      "levels": [
+        "Form"
+      ],
+      "locStart": 112,
+      "locEnd": 213,
+      "filePath": "stories/form.stories.tsx",
+      "meta": {}
+    },
     "grid--with-one-columns": {
       "name": "With one columns",
       "levels": [
@@ -175,6 +225,16 @@
       "filePath": "stories/grid.stories.tsx",
       "meta": {}
     },
+    "grid--with-span": {
+      "name": "With span",
+      "levels": [
+        "Grid"
+      ],
+      "locStart": 76,
+      "locEnd": 83,
+      "filePath": "stories/grid.stories.tsx",
+      "meta": {}
+    },
     "headline--headlines": {
       "name": "Headlines",
       "levels": [
@@ -185,23 +245,43 @@
       "filePath": "stories/headline.stories.tsx",
       "meta": {}
     },
-    "icons--icon-user": {
-      "name": "Icon user",
-      "levels": [
-        "Icons"
-      ],
-      "locStart": 4,
-      "locEnd": 4,
-      "filePath": "stories/icons.stories.tsx",
-      "meta": {}
-    },
-    "icons--with-font-size": {
-      "name": "With font size",
+    "icons--icon": {
+      "name": "Icon",
       "levels": [
         "Icons"
       ],
       "locStart": 6,
       "locEnd": 6,
+      "filePath": "stories/icons.stories.tsx",
+      "meta": {}
+    },
+    "icons--icon-size": {
+      "name": "Icon size",
+      "levels": [
+        "Icons"
+      ],
+      "locStart": 8,
+      "locEnd": 8,
+      "filePath": "stories/icons.stories.tsx",
+      "meta": {}
+    },
+    "icons--with-external-icon": {
+      "name": "With external icon",
+      "levels": [
+        "Icons"
+      ],
+      "locStart": 10,
+      "locEnd": 10,
+      "filePath": "stories/icons.stories.tsx",
+      "meta": {}
+    },
+    "icons--with-external-icon-size": {
+      "name": "With external icon size",
+      "levels": [
+        "Icons"
+      ],
+      "locStart": 12,
+      "locEnd": 12,
       "filePath": "stories/icons.stories.tsx",
       "meta": {}
     },
@@ -235,6 +315,46 @@
       "filePath": "stories/input.stories.tsx",
       "meta": {}
     },
+    "input--with-date": {
+      "name": "With date",
+      "levels": [
+        "Input"
+      ],
+      "locStart": 16,
+      "locEnd": 24,
+      "filePath": "stories/input.stories.tsx",
+      "meta": {}
+    },
+    "input--with-picker": {
+      "name": "With picker",
+      "levels": [
+        "Input"
+      ],
+      "locStart": 26,
+      "locEnd": 28,
+      "filePath": "stories/input.stories.tsx",
+      "meta": {}
+    },
+    "input--with-rage": {
+      "name": "With rage",
+      "levels": [
+        "Input"
+      ],
+      "locStart": 30,
+      "locEnd": 30,
+      "filePath": "stories/input.stories.tsx",
+      "meta": {}
+    },
+    "input--with-file": {
+      "name": "With file",
+      "levels": [
+        "Input"
+      ],
+      "locStart": 32,
+      "locEnd": 32,
+      "filePath": "stories/input.stories.tsx",
+      "meta": {}
+    },
     "layout--pancake": {
       "name": "Pancake",
       "levels": [
@@ -261,7 +381,7 @@
         "Modal"
       ],
       "locStart": 5,
-      "locEnd": 22,
+      "locEnd": 29,
       "filePath": "stories/modal.stories.tsx",
       "meta": {}
     },
@@ -343,6 +463,26 @@
       "locStart": 20,
       "locEnd": 30,
       "filePath": "stories/select.stories.tsx",
+      "meta": {}
+    },
+    "separator--horizontal": {
+      "name": "Horizontal",
+      "levels": [
+        "Separator"
+      ],
+      "locStart": 6,
+      "locEnd": 10,
+      "filePath": "stories/separator.stories.tsx",
+      "meta": {}
+    },
+    "separator--vertical": {
+      "name": "Vertical",
+      "levels": [
+        "Separator"
+      ],
+      "locStart": 12,
+      "locEnd": 22,
+      "filePath": "stories/separator.stories.tsx",
       "meta": {}
     }
   }

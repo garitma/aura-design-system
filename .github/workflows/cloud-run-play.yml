@@ -3,8 +3,7 @@ name: next-aura-play
 on:
   push:
     branches:
-      - production
-      - production-playground
+      deploy/playground/production
 
 env:
   CLOUD_RUN_PROJECT_ID: ${{ secrets.CLOUD_RUN_PROJECT_NAME }}
