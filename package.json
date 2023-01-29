@@ -21,7 +21,7 @@
     "build:ladle": "pnpm npx lerna run build --scope=@aura-design/styles --scope=@aura-design/ladle",
     "start:ladle": "pnpm npx lerna run start --scope=@aura-design/ladle",
     "test:ladle": "pnpm npx lerna run test --scope=@aura-design/ladle",
-    "publish": "cd ./dist && npm publish",
+    "release": "cd ./dist && npm publish",
     "clean": "pnpm npx lerna clean -y && pnpm npx lerna bootstrap && pnpm npx lerna exec 'rm -rf ./dist'",
     "prettier:check": "prettier --check .",
     "prettier:fix": "prettier --write .",
