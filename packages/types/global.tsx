@@ -93,6 +93,7 @@ export type AuraGrid =
   | "four"
   | "five"
   | "six"
+  | "twelve"
   | "box"
   | "box-2"
   | "blog"

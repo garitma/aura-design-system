@@ -3,7 +3,7 @@ import { SharedBasic } from "../types/global";
 export interface AlertProps extends SharedBasic {
   state?: {
     info?: {
-      message?: string;
+      message?: string | null;
       isError?: boolean;
     };
   };

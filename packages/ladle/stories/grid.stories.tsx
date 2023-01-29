@@ -72,3 +72,12 @@ export const withColumnsReverse = () => (
     <div className="pad blue two">2</div>
   </Grid>
 );
+
+export const withSpan = () => (
+  <Grid col="twelve">
+    <div className="pad green span-6">span-6</div>
+    <div className="pad yellow span-3">span-3</div>
+    <div className="pad orange span-2">span-2</div>
+    <div className="pad blue span-1">span-1</div>
+  </Grid>
+);

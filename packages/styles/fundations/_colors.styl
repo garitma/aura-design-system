@@ -24,5 +24,7 @@ status = "warning" "info" "danger" "success"
 for state in status
   .{state}
     background-color: var(replace("state", state, --aura-accents-state-bg))!important
+    --aura-outline: solid 2px var(replace("state", state, --aura-accents-state))
   .{state}-text
     color: var(replace("state", state, --aura-accents-state))!important
+   

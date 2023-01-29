@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export const useInputValue = (initialValue: any) => {
   const [value, setValue] = useState(initialValue);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(null);
   const [touch, setTouch] = useState(false);
 
   const onChange = (e: { target: { value: any } }) => {
@@ -10,13 +10,6 @@ export const useInputValue = (initialValue: any) => {
   };
   const reset = () => setValue("");
   const dialog = setError;
-
-  const input = {
-    value,
-    onChange,
-    helpText: error,
-    isHelping: error && touch ? true : false,
-  };
 
   return {
     value,
@@ -27,7 +20,8 @@ export const useInputValue = (initialValue: any) => {
     dialog,
     setTouch,
     setValue,
-    input,
+    helpText: error,
+    isHelping: error && touch,
   };
 };
 
