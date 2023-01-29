@@ -8,9 +8,9 @@ import { Target, SharedBasic, ButtonMode, ButtonType } from "../types/global";
 export interface ButtonProps extends SharedBasic {
   isDisabled?: boolean;
   isFluid?: boolean;
-  isWaiting?: boolean;
+  isLoading?: boolean;
   onClick?: (event?: any) => void;
-  isWaitingText?: string;
+  isLoadingText?: string;
   mode?: ButtonMode;
   label?: string;
   href?: string;
@@ -23,8 +23,8 @@ const Button = React.forwardRef(
     {
       isDisabled = false,
       isFluid = false,
-      isWaiting = false,
-      isWaitingText = "...",
+      isLoading = false,
+      isLoadingText = "...",
       mode = "fill",
       label,
       className,
@@ -40,20 +40,20 @@ const Button = React.forwardRef(
     if (isFluid) {
       classConnect.push("fluid");
     }
-    if (isDisabled || isWaiting) {
+    if (isDisabled || isLoading) {
       classConnect.push("disabled");
     }
 
     return (
       <AuraButton
         className={classConnect.join(" ").trim()}
-        disabled={isDisabled || isWaiting}
+        disabled={isDisabled || isLoading}
         href={href}
         ref={ref}
         {...props}
       >
         <span className={`container`}>
-          {isWaiting ? isWaitingText : label}
+          {isLoading ? isLoadingText : label}
           {children}
         </span>
       </AuraButton>

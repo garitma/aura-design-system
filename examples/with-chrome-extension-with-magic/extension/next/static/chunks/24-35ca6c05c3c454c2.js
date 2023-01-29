@@ -43,7 +43,7 @@
           var r = e.isDisabled,
             a = void 0 !== r && r,
             s = e.isFluid,
-            l = e.isWaiting,
+            l = e.isLoading,
             u = void 0 !== l && l,
             c = e.waitingText,
             f = e.mode,
@@ -55,7 +55,7 @@
             y = o(e, [
               "isDisabled",
               "isFluid",
-              "isWaiting",
+              "isLoading",
               "waitingText",
               "mode",
               "label",
@@ -459,7 +459,7 @@
         }),
         (t.useStatus = function () {
           var e = (0, o.useState)({
-              isWaiting: !1,
+              isLoading: !1,
               isSubmited: !1,
               info: { isError: !1, message: null },
             }),
@@ -476,7 +476,7 @@
             },
             setIsWaiting: function (e) {
               return r(function (t) {
-                return n(n({}, t), { isWaiting: e });
+                return n(n({}, t), { isLoading: e });
               });
             },
             setSubmited: function (e) {
@@ -491,7 +491,7 @@
             },
             resetStatus: function () {
               r({
-                isWaiting: !1,
+                isLoading: !1,
                 isSubmited: !1,
                 info: { isError: !1, message: null },
               });

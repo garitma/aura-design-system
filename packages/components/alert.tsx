@@ -2,8 +2,8 @@ import { SharedBasic } from "../types/global";
 
 export interface AlertProps extends SharedBasic {
   state?: {
-    info: {
-      message: string;
+    info?: {
+      message?: string;
       isError?: boolean;
     };
   };
@@ -20,7 +20,6 @@ const Alert = ({
   className,
 }: AlertProps) => {
   const isActive = state?.info?.message || message;
-
   const classConnect: string[] = [className!, "mod", "aura"];
 
   if (state?.info?.isError) {

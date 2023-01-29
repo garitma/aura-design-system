@@ -16,7 +16,12 @@ export interface InputProps
   helpText?: string;
   placeholder?: string;
   name?: string;
-  classNameContainer?: string
+  classNameContainer?: string;
+  dialog?: string;
+  touch?: boolean;
+  setTouch?: (event?: any) => void;
+  setValue?: (event?: any) => void;
+  reset?: (event?: any) => void;
 }
 
 const Input = ({
@@ -31,9 +36,11 @@ const Input = ({
   name,
   ...props
 }: InputProps) => {
+  
+  const { touch, setTouch, setValue, reset, dialog, ...inputProps } = props;
 
   const classConnect: string[] = [className!];
-  const classContainerConnect: string[] = [classNameContainer!, "inputer"]
+  const classContainerConnect: string[] = [classNameContainer!, "inputer"];
 
   if (isDisabled) {
     classConnect.push("disabled");
@@ -58,7 +65,7 @@ const Input = ({
             placeholder={placeholder}
             disabled={isDisabled}
             className={classConnect.join(" ").trim()}
-            {...props}
+            {...inputProps}
           />
           {placeholder && isLabelable && (
             <label htmlFor={name}>{placeholder}</label>

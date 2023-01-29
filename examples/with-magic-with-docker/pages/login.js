@@ -75,7 +75,7 @@ const SignIn = () => {
                     className="green-with-white"
                     isFluid
                     isDisabled={!isValid}
-                    isWaiting={status.state.isWaiting}
+                    isLoading={status.state.isLoading}
                     waitingText="Loading..."
                     label="Iniciar sesión"
                   />

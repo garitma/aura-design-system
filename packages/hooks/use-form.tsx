@@ -69,13 +69,13 @@ export const useFormIsValid = (data: object, schema: any) => {
 
 export const useStatus = () => {
   const [status, setStatus] = useState({
-    isWaiting: false,
+    isLoading: false,
     isSubmited: false,
     info: { isError: false, message: null },
   });
 
   const setIsWaiting = (event: any) =>
-    setStatus((prevStatus) => ({ ...prevStatus, isWaiting: event }));
+    setStatus((prevStatus) => ({ ...prevStatus, isLoading: event }));
 
   const setSubmited = (event: any) =>
     setStatus((prevStatus) => ({ ...prevStatus, isSubmited: event }));
@@ -100,7 +100,7 @@ export const useStatus = () => {
 
   const resetStatus = () => {
     setStatus({
-      isWaiting: false,
+      isLoading: false,
       isSubmited: false,
       info: { isError: false, message: null },
     });

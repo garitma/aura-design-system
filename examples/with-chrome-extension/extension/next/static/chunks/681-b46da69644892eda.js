@@ -43,7 +43,7 @@
           var o = e.isDisabled,
             a = void 0 !== o && o,
             i = e.isFluid,
-            s = e.isWaiting,
+            s = e.isLoading,
             u = void 0 !== s && s,
             c = e.waitingText,
             f = e.mode,
@@ -55,7 +55,7 @@
             b = r(e, [
               "isDisabled",
               "isFluid",
-              "isWaiting",
+              "isLoading",
               "waitingText",
               "mode",
               "label",

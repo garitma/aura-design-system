@@ -176,7 +176,7 @@
                                       className: "green-with-white",
                                       isFluid: !0,
                                       isDisabled: !w,
-                                      isWaiting: e.state.isWaiting,
+                                      isLoading: e.state.isLoading,
                                       waitingText: "Loading...",
                                       label: "Iniciar sesi\xf3n",
                                     }),
