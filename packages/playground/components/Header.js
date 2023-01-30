@@ -1,11 +1,12 @@
 import Link from "next/link";
 import Image from "next/image";
-import Icon from "aura-design/icon";
 import Button from "aura-design/button";
+
+import {GithubIcon} from "@components/icons";
 
 const Header = ({ text }) => {
   return (
-    <header className="accents-4 white-text aura">
+    <header className="aura">
       <div className="smesh wall-pad">
         <ul className="nav-list">
           <li>
@@ -22,14 +23,14 @@ const Header = ({ text }) => {
               </span>
             </Link>
           </li>
-          <li className="mod dark">
+          <li className="mod">
             <Button
               mode="link"
               href="https://github.com/garitma/aura-design-system"
               target="_blank"
               rel="noopener"
             >
-              <Icon sprite="github" />
+              <GithubIcon />
             </Button>
           </li>
         </ul>
