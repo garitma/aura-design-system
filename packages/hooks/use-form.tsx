@@ -68,7 +68,7 @@ export const useStatus = () => {
     info: { isError: false, message: null },
   });
 
-  const setIsWaiting = (event: any) =>
+  const setIsLoading = (event: any) =>
     setStatus((prevStatus) => ({ ...prevStatus, isLoading: event }));
 
   const setSubmited = (event: any) =>
@@ -105,7 +105,7 @@ export const useStatus = () => {
     message: status.info.message,
     setStatus,
     setMessage,
-    setIsWaiting,
+    setIsLoading,
     setSubmited,
     setIsError,
     resetStatus,

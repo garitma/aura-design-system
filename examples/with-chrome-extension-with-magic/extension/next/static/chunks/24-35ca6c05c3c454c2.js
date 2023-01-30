@@ -474,7 +474,7 @@
                 return n(n({}, t), { info: n(n({}, t.info), { message: e }) });
               });
             },
-            setIsWaiting: function (e) {
+            setIsLoading: function (e) {
               return r(function (t) {
                 return n(n({}, t), { isLoading: e });
               });

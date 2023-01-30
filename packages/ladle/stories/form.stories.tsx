@@ -64,7 +64,7 @@ export const WithStatus = () => {
   const handleOnSubmit = async (event) => {
     event.preventDefault();
     status.resetStatus();
-    status.setIsWaiting(true);
+    status.setIsLoading(true);
 
     const fakeFetch = new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -79,7 +79,7 @@ export const WithStatus = () => {
   };
 
   const handleOnResponse = (res: any) => {
-    status.setIsWaiting(false);
+    status.setIsLoading(false);
     status.setSubmited(true);
     if (!res.ok) {
       status.setIsError(true);
@@ -166,7 +166,7 @@ export const WithValidator = () => {
   const handleOnSubmit = async (event) => {
     event.preventDefault();
     status.resetStatus();
-    status.setIsWaiting(true);
+    status.setIsLoading(true);
 
     const fakeFetch = new Promise((resolve, reject) => {
       setTimeout(() => {
@@ -181,7 +181,7 @@ export const WithValidator = () => {
   };
 
   const handleOnResponse = (res: any) => {
-    status.setIsWaiting(false);
+    status.setIsLoading(false);
     status.setSubmited(true);
     if (!res.ok) {
       status.setIsError(true);

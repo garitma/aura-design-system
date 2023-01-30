@@ -76,12 +76,12 @@
               });
             }, []),
             b = async (s) => {
-              s.preventDefault(), e.setIsWaiting(!0);
+              s.preventDefault(), e.setIsLoading(!0);
               try {
                 await N.auth.loginWithMagicLink({ email: v.value }), c(!0);
               } catch (a) {
                 console.log(a),
-                  e.setIsWaiting(!1),
+                  e.setIsLoading(!1),
                   e.setIsError(!0),
                   e.setMessage("An error occurred while authenticating.");
               }

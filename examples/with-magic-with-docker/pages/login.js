@@ -22,21 +22,21 @@ const SignIn = () => {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
-    status.setIsWaiting(true);
+    status.setIsLoading(true);
 
     try {
       const res = await authWithEmail(email.value);
       if (res.ok) {
-        status.setIsWaiting(false);
+        status.setIsLoading(false);
         window.location.href = "/";
         return;
       } else {
-        status.setIsWaiting(false);
+        status.setIsLoading(false);
         status.setIsError(true);
         status.setMessage("An error occurred while authenticating.");
       }
     } catch (error) {
-      status.setIsWaiting(false);
+      status.setIsLoading(false);
       status.setIsError(true);
       status.setMessage("An error occurred while authenticating.");
     }

@@ -56,14 +56,14 @@ const SignIn = () => {
 
   const handleOnSubmit = async (event) => {
     event.preventDefault();
-    status.setIsWaiting(true);
+    status.setIsLoading(true);
 
     try {
       const res = await magic.auth.loginWithMagicLink({ email: email.value });
       setIsNotice(true);
     } catch (error) {
       console.log(error);
-      status.setIsWaiting(false);
+      status.setIsLoading(false);
       status.setIsError(true);
       status.setMessage("An error occurred while authenticating.");
     }
