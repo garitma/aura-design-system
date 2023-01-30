@@ -1,5 +1,6 @@
 import { useState, useRef, useCallback, Fragment, useEffect } from "react";
-import {CopyIcon} from "aura-design/icons";
+import { CopyIcon } from "aura-design/icons";
+import Button from "aura-design/button";
 import sanitizeHtml from "sanitize-html";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import { useEditable } from "use-editable";
@@ -102,7 +103,7 @@ const SandboxCode = () => {
   return (
     <>
       <div className="anchor code-box">
-        <div className="pin left right top wall-pad righttxt">
+        <div className="pin left right top wall-pad righttxt accents-1">
           <div>
             <ul className="nav-list">
               <li>
@@ -121,13 +122,13 @@ const SandboxCode = () => {
                   );
                 })}
               </li>
-              <li >
-                <button className="button-link" onClick={setCopied}>
+              <li>
+                <Button mode="link" onClick={setCopied}>
                   <CopyIcon />
-                  <span >
-                    {isCopied ? "Copied!" : "Copy"}
+                  <span className="ml13">
+                  {isCopied ? "Copied!" : "Copy"}
                   </span>
-                </button>
+                </Button>
               </li>
             </ul>
           </div>
