@@ -1,6 +1,6 @@
 {
   "name": "@aura-design/system",
-  "version": "0.4.27",
+  "version": "0.4.28",
   "description": "Garitma's Design system",
   "keywords": [
     "react",
@@ -51,7 +51,8 @@
     "select.d.ts",
     "select.js",
     "separator.d.ts",
-    "separator.js"
+    "separator.js",
+    "main.css"
   ],
   "publishConfig": {
     "access": "public"

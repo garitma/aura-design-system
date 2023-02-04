@@ -15,11 +15,13 @@ const Header = ({ menu }) => {
       <div className="smush aura">
         <ul className="nav-list">
           <li className="item">
-            <Link href="/" className="halo">
-              <a>
-                <PrismicNextImage field={menu.data.logo} />
-              </a>
-            </Link>
+            {menu?.data?.logo && (
+              <Link href="/" className="halo">
+                <a>
+                  <PrismicNextImage field={menu.data.logo} />
+                </a>
+              </Link>
+            )}
           </li>
           <li></li>
           <li className="hide-large">
@@ -29,10 +31,12 @@ const Header = ({ menu }) => {
           </li>
           <li className="hide-small hide-medium">
             <ul className="nav-list">
-              <Menu
-                onClose={() => setIsOpen(false)}
-                menuTabs={menu.data.menuTabs}
-              />
+              {menu?.data && (
+                <Menu
+                  onClose={() => setIsOpen(false)}
+                  menuTabs={menu.data.menuTabs}
+                />
+              )}
             </ul>
           </li>
         </ul>
@@ -48,11 +52,11 @@ const Header = ({ menu }) => {
               </Button>
             </li>
           </ul>
-          <Menu
+          {menu?.data && <Menu
             onClose={() => setIsOpen(false)}
             menuTabs={menu.data.menuTabs}
             isMobile
-          />
+          />}
         </ul>
       </div>
     </header>
