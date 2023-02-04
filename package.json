@@ -13,7 +13,7 @@
     "url": "https://github.com/garitma/aura-design-system/issues"
   },
   "scripts": {
-    "boostrap": "pnpm npx lerna bootstrap",
+    "boostrap": "pnpm npx lerna exec pnpm install",
     "boostrap:browsers": "pnpm npx playwright install firefox && pnpm npx playwright install chromium && pnpm npx playwright install webkit",
     "dev": "pnpm npx lerna run dev",
     "dev:ladle": "pnpm npx lerna run dev --scope=@aura-design/ladle --scope=@aura-design/styles",
