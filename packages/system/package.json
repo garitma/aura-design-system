@@ -1,0 +1,75 @@
+{
+  "name": "@aura-design/system",
+  "version": "0.4.21",
+  "description": "Garitma's Design system",
+  "keywords": [
+    "system",
+    "styled-component",
+    "emotion",
+    "ui-component",
+    "ui",
+    "chakra",
+    "style-props",
+    "design-system"
+  ],
+  "sideEffects": false,
+  "author": "Pablo Orozco <me@pablopvsky.com",
+  "homepage": "https://github.com/garitma/aura-design-system/#readme",
+  "license": "MIT",
+  "main": "src/index.ts",
+  "files": [
+    "dist",
+    "accordion.d.ts",
+    "accordion.js",
+    "alert.d.ts",
+    "alert.js",
+    "button.d.ts",
+    "button.js",
+    "checkbox.d.ts",
+    "checkbox.js",
+    "create-icon.d.ts",
+    "create-icon.js",
+    "data.d.ts",
+    "data.js",
+    "form.d.ts",
+    "form.js",
+    "grid.d.ts",
+    "grid.js",
+    "icon.d.ts",
+    "icon.js",
+    "index.d.ts",
+    "index.ts",
+    "input.d.ts",
+    "input.js",
+    "modal.d.ts",
+    "modal.js",
+    "section.d.ts",
+    "section.js",
+    "select.d.ts",
+    "section.js",
+    "select.d.ts",
+    "select.js",
+    "separator.d.ts",
+    "separator.js"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garitma/aura-design-system.git",
+    "directory": "packages/system"
+  },
+  "bugs": {
+    "url": "https://github.com/garitma/aura-design-system/issues"
+  },
+  "dependencies": {
+    "@types/react": "^18.0.25",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "typescript": "^4.9.3"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc --module commonjs"
+  }
+}

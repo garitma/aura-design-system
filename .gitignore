@@ -127,6 +127,7 @@ out/
 # Logs
 
 dist/*
+**/dist/*
 
 # Test
 
