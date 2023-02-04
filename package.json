@@ -1,6 +1,6 @@
 {
-  "name": "aura-design",
-  "version": "0.4.20",
+  "name": "aura-design-project",
+  "version": "0.0.0",
   "description": "Garitma's Design system",
   "author": "Pablo Orozco <me@pablopvsky.com",
   "license": "MIT",
@@ -45,9 +45,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^4.9.3"
-  },
-  "peerDependencies": {
-    "react": ">=18"
   },
   "workspaces": [
     "packages/*"

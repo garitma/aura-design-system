@@ -1,6 +1,6 @@
 {
   "name": "@aura-design/system",
-  "version": "0.4.23",
+  "version": "0.4.27",
   "description": "Garitma's Design system",
   "keywords": [
     "react",
@@ -9,13 +9,17 @@
     "ui-library",
     "ui-components"
   ],
-  "sideEffects": false,
   "author": "Pablo Orozco <me@pablopvsky.com",
   "homepage": "https://github.com/garitma/aura-design-system/#readme",
   "license": "MIT",
-  "main": "./dist/",
+  "main": "index.ts",
   "files": [
     "dist",
+    "dist/components",
+    "dist/hooks",
+    "dist/icons",
+    "dist/types",
+    "dist/utils",
     "accordion.d.ts",
     "accordion.js",
     "alert.d.ts",
