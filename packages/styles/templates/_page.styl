@@ -6,6 +6,7 @@
 html
     margin: 0
     padding: 0
+    color: var(--aura-accents-primary)
 body
     margin: 0
     padding: 0
@@ -13,21 +14,12 @@ body
     max-width 100%
     overflow-x hidden  
 
-main 
-    padding 0
-    display flex
-    flex-direction column
-    justify-content center
-    max-width: 2550px
-
 .page
     padding: 0
     flex: 1
     display: flex
     flex-direction: column
     justify-content: flex-start
-    background-color var(--aura-accents-0)
-    color var(--aura-accents-10)
     &-pancake
         display: grid
         grid-template-rows: auto 1fr auto
@@ -37,11 +29,10 @@ main
         grid-template-rows: auto 1fr auto
         grid-template-columns: 100px 1fr
         min-height: 100vh;
-        
 
 *
     box-sizing: border-box;
     touch-action: manipulation;
     &::selection
-        color: var(--aura-accents-10)
+        color: var(--aura-accents-primary)
         background: var(--aura-selector)

@@ -2,7 +2,8 @@
   "_cts": {
     "document": {},
     "home": {},
-    "menu-tab": {}
+    "menu-tab": {},
+    "cheat_sheets_page": {}
   },
   "slices": {
     "RichText": {
@@ -43,6 +44,13 @@
       }
     },
     "SectionPoerty": {
+      "default": {
+        "primary": {}
+      }
+    }
+  },
+  "slices/documentation": {
+    "TableBlock": {
       "default": {
         "primary": {}
       }

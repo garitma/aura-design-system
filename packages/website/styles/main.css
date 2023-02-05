@@ -10,6 +10,10 @@
   margin-bottom: var(--aura);
 }
 
+.pm0 p {
+  margin: 0;
+}
+
 #nprogress .bar {
   background: var(--aura-loader)!important;
   height: 6.5px!important
