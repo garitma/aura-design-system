@@ -1,8 +1,6 @@
 import NextImage from "next/image";
 
 const Image = ({
-  width,
-  height,
   src,
   url,
   dimensions,

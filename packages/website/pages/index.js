@@ -1,12 +1,10 @@
-import Section from "aura-design/section";
-import Grid from "aura-design/grid";
 import { SliceZone } from "@prismicio/react";
 import * as prismicH from "@prismicio/helpers";
 
-import { components as marketingComponents } from "@slices/marketing/index";
-import { createClient } from "@utils/prismic-client";
-import { menuGraphQuery } from "@utils/prismic-graphquery";
-import Layout from "@components/Layout";
+import { components as marketingComponents } from "@/slices/marketing/index";
+import { createClient } from "@/utils/prismic-client";
+import { menuGraphQuery } from "@/utils/prismic-graphquery";
+import Layout from "@/components/Layout";
 
 const __allComponents = { ...marketingComponents };
 

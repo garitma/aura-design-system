@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
-import Icon from "aura-design/icon";
+import Icon from "@aura-design/system/icon";
 import useClipboard from "react-use-clipboard";
 import * as prismicH from "@prismicio/helpers";
 

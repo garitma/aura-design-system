@@ -1,6 +1,7 @@
 {
   "_cts": {
-    "document": {}
+    "document": {},
+    "home": {}
   },
   "slices": {
     "RichText": {
@@ -28,5 +29,22 @@
       }
     },
     "Highlighted": {}
+  },
+  "slices/marketing": {
+    "HeroBanner": {
+      "default": {
+        "primary": {}
+      }
+    },
+    "Banner": {
+      "default": {
+        "primary": {}
+      }
+    },
+    "SectionPoerty": {
+      "default": {
+        "primary": {}
+      }
+    }
   }
 }

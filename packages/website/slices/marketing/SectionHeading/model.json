@@ -1,0 +1,65 @@
+{
+  "id": "section_heading",
+  "type": "SharedSlice",
+  "name": "SectionHeading",
+  "description": "SectionHeading",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "sktwi1xtmkfgx8626",
+      "description": "SectionHeading",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "Title",
+            "placeholder": "This is where it all begins...",
+            "allowTargetBlank": true,
+            "single": "heading1"
+          }
+        },
+        "description": {
+          "type": "StructuredText",
+          "config": {
+            "single": "paragraph",
+            "label": "Description",
+            "placeholder": "A nice description of your feature"
+          }
+        },
+        "color": {
+          "type": "Select",
+          "config": {
+            "label": "color",
+            "placeholder": "",
+            "options": [
+              "white",
+              "yellow",
+              "green",
+              "lemon-green",
+              "pink-purple",
+              "pink",
+              "orange-rose",
+              "orange",
+              "purple",
+              "snow",
+              "teal-green",
+              "blue"
+            ]
+          }
+        },
+        "align": {
+          "type": "Select",
+          "config": {
+            "label": "align",
+            "placeholder": "",
+            "options": ["center-text", "left-text", "right-text"]
+          }
+        }
+      },
+      "items": {},
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+    }
+  ]
+}

@@ -19,10 +19,13 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
-            "hero_section_split": {
+            "hero_banner": {
               "type": "SharedSlice"
             },
-            "section_grid_cards": {
+            "banner": {
+              "type": "SharedSlice"
+            },
+            "section_poerty": {
               "type": "SharedSlice"
             }
           }

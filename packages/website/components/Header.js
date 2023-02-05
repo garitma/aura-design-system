@@ -1,24 +1,28 @@
 import { useState } from "react";
 import { PrismicNextImage } from "@prismicio/next";
-import Icon from "aura-design/icon";
-import Button from "aura-design/button";
+import Icon from "@aura-design/system/icon";
+import { MenuIcon, CloseIcon } from "@aura-design/system/dist/icons";
+import Button from "@aura-design/system/button";
+import Separator from "@aura-design/system/separator";
 
-import Link from "@components/Link";
-import Image from "@components/Image";
-import Menu from "@components/Menu";
+import Link from "@/components/Link";
+import Image from "@/components/Image";
+import Menu from "@/components/Menu";
 
 const Header = ({ menu }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="aura purple">
+    <header className="purple">
       <div className="smush aura">
         <ul className="nav-list">
           <li className="item">
             {menu?.data?.logo && (
               <Link href="/" className="halo">
                 <a>
-                  <PrismicNextImage field={menu.data.logo} />
+                  <div className="mod-media">
+                    <PrismicNextImage field={menu.data.logo} />
+                  </div>
                 </a>
               </Link>
             )}
@@ -26,7 +30,7 @@ const Header = ({ menu }) => {
           <li></li>
           <li className="hide-large">
             <Button mode="link" onClick={() => setIsOpen(true)}>
-              <Icon sprite={"menu"} />
+              <MenuIcon />
             </Button>
           </li>
           <li className="hide-small hide-medium">
@@ -48,15 +52,17 @@ const Header = ({ menu }) => {
             <li></li>
             <li>
               <Button mode="link" onClick={() => setIsOpen(false)}>
-                <Icon sprite={"close"} />
+                <CloseIcon />
               </Button>
             </li>
           </ul>
-          {menu?.data && <Menu
-            onClose={() => setIsOpen(false)}
-            menuTabs={menu.data.menuTabs}
-            isMobile
-          />}
+          {menu?.data && (
+            <Menu
+              onClose={() => setIsOpen(false)}
+              menuTabs={menu.data.menuTabs}
+              isMobile
+            />
+          )}
         </ul>
       </div>
     </header>

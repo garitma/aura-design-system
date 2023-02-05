@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
-import Icon from "aura-design/icon";
-import Button from "aura-design/button";
-import Accordion from "aura-design/accordion";
+import Icon from "@aura-design/system/icon";
+import Button from "@aura-design/system/button";
+import Accordion from "@aura-design/system/accordion";
 
 const Menu = ({ handleOnClose }) => {
   return (

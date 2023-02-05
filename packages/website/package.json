@@ -8,7 +8,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@aura-design/system": "^0.4.27",
+    "@aura-design/system": "^0.4.28",
     "@prismicio/client": "^6.7.1",
     "@prismicio/helpers": "^2.3.5",
     "@prismicio/next": "^1.0.2",
@@ -22,9 +22,9 @@
     "react-use-clipboard": "^1.0.9"
   },
   "scripts": {
-    "dev": "pnpm next",
+    "dev": "next",
     "build": "next build",
-    "start": "next start -p $PORT",
+    "start": "next start",
     "slicemachine": "start-slicemachine"
   },
   "repository": {
