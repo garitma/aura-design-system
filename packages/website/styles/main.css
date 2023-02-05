@@ -6,20 +6,24 @@
   font-style: normal;
 }
 
+#nprogress .bar {
+  background: var(--aura-loader)!important;
+  height: 6.5px!important
+}
+
+#nprogress .peg {
+  display: none!important;
+}
+
 *:root {
   --aura-font-stack: ryo-gothic-plusn, sans-serif;
 }
 
-.ulinea .not-line {
-  text-decoration: none !important;
-}
-
-.prism-code {
-  padding-top: 65px;
-}
 
 .code-box {
-  --aura-accents-4: #172353;
+  --aura-accents-3: #172353;
   --aura-link-hover: #141a3d;
   --aura-font-stack: "iAWriterMonoS";
 }
+
+

@@ -1,7 +1,8 @@
 {
   "_cts": {
     "document": {},
-    "home": {}
+    "home": {},
+    "menu-tab": {}
   },
   "slices": {
     "RichText": {

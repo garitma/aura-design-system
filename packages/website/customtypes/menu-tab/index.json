@@ -17,6 +17,7 @@
         "config": {
           "label": "link",
           "placeholder": "",
+          "allowTargetBlank": true,
           "select": null
         }
       },

@@ -37,6 +37,22 @@
           "single": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
         }
       },
+      "prev": {
+        "type": "Link",
+        "config": {
+          "label": "Prev",
+          "placeholder": "",
+          "select": null
+        }
+      },
+      "next": {
+        "type": "Link",
+        "config": {
+          "label": "Next",
+          "placeholder": "",
+          "select": null
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

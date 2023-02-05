@@ -5,19 +5,19 @@
       {
         "type": "paragraph",
         "content": {
-          "text": "Non esse occaecat esse adipisicing nisi labore ex anim aliquip mollit. Ullamco dolor veniam nostrud veniam elit ea ipsum amet."
+          "text": "Occaecat voluptate qui sit adipisicing magna non do est mollit Lorem ex occaecat enim tempor. Laboris duis culpa culpa quis commodo pariatur est enim aliqua quis eiusmod velit quis ipsum."
         }
       }
     ]
   },
   "uid": {
     "__TYPE__": "UIDContent",
-    "value": "disappear"
+    "value": "house"
   },
   "date": {
     "__TYPE__": "FieldContent",
     "type": "Date",
-    "value": "2021-05-05"
+    "value": "2015-01-28"
   },
   "excerpt": {
     "__TYPE__": "StructuredTextContent",
@@ -25,16 +25,30 @@
       {
         "type": "paragraph",
         "content": {
-          "text": "Magna consectetur commodo nulla consequat. Excepteur velit culpa quis Lorem laboris aute. Ad non qui in occaecat pariatur consectetur irure aliqua velit enim laboris do."
+          "text": "Esse amet fugiat eiusmod eu aliqua irure occaecat amet nulla ipsum magna irure."
         }
       }
     ]
+  },
+  "prev": {
+    "__TYPE__": "LinkContent",
+    "value": {
+      "__TYPE__": "ExternalLink",
+      "url": "http://twitter.com"
+    }
+  },
+  "next": {
+    "__TYPE__": "LinkContent",
+    "value": {
+      "__TYPE__": "ExternalLink",
+      "url": "http://twitter.com"
+    }
   },
   "slices": {
     "__TYPE__": "SliceContentType",
     "value": [
       {
-        "key": "code_box$67610b70-4c1b-4985-bb05-0eed7c08c3a9",
+        "key": "code_box$020ee756-1b4a-4e03-9c9a-e5880cb6e020",
         "name": "code_box",
         "widget": {
           "__TYPE__": "SharedSliceContent",
@@ -42,7 +56,7 @@
           "primary": {
             "languaje": {
               "__TYPE__": "FieldContent",
-              "value": "BASH",
+              "value": "JSX",
               "type": "Select"
             },
             "code_snippet": {
@@ -51,7 +65,7 @@
                 {
                   "type": "paragraph",
                   "content": {
-                    "text": "Dolore do ut ut duis labore ad officia officia aute. Eu eu eiusmod ex nostrud ipsum excepteur exercitation nostrud sunt laboris officia id."
+                    "text": "Enim nisi dolor veniam sint ullamco sunt nostrud aliquip dolor eiusmod duis. Fugiat id dolore et Lorem occaecat cupidatat sit labore ut ut culpa aliquip."
                   }
                 }
               ]
@@ -66,7 +80,7 @@
         }
       },
       {
-        "key": "rich_text$01fca3dd-65b4-4794-85a5-14d7bf10c2b6",
+        "key": "rich_text$378adf08-4c99-45f8-8c2a-e2541a239701",
         "name": "rich_text",
         "widget": {
           "__TYPE__": "SharedSliceContent",
@@ -78,7 +92,7 @@
                 {
                   "type": "paragraph",
                   "content": {
-                    "text": "Lorem commodo sint irure velit exercitation commodo culpa magna magna pariatur aliqua. Pariatur exercitation aliqua cillum sunt occaecat elit quis nulla consequat labore ullamco occaecat do officia. Lorem quis sint reprehenderit laborum commodo in nisi reprehenderit nostrud excepteur dolore labore deserunt reprehenderit irure."
+                    "text": "Dolor pariatur veniam labore ex. Ipsum in eu laborum velit reprehenderit."
                   }
                 }
               ]
@@ -93,7 +107,7 @@
         }
       },
       {
-        "key": "highlighted$025b1a1b-8936-42e7-a42c-92f32c7e1d3a",
+        "key": "highlighted$2db0c1d8-2e7d-478e-afee-f6a7a16ac114",
         "name": "highlighted",
         "widget": {
           "__TYPE__": "SharedSliceContent",
@@ -105,7 +119,7 @@
                 {
                   "type": "heading1",
                   "content": {
-                    "text": "Capital"
+                    "text": "Government"
                   }
                 }
               ]
@@ -116,7 +130,7 @@
                 {
                   "type": "paragraph",
                   "content": {
-                    "text": "Consectetur velit voluptate voluptate veniam proident reprehenderit. Dolore quis cupidatat eu dolore excepteur labore culpa excepteur elit ex. Labore labore eiusmod cillum reprehenderit irure occaecat sint."
+                    "text": "Pariatur reprehenderit reprehenderit deserunt cupidatat ullamco occaecat nostrud. Reprehenderit labore laborum id exercitation ullamco consectetur sunt exercitation duis. Adipisicing eu ipsum quis consequat sunt quis dolor ea ea reprehenderit consequat eiusmod."
                   }
                 }
               ]

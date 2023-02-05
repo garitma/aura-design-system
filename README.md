@@ -35,7 +35,7 @@ or 1.5).
 ## Install
 
 ```
-npm i aura-design
+npm i @aura-design/system
 ```
 
 ## Documentation

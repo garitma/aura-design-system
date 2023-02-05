@@ -12,8 +12,10 @@ const Accordion = ({
   children,
   headerSize = "h6",
   color,
+  className,
 }: AccordionProps) => {
   const classNameConnect: string[] = [
+    className!,
     "aura",
     "anchor",
     "lefttxt",

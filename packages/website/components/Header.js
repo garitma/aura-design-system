@@ -45,24 +45,27 @@ const Header = ({ menu }) => {
           </li>
         </ul>
       </div>
-      <div className={`smush anchor ${!isOpen ? "hidden" : "active"}`}>
-        <ul className="mod-detail hold top right left bottom aureole one centertxt square">
+      <div
+        className={`anchor fluid vfluid hold left top right bottom white aura ${
+          !isOpen ? "hidden" : "active"
+        }`}
+      >
+        <ul className="mod-detail top right left bottom aureole one centertxt square">
           <ul className="nav-list">
             <li></li>
             <li></li>
             <li>
-              <Button mode="link" onClick={() => setIsOpen(false)}>
+              <Button mode="pill" onClick={() => setIsOpen(false)}>
                 <CloseIcon />
               </Button>
             </li>
           </ul>
-          {menu?.data && (
-            <Menu
-              onClose={() => setIsOpen(false)}
-              menuTabs={menu.data.menuTabs}
-              isMobile
-            />
-          )}
+          <Menu
+            onClose={() => setIsOpen(false)}
+            menuTabs={menu.data.menuTabs}
+            doc={menu}
+            isMobile
+          />
         </ul>
       </div>
     </header>

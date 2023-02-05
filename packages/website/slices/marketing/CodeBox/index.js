@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
-import Icon from "@aura-design/system/icon";
+import {CopyIcon} from "@aura-design/system/dist/icons";
+import Button from "@aura-design/system/button";
 import useClipboard from "react-use-clipboard";
 import * as prismicH from "@prismicio/helpers";
 
@@ -14,9 +15,9 @@ const CodeBox = ({ slice }) => {
     }
   );
   return (
-    <div className="anchor code-box">
+    <div className="anchor code-box mb13">
       <div className="aura" />
-      <div className="pin left right top wall-pad accents-4 righttxt">
+      <div className="pin left right top wall-pad accents-3 righttxt">
         <span className="wall-pad pin left vfluid">
           <div className="valign vfluid">
             <span className="halo warning warning-text wall-pad ">
@@ -24,10 +25,10 @@ const CodeBox = ({ slice }) => {
             </span>
           </div>
         </span>
-        <button onClick={setCopied} className="button-link not-line">
-          <Icon sprite="copy" className="dark before" />{" "}
-          <span className="white-text">{isCopied ? "Copied!" : "Copy"}</span>
-        </button>
+        <Button onClick={setCopied} mode="menu">
+          <CopyIcon className="white-text"/>{" "}
+          <span className="white-text wall-pad">{isCopied ? "Copied!" : "Copy"}</span>
+        </Button>
       </div>
       <Highlight
         {...defaultProps}
@@ -37,7 +38,7 @@ const CodeBox = ({ slice }) => {
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
-            className={[className, "m0", "pad", "iAWriterMonoS", "flow-x"]
+            className={[className, "m0", "pad", "iAWriterMonoS", "flowx"]
               .join(" ")
               .trim()}
             style={style}
