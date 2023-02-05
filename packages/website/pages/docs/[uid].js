@@ -62,7 +62,7 @@ const SingleDoc = ({ doc, menu }) => {
           </div>
         </div>
         <div>
-          <Section container="smash">
+          <Section container="smash" className="m-headlines">
             <h1>{prismicH.asText(doc.data.title)}</h1>
             <SliceZone slices={doc.data.slices} components={__allComponents} />
           </Section>

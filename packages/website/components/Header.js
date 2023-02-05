@@ -50,7 +50,7 @@ const Header = ({ menu }) => {
           !isOpen ? "hidden" : "active"
         }`}
       >
-        <ul className="mod-detail top right left bottom aureole one centertxt square">
+        <ul className="top right left bottom aureole one centertxt square">
           <ul className="nav-list">
             <li></li>
             <li></li>
