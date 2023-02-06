@@ -6,8 +6,16 @@
   font-style: normal;
 }
 
+.h-auto {
+  height: auto;
+}
+
 .m-headlines :is(h1, h2, h3, h4, h5, h6) {
   margin-bottom: var(--aura);
+}
+
+.mb26 {
+  margin-bottom: calc(var(--aura) * 2);
 }
 
 .pm0 p {

@@ -15,7 +15,7 @@ const CodeBox = ({ slice }) => {
     }
   );
   return (
-    <div className="anchor code-box mb13">
+    <div className="anchor code-box mb26">
       <div className="aura" />
       <div className="pin left right top wall-pad accents-3 righttxt">
         <span className="wall-pad pin left vfluid">
