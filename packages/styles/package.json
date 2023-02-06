@@ -1,19 +1,31 @@
 {
   "name": "@aura-design/styles",
   "version": "0.0.1",
-  "description": "",
-  "main": "index.js",
+  "description": "Garitma's Design system styles",
+  "keywords": [],
+  "author": "Pablo Orozco <me@pablopvsky.com",
+  "license": "MIT",
+  "main": "main.css",
+  "homepage": "https://github.com/garitma/aura-design-system/#readme",
+  "files": [
+    "main.css"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garitma/aura-design-system.git",
+    "directory": "packages/styles"
+  },
+  "bugs": {
+    "url": "https://github.com/garitma/aura-design-system/issues"
+  },
+  "dependencies": {
+    "stylus": "^0.59.0"
+  },
   "scripts": {
     "dev": "pnpm stylus --compress -w ./main.styl -o ./main.css",
     "build": "pnpm stylus --compress ./main.styl -o ./main.css && pnpm stylus --compress ./main.styl -o ../system/main.css && pnpm stylus --compress ./main.styl -o ../playground/public/sandbox.css"
-  },
-  "keywords": [],
-  "author": {
-    "name": "Pablo Orozco",
-    "email": "me@pablopvsky.com"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "stylus": "^0.59.0"
   }
 }
