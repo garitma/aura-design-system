@@ -20,7 +20,13 @@ Router.events.on("routeChangeError", () => {
   NProgress.done();
 });
 
-const Layout = ({ children, seo, menu }) => (
+export type LayoutProps = {
+  menu: any,
+  seo?: any,
+  children: React.ReactNode
+}
+
+const Layout = ({ children, seo, menu }: LayoutProps) => (
   <main>
     <div className="page-pancake">
       <Meta {...seo} />

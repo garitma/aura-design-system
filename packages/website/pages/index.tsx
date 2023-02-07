@@ -16,7 +16,7 @@ type HomeProps = {
 
 const Home = ({ doc, menu }) => {
   return (
-    <Layout text={prismicH.asText(doc.data.title)} menu={menu}>
+    <Layout menu={menu}>
       <SliceZone slices={doc.data.slices} components={__allComponents} />
     </Layout>
   );
