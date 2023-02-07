@@ -55,7 +55,7 @@ const Header = ({ menu }) => {
             <li></li>
             <li></li>
             <li>
-              <Button mode="pill" onClick={() => setIsOpen(false)}>
+              <Button mode="link" onClick={() => setIsOpen(false)}>
                 <CloseIcon />
               </Button>
             </li>

@@ -8,11 +8,13 @@ const Meta = ({ title, excerpt, slug, image }) => {
       <meta name="robots" content="index,follow" />
       <meta name="googlebot" content="index,follow" />
       <title>{title ? `${title} | ${SITE_NAME}` : SITE_NAME}</title>
+      <meta name="description" content={excerpt || SITE_DESCRIPTIO} />
       <meta
         property="og:title"
         content={title ? `${title} | ${SITE_NAME}` : SITE_NAME}
       />
       <link rel="canonical" href={`${SITE_URL}${slug ? slug : ""}`} />
+      <meta property="og:image" content={image || SOCIAL.openGrap} />
       <meta
         property="og:image:alt"
         content={excerpt || `Open grap de ${SITE_NAME}`}
