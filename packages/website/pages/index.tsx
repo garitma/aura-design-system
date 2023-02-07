@@ -1,5 +1,6 @@
 import { SliceZone } from "@prismicio/react";
 import * as prismicH from "@prismicio/helpers";
+import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 
 import { components as marketingComponents } from "@/slices/marketing/index";
 import { createClient } from "@/utils/prismic-client";
@@ -7,6 +8,11 @@ import { menuGraphQuery } from "@/utils/prismic-graphquery";
 import Layout from "@/components/Layout";
 
 const __allComponents = { ...marketingComponents };
+
+type HomeProps = {
+  menu: any;
+  doc: any;
+};
 
 const Home = ({ doc, menu }) => {
   return (
@@ -16,8 +22,11 @@ const Home = ({ doc, menu }) => {
   );
 };
 
-export async function getStaticProps({ previewData, locale, locales }) {
-  const client = createClient(previewData);
+export async function getStaticProps({
+  previewData,
+  locale,
+}: GetStaticPropsContext): Promise<GetStaticPropsResult<HomeProps>> {
+  const client = createClient({ previewData });
 
   //Querying page
   const document = await client

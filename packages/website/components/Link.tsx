@@ -1,8 +1,14 @@
-import NextLink from "next/link";
+import NextLink, {LinkProps as NextLinkProps} from "next/link";
 import { SITE_URL } from "@/utils/constants";
 import { linkResolver } from "@/utils/prismic-client";
 
-const Link = ({ href, url, children, field, ...props }) => {
+export interface LinkProps extends NextLinkProps {
+  url?: string;
+  field: any,
+  children?: React.ReactNode;
+}
+
+const Link = ({ href, url, children, field, ...props }: LinkProps) => {
 
   const hrefResolver = () => {
     if (field?.type) return linkResolver(field);

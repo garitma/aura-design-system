@@ -1,3 +1,4 @@
+import type { AppProps } from 'next/app'
 import Router from "next/router";
 import Link from "next/link";
 import { PrismicProvider } from "@prismicio/react";
@@ -8,7 +9,7 @@ import "nprogress/nprogress.css"
 import { repositoryName } from "@/utils/prismic-client";
 import "@/styles/main.css";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <PrismicProvider
       internalLinkComponent={({ href, ...props }) => (
