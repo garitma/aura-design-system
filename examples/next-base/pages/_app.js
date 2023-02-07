@@ -1,7 +1,8 @@
 import Router from "next/router";
-import "aura-design/style.css";
+import "@aura-design/system/main.css"
+import "nprogress/nprogress.css"
 
-import "../public/style.css";
+import "@/styles/main.css";
 
 function MyApp({ Component, pageProps }) {
   return <Component {...pageProps} />;

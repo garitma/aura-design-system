@@ -1,7 +1,4 @@
-import Image from "next/image";
-import Section from "aura-design/section";
-import Grid from "aura-design/grid";
-import Icon from "aura-design/icon";
+import Section from "@aura-design/system/section";
 
 const Footer = () => {
   return (
