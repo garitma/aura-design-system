@@ -18,8 +18,8 @@ const Header = ({ menu }) => {
         <ul className="nav-list">
           <li className="item">
             {menu?.data?.logo && (
-              <Link href="/" className="halo">
-                <a>
+              <Link href="/">
+                <a className="halo">
                   <div className="mod-media">
                     <PrismicNextImage field={menu.data.logo} />
                   </div>

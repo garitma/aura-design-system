@@ -50,7 +50,7 @@ export default function Menu({ onClose, isMobile, menuTabs }) {
                   >
                     {item.menuTab.data.title}
 
-                    <Icon sprite="arrowDown" />
+                    {/* <Icon sprite="arrowDown" /> */}
                   </Button>
                 </li>
                 <ul

@@ -4,7 +4,7 @@ import { linkResolver } from "@/utils/prismic-client";
 
 export interface LinkProps extends NextLinkProps {
   url?: string;
-  field: any,
+  field?: any,
   children?: React.ReactNode;
 }
 
