@@ -1,11 +1,11 @@
 import { useState, useRef } from "react";
-import Button from "aura-design/button";
+import Button from "@aura-design/system/button";
 import { useRouter } from "next/router";
 import * as prismicH from "@prismicio/helpers";
-import {ChevronDownIcon} from "aura-design/icons"
+import {ChevronDownIcon} from "@aura-design/system/dist/icons"
 
-import useClickOutside from "@hooks/useClickOutside";
-import Link from "@components/Link";
+import useClickOutside from "@/hooks/useClickOutside";
+import Link from "@/components/Link";
 
 export default function Menu({ onClose, isMobile, menuTabs }) {
   const [indexActive, setIndexActive] = useState(null);

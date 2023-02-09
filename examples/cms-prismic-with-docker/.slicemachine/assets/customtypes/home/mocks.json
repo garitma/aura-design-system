@@ -1,23 +1,131 @@
 {
-  "id": "mock-doc-id",
-  "url": null,
-  "type": "home",
-  "href": null,
-  "tags": [],
-  "first_publication_date": "1970-01-01T00:00:01+0000",
-  "last_publication_date": "1970-01-01T00:00:01+0000",
-  "slugs": [],
-  "linked_documents": [],
-  "lang": "en-us",
-  "alternate_languages": [],
-  "data": {
-    "title": [
+  "title": {
+    "__TYPE__": "StructuredTextContent",
+    "value": [
       {
         "type": "heading1",
-        "text": "Easily",
-        "spans": []
+        "content": {
+          "text": "Afternoon"
+        }
       }
-    ],
-    "slices": []
+    ]
+  },
+  "slices": {
+    "__TYPE__": "SliceContentType",
+    "value": [
+      {
+        "key": "section_grid_cards$6f07e99e-aabf-4f23-b772-db202b2bba86",
+        "name": "section_grid_cards",
+        "widget": {
+          "__TYPE__": "SharedSliceContent",
+          "variation": "default",
+          "primary": {
+            "color": {
+              "__TYPE__": "FieldContent",
+              "value": "blue",
+              "type": "Select"
+            },
+            "columns": {
+              "__TYPE__": "FieldContent",
+              "value": "one",
+              "type": "Select"
+            }
+          },
+          "items": [
+            {
+              "__TYPE__": "GroupItemContent",
+              "value": [
+                [
+                  "title",
+                  {
+                    "__TYPE__": "StructuredTextContent",
+                    "value": [
+                      {
+                        "type": "heading2",
+                        "content": {
+                          "text": "Snake"
+                        }
+                      }
+                    ]
+                  }
+                ],
+                [
+                  "description",
+                  {
+                    "__TYPE__": "StructuredTextContent",
+                    "value": [
+                      {
+                        "type": "paragraph",
+                        "content": {
+                          "text": "Ullamco occaecat laboris quis non velit Lorem ex irure velit eiusmod ex exercitation ipsum. Ut quis duis cupidatat. Magna dolore elit nostrud reprehenderit est adipisicing consectetur minim ullamco consectetur laborum reprehenderit laborum exercitation."
+                        }
+                      }
+                    ]
+                  }
+                ],
+                [
+                  "link",
+                  {
+                    "__TYPE__": "LinkContent",
+                    "value": {
+                      "__TYPE__": "ExternalLink",
+                      "url": "http://twitter.com"
+                    }
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "key": "section_heading$66af68f1-a436-4d85-ab0f-49f85ce7f7bb",
+        "name": "section_heading",
+        "widget": {
+          "__TYPE__": "SharedSliceContent",
+          "variation": "default",
+          "primary": {
+            "title": {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "heading1",
+                  "content": {
+                    "text": "Foreign"
+                  }
+                }
+              ]
+            },
+            "description": {
+              "__TYPE__": "StructuredTextContent",
+              "value": [
+                {
+                  "type": "paragraph",
+                  "content": {
+                    "text": "Incididunt dolore qui dolore eu dolore incididunt enim reprehenderit qui. Incididunt occaecat voluptate ex exercitation minim mollit. Occaecat ad culpa id qui sint elit id nulla et ullamco adipisicing exercitation."
+                  }
+                }
+              ]
+            },
+            "color": {
+              "__TYPE__": "FieldContent",
+              "value": "purple",
+              "type": "Select"
+            },
+            "align": {
+              "__TYPE__": "FieldContent",
+              "value": "right-text",
+              "type": "Select"
+            }
+          },
+          "items": [
+            {
+              "__TYPE__": "GroupItemContent",
+              "value": []
+            }
+          ]
+        }
+      }
+    ]
   }
 }

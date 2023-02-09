@@ -1,7 +1,7 @@
 import React from "react";
 import { PrismicRichText } from "@prismicio/react";
 import * as prismicH from "@prismicio/helpers";
-import Section from "aura-design/section";
+import Section from "@aura-design/system/section";
 
 const HeroSectionSplit = ({ slice }) => (
   <Section color={slice.primary.color} subClassName={slice.primary.align}>
