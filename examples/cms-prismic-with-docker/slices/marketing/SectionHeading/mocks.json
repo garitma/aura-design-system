@@ -1,0 +1,46 @@
+[
+  {
+    "__TYPE__": "SharedSliceContent",
+    "variation": "default",
+    "primary": {
+      "title": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "heading1",
+            "content": {
+              "text": "Split"
+            }
+          }
+        ]
+      },
+      "description": {
+        "__TYPE__": "StructuredTextContent",
+        "value": [
+          {
+            "type": "paragraph",
+            "content": {
+              "text": "Ea duis reprehenderit pariatur irure do dolore labore eiusmod ut culpa dolor sunt ea sunt. Esse elit nostrud tempor minim ad do."
+            }
+          }
+        ]
+      },
+      "color": {
+        "__TYPE__": "FieldContent",
+        "value": "orange-rose",
+        "type": "Select"
+      },
+      "align": {
+        "__TYPE__": "FieldContent",
+        "value": "left-text",
+        "type": "Select"
+      }
+    },
+    "items": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": []
+      }
+    ]
+  }
+]

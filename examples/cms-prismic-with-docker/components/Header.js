@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Button from "aura-design/button";
-import { CloseIcon } from "aura-design/icons";
+import Button from "@aura-design/system/button";
+import { CloseIcon } from "@aura-design/system/dist/icons";
 
-import Link from "@components/Link";
-import Image from "@components/Image";
-import Menu from "@components/Menu";
+import Link from "@/components/Link";
+import Image from "@/components/Image";
+import Menu from "@/components/Menu";
 
 const Header = ({ menu }) => {
   const [isOpen, setIsOpen] = useState(false);

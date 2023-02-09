@@ -1,17 +1,52 @@
 {
-  "id": "mock-doc-id",
-  "url": null,
-  "type": "footer",
-  "href": null,
-  "tags": [],
-  "first_publication_date": "1970-01-01T00:00:01+0000",
-  "last_publication_date": "1970-01-01T00:00:01+0000",
-  "slugs": [],
-  "linked_documents": [],
-  "lang": "en-us",
-  "alternate_languages": [],
-  "data": {
-    "copyright": "deal",
-    "body": []
+  "copyright": {
+    "__TYPE__": "FieldContent",
+    "value": "fast",
+    "type": "Text"
+  },
+  "body": {
+    "__TYPE__": "SliceContentType",
+    "value": [
+      {
+        "key": "footer_column$b49a758d-2c1f-41a6-989b-9920a291a178",
+        "name": "footer_column",
+        "widget": {
+          "__TYPE__": "SharedSliceContent",
+          "variation": "default",
+          "primary": {
+            "section_title": {
+              "__TYPE__": "FieldContent",
+              "value": "heading",
+              "type": "Text"
+            }
+          },
+          "items": [
+            {
+              "__TYPE__": "GroupItemContent",
+              "value": [
+                [
+                  "link",
+                  {
+                    "__TYPE__": "LinkContent",
+                    "value": {
+                      "__TYPE__": "DocumentLink",
+                      "id": "mock_document_id"
+                    }
+                  }
+                ],
+                [
+                  "link_label",
+                  {
+                    "__TYPE__": "FieldContent",
+                    "value": "won",
+                    "type": "Text"
+                  }
+                ]
+              ]
+            }
+          ]
+        }
+      }
+    ]
   }
 }

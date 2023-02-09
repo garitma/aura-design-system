@@ -1,6 +1,9 @@
 {
   "_latest": "...",
-  "apiEndpoint": "https://aura-design-cms-prismic-with-docker.prismic.io/api/v2",
+  "apiEndpoint": "https://moni-mili.prismic.io/api/v2",
   "localSliceSimulatorURL": "http://localhost:3000/slice-simulator",
-  "libraries": ["@/slices/marketing", "@/slices/navigation"]
+  "libraries": [
+    "@/slices/marketing",
+    "@/slices/navigation"
+  ]
 }
