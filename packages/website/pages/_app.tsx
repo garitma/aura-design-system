@@ -15,7 +15,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   useEffect(() => {
 
-    Fathom.load(process.env.NEXT_PUBLIC_FATHOM_TRACKING_CODE, {
+    Fathom.load("WIGFDMYF", {
       includedDomains: ['auradesignsystem.com'],
     });
 
