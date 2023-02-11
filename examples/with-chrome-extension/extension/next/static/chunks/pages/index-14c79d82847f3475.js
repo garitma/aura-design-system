@@ -686,7 +686,7 @@
                   "Powered by",
                   " ",
                   (0, r.jsx)("a", {
-                    href: "https://auradesigsystem.com",
+                    href: "https://auradesignsystem.com",
                     className: "uline",
                     children: "Aura Design System",
                   }),
