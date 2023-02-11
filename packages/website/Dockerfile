@@ -52,6 +52,8 @@ USER nextjs
 
 EXPOSE 3000
 
+# Generate envirorment variables from arguments
+
 ARG NEXT_PUBLIC_SITE_URL
 ARG NEXT_PUBLIC_ENV
 ARG NEXT_PUBLIC_FATHOM_TRACKING_CODE
@@ -63,6 +65,6 @@ ENV PORT 3000
 
 CMD ["node", "server.js"]
 
-# Generate envirorment variables from arguments
+
 
 
