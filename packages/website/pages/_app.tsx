@@ -14,9 +14,8 @@ import "@/styles/main.css";
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   useEffect(() => {
-
-    Fathom.load("WIGFDMYF", {
-      includedDomains: ['auradesignsystem.com'],
+    Fathom.load(`${process.env.NEXT_PUBLIC_FATHOM_TRACKING_CODE}`, {
+      includedDomains: ["auradesignsystem.com"],
     });
 
     function onRouteChangeComplete() {
