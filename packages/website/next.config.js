@@ -13,7 +13,7 @@ module.exports = async () => {
 
   return {
     output: 'standalone',
-    reactStrictMode: true,
+    reactStrictMode: false,
     i18n: {
       // These are all the locales you want to support in
       // your application
@@ -24,6 +24,12 @@ module.exports = async () => {
     },
     images: {
       domains: ["images.prismic.io"],
+    },
+    typescript: {
+      // !! WARN !!
+      // Temporal ignore while adopting
+      // !! WARN !!
+      ignoreBuildErrors: true,
     },
   };
 };

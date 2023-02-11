@@ -83,10 +83,10 @@ const SidebarMenu = () => {
   return (
     <>
       <ul className="hide-small sticky">
-        <Menu />
+        <Menu handleOnClose={handleOnClose} />
       </ul>
       <div className="hide-medium hide-large">
-        <Accordion title="Documentation" headlineSize="h5">
+        <Accordion title="Documentation" headerSize="h5">
           <ul>
             <Menu handleOnClose={handleOnClose} />
           </ul>

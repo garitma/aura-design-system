@@ -18,8 +18,8 @@ const TableBlock = ({ slice }) => {
       <div className="mod-detail">
         <table>
           <tbody className="aureole one ">
-            {slice.items.map((item) => (
-              <tr className="halo">
+            {slice.items.map((item, index) => (
+              <tr className="halo" key={index}>
                 <td className="small-4">
                   <Link field={item.document}>
                     <a>
