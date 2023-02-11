@@ -20,12 +20,18 @@ Router.events.on("routeChangeError", () => {
   NProgress.done();
 });
 
-const Layout = ({ children, text, seo }) => (
+type LayoutProps = {
+  children: React.ReactNode;
+  seo?: any;
+  menu: any;
+};
+
+const Layout = ({ children, seo, menu }: LayoutProps) => (
   <main>
-    <div className="page">
+    <div className="page-pancake">
       <Meta {...seo} />
-      <Header text={text} />
-      <div className="page-body">{children}</div>
+      <Header menu={menu} />
+      <div>{children}</div>
       <Footer />
     </div>
   </main>

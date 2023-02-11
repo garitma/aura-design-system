@@ -1,13 +1,20 @@
 import { useState, useRef } from "react";
 import Button from "@aura-design/system/button";
+import Icon from "@aura-design/system/icon";
+import Separator from "@aura-design/system/separator";
+import { GitHubLogoIcon, ExternalLinkIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/router";
-import * as prismicH from "@prismicio/helpers";
-import {ChevronDownIcon} from "@aura-design/system/dist/icons"
 
 import useClickOutside from "@/hooks/useClickOutside";
 import Link from "@/components/Link";
 
-export default function Menu({ onClose, isMobile, menuTabs }) {
+type MenuProps = {
+  onClose: any;
+  isMobile?: boolean;
+  menuTabs: any;
+};
+
+export default function Menu({ onClose, isMobile, menuTabs }: MenuProps) {
   const [indexActive, setIndexActive] = useState(null);
   const router = useRouter();
 
@@ -48,7 +55,8 @@ export default function Menu({ onClose, isMobile, menuTabs }) {
                     isFluid={isMobile}
                   >
                     {item.menuTab.data.title}
-                    <ChevronDownIcon />
+
+                    {/* <Icon sprite="arrowDown" /> */}
                   </Button>
                 </li>
                 <ul
@@ -57,36 +65,41 @@ export default function Menu({ onClose, isMobile, menuTabs }) {
                   }`}
                 >
                   {item.menuTab.data?.slices.map((slice, index) => (
-                    <li key={slice.id} className="halo column">
-                      {/* {slice.primary.sectionTitle.length > 0 && (
-                        <span className="wall-pad fluid">
-                          {prismicH.asText(slice.primary.title)}
-                        </span>
-                      )} */}
+                    <ul key={slice.id} className="halo column">
                       {slice.items.map((item, index) => {
                         return (
-                          <Link
-                            {...item?.subSectionLink}
-                            key={`${item.id}_${index}`}
-                            passHref
-                          >
-                            <a
-                              className={`button-link fluid righttxt`}
-                              onClick={onClose}
+                          <li key={`${item.id}_${index}`}>
+                            <Link
+                              {...item?.subSectionLink}
+                              field={item.subSectionLink}
+                              passHref
                             >
-                              {item.subSectionTitle}
-                            </a>
-                          </Link>
+                              <a
+                                className={`button-link fluid righttxt`}
+                                onClick={onClose}
+                              >
+                                <span className="wall-pad">
+                                  {item.subSectionTitle}
+                                </span>
+                                <ExternalLinkIcon />
+                              </a>
+                            </Link>
+                          </li>
                         );
                       })}
-                    </li>
+                    </ul>
                   ))}
                 </ul>
               </ul>
             ) : (
-              <Link {...item.menuTab?.data?.link} passHref>
+              <Link
+                {...item.menuTab?.data?.link}
+                field={item.menuTab?.data?.link}
+                passHref
+              >
                 <Button
                   mode="link"
+                  target={item.menuTab?.data?.link?.target}
                   onClick={onClose}
                   isFluid={isMobile}
                   onMouseOver={() => {
@@ -95,13 +108,29 @@ export default function Menu({ onClose, isMobile, menuTabs }) {
                     setIsOpen(false), setIndexActive(null);
                   }}
                 >
-                  {item.menuTab?.data?.title}
+                  <span className="wall-pad">{item.menuTab?.data?.title}</span>
+                  {item.menuTab?.data?.link?.target && <ExternalLinkIcon />}
                 </Button>
               </Link>
             )}
           </li>
         );
       })}
+      <li>
+        <Separator isVertical={!isMobile} />
+      </li>
+      <li>
+        <Button
+          mode="link"
+          href="https://github.com/garitma/aura-design-system"
+          target="_blank"
+          rel="noopener"
+        >
+          <GitHubLogoIcon />
+
+          <span className="hide-large wall-pad">Github</span>
+        </Button>
+      </li>
     </>
   );
 }

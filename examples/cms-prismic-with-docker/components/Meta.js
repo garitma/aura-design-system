@@ -1,6 +1,6 @@
 import Head from "next/head";
 
-import { SITE_URL, SITE_NAME, SOCIAL, SITE_DESCRIPTIO } from "@utils/constants";
+import { SITE_URL, SITE_NAME, SOCIAL, SITE_DESCRIPTIO } from "@/utils/constants";
 
 const Meta = ({ title, excerpt, slug, image }) => {
   return (

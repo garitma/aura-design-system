@@ -1,7 +1,6 @@
-import Section from "@aura-design/system/section";
-import Grid from "@aura-design/system/grid";
 import { SliceZone } from "@prismicio/react";
 import * as prismicH from "@prismicio/helpers";
+import { GetStaticPropsContext, GetStaticPropsResult } from "next";
 
 import { components as marketingComponents } from "@/slices/marketing/index";
 import { createClient } from "@/utils/prismic-client";
@@ -10,16 +9,24 @@ import Layout from "@/components/Layout";
 
 const __allComponents = { ...marketingComponents };
 
+type HomeProps = {
+  menu: any;
+  doc: any;
+};
+
 const Home = ({ doc, menu }) => {
   return (
-    <Layout text={prismicH.asText(doc.data.title)} menu={menu}>
-       <SliceZone slices={doc.data.slices} components={__allComponents} />
+    <Layout menu={menu}>
+      <SliceZone slices={doc.data.slices} components={__allComponents} />
     </Layout>
   );
 };
 
-export async function getStaticProps({ previewData, locale, locales }) {
-  const client = createClient(previewData);
+export async function getStaticProps({
+  previewData,
+  locale,
+}: GetStaticPropsContext): Promise<GetStaticPropsResult<HomeProps>> {
+  const client = createClient({ previewData });
 
   //Querying page
   const document = await client
