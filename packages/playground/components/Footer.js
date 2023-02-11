@@ -9,7 +9,7 @@ const Footer = () => {
       <Section>
         <p className="centertxt">
           Powered by{" "}
-          <a href="https://auradesigsystem.com" className="uline">
+          <a href="https://auradesignsystem.com" className="uline">
             Aura Design System
           </a>{" "}
           brought to you by{" "}
