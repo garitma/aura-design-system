@@ -33,7 +33,7 @@ jobs:
           gcloud --quiet auth configure-docker
       - name: Build and tag image
         run: |-
-          docker build ./packages/website --build-arg NEXT_PUBLIC_FATHOM_TRACKING_CODE="ZVMIJJHZ" --build-arg NEXT_PUBLIC_ENV="production" --build-arg NEXT_PUBLIC_SITE_URL="https://auradesignsystem.com"  --tag "gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA"
+          docker build ./packages/website --build-arg NEXT_PUBLIC_ENV="production" --build-arg NEXT_PUBLIC_SITE_URL="https://auradesignsystem.com"  --tag "gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA"
       - name: Push image to GCR
         run: |-
           docker push gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA
