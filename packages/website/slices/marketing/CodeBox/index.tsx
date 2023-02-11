@@ -5,7 +5,7 @@ import Button from "@aura-design/system/button";
 import useClipboard from "react-use-clipboard";
 import * as prismicH from "@prismicio/helpers";
 
-import auraVC from "prism.theme.aura-vc";
+import auraVC from "@/prism.theme.aura-vc";
 
 const CodeBox = ({ slice }) => {
   const [isCopied, setCopied] = useClipboard(
@@ -38,7 +38,7 @@ const CodeBox = ({ slice }) => {
       >
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
-            className={[className, "m0", "pad", "iAWriterMonoS", "flowx"]
+            className={[className, "mt13", "pad", "iAWriterMonoS", "flowx"]
               .join(" ")
               .trim()}
             style={style}

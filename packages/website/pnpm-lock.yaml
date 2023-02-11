@@ -8,8 +8,10 @@ specifiers:
   '@prismicio/react': ^2.5.1
   '@prismicio/slice-simulator-react': ^0.2.3
   '@prismicio/types': ^0.2.7
+  '@radix-ui/react-icons': ^1.1.1
   '@types/node': ^18.11.19
   '@types/react': ^18.0.27
+  fathom-client: ^3.5.0
   next: ^13.1.6
   nprogress: ^0.2.0
   prism-react-renderer: ^1.3.5
@@ -28,6 +30,8 @@ dependencies:
   '@prismicio/react': 2.5.1_wrodp6pbc64pk2dl4m4urioxiu
   '@prismicio/slice-simulator-react': 0.2.3_react@18.2.0
   '@prismicio/types': 0.2.7
+  '@radix-ui/react-icons': 1.1.1_react@18.2.0
+  fathom-client: 3.5.0
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
   nprogress: 0.2.0
   prism-react-renderer: 1.3.5_react@18.2.0
@@ -734,6 +738,14 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     dev: true
+
+  /@radix-ui/react-icons/1.1.1_react@18.2.0:
+    resolution: {integrity: sha512-xc3wQC59rsFylVbSusQCrrM+6695ppF730Q6yqzhRdqDcRNWIm2R6ngpzBoSOQMcwnq4p805F+Gr7xo4fmtN1A==}
+    peerDependencies:
+      react: ^16.x || ^17.x || ^18.x
+    dependencies:
+      react: 18.2.0
+    dev: false
 
   /@radix-ui/react-id/1.0.0_react@18.2.0:
     resolution: {integrity: sha512-Q6iAB/U7Tq3NTolBBQbHTgclPmGWE3OlktGGqrClPozSw4vkQ1DfQAOtzgRPecKsMdJINE05iaoDUG8tRzCBjw==}
@@ -2445,6 +2457,10 @@ packages:
     resolution: {integrity: sha512-wBrocU2LCXXa+lWBt8RoIRD89Fi8OdABODa/kEnyeyjS5aZO5/GNvI5sEINADqP/h8M29UHTHUb53sUu5Ihqdw==}
     dependencies:
       reusify: 1.0.4
+
+  /fathom-client/3.5.0:
+    resolution: {integrity: sha512-BiRDS9Q9a8Zma0H717FWC5cvf545K/CsxBpxKT22TcSl1EbRhhlHWIJgrdeiQUfdorBK2ppy09TwMOhRsbos/A==}
+    dev: false
 
   /fd-slicer/1.1.0:
     resolution: {integrity: sha512-cE1qsB/VwyQozZ+q1dGxR8LBYNZeofhEdUNGSMbQD3Gw2lAzX9Zb3uIU6Ebc/Fmyjo9AWWfnn0AUCHqtevs/8g==}

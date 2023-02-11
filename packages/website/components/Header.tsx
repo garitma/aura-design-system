@@ -1,12 +1,9 @@
 import { useState } from "react";
 import { PrismicNextImage } from "@prismicio/next";
-import Icon from "@aura-design/system/icon";
 import { MenuIcon, CloseIcon } from "@aura-design/system/dist/icons";
 import Button from "@aura-design/system/button";
-import Separator from "@aura-design/system/separator";
 
 import Link from "@/components/Link";
-import Image from "@/components/Image";
 import Menu from "@/components/Menu";
 
 const Header = ({ menu }) => {
@@ -63,7 +60,6 @@ const Header = ({ menu }) => {
           <Menu
             onClose={() => setIsOpen(false)}
             menuTabs={menu.data.menuTabs}
-            doc={menu}
             isMobile
           />
         </ul>
