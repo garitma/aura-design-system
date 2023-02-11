@@ -13,7 +13,7 @@ module.exports = async () => {
 
   return {
     output: 'standalone',
-    reactStrictMode: false,
+    reactStrictMode: true,
     i18n: {
       // These are all the locales you want to support in
       // your application
