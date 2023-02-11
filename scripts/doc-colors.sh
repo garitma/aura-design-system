@@ -8,7 +8,7 @@ Variable for '$1' color.
 Description
 --aura-'$1' is a CSS custom property that specifies the background color for a design system. The value of --aura-'$1' is set to the color code '$2', which represents a '$1' color. This custom property can be used as the background color for various elements within the design system, helping to maintain consistency and make updates easier to manage. By using a CSS custom property, the background color can be easily changed and updated in one place, rather than having to update it across multiple CSS rules.
 
-The CSS custom property --aura-'$1' can be used in a .snow class in HTML to set the background color of an element. In the CSS file, the .snow class can be defined as follows:
+The CSS custom property --aura-'$1' can be used in a .'$1' class in HTML to set the background color of an element. In the CSS file, the .'$1' class can be defined as follows:
 
 	.'$1' {
 	  background-color: var(--aura-'$1');

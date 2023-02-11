@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "aura-design": "latest",
-    "next": "^13.0.5",
+    "@aura-design/system": "^0.4.28",
+    "next": "^13.1.6",
     "nprogress": "^0.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"

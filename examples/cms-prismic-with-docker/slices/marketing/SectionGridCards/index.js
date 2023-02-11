@@ -2,8 +2,8 @@ import React from "react";
 import { PrismicRichText } from "@prismicio/react";
 import * as prismicH from "@prismicio/helpers";
 
-import Section from "aura-design/section";
-import Grid from "aura-design/grid";
+import Section from "@aura-design/system/section";
+import Grid from "@aura-design/system/grid";
 
 /**
  * @typedef {import("@prismicio/client").Content.SectionGridCardsSlice} SectionGridCardsSlice

@@ -315,7 +315,7 @@
         },
         "screenshotPaths": {
           "default": {
-            "path": "/home/andreslopezsgd/Desktop/aura-design-system/examples/cms-prismic-with-docker/slices/navigation/FooterColumn/default/preview.png",
+            "path": "/Users/auracite/Documents/APP/aura-design-system/examples/cms-prismic-with-docker/slices/navigation/FooterColumn/default/preview.png",
             "width": 442,
             "height": 356
           }
@@ -393,7 +393,7 @@
         },
         "screenshotPaths": {
           "default": {
-            "path": "/home/andreslopezsgd/Desktop/aura-design-system/examples/cms-prismic-with-docker/slices/navigation/MenuSubTab/default/preview.png",
+            "path": "/Users/auracite/Documents/APP/aura-design-system/examples/cms-prismic-with-docker/slices/navigation/MenuSubTab/default/preview.png",
             "width": 358,
             "height": 372
           }
