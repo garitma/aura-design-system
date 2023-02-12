@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@ladle/react": "^2.4.5",
+    "@ladle/react": "^2.5.2",
     "@radix-ui/react-icons": "^1.1.1",
     "install": "^0.13.0",
     "npm": "^9.4.0",
