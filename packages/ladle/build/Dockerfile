@@ -1,14 +1,6 @@
-# Use an Nginx image as the base image
-FROM nginx
+FROM lipanski/docker-static-website:latest
 
-# Copy the static files to the Nginx default public directory
-COPY ./dist /usr/share/nginx/html
+# Copy your static files
+COPY ./dist .
 
-# Expose port 8080 for incoming traffic
-EXPOSE 8080
-
-# Configure Nginx to listen on port 8080
-RUN sed -i 's/listen\s*80;/listen 8080;/' /etc/nginx/conf.d/default.conf
-
-# Set the default command to start the Nginx server
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["/busybox", "httpd", "-f", "-v", "-p", "8080", "-c", "httpd.conf"]
