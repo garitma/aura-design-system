@@ -1,6 +1,6 @@
 export default {
   appendToHead:
-    '<link rel="canonical" href="https://ladle.auradesignsystem.com/"><script src="https://cdn.usefathom.com/script.js" data-spa="auto" data-site="JULYXFEP" data-excluded-domains="localhost" defer></script>',
+    '<link rel="canonical" href="https://ladle.auradesignsystem.com/">',
   outDir: "./build/dist",
   addons: {
     theme: {
