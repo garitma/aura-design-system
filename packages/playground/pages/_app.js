@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
+import * as Fathom from "fathom-client";
 import "aura-design/main.css";
 
 import "../public/style.css";
