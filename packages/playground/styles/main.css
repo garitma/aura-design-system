@@ -1,0 +1,37 @@
+@font-face {
+    font-family: "iAWriterMonoS";
+    src: url("/fonts/iAWriterMonoS-Regular.woff2") format("woff2"),
+      url("/fonts/iAWriterMonoS-Regular.woff") format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  *:root {
+    --aura-font-stack: ryo-gothic-plusn, sans-serif;
+    --aura-bg: #0d1229;
+    --aura-accents-1: #172353;
+    --aura-module:#172353;
+    --aura-text-primary: #fafafa;
+    --aura-accents-2: #131b3c;
+    --aura-accents-primary: #b46ef9;
+    --aura-button-hover: #cd9ffb
+  }
+  
+  .code-box {
+    --aura-font-stack: "iAWriterMonoS";
+  }
+  
+  .code-box pre {
+    white-space: pre !important;
+    max-height: 100vh;
+    overflow: scroll;
+  }
+  
+  .prism-code {
+    padding-top: 65px;
+  }
+  
+  .preview {
+    min-height: 70vh;
+  }
+  

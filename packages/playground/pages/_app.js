@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import * as Fathom from "fathom-client";
-import "aura-design/main.css";
-
-import "../public/style.css";
+//import "@aura-design/system/main.css";
+import "../../styles/main.css";
+import "../styles/main.css";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();

@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  aura-design: 0.4.18
+  '@aura-design/system': ^0.4.28
   fathom-client: ^3.5.0
   next: ^13.0.6
   nprogress: ^0.2.0
@@ -13,7 +13,7 @@ specifiers:
   use-editable: ^2.3.3
 
 dependencies:
-  aura-design: 0.4.18_react@18.2.0
+  '@aura-design/system': 0.4.28
   fathom-client: 3.5.0
   next: 13.1.6_biqbaboplfbrettd7655fr4n2y
   nprogress: 0.2.0
@@ -25,6 +25,15 @@ dependencies:
   use-editable: 2.3.3_react@18.2.0
 
 packages:
+
+  /@aura-design/system/0.4.28:
+    resolution: {integrity: sha512-Yl8UGNlP4F4L96zq53orMUJda80Wg5b0kU7VwWnhEuWSZDpv/aaoV1shRksipCvclDD1TarecXPmOL4eVajq/g==}
+    dependencies:
+      '@types/react': 18.0.28
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      typescript: 4.9.5
+    dev: false
 
   /@next/env/13.1.6:
     resolution: {integrity: sha512-s+W9Fdqh5MFk6ECrbnVmmAOwxKQuhGMT7xXHrkYIBMBcTiOqNWhv5KbJIboKR5STXxNXl32hllnvKaffzFaWQg==}
@@ -153,12 +162,20 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /aura-design/0.4.18_react@18.2.0:
-    resolution: {integrity: sha512-wXbOEBrNcusyLMBJB4lMV5RBuqVb4H2EPlwWJkDSt2wMCiG9Otj24ZKlF9BQN4Q4C9BghX3bn0YQ6tNitYG5Ew==}
-    peerDependencies:
-      react: '>=18'
+  /@types/prop-types/15.7.5:
+    resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
+    dev: false
+
+  /@types/react/18.0.28:
+    resolution: {integrity: sha512-RD0ivG1kEztNBdoAK7lekI9M+azSnitIn85h4iOiaLjaTrMjzslhaqCGaI4IyCJ1RljWiLCEu4jyrLLgqxBTew==}
     dependencies:
-      react: 18.2.0
+      '@types/prop-types': 15.7.5
+      '@types/scheduler': 0.16.2
+      csstype: 3.1.1
+    dev: false
+
+  /@types/scheduler/0.16.2:
+    resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
     dev: false
 
   /caniuse-lite/1.0.30001450:
@@ -173,6 +190,10 @@ packages:
     resolution: {integrity: sha512-2KV8NhB5JqC3ky0r9PMCAZKbUHSwtEo4CwCs0KXgruG43gX5PMqDEBbVU4OUzw2MuAWUfsuFmWvEKG5QRfSnJA==}
     dependencies:
       toggle-selection: 1.0.6
+    dev: false
+
+  /csstype/3.1.1:
+    resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
     dev: false
 
   /deepmerge/4.3.0:
@@ -407,6 +428,12 @@ packages:
 
   /tslib/2.5.0:
     resolution: {integrity: sha512-336iVw3rtn2BUK7ORdIAHTyxHGRIHVReokCR3XjbckJMK7ms8FysBfhLR8IXnAgy7T0PTPNBWKiH514FOW/WSg==}
+    dev: false
+
+  /typescript/4.9.5:
+    resolution: {integrity: sha512-1FXk9E2Hm+QzZQ7z+McJiHL4NW1F2EzMu9Nq9i3zAaGqibafqYwCVU6WyWAuyQRRzOlxou8xZSyXLEN8oKj24g==}
+    engines: {node: '>=4.2.0'}
+    hasBin: true
     dev: false
 
   /use-editable/2.3.3_react@18.2.0:

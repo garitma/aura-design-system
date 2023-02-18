@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback, Fragment, useEffect } from "react";
-import { CopyIcon } from "aura-design/icons";
-import Button from "aura-design/button";
+//import { CopyIcon } from "@aura-design/system/icons";
+import Button from "@aura-design/system/button";
 import sanitizeHtml from "sanitize-html";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import { useEditable } from "use-editable";
@@ -124,7 +124,7 @@ const SandboxCode = () => {
               </li>
               <li>
                 <Button mode="link" onClick={setCopied}>
-                  <CopyIcon />
+                  {/* <CopyIcon /> */}
                   <span className="ml13">
                   {isCopied ? "Copied!" : "Copy"}
                   </span>

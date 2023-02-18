@@ -1,5 +1,5 @@
-import Section from "aura-design/section";
-import Grid from "aura-design/grid";
+import Section from "@aura-design/system/section";
+import Grid from "@aura-design/system/grid";
 
 import Layout from "@components/Layout";
 import SandboxCode from "@components/SandboxCode";

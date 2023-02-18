@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "aura-design": "0.4.18",
+    "@aura-design/system": "^0.4.28",
     "fathom-client": "^3.5.0",
     "next": "^13.0.6",
     "nprogress": "^0.2.0",

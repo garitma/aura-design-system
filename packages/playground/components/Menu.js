@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
-import Button from "aura-design/button";
-import Icon from "aura-design/icon";
+import Button from "@aura-design/system/button";
+import Icon from "@aura-design/system/icon";
 import { useRouter } from "next/router";
 
 import useClickOutside from "@hooks/useClickOutside";
