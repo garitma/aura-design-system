@@ -128,6 +128,7 @@ out/
 
 dist/*
 packages/system/dist
+packages/styles/dist
 
 # Test
 
