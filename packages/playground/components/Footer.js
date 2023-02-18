@@ -1,12 +1,12 @@
 import Image from "next/image";
-import Section from "aura-design/section";
-import Grid from "aura-design/grid";
-import Icon from "aura-design/icon";
+import Section from "@aura-design/system/section";
+import Grid from "@aura-design/system/grid";
+import Icon from "@aura-design/system/icon";
 
 const Footer = () => {
   return (
-    <footer className="accents-3 white-text">
-      <Section>
+    <footer className="accents-2">
+      <Section space="aura">
         <p className="centertxt">
           Powered by{" "}
           <a href="https://auradesignsystem.com" className="uline">

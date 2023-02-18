@@ -1,8 +1,8 @@
 import Link from "next/link";
 import Image from "next/image";
-import Button from "aura-design/button";
+import Button from "@aura-design/system/button";
 
-import {GithubIcon} from "@components/icons";
+import {GithubIcon} from "@/components/icons";
 
 const Header = ({ text }) => {
   return (
