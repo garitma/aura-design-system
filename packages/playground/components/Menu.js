@@ -4,7 +4,7 @@ import Icon from "@aura-design/system/icon";
 import { useRouter } from "next/router";
 
 import useClickOutside from "@hooks/useClickOutside";
-import Link from "@components/Link";
+import Link from "@/components/Link";
 
 export default function Menu({ onClose, isMobile, menuTabs }) {
   const [indexActive, setIndexActive] = useState(null);

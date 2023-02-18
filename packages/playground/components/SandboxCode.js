@@ -1,12 +1,12 @@
 import { useState, useRef, useCallback, Fragment, useEffect } from "react";
-//import { CopyIcon } from "@aura-design/system/icons";
+import { CopyIcon } from "@radix-ui/react-icons";
 import Button from "@aura-design/system/button";
 import sanitizeHtml from "sanitize-html";
 import Highlight, { defaultProps } from "prism-react-renderer";
 import { useEditable } from "use-editable";
 import useClipboard from "react-use-clipboard";
 
-import auraVC from "prism.theme.aura-vc";
+import auraVC from "@aura-design/styles/prism.theme.aura-vc";
 
 const SandboxCode = () => {
   const editorHTMLRef = useRef(null);
@@ -124,7 +124,7 @@ const SandboxCode = () => {
               </li>
               <li>
                 <Button mode="link" onClick={setCopied}>
-                  {/* <CopyIcon /> */}
+                  <CopyIcon className="icon"/> 
                   <span className="ml13">
                   {isCopied ? "Copied!" : "Copy"}
                   </span>

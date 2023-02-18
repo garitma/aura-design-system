@@ -1,5 +1,5 @@
 import NextLink from "next/link";
-import { SITE_URL } from "@utils/constants";
+import { SITE_URL } from "@/utils/constants";
 
 const Link = ({ href, url, children, ...props }) => {
   return (
