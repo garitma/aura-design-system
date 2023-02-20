@@ -1,6 +1,5 @@
 import { useState, useRef } from "react";
 import Button from "@aura-design/system/button";
-import Icon from "@aura-design/system/icon";
 import Separator from "@aura-design/system/separator";
 import { GitHubLogoIcon, ExternalLinkIcon } from "@radix-ui/react-icons";
 import { useRouter } from "next/router";
@@ -81,7 +80,7 @@ export default function Menu({ onClose, isMobile, menuTabs }: MenuProps) {
                                 <span className="wall-pad">
                                   {item.subSectionTitle}
                                 </span>
-                                <ExternalLinkIcon />
+                                <ExternalLinkIcon className="icon"/>
                               </a>
                             </Link>
                           </li>
@@ -109,7 +108,7 @@ export default function Menu({ onClose, isMobile, menuTabs }: MenuProps) {
                   }}
                 >
                   <span className="wall-pad">{item.menuTab?.data?.title}</span>
-                  {item.menuTab?.data?.link?.target && <ExternalLinkIcon />}
+                  {item.menuTab?.data?.link?.target && <ExternalLinkIcon className="icon" />}
                 </Button>
               </Link>
             )}
@@ -126,7 +125,7 @@ export default function Menu({ onClose, isMobile, menuTabs }: MenuProps) {
           target="_blank"
           rel="noopener"
         >
-          <GitHubLogoIcon />
+          <GitHubLogoIcon className="icon"/>
 
           <span className="hide-large wall-pad">Github</span>
         </Button>

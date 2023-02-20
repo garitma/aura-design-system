@@ -10,7 +10,8 @@ import { components as marketingComponents } from "@/slices/marketing/index";
 import { createClient } from "@/utils/prismic-client";
 import { menuGraphQuery } from "@/utils/prismic-graphquery";
 import Layout from "@/components/Layout";
-import Link from "@/components/Link";
+import MenuDocumentation from "@/components/MenuDocumentation";
+
 
 const __allComponents = { ...marketingComponents };
 
@@ -23,44 +24,7 @@ const SingleDoc = ({ doc, menu }) => {
   return (
     <Layout seo={seo} menu={menu}>
       <Grid col="docs">
-        <div className="purple pad anchor">
-          <div className="hide-large">
-            <Accordion title="Documentation">
-              <ul>
-                <li>
-                  <h4 className="mt13 h6">Overview</h4>
-                </li>
-                <li>
-                  <Link href="/docs/getting-started" passHref>
-                    <Button mode="link">Getting Starter</Button>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/docs/cheat-sheet" passHref>
-                    <Button mode="link">Cheat Sheet</Button>
-                  </Link>
-                </li>
-              </ul>
-            </Accordion>
-          </div>
-          <div className="sticky hide-small hide-medium">
-            <ul>
-              <li>
-                <h4 className="mt13 h6">Overview</h4>
-              </li>
-              <li>
-                <Link href="/docs/getting-started" passHref>
-                  <Button mode="link">Getting Starter</Button>
-                </Link>
-              </li>
-              <li>
-                <Link href="/docs/cheat-sheet" passHref>
-                  <Button mode="link">Cheat Sheet</Button>
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <MenuDocumentation menu={menu} />
         <div>
           <Section container="smash" className="m-headlines">
             <h1>{prismicH.asText(doc.data.title)}</h1>

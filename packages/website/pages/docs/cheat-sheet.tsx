@@ -1,10 +1,7 @@
 import { SliceZone } from "@prismicio/react";
 import * as prismicH from "@prismicio/helpers";
 import Grid from "@aura-design/system/grid";
-import Button from "@aura-design/system/button";
 import Section from "@aura-design/system/section";
-import Accordion from "@aura-design/system/accordion";
-import Icon from "@aura-design/system/icon";
 
 import { components as marketingComponents } from "@/slices/marketing/index";
 import { components as documentationComponents } from "@/slices/documentation/index";
@@ -12,7 +9,7 @@ import { createClient } from "@/utils/prismic-client";
 import { menuGraphQuery } from "@/utils/prismic-graphquery";
 import Layout from "@/components/Layout";
 import DocumentationLink from "@/components/DocumentationLink";
-import Link from "@/components/Link";
+import MenuDocumentation from "@/components/MenuDocumentation";
 
 const __allComponents = { ...marketingComponents, ...documentationComponents };
 
@@ -25,44 +22,7 @@ const CheatSheet = ({ doc, menu }) => {
   return (
     <Layout seo={seo} menu={menu}>
       <Grid col="docs">
-        <div className="purple pad anchor">
-          <div className="hide-large">
-            <Accordion title="Documentation">
-              <ul>
-                <li>
-                  <h4 className="mt13 h6">Overview</h4>
-                </li>
-                <li>
-                  <Link href="/docs/getting-started" passHref>
-                    <Button mode="link">Getting Starter</Button>
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/docs/cheat-sheet" passHref>
-                    <Button mode="link">Cheat Sheet</Button>
-                  </Link>
-                </li>
-              </ul>
-            </Accordion>
-          </div>
-          <div className="sticky hide-small hide-medium">
-            <ul>
-              <li>
-                <h4 className="mt13 h6">Overview</h4>
-              </li>
-              <li>
-                <Link href="/docs/getting-started" passHref>
-                  <Button mode="link">Getting Starter</Button>
-                </Link>
-              </li>
-              <li>
-                <Link href="/docs/cheat-sheet" passHref>
-                  <Button mode="link">Cheat Sheet</Button>
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </div>
+        <MenuDocumentation menu={menu} />
         <div>
           <Section container="smash" className="m-headlines">
             {doc.data.title && <h1>{prismicH.asText(doc.data.title)}</h1>}
