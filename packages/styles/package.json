@@ -1,6 +1,6 @@
 {
   "name": "@aura-design/styles",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Garitma's Design system styles",
   "keywords": [],
   "author": "Pablo Orozco <me@pablopvsky.com",
@@ -8,7 +8,8 @@
   "main": "main.css",
   "homepage": "https://github.com/garitma/aura-design-system/#readme",
   "files": [
-    "main.css"
+    "main.css",
+    "dist"
   ],
   "publishConfig": {
     "access": "public"
@@ -22,10 +23,11 @@
     "url": "https://github.com/garitma/aura-design-system/issues"
   },
   "dependencies": {
-    "stylus": "^0.59.0"
+    "stylus": "^0.59.0",
+    "typescript": "^4.9.5"
   },
   "scripts": {
     "dev": "pnpm stylus --compress -w ./main.styl -o ./main.css",
-    "build": "pnpm stylus --compress ./main.styl -o ./main.css && pnpm stylus --compress ./main.styl -o ../system/main.css && pnpm stylus --compress ./main.styl -o ../playground/public/sandbox.css"
+    "build": "pnpm stylus --compress ./main.styl -o ./main.css && pnpm stylus --compress ./main.styl -o ../system/main.css && pnpm stylus --compress ./main.styl -o ../playground/public/sandbox.css && rm -rf dist && tsc --module commonjs"
   }
 }

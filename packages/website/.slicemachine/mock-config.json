@@ -3,7 +3,10 @@
     "document": {},
     "home": {},
     "menu-tab": {},
-    "cheat_sheets_page": {}
+    "cheat_sheets_page": {},
+    "menu": {
+      "secondMenuTabs": {}
+    }
   },
   "slices": {
     "RichText": {

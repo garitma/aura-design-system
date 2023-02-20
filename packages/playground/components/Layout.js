@@ -3,10 +3,10 @@ import Router from "next/router";
 import Image from "next/image";
 import NProgress from "nprogress";
 
-import Link from "@components/Link";
-import Header from "@components/Header";
-import Footer from "@components/Footer";
-import Meta from "@components/Meta";
+import Link from "@/components/Link";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Meta from "@/components/Meta";
 
 Router.events.on("routeChangeStart", () => {
   NProgress.start();

@@ -1,18 +1,18 @@
 {
   "topPromoBanner": {
     "__TYPE__": "FieldContent",
-    "value": "substance",
+    "value": "soft",
     "type": "Text"
   },
   "logo": {
     "__TYPE__": "ImageContent",
     "origin": {
       "id": "main",
-      "url": "https://images.unsplash.com/photo-1607582278043-57198ac8da43",
-      "width": 4024,
-      "height": 4024
+      "url": "https://images.unsplash.com/photo-1607582278038-6bebbd4d7b72",
+      "width": 4010,
+      "height": 4010
     },
-    "url": "https://images.unsplash.com/photo-1607582278043-57198ac8da43?rect=0%2C0%2C4024%2C4024&w=64&h=64",
+    "url": "https://images.unsplash.com/photo-1607582278038-6bebbd4d7b72?rect=0%2C0%2C4010%2C4010&w=64&h=64",
     "width": 64,
     "height": 64,
     "edit": {
@@ -26,6 +26,26 @@
     "thumbnails": {}
   },
   "menuTabs": {
+    "__TYPE__": "GroupContentType",
+    "value": [
+      {
+        "__TYPE__": "GroupItemContent",
+        "value": [
+          [
+            "menuTab",
+            {
+              "__TYPE__": "LinkContent",
+              "value": {
+                "__TYPE__": "DocumentLink",
+                "id": "mock_document_id"
+              }
+            }
+          ]
+        ]
+      }
+    ]
+  },
+  "secondMenuTabs": {
     "__TYPE__": "GroupContentType",
     "value": [
       {

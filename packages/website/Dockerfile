@@ -62,7 +62,3 @@ ENV NEXT_PUBLIC_SITE_URL=$NEXT_PUBLIC_SITE_URL
 ENV PORT 3000
 
 CMD ["node", "server.js"]
-
-
-
-

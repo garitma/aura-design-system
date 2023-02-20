@@ -1,6 +1,6 @@
 {
   "name": "@aura-design/system",
-  "version": "0.4.28",
+  "version": "0.4.29",
   "description": "Garitma's Design system",
   "keywords": [
     "react",
@@ -38,6 +38,8 @@
     "grid.js",
     "icon.d.ts",
     "icon.js",
+    "icons.d.ts",
+    "icons.js",
     "index.d.ts",
     "index.ts",
     "input.d.ts",

@@ -30,7 +30,9 @@
             "menuTab": {
               "config": {
                 "label": "menuTab",
-                "customtypes": ["menu-tab"],
+                "customtypes": [
+                  "menu-tab"
+                ],
                 "select": "document"
               },
               "type": "Link"
@@ -38,6 +40,24 @@
           }
         },
         "type": "Group"
+      },
+      "secondMenuTabs": {
+        "type": "Group",
+        "config": {
+          "label": "secondMenuTabs",
+          "fields": {
+            "menuTab": {
+              "type": "Link",
+              "config": {
+                "label": "menuTab",
+                "select": "document",
+                "customtypes": [
+                  "menu-tab"
+                ]
+              }
+            }
+          }
+        }
       }
     }
   }
