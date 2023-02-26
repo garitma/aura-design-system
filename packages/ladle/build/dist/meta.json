@@ -484,6 +484,46 @@
       "locEnd": 22,
       "filePath": "stories/separator.stories.tsx",
       "meta": {}
+    },
+    "skeleton--basic": {
+      "name": "Basic",
+      "levels": [
+        "Skeleton"
+      ],
+      "locStart": 5,
+      "locEnd": 7,
+      "filePath": "stories/skeleton.stories.tsx",
+      "meta": {}
+    },
+    "skeleton--circle": {
+      "name": "Circle",
+      "levels": [
+        "Skeleton"
+      ],
+      "locStart": 8,
+      "locEnd": 10,
+      "filePath": "stories/skeleton.stories.tsx",
+      "meta": {}
+    },
+    "skeleton--fluid": {
+      "name": "Fluid",
+      "levels": [
+        "Skeleton"
+      ],
+      "locStart": 11,
+      "locEnd": 13,
+      "filePath": "stories/skeleton.stories.tsx",
+      "meta": {}
+    },
+    "skeleton--example": {
+      "name": "Example",
+      "levels": [
+        "Skeleton"
+      ],
+      "locStart": 14,
+      "locEnd": 55,
+      "filePath": "stories/skeleton.stories.tsx",
+      "meta": {}
     }
   }
 }
