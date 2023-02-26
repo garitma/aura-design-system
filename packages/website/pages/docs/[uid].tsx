@@ -26,7 +26,7 @@ const SingleDoc = ({ doc, menu }) => {
       <Grid col="docs">
         <MenuDocumentation menu={menu} />
         <div>
-          <Section container="smash" className="m-headlines">
+          <Section container="smash" className="m-headlines ul-list">
             <h1>{prismicH.asText(doc.data.title)}</h1>
             <SliceZone slices={doc.data.slices} components={__allComponents} />
           </Section>
