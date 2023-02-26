@@ -22,6 +22,20 @@ $floating = floating
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 
+@keyframes skeleton-loading {
+  0% {
+    background-color: var(--aura-skeleton-start);
+  }
+  100% {
+    background-color: var(--aura-skeleton-end);
+  }
+}
+
+.skeleton {
+  animation: skeleton-loading 1s linear infinite alternate;
+  border-radius: var(--aura-radius);
+}
+
 .zoom
     img 
         transform-origin 50% 65%;
