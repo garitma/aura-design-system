@@ -15,9 +15,9 @@ const MenuAside = ({ secondMenuTabs }) => {
             {hasChilds ? (
               <ul>
                 <li>
-                  <Button mode="link" onClick={() => handleOnLink(item)}>
-                    {item.menuTab.data.title}
-                  </Button>
+              
+                    <b>{item.menuTab.data.title}</b>
+          
                 </li>
                 <ul>
                   {item.menuTab.data?.slices.map((slice, index) => (
