@@ -31,6 +31,28 @@ interface CheatSheetsPageDocumentData {
      */
     excerpt: prismicT.RichTextField;
     /**
+     * Prev field in *Cheat Sheets Page*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: cheat_sheets_page.prev
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    prev: prismicT.LinkField;
+    /**
+     * Next field in *Cheat Sheets Page*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: cheat_sheets_page.next
+     * - **Tab**: Main
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    next: prismicT.LinkField;
+    /**
      * Slice Zone field in *Cheat Sheets Page*
      *
      * - **Field Type**: Slice Zone
@@ -130,7 +152,7 @@ interface DocumentDocumentData {
  * Slice for *Document → Slice Zone*
  *
  */
-type DocumentDocumentDataSlicesSlice = CodeBoxSlice | RichTextSlice | HighlightedSlice;
+type DocumentDocumentDataSlicesSlice = CodeBoxSlice | RichTextSlice | HighlightedSlice | IframeSlice;
 /**
  * Document document from Prismic
  *
@@ -956,6 +978,45 @@ type MenuSubTabSliceVariation = MenuSubTabSliceDefault;
  */
 export type MenuSubTabSlice = prismicT.SharedSlice<"menu_sub_tab", MenuSubTabSliceVariation>;
 /**
+ * Primary content in Iframe → Primary
+ *
+ */
+interface IframeSliceDefaultPrimary {
+    /**
+     * link field in *Iframe → Primary*
+     *
+     * - **Field Type**: Link
+     * - **Placeholder**: *None*
+     * - **API ID Path**: iframe.primary.link
+     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+     *
+     */
+    link: prismicT.LinkField;
+}
+/**
+ * Default variation for Iframe Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: `Iframe`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type IframeSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<IframeSliceDefaultPrimary>, never>;
+/**
+ * Slice variation for *Iframe*
+ *
+ */
+type IframeSliceVariation = IframeSliceDefault;
+/**
+ * Iframe Shared Slice
+ *
+ * - **API ID**: `iframe`
+ * - **Description**: `Iframe`
+ * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
+ *
+ */
+export type IframeSlice = prismicT.SharedSlice<"iframe", IframeSliceVariation>;
+/**
  * Primary content in TableBlock → Primary
  *
  */
@@ -1015,6 +1076,6 @@ declare module "@prismicio/client" {
         (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
     }
     namespace Content {
-        export type { CheatSheetsPageDocumentData, CheatSheetsPageDocumentDataSlicesSlice, CheatSheetsPageDocument, DocumentDocumentData, DocumentDocumentDataSlicesSlice, DocumentDocument, FooterDocumentData, FooterDocumentDataBodySlice, FooterDocument, HomeDocumentData, HomeDocumentDataSlicesSlice, HomeDocument, MenuTabDocumentData, MenuTabDocumentDataSlicesSlice, MenuTabDocument, MenuDocumentData, MenuDocumentDataMenuTabsItem, MenuDocumentDataSecondMenuTabsItem, MenuDocument, AllDocumentTypes, BannerSliceDefaultPrimary, BannerSliceDefault, BannerSliceVariation, BannerSlice, CodeBoxSliceDefaultPrimary, CodeBoxSliceDefault, CodeBoxSliceVariation, CodeBoxSlice, HeroBannerSliceDefaultPrimary, HeroBannerSliceDefault, HeroBannerSliceVariation, HeroBannerSlice, HighlightedSliceDefaultPrimary, HighlightedSliceDefault, HighlightedSliceVariation, HighlightedSlice, RichTextSliceDefaultPrimary, RichTextSliceDefault, RichTextSliceVariation, RichTextSlice, SectionHeadingSliceDefaultPrimary, SectionHeadingSliceDefault, SectionHeadingSliceVariation, SectionHeadingSlice, SectionPoertySliceDefaultPrimary, SectionPoertySliceDefault, SectionPoertySliceVariation, SectionPoertySlice, FooterColumnSliceDefaultPrimary, FooterColumnSliceDefaultItem, FooterColumnSliceDefault, FooterColumnSliceVariation, FooterColumnSlice, MenuSubTabSliceDefaultPrimary, MenuSubTabSliceDefaultItem, MenuSubTabSliceDefault, MenuSubTabSliceVariation, MenuSubTabSlice, TableBlockSliceDefaultPrimary, TableBlockSliceDefaultItem, TableBlockSliceDefault, TableBlockSliceVariation, TableBlockSlice };
+        export type { CheatSheetsPageDocumentData, CheatSheetsPageDocumentDataSlicesSlice, CheatSheetsPageDocument, DocumentDocumentData, DocumentDocumentDataSlicesSlice, DocumentDocument, FooterDocumentData, FooterDocumentDataBodySlice, FooterDocument, HomeDocumentData, HomeDocumentDataSlicesSlice, HomeDocument, MenuTabDocumentData, MenuTabDocumentDataSlicesSlice, MenuTabDocument, MenuDocumentData, MenuDocumentDataMenuTabsItem, MenuDocumentDataSecondMenuTabsItem, MenuDocument, AllDocumentTypes, BannerSliceDefaultPrimary, BannerSliceDefault, BannerSliceVariation, BannerSlice, CodeBoxSliceDefaultPrimary, CodeBoxSliceDefault, CodeBoxSliceVariation, CodeBoxSlice, HeroBannerSliceDefaultPrimary, HeroBannerSliceDefault, HeroBannerSliceVariation, HeroBannerSlice, HighlightedSliceDefaultPrimary, HighlightedSliceDefault, HighlightedSliceVariation, HighlightedSlice, RichTextSliceDefaultPrimary, RichTextSliceDefault, RichTextSliceVariation, RichTextSlice, SectionHeadingSliceDefaultPrimary, SectionHeadingSliceDefault, SectionHeadingSliceVariation, SectionHeadingSlice, SectionPoertySliceDefaultPrimary, SectionPoertySliceDefault, SectionPoertySliceVariation, SectionPoertySlice, FooterColumnSliceDefaultPrimary, FooterColumnSliceDefaultItem, FooterColumnSliceDefault, FooterColumnSliceVariation, FooterColumnSlice, MenuSubTabSliceDefaultPrimary, MenuSubTabSliceDefaultItem, MenuSubTabSliceDefault, MenuSubTabSliceVariation, MenuSubTabSlice, IframeSliceDefaultPrimary, IframeSliceDefault, IframeSliceVariation, IframeSlice, TableBlockSliceDefaultPrimary, TableBlockSliceDefaultItem, TableBlockSliceDefault, TableBlockSliceVariation, TableBlockSlice };
     }
 }

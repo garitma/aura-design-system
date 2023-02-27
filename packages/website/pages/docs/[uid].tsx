@@ -6,6 +6,7 @@ import Section from "@aura-design/system/section";
 import Accordion from "@aura-design/system/accordion";
 import DocumentationLink from "@/components/DocumentationLink";
 
+import { components as documentationComponents } from "@/slices/documentation/index";
 import { components as marketingComponents } from "@/slices/marketing/index";
 import { createClient } from "@/utils/prismic-client";
 import { menuGraphQuery } from "@/utils/prismic-graphquery";
@@ -13,7 +14,7 @@ import Layout from "@/components/Layout";
 import MenuDocumentation from "@/components/MenuDocumentation";
 
 
-const __allComponents = { ...marketingComponents };
+const __allComponents = { ...marketingComponents, ...documentationComponents };
 
 const SingleDoc = ({ doc, menu }) => {
   const seo = {
