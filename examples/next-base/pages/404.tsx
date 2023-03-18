@@ -3,7 +3,7 @@ import Button from "@aura-design/system/button";
 import Head from "next/head";
 import Link from "next/link";
 
-const MyError = () => {
+const MyError = (): JSX.Element => {
   return (
     <Section container="smush">
       <Head>

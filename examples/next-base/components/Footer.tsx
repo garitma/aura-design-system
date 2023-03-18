@@ -1,6 +1,6 @@
 import Section from "@aura-design/system/section";
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
   return (
     <footer>
       <Section>

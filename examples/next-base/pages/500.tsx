@@ -1,9 +1,8 @@
-import Section from "aura-design/section";
-import Button from "aura-design/button";
+import Section from "@aura-design/system/section";
 import Head from "next/head";
-import Link from "next/link";
 
-const MyError = () => {
+
+const MyError = (): JSX.Element => {
   return (
     <Section container="smush">
       <Head>

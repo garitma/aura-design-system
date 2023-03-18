@@ -5,6 +5,7 @@ import NProgress from "nprogress";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Meta from "@/components/Meta";
+import type { MetaProps } from "@/components/Meta";
 
 NProgress.configure({ showSpinner: false });
 
@@ -20,7 +21,13 @@ Router.events.on("routeChangeError", () => {
   NProgress.done();
 });
 
-const Layout = ({ children, text, seo }) => (
+type LayoutProps = {
+  children: React.ReactNode;
+  text?: string;
+  seo?: MetaProps;
+};
+
+const Layout = ({ children, text, seo }: LayoutProps) => (
   <main>
     <div className="page">
       <Meta {...seo} />

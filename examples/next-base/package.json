@@ -17,5 +17,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/nprogress": "^0.2.0",
+    "typescript": "^5.0.2"
+  }
 }
