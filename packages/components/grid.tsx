@@ -9,7 +9,7 @@ export interface GridProps extends SharedBasic {
   isFixed?: boolean;
 }
 
-const Grid = ({ children, className, col, isFixed, ...props }: GridProps) => {
+const Grid = ({ children, className, col, isFixed, ...props }: GridProps): JSX.Element => {
   const classConnect: string[] = ["aureole", className!]
 
   if (col) {

@@ -18,7 +18,7 @@ const Alert = ({
   isPushBottom,
   isPushTop,
   className,
-}: AlertProps) => {
+}: AlertProps): JSX.Element => {
   const isActive = state?.info?.message || message;
   const classConnect: string[] = [className!, "mod", "aura"];
 

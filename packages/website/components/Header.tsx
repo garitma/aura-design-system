@@ -7,7 +7,7 @@ import Link from "@/components/Link";
 import Menu from "@/components/Menu";
 
 const Header = ({ menu }) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
     <header className="purple">

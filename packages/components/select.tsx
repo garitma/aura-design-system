@@ -24,7 +24,7 @@ const Select = ({
   className,
   children,
   ...props
-}: SelectProps) => {
+}: SelectProps): JSX.Element => {
   const classConnect = [className];
 
   if (isDisabled) {

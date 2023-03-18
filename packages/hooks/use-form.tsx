@@ -1,11 +1,19 @@
 import { useState, useEffect } from "react";
 
-export const useInputValue = (initialValue: any) => {
-  const [value, setValue] = useState(initialValue);
-  const [error, setError] = useState(null);
-  const [touch, setTouch] = useState(false);
+type InitialInputValueProps =
+  | string
+  | boolean
+  | number
+  | Array<string>
+  | Array<number>
+  | Array<{}>;
 
-  const onChange = (e: { target: { value: any } }) => {
+export const useInputValue = (initialValue: InitialInputValueProps) => {
+  const [value, setValue] = useState(initialValue);
+  const [error, setError] = useState<string | null>(null);
+  const [touch, setTouch] = useState<boolean>(false);
+
+  const onChange = (e: { target: { value: InitialInputValueProps } }) => {
     setValue(e.target.value), setTouch(true);
   };
   const reset = () => setValue("");
@@ -25,7 +33,11 @@ export const useInputValue = (initialValue: any) => {
   };
 };
 
-export const useForm = (initialValues: any) => {
+interface DynamicInputProps {
+  [key: string]: InitialInputValueProps;
+}
+
+export const useForm = (initialValues: DynamicInputProps) => {
   let data = {};
 
   for (const value in initialValues) {
@@ -38,7 +50,9 @@ export const useForm = (initialValues: any) => {
   return data;
 };
 
-export const useFormValues = (formData: { [x: string]: { value: any } }) => {
+export const useFormValues = (formData: {
+  [key: string]: { value: InitialInputValueProps };
+}) => {
   let formValues = {};
 
   for (const value in formData) {
@@ -51,7 +65,10 @@ export const useFormValues = (formData: { [x: string]: { value: any } }) => {
   return formValues;
 };
 
-export const useFormIsValid = (data: object, schema: any) => {
+export const useFormIsValid = (
+  data: object,
+  schema: (data: object) => boolean
+) => {
   const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
@@ -61,8 +78,14 @@ export const useFormIsValid = (data: object, schema: any) => {
   return isValid;
 };
 
+type StatusProps = {
+  isLoading: boolean;
+  isSubmited: boolean;
+  info: { isError: boolean; message?: string | null };
+};
+
 export const useStatus = () => {
-  const [status, setStatus] = useState({
+  const [status, setStatus] = useState<StatusProps>({
     isLoading: false,
     isSubmited: false,
     info: { isError: false, message: null },

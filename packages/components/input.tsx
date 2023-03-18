@@ -35,7 +35,7 @@ const Input = ({
   classNameContainer,
   name,
   ...props
-}: InputProps) => {
+}: InputProps): JSX.Element => {
   
   const { touch, setTouch, setValue, reset, dialog, ...inputProps } = props;
 

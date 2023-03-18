@@ -33,7 +33,7 @@ const Button = forwardRef(
       ...props
     }: ButtonProps,
     ref: any
-  ) => {
+  ): JSX.Element => {
     const AuraButton = href || mode === "menu" ? `a` : "button";
     const classConnect: string[] = [className!, `button-${mode}`];
 

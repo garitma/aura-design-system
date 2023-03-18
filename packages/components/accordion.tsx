@@ -13,7 +13,7 @@ const Accordion = ({
   headerSize = "h6",
   color,
   className,
-}: AccordionProps) => {
+}: AccordionProps): JSX.Element => {
   const classNameConnect: string[] = [
     className!,
     "aura",

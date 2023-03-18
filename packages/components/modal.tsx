@@ -21,7 +21,7 @@ const Modal = ({
   title,
   description,
   children,
-}: ModalProps) => {
+}: ModalProps): JSX.Element => {
   const isTwoButtons = firstButton && secondButton;
 
   return (
