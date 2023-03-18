@@ -1,24 +1,25 @@
-import { forwardRef } from "react";
+import { forwardRef, RefObject, CSSProperties, ElementType } from "react";
 import { Target, SharedBasic, ButtonMode, ButtonType } from "../types/global";
 
-/**
- * Primary UI component for user interaction
- */
+interface IntrinsicProps {
+  onClick?: (event?: any) => void;
+  target?: Target;
+  type?: ButtonType;
+  style?: CSSProperties;
+}
 
-export interface ButtonProps extends SharedBasic {
+export interface ButtonProps extends SharedBasic, IntrinsicProps {
   isDisabled?: boolean;
   isFluid?: boolean;
   isLoading?: boolean;
-  onClick?: (event?: any) => void;
   isLoadingText?: string;
   mode?: ButtonMode;
   label?: string;
   href?: string;
-  target?: Target;
-  type?: ButtonType;
+  as?: ElementType;
 }
 
-const Button = forwardRef(
+const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonProps>(
   (
     {
       isDisabled = false,
@@ -30,11 +31,11 @@ const Button = forwardRef(
       className,
       href,
       children,
+      as: AuraButton = href || mode === "menu" ? `a` : "button",
       ...props
     }: ButtonProps,
-    ref: any
+    ref: RefObject<HTMLAnchorElement | HTMLButtonElement>
   ): JSX.Element => {
-    const AuraButton = href || mode === "menu" ? `a` : "button";
     const classConnect: string[] = [className!, `button-${mode}`];
 
     if (isFluid) {
@@ -50,7 +51,7 @@ const Button = forwardRef(
         disabled={isDisabled || isLoading}
         href={href}
         ref={ref}
-        {...props}
+        {...props as IntrinsicProps}
       >
         <span className={`container`}>
           {isLoading ? isLoadingText : label}
