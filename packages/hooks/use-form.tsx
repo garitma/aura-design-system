@@ -8,6 +8,12 @@ type InitialInputValueProps =
   | Array<number>
   | Array<{}>;
 
+type StatusProps = {
+  isLoading: boolean;
+  isSubmited: boolean;
+  info: { isError: boolean; message?: string | null };
+};
+
 export const useInputValue = (initialValue: InitialInputValueProps) => {
   const [value, setValue] = useState(initialValue);
   const [error, setError] = useState<string | null>(null);
@@ -76,12 +82,6 @@ export const useFormIsValid = (
   }, [data]);
 
   return isValid;
-};
-
-type StatusProps = {
-  isLoading: boolean;
-  isSubmited: boolean;
-  info: { isError: boolean; message?: string | null };
 };
 
 export const useStatus = () => {

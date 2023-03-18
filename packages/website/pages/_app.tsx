@@ -11,7 +11,7 @@ import "nprogress/nprogress.css";
 import { repositoryName } from "@/utils/prismic-client";
 import "@/styles/main.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter();
   useEffect(() => {
     Fathom.load(`ZVMIJJHZ`, {
