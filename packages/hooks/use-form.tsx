@@ -17,16 +17,16 @@ export type StatusProps = {
 };
 
 export type InputValueProps = {
-  value: InitialInputValueProps;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  error: string | null;
-  touch: boolean;
-  reset: () => void;
-  dialog: React.Dispatch<React.SetStateAction<string | null>>;
-  setTouch: React.Dispatch<React.SetStateAction<boolean>>;
-  setValue: React.Dispatch<React.SetStateAction<InitialInputValueProps>>;
-  helpText: string | null;
-  isHelping: boolean;
+  value?: InitialInputValueProps;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: string | null;
+  touch?: boolean;
+  reset?: () => void;
+  dialog?: React.Dispatch<React.SetStateAction<string | null>>;
+  setTouch?: React.Dispatch<React.SetStateAction<boolean>>;
+  setValue?: React.Dispatch<React.SetStateAction<InitialInputValueProps>>;
+  helpText?: string | null;
+  isHelping?: boolean;
 };
 
 export type FormDataProps = { [key: string]: InputValueProps };

@@ -37,12 +37,13 @@ const Input = ({
   const classConnect: string[] = [className!];
   const classContainerConnect: string[] = [classNameContainer!, "inputer"];
 
-  const validateValue = (value: any) => {
-    if (!["number", "string"].includes(typeof value)) {
-      return ;
+  const validateValue = (
+    value: InitialInputValueProps
+  ): string | number | readonly string[] | undefined => {
+    if (typeof value === "string" || typeof value === "number") {
+      return value;
     }
-
-    return value;
+    return;
   };
 
   if (isDisabled) {
