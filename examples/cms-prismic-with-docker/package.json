@@ -1,8 +1,6 @@
 {
-  "name": "with-docker",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "cms-prismic-with-docker",
+  "private": true,
   "dependencies": {
     "@aura-design/system": "^0.4.28",
     "@prismicio/client": "^6.7.3",
@@ -21,9 +19,6 @@
     "start": "next start",
     "slicemachine": "start-slicemachine"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "@prismicio/types": "^0.2.7",
     "slice-machine-ui": "^0.6.1"

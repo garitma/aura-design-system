@@ -1,5 +1,9 @@
-module.exports = {
-  images: {
-    deviceSizes: [320, 420, 768, 1024, 1200],
-  },
+/**
+ * @returns {import('next').NextConfig}
+ */
+module.exports = async () => {
+  return {
+    output: "standalone",
+    reactStrictMode: true,
+  };
 };
