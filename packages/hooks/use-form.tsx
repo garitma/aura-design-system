@@ -1,28 +1,49 @@
 import { useState, useEffect } from "react";
 
-type InitialInputValueProps =
+export type InitialInputValueProps =
   | string
   | boolean
   | number
   | Array<string>
   | Array<number>
-  | Array<{}>;
+  | Array<{}>
+  | readonly string[]
+  | undefined;
 
-type StatusProps = {
+export type StatusProps = {
   isLoading: boolean;
   isSubmited: boolean;
   info: { isError: boolean; message?: string | null };
 };
 
-export const useInputValue = (initialValue: InitialInputValueProps) => {
-  const [value, setValue] = useState(initialValue);
+export type InputValueProps = {
+  value: InitialInputValueProps;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error: string | null;
+  touch: boolean;
+  reset: () => void;
+  dialog: React.Dispatch<React.SetStateAction<string | null>>;
+  setTouch: React.Dispatch<React.SetStateAction<boolean>>;
+  setValue: React.Dispatch<React.SetStateAction<InitialInputValueProps>>;
+  helpText: string | null;
+  isHelping: boolean;
+};
+
+export type FormDataProps = { [key: string]: InputValueProps };
+
+export const useInputValue = (
+  initialValue: InitialInputValueProps
+): InputValueProps => {
+  const [value, setValue] = useState<InitialInputValueProps>(initialValue);
   const [error, setError] = useState<string | null>(null);
   const [touch, setTouch] = useState<boolean>(false);
 
-  const onChange = (e: { target: { value: InitialInputValueProps } }) => {
-    setValue(e.target.value), setTouch(true);
+  const onChange = (e: { target: { value: string } }) => {
+    setValue(e.target.value);
+    !touch && setTouch(true);
   };
-  const reset = () => setValue("");
+
+  const reset = () => setValue(initialValue);
   const dialog = setError;
 
   return {
@@ -35,7 +56,7 @@ export const useInputValue = (initialValue: InitialInputValueProps) => {
     setTouch,
     setValue,
     helpText: error,
-    isHelping: error && touch,
+    isHelping: Boolean(error && touch),
   };
 };
 
@@ -44,13 +65,10 @@ interface DynamicInputProps {
 }
 
 export const useForm = (initialValues: DynamicInputProps) => {
-  let data = {};
+  const data: { [key: string]: any } = {};
 
-  for (const value in initialValues) {
-    data = {
-      ...data,
-      [value]: useInputValue(initialValues[value]),
-    };
+  for (const key in initialValues) {
+    data[key] = useInputValue(initialValues[key]);
   }
 
   return data;
@@ -72,14 +90,14 @@ export const useFormValues = (formData: {
 };
 
 export const useFormIsValid = (
-  data: object,
-  schema: (data: object) => boolean
+  data: { [key: string]: any },
+  schema: (data: { [key: string]: any }) => boolean
 ) => {
   const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
     setIsValid(schema(data));
-  }, [data]);
+  }, [data, schema]);
 
   return isValid;
 };
@@ -106,7 +124,7 @@ export const useStatus = () => {
       },
     }));
 
-  const setMessage = (message: any) =>
+  const setMessage = (message: string) =>
     setStatus((prevStatus) => ({
       ...prevStatus,
       info: {
@@ -135,5 +153,5 @@ export const useStatus = () => {
   };
 };
 
-export const isInvalidSchema = (schema: any) =>
+export const isInvalidSchema = (schema: { [key: string]: boolean }) =>
   Object.values(schema).some((item) => item === false);

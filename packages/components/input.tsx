@@ -1,6 +1,7 @@
 import { InputHTMLAttributes } from "react";
 
-import { SharedBasic, HelpType } from "../types/global";
+import type { SharedBasic, HelpType } from "../types/global";
+import { InputValueProps, InitialInputValueProps } from "../hooks/use-form";
 
 /**
  * Input component
@@ -8,20 +9,14 @@ import { SharedBasic, HelpType } from "../types/global";
 
 export interface InputProps
   extends SharedBasic,
-    InputHTMLAttributes<HTMLInputElement> {
+    Omit<InputHTMLAttributes<HTMLInputElement>, "value">,
+    Omit<InputValueProps, "onChange"> {
   isDisabled?: boolean;
-  isHelping?: boolean;
   isLabelable?: boolean;
   helpMode?: HelpType;
-  helpText?: string;
   placeholder?: string;
   name?: string;
   classNameContainer?: string;
-  dialog?: string;
-  touch?: boolean;
-  setTouch?: (event?: any) => void;
-  setValue?: (event?: any) => void;
-  reset?: (event?: any) => void;
 }
 
 const Input = ({
@@ -36,11 +31,19 @@ const Input = ({
   name,
   ...props
 }: InputProps): JSX.Element => {
-  
-  const { touch, setTouch, setValue, reset, dialog, ...inputProps } = props;
+  const { touch, setTouch, setValue, reset, dialog, value, ...inputProps } =
+    props;
 
   const classConnect: string[] = [className!];
   const classContainerConnect: string[] = [classNameContainer!, "inputer"];
+
+  const validateValue = (value: any) => {
+    if (!["number", "string"].includes(typeof value)) {
+      return ;
+    }
+
+    return value;
+  };
 
   if (isDisabled) {
     classConnect.push("disabled");
@@ -65,6 +68,7 @@ const Input = ({
             placeholder={placeholder}
             disabled={isDisabled}
             className={classConnect.join(" ").trim()}
+            value={validateValue(value)}
             {...inputProps}
           />
           {placeholder && isLabelable && (
@@ -75,10 +79,6 @@ const Input = ({
       </div>
     </div>
   );
-};
-
-Input.defaultProps = {
-  helpMode: "warning",
 };
 
 export default Input;
