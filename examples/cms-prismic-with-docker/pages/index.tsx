@@ -28,7 +28,6 @@ const Home = ({ doc, menu }: HomeProps) => {
 export async function getStaticProps({
   previewData,
   locale,
-  locales,
 }: GetStaticPropsContext): Promise<GetStaticPropsResult<HomeProps>> {
   const client = createClient({previewData});
 

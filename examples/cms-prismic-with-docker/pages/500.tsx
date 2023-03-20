@@ -1,7 +1,5 @@
 import Section from "@aura-design/system/section";
-import Button from "@aura-design/system/button";
 import Head from "next/head";
-import Link from "next/link";
 
 const MyError = () => {
   return (
