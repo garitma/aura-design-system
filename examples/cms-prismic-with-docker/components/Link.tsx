@@ -1,7 +1,12 @@
-import NextLink from "next/link";
+import NextLink, { LinkProps as NextLinkProps } from "next/link";
 import { SITE_URL } from "@/utils/constants";
 
-const Link = ({ href, url, children, ...props }) => {
+export interface LinkProps extends NextLinkProps {
+  url?: string;
+  children: React.ReactNode;
+}
+
+const Link = ({ href, url, children, ...props }: LinkProps) => {
   return (
     <NextLink
       href={href || url?.replace(SITE_URL, "/") || "/"}

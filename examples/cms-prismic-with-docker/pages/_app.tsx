@@ -1,13 +1,14 @@
-import Router from "next/router";
+import type { AppProps } from "next/app";
 import Link from "next/link";
 import { PrismicProvider } from "@prismicio/react";
 import { PrismicPreview } from "@prismicio/next";
 import "@aura-design/system/main.css";
 
 import { repositoryName } from "@/utils/prismic-client";
-import "../public/style.css";
+import "@/styles/main.css";
+import "@/styles/global.css";
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
     <PrismicProvider
       internalLinkComponent={({ href, ...props }) => (

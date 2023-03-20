@@ -1,29 +1,34 @@
 import { useState } from "react";
 import Button from "@aura-design/system/button";
-import { CloseIcon } from "@aura-design/system/dist/icons";
+import { CloseIcon, MenuIcon } from "@aura-design/system/icons";
+import { PrismicNextImage } from "@prismicio/next";
+import { Content } from "@prismicio/client";
 
 import Link from "@/components/Link";
-import Image from "@/components/Image";
 import Menu from "@/components/Menu";
 
-const Header = ({ menu }) => {
-  const [isOpen, setIsOpen] = useState(false);
+export type MenuProps = Content.MenuDocumentData;
+
+const Header = ({ menu }: { menu: { data: MenuProps } }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   return (
-    <header className="aura purple">
+    <header className="purple">
       <div className="smush aura">
         <ul className="nav-list">
-          <li className="item">
-            <Link href="/" className="halo">
-              <a>
-                {menu.data?.logo?.url ? <Image {...menu.data.logo} /> : null}
+          <li className="item ">
+            <Link href="/">
+              <a className="halo">
+                {menu.data?.logo?.url ? (
+                  <PrismicNextImage field={menu.data.logo} />
+                ) : null}
               </a>
             </Link>
           </li>
           <li></li>
           <li className="hide-large">
             <Button mode="link" onClick={() => setIsOpen(true)}>
-              =
+              <MenuIcon />
             </Button>
           </li>
           <li className="hide-small hide-medium">
@@ -38,24 +43,26 @@ const Header = ({ menu }) => {
           </li>
         </ul>
       </div>
-      <div className={`smush anchor ${!isOpen ? "hidden" : "active"}`}>
-        <ul className="mod-detail hold top right left bottom aureole one centertxt square">
+      <div
+        className={`anchor fluid vfluid hold inset-0 white aura ${
+          !isOpen ? "hidden" : "active"
+        }`}
+      >
+        <ul className="top right left bottom aureole one centertxt square">
           <ul className="nav-list">
             <li></li>
             <li></li>
             <li>
               <Button mode="link" onClick={() => setIsOpen(false)}>
-                x
+                <CloseIcon />
               </Button>
             </li>
           </ul>
-          {menu?.data?.menuTabs ? (
-            <Menu
-              onClose={() => setIsOpen(false)}
-              menuTabs={menu.data.menuTabs}
-              isMobile
-            />
-          ) : null}
+          <Menu
+            onClose={() => setIsOpen(false)}
+            menuTabs={menu.data.menuTabs}
+            isMobile
+          />
         </ul>
       </div>
     </header>

@@ -1,0 +1,3 @@
+/* @tailwind base; do not use base tailwind */
+@tailwind components;
+@tailwind utilities;

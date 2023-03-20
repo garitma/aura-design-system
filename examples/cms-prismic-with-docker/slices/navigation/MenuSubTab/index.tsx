@@ -1,6 +1,10 @@
 import React from "react";
+import { SliceComponentProps } from "@prismicio/react";
+import { Content } from "@prismicio/client";
 
-const MenuSubTab = ({ slice }) => (
+type SectionGridCardsSlice = SliceComponentProps<Content.MenuTabDocumentDataSlicesSlice>;
+
+const MenuSubTab = ({ slice }:SectionGridCardsSlice) => (
   <section>
     <p>
       This is a navigation slice, it's not meant to be used in Slice Simulator.

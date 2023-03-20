@@ -1,6 +1,10 @@
 import React from "react";
+import { SliceComponentProps } from "@prismicio/react";
+import { Content } from "@prismicio/client";
 
-const FooterColumn = ({ slice }) => (
+type SectionGridCardsSlice = SliceComponentProps<Content.FooterColumnSlice>;
+
+const FooterColumn = ({ slice }: SectionGridCardsSlice) => (
   <section>
     <p>
       This is a navigation slice, it's not meant to be used in Slice Simulator.
