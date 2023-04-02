@@ -28,7 +28,11 @@ Slice Machine should be available on <http://localhost:9999> once started.
 
 ## How to use
 
-Execute create-next-app with [npm](https://docs.npmjs.com/cli/init) to bootstrap the example:
+Execute create-next-app with [pnpm](https://pnpm.io/), to bootstrap the example:
+
+```bash
+npm install -g pnpm
+```
 
 ```bash
 npx create-next-app next-base --use-pnpm --example "https://github.com/garitma/aura-design-system/tree/canary/examples/cms-prismic-with-docker"
