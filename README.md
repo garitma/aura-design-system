@@ -38,6 +38,12 @@ or 1.5).
 npm i @aura-design/system
 ```
 
+## Getting started
+looks how to create a base project
+Requirements
+Node.js, pnpm
+<a href="https://auradesignsystem.com/docs/getting-started">https://auradesignsystem.com/docs/getting-started</a>
+  
 ## Documentation
 ### Website:
 <a href="https://auradesignsystem.com/">https://auradesignsystem.com/</a>
