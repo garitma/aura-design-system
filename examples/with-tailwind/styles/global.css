@@ -1,0 +1,3 @@
+/* @tailwind base; do not use base config */
+@tailwind components;
+@tailwind utilities;

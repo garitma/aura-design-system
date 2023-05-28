@@ -66,6 +66,9 @@
             },
             "highlighted": {
               "type": "SharedSlice"
+            },
+            "iframe": {
+              "type": "SharedSlice"
             }
           }
         }

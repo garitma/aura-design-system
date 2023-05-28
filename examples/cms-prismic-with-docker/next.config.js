@@ -12,6 +12,7 @@ module.exports = async () => {
   const locales = repository.languages.map((lang) => lang.id);
 
   return {
+    output: 'standalone',
     reactStrictMode: true,
     i18n: {
       // These are all the locales you want to support in
@@ -22,7 +23,7 @@ module.exports = async () => {
       defaultLocale: locales[0],
     },
     images: {
-      domains: ["images.prismic.io"],
+      domains: ['images.prismic.io', "www.gravatar.com"],
     },
   };
 };

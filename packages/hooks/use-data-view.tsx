@@ -41,9 +41,9 @@ export const compare = (num: number, comparator: number, context: string) => {
 };
 
 export const usePaginateData = (allData = [], pageSize = 12) => {
-  const [archivePageSize, setArchivePageSize] = useState(pageSize);
-  const [data, setData] = useState(allData);
-  const [page, setPage] = useState(1);
+  const [archivePageSize, setArchivePageSize] = useState<number>(pageSize);
+  const [data, setData] = useState<{}[]>(allData);
+  const [page, setPage] = useState<number>(1);
   const totalResultsSize = allData?.length;
   const totalPages = Math.ceil(totalResultsSize / archivePageSize);
   const cursorInit = (page - 1) * archivePageSize;

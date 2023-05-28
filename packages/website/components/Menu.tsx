@@ -14,13 +14,13 @@ type MenuProps = {
 };
 
 export default function Menu({ onClose, isMobile, menuTabs }: MenuProps) {
-  const [indexActive, setIndexActive] = useState(null);
+  const [indexActive, setIndexActive] = useState<number>(null);
   const router = useRouter();
 
   return (
     <>
       {menuTabs.map((item, index) => {
-        const [isOpen, setIsOpen] = useState(false);
+        const [isOpen, setIsOpen] = useState<boolean>(false);
         const hasChilds = item.menuTab.data?.slices?.length > 0;
 
         const ref = useRef(null);

@@ -1,6 +1,7 @@
 import { InputHTMLAttributes } from "react";
 
-import { SharedBasic, HelpType } from "../types/global";
+import type { SharedBasic, HelpType } from "../types/global";
+import { InputValueProps, InitialInputValueProps } from "../hooks/use-form";
 
 /**
  * Input component
@@ -8,20 +9,14 @@ import { SharedBasic, HelpType } from "../types/global";
 
 export interface InputProps
   extends SharedBasic,
-    InputHTMLAttributes<HTMLInputElement> {
+    Omit<InputHTMLAttributes<HTMLInputElement>, "value">,
+    Omit<InputValueProps, "onChange"> {
   isDisabled?: boolean;
-  isHelping?: boolean;
   isLabelable?: boolean;
   helpMode?: HelpType;
-  helpText?: string;
   placeholder?: string;
   name?: string;
   classNameContainer?: string;
-  dialog?: string;
-  touch?: boolean;
-  setTouch?: (event?: any) => void;
-  setValue?: (event?: any) => void;
-  reset?: (event?: any) => void;
 }
 
 const Input = ({
@@ -35,12 +30,24 @@ const Input = ({
   classNameContainer,
   name,
   ...props
-}: InputProps) => {
-  
-  const { touch, setTouch, setValue, reset, dialog, ...inputProps } = props;
+}: InputProps): JSX.Element => {
+  // Extracting specific props from `props` object using destructuring
+  const { touch, setTouch, setValue, reset, dialog, value, ...inputProps } =
+    props;
 
+  // CSS class names for the input element and container
   const classConnect: string[] = [className!];
   const classContainerConnect: string[] = [classNameContainer!, "inputer"];
+
+  // Function to validate and normalize the value
+  const validateValue = (
+    value: InitialInputValueProps
+  ): string | number | readonly string[] | undefined => {
+    if (typeof value === "string" || typeof value === "number") {
+      return value;
+    }
+    return;
+  };
 
   if (isDisabled) {
     classConnect.push("disabled");
@@ -65,6 +72,7 @@ const Input = ({
             placeholder={placeholder}
             disabled={isDisabled}
             className={classConnect.join(" ").trim()}
+            value={validateValue(value)}
             {...inputProps}
           />
           {placeholder && isLabelable && (
@@ -75,10 +83,6 @@ const Input = ({
       </div>
     </div>
   );
-};
-
-Input.defaultProps = {
-  helpMode: "warning",
 };
 
 export default Input;

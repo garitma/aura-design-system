@@ -1,21 +1,29 @@
-import React from "react";
+import React, { FormEvent } from "react";
 
-import { useForm, useStatus, useFormIsValid } from "../../hooks/use-form";
+import {
+  useForm,
+  useStatus,
+  useFormIsValid,
+  isInvalidSchema,
+} from "../../hooks/use-form";
+import type { FormDataProps } from "../../hooks/use-form";
 import Input from "../../components/input";
+import Select from "../../components/select";
 import Button from "../../components/button";
 import Alert from "../../components/alert";
 import Grid from "../../components/grid";
 import Checkbox from "../../components/checkbox";
 
 export const WithHook = () => {
-  const formData = useForm({
+  const formData: FormDataProps = useForm({
     firstName: "",
     lastName: "",
     email: "",
+    options: "",
     accept: false,
   });
 
-  const { firstName, lastName, email, accept }: any = formData;
+  const { firstName, lastName, email, options, accept } = formData;
 
   return (
     <div>
@@ -23,6 +31,10 @@ export const WithHook = () => {
         <Input placeholder="Name" {...firstName} />
         <Input placeholder="Last name" {...lastName} />
         <Input placeholder="Email" {...email} />
+        <Select {...options}>
+          <option>Foo</option>
+          <option>Foo2</option>
+        </Select>
         <Checkbox label="Accept terms and conditions." {...accept} />
       </form>
     </div>
@@ -30,13 +42,13 @@ export const WithHook = () => {
 };
 
 export const WithGrid = () => {
-  const formData = useForm({
+  const formData: FormDataProps = useForm({
     firstName: "",
     lastName: "",
     email: "",
   });
 
-  const { firstName, lastName, email }: any = formData;
+  const { firstName, lastName, email } = formData;
 
   return (
     <div>
@@ -53,15 +65,15 @@ export const WithGrid = () => {
 
 export const WithStatus = () => {
   const status = useStatus();
-  const formData = useForm({
+  const formData: FormDataProps = useForm({
     firstName: "",
     lastName: "",
     email: "",
   });
 
-  const { firstName, lastName, email }: any = formData;
+  const { firstName, lastName, email } = formData;
 
-  const handleOnSubmit = async (event) => {
+  const handleOnSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     status.resetStatus();
     status.setIsLoading(true);
@@ -111,20 +123,25 @@ export const WithStatus = () => {
 
 export const WithValidator = () => {
   const status = useStatus();
-  const formData = useForm({
+  const formData: FormDataProps = useForm({
     firstName: "",
     lastName: "",
     email: "",
+    options: "",
   });
 
-  const { firstName, lastName, email }: any = formData;
-
-  const isInvalidSchema = (schema) =>
-    Object.values(schema).some((item) => item === false);
+  const { firstName, lastName, email, options } = formData;
 
   const regexEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
-  const validatorSchema = ({ firstName, lastName, email }) => {
+  const validatorSchema = ({
+    firstName,
+    lastName,
+    email,
+    options,
+  }: {
+    [key: string]: any;
+  }) => {
     let schema: { [key: string]: boolean } = {};
 
     if (!firstName.value) {
@@ -141,6 +158,14 @@ export const WithValidator = () => {
     } else {
       schema.lastName = true;
       lastName.dialog(null);
+    }
+
+    if (!options.value) {
+      options.dialog("Options is required.");
+      schema.options = false;
+    } else {
+      schema.options = true;
+      options.dialog(null);
     }
 
     if (!email.value) {
@@ -198,6 +223,10 @@ export const WithValidator = () => {
         <Input placeholder="Name" {...firstName} />
         <Input placeholder="Last name" {...lastName} />
         <Input placeholder="Email" {...email} />
+        <Select placeholder="Select an option" {...options}>
+          <option>Foo</option>
+          <option>Foo2</option>
+        </Select>
         <div className="inputer">
           <Button
             label="Submit"

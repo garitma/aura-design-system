@@ -1,8 +1,6 @@
 {
   "name": "next-base",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
   "dependencies": {
     "@aura-design/system": "^0.4.28",
     "next": "^13.1.6",
@@ -15,7 +13,8 @@
     "build": "next build",
     "start": "next start"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "devDependencies": {
+    "@types/nprogress": "^0.2.0",
+    "typescript": "^5.0.2"
+  }
 }
