@@ -29,6 +29,19 @@ export type InputValueProps = {
   isHelping?: boolean;
 };
 
+export type SelectValueProps = {
+  value?: InitialInputValueProps;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  error?: string | null;
+  touch?: boolean;
+  reset?: () => void;
+  dialog?: React.Dispatch<React.SetStateAction<string | null>>;
+  setTouch?: React.Dispatch<React.SetStateAction<boolean>>;
+  setValue?: React.Dispatch<React.SetStateAction<InitialInputValueProps>>;
+  helpText?: string | null;
+  isHelping?: boolean;
+};
+
 export type FormDataProps = { [key: string]: InputValueProps };
 
 export const useInputValue = (

@@ -8,6 +8,7 @@ import {
 } from "../../hooks/use-form";
 import type { FormDataProps } from "../../hooks/use-form";
 import Input from "../../components/input";
+import Select from "../../components/select";
 import Button from "../../components/button";
 import Alert from "../../components/alert";
 import Grid from "../../components/grid";
@@ -18,10 +19,11 @@ export const WithHook = () => {
     firstName: "",
     lastName: "",
     email: "",
+    options: "",
     accept: false,
   });
 
-  const { firstName, lastName, email, accept } = formData;
+  const { firstName, lastName, email, options, accept } = formData;
 
   return (
     <div>
@@ -29,6 +31,10 @@ export const WithHook = () => {
         <Input placeholder="Name" {...firstName} />
         <Input placeholder="Last name" {...lastName} />
         <Input placeholder="Email" {...email} />
+        <Select {...options}>
+          <option>Foo</option>
+          <option>Foo2</option>
+        </Select>
         <Checkbox label="Accept terms and conditions." {...accept} />
       </form>
     </div>
@@ -121,9 +127,10 @@ export const WithValidator = () => {
     firstName: "",
     lastName: "",
     email: "",
+    options: "",
   });
 
-  const { firstName, lastName, email } = formData;
+  const { firstName, lastName, email, options } = formData;
 
   const regexEmail = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
 
@@ -131,6 +138,7 @@ export const WithValidator = () => {
     firstName,
     lastName,
     email,
+    options,
   }: {
     [key: string]: any;
   }) => {
@@ -150,6 +158,14 @@ export const WithValidator = () => {
     } else {
       schema.lastName = true;
       lastName.dialog(null);
+    }
+
+    if (!options.value) {
+      options.dialog("Options is required.");
+      schema.options = false;
+    } else {
+      schema.options = true;
+      options.dialog(null);
     }
 
     if (!email.value) {
@@ -207,6 +223,10 @@ export const WithValidator = () => {
         <Input placeholder="Name" {...firstName} />
         <Input placeholder="Last name" {...lastName} />
         <Input placeholder="Email" {...email} />
+        <Select placeholder="Select an option" {...options}>
+          <option>Foo</option>
+          <option>Foo2</option>
+        </Select>
         <div className="inputer">
           <Button
             label="Submit"

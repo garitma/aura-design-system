@@ -1,31 +1,43 @@
+import { SelectHTMLAttributes } from "react";
+
 import { ChevronDownIcon } from "../icons";
 import { SharedBasic, HelpType } from "../types/global";
+import { SelectValueProps } from "../hooks/use-form";
 
 /**
  * Select component
  */
 
-export interface SelectProps extends SharedBasic {
+export interface SelectProps
+  extends SharedBasic,
+    Omit<SelectHTMLAttributes<HTMLSelectElement>, "value" | "onChange">,
+    Omit<SelectValueProps, "onChange"> {
   isDisabled?: boolean;
-  isHelping?: boolean;
   isLabelable?: boolean;
   helpMode?: HelpType;
-  helpText?: string;
   placeholder?: string;
   name?: string;
+  classNameContainer?: string;
 }
 
 const Select = ({
   isDisabled,
   isHelping,
-  helpMode,
+  isLabelable,
+  helpMode = "warning",
   helpText,
   placeholder,
   className,
+  classNameContainer,
+  name,
   children,
   ...props
 }: SelectProps): JSX.Element => {
-  const classConnect = [className];
+  const { touch, setTouch, setValue, reset, dialog, value, ...inputProps } =
+    props;
+
+  const classConnect: string[] = [className!];
+  const classContainerConnect: string[] = [classNameContainer!, "inputer"];
 
   if (isDisabled) {
     classConnect.push("disabled");
@@ -37,14 +49,14 @@ const Select = ({
   }
 
   return (
-    <div className="inputer">
+    <div className={classContainerConnect.join(" ").trim()}>
       <div className="inputer-group">
         <div className="halo">
           <select
             className={classConnect.join(" ").trim()}
             aria-label={placeholder}
             disabled={isDisabled}
-            {...props}
+            {...inputProps}
           >
             {placeholder && <option value="">{placeholder}</option>}
             {children}
@@ -58,15 +70,9 @@ const Select = ({
           </div>
         </div>
       </div>
-      {isHelping && (
-        <div className={`${helpMode}-text wall-pad aura`}>{helpText}</div>
-      )}
+      {isHelping && <div className={`${helpMode}-text aura`}>{helpText}</div>}
     </div>
   );
-};
-
-Select.defaultProps = {
-  helpMode: "warning",
 };
 
 export default Select;

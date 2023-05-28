@@ -31,12 +31,15 @@ const Input = ({
   name,
   ...props
 }: InputProps): JSX.Element => {
+  // Extracting specific props from `props` object using destructuring
   const { touch, setTouch, setValue, reset, dialog, value, ...inputProps } =
     props;
 
+  // CSS class names for the input element and container
   const classConnect: string[] = [className!];
   const classContainerConnect: string[] = [classNameContainer!, "inputer"];
 
+  // Function to validate and normalize the value
   const validateValue = (
     value: InitialInputValueProps
   ): string | number | readonly string[] | undefined => {
