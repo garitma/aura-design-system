@@ -1,4 +1,4 @@
-const HeadContent = () => {
+const HeadContent = (): JSX.Element => {
   return (
     <>
       <link

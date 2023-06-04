@@ -1,42 +1,38 @@
-import Section from "@aura-design/system/section";
-import Grid from "@aura-design/system/grid";
-import { SliceZone } from "@prismicio/react";
-import * as prismicH from "@prismicio/helpers";
 import { GetStaticPropsContext, GetStaticPropsResult } from "next";
-import { Content } from "@prismicio/client";
+import * as prismic from "@prismicio/client";
+import { createClient } from "@/prismicio";
+import { SliceZone } from "@prismicio/react";
 
-import { components as marketingComponents } from "@/slices/marketing/index";
-import { createClient } from "@/utils/prismic-client";
-import { menuGraphQuery } from "@/utils/prismic-graphquery";
+import { components } from "@/slices/index";
 import Layout from "@/components/Layout";
 
-const __allComponents = { ...marketingComponents };
-
 type HomeProps = {
-  doc: Content.HomeDocument;
-  menu: any;
+  doc: prismic.Content.HomeDocument;
 };
 
-const Home = ({ doc, menu }: HomeProps) => {
+export default function Home({ doc }: HomeProps) {
+  const seo = {
+    title: doc.data.meta_title,
+    excerpt: prismic.asText(doc.data.meta_description),
+    image: doc.data.meta_image.url,
+  };
+
   return (
-    <Layout menu={menu}>
-      <SliceZone slices={doc.data.slices} components={__allComponents} />
+    <Layout seo={seo}>
+      <SliceZone slices={doc.data.slices} components={components} />
     </Layout>
   );
-};
+}
 
 export async function getStaticProps({
   previewData,
-  locale,
 }: GetStaticPropsContext): Promise<GetStaticPropsResult<HomeProps>> {
-  const client = createClient({previewData});
+  const client = createClient({ previewData });
 
   //Querying page
-  const document = await client
-    .getSingle("home", { lang: locale })
-    .catch((e) => {
-      return null;
-    });
+  const document = await client.getSingle("home").catch((e) => {
+    return null;
+  });
 
   if (!document) {
     return {
@@ -44,19 +40,9 @@ export async function getStaticProps({
     };
   }
 
-  //Querying the Menu here so that it can be previewed at the same time as the page (in a release)
-  const menu = await client
-    .getSingle("menu", { lang: locale, graphQuery: menuGraphQuery })
-    .catch((e) => {
-      return {};
-    });
-
   return {
     props: {
-      menu: menu,
       doc: document,
     }, // will be passed to the page component as props
   };
 }
-
-export default Home;

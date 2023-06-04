@@ -1,27 +1,15 @@
-import type { AppProps } from "next/app";
-import Link from "next/link";
-import { PrismicProvider } from "@prismicio/react";
-import { PrismicPreview } from "@prismicio/next";
 import "@aura-design/system/main.css";
+import type { AppProps } from "next/app";
+import { PrismicPreview } from "@prismicio/next";
+import { repositoryName } from "@/prismicio";
 
-import { repositoryName } from "@/utils/prismic-client";
+import "@/styles/globals.css";
 import "@/styles/main.css";
-import "@/styles/global.css";
 
-function MyApp({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
   return (
-    <PrismicProvider
-      internalLinkComponent={({ href, ...props }) => (
-        <Link href={href}>
-          <a {...props} />
-        </Link>
-      )}
-    >
-      <PrismicPreview repositoryName={repositoryName}>
-        <Component {...pageProps} />{" "}
-      </PrismicPreview>
-    </PrismicProvider>
+    <PrismicPreview repositoryName={repositoryName}>
+      <Component {...pageProps} />
+    </PrismicPreview>
   );
 }
-
-export default MyApp;

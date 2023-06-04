@@ -1,39 +1,38 @@
-# With Prismic
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-This example shows how to create pages using Next.js, Aura Design System, Prismic io and docker. It shows a normal page with all the configurations. Additionally, it contains instructions for deploying to Google Cloud Run and github actions.
+## Getting Started
 
-# Configuration
-
-## Step 1. Create an account and repository on Prismic
-
-First, create a Prismic account and repository with the following command:
+First, run the development server:
 
 ```bash
-npx @slicemachine/init
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
 ```
 
-This command will:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-1. Ask you to log in to Prismic or create an account.
-2. Create a new Prismic repository with premade Author and Post content models.
-3. Connect the Prismic repository to your app.
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-**Optional**: To see the premade content models, start the [Slice Machine](https://prismic.io/docs/technologies/slice-machine) app.
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-```bash
-npm run slicemachine
-```
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-Slice Machine should be available on <http://localhost:9999> once started.
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-## How to use
+## Learn More
 
-Execute create-next-app with [pnpm](https://pnpm.io/), to bootstrap the example:
+To learn more about Next.js, take a look at the following resources:
 
-```bash
-npm install -g pnpm
-```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-```bash
-npx create-next-app next-base --use-pnpm --example "https://github.com/garitma/aura-design-system/tree/canary/examples/cms-prismic-with-docker"
-```
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

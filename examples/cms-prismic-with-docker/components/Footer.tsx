@@ -1,8 +1,6 @@
-import Image from "next/image";
 import Section from "@aura-design/system/section";
-import Grid from "@aura-design/system/grid";
 
-const Footer = () => {
+const Footer = (): JSX.Element => {
   return (
     <footer>
       <Section>

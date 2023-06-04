@@ -3,6 +3,7 @@ import "@aura-design/system/main.css";
 import "nprogress/nprogress.css";
 
 import "@/styles/main.css";
+import "@/styles/global.css";
 
 function MyApp({ Component, pageProps }: AppProps) {
   return <Component {...pageProps} />;
