@@ -11,5 +11,5 @@ npm install -g pnpm
 ```
 
 ```bash
-npx create-next-app next-base --use-npm --example "https://github.com/garitma/aura-design-system/tree/canary/examples/with-tailwind"
+npx create-next-app next-base --use-pnpm --example "https://github.com/garitma/aura-design-system/tree/canary/examples/cms-prismic"
 ```
