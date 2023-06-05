@@ -1,5 +1,0 @@
-{
-  "repositoryName": "aura-design-cms-prismic-with-docker",
-  "adapter": "@slicemachine/adapter-next",
-  "libraries": ["./slices"]
-}
