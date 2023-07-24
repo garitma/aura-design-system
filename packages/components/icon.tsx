@@ -12,7 +12,7 @@ const Icon = ({
   children,
   focusable = false,
   className,
-}: IconProps) => {
+}: IconProps): JSX.Element => {
   const classConnect: string[] = [className!, "icon"];
 
   const fallbackIcon = {

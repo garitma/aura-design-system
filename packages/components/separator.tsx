@@ -13,7 +13,7 @@ const Separator = ({
   className,
   stroke = 1,
   heightAspectRation = 2,
-}: SeparatorProps) => {
+}: SeparatorProps): JSX.Element => {
   const classConnect: string[] = [className!, color];
 
   if (isVertical) {

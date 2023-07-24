@@ -1,9 +1,0 @@
-{
-  "_latest": "...",
-  "apiEndpoint": "https://moni-mili.prismic.io/api/v2",
-  "localSliceSimulatorURL": "http://localhost:3000/slice-simulator",
-  "libraries": [
-    "@/slices/marketing",
-    "@/slices/navigation"
-  ]
-}

@@ -15,7 +15,7 @@ const Skeleton = ({
   isCircle,
   isFluid,
   ...props
-}: SkeletonProps) => {
+}: SkeletonProps): JSX.Element => {
   const classConnect: string[] = [className!, "skeleton"];
 
   if (isCircle) {

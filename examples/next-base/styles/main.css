@@ -1,5 +1,6 @@
 /* :::::::::: CSS STYLESHEET TEMPLATE :::::::::: */
 
+
 /* TOKENS */
 
 /* TYPOGRAPHY */
@@ -19,10 +20,10 @@
 /* ORGANISMS */
 
 #nprogress .bar {
-    background: var(--aura-loader)!important;
-    height: 6.5px!important
-  }
-  
-  #nprogress .peg {
-    display: none!important;
-  }
+  background: var(--aura-loader) !important;
+  height: 6.5px !important;
+}
+
+#nprogress .peg {
+  display: none !important;
+}

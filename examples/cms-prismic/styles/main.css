@@ -1,0 +1,29 @@
+/* :::::::::: CSS STYLESHEET TEMPLATE :::::::::: */
+
+
+/* TOKENS */
+
+*:root {
+    --aura-accents-primary: #000
+}
+
+/* TYPOGRAPHY */
+
+/* LAYOUT */
+
+/* SPACING */
+
+/* COLORS */
+
+/* HELPERS */
+
+/* ATOMS */
+
+img:not(.default) {
+    max-width: 100%;
+    height: auto;
+}
+
+/* MOLECULES */
+
+/* ORGANISMS */

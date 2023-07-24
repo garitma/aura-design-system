@@ -14,9 +14,8 @@
     "noImplicitThis": true,
     "noImplicitAny": true,
     "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
     "allowSyntheticDefaultImports": false,
-    "skipLibCheck": true
+    "skipLibCheck": true,
   },
   "include": ["packages/components", "packages/icons", "packages/hooks", "packages/utils"],
   "exclude": ["node_modules", "dist"]

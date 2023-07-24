@@ -11,6 +11,10 @@ export interface ModalProps extends SharedBasic {
   secondButton?: ButtonProps;
   title?: string;
   description?: string;
+  classNameDialog?: string;
+  classNameOverley?: string;
+  classNameMod?: string;
+  classNameModDetail?: string
 }
 
 const Modal = ({
@@ -21,25 +25,61 @@ const Modal = ({
   title,
   description,
   children,
-}: ModalProps) => {
+  classNameDialog,
+  classNameOverley,
+  classNameMod,
+  classNameModDetail
+}: ModalProps): JSX.Element => {
   const isTwoButtons = firstButton && secondButton;
+
+  const classNameDialogConnect: string[] = [
+    classNameDialog!,
+    "hold",
+    "top",
+    "left",
+    "b0",
+    "right",
+    "bottom",
+    "p0",
+    "z10"
+  ];
+
+  const classNameOverleyConnect: string[] = [
+    classNameOverley!,
+    "overley",
+    "black",
+    "disabled",
+  ];
+
+  const classNameModConnect: string[] = [
+    classNameMod!,
+    "valign",
+    "vfluid",
+    "smash",
+    "mod"
+  ];
+
+  const classNameModDetailConnect: string[] = [
+    classNameModDetail!,
+    "mod-detail"
+  ];
 
   return (
     <>
       {isVisible && (
         <div
-          className="overley black disabled"
+        className={classNameOverleyConnect.join(" ").trim()}
           data-aria-hidden="true"
           aria-hidden="true"
         />
       )}
-      <dialog className="hold top left right bottom p0 z10 b0" open={isVisible}>
-        <div className="valign vfluid smash mod">
+      <dialog className={classNameDialogConnect.join(" ").trim()} open={isVisible}>
+        <div className={classNameModConnect.join(" ").trim()}>
           <div className="anchor">
             <Button className="pin right top" mode="link" onClick={onClose}>
               <CloseIcon />
             </Button>
-            <div className="mod-detail">
+            <div className={classNameModDetailConnect.join(" ").trim()}>
               {title && <h2 className="h6 mb13">{title}</h2>}
               {description && <p>{description}</p>}
               {children}

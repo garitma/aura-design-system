@@ -33,7 +33,7 @@ const Section = ({
   container = "smush",
   passDiv,
   ...props
-}: SectionProps) => {
+}: SectionProps): JSX.Element => {
   const SectionTag = passDiv ? `div` : "section";
   const classConnect: string[] = [className!, space];
   const subClassConnect: string[] = [subClassName!, container];

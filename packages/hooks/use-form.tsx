@@ -1,14 +1,62 @@
 import { useState, useEffect } from "react";
 
-export const useInputValue = (initialValue: any) => {
-  const [value, setValue] = useState(initialValue);
-  const [error, setError] = useState(null);
-  const [touch, setTouch] = useState(false);
+export type InitialInputValueProps =
+  | string
+  | boolean
+  | number
+  | Array<string>
+  | Array<number>
+  | Array<{}>
+  | readonly string[]
+  | undefined;
 
-  const onChange = (e: { target: { value: any } }) => {
-    setValue(e.target.value), setTouch(true);
+export type StatusProps = {
+  isLoading: boolean;
+  isSubmited: boolean;
+  info: { isError: boolean; message?: string | null };
+};
+
+export type InputValueProps = {
+  value?: InitialInputValueProps;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: string | null;
+  touch?: boolean;
+  reset?: () => void;
+  dialog?: React.Dispatch<React.SetStateAction<string | null>>;
+  setTouch?: React.Dispatch<React.SetStateAction<boolean>>;
+  setValue?: React.Dispatch<React.SetStateAction<InitialInputValueProps>>;
+  helpText?: string | null;
+  isHelping?: boolean;
+};
+
+export type SelectValueProps = {
+  value?: InitialInputValueProps;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  error?: string | null;
+  touch?: boolean;
+  reset?: () => void;
+  dialog?: React.Dispatch<React.SetStateAction<string | null>>;
+  setTouch?: React.Dispatch<React.SetStateAction<boolean>>;
+  setValue?: React.Dispatch<React.SetStateAction<InitialInputValueProps>>;
+  helpText?: string | null;
+  isHelping?: boolean;
+};
+
+export type FormDataProps = { [key: string]: InputValueProps };
+
+export const useInputValue = (
+  initialValue: InitialInputValueProps
+): InputValueProps => {
+  const [value, setValue] = useState<InitialInputValueProps>(initialValue);
+  const [error, setError] = useState<string | null>(null);
+  const [touch, setTouch] = useState<boolean>(false);
+
+  const onChange = (e: { target: { value: string } }) => {
+    setValue(e.target.value);
+    !touch && setTouch(true);
   };
-  const reset = () => setValue("");
+
+  const reset = () => setValue(initialValue);
   const dialog = setError;
 
   return {
@@ -21,24 +69,27 @@ export const useInputValue = (initialValue: any) => {
     setTouch,
     setValue,
     helpText: error,
-    isHelping: error && touch,
+    isHelping: Boolean(error && touch),
   };
 };
 
-export const useForm = (initialValues: any) => {
-  let data = {};
+interface DynamicInputProps {
+  [key: string]: InitialInputValueProps;
+}
 
-  for (const value in initialValues) {
-    data = {
-      ...data,
-      [value]: useInputValue(initialValues[value]),
-    };
+export const useForm = (initialValues: DynamicInputProps) => {
+  const data: { [key: string]: any } = {};
+
+  for (const key in initialValues) {
+    data[key] = useInputValue(initialValues[key]);
   }
 
   return data;
 };
 
-export const useFormValues = (formData: { [x: string]: { value: any } }) => {
+export const useFormValues = (formData: {
+  [key: string]: { value: InitialInputValueProps };
+}) => {
   let formValues = {};
 
   for (const value in formData) {
@@ -51,18 +102,21 @@ export const useFormValues = (formData: { [x: string]: { value: any } }) => {
   return formValues;
 };
 
-export const useFormIsValid = (data: object, schema: any) => {
+export const useFormIsValid = (
+  data: { [key: string]: any },
+  schema: (data: { [key: string]: any }) => boolean
+) => {
   const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
     setIsValid(schema(data));
-  }, [data]);
+  }, [data, schema]);
 
   return isValid;
 };
 
 export const useStatus = () => {
-  const [status, setStatus] = useState({
+  const [status, setStatus] = useState<StatusProps>({
     isLoading: false,
     isSubmited: false,
     info: { isError: false, message: null },
@@ -83,7 +137,7 @@ export const useStatus = () => {
       },
     }));
 
-  const setMessage = (message: any) =>
+  const setMessage = (message: string) =>
     setStatus((prevStatus) => ({
       ...prevStatus,
       info: {
@@ -112,5 +166,5 @@ export const useStatus = () => {
   };
 };
 
-export const isInvalidSchema = (schema: any) =>
+export const isInvalidSchema = (schema: { [key: string]: boolean }) =>
   Object.values(schema).some((item) => item === false);

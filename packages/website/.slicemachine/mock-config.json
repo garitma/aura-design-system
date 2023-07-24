@@ -57,6 +57,16 @@
       "default": {
         "primary": {}
       }
+    },
+    "Embed": {
+      "default": {
+        "primary": {}
+      }
+    },
+    "Iframe": {
+      "default": {
+        "primary": {}
+      }
     }
   }
 }

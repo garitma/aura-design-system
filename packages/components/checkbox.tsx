@@ -15,7 +15,7 @@ const Checkbox = ({
   id,
   setValue,
   ...props
-}: CheckboxProps) => {
+}: CheckboxProps): JSX.Element => {
   const idConnect = id ? id : useId();
   const classConnect: string[] = [containerClassName!];
   const handleOnChangeCheck = setValue
