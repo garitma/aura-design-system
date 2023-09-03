@@ -42,14 +42,14 @@ a
     border-color var(--aura-accents-primary)
     color var(--aura-text-primary-inverse)
     background-color var(--aura-accents-primary)
-    &:hover:not(:disabled)
+    &:hover:not(:disabled), &.active
         background-color var(--aura-button-hover)
 .button-pill
     @extend .button
     color var(--aura-accents-primary)
     border-color var(--aura-accents-primary)
     background-color transparent
-    &:hover:not(:disabled)
+    &:hover:not(:disabled), &.active
         background-color var(--aura-link-hover)
 .button-link
     @extend .button
@@ -57,7 +57,7 @@ a
     border: 0
     text-decoration: underline
     background-color transparent
-    &:hover:not(:disabled)
+    &:hover:not(:disabled), &.active
         color: var(--aura-base-color)
         background-color: var(--aura-link-hover)
 .button-menu
