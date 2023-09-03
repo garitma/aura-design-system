@@ -4,7 +4,7 @@ import { SharedBasic, AuraHeadline, AuraColors } from "../types/global";
 
 // Defining the props for the Accordion component
 export interface AccordionProps extends SharedBasic {
-  title?: string; // Title of the accordion (optional)
+  title?: string | React.ReactNode; // Title of the accordion (optional)
   headerSize?: AuraHeadline; // Size of the header title (optional)
   color?: AuraColors; // Color of the header section (optional)
 }

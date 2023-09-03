@@ -7,10 +7,10 @@ const Home = () => {
   return (
     <Layout text="Aura Design Next Base">
       <Section color="yellow" className="centertxt">
-        <h2>Welcome to my imagination</h2>
+        <h2 className="font-bold underline">Welcome to my imagination</h2>
         <p>
           Get started by editing{" "}
-          <span className="wall-pad info info-text">public/style.css</span>
+          <span className="wall-pad info info-text ">public/style.css</span>
         </p>
       </Section>
       <Section color="blue">

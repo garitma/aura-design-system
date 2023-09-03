@@ -1,6 +1,6 @@
 {
   "name": "@aura-design/system",
-  "version": "0.4.35",
+  "version": "0.4.40",
   "description": "Garitma's Design system",
   "keywords": [
     "react",
@@ -14,12 +14,6 @@
   "license": "MIT",
   "main": "index.ts",
   "files": [
-    "dist",
-    "dist/components",
-    "dist/hooks",
-    "dist/icons",
-    "dist/types",
-    "dist/utils",
     "accordion.d.ts",
     "accordion.js",
     "alert.d.ts",
@@ -54,7 +48,15 @@
     "select.js",
     "separator.d.ts",
     "separator.js",
-    "main.css"
+    "tabs.d.ts",
+    "tabs.js",
+    "main.css",
+    "dist",
+    "dist/components",
+    "dist/hooks",
+    "dist/icons",
+    "dist/types",
+    "dist/utils"
   ],
   "publishConfig": {
     "access": "public"

@@ -54,7 +54,6 @@ const Modal = ({
   const classNameModConnect: string[] = [
     classNameMod!,
     "valign",
-    "vfluid",
     "smash",
     "mod"
   ];

@@ -11,7 +11,7 @@ export interface AlertProps extends SharedBasic {
   };
   isPushBottom?: boolean; // Flag to push content below the alert downwards (optional)
   isPushTop?: boolean; // Flag to push content above the alert upwards (optional)
-  message?: string; // Message to be displayed in the alert (optional)
+  message?: string | null; // Message to be displayed in the alert (optional)
 }
 
 // Defining the Alert component using a function component syntax

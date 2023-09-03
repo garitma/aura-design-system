@@ -4,7 +4,8 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { PrismicProvider } from "@prismicio/react";
 import { PrismicPreview } from "@prismicio/next";
-import * as Fathom from "fathom-client";
+import * as Phanthom from "phantom-client";
+
 import "@aura-design/system/main.css";
 import "nprogress/nprogress.css";
 
@@ -14,12 +15,13 @@ import "@/styles/main.css";
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   const router = useRouter();
   useEffect(() => {
-    Fathom.load(`ZVMIJJHZ`, {
+    Phanthom.load(process.env.NEXT_PUBLIC_PHANTOM_SITE_CODE as string, {
       includedDomains: ["auradesignsystem.com"],
+      accessToken: process.env.NEXT_PUBLIC_FAUNA_SECRET as string,
     });
 
     function onRouteChangeComplete() {
-      Fathom.trackPageview();
+      Phanthom.trackPageview();
     }
     // Record a pageview when route changes
     router.events.on("routeChangeComplete", onRouteChangeComplete);
