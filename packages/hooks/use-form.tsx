@@ -78,13 +78,25 @@ interface DynamicInputProps {
 }
 
 export const useForm = (initialValues: DynamicInputProps) => {
-  const data: { [key: string]: any } = {};
+  const formData: { [key: string]: any } = {};
 
   for (const key in initialValues) {
-    data[key] = useInputValue(initialValues[key]);
+    formData[key] = useInputValue(initialValues[key]);
   }
 
-  return data;
+  const resetForm = () => {
+    for (const field in formData) {
+      formData[field].reset();
+    }
+  };
+
+  const touched = () => {
+    for (const field in formData) {
+      formData[field].setTouch(true);
+    }
+  };
+
+  return { ...formData, resetForm, touched };
 };
 
 export const useFormValues = (formData: {
@@ -168,3 +180,55 @@ export const useStatus = () => {
 
 export const isInvalidSchema = (schema: { [key: string]: boolean }) =>
   Object.values(schema).some((item) => item === false);
+
+
+  export const useInputValueFields = () => {
+    const [value, setValue] = useState<{ [key: string]: InitialInputValueProps }>({});
+    const [error, setError] = useState<{ [key: string]: string | null }>({});
+    const [touch, setTouch] = useState<{ [key: string]: boolean }>({});
+  
+    return {
+      value,
+      error,
+      touch,
+      setTouch,
+      setValue,
+      setError,
+    };
+  };
+  
+  export const useFormDynamic = () => {
+    const fields = useInputValueFields();
+  
+    const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      const { name, value } = event.target;
+      fields.setValue((prev) => ({ ...prev, [name]: value }));
+      fields.setTouch((prev) => ({ ...prev, [name]: true }));
+    };
+  
+    const onChangeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+      const { name, value } = event.target;
+      fields.setValue((prev) => ({ ...prev, [name]: value }));
+      fields.setTouch((prev) => ({ ...prev, [name]: true }));
+    };
+  
+    const dialog = (name: string, message: string | null) => {
+      fields.setError((prev) => ({ ...prev, [name]: message }));
+    };
+  
+    const resetForm = () => {
+      fields.setValue({});
+      fields.setTouch({});
+      fields.setError({});
+    };
+  
+    const touched = () => {
+      for (const name in fields.value) {
+        fields.setTouch((prev) => ({ ...prev, [name]: true }));
+      }
+    };
+  
+    return { ...fields, onChange, onChangeSelect, dialog, resetForm, touched };
+  };
+  
+  

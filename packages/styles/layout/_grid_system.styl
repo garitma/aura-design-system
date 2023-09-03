@@ -3,4 +3,17 @@ gridsize = (1..12)
 for i in gridsize 
     .span-{i}
         grid-column: span i
-        
+
+@media only screen and (max-width: 767px) {
+  [class*="span-"]:not(.fixed) {
+    grid-column: span 1;
+  }
+}
+
+.aureole.fixed {
+  position: static;
+}
+
+[class*="span-"].fixed {
+  position: static;
+}
