@@ -1,1 +1,0 @@
-import{a as e}from"./index-a87310cc.js";import{C as t}from"./checkbox-7be62cd7.js";import"./input-32842153.js";const m=()=>e(t,{label:"Accept terms and conditions."});typeof window<"u"&&window.document&&window.document.createElement&&document.documentElement.setAttribute("data-storyloaded","");export{m as Naked};
