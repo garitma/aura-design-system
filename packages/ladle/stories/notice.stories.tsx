@@ -7,7 +7,7 @@ export const Sonner = () => {
   return (
     <div>
       <p>
-        <span className="info info-text wall-pad">External library <span className="font-bold">$ pnpm i vaul</span></span> An
+        <span className="info info-text wall-pad">External library <span className="font-bold">$ pnpm i sonner</span></span> An
         opinionated toast component for React.
         <a href="https://sonner.emilkowal.ski/" className="underline" target="_blank">
           All documentaiton
