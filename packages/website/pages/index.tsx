@@ -53,6 +53,7 @@ export async function getStaticProps({
       menu: menu,
       doc: document,
     }, // will be passed to the page component as props
+    revalidate: 30, // In seconds
   };
 }
 
