@@ -4,7 +4,6 @@ Bienvenido a [Aura Design System](https://auradesignsystem.com) creado por [Gari
 
 ![Cover](./.readme-static/isotipo.jpg)
 
-
 ## Licencia
 
 MIT

@@ -14,7 +14,7 @@ export interface ModalProps extends SharedBasic {
   classNameDialog?: string;
   classNameOverley?: string;
   classNameMod?: string;
-  classNameModDetail?: string
+  classNameModDetail?: string;
 }
 
 const Modal = ({
@@ -28,7 +28,7 @@ const Modal = ({
   classNameDialog,
   classNameOverley,
   classNameMod,
-  classNameModDetail
+  classNameModDetail,
 }: ModalProps): JSX.Element => {
   const isTwoButtons = firstButton && secondButton;
 
@@ -41,7 +41,7 @@ const Modal = ({
     "right",
     "bottom",
     "p0",
-    "z10"
+    "z10",
   ];
 
   const classNameOverleyConnect: string[] = [
@@ -54,26 +54,28 @@ const Modal = ({
   const classNameModConnect: string[] = [
     classNameMod!,
     "valign",
-    "vfluid",
     "smash",
-    "mod"
+    "mod",
   ];
 
   const classNameModDetailConnect: string[] = [
     classNameModDetail!,
-    "mod-detail"
+    "mod-detail",
   ];
 
   return (
     <>
       {isVisible && (
         <div
-        className={classNameOverleyConnect.join(" ").trim()}
+          className={classNameOverleyConnect.join(" ").trim()}
           data-aria-hidden="true"
           aria-hidden="true"
         />
       )}
-      <dialog className={classNameDialogConnect.join(" ").trim()} open={isVisible}>
+      <dialog
+        className={classNameDialogConnect.join(" ").trim()}
+        open={isVisible}
+      >
         <div className={classNameModConnect.join(" ").trim()}>
           <div className="anchor">
             <Button className="pin right top" mode="link" onClick={onClose}>

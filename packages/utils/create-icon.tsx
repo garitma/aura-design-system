@@ -18,6 +18,5 @@ export function createIcon(options: CreateIconOptions) {
     </Icon>
   );
 
-
   return Comp;
 }

@@ -17,7 +17,6 @@
     "boostrap:browsers": "pnpm npx playwright install firefox && pnpm npx playwright install chromium && pnpm npx playwright install webkit",
     "dev": "pnpm npx lerna run dev",
     "dev:ladle": "pnpm npx lerna run dev --scope=@aura-design/ladle --scope=@aura-design/styles",
-    "dev:playground": "pnpm npx lerna run dev --scope=@aura-design/playground --scope=@aura-design/styles",
     "dev:website": "pnpm npx lerna run dev --scope=@aura-design/website",
     "slicemachine": "pnpm npx lerna run slicemachine --scope=@aura-design/website",
     "build": "pnpm npx lerna run build --scope=@aura-design/system --scope=@aura-design/styles",

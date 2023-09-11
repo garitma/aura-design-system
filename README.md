@@ -39,19 +39,24 @@ npm i @aura-design/system
 ```
 
 ## Getting started
+
 looks how to create a base project
 Requirements
 Node.js, pnpm
 <a href="https://auradesignsystem.com/docs/getting-started">https://auradesignsystem.com/docs/getting-started</a>
-  
+
 ## Documentation
+
 ### Website:
+
 <a href="https://auradesignsystem.com/">https://auradesignsystem.com/</a>
 
 ### Stories:
+
 <a href="https://ladle.auradesignsystem.com/">https://ladle.auradesignsystem.com/</a>
 
 ### Playground:
+
 <a href="https://play.auradesignsystem.com/">https://play.auradesignsystem.com/</a>
 
 ## License

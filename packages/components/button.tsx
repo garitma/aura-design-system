@@ -61,7 +61,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonProps>(
         disabled={isDisabled || isLoading}
         href={href}
         ref={ref}
-        {...props as IntrinsicProps}
+        {...(props as IntrinsicProps)}
       >
         {/* The button label, or an isLoadingText spinner if isLoading is true */}
         <span className={`container`}>

@@ -1,9 +1,8 @@
 import React from "react";
-import { ChevronDownIcon, CopyIcon,MenuIcon } from "../../icons";
+import { ChevronDownIcon, CopyIcon, MenuIcon } from "../../icons";
 import { SunIcon, ImageIcon } from "@radix-ui/react-icons";
 
-
-export const Icon= () => <CopyIcon />;
+export const Icon = () => <CopyIcon />;
 
 export const IconSize = () => <CopyIcon className="h1" />;
 

@@ -42,8 +42,6 @@ export type SelectValueProps = {
   isHelping?: boolean;
 };
 
-export type FormDataProps = { [key: string]: InputValueProps };
-
 export const useInputValue = (
   initialValue: InitialInputValueProps
 ): InputValueProps => {
@@ -73,18 +71,27 @@ export const useInputValue = (
   };
 };
 
-interface DynamicInputProps {
+export interface DynamicInputProps {
   [key: string]: InitialInputValueProps;
 }
 
+export type FormField = {
+  value?: InitialInputValueProps;
+  error?: string | null;
+  touch?: boolean;
+  reset?: () => void;
+};
+
+export type FormData = Record<string, FormField>;
+
 export const useForm = (initialValues: DynamicInputProps) => {
-  const data: { [key: string]: any } = {};
+  const formData: { [key: string]: FormField } = {};
 
   for (const key in initialValues) {
-    data[key] = useInputValue(initialValues[key]);
+    formData[key] = useInputValue(initialValues[key]);
   }
 
-  return data;
+  return { ...formData };
 };
 
 export const useFormValues = (formData: {
@@ -114,6 +121,9 @@ export const useFormIsValid = (
 
   return isValid;
 };
+
+export const isInvalidSchema = (schema: { [key: string]: boolean }) =>
+  Object.values(schema).some((item) => item === false);
 
 export const useStatus = () => {
   const [status, setStatus] = useState<StatusProps>({
@@ -166,5 +176,66 @@ export const useStatus = () => {
   };
 };
 
-export const isInvalidSchema = (schema: { [key: string]: boolean }) =>
-  Object.values(schema).some((item) => item === false);
+export const useInputValueFields = () => {
+  const [value, setValue] = useState<{ [key: string]: InitialInputValueProps }>(
+    {}
+  );
+  const [error, setError] = useState<{ [key: string]: string | null }>({});
+  const [touch, setTouch] = useState<{ [key: string]: boolean }>({});
+
+  return {
+    value,
+    error,
+    touch,
+    setTouch,
+    setValue,
+    setError,
+  };
+};
+
+export const useActions = (
+  formData: any
+): { resetForm: () => void; touched: () => void } => {
+  if (!formData) {
+    return {
+      resetForm: () => {},
+      touched: () => {},
+    };
+  }
+
+  const resetForm = () => {
+    for (const field in formData) {
+      formData[field]?.reset();
+    }
+  };
+
+  const touched = () => {
+    for (const field in formData) {
+      formData[field]?.setTouch(true);
+    }
+  };
+
+  return { resetForm, touched };
+};
+
+export const useFormDynamic = () => {
+  const fields = useInputValueFields();
+
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    fields.setValue((prev) => ({ ...prev, [name]: value }));
+    fields.setTouch((prev) => ({ ...prev, [name]: true }));
+  };
+
+  const onChangeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const { name, value } = event.target;
+    fields.setValue((prev) => ({ ...prev, [name]: value }));
+    fields.setTouch((prev) => ({ ...prev, [name]: true }));
+  };
+
+  const dialog = (name: string, message: string | null) => {
+    fields.setError((prev) => ({ ...prev, [name]: message }));
+  };
+
+  return { ...fields, onChange, onChangeSelect, dialog };
+};

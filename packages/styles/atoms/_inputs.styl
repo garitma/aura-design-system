@@ -41,8 +41,21 @@ textarea:not(.default)
     &:focus
         background var(--aura-input-bg)
         outline: var(--aura-outline)
-    &::placeholder 
+    &::placeholder
         color: var(--aura-input-placeholder-color);
+    &:placeholder-shown + label 
+        cursor: text;
+        max-width: 66.66%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transform-origin: left bottom;
+        opacity 0
+        z-index -1
+    &:not(:placeholder-shown) + label 
+        opacity 1
+        cursor pointer
+        z-index 0
 
 input:not(.default) 
     mixin-border-radius(var(--aura-input-radius))

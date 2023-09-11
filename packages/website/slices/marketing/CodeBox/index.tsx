@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Highlight, { defaultProps } from "prism-react-renderer";
-import {CopyIcon} from "@aura-design/system/dist/icons";
+import { CopyIcon } from "@aura-design/system/dist/icons";
 import Button from "@aura-design/system/button";
 import useClipboard from "react-use-clipboard";
 import * as prismicH from "@prismicio/helpers";
@@ -26,8 +26,10 @@ const CodeBox = ({ slice }) => {
           </div>
         </span>
         <Button onClick={setCopied} mode="menu">
-          <CopyIcon className="white-text"/>{" "}
-          <span className="white-text wall-pad">{isCopied ? "Copied!" : "Copy"}</span>
+          <CopyIcon className="white-text" />{" "}
+          <span className="white-text wall-pad">
+            {isCopied ? "Copied!" : "Copy"}
+          </span>
         </Button>
       </div>
       <Highlight

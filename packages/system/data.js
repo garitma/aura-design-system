@@ -1,1 +1,1 @@
-module.exports = require('./dist/hooks/use-data-view');
+module.exports = require("./dist/hooks/use-data-view");

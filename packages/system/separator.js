@@ -1,1 +1,1 @@
-module.exports = require('./dist/components/separator');
+module.exports = require("./dist/components/separator");

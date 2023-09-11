@@ -1,1 +1,1 @@
-module.exports = require('./dist/components/select');
+module.exports = require("./dist/components/select");
