@@ -1,1 +1,1 @@
-module.exports = require('./dist/hooks/use-form');
+module.exports = require("./dist/hooks/use-form");

@@ -7,7 +7,6 @@ import Button from "@aura-design/system/button";
 
 import Link from "@/components/Link";
 
-
 /**
  * @typedef {import("@prismicio/client").Content.HeroBannerSlice} HeroBannerSlice
  * @typedef {import("@prismicio/react").SliceComponentProps<HeroBannerSlice>} HeroBannerProps
@@ -19,7 +18,11 @@ const HeroBanner = ({ slice }) => (
     {slice.primary.description && (
       <p>{prismicH.asText(slice.primary.description)}</p>
     )}
-    {slice.primary.button_label &&  <Link field={slice.primary.button_link} passHref><Button>{slice.primary.button_label}</Button></Link>}
+    {slice.primary.button_label && (
+      <Link field={slice.primary.button_link} passHref>
+        <Button>{slice.primary.button_label}</Button>
+      </Link>
+    )}
     {slice.primary.image && (
       <div className="mod-media">
         <PrismicNextImage

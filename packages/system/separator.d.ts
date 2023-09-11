@@ -1,2 +1,2 @@
-export * from './dist/components/separator'
-export { default } from './dist/components/separator'
+export * from "./dist/components/separator";
+export { default } from "./dist/components/separator";

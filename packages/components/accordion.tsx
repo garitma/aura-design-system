@@ -17,7 +17,6 @@ const Accordion = ({
   color,
   className,
 }: AccordionProps): JSX.Element => {
-
   // Creating an array of CSS classes to be applied to the summary element
   const classNameConnect: string[] = [
     className!,

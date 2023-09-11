@@ -11,12 +11,12 @@ export const Horizontal = () => (
 
 export const Vertical = () => (
   <Section container="smish">
-  <ul className="nav-list">
-    <li>Blog</li>
-    <li>
-      <Separator isVertical />
-    </li>
-    <li>Docs</li>
-  </ul>
+    <ul className="nav-list">
+      <li>Blog</li>
+      <li>
+        <Separator isVertical />
+      </li>
+      <li>Docs</li>
+    </ul>
   </Section>
 );

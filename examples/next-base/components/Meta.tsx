@@ -1,10 +1,6 @@
 import Head from "next/head";
 
-import {
-  SITE_URL,
-  SITE_NAME,
-  SITE_DESCRIPTIO,
-} from "@/utils/constants";
+import { SITE_URL, SITE_NAME, SITE_DESCRIPTIO } from "@/utils/constants";
 
 export type MetaProps = {
   title?: string;

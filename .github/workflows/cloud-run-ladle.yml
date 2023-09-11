@@ -2,8 +2,7 @@ name: ladle-aura-design
 
 on:
   push:
-    branches:
-      deploy/ladle/production
+    branches: deploy/ladle/production
 
 env:
   CLOUD_RUN_PROJECT_ID: ${{ secrets.CLOUD_RUN_PROJECT_NAME }}

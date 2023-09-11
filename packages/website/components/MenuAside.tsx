@@ -15,9 +15,7 @@ const MenuAside = ({ secondMenuTabs }) => {
             {hasChilds ? (
               <ul>
                 <li>
-              
-                    <b>{item.menuTab.data.title}</b>
-          
+                  <b>{item.menuTab.data.title}</b>
                 </li>
                 <ul>
                   {item.menuTab.data?.slices.map((slice, index) => (
