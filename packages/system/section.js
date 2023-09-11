@@ -1,1 +1,1 @@
-module.exports = require('./dist/components/section');
+module.exports = require("./dist/components/section");

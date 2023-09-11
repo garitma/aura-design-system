@@ -196,7 +196,6 @@ export const useInputValueFields = () => {
 export const useActions = (
   formData: any
 ): { resetForm: () => void; touched: () => void } => {
-
   if (!formData) {
     return {
       resetForm: () => {},

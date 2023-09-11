@@ -13,7 +13,6 @@ import { menuGraphQuery } from "@/utils/prismic-graphquery";
 import Layout from "@/components/Layout";
 import MenuDocumentation from "@/components/MenuDocumentation";
 
-
 const __allComponents = { ...marketingComponents, ...documentationComponents };
 
 const SingleDoc = ({ doc, menu }) => {

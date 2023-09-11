@@ -4,43 +4,43 @@ import type * as prismicT from "@prismicio/types";
 import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = {
-    [KeyType in keyof T]: T[KeyType];
+  [KeyType in keyof T]: T[KeyType];
 };
 /** Content for Cheat Sheets Page documents */
 interface CheatSheetsPageDocumentData {
-    /**
-     * Title field in *Cheat Sheets Page*
-     *
-     * - **Field Type**: Rich Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: cheat_sheets_page.title
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    title: prismicT.RichTextField;
-    /**
-     * Excerpt field in *Cheat Sheets Page*
-     *
-     * - **Field Type**: Rich Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: cheat_sheets_page.excerpt
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    excerpt: prismicT.RichTextField;
-    /**
-     * Slice Zone field in *Cheat Sheets Page*
-     *
-     * - **Field Type**: Slice Zone
-     * - **Placeholder**: *None*
-     * - **API ID Path**: cheat_sheets_page.slices[]
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/slices
-     *
-     */
-    slices: prismicT.SliceZone<CheatSheetsPageDocumentDataSlicesSlice>;
+  /**
+   * Title field in *Cheat Sheets Page*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cheat_sheets_page.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  title: prismicT.RichTextField;
+  /**
+   * Excerpt field in *Cheat Sheets Page*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cheat_sheets_page.excerpt
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  excerpt: prismicT.RichTextField;
+  /**
+   * Slice Zone field in *Cheat Sheets Page*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cheat_sheets_page.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/slices
+   *
+   */
+  slices: prismicT.SliceZone<CheatSheetsPageDocumentDataSlicesSlice>;
 }
 /**
  * Slice for *Cheat Sheets Page → Slice Zone*
@@ -56,81 +56,89 @@ type CheatSheetsPageDocumentDataSlicesSlice = TableBlockSlice | RichTextSlice;
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type CheatSheetsPageDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<CheatSheetsPageDocumentData>, "cheat_sheets_page", Lang>;
+export type CheatSheetsPageDocument<Lang extends string = string> =
+  prismicT.PrismicDocumentWithoutUID<
+    Simplify<CheatSheetsPageDocumentData>,
+    "cheat_sheets_page",
+    Lang
+  >;
 /** Content for Document documents */
 interface DocumentDocumentData {
-    /**
-     * Title field in *Document*
-     *
-     * - **Field Type**: Rich Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: document.title
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    title: prismicT.RichTextField;
-    /**
-     * Date field in *Document*
-     *
-     * - **Field Type**: Date
-     * - **Placeholder**: *None*
-     * - **API ID Path**: document.date
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/date
-     *
-     */
-    date: prismicT.DateField;
-    /**
-     * Excerpt field in *Document*
-     *
-     * - **Field Type**: Rich Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: document.excerpt
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    excerpt: prismicT.RichTextField;
-    /**
-     * Prev field in *Document*
-     *
-     * - **Field Type**: Link
-     * - **Placeholder**: *None*
-     * - **API ID Path**: document.prev
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-     *
-     */
-    prev: prismicT.LinkField;
-    /**
-     * Next field in *Document*
-     *
-     * - **Field Type**: Link
-     * - **Placeholder**: *None*
-     * - **API ID Path**: document.next
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-     *
-     */
-    next: prismicT.LinkField;
-    /**
-     * Slice Zone field in *Document*
-     *
-     * - **Field Type**: Slice Zone
-     * - **Placeholder**: *None*
-     * - **API ID Path**: document.slices[]
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/slices
-     *
-     */
-    slices: prismicT.SliceZone<DocumentDocumentDataSlicesSlice>;
+  /**
+   * Title field in *Document*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: document.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  title: prismicT.RichTextField;
+  /**
+   * Date field in *Document*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: document.date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/date
+   *
+   */
+  date: prismicT.DateField;
+  /**
+   * Excerpt field in *Document*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: document.excerpt
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  excerpt: prismicT.RichTextField;
+  /**
+   * Prev field in *Document*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: document.prev
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  prev: prismicT.LinkField;
+  /**
+   * Next field in *Document*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: document.next
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  next: prismicT.LinkField;
+  /**
+   * Slice Zone field in *Document*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: document.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/slices
+   *
+   */
+  slices: prismicT.SliceZone<DocumentDocumentDataSlicesSlice>;
 }
 /**
  * Slice for *Document → Slice Zone*
  *
  */
-type DocumentDocumentDataSlicesSlice = CodeBoxSlice | RichTextSlice | HighlightedSlice;
+type DocumentDocumentDataSlicesSlice =
+  | CodeBoxSlice
+  | RichTextSlice
+  | HighlightedSlice;
 /**
  * Document document from Prismic
  *
@@ -140,31 +148,36 @@ type DocumentDocumentDataSlicesSlice = CodeBoxSlice | RichTextSlice | Highlighte
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type DocumentDocument<Lang extends string = string> = prismicT.PrismicDocumentWithUID<Simplify<DocumentDocumentData>, "document", Lang>;
+export type DocumentDocument<Lang extends string = string> =
+  prismicT.PrismicDocumentWithUID<
+    Simplify<DocumentDocumentData>,
+    "document",
+    Lang
+  >;
 /** Content for Footer documents */
 interface FooterDocumentData {
-    /**
-     * Copyright field in *Footer*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: footer.copyright
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    copyright: prismicT.KeyTextField;
-    /**
-     * Slice Zone field in *Footer*
-     *
-     * - **Field Type**: Slice Zone
-     * - **Placeholder**: *None*
-     * - **API ID Path**: footer.body[]
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/slices
-     *
-     */
-    body: prismicT.SliceZone<FooterDocumentDataBodySlice>;
+  /**
+   * Copyright field in *Footer*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.copyright
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  copyright: prismicT.KeyTextField;
+  /**
+   * Slice Zone field in *Footer*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer.body[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/slices
+   *
+   */
+  body: prismicT.SliceZone<FooterDocumentDataBodySlice>;
 }
 /**
  * Slice for *Footer → Slice Zone*
@@ -180,37 +193,45 @@ type FooterDocumentDataBodySlice = FooterColumnSlice;
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type FooterDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<FooterDocumentData>, "footer", Lang>;
+export type FooterDocument<Lang extends string = string> =
+  prismicT.PrismicDocumentWithoutUID<
+    Simplify<FooterDocumentData>,
+    "footer",
+    Lang
+  >;
 /** Content for Home documents */
 interface HomeDocumentData {
-    /**
-     * Title field in *Home*
-     *
-     * - **Field Type**: Title
-     * - **Placeholder**: *None*
-     * - **API ID Path**: home.title
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    title: prismicT.TitleField;
-    /**
-     * Slice Zone field in *Home*
-     *
-     * - **Field Type**: Slice Zone
-     * - **Placeholder**: *None*
-     * - **API ID Path**: home.slices[]
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/slices
-     *
-     */
-    slices: prismicT.SliceZone<HomeDocumentDataSlicesSlice>;
+  /**
+   * Title field in *Home*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  title: prismicT.TitleField;
+  /**
+   * Slice Zone field in *Home*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/slices
+   *
+   */
+  slices: prismicT.SliceZone<HomeDocumentDataSlicesSlice>;
 }
 /**
  * Slice for *Home → Slice Zone*
  *
  */
-type HomeDocumentDataSlicesSlice = HeroBannerSlice | BannerSlice | SectionPoertySlice;
+type HomeDocumentDataSlicesSlice =
+  | HeroBannerSlice
+  | BannerSlice
+  | SectionPoertySlice;
 /**
  * Home document from Prismic
  *
@@ -220,58 +241,59 @@ type HomeDocumentDataSlicesSlice = HeroBannerSlice | BannerSlice | SectionPoerty
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type HomeDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
+export type HomeDocument<Lang extends string = string> =
+  prismicT.PrismicDocumentWithoutUID<Simplify<HomeDocumentData>, "home", Lang>;
 /** Content for Menu documents */
 interface MenuDocumentData {
-    /**
-     * topPromoBanner field in *Menu*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: Banner a the top of the page..
-     * - **API ID Path**: menu.topPromoBanner
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    topPromoBanner: prismicT.KeyTextField;
-    /**
-     * Logo field in *Menu*
-     *
-     * - **Field Type**: Image
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu.logo
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/image
-     *
-     */
-    logo: prismicT.ImageField<never>;
-    /**
-     * MenuTabs field in *Menu*
-     *
-     * - **Field Type**: Group
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu.menuTabs[]
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/group
-     *
-     */
-    menuTabs: prismicT.GroupField<Simplify<MenuDocumentDataMenuTabsItem>>;
+  /**
+   * topPromoBanner field in *Menu*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Banner a the top of the page..
+   * - **API ID Path**: menu.topPromoBanner
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  topPromoBanner: prismicT.KeyTextField;
+  /**
+   * Logo field in *Menu*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/image
+   *
+   */
+  logo: prismicT.ImageField<never>;
+  /**
+   * MenuTabs field in *Menu*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.menuTabs[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/group
+   *
+   */
+  menuTabs: prismicT.GroupField<Simplify<MenuDocumentDataMenuTabsItem>>;
 }
 /**
  * Item in Menu → MenuTabs
  *
  */
 export interface MenuDocumentDataMenuTabsItem {
-    /**
-     * menuTab field in *Menu → MenuTabs*
-     *
-     * - **Field Type**: Content Relationship
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu.menuTabs[].menuTab
-     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-     *
-     */
-    menuTab: prismicT.RelationField<"menu-tab">;
+  /**
+   * menuTab field in *Menu → MenuTabs*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu.menuTabs[].menuTab
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  menuTab: prismicT.RelationField<"menu-tab">;
 }
 /**
  * Menu document from Prismic
@@ -282,42 +304,43 @@ export interface MenuDocumentDataMenuTabsItem {
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type MenuDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<MenuDocumentData>, "menu", Lang>;
+export type MenuDocument<Lang extends string = string> =
+  prismicT.PrismicDocumentWithoutUID<Simplify<MenuDocumentData>, "menu", Lang>;
 /** Content for Menu Tab documents */
 interface MenuTabDocumentData {
-    /**
-     * Title field in *Menu Tab*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: This is title of the tab...
-     * - **API ID Path**: menu-tab.title
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    title: prismicT.KeyTextField;
-    /**
-     * link field in *Menu Tab*
-     *
-     * - **Field Type**: Link
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu-tab.link
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-     *
-     */
-    link: prismicT.LinkField;
-    /**
-     * Slice Zone field in *Menu Tab*
-     *
-     * - **Field Type**: Slice Zone
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu-tab.slices[]
-     * - **Tab**: Main
-     * - **Documentation**: https://prismic.io/docs/core-concepts/slices
-     *
-     */
-    slices: prismicT.SliceZone<MenuTabDocumentDataSlicesSlice>;
+  /**
+   * Title field in *Menu Tab*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: This is title of the tab...
+   * - **API ID Path**: menu-tab.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  title: prismicT.KeyTextField;
+  /**
+   * link field in *Menu Tab*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu-tab.link
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  link: prismicT.LinkField;
+  /**
+   * Slice Zone field in *Menu Tab*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu-tab.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/core-concepts/slices
+   *
+   */
+  slices: prismicT.SliceZone<MenuTabDocumentDataSlicesSlice>;
 }
 /**
  * Slice for *Menu Tab → Slice Zone*
@@ -333,73 +356,84 @@ type MenuTabDocumentDataSlicesSlice = MenuSubTabSlice;
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type MenuTabDocument<Lang extends string = string> = prismicT.PrismicDocumentWithoutUID<Simplify<MenuTabDocumentData>, "menu-tab", Lang>;
-export type AllDocumentTypes = CheatSheetsPageDocument | DocumentDocument | FooterDocument | HomeDocument | MenuDocument | MenuTabDocument;
+export type MenuTabDocument<Lang extends string = string> =
+  prismicT.PrismicDocumentWithoutUID<
+    Simplify<MenuTabDocumentData>,
+    "menu-tab",
+    Lang
+  >;
+export type AllDocumentTypes =
+  | CheatSheetsPageDocument
+  | DocumentDocument
+  | FooterDocument
+  | HomeDocument
+  | MenuDocument
+  | MenuTabDocument;
 /**
  * Primary content in Banner → Primary
  *
  */
 interface BannerSliceDefaultPrimary {
-    /**
-     * Title field in *Banner → Primary*
-     *
-     * - **Field Type**: Title
-     * - **Placeholder**: This is where it all begins...
-     * - **API ID Path**: banner.primary.title
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    title: prismicT.TitleField;
-    /**
-     * Sub title field in *Banner → Primary*
-     *
-     * - **Field Type**: Rich Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: banner.primary.sub_title
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    sub_title: prismicT.RichTextField;
-    /**
-     * Description field in *Banner → Primary*
-     *
-     * - **Field Type**: Rich Text
-     * - **Placeholder**: A nice description of your feature
-     * - **API ID Path**: banner.primary.description
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    description: prismicT.RichTextField;
-    /**
-     * Button Link field in *Banner → Primary*
-     *
-     * - **Field Type**: Link
-     * - **Placeholder**: *None*
-     * - **API ID Path**: banner.primary.button_link
-     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-     *
-     */
-    button_link: prismicT.LinkField;
-    /**
-     * Button label field in *Banner → Primary*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: banner.primary.button_label
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    button_label: prismicT.KeyTextField;
-    /**
-     * image field in *Banner → Primary*
-     *
-     * - **Field Type**: Image
-     * - **Placeholder**: *None*
-     * - **API ID Path**: banner.primary.image
-     * - **Documentation**: https://prismic.io/docs/core-concepts/image
-     *
-     */
-    image: prismicT.ImageField<never>;
+  /**
+   * Title field in *Banner → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: This is where it all begins...
+   * - **API ID Path**: banner.primary.title
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  title: prismicT.TitleField;
+  /**
+   * Sub title field in *Banner → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner.primary.sub_title
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  sub_title: prismicT.RichTextField;
+  /**
+   * Description field in *Banner → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: A nice description of your feature
+   * - **API ID Path**: banner.primary.description
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  description: prismicT.RichTextField;
+  /**
+   * Button Link field in *Banner → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  button_link: prismicT.LinkField;
+  /**
+   * Button label field in *Banner → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner.primary.button_label
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  button_label: prismicT.KeyTextField;
+  /**
+   * image field in *Banner → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: banner.primary.image
+   * - **Documentation**: https://prismic.io/docs/core-concepts/image
+   *
+   */
+  image: prismicT.ImageField<never>;
 }
 /**
  * Default variation for Banner Slice
@@ -409,7 +443,11 @@ interface BannerSliceDefaultPrimary {
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type BannerSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<BannerSliceDefaultPrimary>, never>;
+export type BannerSliceDefault = prismicT.SharedSliceVariation<
+  "default",
+  Simplify<BannerSliceDefaultPrimary>,
+  never
+>;
 /**
  * Slice variation for *Banner*
  *
@@ -429,26 +467,26 @@ export type BannerSlice = prismicT.SharedSlice<"banner", BannerSliceVariation>;
  *
  */
 interface CodeBoxSliceDefaultPrimary {
-    /**
-     * Languaje field in *CodeBox → Primary*
-     *
-     * - **Field Type**: Select
-     * - **Placeholder**: *None*
-     * - **API ID Path**: code_box.primary.languaje
-     * - **Documentation**: https://prismic.io/docs/core-concepts/select
-     *
-     */
-    languaje: prismicT.SelectField<"JSX" | "JS" | "HTML" | "CSS" | "BASH">;
-    /**
-     * Code Snippet field in *CodeBox → Primary*
-     *
-     * - **Field Type**: Rich Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: code_box.primary.code_snippet
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    code_snippet: prismicT.RichTextField;
+  /**
+   * Languaje field in *CodeBox → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: code_box.primary.languaje
+   * - **Documentation**: https://prismic.io/docs/core-concepts/select
+   *
+   */
+  languaje: prismicT.SelectField<"JSX" | "JS" | "HTML" | "CSS" | "BASH">;
+  /**
+   * Code Snippet field in *CodeBox → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: code_box.primary.code_snippet
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  code_snippet: prismicT.RichTextField;
 }
 /**
  * Default variation for CodeBox Slice
@@ -458,7 +496,11 @@ interface CodeBoxSliceDefaultPrimary {
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type CodeBoxSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<CodeBoxSliceDefaultPrimary>, never>;
+export type CodeBoxSliceDefault = prismicT.SharedSliceVariation<
+  "default",
+  Simplify<CodeBoxSliceDefaultPrimary>,
+  never
+>;
 /**
  * Slice variation for *CodeBox*
  *
@@ -472,48 +514,51 @@ type CodeBoxSliceVariation = CodeBoxSliceDefault;
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type CodeBoxSlice = prismicT.SharedSlice<"code_box", CodeBoxSliceVariation>;
+export type CodeBoxSlice = prismicT.SharedSlice<
+  "code_box",
+  CodeBoxSliceVariation
+>;
 /**
  * Primary content in FooterColumn → Primary
  *
  */
 interface FooterColumnSliceDefaultPrimary {
-    /**
-     * Section Title field in *FooterColumn → Primary*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: footer_column.primary.section_title
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    section_title: prismicT.KeyTextField;
+  /**
+   * Section Title field in *FooterColumn → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer_column.primary.section_title
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  section_title: prismicT.KeyTextField;
 }
 /**
  * Item in FooterColumn → Items
  *
  */
 export interface FooterColumnSliceDefaultItem {
-    /**
-     * Link field in *FooterColumn → Items*
-     *
-     * - **Field Type**: Content Relationship
-     * - **Placeholder**: *None*
-     * - **API ID Path**: footer_column.items[].link
-     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-     *
-     */
-    link: prismicT.RelationField;
-    /**
-     * Link Label field in *FooterColumn → Items*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: footer_column.items[].link_label
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    link_label: prismicT.KeyTextField;
+  /**
+   * Link field in *FooterColumn → Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer_column.items[].link
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  link: prismicT.RelationField;
+  /**
+   * Link Label field in *FooterColumn → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: footer_column.items[].link_label
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  link_label: prismicT.KeyTextField;
 }
 /**
  * Default variation for FooterColumn Slice
@@ -523,7 +568,11 @@ export interface FooterColumnSliceDefaultItem {
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type FooterColumnSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<FooterColumnSliceDefaultPrimary>, Simplify<FooterColumnSliceDefaultItem>>;
+export type FooterColumnSliceDefault = prismicT.SharedSliceVariation<
+  "default",
+  Simplify<FooterColumnSliceDefaultPrimary>,
+  Simplify<FooterColumnSliceDefaultItem>
+>;
 /**
  * Slice variation for *FooterColumn*
  *
@@ -537,62 +586,65 @@ type FooterColumnSliceVariation = FooterColumnSliceDefault;
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type FooterColumnSlice = prismicT.SharedSlice<"footer_column", FooterColumnSliceVariation>;
+export type FooterColumnSlice = prismicT.SharedSlice<
+  "footer_column",
+  FooterColumnSliceVariation
+>;
 /**
  * Primary content in HeroBanner → Primary
  *
  */
 interface HeroBannerSliceDefaultPrimary {
-    /**
-     * Title field in *HeroBanner → Primary*
-     *
-     * - **Field Type**: Title
-     * - **Placeholder**: This is where it all begins...
-     * - **API ID Path**: hero_banner.primary.title
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    title: prismicT.TitleField;
-    /**
-     * Description field in *HeroBanner → Primary*
-     *
-     * - **Field Type**: Rich Text
-     * - **Placeholder**: A nice description of your feature
-     * - **API ID Path**: hero_banner.primary.description
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    description: prismicT.RichTextField;
-    /**
-     * image field in *HeroBanner → Primary*
-     *
-     * - **Field Type**: Image
-     * - **Placeholder**: *None*
-     * - **API ID Path**: hero_banner.primary.image
-     * - **Documentation**: https://prismic.io/docs/core-concepts/image
-     *
-     */
-    image: prismicT.ImageField<never>;
-    /**
-     * Button label field in *HeroBanner → Primary*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: hero_banner.primary.button_label
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    button_label: prismicT.KeyTextField;
-    /**
-     * Button Link field in *HeroBanner → Primary*
-     *
-     * - **Field Type**: Link
-     * - **Placeholder**: *None*
-     * - **API ID Path**: hero_banner.primary.button_link
-     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-     *
-     */
-    button_link: prismicT.LinkField;
+  /**
+   * Title field in *HeroBanner → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: This is where it all begins...
+   * - **API ID Path**: hero_banner.primary.title
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  title: prismicT.TitleField;
+  /**
+   * Description field in *HeroBanner → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: A nice description of your feature
+   * - **API ID Path**: hero_banner.primary.description
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  description: prismicT.RichTextField;
+  /**
+   * image field in *HeroBanner → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_banner.primary.image
+   * - **Documentation**: https://prismic.io/docs/core-concepts/image
+   *
+   */
+  image: prismicT.ImageField<never>;
+  /**
+   * Button label field in *HeroBanner → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_banner.primary.button_label
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  button_label: prismicT.KeyTextField;
+  /**
+   * Button Link field in *HeroBanner → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_banner.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  button_link: prismicT.LinkField;
 }
 /**
  * Default variation for HeroBanner Slice
@@ -602,7 +654,11 @@ interface HeroBannerSliceDefaultPrimary {
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type HeroBannerSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<HeroBannerSliceDefaultPrimary>, never>;
+export type HeroBannerSliceDefault = prismicT.SharedSliceVariation<
+  "default",
+  Simplify<HeroBannerSliceDefaultPrimary>,
+  never
+>;
 /**
  * Slice variation for *HeroBanner*
  *
@@ -616,32 +672,35 @@ type HeroBannerSliceVariation = HeroBannerSliceDefault;
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type HeroBannerSlice = prismicT.SharedSlice<"hero_banner", HeroBannerSliceVariation>;
+export type HeroBannerSlice = prismicT.SharedSlice<
+  "hero_banner",
+  HeroBannerSliceVariation
+>;
 /**
  * Primary content in Highlighted → Primary
  *
  */
 interface HighlightedSliceDefaultPrimary {
-    /**
-     * Title field in *Highlighted → Primary*
-     *
-     * - **Field Type**: Title
-     * - **Placeholder**: This is where it all begins...
-     * - **API ID Path**: highlighted.primary.title
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    title: prismicT.TitleField;
-    /**
-     * Description field in *Highlighted → Primary*
-     *
-     * - **Field Type**: Rich Text
-     * - **Placeholder**: A nice description of your feature
-     * - **API ID Path**: highlighted.primary.description
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    description: prismicT.RichTextField;
+  /**
+   * Title field in *Highlighted → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: This is where it all begins...
+   * - **API ID Path**: highlighted.primary.title
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  title: prismicT.TitleField;
+  /**
+   * Description field in *Highlighted → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: A nice description of your feature
+   * - **API ID Path**: highlighted.primary.description
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  description: prismicT.RichTextField;
 }
 /**
  * Default variation for Highlighted Slice
@@ -651,7 +710,11 @@ interface HighlightedSliceDefaultPrimary {
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type HighlightedSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<HighlightedSliceDefaultPrimary>, never>;
+export type HighlightedSliceDefault = prismicT.SharedSliceVariation<
+  "default",
+  Simplify<HighlightedSliceDefaultPrimary>,
+  never
+>;
 /**
  * Slice variation for *Highlighted*
  *
@@ -665,48 +728,51 @@ type HighlightedSliceVariation = HighlightedSliceDefault;
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type HighlightedSlice = prismicT.SharedSlice<"highlighted", HighlightedSliceVariation>;
+export type HighlightedSlice = prismicT.SharedSlice<
+  "highlighted",
+  HighlightedSliceVariation
+>;
 /**
  * Primary content in MenuSubTab → Primary
  *
  */
 interface MenuSubTabSliceDefaultPrimary {
-    /**
-     * Section Title field in *MenuSubTab → Primary*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu_sub_tab.primary.sectionTitle
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    sectionTitle: prismicT.KeyTextField;
+  /**
+   * Section Title field in *MenuSubTab → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_sub_tab.primary.sectionTitle
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  sectionTitle: prismicT.KeyTextField;
 }
 /**
  * Item in MenuSubTab → Items
  *
  */
 export interface MenuSubTabSliceDefaultItem {
-    /**
-     * Sub Section Title field in *MenuSubTab → Items*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu_sub_tab.items[].subSectionTitle
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    subSectionTitle: prismicT.KeyTextField;
-    /**
-     * Sub Section Link field in *MenuSubTab → Items*
-     *
-     * - **Field Type**: Link
-     * - **Placeholder**: *None*
-     * - **API ID Path**: menu_sub_tab.items[].subSectionLink
-     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-     *
-     */
-    subSectionLink: prismicT.LinkField;
+  /**
+   * Sub Section Title field in *MenuSubTab → Items*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_sub_tab.items[].subSectionTitle
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  subSectionTitle: prismicT.KeyTextField;
+  /**
+   * Sub Section Link field in *MenuSubTab → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: menu_sub_tab.items[].subSectionLink
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  subSectionLink: prismicT.LinkField;
 }
 /**
  * Default variation for MenuSubTab Slice
@@ -716,7 +782,11 @@ export interface MenuSubTabSliceDefaultItem {
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type MenuSubTabSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<MenuSubTabSliceDefaultPrimary>, Simplify<MenuSubTabSliceDefaultItem>>;
+export type MenuSubTabSliceDefault = prismicT.SharedSliceVariation<
+  "default",
+  Simplify<MenuSubTabSliceDefaultPrimary>,
+  Simplify<MenuSubTabSliceDefaultItem>
+>;
 /**
  * Slice variation for *MenuSubTab*
  *
@@ -730,22 +800,25 @@ type MenuSubTabSliceVariation = MenuSubTabSliceDefault;
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type MenuSubTabSlice = prismicT.SharedSlice<"menu_sub_tab", MenuSubTabSliceVariation>;
+export type MenuSubTabSlice = prismicT.SharedSlice<
+  "menu_sub_tab",
+  MenuSubTabSliceVariation
+>;
 /**
  * Primary content in RichText → Primary
  *
  */
 interface RichTextSliceDefaultPrimary {
-    /**
-     * Rich Text field in *RichText → Primary*
-     *
-     * - **Field Type**: Rich Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: rich_text.primary.rich_text
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    rich_text: prismicT.RichTextField;
+  /**
+   * Rich Text field in *RichText → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: rich_text.primary.rich_text
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  rich_text: prismicT.RichTextField;
 }
 /**
  * Default variation for RichText Slice
@@ -755,7 +828,11 @@ interface RichTextSliceDefaultPrimary {
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type RichTextSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<RichTextSliceDefaultPrimary>, never>;
+export type RichTextSliceDefault = prismicT.SharedSliceVariation<
+  "default",
+  Simplify<RichTextSliceDefaultPrimary>,
+  never
+>;
 /**
  * Slice variation for *RichText*
  *
@@ -769,52 +846,68 @@ type RichTextSliceVariation = RichTextSliceDefault;
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type RichTextSlice = prismicT.SharedSlice<"rich_text", RichTextSliceVariation>;
+export type RichTextSlice = prismicT.SharedSlice<
+  "rich_text",
+  RichTextSliceVariation
+>;
 /**
  * Primary content in SectionHeading → Primary
  *
  */
 interface SectionHeadingSliceDefaultPrimary {
-    /**
-     * Title field in *SectionHeading → Primary*
-     *
-     * - **Field Type**: Title
-     * - **Placeholder**: This is where it all begins...
-     * - **API ID Path**: section_heading.primary.title
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    title: prismicT.TitleField;
-    /**
-     * Description field in *SectionHeading → Primary*
-     *
-     * - **Field Type**: Rich Text
-     * - **Placeholder**: A nice description of your feature
-     * - **API ID Path**: section_heading.primary.description
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    description: prismicT.RichTextField;
-    /**
-     * color field in *SectionHeading → Primary*
-     *
-     * - **Field Type**: Select
-     * - **Placeholder**: *None*
-     * - **API ID Path**: section_heading.primary.color
-     * - **Documentation**: https://prismic.io/docs/core-concepts/select
-     *
-     */
-    color: prismicT.SelectField<"white" | "yellow" | "green" | "lemon-green" | "pink-purple" | "pink" | "orange-rose" | "orange" | "purple" | "snow" | "teal-green" | "blue">;
-    /**
-     * align field in *SectionHeading → Primary*
-     *
-     * - **Field Type**: Select
-     * - **Placeholder**: *None*
-     * - **API ID Path**: section_heading.primary.align
-     * - **Documentation**: https://prismic.io/docs/core-concepts/select
-     *
-     */
-    align: prismicT.SelectField<"center-text" | "left-text" | "right-text">;
+  /**
+   * Title field in *SectionHeading → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: This is where it all begins...
+   * - **API ID Path**: section_heading.primary.title
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  title: prismicT.TitleField;
+  /**
+   * Description field in *SectionHeading → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: A nice description of your feature
+   * - **API ID Path**: section_heading.primary.description
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  description: prismicT.RichTextField;
+  /**
+   * color field in *SectionHeading → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section_heading.primary.color
+   * - **Documentation**: https://prismic.io/docs/core-concepts/select
+   *
+   */
+  color: prismicT.SelectField<
+    | "white"
+    | "yellow"
+    | "green"
+    | "lemon-green"
+    | "pink-purple"
+    | "pink"
+    | "orange-rose"
+    | "orange"
+    | "purple"
+    | "snow"
+    | "teal-green"
+    | "blue"
+  >;
+  /**
+   * align field in *SectionHeading → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section_heading.primary.align
+   * - **Documentation**: https://prismic.io/docs/core-concepts/select
+   *
+   */
+  align: prismicT.SelectField<"center-text" | "left-text" | "right-text">;
 }
 /**
  * Default variation for SectionHeading Slice
@@ -824,7 +917,11 @@ interface SectionHeadingSliceDefaultPrimary {
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type SectionHeadingSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<SectionHeadingSliceDefaultPrimary>, never>;
+export type SectionHeadingSliceDefault = prismicT.SharedSliceVariation<
+  "default",
+  Simplify<SectionHeadingSliceDefaultPrimary>,
+  never
+>;
 /**
  * Slice variation for *SectionHeading*
  *
@@ -838,72 +935,75 @@ type SectionHeadingSliceVariation = SectionHeadingSliceDefault;
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type SectionHeadingSlice = prismicT.SharedSlice<"section_heading", SectionHeadingSliceVariation>;
+export type SectionHeadingSlice = prismicT.SharedSlice<
+  "section_heading",
+  SectionHeadingSliceVariation
+>;
 /**
  * Primary content in SectionPoerty → Primary
  *
  */
 interface SectionPoertySliceDefaultPrimary {
-    /**
-     * Title field in *SectionPoerty → Primary*
-     *
-     * - **Field Type**: Title
-     * - **Placeholder**: This is where it all begins...
-     * - **API ID Path**: section_poerty.primary.title
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    title: prismicT.TitleField;
-    /**
-     * Description field in *SectionPoerty → Primary*
-     *
-     * - **Field Type**: Rich Text
-     * - **Placeholder**: A nice description of your feature
-     * - **API ID Path**: section_poerty.primary.description
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    description: prismicT.RichTextField;
-    /**
-     * image field in *SectionPoerty → Primary*
-     *
-     * - **Field Type**: Image
-     * - **Placeholder**: *None*
-     * - **API ID Path**: section_poerty.primary.image
-     * - **Documentation**: https://prismic.io/docs/core-concepts/image
-     *
-     */
-    image: prismicT.ImageField<never>;
-    /**
-     * Caption field in *SectionPoerty → Primary*
-     *
-     * - **Field Type**: Rich Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: section_poerty.primary.caption
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    caption: prismicT.RichTextField;
-    /**
-     * Button label field in *SectionPoerty → Primary*
-     *
-     * - **Field Type**: Text
-     * - **Placeholder**: *None*
-     * - **API ID Path**: section_poerty.primary.button_label
-     * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
-     *
-     */
-    button_label: prismicT.KeyTextField;
-    /**
-     * Button Link field in *SectionPoerty → Primary*
-     *
-     * - **Field Type**: Link
-     * - **Placeholder**: *None*
-     * - **API ID Path**: section_poerty.primary.button_link
-     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-     *
-     */
-    button_link: prismicT.LinkField;
+  /**
+   * Title field in *SectionPoerty → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: This is where it all begins...
+   * - **API ID Path**: section_poerty.primary.title
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  title: prismicT.TitleField;
+  /**
+   * Description field in *SectionPoerty → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: A nice description of your feature
+   * - **API ID Path**: section_poerty.primary.description
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  description: prismicT.RichTextField;
+  /**
+   * image field in *SectionPoerty → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section_poerty.primary.image
+   * - **Documentation**: https://prismic.io/docs/core-concepts/image
+   *
+   */
+  image: prismicT.ImageField<never>;
+  /**
+   * Caption field in *SectionPoerty → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section_poerty.primary.caption
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  caption: prismicT.RichTextField;
+  /**
+   * Button label field in *SectionPoerty → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section_poerty.primary.button_label
+   * - **Documentation**: https://prismic.io/docs/core-concepts/key-text
+   *
+   */
+  button_label: prismicT.KeyTextField;
+  /**
+   * Button Link field in *SectionPoerty → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: section_poerty.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  button_link: prismicT.LinkField;
 }
 /**
  * Default variation for SectionPoerty Slice
@@ -913,7 +1013,11 @@ interface SectionPoertySliceDefaultPrimary {
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type SectionPoertySliceDefault = prismicT.SharedSliceVariation<"default", Simplify<SectionPoertySliceDefaultPrimary>, never>;
+export type SectionPoertySliceDefault = prismicT.SharedSliceVariation<
+  "default",
+  Simplify<SectionPoertySliceDefaultPrimary>,
+  never
+>;
 /**
  * Slice variation for *SectionPoerty*
  *
@@ -927,38 +1031,41 @@ type SectionPoertySliceVariation = SectionPoertySliceDefault;
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type SectionPoertySlice = prismicT.SharedSlice<"section_poerty", SectionPoertySliceVariation>;
+export type SectionPoertySlice = prismicT.SharedSlice<
+  "section_poerty",
+  SectionPoertySliceVariation
+>;
 /**
  * Primary content in TableBlock → Primary
  *
  */
 interface TableBlockSliceDefaultPrimary {
-    /**
-     * Title field in *TableBlock → Primary*
-     *
-     * - **Field Type**: Title
-     * - **Placeholder**: This is where it all begins...
-     * - **API ID Path**: table_block.primary.title
-     * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
-     *
-     */
-    title: prismicT.TitleField;
+  /**
+   * Title field in *TableBlock → Primary*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: This is where it all begins...
+   * - **API ID Path**: table_block.primary.title
+   * - **Documentation**: https://prismic.io/docs/core-concepts/rich-text-title
+   *
+   */
+  title: prismicT.TitleField;
 }
 /**
  * Item in TableBlock → Items
  *
  */
 export interface TableBlockSliceDefaultItem {
-    /**
-     * Document field in *TableBlock → Items*
-     *
-     * - **Field Type**: Link
-     * - **Placeholder**: *None*
-     * - **API ID Path**: table_block.items[].document
-     * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
-     *
-     */
-    document: prismicT.LinkField;
+  /**
+   * Document field in *TableBlock → Items*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table_block.items[].document
+   * - **Documentation**: https://prismic.io/docs/core-concepts/link-content-relationship
+   *
+   */
+  document: prismicT.LinkField;
 }
 /**
  * Default variation for TableBlock Slice
@@ -968,7 +1075,11 @@ export interface TableBlockSliceDefaultItem {
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type TableBlockSliceDefault = prismicT.SharedSliceVariation<"default", Simplify<TableBlockSliceDefaultPrimary>, Simplify<TableBlockSliceDefaultItem>>;
+export type TableBlockSliceDefault = prismicT.SharedSliceVariation<
+  "default",
+  Simplify<TableBlockSliceDefaultPrimary>,
+  Simplify<TableBlockSliceDefaultItem>
+>;
 /**
  * Slice variation for *TableBlock*
  *
@@ -982,12 +1093,81 @@ type TableBlockSliceVariation = TableBlockSliceDefault;
  * - **Documentation**: https://prismic.io/docs/core-concepts/reusing-slices
  *
  */
-export type TableBlockSlice = prismicT.SharedSlice<"table_block", TableBlockSliceVariation>;
+export type TableBlockSlice = prismicT.SharedSlice<
+  "table_block",
+  TableBlockSliceVariation
+>;
 declare module "@prismicio/client" {
-    interface CreateClient {
-        (repositoryNameOrEndpoint: string, options?: prismic.ClientConfig): prismic.Client<AllDocumentTypes>;
-    }
-    namespace Content {
-        export type { CheatSheetsPageDocumentData, CheatSheetsPageDocumentDataSlicesSlice, CheatSheetsPageDocument, DocumentDocumentData, DocumentDocumentDataSlicesSlice, DocumentDocument, FooterDocumentData, FooterDocumentDataBodySlice, FooterDocument, HomeDocumentData, HomeDocumentDataSlicesSlice, HomeDocument, MenuDocumentData, MenuDocumentDataMenuTabsItem, MenuDocument, MenuTabDocumentData, MenuTabDocumentDataSlicesSlice, MenuTabDocument, AllDocumentTypes, BannerSliceDefaultPrimary, BannerSliceDefault, BannerSliceVariation, BannerSlice, CodeBoxSliceDefaultPrimary, CodeBoxSliceDefault, CodeBoxSliceVariation, CodeBoxSlice, FooterColumnSliceDefaultPrimary, FooterColumnSliceDefaultItem, FooterColumnSliceDefault, FooterColumnSliceVariation, FooterColumnSlice, HeroBannerSliceDefaultPrimary, HeroBannerSliceDefault, HeroBannerSliceVariation, HeroBannerSlice, HighlightedSliceDefaultPrimary, HighlightedSliceDefault, HighlightedSliceVariation, HighlightedSlice, MenuSubTabSliceDefaultPrimary, MenuSubTabSliceDefaultItem, MenuSubTabSliceDefault, MenuSubTabSliceVariation, MenuSubTabSlice, RichTextSliceDefaultPrimary, RichTextSliceDefault, RichTextSliceVariation, RichTextSlice, SectionHeadingSliceDefaultPrimary, SectionHeadingSliceDefault, SectionHeadingSliceVariation, SectionHeadingSlice, SectionPoertySliceDefaultPrimary, SectionPoertySliceDefault, SectionPoertySliceVariation, SectionPoertySlice, TableBlockSliceDefaultPrimary, TableBlockSliceDefaultItem, TableBlockSliceDefault, TableBlockSliceVariation, TableBlockSlice };
-    }
+  interface CreateClient {
+    (
+      repositoryNameOrEndpoint: string,
+      options?: prismic.ClientConfig
+    ): prismic.Client<AllDocumentTypes>;
+  }
+  namespace Content {
+    export type {
+      CheatSheetsPageDocumentData,
+      CheatSheetsPageDocumentDataSlicesSlice,
+      CheatSheetsPageDocument,
+      DocumentDocumentData,
+      DocumentDocumentDataSlicesSlice,
+      DocumentDocument,
+      FooterDocumentData,
+      FooterDocumentDataBodySlice,
+      FooterDocument,
+      HomeDocumentData,
+      HomeDocumentDataSlicesSlice,
+      HomeDocument,
+      MenuDocumentData,
+      MenuDocumentDataMenuTabsItem,
+      MenuDocument,
+      MenuTabDocumentData,
+      MenuTabDocumentDataSlicesSlice,
+      MenuTabDocument,
+      AllDocumentTypes,
+      BannerSliceDefaultPrimary,
+      BannerSliceDefault,
+      BannerSliceVariation,
+      BannerSlice,
+      CodeBoxSliceDefaultPrimary,
+      CodeBoxSliceDefault,
+      CodeBoxSliceVariation,
+      CodeBoxSlice,
+      FooterColumnSliceDefaultPrimary,
+      FooterColumnSliceDefaultItem,
+      FooterColumnSliceDefault,
+      FooterColumnSliceVariation,
+      FooterColumnSlice,
+      HeroBannerSliceDefaultPrimary,
+      HeroBannerSliceDefault,
+      HeroBannerSliceVariation,
+      HeroBannerSlice,
+      HighlightedSliceDefaultPrimary,
+      HighlightedSliceDefault,
+      HighlightedSliceVariation,
+      HighlightedSlice,
+      MenuSubTabSliceDefaultPrimary,
+      MenuSubTabSliceDefaultItem,
+      MenuSubTabSliceDefault,
+      MenuSubTabSliceVariation,
+      MenuSubTabSlice,
+      RichTextSliceDefaultPrimary,
+      RichTextSliceDefault,
+      RichTextSliceVariation,
+      RichTextSlice,
+      SectionHeadingSliceDefaultPrimary,
+      SectionHeadingSliceDefault,
+      SectionHeadingSliceVariation,
+      SectionHeadingSlice,
+      SectionPoertySliceDefaultPrimary,
+      SectionPoertySliceDefault,
+      SectionPoertySliceVariation,
+      SectionPoertySlice,
+      TableBlockSliceDefaultPrimary,
+      TableBlockSliceDefaultItem,
+      TableBlockSliceDefault,
+      TableBlockSliceVariation,
+      TableBlockSlice,
+    };
+  }
 }

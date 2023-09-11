@@ -53,10 +53,7 @@ const TableRow = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <tr
     ref={ref}
-    className={[
-      "transition-colors hover:bg-accents-1",
-      className,
-    ].join(" ")}
+    className={["transition-colors hover:bg-accents-1", className].join(" ")}
     {...props}
   />
 ));
@@ -96,7 +93,11 @@ const TableCaption = React.forwardRef<
   HTMLTableCaptionElement,
   React.HTMLAttributes<HTMLTableCaptionElement>
 >(({ className, ...props }, ref) => (
-  <caption ref={ref} className={["mt-4 mb-1", className].join(" ")} {...props} />
+  <caption
+    ref={ref}
+    className={["mt-4 mb-1", className].join(" ")}
+    {...props}
+  />
 ));
 TableCaption.displayName = "TableCaption";
 

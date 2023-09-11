@@ -8,9 +8,10 @@ export const Default = () => {
   return (
     <div className="relative">
       <p>
-        
-        <span className="info info-text wall-pad">External library <span className="font-bold">$ pnpm i vaul</span></span> Drawer
-        component for React.{" "}
+        <span className="info info-text wall-pad">
+          External library <span className="font-bold">$ pnpm i vaul</span>
+        </span>{" "}
+        Drawer component for React.{" "}
         <a
           href="https://vaul.emilkowal.ski/"
           className="underline"
@@ -33,7 +34,7 @@ export const Default = () => {
           <Drawer.Overlay className="fixed inset-0 bg-black/40" />
           <Drawer.Portal>
             <Drawer.Content className="bg-gray-100 flex flex-col rounded-t-[10px] h-full mt-24 max-h-[96%] fixed bottom-0 left-0 right-0">
-            <div className="mx-auto w-6 h-0.5 flex-shrink-0 rounded-full bg-accents-3 mb-2 mt-1"></div>
+              <div className="mx-auto w-6 h-0.5 flex-shrink-0 rounded-full bg-accents-3 mb-2 mt-1"></div>
               <Section passDiv container="smash">
                 <div>
                   <h2>Drawer for React.</h2>

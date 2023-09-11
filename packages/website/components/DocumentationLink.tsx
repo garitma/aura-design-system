@@ -1,7 +1,7 @@
 import Section from "@aura-design/system/section";
 import Grid from "@aura-design/system/grid";
 import * as prismicH from "@prismicio/helpers";
-import {ArrowRightIcon, ArrowLeftIcon} from "@radix-ui/react-icons"
+import { ArrowRightIcon, ArrowLeftIcon } from "@radix-ui/react-icons";
 
 import Link from "@/components/Link";
 

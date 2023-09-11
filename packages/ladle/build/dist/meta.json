@@ -7,9 +7,7 @@
   "stories": {
     "accordion--with-color": {
       "name": "With color",
-      "levels": [
-        "Accordion"
-      ],
+      "levels": ["Accordion"],
       "locStart": 16,
       "locEnd": 20,
       "filePath": "stories/accordion.stories.tsx",
@@ -17,9 +15,7 @@
     },
     "accordion--with-content": {
       "name": "With content",
-      "levels": [
-        "Accordion"
-      ],
+      "levels": ["Accordion"],
       "locStart": 4,
       "locEnd": 8,
       "filePath": "stories/accordion.stories.tsx",
@@ -27,9 +23,7 @@
     },
     "accordion--with-header-size": {
       "name": "With header size",
-      "levels": [
-        "Accordion"
-      ],
+      "levels": ["Accordion"],
       "locStart": 10,
       "locEnd": 14,
       "filePath": "stories/accordion.stories.tsx",
@@ -37,9 +31,7 @@
     },
     "alert--danger-alert": {
       "name": "Danger alert",
-      "levels": [
-        "Alert"
-      ],
+      "levels": ["Alert"],
       "locStart": 10,
       "locEnd": 14,
       "filePath": "stories/alert.stories.tsx",
@@ -47,9 +39,7 @@
     },
     "alert--info-alert": {
       "name": "Info alert",
-      "levels": [
-        "Alert"
-      ],
+      "levels": ["Alert"],
       "locStart": 4,
       "locEnd": 8,
       "filePath": "stories/alert.stories.tsx",
@@ -57,9 +47,7 @@
     },
     "button--button-disabled": {
       "name": "Button disabled",
-      "levels": [
-        "Button"
-      ],
+      "levels": ["Button"],
       "locStart": 8,
       "locEnd": 8,
       "filePath": "stories/button.stories.tsx",
@@ -67,9 +55,7 @@
     },
     "button--button-fill": {
       "name": "Button fill",
-      "levels": [
-        "Button"
-      ],
+      "levels": ["Button"],
       "locStart": 4,
       "locEnd": 4,
       "filePath": "stories/button.stories.tsx",
@@ -77,9 +63,7 @@
     },
     "button--button-fluid": {
       "name": "Button fluid",
-      "levels": [
-        "Button"
-      ],
+      "levels": ["Button"],
       "locStart": 7,
       "locEnd": 7,
       "filePath": "stories/button.stories.tsx",
@@ -87,9 +71,7 @@
     },
     "button--button-link": {
       "name": "Button link",
-      "levels": [
-        "Button"
-      ],
+      "levels": ["Button"],
       "locStart": 6,
       "locEnd": 6,
       "filePath": "stories/button.stories.tsx",
@@ -97,9 +79,7 @@
     },
     "button--button-pill": {
       "name": "Button pill",
-      "levels": [
-        "Button"
-      ],
+      "levels": ["Button"],
       "locStart": 5,
       "locEnd": 5,
       "filePath": "stories/button.stories.tsx",
@@ -107,9 +87,7 @@
     },
     "button--button-waiting": {
       "name": "Button waiting",
-      "levels": [
-        "Button"
-      ],
+      "levels": ["Button"],
       "locStart": 9,
       "locEnd": 11,
       "filePath": "stories/button.stories.tsx",
@@ -117,9 +95,7 @@
     },
     "checkbox--naked": {
       "name": "Naked",
-      "levels": [
-        "Checkbox"
-      ],
+      "levels": ["Checkbox"],
       "locStart": 5,
       "locEnd": 5,
       "filePath": "stories/checkbox.stories.tsx",
@@ -127,9 +103,7 @@
     },
     "drawer--default": {
       "name": "Default",
-      "levels": [
-        "Drawer"
-      ],
+      "levels": ["Drawer"],
       "locStart": 7,
       "locEnd": 82,
       "filePath": "stories/drawer.stories.tsx",
@@ -137,9 +111,7 @@
     },
     "dropdown--default": {
       "name": "Default",
-      "levels": [
-        "Dropdown"
-      ],
+      "levels": ["Dropdown"],
       "locStart": 13,
       "locEnd": 105,
       "filePath": "stories/dropdown.stories.tsx",
@@ -147,9 +119,7 @@
     },
     "form--with-grid": {
       "name": "With grid",
-      "levels": [
-        "Form"
-      ],
+      "levels": ["Form"],
       "locStart": 44,
       "locEnd": 64,
       "filePath": "stories/form.stories.tsx",
@@ -157,9 +127,7 @@
     },
     "form--with-hook": {
       "name": "With hook",
-      "levels": [
-        "Form"
-      ],
+      "levels": ["Form"],
       "locStart": 17,
       "locEnd": 42,
       "filePath": "stories/form.stories.tsx",
@@ -167,9 +135,7 @@
     },
     "form--with-status": {
       "name": "With status",
-      "levels": [
-        "Form"
-      ],
+      "levels": ["Form"],
       "locStart": 66,
       "locEnd": 122,
       "filePath": "stories/form.stories.tsx",
@@ -177,9 +143,7 @@
     },
     "form--with-validator": {
       "name": "With validator",
-      "levels": [
-        "Form"
-      ],
+      "levels": ["Form"],
       "locStart": 124,
       "locEnd": 242,
       "filePath": "stories/form.stories.tsx",
@@ -187,9 +151,7 @@
     },
     "grid--with-columns-fixed": {
       "name": "With columns fixed",
-      "levels": [
-        "Grid"
-      ],
+      "levels": ["Grid"],
       "locStart": 56,
       "locEnd": 67,
       "filePath": "stories/grid.stories.tsx",
@@ -197,9 +159,7 @@
     },
     "grid--with-columns-reverse": {
       "name": "With columns reverse",
-      "levels": [
-        "Grid"
-      ],
+      "levels": ["Grid"],
       "locStart": 69,
       "locEnd": 74,
       "filePath": "stories/grid.stories.tsx",
@@ -207,9 +167,7 @@
     },
     "grid--with-four-columns": {
       "name": "With four columns",
-      "levels": [
-        "Grid"
-      ],
+      "levels": ["Grid"],
       "locStart": 43,
       "locEnd": 54,
       "filePath": "stories/grid.stories.tsx",
@@ -217,9 +175,7 @@
     },
     "grid--with-one-columns": {
       "name": "With one columns",
-      "levels": [
-        "Grid"
-      ],
+      "levels": ["Grid"],
       "locStart": 4,
       "locEnd": 15,
       "filePath": "stories/grid.stories.tsx",
@@ -227,9 +183,7 @@
     },
     "grid--with-span": {
       "name": "With span",
-      "levels": [
-        "Grid"
-      ],
+      "levels": ["Grid"],
       "locStart": 76,
       "locEnd": 83,
       "filePath": "stories/grid.stories.tsx",
@@ -237,9 +191,7 @@
     },
     "grid--with-three-columns": {
       "name": "With three columns",
-      "levels": [
-        "Grid"
-      ],
+      "levels": ["Grid"],
       "locStart": 30,
       "locEnd": 41,
       "filePath": "stories/grid.stories.tsx",
@@ -247,9 +199,7 @@
     },
     "grid--with-two-columns": {
       "name": "With two columns",
-      "levels": [
-        "Grid"
-      ],
+      "levels": ["Grid"],
       "locStart": 17,
       "locEnd": 28,
       "filePath": "stories/grid.stories.tsx",
@@ -257,9 +207,7 @@
     },
     "headline--headlines": {
       "name": "Headlines",
-      "levels": [
-        "Headline"
-      ],
+      "levels": ["Headline"],
       "locStart": 3,
       "locEnd": 14,
       "filePath": "stories/headline.stories.tsx",
@@ -267,9 +215,7 @@
     },
     "icons--icon": {
       "name": "Icon",
-      "levels": [
-        "Icons"
-      ],
+      "levels": ["Icons"],
       "locStart": 6,
       "locEnd": 6,
       "filePath": "stories/icons.stories.tsx",
@@ -277,9 +223,7 @@
     },
     "icons--icon-size": {
       "name": "Icon size",
-      "levels": [
-        "Icons"
-      ],
+      "levels": ["Icons"],
       "locStart": 8,
       "locEnd": 8,
       "filePath": "stories/icons.stories.tsx",
@@ -287,9 +231,7 @@
     },
     "icons--with-external-icon": {
       "name": "With external icon",
-      "levels": [
-        "Icons"
-      ],
+      "levels": ["Icons"],
       "locStart": 10,
       "locEnd": 10,
       "filePath": "stories/icons.stories.tsx",
@@ -297,9 +239,7 @@
     },
     "icons--with-external-icon-size": {
       "name": "With external icon size",
-      "levels": [
-        "Icons"
-      ],
+      "levels": ["Icons"],
       "locStart": 12,
       "locEnd": 12,
       "filePath": "stories/icons.stories.tsx",
@@ -307,9 +247,7 @@
     },
     "input--with-date": {
       "name": "With date",
-      "levels": [
-        "Input"
-      ],
+      "levels": ["Input"],
       "locStart": 16,
       "locEnd": 24,
       "filePath": "stories/input.stories.tsx",
@@ -317,9 +255,7 @@
     },
     "input--with-dialog": {
       "name": "With dialog",
-      "levels": [
-        "Input"
-      ],
+      "levels": ["Input"],
       "locStart": 8,
       "locEnd": 14,
       "filePath": "stories/input.stories.tsx",
@@ -327,9 +263,7 @@
     },
     "input--with-file": {
       "name": "With file",
-      "levels": [
-        "Input"
-      ],
+      "levels": ["Input"],
       "locStart": 32,
       "locEnd": 32,
       "filePath": "stories/input.stories.tsx",
@@ -337,9 +271,7 @@
     },
     "input--with-label": {
       "name": "With label",
-      "levels": [
-        "Input"
-      ],
+      "levels": ["Input"],
       "locStart": 5,
       "locEnd": 7,
       "filePath": "stories/input.stories.tsx",
@@ -347,9 +279,7 @@
     },
     "input--with-picker": {
       "name": "With picker",
-      "levels": [
-        "Input"
-      ],
+      "levels": ["Input"],
       "locStart": 26,
       "locEnd": 28,
       "filePath": "stories/input.stories.tsx",
@@ -357,9 +287,7 @@
     },
     "input--with-placeholder": {
       "name": "With placeholder",
-      "levels": [
-        "Input"
-      ],
+      "levels": ["Input"],
       "locStart": 4,
       "locEnd": 4,
       "filePath": "stories/input.stories.tsx",
@@ -367,9 +295,7 @@
     },
     "input--with-rage": {
       "name": "With rage",
-      "levels": [
-        "Input"
-      ],
+      "levels": ["Input"],
       "locStart": 30,
       "locEnd": 30,
       "filePath": "stories/input.stories.tsx",
@@ -377,9 +303,7 @@
     },
     "layout--dashboard": {
       "name": "Dashboard",
-      "levels": [
-        "Layout"
-      ],
+      "levels": ["Layout"],
       "locStart": 19,
       "locEnd": 34,
       "filePath": "stories/layout.stories.tsx",
@@ -387,9 +311,7 @@
     },
     "layout--pancake": {
       "name": "Pancake",
-      "levels": [
-        "Layout"
-      ],
+      "levels": ["Layout"],
       "locStart": 3,
       "locEnd": 17,
       "filePath": "stories/layout.stories.tsx",
@@ -397,9 +319,7 @@
     },
     "modal--default-config": {
       "name": "Default config",
-      "levels": [
-        "Modal"
-      ],
+      "levels": ["Modal"],
       "locStart": 6,
       "locEnd": 30,
       "filePath": "stories/modal.stories.tsx",
@@ -407,9 +327,7 @@
     },
     "notice--sonner": {
       "name": "Sonner",
-      "levels": [
-        "Notice"
-      ],
+      "levels": ["Notice"],
       "locStart": 6,
       "locEnd": 26,
       "filePath": "stories/notice.stories.tsx",
@@ -417,9 +335,7 @@
     },
     "section--default": {
       "name": "Default",
-      "levels": [
-        "Section"
-      ],
+      "levels": ["Section"],
       "locStart": 4,
       "locEnd": 17,
       "filePath": "stories/section.stories.tsx",
@@ -427,9 +343,7 @@
     },
     "section--with-color": {
       "name": "With color",
-      "levels": [
-        "Section"
-      ],
+      "levels": ["Section"],
       "locStart": 19,
       "locEnd": 32,
       "filePath": "stories/section.stories.tsx",
@@ -437,9 +351,7 @@
     },
     "section--with-container": {
       "name": "With container",
-      "levels": [
-        "Section"
-      ],
+      "levels": ["Section"],
       "locStart": 34,
       "locEnd": 63,
       "filePath": "stories/section.stories.tsx",
@@ -447,9 +359,7 @@
     },
     "section--with-pass-div": {
       "name": "With pass div",
-      "levels": [
-        "Section"
-      ],
+      "levels": ["Section"],
       "locStart": 72,
       "locEnd": 77,
       "filePath": "stories/section.stories.tsx",
@@ -457,9 +367,7 @@
     },
     "section--with-sub-class-name": {
       "name": "With sub class name",
-      "levels": [
-        "Section"
-      ],
+      "levels": ["Section"],
       "locStart": 65,
       "locEnd": 70,
       "filePath": "stories/section.stories.tsx",
@@ -467,9 +375,7 @@
     },
     "select--naked": {
       "name": "Naked",
-      "levels": [
-        "Select"
-      ],
+      "levels": ["Select"],
       "locStart": 4,
       "locEnd": 10,
       "filePath": "stories/select.stories.tsx",
@@ -477,9 +383,7 @@
     },
     "select--with-dialog": {
       "name": "With dialog",
-      "levels": [
-        "Select"
-      ],
+      "levels": ["Select"],
       "locStart": 20,
       "locEnd": 30,
       "filePath": "stories/select.stories.tsx",
@@ -487,9 +391,7 @@
     },
     "select--with-placeholder": {
       "name": "With placeholder",
-      "levels": [
-        "Select"
-      ],
+      "levels": ["Select"],
       "locStart": 12,
       "locEnd": 18,
       "filePath": "stories/select.stories.tsx",
@@ -497,9 +399,7 @@
     },
     "separator--horizontal": {
       "name": "Horizontal",
-      "levels": [
-        "Separator"
-      ],
+      "levels": ["Separator"],
       "locStart": 6,
       "locEnd": 10,
       "filePath": "stories/separator.stories.tsx",
@@ -507,9 +407,7 @@
     },
     "separator--vertical": {
       "name": "Vertical",
-      "levels": [
-        "Separator"
-      ],
+      "levels": ["Separator"],
       "locStart": 12,
       "locEnd": 22,
       "filePath": "stories/separator.stories.tsx",
@@ -517,9 +415,7 @@
     },
     "skeleton--basic": {
       "name": "Basic",
-      "levels": [
-        "Skeleton"
-      ],
+      "levels": ["Skeleton"],
       "locStart": 5,
       "locEnd": 7,
       "filePath": "stories/skeleton.stories.tsx",
@@ -527,9 +423,7 @@
     },
     "skeleton--circle": {
       "name": "Circle",
-      "levels": [
-        "Skeleton"
-      ],
+      "levels": ["Skeleton"],
       "locStart": 8,
       "locEnd": 10,
       "filePath": "stories/skeleton.stories.tsx",
@@ -537,9 +431,7 @@
     },
     "skeleton--example": {
       "name": "Example",
-      "levels": [
-        "Skeleton"
-      ],
+      "levels": ["Skeleton"],
       "locStart": 14,
       "locEnd": 55,
       "filePath": "stories/skeleton.stories.tsx",
@@ -547,9 +439,7 @@
     },
     "skeleton--fluid": {
       "name": "Fluid",
-      "levels": [
-        "Skeleton"
-      ],
+      "levels": ["Skeleton"],
       "locStart": 11,
       "locEnd": 13,
       "filePath": "stories/skeleton.stories.tsx",
@@ -557,9 +447,7 @@
     },
     "tabs--basic": {
       "name": "Basic",
-      "levels": [
-        "Tabs"
-      ],
+      "levels": ["Tabs"],
       "locStart": 5,
       "locEnd": 11,
       "filePath": "stories/tabs.stories.tsx",
