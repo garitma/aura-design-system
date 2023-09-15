@@ -195,13 +195,7 @@ export const useInputValueFields = () => {
 
 export const useActions = (
   formData: any
-): { resetForm: () => void; touched: () => void } => {
-  if (!formData) {
-    return {
-      resetForm: () => {},
-      touched: () => {},
-    };
-  }
+): { resetForm: () => void; touched: () => void; getValues: () => void } => {
 
   const resetForm = () => {
     for (const field in formData) {
@@ -215,7 +209,19 @@ export const useActions = (
     }
   };
 
-  return { resetForm, touched };
+  const getValues = () => {
+    let formValues = {};
+
+    for (const value in formData) {
+      formValues = {
+        ...formValues,
+        [value]: formData[value].value,
+      };
+    }
+    return formValues;
+  };
+
+  return { resetForm, touched, getValues };
 };
 
 export const useFormDynamic = () => {
