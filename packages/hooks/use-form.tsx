@@ -17,29 +17,29 @@ export type StatusProps = {
 };
 
 export type InputValueProps = {
-  value?: InitialInputValueProps;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  error?: string | null;
-  touch?: boolean;
-  reset?: () => void;
-  dialog?: React.Dispatch<React.SetStateAction<string | null>>;
-  setTouch?: React.Dispatch<React.SetStateAction<boolean>>;
-  setValue?: React.Dispatch<React.SetStateAction<InitialInputValueProps>>;
-  helpText?: string | null;
-  isHelping?: boolean;
+  value: InitialInputValueProps;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error: string | null;
+  touch: boolean;
+  reset: () => void;
+  dialog: React.Dispatch<React.SetStateAction<string | null>>;
+  setTouch: React.Dispatch<React.SetStateAction<boolean>>;
+  setValue: React.Dispatch<React.SetStateAction<InitialInputValueProps>>;
+  helpText: string | null;
+  isHelping: boolean;
 };
 
 export type SelectValueProps = {
-  value?: InitialInputValueProps;
-  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  error?: string | null;
-  touch?: boolean;
-  reset?: () => void;
-  dialog?: React.Dispatch<React.SetStateAction<string | null>>;
-  setTouch?: React.Dispatch<React.SetStateAction<boolean>>;
-  setValue?: React.Dispatch<React.SetStateAction<InitialInputValueProps>>;
-  helpText?: string | null;
-  isHelping?: boolean;
+  value: InitialInputValueProps;
+  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  error: string | null;
+  touch: boolean;
+  reset: () => void;
+  dialog: React.Dispatch<React.SetStateAction<string | null>>;
+  setTouch: React.Dispatch<React.SetStateAction<boolean>>;
+  setValue: React.Dispatch<React.SetStateAction<InitialInputValueProps>>;
+  helpText: string | null;
+  isHelping: boolean;
 };
 
 export const useInputValue = (
@@ -71,21 +71,10 @@ export const useInputValue = (
   };
 };
 
-export interface DynamicInputProps {
-  [key: string]: InitialInputValueProps;
-}
 
-export type FormField = {
-  value?: InitialInputValueProps;
-  error?: string | null;
-  touch?: boolean;
-  reset?: () => void;
-};
 
-export type FormData = Record<string, FormField>;
-
-export const useForm = (initialValues: DynamicInputProps) => {
-  const formData: { [key: string]: FormField } = {};
+export const useForm = (initialValues: Record<string, InitialInputValueProps>) :Record<string, InputValueProps> => {
+  const formData: Record<string, any>   = {};
 
   for (const key in initialValues) {
     formData[key] = useInputValue(initialValues[key]);
@@ -94,9 +83,7 @@ export const useForm = (initialValues: DynamicInputProps) => {
   return { ...formData };
 };
 
-export const useFormValues = (formData: {
-  [key: string]: { value: InitialInputValueProps };
-}) => {
+export const useFormValues = (formData: Record<string, InputValueProps>) => {
   let formValues = {};
 
   for (const value in formData) {

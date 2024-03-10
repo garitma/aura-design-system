@@ -6,7 +6,8 @@ export interface CheckboxProps extends SharedBasic {
   label?: string;
   containerClassName?: string;
   id?: string;
-  setValue?: (event?: any) => void;
+  setValue?: (value: boolean) => void;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Checkbox = ({
@@ -14,13 +15,19 @@ const Checkbox = ({
   containerClassName,
   id,
   setValue,
+  onChange,
   ...props
 }: CheckboxProps): JSX.Element => {
   const idConnect = id ? id : useId();
   const classConnect: string[] = [containerClassName!];
-  const handleOnChangeCheck = setValue
-    ? () => setValue((currentValue: boolean) => !currentValue)
-    : () => {};
+  
+  const handleOnChangeCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+    // Call the provided onChange function with the event
+    onChange?.(event);
+
+    // Call the provided setValue function with the checked value
+    setValue?.(event.target.checked);
+  };
 
   return (
     <div className={classConnect.join()}>

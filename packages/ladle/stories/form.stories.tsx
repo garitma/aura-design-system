@@ -6,7 +6,6 @@ import {
   useFormIsValid,
   isInvalidSchema,
 } from "../../hooks/use-form";
-import type { FormDataProps } from "../../hooks/use-form";
 import Input from "../../components/input";
 import Select from "../../components/select";
 import Button from "../../components/button";
@@ -15,7 +14,7 @@ import Grid from "../../components/grid";
 import Checkbox from "../../components/checkbox";
 
 export const WithHook = () => {
-  const formData: FormDataProps = useForm({
+  const formData = useForm({
     firstName: "",
     lastName: "",
     email: "",
@@ -35,6 +34,11 @@ export const WithHook = () => {
           <option>Foo</option>
           <option>Foo2</option>
         </Select>
+        <Checkbox
+          label="Acepto la Política de Tratamiento de Datos Personales"
+          {...accept}
+          onChange={(value) => accept.setValue(value.target.checked)}
+        />
         <Checkbox label="Accept terms and conditions." {...accept} />
       </form>
     </div>
@@ -42,7 +46,7 @@ export const WithHook = () => {
 };
 
 export const WithGrid = () => {
-  const formData: FormDataProps = useForm({
+  const formData = useForm({
     firstName: "",
     lastName: "",
     email: "",
@@ -65,7 +69,7 @@ export const WithGrid = () => {
 
 export const WithStatus = () => {
   const status = useStatus();
-  const formData: FormDataProps = useForm({
+  const formData = useForm({
     firstName: "",
     lastName: "",
     email: "",
@@ -123,7 +127,7 @@ export const WithStatus = () => {
 
 export const WithValidator = () => {
   const status = useStatus();
-  const formData: FormDataProps = useForm({
+  const formData = useForm({
     firstName: "",
     lastName: "",
     email: "",
@@ -227,6 +231,7 @@ export const WithValidator = () => {
           <option>Foo</option>
           <option>Foo2</option>
         </Select>
+
         <div className="inputer">
           <Button
             label="Submit"

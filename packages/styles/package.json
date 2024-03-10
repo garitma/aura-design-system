@@ -28,6 +28,6 @@
   },
   "scripts": {
     "dev": "pnpm stylus --compress -w ./main.styl -o ./main.css",
-    "build": "pnpm stylus --compress ./main.styl -o ./main.css && pnpm stylus --compress ./main.styl -o ../system/main.css && pnpm stylus --compress ./main.styl -o ../playground/public/sandbox.css && rm -rf dist && tsc --module commonjs"
+    "build": "pnpm stylus --compress ./main.styl -o ./main.css && pnpm stylus --compress ./main.styl -o ../system/main.css && rm -rf dist && tsc --module commonjs"
   }
 }
