@@ -16,30 +16,46 @@ export type StatusProps = {
   info: { isError: boolean; message?: string | null };
 };
 
+export type FormDataProps = Record<
+  string,
+  {
+    value: InitialInputValueProps;
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    error: string | null;
+    touch: boolean;
+    reset: () => void;
+    dialog: React.Dispatch<React.SetStateAction<string | null>>;
+    setTouch: React.Dispatch<React.SetStateAction<boolean>>;
+    setValue: React.Dispatch<React.SetStateAction<InitialInputValueProps>>;
+    helpText: string | null;
+    isHelping: boolean;
+  }
+>;
+
 export type InputValueProps = {
-  value: InitialInputValueProps;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  error: string | null;
-  touch: boolean;
-  reset: () => void;
-  dialog: React.Dispatch<React.SetStateAction<string | null>>;
-  setTouch: React.Dispatch<React.SetStateAction<boolean>>;
-  setValue: React.Dispatch<React.SetStateAction<InitialInputValueProps>>;
-  helpText: string | null;
-  isHelping: boolean;
+  value?: InitialInputValueProps;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  error?: string | null;
+  touch?: boolean;
+  reset?: () => void;
+  dialog?: React.Dispatch<React.SetStateAction<string | null>>;
+  setTouch?: React.Dispatch<React.SetStateAction<boolean>>;
+  setValue?: React.Dispatch<React.SetStateAction<InitialInputValueProps>>;
+  helpText?: string | null;
+  isHelping?: boolean;
 };
 
 export type SelectValueProps = {
-  value: InitialInputValueProps;
-  onChange: (e: React.ChangeEvent<HTMLSelectElement>) => void;
-  error: string | null;
-  touch: boolean;
-  reset: () => void;
-  dialog: React.Dispatch<React.SetStateAction<string | null>>;
-  setTouch: React.Dispatch<React.SetStateAction<boolean>>;
-  setValue: React.Dispatch<React.SetStateAction<InitialInputValueProps>>;
-  helpText: string | null;
-  isHelping: boolean;
+  value?: InitialInputValueProps;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  error?: string | null;
+  touch?: boolean;
+  reset?: () => void;
+  dialog?: React.Dispatch<React.SetStateAction<string | null>>;
+  setTouch?: React.Dispatch<React.SetStateAction<boolean>>;
+  setValue?: React.Dispatch<React.SetStateAction<InitialInputValueProps>>;
+  helpText?: string | null;
+  isHelping?: boolean;
 };
 
 export const useInputValue = (
@@ -71,10 +87,10 @@ export const useInputValue = (
   };
 };
 
-
-
-export const useForm = (initialValues: Record<string, InitialInputValueProps>) :Record<string, InputValueProps> => {
-  const formData: Record<string, any>   = {};
+export const useForm = (
+  initialValues: Record<string, InitialInputValueProps>
+): FormDataProps => {
+  const formData: Record<string, any> = {};
 
   for (const key in initialValues) {
     formData[key] = useInputValue(initialValues[key]);
@@ -183,7 +199,6 @@ export const useInputValueFields = () => {
 export const useActions = (
   formData: any
 ): { resetForm: () => void; touched: () => void; getValues: () => void } => {
-
   const resetForm = () => {
     for (const field in formData) {
       formData[field]?.reset();
