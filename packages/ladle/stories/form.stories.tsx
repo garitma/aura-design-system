@@ -8,6 +8,7 @@ import {
 } from "../../hooks/use-form";
 import Input from "../../components/input";
 import Select from "../../components/select";
+import Textarea from "../../components/textarea"
 import Button from "../../components/button";
 import Alert from "../../components/alert";
 import Grid from "../../components/grid";
@@ -19,10 +20,11 @@ export const WithHook = () => {
     lastName: "",
     email: "",
     options: "",
+    message: "",
     accept: false,
   });
 
-  const { firstName, lastName, email, options, accept } = formData;
+  const { firstName, lastName, email, options, accept, message } = formData;
 
   return (
     <div>
@@ -34,11 +36,7 @@ export const WithHook = () => {
           <option>Foo</option>
           <option>Foo2</option>
         </Select>
-        <Checkbox
-          label="Acepto la Política de Tratamiento de Datos Personales"
-          {...accept}
-          onChange={(value) => accept.setValue(value.target.checked)}
-        />
+        <Textarea {...message}/>
         <Checkbox label="Accept terms and conditions." {...accept} />
       </form>
     </div>

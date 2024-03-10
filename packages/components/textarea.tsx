@@ -1,4 +1,4 @@
-import { TextareaHTMLAttributes } from "react";
+import {TextareaHTMLAttributes } from "react";
 
 import type { SharedBasic, HelpType } from "../types/global";
 import { InputValueProps, InitialInputValueProps } from "../hooks/use-form";
@@ -11,6 +11,7 @@ export interface InputProps
   extends SharedBasic,
     Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, "value">,
     Omit<InputValueProps, "onChange"> {
+  onChange: any,
   isDisabled?: boolean;
   isLabelable?: boolean;
   helpMode?: HelpType;
