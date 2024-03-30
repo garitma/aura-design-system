@@ -3,19 +3,14 @@
 // Licensed under MIT - see LICENSE.txt 
 // Aura Design System
 
-.white-text
-    color var(--aura-white)!important
-
-.black-text
-    color var(--aura-black)!important
 
 // Background Colors
 
-colors = "snow" "purple" "white" "black" "orange" "orange-rose" "pink" "blue" "teal-green" "green" "lemon-green" "yellow" "cold-grey" "accents-0" "accents-1" "accents-2" "accents-3"
+colors = "accents-0" "accents-1" "accents-2" "accents-3"
 
 for color in colors
   .{color}
-    background-color: var(replace("color", color, --aura-color))!important
+    background-color: var(replace("color", color, --aura-color))
 
 // Status
 
@@ -23,8 +18,8 @@ status = "warning" "info" "danger" "success"
 
 for state in status
   .{state}
-    background-color: var(replace("state", state, --aura-accents-state-bg))!important
+    background-color: var(replace("state", state, --aura-accents-state-bg))
     --aura-outline: solid 2px var(replace("state", state, --aura-accents-state))
   .{state}-text
-    color: var(replace("state", state, --aura-accents-state))!important
+    color: var(replace("state", state, --aura-accents-state))
    

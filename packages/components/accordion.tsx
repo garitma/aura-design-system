@@ -14,9 +14,9 @@ const Accordion = ({
   title,
   children,
   headerSize = "h6", // Default value for headerSize prop is "h6"
-  color,
   className,
 }: AccordionProps): JSX.Element => {
+  
   // Creating an array of CSS classes to be applied to the summary element
   const classNameConnect: string[] = [
     className!,
@@ -28,11 +28,6 @@ const Accordion = ({
     "pointer",
     headerSize,
   ];
-
-  // Adding the color class to classNameConnect if the color prop is provided
-  if (color) {
-    classNameConnect.push(color);
-  }
 
   // Rendering the Accordion component
   return (

@@ -1,7 +1,6 @@
 import * as React from "react";
 
 import {
-  AuraColors,
   AuraContainer,
   AuraSpace,
   SharedBasic,
@@ -18,7 +17,6 @@ export interface SectionProps
       HTMLDivElement
     > {
   subClassName?: string;
-  color?: AuraColors;
   space?: AuraSpace;
   container?: AuraContainer;
   passDiv?: boolean;
@@ -28,7 +26,6 @@ const Section = ({
   children,
   className,
   subClassName,
-  color,
   space = "pad",
   container = "smush",
   passDiv,
@@ -37,10 +34,6 @@ const Section = ({
   const SectionTag = passDiv ? `div` : "section";
   const classConnect: string[] = [className!, space];
   const subClassConnect: string[] = [subClassName!, container];
-
-  if (color) {
-    classConnect.push(color);
-  }
 
   return (
     <SectionTag className={classConnect.join(" ").trim()} {...props}>

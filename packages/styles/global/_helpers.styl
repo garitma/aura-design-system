@@ -4,46 +4,22 @@
 // Licensed under MIT - see LICENSE.txt 
 // Aura Design System
 
-.uline 
-  text-decoration: underline;
-
-.ulinea a:not(.button-link, .button-fill) 
-  text-decoration: underline;
-
-.centertxt
-    text-align center
-    &-small
-        @media only screen and (max-width: $small)
-            text-align: center
-    
-.lefttxt
-    text-align left 
-
-.righttxt
-    text-align right 
-
-.lalign
-    justify-content: flex-start!important;;
-
-.ralign
-    justify-content: flex-end!important;;
-
 .valign
     mixin-flex()
     justify-content center
     flex-direction column
 
 .vfluid
-    height 100%!important
+    height 100%
 
 .fluid
-    width 100%!important
+    width 100%
 
 .circle
-    mixin-border-radius(50%!important)
+    mixin-border-radius(50%)
 
 .square
-    mixin-border-radius(0!important)
+    mixin-border-radius(0)
 
 .disabled
     opacity var(--aura-opacity)
@@ -57,15 +33,7 @@
         opacity 1
 
 .typeahead
-    padding-left calc(var(--aura) * 6)!important
-
-.flowx
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-
-.flowcancel
-    overflow hidden
+    padding-left calc(var(--aura) * 6)
 
 .truncate
     white-space nowrap
@@ -107,9 +75,6 @@
     left 50%
     transform translate(-50%, -50%)
 
-.z10 
-  z-index: 10;
-
 .hidden
     display none
 
@@ -125,11 +90,6 @@
     .hide-large
         display none
 
-.notevent
-    pointer-events: none;
-
-.pointer
-    cursor pointer
 
 .scrolleable {
   overflow-y: scroll;
@@ -142,8 +102,4 @@
   position: sticky;
   top: 0;
   z-index: 1;
-}
-
-.b0 {
-  border: 0 !important;
 }
