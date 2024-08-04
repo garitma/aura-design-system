@@ -56,6 +56,7 @@ const Select = ({
             className={classConnect.join(" ").trim()}
             aria-label={placeholder}
             disabled={isDisabled}
+            value={value?.toLocaleString()}
             {...inputProps}
           >
             {placeholder && <option value="">{placeholder}</option>}
