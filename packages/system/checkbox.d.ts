@@ -1,2 +1,2 @@
-export * from "./dist/components/checkbox";
-export { default } from "./dist/components/checkbox";
+export * from "./dist/ui/checkbox";
+export { default } from "./dist/ui/checkbox";

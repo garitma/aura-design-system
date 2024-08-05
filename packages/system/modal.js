@@ -1,1 +1,1 @@
-module.exports = require("./dist/components/modal");
+module.exports = require("./dist/ui/modal");

@@ -1,1 +1,1 @@
-module.exports = require("./dist/components/button");
+module.exports = require("./dist/ui/button");

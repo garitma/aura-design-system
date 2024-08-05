@@ -1,1 +1,1 @@
-module.exports = require("./dist/components/accordion");
+module.exports = require("./dist/ui/accordion");

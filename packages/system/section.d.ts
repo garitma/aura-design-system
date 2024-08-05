@@ -1,2 +1,2 @@
-export * from "./dist/components/section";
-export { default } from "./dist/components/section";
+export * from "./dist/ui/section";
+export { default } from "./dist/ui/section";

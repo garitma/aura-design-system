@@ -1,1 +1,1 @@
-module.exports = require("./dist/components/textarea");
+module.exports = require("./dist/ui/textarea");

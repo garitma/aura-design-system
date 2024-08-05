@@ -1,7 +1,7 @@
 {
     "extends": "@aura-design/typescript-config/react-library.json",
     "compilerOptions": {
-      "outDir": "dist"
+      "outDir": "../system/dist/hooks"
     },
     "include": ["src"],
     "exclude": ["node_modules", "dist"]

@@ -1,1 +1,1 @@
-module.exports = require("./dist/components/input");
+module.exports = require("./dist/ui/input");

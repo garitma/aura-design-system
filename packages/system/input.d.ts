@@ -1,2 +1,2 @@
-export * from "./dist/components/input";
-export { default } from "./dist/components/input";
+export * from "./dist/ui/input";
+export { default } from "./dist/ui/input";
