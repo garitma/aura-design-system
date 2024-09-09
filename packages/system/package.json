@@ -1,6 +1,6 @@
 {
   "name": "@aura-design/system",
-  "version": "0.4.44",
+  "version": "0.4.52",
   "description": "Garitma's Design system",
   "keywords": [
     "react",
@@ -73,8 +73,8 @@
     "url": "https://github.com/garitma/aura-design-system/issues"
   },
   "scripts": {
-    "dev": "tsc --watch",
-    "build": "rm -rf dist && tsc --module commonjs"
+    "dev": "tsc --watch --module commonjs",
+    "build": "tsc --module commonjs --noEmitOnError"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

@@ -2,7 +2,6 @@ import { SharedBasic } from "../types/global";
 import { Cross1Icon } from "@radix-ui/react-icons";
 
 import Button, { ButtonProps } from "./button";
-import Grid from "./grid";
 
 export interface ModalProps extends SharedBasic {
   isVisible?: boolean;
@@ -21,18 +20,12 @@ export interface ModalProps extends SharedBasic {
 const Modal = ({
   isVisible,
   onClose,
-  firstButton,
-  secondButton,
-  title,
-  description,
   children,
   classNameDialog,
   classNameOverley,
   classNameMod,
   classNameModDetail,
 }: ModalProps): JSX.Element => {
-  const isTwoButtons = firstButton && secondButton;
-
   const classNameDialogConnect: string[] = [
     classNameDialog!,
     "hold",
@@ -83,19 +76,7 @@ const Modal = ({
               <Cross1Icon />
             </Button>
             <div className={classNameModDetailConnect.join(" ").trim()}>
-              {title && <h2 className="h6 mb13">{title}</h2>}
-              {description && <p>{description}</p>}
               {children}
-              <hr className="upan-pad" />
-              <Grid col={isTwoButtons ? "two" : "one"}>
-                {firstButton && (
-                  <Button
-                    mode={isTwoButtons ? "pill" : "fill"}
-                    {...firstButton}
-                  />
-                )}
-                {secondButton && <Button {...secondButton} />}
-              </Grid>
             </div>
           </div>
         </div>

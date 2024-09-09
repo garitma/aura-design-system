@@ -14,11 +14,11 @@ export interface ButtonProps extends SharedBasic, IntrinsicProps {
   isDisabled?: boolean;
   isFluid?: boolean;
   isLoading?: boolean;
-  isLoadingText?: string;
+  isLoadingText?: React.ReactNode;
   mode?: ButtonMode;
-  label?: string;
+  label?: React.ReactNode;
   href?: string;
-  as?: ElementType;
+  as?: any;
 }
 
 // ForwardRef allows the component to receive a ref from its parent component
