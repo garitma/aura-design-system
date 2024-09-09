@@ -7,8 +7,8 @@ import {
   ChevronRightIcon,
 } from "@radix-ui/react-icons";
 
-import Button from "@aura-design/ui/button";
-import Separator from "@aura-design/ui/separator";
+import Button from "@aura-design/system/dist/components/button";
+import Separator from "@aura-design/system/dist/components/separator";
 
 export const Default = () => {
   const [bookmarksChecked, setBookmarksChecked] = React.useState(true);

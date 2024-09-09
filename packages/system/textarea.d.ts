@@ -1,2 +1,2 @@
-export * from "./dist/ui/textarea";
-export { default } from "./dist/ui/textarea";
+export * from "./dist/components/textarea";
+export { default } from "./dist/components/textarea";

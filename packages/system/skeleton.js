@@ -1,1 +1,1 @@
-module.exports = require("./dist/ui/skeleton");
+module.exports = require("./dist/components/skeleton");

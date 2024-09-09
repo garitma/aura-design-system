@@ -1,2 +1,2 @@
-export * from "./dist/ui/icon";
-export { default } from "./dist/ui/icon";
+export * from "./dist/components/icon";
+export { default } from "./dist/components/icon";

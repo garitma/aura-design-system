@@ -1,2 +1,2 @@
-export * from "./dist/ui/select";
-export { default } from "./dist/ui/select";
+export * from "./dist/components/select";
+export { default } from "./dist/components/select";

@@ -1,1 +1,1 @@
-module.exports = require("./dist/ui/grid");
+module.exports = require("./dist/components/grid");

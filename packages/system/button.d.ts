@@ -1,2 +1,2 @@
-export * from "./dist/ui/button";
-export { default } from "./dist/ui/button";
+export * from "./dist/components/button";
+export { default } from "./dist/components/button";

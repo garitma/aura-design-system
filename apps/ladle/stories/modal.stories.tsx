@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-import Button from "@aura-design/ui/button";
-import Modal from "@aura-design/ui/modal";
+import Button from "@aura-design/system/dist/components/button";
+import Modal from "@aura-design/system/dist/components/modal";
 
 export const DefaultConfig = () => {
   const [isOpen, setIsOpen] = useState(false);

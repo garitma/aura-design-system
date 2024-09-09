@@ -12,7 +12,10 @@
   "bugs": {
     "url": "https://github.com/garitma/aura-design-system/issues"
   },
-  "scripts": {},
+  "scripts": {
+    "build": "pnpm npx turbo build",
+    "dev": "pnpm npx turbo dev"
+  },
   "keywords": [
     "react",
     "react-component",
@@ -25,6 +28,7 @@
     "turbo": "^2.0.11",
     "typescript": "^5.4.5"
   },
+  "packageManager": "pnpm@9.8.0",
   "workspaces": [
     "packages/*"
   ]

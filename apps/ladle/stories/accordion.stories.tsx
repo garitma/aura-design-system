@@ -1,5 +1,5 @@
 import React from "react";
-import Accordion from "@aura-design/ui/accordion";
+import Accordion from "@aura-design/system/dist/components/accordion";
 
 export const WithContent = () => (
   <Accordion title="Accordion title">

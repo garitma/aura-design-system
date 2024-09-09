@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+      "target": "esnext",
+      "module": "esnext",
+      "lib": ["dom", "esnext"],
+      "declaration": true,
+      "moduleResolution": "node",
+      "outDir": "dist/",
+      "jsx": "react-jsx",
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "esModuleInterop": false,
+      "noImplicitReturns": true,
+      "noImplicitThis": true,
+      "noImplicitAny": true,
+      "strictNullChecks": true,
+      "allowSyntheticDefaultImports": false,
+      "skipLibCheck": true
+    },
+    "include": [
+      "packages/system",
+    ],
+    "exclude": ["node_modules", "dist"]
+  }

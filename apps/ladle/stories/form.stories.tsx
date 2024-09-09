@@ -5,14 +5,14 @@ import {
   useStatus,
   useFormIsValid,
   isInvalidSchema,
-} from "@aura-design/hooks/form";
-import Input from "@aura-design/ui/input";
-import Select from "@aura-design/ui/select";
-import Textarea from "@aura-design/ui/textarea"
-import Button from "@aura-design/ui/button";
-import Alert from "@aura-design/ui/alert";
-import Grid from "@aura-design/ui/grid";
-import Checkbox from "@aura-design/ui/checkbox";
+} from "@aura-design/system/dist/hooks/use-form";
+import Input from "@aura-design/system/dist/components/input";
+import Select from "@aura-design/system/dist/components/select";
+import Textarea from "@aura-design/system/dist/components/textarea"
+import Button from "@aura-design/system/dist/components/button";
+import Alert from "@aura-design/system/dist/components/alert";
+import Grid from "@aura-design/system/dist/components/grid";
+import Checkbox from "@aura-design/system/dist/components/checkbox";
 
 export const WithHook = () => {
   const formData = useForm({

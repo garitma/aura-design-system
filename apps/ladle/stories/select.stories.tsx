@@ -1,5 +1,5 @@
 import React from "react";
-import Select from "@aura-design/ui/select";
+import Select from "@aura-design/system/dist/components/select";
 
 export const Naked = () => (
   <Select aria-label="Naked select">

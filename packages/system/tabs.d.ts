@@ -1,2 +1,2 @@
-export * from "./dist/ui/tabs";
-export { default } from "./dist/ui/tabs";
+export * from "./dist/components/tabs";
+export { default } from "./dist/components/tabs";

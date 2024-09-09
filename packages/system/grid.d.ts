@@ -1,2 +1,2 @@
-export * from "./dist/ui/grid";
-export { default } from "./dist/ui/grid";
+export * from "./dist/components/grid";
+export { default } from "./dist/components/grid";

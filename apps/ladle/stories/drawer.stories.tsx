@@ -1,8 +1,8 @@
 import React from "react";
 import { Drawer } from "vaul";
 
-import Button from "@aura-design/ui/button";
-import Section from "@aura-design/ui/section";
+import Button from "@aura-design/system/dist/components/button";
+import Section from "@aura-design/system/dist/components/section";
 
 export const Default = () => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import Section from "@aura-design/ui/section";
+import Section from "@aura-design/system/dist/components/section";
 
 export const Default = () => (
   <Section>

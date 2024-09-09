@@ -1,1 +1,1 @@
-module.exports = require("./dist/ui/checkbox");
+module.exports = require("./dist/components/checkbox");

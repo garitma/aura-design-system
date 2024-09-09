@@ -1,2 +1,2 @@
-export * from "./dist/ui/alert";
-export { default } from "./dist/ui/alert";
+export * from "./dist/components/alert";
+export { default } from "./dist/components/alert";

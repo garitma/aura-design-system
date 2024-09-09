@@ -1,5 +1,5 @@
 import React from "react";
-import Grid from "@aura-design/ui/grid";
+import Grid from "@aura-design/system/dist/components/grid";
 
 export const withOneColumns = () => (
   <Grid col="one">

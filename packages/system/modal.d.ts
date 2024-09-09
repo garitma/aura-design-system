@@ -1,2 +1,2 @@
-export * from "./dist/ui/modal";
-export { default } from "./dist/ui/modal";
+export * from "./dist/components/modal";
+export { default } from "./dist/components/modal";

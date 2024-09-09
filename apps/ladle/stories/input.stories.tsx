@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "@aura-design/ui/input";
+import Input from "@aura-design/system/dist/components/input";
 
 export const WithPlaceholder = () => <Input placeholder="Placeholder" />;
 export const WithLabel = () => (

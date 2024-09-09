@@ -1,7 +1,8 @@
 {
-  "extends": "@aura-design/typescript-config/react-library.json",
+  "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../system/dist/ui"
+    "outDir": "dist/",
   },
-  "exclude": ["node_modules"]
+  "include": ["./components", "./hooks", "./utils"],
+  "exclude": ["node_modules", "dist"]
 }

@@ -1,1 +1,1 @@
-module.exports = require("./dist/ui/icon");
+module.exports = require("./dist/components/icon");

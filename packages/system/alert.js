@@ -1,1 +1,1 @@
-module.exports = require("./dist/ui/alert");
+module.exports = require("./dist/components/alert");
