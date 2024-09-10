@@ -1,4 +1,4 @@
-import { forwardRef, RefObject, CSSProperties, ElementType } from "react";
+import { forwardRef, RefObject, CSSProperties } from "react";
 import { Target, SharedBasic, ButtonMode, ButtonType } from "../types/global";
 
 // Props that are inherited from the intrinsic HTML button or anchor tag
@@ -67,6 +67,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonProps>(
         <span className={`container`}>
           {isLoading ? isLoadingText : label}
           {children}
+          hola
         </span>
       </AuraButton>
     );

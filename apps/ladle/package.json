@@ -2,10 +2,7 @@
   "name": "@aura-design/ladle",
   "version": "1.0.1",
   "scripts": {
-    "dev": "pnpm ladle serve --stories=stories",
-    "build": "pnpm ladle build --stories=stories",
-    "start": "pnpm ladle preview",
-    "test": "pnpm npx playwright test"
+    "dev": "pnpm ladle serve --stories=stories"
   },
   "keywords": [],
   "author": {
@@ -23,7 +20,7 @@
     "vaul": "^0.9.2"
   },
   "devDependencies": {
-    "@aura-design/system": "*",
+    "@aura-design/system": "workspace:*",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "autoprefixer": "^10.4.20",

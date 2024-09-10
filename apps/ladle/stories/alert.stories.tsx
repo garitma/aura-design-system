@@ -1,5 +1,5 @@
 import React from "react";
-import Alert from "@aura-design/system/dist/components/alert";
+import Alert from "@aura-design/system/alert";
 
 export const infoAlert = () => (
   <Alert

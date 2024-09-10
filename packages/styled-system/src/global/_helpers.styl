@@ -23,10 +23,10 @@
     text-align right 
 
 .lalign
-    justify-content: flex-start!important;
+    justify-content: flex-start;
 
 .ralign
-    justify-content: flex-end!important;
+    justify-content: flex-end;
 
 .valign
     mixin-flex()
@@ -34,16 +34,16 @@
     flex-direction column
 
 .vfluid
-    height 100%!important
+    height 100%
 
 .fluid
-    width 100%!important
+    width 100%
 
 .circle
-    mixin-border-radius(50%!important)
+    mixin-border-radius(50%)
 
 .square
-    mixin-border-radius(0!important)
+    mixin-border-radius(0)
 
 .disabled
     opacity var(--aura-opacity)
@@ -57,7 +57,7 @@
         opacity 1
 
 .typeahead
-    padding-left calc(var(--aura) * 6)!important
+    padding-left calc(var(--aura) * 6)
 
 .flowx
     width: 100%;
@@ -76,7 +76,7 @@
     position: relative;
 
 .overley
-    position absolute
+    position fixed
     right 0
     left 0
     top 0
@@ -145,5 +145,5 @@
 }
 
 .b0 {
-  border: 0 !important;
+  border: 0 ;
 }

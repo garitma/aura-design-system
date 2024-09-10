@@ -10,23 +10,30 @@ const __dirname = path.dirname(__filename);
 const componentsDir = path.join(__dirname, '../components');
 const rootDir = path.join(__dirname, '..'); // Parent directory
 
-// Function to generate the .d.ts and .js files
+// Function to generate the .ts file for re-exporting
 const generateRootFiles = (componentName) => {
-  const distPath = `./dist/components/${componentName}`;
+  const jsFilePath = path.join(rootDir, `${componentName}.js`);
+  const dtsFilePath = path.join(rootDir, `${componentName}.d.ts`);
+  const tsFilePath = path.join(rootDir, `${componentName}.ts`);
 
-  // Generate .d.ts content
-  const dtsContent = `export * from "${distPath}";\nexport { default } from "${distPath}";`;
+  // Check and delete existing .js and .d.ts files
+  if (fs.existsSync(jsFilePath)) {
+    fs.unlinkSync(jsFilePath);
+    console.log(`Deleted ${componentName}.js`);
+  }
 
-  // Generate .js content
-  const jsContent = `module.exports = require("${distPath}");`;
+  if (fs.existsSync(dtsFilePath)) {
+    fs.unlinkSync(dtsFilePath);
+    console.log(`Deleted ${componentName}.d.ts`);
+  }
 
-  // Write .d.ts file in the parent folder
-  fs.writeFileSync(path.join(rootDir, `${componentName}.d.ts`), dtsContent, 'utf8');
-  
-  // Write .js file in the parent folder
-  fs.writeFileSync(path.join(rootDir, `${componentName}.js`), jsContent, 'utf8');
+  // Generate the .ts content for re-exporting
+  const tsContent = `export * from './components/${componentName}';\n` +
+                    `export { default } from './components/${componentName}';`;
 
-  console.log(`Generated files for ${componentName}`);
+  // Write the new .ts file in the parent folder
+  fs.writeFileSync(tsFilePath, tsContent, 'utf8');
+  console.log(`Generated ${componentName}.ts for re-exporting`);
 };
 
 // Function to process components in the components folder
@@ -43,7 +50,7 @@ const processComponents = () => {
 
     tsFiles.forEach(file => {
       const componentName = path.basename(file, path.extname(file)); // Get the component name without extension
-      generateRootFiles(componentName); // Generate files in the parent folder
+      generateRootFiles(componentName); // Generate the .ts re-export file
     });
   });
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "@aura-design/system/dist/components/button";
+import Button from "@aura-design/system/button";
 
 export const ButtonFill = () => <Button label="Button fill" />;
 export const ButtonPill = () => <Button mode="pill" label="Button Pill" />;

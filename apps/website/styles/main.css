@@ -34,12 +34,12 @@
 }
 
 #nprogress .bar {
-  background: var(--aura-loader) !important;
-  height: 6.5px !important;
+  background: var(--aura-loader) ;
+  height: 6.5px ;
 }
 
 #nprogress .peg {
-  display: none !important;
+  display: none ;
 }
 
 *:root {

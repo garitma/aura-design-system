@@ -10,26 +10,20 @@ const __dirname = path.dirname(__filename);
 const componentsDir = path.join(__dirname, '../components');
 const rootDir = path.join(__dirname, '..'); // Parent directory
 
-// Function to generate the .d.ts and .js files
-const generateRootFiles = (componentName) => {
-  const distPath = `./dist/components/${componentName}`;
+// Function to delete generated .ts files
+const deleteGeneratedFiles = (componentName) => {
+  const tsFilePath = path.join(rootDir, `${componentName}.ts`);
 
-  // Generate .d.ts content
-  const dtsContent = `export * from "${distPath}";\nexport { default } from "${distPath}";`;
-
-  // Generate .js content
-  const jsContent = `module.exports = require("${distPath}");`;
-
-  // Write .d.ts file in the parent folder
-  fs.writeFileSync(path.join(rootDir, `${componentName}.d.ts`), dtsContent, 'utf8');
-  
-  // Write .js file in the parent folder
-  fs.writeFileSync(path.join(rootDir, `${componentName}.js`), jsContent, 'utf8');
-
-  console.log(`Generated files for ${componentName}`);
+  // Check and delete the .ts file
+  if (fs.existsSync(tsFilePath)) {
+    fs.unlinkSync(tsFilePath);
+    console.log(`Deleted ${componentName}.ts`);
+  } else {
+    console.log(`${componentName}.ts does not exist, skipping...`);
+  }
 };
 
-// Function to process components in the components folder
+// Function to process components in the components folder and delete corresponding .ts files
 const processComponents = () => {
   // Read components directory
   fs.readdir(componentsDir, (err, files) => {
@@ -43,7 +37,7 @@ const processComponents = () => {
 
     tsFiles.forEach(file => {
       const componentName = path.basename(file, path.extname(file)); // Get the component name without extension
-      generateRootFiles(componentName); // Generate files in the parent folder
+      deleteGeneratedFiles(componentName); // Delete the corresponding .ts file in the root folder
     });
   });
 };

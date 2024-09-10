@@ -43,6 +43,9 @@ yarn-error.log*
 **/tmp/** 
 !**/tmp/.gitkeep
 
+# root inject
+packages/system/**.ts
+
 # watchdog
 venv
 watchdog.log

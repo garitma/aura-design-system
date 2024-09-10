@@ -2,6 +2,7 @@
   "name": "@aura-design/system",
   "version": "0.4.52",
   "description": "Garitma's Design system",
+  "type": "commonjs",
   "keywords": [
     "react",
     "react-component",
@@ -73,8 +74,11 @@
     "url": "https://github.com/garitma/aura-design-system/issues"
   },
   "scripts": {
-    "dev": "tsc --watch --module commonjs",
-    "build": "tsc --module commonjs --noEmitOnError"
+    "root:build": "node scripts/componentRootInject.mjs",
+    "root:dev:clean": "node scripts/componentRootDevClear.mjs",
+    "root:dev": "node scripts/componentRootInjectDev.mjs",
+    "dev": "pnpm run root:dev",
+    "build": "pnpm run root:dev:clean && pnpm run root:build && tsc --module commonjs"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

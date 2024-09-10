@@ -5,16 +5,6 @@
     "version": 1
   },
   "stories": {
-    "accordion--with-color": {
-      "name": "With color",
-      "levels": [
-        "Accordion"
-      ],
-      "locStart": 16,
-      "locEnd": 20,
-      "filePath": "stories/accordion.stories.tsx",
-      "meta": {}
-    },
     "accordion--with-content": {
       "name": "With content",
       "levels": [
@@ -23,6 +13,7 @@
       "locStart": 4,
       "locEnd": 8,
       "filePath": "stories/accordion.stories.tsx",
+      "namedExport": "WithContent",
       "meta": {}
     },
     "accordion--with-header-size": {
@@ -33,6 +24,7 @@
       "locStart": 10,
       "locEnd": 14,
       "filePath": "stories/accordion.stories.tsx",
+      "namedExport": "WithHeaderSize",
       "meta": {}
     },
     "alert--danger-alert": {
@@ -43,6 +35,7 @@
       "locStart": 10,
       "locEnd": 14,
       "filePath": "stories/alert.stories.tsx",
+      "namedExport": "dangerAlert",
       "meta": {}
     },
     "alert--info-alert": {
@@ -53,6 +46,7 @@
       "locStart": 4,
       "locEnd": 8,
       "filePath": "stories/alert.stories.tsx",
+      "namedExport": "infoAlert",
       "meta": {}
     },
     "button--button-disabled": {
@@ -63,6 +57,7 @@
       "locStart": 8,
       "locEnd": 8,
       "filePath": "stories/button.stories.tsx",
+      "namedExport": "ButtonDisabled",
       "meta": {}
     },
     "button--button-fill": {
@@ -73,6 +68,7 @@
       "locStart": 4,
       "locEnd": 4,
       "filePath": "stories/button.stories.tsx",
+      "namedExport": "ButtonFill",
       "meta": {}
     },
     "button--button-fluid": {
@@ -83,6 +79,7 @@
       "locStart": 7,
       "locEnd": 7,
       "filePath": "stories/button.stories.tsx",
+      "namedExport": "ButtonFluid",
       "meta": {}
     },
     "button--button-link": {
@@ -93,6 +90,7 @@
       "locStart": 6,
       "locEnd": 6,
       "filePath": "stories/button.stories.tsx",
+      "namedExport": "ButtonLink",
       "meta": {}
     },
     "button--button-pill": {
@@ -103,6 +101,7 @@
       "locStart": 5,
       "locEnd": 5,
       "filePath": "stories/button.stories.tsx",
+      "namedExport": "ButtonPill",
       "meta": {}
     },
     "button--button-waiting": {
@@ -113,6 +112,7 @@
       "locStart": 9,
       "locEnd": 11,
       "filePath": "stories/button.stories.tsx",
+      "namedExport": "ButtonWaiting",
       "meta": {}
     },
     "checkbox--naked": {
@@ -123,6 +123,7 @@
       "locStart": 5,
       "locEnd": 5,
       "filePath": "stories/checkbox.stories.tsx",
+      "namedExport": "Naked",
       "meta": {}
     },
     "drawer--default": {
@@ -133,6 +134,7 @@
       "locStart": 7,
       "locEnd": 83,
       "filePath": "stories/drawer.stories.tsx",
+      "namedExport": "Default",
       "meta": {}
     },
     "dropdown--default": {
@@ -143,6 +145,7 @@
       "locStart": 13,
       "locEnd": 105,
       "filePath": "stories/dropdown.stories.tsx",
+      "namedExport": "Default",
       "meta": {}
     },
     "form--with-grid": {
@@ -150,9 +153,10 @@
       "levels": [
         "Form"
       ],
-      "locStart": 44,
-      "locEnd": 64,
+      "locStart": 46,
+      "locEnd": 66,
       "filePath": "stories/form.stories.tsx",
+      "namedExport": "WithGrid",
       "meta": {}
     },
     "form--with-hook": {
@@ -161,8 +165,9 @@
         "Form"
       ],
       "locStart": 17,
-      "locEnd": 42,
+      "locEnd": 44,
       "filePath": "stories/form.stories.tsx",
+      "namedExport": "WithHook",
       "meta": {}
     },
     "form--with-status": {
@@ -170,9 +175,10 @@
       "levels": [
         "Form"
       ],
-      "locStart": 66,
-      "locEnd": 122,
+      "locStart": 68,
+      "locEnd": 124,
       "filePath": "stories/form.stories.tsx",
+      "namedExport": "WithStatus",
       "meta": {}
     },
     "form--with-validator": {
@@ -180,9 +186,10 @@
       "levels": [
         "Form"
       ],
-      "locStart": 124,
-      "locEnd": 242,
+      "locStart": 126,
+      "locEnd": 245,
       "filePath": "stories/form.stories.tsx",
+      "namedExport": "WithValidator",
       "meta": {}
     },
     "grid--with-columns-fixed": {
@@ -193,6 +200,7 @@
       "locStart": 56,
       "locEnd": 67,
       "filePath": "stories/grid.stories.tsx",
+      "namedExport": "withColumnsFixed",
       "meta": {}
     },
     "grid--with-columns-reverse": {
@@ -203,6 +211,7 @@
       "locStart": 69,
       "locEnd": 74,
       "filePath": "stories/grid.stories.tsx",
+      "namedExport": "withColumnsReverse",
       "meta": {}
     },
     "grid--with-four-columns": {
@@ -213,6 +222,7 @@
       "locStart": 43,
       "locEnd": 54,
       "filePath": "stories/grid.stories.tsx",
+      "namedExport": "withFourColumns",
       "meta": {}
     },
     "grid--with-one-columns": {
@@ -223,6 +233,7 @@
       "locStart": 4,
       "locEnd": 15,
       "filePath": "stories/grid.stories.tsx",
+      "namedExport": "withOneColumns",
       "meta": {}
     },
     "grid--with-span": {
@@ -233,6 +244,7 @@
       "locStart": 76,
       "locEnd": 83,
       "filePath": "stories/grid.stories.tsx",
+      "namedExport": "withSpan",
       "meta": {}
     },
     "grid--with-three-columns": {
@@ -243,6 +255,7 @@
       "locStart": 30,
       "locEnd": 41,
       "filePath": "stories/grid.stories.tsx",
+      "namedExport": "withThreeColumns",
       "meta": {}
     },
     "grid--with-two-columns": {
@@ -253,6 +266,7 @@
       "locStart": 17,
       "locEnd": 28,
       "filePath": "stories/grid.stories.tsx",
+      "namedExport": "withTwoColumns",
       "meta": {}
     },
     "headline--headlines": {
@@ -263,46 +277,29 @@
       "locStart": 3,
       "locEnd": 14,
       "filePath": "stories/headline.stories.tsx",
+      "namedExport": "Headlines",
       "meta": {}
     },
-    "icons--icon": {
-      "name": "Icon",
+    "icons--radix-icon": {
+      "name": "Radix icon",
       "levels": [
         "Icons"
       ],
-      "locStart": 5,
-      "locEnd": 5,
+      "locStart": 4,
+      "locEnd": 4,
       "filePath": "stories/icons.stories.tsx",
+      "namedExport": "RadixIcon",
       "meta": {}
     },
-    "icons--icon-size": {
-      "name": "Icon size",
+    "icons--radix-icon-icon-size": {
+      "name": "Radix icon icon size",
       "levels": [
         "Icons"
       ],
-      "locStart": 7,
-      "locEnd": 7,
+      "locStart": 6,
+      "locEnd": 6,
       "filePath": "stories/icons.stories.tsx",
-      "meta": {}
-    },
-    "icons--with-external-icon": {
-      "name": "With external icon",
-      "levels": [
-        "Icons"
-      ],
-      "locStart": 9,
-      "locEnd": 9,
-      "filePath": "stories/icons.stories.tsx",
-      "meta": {}
-    },
-    "icons--with-external-icon-size": {
-      "name": "With external icon size",
-      "levels": [
-        "Icons"
-      ],
-      "locStart": 11,
-      "locEnd": 11,
-      "filePath": "stories/icons.stories.tsx",
+      "namedExport": "RadixIconIconSize",
       "meta": {}
     },
     "input--with-date": {
@@ -313,6 +310,7 @@
       "locStart": 16,
       "locEnd": 24,
       "filePath": "stories/input.stories.tsx",
+      "namedExport": "WithDate",
       "meta": {}
     },
     "input--with-dialog": {
@@ -323,6 +321,7 @@
       "locStart": 8,
       "locEnd": 14,
       "filePath": "stories/input.stories.tsx",
+      "namedExport": "WithDialog",
       "meta": {}
     },
     "input--with-file": {
@@ -333,6 +332,7 @@
       "locStart": 32,
       "locEnd": 32,
       "filePath": "stories/input.stories.tsx",
+      "namedExport": "WithFile",
       "meta": {}
     },
     "input--with-label": {
@@ -343,6 +343,7 @@
       "locStart": 5,
       "locEnd": 7,
       "filePath": "stories/input.stories.tsx",
+      "namedExport": "WithLabel",
       "meta": {}
     },
     "input--with-picker": {
@@ -353,6 +354,7 @@
       "locStart": 26,
       "locEnd": 28,
       "filePath": "stories/input.stories.tsx",
+      "namedExport": "WithPicker",
       "meta": {}
     },
     "input--with-placeholder": {
@@ -363,6 +365,7 @@
       "locStart": 4,
       "locEnd": 4,
       "filePath": "stories/input.stories.tsx",
+      "namedExport": "WithPlaceholder",
       "meta": {}
     },
     "input--with-rage": {
@@ -373,6 +376,7 @@
       "locStart": 30,
       "locEnd": 30,
       "filePath": "stories/input.stories.tsx",
+      "namedExport": "WithRage",
       "meta": {}
     },
     "layout--dashboard": {
@@ -383,6 +387,7 @@
       "locStart": 19,
       "locEnd": 34,
       "filePath": "stories/layout.stories.tsx",
+      "namedExport": "Dashboard",
       "meta": {}
     },
     "layout--pancake": {
@@ -393,6 +398,7 @@
       "locStart": 3,
       "locEnd": 17,
       "filePath": "stories/layout.stories.tsx",
+      "namedExport": "Pancake",
       "meta": {}
     },
     "modal--default-config": {
@@ -403,6 +409,7 @@
       "locStart": 6,
       "locEnd": 30,
       "filePath": "stories/modal.stories.tsx",
+      "namedExport": "DefaultConfig",
       "meta": {}
     },
     "notice--sonner": {
@@ -413,6 +420,7 @@
       "locStart": 6,
       "locEnd": 32,
       "filePath": "stories/notice.stories.tsx",
+      "namedExport": "Sonner",
       "meta": {}
     },
     "section--default": {
@@ -423,6 +431,7 @@
       "locStart": 4,
       "locEnd": 17,
       "filePath": "stories/section.stories.tsx",
+      "namedExport": "Default",
       "meta": {}
     },
     "section--with-color": {
@@ -433,6 +442,7 @@
       "locStart": 19,
       "locEnd": 32,
       "filePath": "stories/section.stories.tsx",
+      "namedExport": "WithColor",
       "meta": {}
     },
     "section--with-container": {
@@ -443,6 +453,7 @@
       "locStart": 34,
       "locEnd": 63,
       "filePath": "stories/section.stories.tsx",
+      "namedExport": "WithContainer",
       "meta": {}
     },
     "section--with-pass-div": {
@@ -453,6 +464,7 @@
       "locStart": 72,
       "locEnd": 77,
       "filePath": "stories/section.stories.tsx",
+      "namedExport": "WithPassDiv",
       "meta": {}
     },
     "section--with-sub-class-name": {
@@ -463,6 +475,7 @@
       "locStart": 65,
       "locEnd": 70,
       "filePath": "stories/section.stories.tsx",
+      "namedExport": "WithSubClassName",
       "meta": {}
     },
     "select--naked": {
@@ -473,6 +486,7 @@
       "locStart": 4,
       "locEnd": 10,
       "filePath": "stories/select.stories.tsx",
+      "namedExport": "Naked",
       "meta": {}
     },
     "select--with-dialog": {
@@ -483,6 +497,7 @@
       "locStart": 20,
       "locEnd": 30,
       "filePath": "stories/select.stories.tsx",
+      "namedExport": "WithDialog",
       "meta": {}
     },
     "select--with-placeholder": {
@@ -493,6 +508,7 @@
       "locStart": 12,
       "locEnd": 18,
       "filePath": "stories/select.stories.tsx",
+      "namedExport": "WithPlaceholder",
       "meta": {}
     },
     "separator--horizontal": {
@@ -503,6 +519,7 @@
       "locStart": 6,
       "locEnd": 10,
       "filePath": "stories/separator.stories.tsx",
+      "namedExport": "Horizontal",
       "meta": {}
     },
     "separator--vertical": {
@@ -513,6 +530,7 @@
       "locStart": 12,
       "locEnd": 22,
       "filePath": "stories/separator.stories.tsx",
+      "namedExport": "Vertical",
       "meta": {}
     },
     "skeleton--basic": {
@@ -523,6 +541,7 @@
       "locStart": 5,
       "locEnd": 7,
       "filePath": "stories/skeleton.stories.tsx",
+      "namedExport": "Basic",
       "meta": {}
     },
     "skeleton--circle": {
@@ -533,6 +552,7 @@
       "locStart": 8,
       "locEnd": 10,
       "filePath": "stories/skeleton.stories.tsx",
+      "namedExport": "Circle",
       "meta": {}
     },
     "skeleton--example": {
@@ -543,6 +563,7 @@
       "locStart": 14,
       "locEnd": 55,
       "filePath": "stories/skeleton.stories.tsx",
+      "namedExport": "Example",
       "meta": {}
     },
     "skeleton--fluid": {
@@ -553,16 +574,7 @@
       "locStart": 11,
       "locEnd": 13,
       "filePath": "stories/skeleton.stories.tsx",
-      "meta": {}
-    },
-    "table--default": {
-      "name": "Default",
-      "levels": [
-        "Table"
-      ],
-      "locStart": 12,
-      "locEnd": 40,
-      "filePath": "stories/table.stories.tsx",
+      "namedExport": "Fluid",
       "meta": {}
     },
     "tabs--basic": {
@@ -573,6 +585,7 @@
       "locStart": 5,
       "locEnd": 11,
       "filePath": "stories/tabs.stories.tsx",
+      "namedExport": "Basic",
       "meta": {}
     },
     "textarea--with-label": {
@@ -583,6 +596,7 @@
       "locStart": 6,
       "locEnd": 8,
       "filePath": "stories/textarea.stories.tsx",
+      "namedExport": "WithLabel",
       "meta": {}
     },
     "textarea--with-placeholder": {
@@ -593,6 +607,7 @@
       "locStart": 4,
       "locEnd": 4,
       "filePath": "stories/textarea.stories.tsx",
+      "namedExport": "WithPlaceholder",
       "meta": {}
     }
   }
