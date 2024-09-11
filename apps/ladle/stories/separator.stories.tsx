@@ -1,7 +1,7 @@
 import React from "react";
 
-import Section from "@aura-design/system/dist/components/section";
-import Separator from "@aura-design/system/dist/components/separator";
+import Section from "@aura-design/system/section";
+import Separator from "@aura-design/system/separator";
 
 export const Horizontal = () => (
   <Section>

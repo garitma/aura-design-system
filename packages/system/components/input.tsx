@@ -1,7 +1,10 @@
 import { InputHTMLAttributes } from "react";
 
 import type { SharedBasic, HelpType } from "../types/global";
-import type { InputValueProps, InitialInputValueProps } from "../hooks/use-form";
+import type {
+  InputValueProps,
+  InitialInputValueProps,
+} from "../hooks/use-form";
 
 /**
  * Input component
@@ -11,12 +14,13 @@ export interface InputProps
   extends SharedBasic,
     Omit<InputHTMLAttributes<HTMLInputElement>, "value">,
     Omit<InputValueProps, "onChange"> {
-  isDisabled?: boolean;
-  isLabelable?: boolean;
-  helpMode?: HelpType;
-  placeholder?: string;
-  name?: string;
-  classNameContainer?: string;
+  isDisabled?: any;
+  isLabelable?: any;
+  setHelpMode?: any;
+  helpMode?: any;
+  placeholder?: any;
+  name?: any;
+  classNameContainer?: any;
 }
 
 const Input = ({
@@ -32,10 +36,18 @@ const Input = ({
   ...props
 }: InputProps): JSX.Element => {
   // Extracting specific props from `props` object using destructuring
-  const { touch, setTouch, setValue, reset, dialog, value, ...inputProps } =
-    props;
+  const {
+    touch,
+    setTouch,
+    setValue,
+    reset,
+    setHelpMode,
+    dialog,
+    value,
+    ...inputProps
+  } = props;
 
-  // CSS class names for the input element and container
+  // CSS class names for xthe input element and container
   const classConnect: string[] = [className!];
   const classContainerConnect: string[] = [classNameContainer!, "inputer"];
 

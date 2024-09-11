@@ -67,7 +67,6 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonProps>(
         <span className={`container`}>
           {isLoading ? isLoadingText : label}
           {children}
-          hola
         </span>
       </AuraButton>
     );

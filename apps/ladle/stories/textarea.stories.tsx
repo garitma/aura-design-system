@@ -1,5 +1,5 @@
 import React from "react";
-import Textarea from "@aura-design/system/dist/components/textarea";
+import Textarea from "@aura-design/system/textarea";
 
 export const WithPlaceholder = () => <Textarea placeholder="Placeholder" />;
 

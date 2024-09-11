@@ -1,7 +1,7 @@
 import React from "react";
 import { Toaster, toast } from "sonner";
 
-import Button from "@aura-design/system/dist/components/button";
+import Button from "@aura-design/system/button";
 
 export const Sonner = () => {
   return (

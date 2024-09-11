@@ -1,8 +1,8 @@
 import React from "react";
 import { Drawer } from "vaul";
 
-import Button from "@aura-design/system/dist/components/button";
-import Section from "@aura-design/system/dist/components/section";
+import Button from "@aura-design/system/button";
+import Section from "@aura-design/system/section";
 
 export const Default = () => {
   return (
@@ -25,7 +25,7 @@ export const Default = () => {
         </a>
         .
       </p>
-      <p></p>
+ 
       <div>
         <Drawer.Root shouldScaleBackground>
           <Drawer.Trigger asChild>

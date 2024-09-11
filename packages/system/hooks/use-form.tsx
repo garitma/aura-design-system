@@ -13,7 +13,7 @@ export type InitialInputValueProps =
 export type StatusProps = {
   isLoading: boolean;
   isSubmited: boolean;
-  info: { isError: boolean; message?: string | null };
+  info: { isError: boolean; message?: React.ReactNode | null };
 };
 
 export type FormDataProps = Record<
@@ -33,16 +33,16 @@ export type FormDataProps = Record<
 >;
 
 export type InputValueProps = {
-  value?: InitialInputValueProps;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  error?: string | null;
-  touch?: boolean;
-  reset?: () => void;
-  dialog?: React.Dispatch<React.SetStateAction<string | null>>;
-  setTouch?: React.Dispatch<React.SetStateAction<boolean>>;
-  setValue?: React.Dispatch<React.SetStateAction<InitialInputValueProps>>;
-  helpText?: string | null;
-  isHelping?: boolean;
+  value?: any;
+  onChange?: any
+  error?: any
+  touch?: any;
+  reset?: any
+  dialog?: any;
+  setTouch?: any;
+  setValue?: any;
+  helpText?: any;
+  isHelping?: any;
 };
 
 export type SelectValueProps = {
@@ -113,14 +113,23 @@ export const useFormValues = (formData: Record<string, InputValueProps>) => {
 };
 
 export const useFormIsValid = (
-  data: { [key: string]: any },
-  schema: (data: { [key: string]: any }) => boolean
+  data: Record<string, any>,
+  schema: (data: Record<string, any>) => boolean,
+  debounceTime: number = 50 // Default debounce time (300ms)
 ) => {
   const [isValid, setIsValid] = useState(false);
 
   useEffect(() => {
-    setIsValid(schema(data));
-  }, [data, schema]);
+    // Create a timeout to debounce validation
+    const handler = setTimeout(() => {
+      setIsValid(schema(data)); // Run the validation
+    }, debounceTime);
+
+    // Cleanup timeout if the effect runs again before the delay
+    return () => {
+      clearTimeout(handler);
+    };
+  }, [data, schema]); // Re-run effect when data or schema changes
 
   return isValid;
 };
@@ -150,7 +159,7 @@ export const useStatus = () => {
       },
     }));
 
-  const setMessage = (message: string) =>
+  const setMessage = (message: React.ReactNode) =>
     setStatus((prevStatus) => ({
       ...prevStatus,
       info: {
@@ -179,12 +188,12 @@ export const useStatus = () => {
   };
 };
 
-export const useInputValueFields = () => {
-  const [value, setValue] = useState<{ [key: string]: InitialInputValueProps }>(
-    {}
-  );
-  const [error, setError] = useState<{ [key: string]: string | null }>({});
-  const [touch, setTouch] = useState<{ [key: string]: boolean }>({});
+export const useInputValueFields = (initialValues = {}) => {
+  const [value, setValue] =
+    useState<Record<string, InitialInputValueProps>>(initialValues);
+  const [error, setError] = useState<Record<string, string | null>>({});
+  const [touch, setTouch] = useState<Record<string, boolean>>({});
+  const [helpMode, setHelpMode] = useState<Record<string, string | null>>({});
 
   return {
     value,
@@ -193,57 +202,116 @@ export const useInputValueFields = () => {
     setTouch,
     setValue,
     setError,
+    helpMode,
+    setHelpMode,
   };
 };
 
-export const useActions = (
-  formData: any
-): { resetForm: () => void; touched: () => void; getValues: () => void } => {
-  const resetForm = () => {
-    for (const field in formData) {
-      formData[field]?.reset();
-    }
+type useFormDynamicProps = Record<string, InitialInputValueProps>;
+
+export const useFormDynamic = (
+  initialValues?: useFormDynamicProps,
+  validateSchema?: any
+) => {
+  const fields = useInputValueFields(initialValues);
+
+  type FieldName = keyof typeof fields.value;
+
+  const setFieldValue = (name: FieldName, value: any) => {
+    fields.setValue((prev) => {
+      const newValues = { ...prev, [name]: value };
+      if (validateSchema) {
+        const fields = getFields();
+
+        for (const key in fields) {
+          fields[key].value = newValues[key];
+        }
+
+        validateSchema(fields); // Pass the newValues to validateValues
+      }
+      return newValues;
+    });
+    !fields.touch[name] &&
+      fields.setTouch((prev) => ({ ...prev, [name]: true }));
   };
 
-  const touched = () => {
-    for (const field in formData) {
-      formData[field]?.setTouch(true);
-    }
-  };
-
-  const getValues = () => {
-    let formValues = {};
-
-    for (const value in formData) {
-      formValues = {
-        ...formValues,
-        [value]: formData[value].value,
-      };
-    }
-    return formValues;
-  };
-
-  return { resetForm, touched, getValues };
-};
-
-export const useFormDynamic = () => {
-  const fields = useInputValueFields();
-
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    fields.setValue((prev) => ({ ...prev, [name]: value }));
-    fields.setTouch((prev) => ({ ...prev, [name]: true }));
-  };
-
-  const onChangeSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const { name, value } = event.target;
-    fields.setValue((prev) => ({ ...prev, [name]: value }));
-    fields.setTouch((prev) => ({ ...prev, [name]: true }));
-  };
-
-  const dialog = (name: string, message: string | null) => {
+  const dialog = (name: FieldName, message: string | null) => {
     fields.setError((prev) => ({ ...prev, [name]: message }));
   };
 
-  return { ...fields, onChange, onChangeSelect, dialog };
+  const field = (name: FieldName) => {
+    const error = fields.error[name] ?? null;
+    const touch = fields.touch[name];
+
+    return {
+      value: fields.value[name] ?? "",
+      setValue: (value) => setFieldValue(name, value),
+      onChange: (event) => {
+        const { value } = event.target;
+        setFieldValue(name, value);
+        fields.setTouch((prev) => ({ ...prev, [name]: true }));
+      },
+      error,
+      helpText: error,
+      isHelping: Boolean(error && touch),
+      helpMode: fields.helpMode[name] ?? "warning",
+      setHelpMode: (value) =>
+        fields.setHelpMode((prev) => ({ ...prev, [name]: value })),
+      dialog: (error: string | null) => dialog(name, error),
+      touch,
+      setTouch: (value: boolean) =>
+        fields.setTouch((prev) => ({ ...prev, [name]: value })),
+      reset: () => {
+        setFieldValue(name, "");
+        fields.setTouch((prev) => ({ ...prev, [name]: false }));
+      },
+    };
+  };
+
+  const getFields = () => {
+    return Object.keys(fields.value).reduce(
+      (acc, key) => {
+        acc[key] = field(key);
+        return acc;
+      },
+      {} as Record<string, ReturnType<typeof field>>
+    );
+  };
+
+  const isValid =
+    Object.keys(fields.error).length > 0 &&
+    Object.keys(fields.error).every((key) => !fields.error[key]);
+
+  const resetForm = () => {
+    const fields = getFields();
+    for (const field in fields) {
+      fields[field].reset();
+      fields[field].setTouch(false);
+    }
+  };
+
+  const touchForm = () => {
+    const fields = getFields();
+    for (const field in fields) {
+      fields[field].setTouch(true);
+    }
+  };
+
+  const validateValues = () => {
+    const fields = getFields();
+    touchForm();
+    validateSchema && validateSchema(fields);
+  };
+
+  return {
+    ...fields,
+    resetForm,
+    touchForm,
+    isValid,
+    validateValues,
+    field,
+    getFields,
+    setFieldValue,
+    dialog,
+  };
 };

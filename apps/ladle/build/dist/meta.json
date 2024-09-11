@@ -148,13 +148,35 @@
       "namedExport": "Default",
       "meta": {}
     },
+    "form--with-dynamic-form": {
+      "name": "With dynamic form",
+      "levels": [
+        "Form"
+      ],
+      "locStart": 248,
+      "locEnd": 327,
+      "filePath": "stories/form.stories.tsx",
+      "namedExport": "WithDynamicForm",
+      "meta": {}
+    },
+    "form--with-dynamic-form-and-ajs": {
+      "name": "With dynamic form and ajs",
+      "levels": [
+        "Form"
+      ],
+      "locStart": 329,
+      "locEnd": 408,
+      "filePath": "stories/form.stories.tsx",
+      "namedExport": "WithDynamicFormAndAjs",
+      "meta": {}
+    },
     "form--with-grid": {
       "name": "With grid",
       "levels": [
         "Form"
       ],
-      "locStart": 46,
-      "locEnd": 66,
+      "locStart": 47,
+      "locEnd": 67,
       "filePath": "stories/form.stories.tsx",
       "namedExport": "WithGrid",
       "meta": {}
@@ -164,8 +186,8 @@
       "levels": [
         "Form"
       ],
-      "locStart": 17,
-      "locEnd": 44,
+      "locStart": 18,
+      "locEnd": 45,
       "filePath": "stories/form.stories.tsx",
       "namedExport": "WithHook",
       "meta": {}
@@ -175,8 +197,8 @@
       "levels": [
         "Form"
       ],
-      "locStart": 68,
-      "locEnd": 124,
+      "locStart": 69,
+      "locEnd": 125,
       "filePath": "stories/form.stories.tsx",
       "namedExport": "WithStatus",
       "meta": {}
@@ -186,8 +208,8 @@
       "levels": [
         "Form"
       ],
-      "locStart": 126,
-      "locEnd": 245,
+      "locStart": 127,
+      "locEnd": 246,
       "filePath": "stories/form.stories.tsx",
       "namedExport": "WithValidator",
       "meta": {}

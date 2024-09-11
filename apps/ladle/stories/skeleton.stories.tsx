@@ -1,6 +1,6 @@
 import React from "react";
 
-import Skeleton from "@aura-design/system/dist/components/skeleton";
+import Skeleton from "@aura-design/system/skeleton";
 
 export const Basic = () => (
   <Skeleton widthAspectRation={5} heightAspectRation={5} />

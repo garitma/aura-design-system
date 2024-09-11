@@ -1,6 +1,6 @@
 import React from "react";
 
-import Tabs from "@aura-design/system/dist/components/tabs";
+import Tabs from "@aura-design/system/tabs";
 
 export const Basic = () => (
   <Tabs data={[{ label: "One" }, { label: "Two" }, { label: "Three" }]}>

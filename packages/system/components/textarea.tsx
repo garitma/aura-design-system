@@ -1,4 +1,4 @@
-import {TextareaHTMLAttributes } from "react";
+import { TextareaHTMLAttributes } from "react";
 
 import type { SharedBasic, HelpType } from "../types/global";
 import { InputValueProps, InitialInputValueProps } from "../hooks/use-form";
@@ -11,13 +11,14 @@ export interface InputProps
   extends SharedBasic,
     Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, "value">,
     Omit<InputValueProps, "onChange"> {
-  onChange?: any,
-  isDisabled?: boolean;
-  isLabelable?: boolean;
-  helpMode?: HelpType;
-  placeholder?: string;
-  name?: string;
-  classNameContainer?: string;
+  onChange?: any;
+  isDisabled?: any;
+  isLabelable?: any;
+  helpMode?: any;
+  setHelpMode?: any;
+  placeholder?: any;
+  name?: any;
+  classNameContainer?: any;
 }
 
 const Textarea = ({
@@ -33,8 +34,16 @@ const Textarea = ({
   ...props
 }: InputProps): JSX.Element => {
   // Extracting specific props from `props` object using destructuring
-  const { touch, setTouch, setValue, reset, dialog, value, ...inputProps } =
-    props;
+  const {
+    touch,
+    setTouch,
+    setValue,
+    reset,
+    setHelpMode,
+    dialog,
+    value,
+    ...inputProps
+  } = props;
 
   // CSS class names for the input element and container
   const classConnect: string[] = [className!];

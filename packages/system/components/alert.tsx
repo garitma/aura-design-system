@@ -7,7 +7,7 @@ export interface AlertProps extends SharedBasic {
     // Object containing information about the state of the alert (optional)
     info?: {
       // Object containing the actual information about the alert (optional)
-      message?: string | null; // Message to be displayed in the alert (optional)
+      message?: React.ReactNode | null; // Message to be displayed in the alert (optional)
       isError?: boolean; // Flag to indicate if the alert is an error (optional)
     };
   };
