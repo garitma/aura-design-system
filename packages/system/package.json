@@ -74,9 +74,9 @@
     "url": "https://github.com/garitma/aura-design-system/issues"
   },
   "scripts": {
-    "root:build": "node scripts/componentRootInject.mjs",
-    "root:dev:clean": "node scripts/componentRootDevClear.mjs",
-    "root:dev": "node scripts/componentRootInjectDev.mjs",
+    "root:build": "node scripts/rootInject.mjs",
+    "root:dev:clean": "node scripts/rootDevClear.mjs",
+    "root:dev": "node scripts/rootInjectDev.mjs",
     "dev": "pnpm run root:dev",
     "build": "pnpm run root:dev:clean && pnpm run root:build && tsc --module commonjs"
   },
