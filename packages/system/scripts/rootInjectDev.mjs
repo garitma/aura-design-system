@@ -1,89 +1,53 @@
-import * as fs from "fs";
-import * as path from "path";
-import { fileURLToPath } from "url";
+import * as fs from 'fs';
+import * as path from 'path';
+import { fileURLToPath } from 'url';
 
 // Get __filename and __dirname in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Define paths
-const componentsDir = path.join(__dirname, "../components");
-const hooksDir = path.join(__dirname, "../hooks"); // Path to hooks folder
-const rootDir = path.join(__dirname, ".."); // Parent directory
+// Define paths for components and hooks
+const componentsDir = path.join(__dirname, '../components');
+const hooksDir = path.join(__dirname, '../hooks');
+const rootDir = path.join(__dirname, '..'); // Parent directory
 
-// Function to generate the .ts file for re-exporting
-const generateRootFiles = (fileName, folderName) => {
-  const isHooks = folderName === "hooks";
+// Function to generate the .d.ts and .js files
+const generateRootFiles = (componentName, folderName, isHook = false) => {
+  const distPath = `./${folderName}/${componentName}`;
 
-  const jsFilePath = path.join(rootDir, `${fileName}.js`);
-  const dtsFilePath = path.join(rootDir, `${fileName}.d.ts`);
-  const tsFilePath = path.join(rootDir, `${fileName.slice(4)}.ts`);
+  // Remove "use-" prefix for hooks in root file names
+  const rootFileName = isHook ? componentName.replace(/^use-/, '') : componentName;
 
-  // Check and delete existing .js and .d.ts files
-  if (fs.existsSync(jsFilePath)) {
-    fs.unlinkSync(jsFilePath);
-    console.log(`Deleted ${fileName}.js`);
-  }
+  // Generate .d.ts content, skip default export for hooks
+  const dtsContent = isHook 
+    ? `export * from "${distPath}";` 
+    : `export * from "${distPath}";\nexport { default } from "${distPath}";`;
 
-  if (fs.existsSync(dtsFilePath)) {
-    fs.unlinkSync(dtsFilePath);
-    console.log(`Deleted ${fileName}.d.ts`);
-  }
+  // Write .d.ts file in the parent folder
+  fs.writeFileSync(path.join(rootDir, `${rootFileName}.ts`), dtsContent, 'utf8');
 
- 
-  // Generate the .ts content for re-exporting
-  const tsContent = isHooks
-    ? `export * from './${folderName}/${fileName}';`
-    : `export * from './${folderName}/${fileName}';\n` +
-      `export { default } from './${folderName}/${fileName}';`;
 
-  // Write the new .ts file in the parent folder
-  fs.writeFileSync(tsFilePath, tsContent, "utf8");
-  console.log(`Generated ${fileName}.ts for re-exporting`);
+  console.log(`Generated files for ${componentName} in ${folderName}`);
 };
 
-// Function to process components in the components folder
-const processComponents = () => {
-  // Read components directory
-  fs.readdir(componentsDir, (err, files) => {
+// Function to process files in a folder (components or hooks)
+const processFilesInFolder = (folderPath, folderName, isHook = false) => {
+  fs.readdir(folderPath, (err, files) => {
     if (err) {
-      console.error("Error reading components directory:", err);
+      console.error(`Error reading ${folderName} directory:`, err);
       return;
     }
 
     // Filter out only .ts or .tsx files
-    const tsFiles = files.filter(
-      (file) => file.endsWith(".ts") || file.endsWith(".tsx")
-    );
+    const tsFiles = files.filter(file => file.endsWith('.ts') || file.endsWith('.tsx'));
 
-    tsFiles.forEach((file) => {
+    tsFiles.forEach(file => {
       const componentName = path.basename(file, path.extname(file)); // Get the component name without extension
-      generateRootFiles(componentName, "components"); // Generate the .ts re-export file
-    });
-  });
-};
-
-// Function to process hooks in the hooks folder and remove "use-" prefix
-const processHooks = () => {
-  // Read hooks directory
-  fs.readdir(hooksDir, (err, files) => {
-    if (err) {
-      console.error("Error reading hooks directory:", err);
-      return;
-    }
-
-    // Filter out only .ts or .tsx files
-    const tsFiles = files.filter(
-      (file) => file.endsWith(".ts") || file.endsWith(".tsx")
-    );
-
-    tsFiles.forEach((file) => {
-      let hookName = path.basename(file, path.extname(file)); // Get the hook name without extension
-      generateRootFiles(hookName, "hooks"); // Generate the .ts re-export file
+      generateRootFiles(componentName, folderName, isHook); // Generate files in the parent folder
     });
   });
 };
 
 // Start processing components and hooks
-processComponents();
-processHooks();
+processFilesInFolder(componentsDir, 'components');
+processFilesInFolder(hooksDir, 'hooks', true); // Pass true to indicate it's processing hooks

@@ -1,6 +1,6 @@
 {
   "name": "@aura-design/system",
-  "version": "0.4.52",
+  "version": "0.4.60",
   "description": "Garitma's Design system",
   "type": "commonjs",
   "keywords": [
@@ -75,10 +75,10 @@
   },
   "scripts": {
     "root:build": "node scripts/rootInject.mjs",
-    "root:dev:clean": "node scripts/rootDevClear.mjs",
+    "root:prune": "node scripts/rootPrune.mjs",
     "root:dev": "node scripts/rootInjectDev.mjs",
-    "dev": "pnpm run root:dev",
-    "build": "pnpm run root:dev:clean && pnpm run root:build && tsc --module commonjs"
+    "dev": "pnpm run root:prune && pnpm run root:dev",
+    "build": "pnpm run root:prune && pnpm run root:build && tsc --module commonjs"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",
