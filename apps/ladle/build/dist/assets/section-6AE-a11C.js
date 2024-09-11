@@ -1,0 +1,1 @@
+import{j as t}from"./index-C35-ezKL.js";const x=({children:i,className:o,subClassName:c,color:s,space:e="pad",container:a="smush",passDiv:m,...r})=>{const j=m?"div":"section",n=[o,e],p=[c,a];return s&&n.push(s),t.jsx(j,{className:n.join(" ").trim(),...r,children:t.jsx("div",{className:p.join(" ").trim(),children:i})})};export{x as S};
