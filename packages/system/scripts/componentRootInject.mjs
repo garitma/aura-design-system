@@ -6,47 +6,53 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// Define paths
+// Define paths for components and hooks
 const componentsDir = path.join(__dirname, '../components');
+const hooksDir = path.join(__dirname, '../hooks');
 const rootDir = path.join(__dirname, '..'); // Parent directory
 
 // Function to generate the .d.ts and .js files
-const generateRootFiles = (componentName) => {
-  const distPath = `./dist/components/${componentName}`;
+const generateRootFiles = (componentName, folderName, isHook = false) => {
+  const distPath = `./dist/${folderName}/${componentName}`;
 
-  // Generate .d.ts content
-  const dtsContent = `export * from "${distPath}";\nexport { default } from "${distPath}";`;
+  // Remove "use-" prefix for hooks in root file names
+  const rootFileName = isHook ? componentName.replace(/^use-/, '') : componentName;
+
+  // Generate .d.ts content, skip default export for hooks
+  const dtsContent = isHook 
+    ? `export * from "${distPath}";` 
+    : `export * from "${distPath}";\nexport { default } from "${distPath}";`;
 
   // Generate .js content
   const jsContent = `module.exports = require("${distPath}");`;
 
   // Write .d.ts file in the parent folder
-  fs.writeFileSync(path.join(rootDir, `${componentName}.d.ts`), dtsContent, 'utf8');
+  fs.writeFileSync(path.join(rootDir, `${rootFileName}.d.ts`), dtsContent, 'utf8');
   
   // Write .js file in the parent folder
-  fs.writeFileSync(path.join(rootDir, `${componentName}.js`), jsContent, 'utf8');
+  fs.writeFileSync(path.join(rootDir, `${rootFileName}.js`), jsContent, 'utf8');
 
-  console.log(`Generated files for ${componentName}`);
+  console.log(`Generated files for ${componentName} in ${folderName}`);
 };
 
-// Function to process components in the components folder
-const processComponents = () => {
-  // Read components directory
-  fs.readdir(componentsDir, (err, files) => {
+// Function to process files in a folder (components or hooks)
+const processFilesInFolder = (folderPath, folderName, isHook = false) => {
+  fs.readdir(folderPath, (err, files) => {
     if (err) {
-      console.error("Error reading components directory:", err);
+      console.error(`Error reading ${folderName} directory:`, err);
       return;
     }
 
-    // Filter out only .ts or .tsx files (if you want to handle TypeScript components)
+    // Filter out only .ts or .tsx files
     const tsFiles = files.filter(file => file.endsWith('.ts') || file.endsWith('.tsx'));
 
     tsFiles.forEach(file => {
       const componentName = path.basename(file, path.extname(file)); // Get the component name without extension
-      generateRootFiles(componentName); // Generate files in the parent folder
+      generateRootFiles(componentName, folderName, isHook); // Generate files in the parent folder
     });
   });
 };
 
-// Start processing components
-processComponents();
+// Start processing components and hooks
+processFilesInFolder(componentsDir, 'components');
+processFilesInFolder(hooksDir, 'hooks', true); // Pass true to indicate it's processing hooks

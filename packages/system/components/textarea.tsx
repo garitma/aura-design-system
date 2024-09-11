@@ -1,6 +1,6 @@
 import { TextareaHTMLAttributes } from "react";
 
-import type { SharedBasic, HelpType } from "../types/global";
+import type { SharedBasic } from "../types/global";
 import { InputValueProps, InitialInputValueProps } from "../hooks/use-form";
 
 /**

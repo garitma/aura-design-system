@@ -245,8 +245,8 @@ export const useFormDynamic = (
 
     return {
       value: fields.value[name] ?? "",
-      setValue: (value) => setFieldValue(name, value),
-      onChange: (event) => {
+      setValue: (value: any) => setFieldValue(name, value),
+      onChange: (event: any) => {
         const { value } = event.target;
         setFieldValue(name, value);
         fields.setTouch((prev) => ({ ...prev, [name]: true }));
@@ -255,7 +255,7 @@ export const useFormDynamic = (
       helpText: error,
       isHelping: Boolean(error && touch),
       helpMode: fields.helpMode[name] ?? "warning",
-      setHelpMode: (value) =>
+      setHelpMode: (value: any) =>
         fields.setHelpMode((prev) => ({ ...prev, [name]: value })),
       dialog: (error: string | null) => dialog(name, error),
       touch,

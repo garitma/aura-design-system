@@ -45,6 +45,7 @@ yarn-error.log*
 
 # root inject
 packages/system/**.ts
+packages/system/**.js
 
 # watchdog
 venv
