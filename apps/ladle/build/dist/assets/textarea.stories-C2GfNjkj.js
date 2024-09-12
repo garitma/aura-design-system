@@ -1,0 +1,1 @@
+import{j as e}from"./index-C35-ezKL.js";import{T as t}from"./textarea-B5f7RRbX.js";const d=()=>e.jsx(t,{placeholder:"Placeholder"}),l=()=>e.jsx(t,{placeholder:"Placeholder and label",isLabelable:!0});typeof window<"u"&&window.document&&window.document.createElement&&document.documentElement.setAttribute("data-storyloaded","");export{l as WithLabel,d as WithPlaceholder};

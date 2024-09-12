@@ -1,0 +1,1 @@
+import{j as o}from"./index-C35-ezKL.js";import{b as e,I as n}from"./react-icons.esm-D_ZbEdxz.js";const s=()=>o.jsx(e,{className:"icon"}),a=()=>o.jsx(n,{className:"icon h3"});typeof window<"u"&&window.document&&window.document.createElement&&document.documentElement.setAttribute("data-storyloaded","");export{s as RadixIcon,a as RadixIconIconSize};
