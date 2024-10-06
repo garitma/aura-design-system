@@ -49,5 +49,6 @@ const processFilesInFolder = (folderPath, folderName, isHook = false) => {
 };
 
 // Start processing components and hooks
+processFilesInFolder(componentsDir, 'utils');
 processFilesInFolder(componentsDir, 'components');
 processFilesInFolder(hooksDir, 'hooks', true); // Pass true to indicate it's processing hooks
