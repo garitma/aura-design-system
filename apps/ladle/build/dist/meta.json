@@ -148,69 +148,80 @@
       "namedExport": "Default",
       "meta": {}
     },
-    "form--with-dynamic-form": {
+    "forms--with-dynamic-form": {
       "name": "With dynamic form",
       "levels": [
-        "Form"
+        "Forms"
       ],
-      "locStart": 251,
-      "locEnd": 330,
-      "filePath": "stories/form.stories.tsx",
+      "locStart": 20,
+      "locEnd": 88,
+      "filePath": "stories/forms.stories.tsx",
       "namedExport": "WithDynamicForm",
       "meta": {}
     },
-    "form--with-dynamic-form-validator": {
-      "name": "With dynamic form validator",
+    "forms--with-validator": {
+      "name": "With validator",
       "levels": [
-        "Form"
+        "Forms"
       ],
-      "locStart": 332,
-      "locEnd": 424,
-      "filePath": "stories/form.stories.tsx",
-      "namedExport": "WithDynamicFormValidator",
+      "locStart": 90,
+      "locEnd": 207,
+      "filePath": "stories/forms.stories.tsx",
+      "namedExport": "WithValidator",
       "meta": {}
     },
-    "form--with-grid": {
+    "forms-legacy--with-dynamic-form": {
+      "name": "With dynamic form",
+      "levels": [
+        "Forms legacy"
+      ],
+      "locStart": 251,
+      "locEnd": 330,
+      "filePath": "stories/formsLegacy.stories.tsx",
+      "namedExport": "WithDynamicForm",
+      "meta": {}
+    },
+    "forms-legacy--with-grid": {
       "name": "With grid",
       "levels": [
-        "Form"
+        "Forms legacy"
       ],
       "locStart": 50,
       "locEnd": 70,
-      "filePath": "stories/form.stories.tsx",
+      "filePath": "stories/formsLegacy.stories.tsx",
       "namedExport": "WithGrid",
       "meta": {}
     },
-    "form--with-hook": {
+    "forms-legacy--with-hook": {
       "name": "With hook",
       "levels": [
-        "Form"
+        "Forms legacy"
       ],
       "locStart": 21,
       "locEnd": 48,
-      "filePath": "stories/form.stories.tsx",
+      "filePath": "stories/formsLegacy.stories.tsx",
       "namedExport": "WithHook",
       "meta": {}
     },
-    "form--with-status": {
+    "forms-legacy--with-status": {
       "name": "With status",
       "levels": [
-        "Form"
+        "Forms legacy"
       ],
       "locStart": 72,
       "locEnd": 128,
-      "filePath": "stories/form.stories.tsx",
+      "filePath": "stories/formsLegacy.stories.tsx",
       "namedExport": "WithStatus",
       "meta": {}
     },
-    "form--with-validator": {
+    "forms-legacy--with-validator": {
       "name": "With validator",
       "levels": [
-        "Form"
+        "Forms legacy"
       ],
       "locStart": 130,
       "locEnd": 249,
-      "filePath": "stories/form.stories.tsx",
+      "filePath": "stories/formsLegacy.stories.tsx",
       "namedExport": "WithValidator",
       "meta": {}
     },
