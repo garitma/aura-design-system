@@ -1,0 +1,15 @@
+{
+  "name": "@aura-design/cli",
+  "version": "1.0.0",
+  "description": "Aura Design CLI tool",
+  "main": "index.js",
+  "bin": {
+    "aura-cli": "./bin/aura.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "commander": "^9.4.0"
+  }
+}
