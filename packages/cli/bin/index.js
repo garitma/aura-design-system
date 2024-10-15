@@ -28,7 +28,7 @@ const customSpacing = generateSpacing();
 
 function mapToCustomSpacing(defaultPxValue) {
   const spacingValues = Object.keys(customSpacing).map(Number);
-  const customPxValues = Object.values(customSpacing).map(v => parseFloat(v)); // Extract pixel values as numbers
+  const customPxValues = Object.values(customSpacing).map((v) => parseFloat(v)); // Extract pixel values as numbers
 
   // Find the closest spacing
   let closestSpacing = spacingValues[0];
@@ -46,27 +46,32 @@ function mapToCustomSpacing(defaultPxValue) {
 }
 
 function replaceSpacingClass(className) {
-  const spacingClassRegex = /\b(m|p|mt|mb|mr|ml|mx|my|pt|pb|pr|pl|px|py|gap|space-x|space-y)-(\d+)\b/g;
+  // Updated regex to include 'h-' and 'w-' prefixes
+  const spacingClassRegex = /\b(m|p|mt|mb|mr|ml|mx|my|pt|pb|pr|pl|px|py|gap|space-x|space-y|h|w)-((?:\d+\.)?\d+|auto)\b/g;
 
   return className.replace(spacingClassRegex, (match, prefix, value) => {
-    const defaultPxValue = parseInt(value) * 4; // Tailwind default spacing (multiplied by 4px)
+    // Handle 'auto' value
+    if (value === "auto") {
+      return `${prefix}-auto`;
+    }
+
+    const defaultPxValue = parseFloat(value) * 4; // Tailwind default spacing (multiplied by 4px)
     const closestSpacing = mapToCustomSpacing(defaultPxValue);
     return `${prefix}-${closestSpacing}`;
   });
 }
 
-
 // Function to extract Tailwind spacing classes from TSX content
 function extractSpacingClasses(tsxContent) {
   const spacingClasses = new Set(); // Use Set to avoid duplicates
 
-  // Updated regex to match Tailwind spacing classes like m-4, mt-6, etc.
+  // Updated regex to match Tailwind spacing classes like m-4, mt-6, h-8, w-12, etc.
   const spacingClassRegex =
-    /\b(m|p|mt|mb|mr|ml|mx|my|pt|pb|pr|pl|px|py|space-x|space-y|gap)-(auto|\d+|px|full)\b/g;
+    /\b(m|p|mt|mb|mr|ml|mx|my|pt|pb|pr|pl|px|py|gap|space-x|space-y|h|w)-((?:\d+\.)?\d+|auto)\b/g;
 
   const matches = tsxContent.matchAll(spacingClassRegex);
   for (const match of matches) {
-    spacingClasses.add(match[0]); // Add the full class (e.g., 'm-4', 'mt-2')
+    spacingClasses.add(match[0]); // Add the full class (e.g., 'm-4', 'mt-2', 'h-8')
   }
 
   return Array.from(spacingClasses); // Convert Set to array
@@ -80,31 +85,24 @@ async function main() {
     // Use glob to find all .tsx files in the directory (recursively)
     const tsxFiles = glob.sync(`${directory}/**/*.tsx`);
 
-    const spacingClasses = {};
     for (const filePath of tsxFiles) {
       // Read the content of each .tsx file
-      const tsxContent = await fs.promises.readFile(filePath, "utf-8");
+      let tsxContent = await fs.promises.readFile(filePath, "utf-8");
       const extractedClasses = extractSpacingClasses(tsxContent);
 
       if (extractedClasses.length > 0) {
-        spacingClasses[filePath] = extractedClasses;
+        for (const className of extractedClasses) {
+          const updatedClass = replaceSpacingClass(className);
+          tsxContent = tsxContent.replace(className, updatedClass);
+        }
+
+        // Write the updated content back to the file
+        await fs.promises.writeFile(filePath, tsxContent, "utf-8");
+        console.log(`Updated spacing classes in ${filePath}`);
       }
     }
 
-    // Output the results
-    if (Object.keys(spacingClasses).length > 0) {
-      console.log("Tailwind spacing classes found:");
-      for (const filePath in spacingClasses) {
-        const tailwindClass = spacingClasses[filePath].join(" ");
-        const updatedClass = replaceSpacingClass(tailwindClass);
-        //TODO rewrite spacing
-        console.log(`  * ${filePath}: ${spacingClasses[filePath].join(", ")} custom: ${updatedClass}`);
-      }
-    } else {
-      console.log(
-        "No Tailwind spacing classes found in the scanned TSX files."
-      );
-    }
+    console.log("Spacing class update complete!");
   } catch (error) {
     console.error("Error:", error.message);
   }
