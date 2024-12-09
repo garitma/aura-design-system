@@ -8,6 +8,7 @@ const __dirname = path.dirname(__filename);
 
 // Define paths for components and hooks
 const componentsDir = path.join(__dirname, '../components');
+const utilsDir = path.join(__dirname, '../utils');
 const hooksDir = path.join(__dirname, '../hooks');
 const rootDir = path.join(__dirname, '..'); // Parent directory
 
@@ -54,6 +55,6 @@ const processFilesInFolder = (folderPath, folderName, isHook = false) => {
 };
 
 // Start processing components and hooks
-processFilesInFolder(componentsDir, 'utils');
 processFilesInFolder(componentsDir, 'components');
+processFilesInFolder(utilsDir, 'utils', true);
 processFilesInFolder(hooksDir, 'hooks', true); // Pass true to indicate it's processing hooks
