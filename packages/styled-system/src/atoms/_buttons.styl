@@ -32,9 +32,9 @@ a
     transition: transform 250ms cubic-bezier(.2,.8,.4,1);
     &:disabled
         @extend .disabled
-    &:hover
+    &:hover&:hover:not(:disabled)
         transform: scale(1.03);
-    &:active
+    &:active&:hover:not(:disabled)
         transform: scale(0.97);
         outline: var(--aura-outline)
 .button-fill

@@ -35,7 +35,7 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonProps>(
       className,
       href,
       children,
-      as: AuraButton = href || mode === "menu" ? `a` : "button",
+      as: AuraButton = href ? `a` : "button",
       ...props
     }: ButtonProps,
     ref: RefObject<HTMLAnchorElement | HTMLButtonElement>

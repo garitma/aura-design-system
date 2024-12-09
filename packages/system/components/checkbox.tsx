@@ -31,9 +31,8 @@ const Checkbox = ({
 
   return (
     <div className={classConnect.join()}>
-      <div className="inputer nav-list checkbox mt13 lalign">
+      <div className="inputer nav-list checkbox">
         <Input
-          className="default"
           type="checkbox"
           id={idConnect}
           onChange={handleOnChangeCheck}
