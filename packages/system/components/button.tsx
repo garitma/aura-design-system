@@ -64,10 +64,9 @@ const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonProps>(
         {...(props as IntrinsicProps)}
       >
         {/* The button label, or an isLoadingText spinner if isLoading is true */}
-        <span className={`container`}>
-          {isLoading ? isLoadingText : label}
-          {children}
-        </span>
+
+        {isLoading ? isLoadingText : label}
+        {children}
       </AuraButton>
     );
   }
