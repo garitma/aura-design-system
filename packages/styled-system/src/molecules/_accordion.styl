@@ -1,0 +1,19 @@
+details > summary {
+    list-style-type: none;
+}
+
+details > summary::-webkit-details-marker {
+    display: none;
+}
+
+details .dropdown .icon{
+    transition: all 0.3s
+}
+
+details[open] > summary .dropdown .icon {
+    transform: rotate(180deg);
+}
+
+details[open] summary ~ * {
+  animation: fade-accordion .3s;
+}

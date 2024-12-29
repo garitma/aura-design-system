@@ -1,0 +1,1 @@
+import{j as n}from"./index-ZUrBV4M6.js";const m=({children:r,className:t,col:i,isFixed:e,...o})=>{const s=["aureole",t];return i&&s.push(i),e&&s.push("fixed"),n.jsx("div",{className:s.join(" ").trim(),...o,children:r})};export{m as G};

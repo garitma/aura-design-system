@@ -1,0 +1,20 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"content": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Magna do sint duis. Qui in id sint sunt culpa ex magna deserunt cillum voluptate cillum. Laboris duis sint nisi exercitation nisi cupidatat incididunt qui adipisicing excepteur."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

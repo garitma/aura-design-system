@@ -1,0 +1,33 @@
+{
+  "name": "@aura-design/styled-system",
+  "version": "0.4.52",
+  "description": "Garitma's Design system",
+  "type": "commonjs",
+  "keywords": [
+    "react",
+    "react-component",
+    "uikit",
+    "ui-library",
+    "ui-components"
+  ],
+  "author": "Pablo Orozco <me@pablopvsky.com",
+  "homepage": "https://github.com/garitma/aura-design-system/#readme",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garitma/aura-design-system.git",
+    "directory": "packages/system"
+  },
+  "bugs": {
+    "url": "https://github.com/garitma/aura-design-system/issues"
+  },
+  "scripts": {
+    "dev": "pnpm stylus --compress -w ./main.styl -o ../system/main.css"
+  },
+  "devDependencies": {
+    "stylus": "^0.63.0"
+  }
+}

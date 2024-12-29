@@ -1,0 +1,1 @@
+import{j as o}from"./index-ZUrBV4M6.js";const a=({isVertical:t,color:m="accents-3",className:n,stroke:e=1,heightAspectRation:i=2})=>{const s=[n,m];return t?s.push("vfluid ml13 mr13"):s.push("fluid mt13 mb13"),o.jsx("hr",{className:s.join(" "),style:t?{width:e,minHeight:i*13}:{height:e}})};export{a as S};

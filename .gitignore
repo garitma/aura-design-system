@@ -130,9 +130,16 @@ dist/*
 packages/system/dist
 packages/styles/dist
 
+# root inject
+packages/system/**.ts
+packages/system/**.js
+
 # Test
 
 node_modules/
 test-results/
 playwright-report/
 playwright/.cache/
+
+# Turbo
+.turbo

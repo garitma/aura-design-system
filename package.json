@@ -13,22 +13,7 @@
     "url": "https://github.com/garitma/aura-design-system/issues"
   },
   "scripts": {
-    "boostrap": "pnpm npx lerna exec pnpm install",
-    "boostrap:browsers": "pnpm npx playwright install firefox && pnpm npx playwright install chromium && pnpm npx playwright install webkit",
-    "dev": "pnpm npx lerna run dev",
-    "dev:ladle": "pnpm npx lerna run dev --scope=@aura-design/ladle --scope=@aura-design/styles",
-    "dev:website": "pnpm npx lerna run dev --scope=@aura-design/website",
-    "slicemachine": "pnpm npx lerna run slicemachine --scope=@aura-design/website",
-    "build": "pnpm npx lerna run build --scope=@aura-design/system --scope=@aura-design/styles",
-    "build:ladle": "pnpm npx lerna run build --scope=@aura-design/styles --scope=@aura-design/ladle",
-    "start:ladle": "pnpm npx lerna run start --scope=@aura-design/ladle",
-    "test:ladle": "pnpm npx lerna run test --scope=@aura-design/ladle",
-    "release": "cd ./dist && npm publish",
-    "prettier:check": "prettier --check .",
-    "prettier:fix": "prettier --write .",
-    "git:reset": "git reset --hard HEAD",
-    "git:clean": "git clean -d -x -e node_modules -e packages -f",
-    "new-version": "pnpm npx lerna version --conventional-commits --yes"
+    "dev": "pnpm npx turbo dev"
   },
   "keywords": [
     "react",
@@ -38,13 +23,11 @@
     "ui-components"
   ],
   "devDependencies": {
-    "@types/react": "^18.0.27",
-    "lerna": "^6.4.1",
-    "prettier": "^2.8.3",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "typescript": "^4.9.5"
+    "prettier": "^3.2.5",
+    "turbo": "^2.0.11",
+    "typescript": "^5.4.5"
   },
+  "packageManager": "pnpm@9.8.0",
   "workspaces": [
     "packages/*"
   ]
