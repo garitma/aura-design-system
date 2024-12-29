@@ -1,23 +1,19 @@
+import { PrismicText } from "@prismicio/react";
+import { createClient } from "@/prismicio";
 import Section from "@aura-design/system/section";
+import Separator from "@aura-design/system/separator";
 
-const Footer = () => {
+
+export default async function Footer() {
+  const client = createClient();
+  const footer = await client.getSingle("footer");
+
   return (
-    <footer>
-      <Section>
-        <p className="centertxt">
-          Powered by{" "}
-          <a href="https://auradesignsystem.com" className="uline">
-            Aura Design System
-          </a>{" "}
-          brought to you by{" "}
-          <a href="https://garitma.com" className="uline">
-            Garitma
-          </a>
-          .
-        </p>
+    <footer id="footer">
+      <Separator />
+      <Section className="p-1 mb-2 text-center" passDiv>
+        <PrismicText field={footer.data.copyright} />
       </Section>
     </footer>
   );
-};
-
-export default Footer;
+}

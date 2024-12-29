@@ -1,20 +1,43 @@
-export const API_LOCALE = "en-us";
+export const FAV_ICON =
+  "https://images.prismic.io/garitma/a837c068-59a1-485d-ac59-bf9db76c129c_logo-stack.png?auto=compress,format";
+export const API_LOCALE = "es-co";
 export const DATE_FORMAT = {
   year: "numeric",
   month: "long",
   day: "2-digit",
 };
-export const SITE_NAME = "Aura Design System";
-export const SITE_URL = "https://auradesignsystem.com";
-export const FAV_ICON =
-  "https://images.prismic.io/garitma%2F05577a45-7699-442d-bce7-1cb85fbbf552_favicon-aura.png?auto=compress,format";
+export const SITE_NAME = "Garitma";
+export const SITE_URL = "https://garitma.com";
 export const SOCIAL = {
-  instagram: "auradesignsystem",
-  twitter: "aura-design",
+  instagram: "garitma",
+  twitter: "garitma",
+  facebook: "garitma",
+  facebookappId: "2316614485265162",
   openGrap:
-    "https://images.prismic.io/garitma/b4421ceb-02a4-493a-a036-0ab9e8a4f0b2_open-graph.png?auto=compress,format",
+    "https://images.prismic.io/garitma%2F41185919-2f0a-44b8-bc20-cfcd350ae530_open_graph_logo.png?auto=compress,format",
 };
-export const SITE_DESCRIPTIO =
-  "Aura Design System is Garitma's open source space-oriented design system. Each object has a halo of light that surrounds it, it's aura.";
 
-export const PRISMIC_ACCESS_TOKEN = process.env.PRISMIC_ACCESS_TOKEN;
+export const SITE_DESCRIPTIO =
+  "Ven conmigo a mi imaginación. Te doy la bienvenida a mi blog de arte donde cuento y dibujo historias.";
+export const API_URL_KIT = "https://garitma.cdn.prismic.io/api/v2";
+export const GRAPHQL_API_URL = "https://garitma.prismic.io/graphql";
+export const API_TOKEN = process.env.ACCESS_TOKEN;
+
+export const POSTS_TYPES = [
+  "poemas",
+  "frases",
+  "comics",
+  "descargas"
+]
+
+export const POSTS_TYPE_ID = {
+  poemas: "poemas",
+  comics: "comics",
+  descargas: "descargas",
+};
+
+export const POSTS_TYPE_LABEL = {
+  poemas: "Poemas",
+  comics: "Cómics",
+  descargas: "Descargas",
+};

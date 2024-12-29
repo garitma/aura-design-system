@@ -1,29 +1,28 @@
 {
   "name": "@aura-design/website",
-  "version": "1.0.1",
-  "description": "Aura Design System is Garitma's open source space-oriented design system. Each object has a halo of light that surrounds it, it's aura.",
+  "keywords": [],
   "author": {
     "name": "Pablo Orozco",
     "email": "me@pablopvsky.com"
   },
   "license": "MIT",
   "dependencies": {
-    "@aura-design/system": "0.4.28",
-    "@prismicio/client": "^6.7.3",
-    "@prismicio/helpers": "^2.3.9",
-    "@prismicio/next": "^1.0.2",
-    "@prismicio/react": "^2.5.1",
-    "@prismicio/slice-simulator-react": "^0.2.3",
-    "@prismicio/types": "^0.2.7",
-    "@radix-ui/react-icons": "^1.1.1",
-    "next": "^13.1.6",
+    "@aura-design/system": "^0.4.65",
+    "@prismicio/client": "^7.13.1",
+    "@prismicio/next": "^1.7.1",
+    "@prismicio/react": "^2.9.1",
+    "@radix-ui/react-icons": "^1.3.0",
+    "clsx": "^2.1.1",
+    "framer-motion": "^11.11.8",
+    "next": "^14.2.15",
     "nprogress": "^0.2.0",
     "phantom-client": "^0.0.4",
-    "prism-react-renderer": "^1.3.5",
-    "prismic-ts-codegen": "^0.1.5",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-use-clipboard": "^1.0.9"
+    "react": "^18.3.1",
+    "react-bodymovin": "^2.0.0",
+    "react-dom": "^18.3.1",
+    "resend": "4.0.1-alpha.0",
+    "sonner": "^1.7.0",
+    "tailwind-merge": "^2.5.4"
   },
   "scripts": {
     "dev": "next dev",
@@ -31,14 +30,16 @@
     "start": "next start",
     "slicemachine": "start-slicemachine"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/garitma/next-aura-design-system"
-  },
   "devDependencies": {
-    "@types/node": "^18.11.19",
-    "@types/react": "^18.0.27",
-    "slice-machine-ui": "^0.7.0",
-    "typescript": "^4.9.5"
+    "@slicemachine/adapter-next": "^0.3.61",
+    "@types/node": "22.7.5",
+    "@types/nprogress": "^0.2.3",
+    "@types/react": "18.3.11",
+    "@types/react-dom": "18.3.1",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.47",
+    "slice-machine-ui": "^2.11.1",
+    "start-slicemachine": "^0.12.31",
+    "tailwindcss": "^3.4.13"
   }
 }

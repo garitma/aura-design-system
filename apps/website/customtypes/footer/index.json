@@ -1,17 +1,21 @@
 {
   "id": "footer",
   "label": "Footer",
+  "format": "custom",
   "repeatable": false,
   "status": true,
   "json": {
     "Main": {
       "copyright": {
-        "type": "Text",
+        "type": "StructuredText",
         "config": {
-          "label": "Copyright"
+          "label": "Copyright",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "single": "paragraph,strong,em,hyperlink"
         }
       },
-      "body": {
+      "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",
         "config": {

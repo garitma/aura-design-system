@@ -1,13 +1,17 @@
-# Aura Design System por Garitma
+# Next Garitmatic
 
-Bienvenido a [Aura Design System](https://auradesignsystem.com) creado por [Garitma](https://garitma.com).
+This is the core app of Garitma using [Next.js](https://github.com/zeit/next.js/) and [Prismic.io](http://prismic.io).
 
-![Cover](./.readme-static/isotipo.jpg)
+## Prerequisites
 
-## Licencia
+You will need [Node.js](https://nodejs.org) version 10.0 or greater installed on your system.
 
-MIT
+## How it works?
 
-## Got feedback?
+- `yarn install` for install the dependencies.
+- `vercel env pull` for pull evirorment variables.
+- `yarn dev` for development environment
+- `yarn build && yarn start` for production environment.
 
-Please open a new <a href="https://github.com/garitma/aura-design-system/issues">GitHub Issue</a>.
+
+The app should now be up and running at http://localhost:3000 
