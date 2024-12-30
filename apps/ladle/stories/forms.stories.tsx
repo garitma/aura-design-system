@@ -1,21 +1,15 @@
-import React, { FormEvent, Fragment, useEffect } from "react";
+import React from "react";
 import { SymbolIcon } from "@radix-ui/react-icons";
 
-import {
-  useForm,
-  useFormDynamic,
-  useStatus,
-  useFormIsValid,
-  useFormValues,
-  isInvalidSchema,
-} from "@aura-design/system/form";
+import { useFormDynamic, useStatus } from "@aura-design/system/form";
 import Input from "@aura-design/system/input";
-import Select from "@aura-design/system/select";
 import Textarea from "@aura-design/system/textarea";
 import Button from "@aura-design/system/button";
 import Alert from "@aura-design/system/alert";
-import Grid from "@aura-design/system/grid";
-import Checkbox from "@aura-design/system/checkbox";
+
+export default {
+  title: "Forms / Preview",
+};
 
 export const WithDynamicForm = () => {
   const status = useStatus();
@@ -100,9 +94,11 @@ export const WithValidator = () => {
       firstName.dialog(null);
     }
 
-    if(!email.value) {
+    if (!email.value) {
       email.dialog("Email is required.");
-    } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.value)) {
+    } else if (
+      !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email.value)
+    ) {
       email.dialog("Email is not valid.");
     } else {
       email.dialog(null);
@@ -120,7 +116,7 @@ export const WithValidator = () => {
       password.dialog(null);
     }
 
-    if(!repeatPassword.value){
+    if (!repeatPassword.value) {
       repeatPassword.dialog("Repeat password is required.");
     } else if (repeatPassword.value !== password.value) {
       repeatPassword.dialog("Passwords do not match.");
@@ -178,15 +174,25 @@ export const WithValidator = () => {
     status.setMessage("Everything has gone well.");
   };
 
-  console.log(formData.value)
+  console.log(formData.value);
 
   return (
     <div>
       <form onSubmit={handleOnSubmit}>
         <Input placeholder="Name" {...firstName} isLabelable />
         <Input placeholder="Email" {...email} isLabelable />
-        <Input placeholder="Password" {...password} isLabelable type="password"/>
-        <Input placeholder="Repeat password" {...repeatPassword} isLabelable type="password"/>
+        <Input
+          placeholder="Password"
+          {...password}
+          isLabelable
+          type="password"
+        />
+        <Input
+          placeholder="Repeat password"
+          {...repeatPassword}
+          isLabelable
+          type="password"
+        />
 
         <div className="inputer">
           <Button

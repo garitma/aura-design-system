@@ -18,7 +18,7 @@ export const Pancake = () => {
 
 export const Dashboard = () => {
   return (
-    <body className="page-dashboard">
+    <body className="page-dashboard aureole">
       <div className="pad blue">
         <span>logo</span>
       </div>
