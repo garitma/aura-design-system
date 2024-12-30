@@ -20,7 +20,7 @@ export default function RootLayout({
       <body>
         <HeadContent />
         <main>
-          <div className="page-dashboard">
+          <div className="page-dashboard aureole">
             <Header />
             <div className="page-pancake">
               <div></div>
