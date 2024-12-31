@@ -1,4 +1,7 @@
+/** @type {import('@ladle/react').UserConfig} */
+
 export default {
+  defaultStory: "aa--welcome",
   appendToHead:
     '<link rel="canonical" href="https://ladle.auradesignsystem.com/">',
   outDir: "./build/dist",
@@ -7,5 +10,6 @@ export default {
       enabled: false,
       defaultState: "light",
     },
+    
   },
 };
