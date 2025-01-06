@@ -24,37 +24,37 @@ export const Radix = () => {
   return (
     <Menubar.Root className="flex rounded-md bg-white p-0.5 shadow">
       <Menubar.Menu>
-        <Menubar.Trigger className="flex select-none items-center justify-between gap-0.5 rounded px-2 py-1  font-medium leading-none  outline-none data-[highlighted]:bg-accents-1 data-[state=open]:bg-accents-1">
+        <Menubar.Trigger className="flex select-none items-center justify-between gap-0.5 rounded px-2 py-1 leading-none outline-none data-[highlighted]:bg-accents-1 data-[state=open]:bg-accents-1">
           File
         </Menubar.Trigger>
         <Menubar.Portal>
           <Menubar.Content
-            className="min-w-[220px] rounded-md bg-white p-0.5 shadow will-change-[transform,opacity] [animation-duration:_400ms] [animation-timing-function:_cubic-bezier(0.16,_1,_0.3,_1)]"
+            className="min-w-[220px] rounded-md bg-white p-0.5 shadow"
             align="start"
             sideOffset={5}
             alignOffset={-3}
           >
-            <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:data-[state=open]:text-violet1 data-[highlighted]:text-violet1 data-[state=open]:">
+            <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
               New Tab{" "}
               <div className="ml-auto pl-5 text-black/50 group-data-[disabled]:text-black/50 group-data-[highlighted]:text-black">
                 ⌘ T
               </div>
             </Menubar.Item>
-            <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:data-[state=open]:text-violet1 data-[highlighted]:text-violet1 data-[state=open]:">
+            <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
               New Window{" "}
               <div className="ml-auto pl-5 text-black/50 group-data-[disabled]:text-black/50 group-data-[highlighted]:text-black">
                 ⌘ N
               </div>
             </Menubar.Item>
             <Menubar.Item
-              className="relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:data-[state=open]:text-violet1 data-[highlighted]:text-violet1 data-[state=open]:"
+              className="relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50"
               disabled
             >
               New Incognito Window
             </Menubar.Item>
             <Menubar.Separator className="m-[5px] h-[1px] bg-accents-3" />
             <Menubar.Sub>
-              <Menubar.SubTrigger className="group relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:data-[state=open]:text-violet1 data-[highlighted]:text-violet1 data-[state=open]:">
+              <Menubar.SubTrigger className="group relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
                 Share
                 <div className="ml-auto pl-5 text-black/50 group-data-[disabled]:text-black/50 group-data-[highlighted]:text-black">
                   <ChevronRightIcon />
@@ -62,23 +62,23 @@ export const Radix = () => {
               </Menubar.SubTrigger>
               <Menubar.Portal>
                 <Menubar.SubContent
-                  className="min-w-[220px] rounded-md bg-white p-0.5 shadow will-change-[transform,opacity] [animation-duration:_400ms] [animation-timing-function:_cubic-bezier(0.16,_1,_0.3,_1)]"
+                  className="min-w-[220px] rounded-md bg-white p-0.5 shadow"
                   alignOffset={-5}
                 >
-                  <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:text-violet1 data-[state=open]:">
+                  <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50  ">
                     Email Link
                   </Menubar.Item>
-                  <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:text-violet1 data-[state=open]:">
+                  <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50  ">
                     Messages
                   </Menubar.Item>
-                  <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:text-violet1 data-[state=open]:">
+                  <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50  ">
                     Notes
                   </Menubar.Item>
                 </Menubar.SubContent>
               </Menubar.Portal>
             </Menubar.Sub>
             <Menubar.Separator className="m-[5px] h-[1px] bg-accents-3" />
-            <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:text-violet1">
+            <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
               Print…{" "}
               <div className="ml-auto pl-5 text-black/50 group-data-[disabled]:text-black/50 group-data-[highlighted]:text-black">
                 ⌘ P
@@ -89,23 +89,23 @@ export const Radix = () => {
       </Menubar.Menu>
 
       <Menubar.Menu>
-        <Menubar.Trigger className="flex select-none items-center justify-between gap-0.5 rounded px-2 py-1  font-medium leading-none  outline-none data-[highlighted]:bg-accents-1 data-[state=open]:bg-accents-1">
+        <Menubar.Trigger className="flex select-none items-center justify-between gap-0.5 rounded px-2 py-1 leading-none outline-none data-[highlighted]:bg-accents-1 data-[state=open]:bg-accents-1">
           Edit
         </Menubar.Trigger>
         <Menubar.Portal>
           <Menubar.Content
-            className="min-w-[220px] rounded-md bg-white p-0.5 shadow will-change-[transform,opacity] [animation-duration:_400ms] [animation-timing-function:_cubic-bezier(0.16,_1,_0.3,_1)]"
+            className="min-w-[220px] rounded-md bg-white p-0.5 shadow"
             align="start"
             sideOffset={5}
             alignOffset={-3}
           >
-            <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:data-[state=open]:text-violet1 data-[highlighted]:text-violet1 data-[state=open]:">
+            <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
               Undo{" "}
               <div className="ml-auto pl-5 text-black/50 group-data-[disabled]:text-black/50 group-data-[highlighted]:text-black">
                 ⌘ Z
               </div>
             </Menubar.Item>
-            <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:data-[state=open]:text-violet1 data-[highlighted]:text-violet1 data-[state=open]:">
+            <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
               Redo{" "}
               <div className="ml-auto pl-5 text-black/50 group-data-[disabled]:text-black/50 group-data-[highlighted]:text-black">
                 ⇧ ⌘ Z
@@ -113,7 +113,7 @@ export const Radix = () => {
             </Menubar.Item>
             <Menubar.Separator className="m-[5px] h-[1px] bg-accents-3" />
             <Menubar.Sub>
-              <Menubar.SubTrigger className="group relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:data-[state=open]:text-violet1 data-[highlighted]:text-violet1 data-[state=open]:">
+              <Menubar.SubTrigger className="group relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
                 Find
                 <div className="ml-auto pl-5 text-black/50 group-data-[disabled]:text-black/50 group-data-[highlighted]:text-black">
                   <ChevronRightIcon />
@@ -122,33 +122,33 @@ export const Radix = () => {
 
               <Menubar.Portal>
                 <Menubar.SubContent
-                  className="min-w-[220px] rounded-md bg-white p-0.5 shadow will-change-[transform,opacity] [animation-duration:_400ms] [animation-timing-function:_cubic-bezier(0.16,_1,_0.3,_1)]"
+                  className="min-w-[220px] rounded-md bg-white p-0.5 shadow"
                   alignOffset={-5}
                 >
-                  <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:text-violet1 data-[state=open]:">
+                  <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50  ">
                     Search the web…
                   </Menubar.Item>
                   <Menubar.Separator className="m-[5px] h-[1px] bg-accents-3" />
-                  <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:text-violet1 data-[state=open]:">
+                  <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50  ">
                     Find…
                   </Menubar.Item>
-                  <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:text-violet1 data-[state=open]:">
+                  <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50  ">
                     Find Next
                   </Menubar.Item>
-                  <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:text-violet1 data-[state=open]:">
+                  <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50  ">
                     Find Previous
                   </Menubar.Item>
                 </Menubar.SubContent>
               </Menubar.Portal>
             </Menubar.Sub>
             <Menubar.Separator className="m-[5px] h-[1px] bg-accents-3" />
-            <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:data-[state=open]:text-violet1 data-[highlighted]:text-violet1 data-[state=open]:">
+            <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
               Cut
             </Menubar.Item>
-            <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:data-[state=open]:text-violet1 data-[highlighted]:text-violet1 data-[state=open]:">
+            <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
               Copy
             </Menubar.Item>
-            <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:data-[state=open]:text-violet1 data-[highlighted]:text-violet1 data-[state=open]:">
+            <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
               Paste
             </Menubar.Item>
           </Menubar.Content>
@@ -156,19 +156,19 @@ export const Radix = () => {
       </Menubar.Menu>
 
       <Menubar.Menu>
-        <Menubar.Trigger className="flex select-none items-center justify-between gap-0.5 rounded px-2 py-1  font-medium leading-none  outline-none data-[highlighted]:bg-accents-1 data-[state=open]:bg-accents-1">
+        <Menubar.Trigger className="flex select-none items-center justify-between gap-0.5 rounded px-2 py-1 leading-none outline-none data-[highlighted]:bg-accents-1 data-[state=open]:bg-accents-1">
           View
         </Menubar.Trigger>
         <Menubar.Portal>
           <Menubar.Content
-            className="min-w-[220px] rounded-md bg-white p-0.5 shadow will-change-[transform,opacity] [animation-duration:_400ms] [animation-timing-function:_cubic-bezier(0.16,_1,_0.3,_1)]"
+            className="min-w-[220px] rounded-md bg-white p-0.5 shadow"
             align="start"
             sideOffset={5}
             alignOffset={-14}
           >
             {CHECK_ITEMS.map((item) => (
               <Menubar.CheckboxItem
-                className="relative flex h-[39px] select-none items-center rounded px-2.5 pl-5  leading-none  outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:text-violet1"
+                className="relative flex h-[39px] select-none items-center rounded px-2.5 pl-5 leading-none outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50"
                 key={item}
                 checked={checkedSelection.includes(item)}
                 onCheckedChange={() =>
@@ -186,14 +186,14 @@ export const Radix = () => {
               </Menubar.CheckboxItem>
             ))}
             <Menubar.Separator className="m-[5px] h-[1px] bg-accents-3" />
-            <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded pl-5 pr-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:data-[state=open]:text-violet1 data-[highlighted]:text-violet1 data-[state=open]:">
+            <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded pl-5 pr-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
               Reload{" "}
               <div className="ml-auto pl-5 text-black/50 group-data-[disabled]:text-black/50 group-data-[highlighted]:text-black">
                 ⌘ R
               </div>
             </Menubar.Item>
             <Menubar.Item
-              className="group relative flex h-[39px] select-none items-center rounded pl-5 pr-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:data-[state=open]:text-violet1 data-[highlighted]:text-violet1 data-[state=open]:"
+              className="group relative flex h-[39px] select-none items-center rounded pl-5 pr-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50"
               disabled
             >
               Force Reload{" "}
@@ -202,11 +202,11 @@ export const Radix = () => {
               </div>
             </Menubar.Item>
             <Menubar.Separator className="m-[5px] h-[1px] bg-accents-3" />
-            <Menubar.Item className="relative flex h-[39px] select-none items-center rounded pl-5 pr-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:data-[state=open]:text-violet1 data-[highlighted]:text-violet1 data-[state=open]:">
+            <Menubar.Item className="relative flex h-[39px] select-none items-center rounded pl-5 pr-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
               Toggle Fullscreen
             </Menubar.Item>
             <Menubar.Separator className="m-[5px] h-[1px] bg-accents-3" />
-            <Menubar.Item className="relative flex h-[39px] select-none items-center rounded pl-5 pr-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:data-[state=open]:text-violet1 data-[highlighted]:text-violet1 data-[state=open]:">
+            <Menubar.Item className="relative flex h-[39px] select-none items-center rounded pl-5 pr-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
               Hide Sidebar
             </Menubar.Item>
           </Menubar.Content>
@@ -214,12 +214,12 @@ export const Radix = () => {
       </Menubar.Menu>
 
       <Menubar.Menu>
-        <Menubar.Trigger className="flex select-none items-center justify-between gap-0.5 rounded px-2 py-1  font-medium leading-none  outline-none data-[highlighted]:bg-accents-1 data-[state=open]:bg-accents-1">
+        <Menubar.Trigger className="flex select-none items-center justify-between gap-0.5 rounded px-2 py-1 leading-none outline-none data-[highlighted]:bg-accents-1 data-[state=open]:bg-accents-1">
           Profiles
         </Menubar.Trigger>
         <Menubar.Portal>
           <Menubar.Content
-            className="min-w-[220px] rounded-md bg-white p-0.5 shadow will-change-[transform,opacity] [animation-duration:_400ms] [animation-timing-function:_cubic-bezier(0.16,_1,_0.3,_1)]"
+            className="min-w-[220px] rounded-md bg-white p-0.5 shadow"
             align="start"
             sideOffset={5}
             alignOffset={-14}
@@ -230,7 +230,7 @@ export const Radix = () => {
             >
               {RADIO_ITEMS.map((item) => (
                 <Menubar.RadioItem
-                  className="relative flex h-[39px] select-none items-center rounded pl-5 pr-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:text-violet1"
+                  className="relative flex h-[39px] select-none items-center rounded pl-5 pr-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50"
                   key={item}
                   value={item}
                 >
@@ -241,11 +241,11 @@ export const Radix = () => {
                 </Menubar.RadioItem>
               ))}
               <Menubar.Separator className="m-[5px] h-[1px] bg-accents-3" />
-              <Menubar.Item className="relative flex h-[39px] select-none items-center rounded pl-5 pr-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:data-[state=open]:text-violet1 data-[highlighted]:text-violet1 data-[state=open]:">
+              <Menubar.Item className="relative flex h-[39px] select-none items-center rounded pl-5 pr-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
                 Edit…
               </Menubar.Item>
               <Menubar.Separator className="m-[5px] h-[1px] bg-accents-3" />
-              <Menubar.Item className="relative flex h-[39px] select-none items-center rounded pl-5 pr-2.5  leading-none  outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[highlighted]:from-violet9 data-[highlighted]:to-violet10 data-[disabled]:text-black/50 data-[highlighted]:data-[state=open]:text-violet1 data-[highlighted]:text-violet1 data-[state=open]:">
+              <Menubar.Item className="relative flex h-[39px] select-none items-center rounded pl-5 pr-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
                 Add Profile…
               </Menubar.Item>
             </Menubar.RadioGroup>
