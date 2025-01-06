@@ -5,7 +5,7 @@ import Button from "@aura-design/system/button";
 
 import CommandLine from "../components/CommandLine";
 
-export const Radix = () => {
+export const DropdownMenuDemo = () => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
@@ -67,7 +67,7 @@ export const Radix = () => {
   );
 };
 
-Radix.decorators = [
+DropdownMenuDemo.decorators = [
   (Component) => (
     <>
       <CommandLine code="pnpm i @radix-ui/react-dropdown-menu" />

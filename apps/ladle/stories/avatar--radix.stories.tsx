@@ -7,7 +7,7 @@ export default {
   title: "Avatar",
 };
 
-export const Radix = () => {
+export const AvatarDemo = () => {
   return (
     <div className="flex gap-2">
       <Avatar.Root className="inline-flex size-[45px] select-none items-center justify-center overflow-hidden rounded-full bg-black align-middle">
@@ -45,7 +45,7 @@ export const Radix = () => {
   );
 };
 
-Radix.decorators = [
+AvatarDemo.decorators = [
   (Component) => (
     <>
       <CommandLine code="pnpm i @radix-ui/react-avatar" />

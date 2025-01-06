@@ -27,6 +27,7 @@
     "@radix-ui/react-radio-group": "^1.2.2",
     "@radix-ui/react-select": "^2.1.4",
     "@radix-ui/react-switch": "^1.1.2",
+    "@radix-ui/react-tabs": "^1.1.2",
     "cally": "^0.7.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",

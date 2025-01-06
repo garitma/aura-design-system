@@ -8,7 +8,7 @@ export default {
   title: "Alert Dialog",
 };
 
-export const Radix = () => (
+export const AlertDialogDemo = () => (
   <AlertDialog.Root>
     <AlertDialog.Trigger asChild>
       <Button>Delete account</Button>
@@ -36,7 +36,7 @@ export const Radix = () => (
   </AlertDialog.Root>
 );
 
-Radix.decorators = [
+AlertDialogDemo.decorators = [
   (Component) => (
     <>
       <CommandLine code="pnpm i @radix-ui/react-alert-dialog" />

@@ -15,7 +15,7 @@ export default {
 const RADIO_ITEMS = ["Andy", "Benoît", "Luis"];
 const CHECK_ITEMS = ["Always Show Bookmarks Bar", "Always Show Full URLs"];
 
-export const Radix = () => {
+export const NavigationMenuDemo = () => {
   const [checkedSelection, setCheckedSelection] = React.useState([
     CHECK_ITEMS[1],
   ]);
@@ -256,7 +256,71 @@ export const Radix = () => {
   );
 };
 
-Radix.decorators = [
+export const NavigationMenuSimple = () => {
+  return (
+    <Menubar.Root className="flex rounded-md bg-white p-0.5 shadow">
+      <Menubar.Menu>
+        <Menubar.Trigger className="flex select-none items-center justify-between gap-0.5 rounded px-2 py-1 leading-none outline-none data-[highlighted]:bg-accents-1 data-[state=open]:bg-accents-1">
+          File
+        </Menubar.Trigger>
+        <Menubar.Portal>
+          <Menubar.Content
+            className="min-w-[220px] rounded-md bg-white p-0.5 shadow"
+            align="start"
+            sideOffset={5}
+            alignOffset={-3}
+          >
+            <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
+              New Tab{" "}
+            </Menubar.Item>
+            <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
+              New Window{" "}
+            </Menubar.Item>
+
+            <Menubar.Sub>
+              <Menubar.SubTrigger className="group relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
+                Share
+                <div className="ml-auto pl-5 text-black/50 group-data-[disabled]:text-black/50 group-data-[highlighted]:text-black">
+                  <ChevronRightIcon />
+                </div>
+              </Menubar.SubTrigger>
+              <Menubar.Portal>
+                <Menubar.SubContent
+                  className="min-w-[220px] rounded-md bg-white p-0.5 shadow"
+                  alignOffset={-5}
+                >
+                  <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50  ">
+                    Email Link
+                  </Menubar.Item>
+                  <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50  ">
+                    Messages
+                  </Menubar.Item>
+                  <Menubar.Item className="relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[state=open]:bg-accents-1 data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50  ">
+                    Notes
+                  </Menubar.Item>
+                </Menubar.SubContent>
+              </Menubar.Portal>
+            </Menubar.Sub>
+            <Menubar.Item className="group relative flex h-[39px] select-none items-center rounded px-2.5 leading-none outline-none data-[disabled]:pointer-events-none data-[highlighted]:bg-accents-1 data-[disabled]:text-black/50">
+              Print…{" "}
+            </Menubar.Item>
+          </Menubar.Content>
+        </Menubar.Portal>
+      </Menubar.Menu>
+    </Menubar.Root>
+  );
+};
+
+NavigationMenuDemo.decorators = [
+  (Component) => (
+    <>
+      <CommandLine code="pnpm i @radix-ui/react-menubar" />
+      <Component />
+    </>
+  ),
+];
+
+NavigationMenuSimple.decorators = [
   (Component) => (
     <>
       <CommandLine code="pnpm i @radix-ui/react-menubar" />

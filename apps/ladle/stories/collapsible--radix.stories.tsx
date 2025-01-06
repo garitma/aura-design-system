@@ -8,7 +8,7 @@ export default {
   title: "Collapsible",
 };
 
-export const Radix = () => {
+export const CollapsibleDemo = () => {
   const [open, setOpen] = React.useState(false);
   return (
     <Collapsible.Root className="w-[300px]" open={open} onOpenChange={setOpen}>
@@ -22,22 +22,22 @@ export const Radix = () => {
       </div>
 
       <div className="my-1 rounded bg-white p-1 border">
-        <span className=" text-violet11">@radix-ui/primitives</span>
+        <span className=" ">@radix-ui/primitives</span>
       </div>
 
       <Collapsible.Content>
         <div className="my-1 rounded bg-white p-1 border">
-          <span className=" text-violet11">@radix-ui/colors</span>
+          <span className=" ">@radix-ui/colors</span>
         </div>
         <div className="my-1 rounded bg-white p-1 border">
-          <span className=" text-violet11">@radix-ui/themes</span>
+          <span className=" ">@radix-ui/themes</span>
         </div>
       </Collapsible.Content>
     </Collapsible.Root>
   );
 };
 
-Radix.decorators = [
+CollapsibleDemo.decorators = [
   (Component) => (
     <>
       <CommandLine code="pnpm i @radix-ui/react-collapsible" />

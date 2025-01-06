@@ -7,7 +7,7 @@ export default {
   title: "Aspect Ratio",
 };
 
-export const Radix = () => (
+export const AspectRatioDemo = () => (
   <div className="w-[300px] overflow-hidden rounded-md">
     <AspectRatio.Root ratio={16 / 9}>
       <img
@@ -19,7 +19,7 @@ export const Radix = () => (
   </div>
 );
 
-Radix.decorators = [
+AspectRatioDemo.decorators = [
   (Component) => (
     <>
       <CommandLine code="pnpm i @radix-ui/react-aspect-ratio" />

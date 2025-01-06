@@ -8,7 +8,7 @@ export default {
   title: "Accordion",
 };
 
-export const Radix = () => (
+export const WithRadix = () => (
   <Accordion.Root type="single" defaultValue="item-1" collapsible>
     <Accordion.Item
       value="item-1"
@@ -28,7 +28,7 @@ export const Radix = () => (
   </Accordion.Root>
 );
 
-Radix.decorators = [
+WithRadix.decorators = [
   (Component) => (
     <>
       <CommandLine code="pnpm i @radix-ui/react-accordion" />

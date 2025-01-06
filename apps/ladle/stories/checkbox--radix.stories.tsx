@@ -13,7 +13,7 @@ interface CheckboxProps extends Checkbox.CheckboxProps {
   label?: string;
 }
 
-export const Radix = ({
+export const WithRadix = ({
   id,
   label = "Acept terms and conditions.",
   ...props
@@ -38,7 +38,7 @@ export const Radix = ({
   );
 };
 
-Radix.decorators = [
+WithRadix.decorators = [
   (Component) => (
     <>
       <CommandLine code="pnpm i @radix-ui/react-checkbox" />
