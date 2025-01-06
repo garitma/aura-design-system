@@ -27,10 +27,8 @@ module.exports = {
     spacing: generateSpacing(),
     extend: {
       colors: {
-        "accents-danger": "var(--aura-accents-danger)",
-        "accents-primary": "var(--aura-accents-success)",
-        "accents-success": "var(--aura-accents-primary)",
-        "accents-info": "var(--aura-accents-info`)",
+        "info": "#0927ec",
+        "success": "#045d3c",
         "accents-0": "var(--aura-accents-0)",
         "accents-1": "var(--aura-accents-1)",
         "accents-2": "var(--aura-accents-2)",

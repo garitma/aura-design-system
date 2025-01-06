@@ -3,9 +3,15 @@ import { CodeIcon, CheckIcon } from "@radix-ui/react-icons";
 
 type CommandLineProps = {
   code?: string;
+  title?: string;
+  description?: string;
 };
 
-const CommandLine = ({ code }: CommandLineProps) => {
+const CommandLine = ({
+  code,
+  title = "Installation",
+  description = "Install the component from your command line",
+}: CommandLineProps) => {
   const codeRef = useRef<HTMLPreElement>(null);
   const [copied, setCopied] = useState(false);
 
@@ -24,8 +30,8 @@ const CommandLine = ({ code }: CommandLineProps) => {
 
   return (
     <div className="my-1 relative" onClick={copyCode}>
-      <h3>Installation</h3>
-      <p>Install the component from your command line.</p>
+      {title && <h3>{title}</h3>}
+      {description && <p>{description}</p>}
       <pre
         className="flex justify-start gap-1 items-center border-solid border border-accents-3 p-1 h-4 rounded text-center cursor-pointer hover:bg-accents-1"
         ref={codeRef} // Assign the ref

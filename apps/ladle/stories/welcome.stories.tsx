@@ -1,10 +1,6 @@
 import React from "react";
 import CommandLine from "../components/CommandLine";
 
-export default {
-  title: "AA Welcome",
-};
-
 export const Welcome = () => {
   return (
     <>
