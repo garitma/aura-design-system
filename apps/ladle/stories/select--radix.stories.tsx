@@ -36,7 +36,7 @@ export const Radix = () => {
   return (
     <Select.Root>
       <Select.Trigger
-        className="bg-accents-1 inline-flex w-full h-4 items-center justify-between gap-0.5 rounded bg-white px-[15px] leading-none  outline-none focus:shadow-[0_0_0_2px] focus:shadow-black data-[placeholder]:text-violet9"
+        className="bg-accents-1 inline-flex w-full h-4 items-center justify-between gap-0.5 rounded bg-white px-2 leading-none outline-none focus:outline-2 focus:outline-info data-[placeholder]:text-violet9"
         aria-label="Food"
       >
         <Select.Value placeholder="Select a fruit…" />
