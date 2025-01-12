@@ -1,6 +1,6 @@
 import { writeFileSync } from "fs";
 
-const cssToJs = (cssString, label) => {
+const cssToJs = (cssString: string, label: string) => {
   const lines = cssString.split("\n");
   const result = {
     [`${label}`]: {},

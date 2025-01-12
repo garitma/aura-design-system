@@ -197,6 +197,8 @@ importers:
         specifier: ^11.0.0
         version: 11.0.0
 
+  packages/colors: {}
+
   packages/styled-system:
     devDependencies:
       stylus:
