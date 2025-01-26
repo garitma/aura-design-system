@@ -1,4 +1,59 @@
-/* @tailwind base; */
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: var(--spacing) 0;
+  font-weight: 800;
+}
+
+p {
+  margin: var(--spacing) 0;
+}
+
+@theme {
+  --spacing: 13px;
+
+  --color-black1: #fcfcff;
+  --color-black2: #f9f9fe;
+  --color-black3: #efeff8;
+  --color-black4: #e7e7f3;
+  --color-black5: #dfdfee;
+  --color-black6: #d8d8e9;
+  --color-black7: #cdcde1;
+  --color-black8: #b9b9d2;
+  --color-black9: #000;
+  --color-black10: #2c2c3b;
+  --color-black11: #626276;
+  --color-black12: #1f1f2c;
+
+  --color-blacka1: #0000ff03;
+  --color-blacka2: #0000d506;
+  --color-blacka3: #00009010;
+  --color-blacka4: #00008018;
+  --color-blacka5: #00007820;
+  --color-blacka6: #00007027;
+  --color-blacka7: #00006632;
+  --color-blacka8: #00005c46;
+  --color-blacka9: #000000;
+  --color-blacka10: #000012d3;
+  --color-blacka11: #0000219d;
+  --color-blacka12: #00000fe0;
+
+  --color-blackcontrast: #fff;
+  --color-blacksurface: #f8f8fecc;
+  --color-blackindicator: #000;
+  --color-blacktrack: #000;
+
+  --color-info: #e8ebfe;
+  --color-infocontrast: #0927ec;
+  --color-success: #e8fef7;
+  --color-successcontrast: #045d3c;
+  --color-danger: #feefe8;
+  --color-dangercontrast: #8e3106;
+  --color-warning: #fefbe8;
+  --color-warningcontrast: #5d5104;
+}

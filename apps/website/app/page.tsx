@@ -1,26 +1,26 @@
-import { Metadata } from "next";
-import { SliceZone } from "@prismicio/react";
+import Section from "@aura-design/system/section";
+import Button from "@/components/ui/Button";
 
-import { getPrismicSEO } from "@/lib/prismic/utils/seo";
-import { createClient } from "@/prismicio";
-import { components } from "@/slices";
-
-export async function generateMetadata(): Promise<Metadata> {
-  const client = createClient();
-  const home = await client.getSingle("homepage");
-  const settings = await client.getSingle("settings");
-  const seo = getPrismicSEO(home, settings);
-
-  return seo;
-}
-
-export default async function Home() {
-  const client = createClient();
-  const page = await client.getSingle("homepage");
-
+export default function Home() {
   return (
     <>
-      <SliceZone slices={page.data.slices} components={components} />
+      <Section>
+        <div className="flex flex-col gap-1">
+          <h1>
+            Aura Design System is a modern approach to styling and spacing in
+            web development
+          </h1>
+          <p>
+            Efficient, CSS-first components designed to seamlessly coexist with
+            Tailwind CSS and Radix UI. Build beautiful, consistent, and
+            responsive web applications with a focus on intuitive spacing and
+            design.
+          </p>
+        </div>
+        <div>
+          <Button></Button>
+        </div>
+      </Section>
     </>
   );
 }

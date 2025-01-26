@@ -2,9 +2,6 @@
 
 /* TOKENS */
 
-*:root {
-  --aura-font-stack: ryo-gothic-plusn, sans-serif;
-}
 
 /* TYPOGRAPHY */
 
@@ -15,10 +12,6 @@
 /* COLORS */
 
 /* HELPERS */
-
-.content a{
-  text-decoration: underline;
-}
 
 /* ATOMS */
 
