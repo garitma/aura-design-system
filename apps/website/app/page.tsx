@@ -19,6 +19,7 @@ export default function Home() {
         </div>
         <div>
           <Button></Button>
+          <Button></Button>
         </div>
       </Section>
     </>
