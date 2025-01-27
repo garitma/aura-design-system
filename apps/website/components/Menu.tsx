@@ -14,15 +14,15 @@ export default function Menu({ menu }: MenuProps) {
     <NavigationMenu.Root className="relative z-10 w-full justify-end hidden md:!flex">
       {isFilled.group(menu.data.tabs) && (
         <NavigationMenu.List className="center m-0 flex p-1 gap-1">
-          {menu.data.tabs.map((tab) => {
+          {menu.data.tabs.map((tab, index) => {
             const hasChilds =
               isFilled.repeatable(tab.sub_tab_item) &&
               tab.sub_tab_item.some((item) => isFilled.keyText(item.text));
 
             if (!hasChilds) {
               return (
-                <li>
-                  <PrismicNextLink field={tab.tab_item} className="button-menu">
+                <li key={`tab-${index}`}>
+                  <PrismicNextLink field={tab.tab_item} className="button-menu" >
                     {tab.tab_item.text}
                   </PrismicNextLink>
                 </li>
@@ -30,7 +30,7 @@ export default function Menu({ menu }: MenuProps) {
             }
 
             return (
-              <NavigationMenu.Item>
+              <NavigationMenu.Item key={`tab-${index}`}>
                 <NavigationMenu.Trigger>
                   <li>
                     <span className="button-menu">
