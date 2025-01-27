@@ -15,6 +15,11 @@ p {
 }
 
 @theme {
+  --radius-0.5: calc(var(--spacing) * 0.5);
+  --radius-1: calc(var(--spacing) * 1);
+  --radius-1.5: calc(var(--spacing) * 1.5);
+  --radius-2: calc(var(--spacing) * 2);
+
   --spacing: 13px;
 
   --color-black1: #fcfcff;

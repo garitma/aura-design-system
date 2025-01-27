@@ -2,9 +2,10 @@
 
 /* TOKENS */
 
-
 /* TYPOGRAPHY */
-
+pre {
+  font-family: var(--font-geist-mono);
+}
 /* LAYOUT */
 
 /* SPACING */
@@ -15,6 +16,12 @@
 
 /* ATOMS */
 
+
 /* MOLECULES */
 
 /* ORGANISMS */
+
+
+#nprogress .peg {
+    display: none !important;
+  }

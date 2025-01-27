@@ -1,0 +1,82 @@
+{
+  "id": "settings",
+  "label": "Settings",
+  "repeatable": false,
+  "status": true,
+  "format": "custom",
+  "json": {
+    "Main": {
+      "fav_icon": {
+        "type": "Image",
+        "config": {
+          "label": "Fav Icon",
+          "constraint": {
+            "width": 512,
+            "height": 512
+          },
+          "thumbnails": []
+        }
+      },
+      "site_name": {
+        "type": "Text",
+        "config": {
+          "label": "Site name",
+          "placeholder": ""
+        }
+      },
+      "site_description": {
+        "type": "Text",
+        "config": {
+          "label": "Site description",
+          "placeholder": ""
+        }
+      },
+      "open_graph": {
+        "type": "Image",
+        "config": {
+          "label": "Open Graph",
+          "constraint": {
+            "width": 1200,
+            "height": 630
+          },
+          "thumbnails": []
+        }
+      },
+      "public_url": {
+        "type": "Text",
+        "config": {
+          "label": "Public url",
+          "placeholder": ""
+        }
+      },
+      "social_media": {
+        "type": "Group",
+        "config": {
+          "label": "Social media",
+          "repeat": true,
+          "fields": {
+            "platform": {
+              "type": "Select",
+              "config": {
+                "label": "platform",
+                "placeholder": "",
+                "options": ["github", "x"]
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": false,
+                "repeat": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

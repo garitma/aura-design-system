@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import "@aura-design/system/main.css"
+import "@aura-design/system/main.css";
+import { PrismicPreview } from "@prismicio/next";
+import { repositoryName } from "@/prismicio";
 
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import Nprogress from "@/components/ui/Nprocess";
 
 import "@/styles/globals.css";
 import "@/styles/main.css";
@@ -39,7 +42,9 @@ export default function RootLayout({
             <div>{children}</div>
             <Footer />
           </div>
+          <PrismicPreview repositoryName={repositoryName} />
         </main>
+        <Nprogress />
       </body>
     </html>
   );
