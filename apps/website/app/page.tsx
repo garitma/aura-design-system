@@ -23,7 +23,7 @@ export default function Home() {
         <div className="mt-0.5 md:flex items-center gap-1">
           <div className="items-center">
             <Link href="/start">
-              <Button className="w-full md:w-auto">Get Starter</Button>
+              <Button className="w-full md:w-auto" as="span">Get Starter</Button>
             </Link>
           </div>
           <div className="w-full md:w-[400px]">

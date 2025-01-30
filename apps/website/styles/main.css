@@ -21,6 +21,10 @@ pre {
 
 /* ORGANISMS */
 
+a:has(.button-fill, .button-pill, .button-link) {
+  outline: none !important;
+}
+
 
 #nprogress .peg {
     display: none !important;
