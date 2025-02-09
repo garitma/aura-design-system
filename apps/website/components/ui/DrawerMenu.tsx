@@ -8,7 +8,6 @@ import {
   ChevronDownIcon,
   Cross1Icon,
 } from "@radix-ui/react-icons";
-import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 
 import { PrismicNextLink } from "@prismicio/next";

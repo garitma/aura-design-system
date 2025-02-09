@@ -1,47 +1,62 @@
-name: next-aura-design
+name: Docker Build and Push to Artifact Registry
 
 on:
   push:
-    branches:
-      - deploy/website/production
+    branches: [ deploy/website/production ]  
 
 env:
-  CLOUD_RUN_PROJECT_ID: ${{ secrets.CLOUD_RUN_PROJECT_NAME }}
-  CLOUD_RUN_REGION: us-central1
-  # project-name but it can be anything you want
-  REPO_NAME: next-aura-design
+  PROJECT_ID: ${{ secrets.CLOUD_RUN_PROJECT_ID }}
+  GAR_LOCATION: us-central1  # Artifact Registry region (e.g., us-central1)
+  REPOSITORY: next-aura-design  # Name of your Artifact Registry repository
+  IMAGE: main  # Name of your Docker image
 
 jobs:
-  build-and-deploy:
-    name: Setup, Build, and Deploy
+  build-and-push:
+    name: Tagged Docker release to Google Artifact Registry
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - id: checkout
+        name: Checkout
+        uses: actions/checkout@v3
 
-      # This step is where our service account will be authenticated
-      - uses: google-github-actions/setup-gcloud@v0.2.0
-        with:
-          project_id: ${{ secrets.CLOUD_RUN_PROJECT_NAME }}
-          service_account_key: ${{ secrets.CLOUD_RUN_SERVICE_ACCOUNT }}
-          service_account_email: ${{ secrets.CLOUD_RUN_SERVICE_ACCOUNT_EMAIL }}
-
-      - name: Enable the necessary APIs and enable docker auth
-        run: |-
-          gcloud services enable containerregistry.googleapis.com
-          gcloud services enable run.googleapis.com
-          gcloud --quiet auth configure-docker
       - name: Build and tag image
         run: |-
-          docker build ./apps/website --build-arg NEXT_PUBLIC_ENV="production" --build-arg NEXT_PUBLIC_SITE_URL="https://auradesignsystem.com" --tag "gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA"
-      - name: Push image to GCR
+          docker build -f apps/website/Dockerfile . --tag "${{env.GAR_LOCATION}}-docker.pkg.dev/${{env.PROJECT_ID}}/${{env.REPOSITORY}}/${{env.IMAGE}}:$GITHUB_SHA"  \
+            --build-arg NEXT_PUBLIC_ENV="production" \
+
+      - id: auth
+        name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.CLOUD_RUN_CREDENTIALS }}
+          token_format: access_token
+          access_token_lifetime: 300s
+
+      - name: Check and Create Repository (if needed)
         run: |-
-          docker push gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA
+          if ! gcloud artifacts repositories describe ${{ env.REPOSITORY }} --location=us-central1; then
+            gcloud artifacts repositories create ${{ env.REPOSITORY }} \
+            --repository-format=docker \
+            --location=us-central1
+          fi
+            
+      - name: Login to Artifact Registry
+        uses: docker/login-action@v1
+        with:
+            registry: ${{ env.GAR_LOCATION }}-docker.pkg.dev
+            username: oauth2accesstoken
+            password: ${{ steps.auth.outputs.access_token }}
+
+      - name: 'Docker push to Artifact Registry'
+        run: |-
+          docker push "${{env.GAR_LOCATION}}-docker.pkg.dev/${{env.PROJECT_ID}}/${{env.REPOSITORY}}/${{env.IMAGE}}:$GITHUB_SHA"
       - name: Deploy
         run: |-
-          gcloud run deploy $REPO_NAME --image gcr.io/$CLOUD_RUN_PROJECT_ID/$REPO_NAME:$GITHUB_SHA \
-            --project $CLOUD_RUN_PROJECT_ID \
-            --platform managed \
-            --region $CLOUD_RUN_REGION \
-            --allow-unauthenticated \
-            --quiet
+            gcloud run deploy ${{ env.REPOSITORY }} --image ${{env.GAR_LOCATION}}-docker.pkg.dev/${{env.PROJECT_ID}}/${{env.REPOSITORY}}/${{env.IMAGE}}:$GITHUB_SHA \
+              --project ${{env.PROJECT_ID}} \
+              --platform managed \
+              --region ${{env.GAR_LOCATION}} \
+              --allow-unauthenticated \
+              --quiet
+          
