@@ -21,11 +21,11 @@ export default function Menu({ menu }: MenuProps) {
 
             if (!hasChilds) {
               return (
-                <li key={`tab-${index}`}>
-                  <PrismicNextLink field={tab.tab_item} className="button-menu" >
+                <NavigationMenu.Item key={`tab-${index}`}>
+                  <PrismicNextLink field={tab.tab_item} className="button-menu">
                     {tab.tab_item.text}
                   </PrismicNextLink>
-                </li>
+                </NavigationMenu.Item>
               );
             }
 
@@ -34,19 +34,19 @@ export default function Menu({ menu }: MenuProps) {
                 <NavigationMenu.Trigger>
                   <li>
                     <span className="button-menu">
-                    {tab.tab_item.text} <ChevronDownIcon className="icon" />
+                      {tab.tab_item.text} <ChevronDownIcon className="icon" />
                     </span>
                   </li>
                 </NavigationMenu.Trigger>
 
                 <NavigationMenu.Content>
-                  <ul className="absolute top-4 bg-black1 w-[200px] shadow-md p-0.5 rounded-1">
+                  <ul className="absolute top-4 bg-black-1 w-[200px] shadow-md p-0.5 rounded-1">
                     {tab.sub_tab_item.map((subTab) => {
                       return (
                         <li key={subTab.key}>
                           <PrismicNextLink
                             field={subTab}
-                            className="hover:bg-black3 flex items-center h-2.5 px-0.5 button-menu !justify-start w-full"
+                            className="hover:bg-black-3 flex items-center h-2.5 px-0.5 button-menu !justify-start w-full"
                           >
                             {subTab.text}
                           </PrismicNextLink>

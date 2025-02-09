@@ -3,5 +3,6 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  hero_card: dynamic(() => import("./HeroCard")),
   text_block: dynamic(() => import("./TextBlock")),
 };

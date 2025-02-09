@@ -12,6 +12,28 @@
           "label": "UID"
         }
       },
+      "previous": {
+        "type": "Link",
+        "config": {
+          "label": "Previous",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": false,
+          "allowText": true,
+          "repeat": false
+        }
+      },
+      "next": {
+        "type": "Link",
+        "config": {
+          "label": "Next",
+          "placeholder": "",
+          "select": null,
+          "allowTargetBlank": false,
+          "allowText": true,
+          "repeat": false
+        }
+      },
       "slices": {
         "type": "Slices",
         "fieldset": "Slice Zone",

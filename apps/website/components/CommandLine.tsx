@@ -1,9 +1,10 @@
 "use client"
 import React, { useRef, useState } from "react";
+import {KeyTextField} from "@prismicio/client"
 import { CodeIcon, CheckIcon } from "@radix-ui/react-icons";
 
 type CommandLineProps = {
-  code?: string;
+  code?: string | KeyTextField;
   title?: string;
   description?: string;
 };

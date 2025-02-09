@@ -11,6 +11,34 @@ type DocDocumentDataSlicesSlice = TextBlockSlice;
  */
 interface DocDocumentData {
   /**
+   * Previous field in *Doc*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: doc.previous
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  previous: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Next field in *Doc*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: doc.next
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  next: prismic.LinkField<string, string, unknown, prismic.FieldState, never>;
+
+  /**
    * Slice Zone field in *Doc*
    *
    * - **Field Type**: Slice Zone
@@ -65,7 +93,7 @@ interface DocDocumentData {
 export type DocDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<DocDocumentData>, "doc", Lang>;
 
-type HomeDocumentDataSlicesSlice = never;
+type HomeDocumentDataSlicesSlice = HeroCardSlice;
 
 /**
  * Content for Home documents
@@ -312,6 +340,87 @@ export type AllDocumentTypes =
   | SettingsDocument;
 
 /**
+ * Primary content in *HeroCard → Default → Primary*
+ */
+export interface HeroCardSliceDefaultPrimary {
+  /**
+   * Title field in *HeroCard → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_card.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Description field in *HeroCard → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_card.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Button Link field in *HeroCard → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_card.default.primary.button_link
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  button_link: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * Code field in *HeroCard → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: hero_card.default.primary.code
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  code: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for HeroCard Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroCardSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HeroCardSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *HeroCard*
+ */
+type HeroCardSliceVariation = HeroCardSliceDefault;
+
+/**
+ * HeroCard Shared Slice
+ *
+ * - **API ID**: `hero_card`
+ * - **Description**: HeroCard
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type HeroCardSlice = prismic.SharedSlice<
+  "hero_card",
+  HeroCardSliceVariation
+>;
+
+/**
  * Primary content in *TextBlock → Default → Primary*
  */
 export interface TextBlockSliceDefaultPrimary {
@@ -390,6 +499,10 @@ declare module "@prismicio/client" {
       SettingsDocumentData,
       SettingsDocumentDataSocialMediaItem,
       AllDocumentTypes,
+      HeroCardSlice,
+      HeroCardSliceDefaultPrimary,
+      HeroCardSliceVariation,
+      HeroCardSliceDefault,
       TextBlockSlice,
       TextBlockSliceDefaultPrimary,
       TextBlockSliceVariation,

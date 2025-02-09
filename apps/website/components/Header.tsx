@@ -12,7 +12,7 @@ const Header = async () => {
   const settings = await client.getSingle("settings").catch((e) => e);
 
   return (
-    <header className="p-0.5 border-b border-b-black3">
+    <header className="p-0.5 border-b border-b-black-3">
       <div className="smush">
         <ul className="nav-list ">
           <li className="item">
