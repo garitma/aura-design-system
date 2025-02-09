@@ -1,31 +1,13 @@
 import React from "react";
 import { Drawer } from "vaul";
-
 import Button from "@aura-design/system/button";
 import Section from "@aura-design/system/section";
 
-export const Default = () => {
+import CommandLine from "../components/CommandLine";
+
+export const Vaul = () => {
   return (
     <div className="relative">
-      <p>
-        <span className="info info-text wall-pad">
-          External library <span className="font-bold">$ pnpm i vaul</span>
-        </span>{" "}
-        Drawer component for React.{" "}
-        <a
-          href="https://vaul.emilkowal.ski/"
-          className="underline"
-          target="_blank"
-        >
-          All documentaiton
-        </a>{" "}
-        made by{" "}
-        <a href="https://emilkowal.ski/" className="underline" target="_blank">
-          Emil Kowalski
-        </a>
-        .
-      </p>
- 
       <div>
         <Drawer.Root shouldScaleBackground>
           <Drawer.Trigger asChild>
@@ -81,3 +63,12 @@ export const Default = () => {
     </div>
   );
 };
+
+Vaul.decorators = [
+  (Component) => (
+    <>
+      <CommandLine code="pnpm i vaul" />
+      <Component />
+    </>
+  ),
+];

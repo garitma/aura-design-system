@@ -1,21 +1,34 @@
 import { PrismicNextImage } from "@prismicio/next";
-
 import { createClient } from "@/prismicio";
-import { isFilled } from "@prismicio/client";
 import Link from "next/link";
 
-export default async function Header() {
+import Menu from "@/components/Menu";
+import DrawerMenu from "@/components/ui/DrawerMenu";
+
+const Header = async () => {
   const client = createClient();
-  //const settings = await client.getSingle("settings");
-  const menu = await client.getByUID("navigation", "menu");
+
+  const menu = await client.getByUID("navigation", "menu").catch((e) => e);
+  const settings = await client.getSingle("settings").catch((e) => e);
 
   return (
-    <header className="p-1 bg-purple">
-      {isFilled.image(menu.data.logo) && (
-        <Link href="/">
-          <PrismicNextImage field={menu.data.logo} width={70} height={70} />
-        </Link>
-      )}
+    <header className="p-0.5 border-b border-b-black-3">
+      <div className="smush">
+        <ul className="nav-list ">
+          <li className="item">
+            <Link href="/">
+              <PrismicNextImage field={settings.data.fav_icon} width={40} />
+            </Link>
+          </li>
+
+          <li className="item">
+            <DrawerMenu menu={menu} />
+            <Menu menu={menu} />
+          </li>
+        </ul>
+      </div>
     </header>
   );
-}
+};
+
+export default Header;

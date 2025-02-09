@@ -3,10 +3,6 @@
 import dynamic from "next/dynamic";
 
 export const components = {
-  footer_column: dynamic(() => import("./FooterColumn")),
-  hero_banner: dynamic(() => import("./HeroBanner")),
-  image_text_block: dynamic(() => import("./ImageTextBlock")),
-  intro_banner: dynamic(() => import("./IntroBanner")),
-  navigation_item: dynamic(() => import("./NavigationItem")),
+  hero_card: dynamic(() => import("./HeroCard")),
   text_block: dynamic(() => import("./TextBlock")),
 };

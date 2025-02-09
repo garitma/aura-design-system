@@ -1,26 +1,17 @@
-import { Metadata } from "next";
+import Link from "next/link";
+import { notFound } from "next/navigation";
 import { SliceZone } from "@prismicio/react";
 
-import { getPrismicSEO } from "@/lib/prismic/utils/seo";
+import { components } from "@/slices/index";
 import { createClient } from "@/prismicio";
-import { components } from "@/slices";
-
-export async function generateMetadata(): Promise<Metadata> {
-  const client = createClient();
-  const home = await client.getSingle("homepage");
-  const settings = await client.getSingle("settings");
-  const seo = getPrismicSEO(home, settings);
-
-  return seo;
-}
 
 export default async function Home() {
   const client = createClient();
-  const page = await client.getSingle("homepage");
+  const doc = await client.getSingle("home").catch((e) => notFound());
 
   return (
     <>
-      <SliceZone slices={page.data.slices} components={components} />
+      <SliceZone slices={doc.data.slices} components={components} />
     </>
   );
 }

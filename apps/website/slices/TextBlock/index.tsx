@@ -1,8 +1,6 @@
-import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
-import { PrismicRichText } from "@prismicio/react";
-import Section from "@aura-design/system/section";
-import { InView } from "@/lib/motion-primitives/components/InView";
+import { Content, isFilled } from "@prismicio/client";
+import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
+import Section from "@/components/ui/Section";
 
 /**
  * Props for `TextBlock`.
@@ -17,12 +15,11 @@ const TextBlock = ({ slice }: TextBlockProps): JSX.Element => {
     <Section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      container="smosh"
-      className="grid gap-1"
+      container="smash"
     >
-      <InView>
+      {isFilled.richText(slice.primary.content) && (
         <PrismicRichText field={slice.primary.content} />
-      </InView>
+      )}
     </Section>
   );
 };

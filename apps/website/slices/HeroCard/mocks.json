@@ -1,0 +1,45 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Although"
+						}
+					}
+				]
+			},
+			"description": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Consequat aliquip nostrud elit nulla irure occaecat minim tempor ad irure Lorem qui quis."
+						}
+					}
+				]
+			},
+			"button_link": {
+				"key": "adb0534f-28aa-4d07-be46-639c4442cc7b",
+				"__TYPE__": "LinkContent",
+				"value": {
+					"__TYPE__": "ExternalLink",
+					"url": "https://slicemachine.dev",
+					"text": "blow"
+				}
+			},
+			"code": {
+				"__TYPE__": "FieldContent",
+				"value": "pay",
+				"type": "Text"
+			}
+		},
+		"items": []
+	}
+]

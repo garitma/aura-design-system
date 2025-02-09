@@ -1,23 +1,27 @@
 import * as prismic from "@prismicio/client";
 import * as prismicNext from "@prismicio/next";
-import config from "@/slicemachine.config.json";
+import config from "./slicemachine.config.json";
 
 /**
  * The project's Prismic repository name.
  */
-export const repositoryName = config.repositoryName;
+export const repositoryName =
+  process.env.NEXT_PUBLIC_PRISMIC_ENVIRONMENT || config.repositoryName;
 
 /**
- * A list of Route Resolver objects that define how a document's `url` field
- * is resolved.
+ * A list of Route Resolver objects that define how a document's `url` field is resolved.
  *
  * {@link https://prismic.io/docs/route-resolver#route-resolver}
  */
-// TODO: Update the routes array to match your project's route structure.
+
 const routes: prismic.ClientConfig["routes"] = [
   {
-    type: "homepage",
+    type: "home",
     path: "/",
+  },
+  {
+    type: "doc",
+    path: "/docs/:uid",
   },
 ];
 
@@ -32,8 +36,7 @@ export const createClient = (config: prismicNext.CreateClientConfig = {}) => {
     routes,
     fetchOptions:
       process.env.NODE_ENV === "production"
-        //? { next: { tags: ["prismic"] }, cache: "force-cache" }
-        ? { next: { revalidate: 5 } }
+        ? { next: { tags: ["prismic"] }, cache: "force-cache" }
         : { next: { revalidate: 5 } },
     ...config,
   });

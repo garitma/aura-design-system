@@ -1,9 +1,9 @@
 {
-  "format": "custom",
   "id": "settings",
   "label": "Settings",
   "repeatable": false,
   "status": true,
+  "format": "custom",
   "json": {
     "Main": {
       "fav_icon": {
@@ -47,6 +47,34 @@
         "config": {
           "label": "Public url",
           "placeholder": ""
+        }
+      },
+      "social_media": {
+        "type": "Group",
+        "config": {
+          "label": "Social media",
+          "repeat": true,
+          "fields": {
+            "platform": {
+              "type": "Select",
+              "config": {
+                "label": "platform",
+                "placeholder": "",
+                "options": ["github", "x"]
+              }
+            },
+            "link": {
+              "type": "Link",
+              "config": {
+                "label": "Link",
+                "placeholder": "",
+                "select": null,
+                "allowTargetBlank": true,
+                "allowText": false,
+                "repeat": false
+              }
+            }
+          }
         }
       }
     }

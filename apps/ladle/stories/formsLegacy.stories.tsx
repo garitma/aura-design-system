@@ -18,6 +18,10 @@ import Alert from "@aura-design/system/alert";
 import Grid from "@aura-design/system/grid";
 import Checkbox from "@aura-design/system/checkbox";
 
+export default {
+  title: "Forms / Legacy",
+}
+
 export const WithHook = () => {
   const formData = useForm({
     firstName: "",

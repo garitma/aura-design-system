@@ -40,7 +40,7 @@
     width 100%!important
 
 .circle
-    mixin-border-radius(50%)
+    mixin-border-radius(50% !important) 
 
 .square
     mixin-border-radius(0)
@@ -146,4 +146,8 @@
 
 .b0 {
   border: 0 ;
+}
+
+.unset {
+  all: unset;
 }

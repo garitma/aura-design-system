@@ -1,19 +1,12 @@
-import { PrismicText } from "@prismicio/react";
-import { createClient } from "@/prismicio";
-import Section from "@aura-design/system/section";
-import Separator from "@aura-design/system/separator";
-
-
-export default async function Footer() {
-  const client = createClient();
-  const footer = await client.getSingle("footer");
-
+import Section from "@/components/ui/Section";
+const Footer = () => {
   return (
-    <footer id="footer">
-      <Separator />
-      <Section className="p-1 mb-2 text-center" passDiv>
-        <PrismicText field={footer.data.copyright} />
+    <footer className="border-t border-black-3">
+      <Section passDiv className="p-1">
+        <p>Built by Garitma. The source code is available on <a href="https://github.com/garitma/aura-design-system" className="underline" target="_blank">GitHub</a>.</p>
       </Section>
     </footer>
   );
-}
+};
+
+export default Footer;
