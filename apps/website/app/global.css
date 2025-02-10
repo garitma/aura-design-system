@@ -75,7 +75,7 @@
   .system {
     perspective: 1000px;
     transform-style: preserve-3d;
-    height: 180px;
+    height: 120px;
     aspect-ratio: 1;
     rotate: -45deg;
     margin: auto;

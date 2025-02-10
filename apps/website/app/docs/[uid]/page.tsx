@@ -22,7 +22,7 @@ export default async function SingleDocs({ params }) {
         aria-label="pagination"
         className="border-t border-black-3 pt-1 smash"
       >
-        <div className="md:flex justify-between h-auto">
+        <div className="flex justify-between h-auto p-1">
           <div>
             {isFilled.link(doc.data.previous) && (
               <PrismicNextLink field={doc.data.previous} className="item h-auto">
