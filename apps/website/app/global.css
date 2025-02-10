@@ -95,7 +95,7 @@
 
   .planet {
     --size: 33;
-    border: dotted 2px var(--color-black-12);
+    border: dotted 1px var(--color-black-12);
     background-color: var(--color-black-contrast);
     animation: planetRotate 10s linear infinite;
   }
@@ -111,7 +111,8 @@
     --size: 12;
     height: calc(var(--size) * 1%);
     margin-left: calc(var(--size) * -0.5%);
-    border: dotted 2px var(--color-black-12);
+    border: solid 1px var(--color-black-12);
+    background-color: var(--color-black-contrast);
     animation: moon calc(var(--duration)) linear infinite;
     rotate: 1 0 0 90deg;
   }
