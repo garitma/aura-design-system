@@ -1,66 +1,54 @@
-# Base image for the application, using Node.js 18 with Alpine for a lightweight setup
-FROM node:22-alpine AS base
-
-# Define build-time arguments for Turbo and pnpm versions
-ARG TURBO_VERSION=2.0.11
-ARG PNPM_VERSION=10.2.1
-
-# Set environment variable for pnpm installation directory
-ENV PNPM_HOME=/usr/local/bin
-
-# Install pnpm using npm
-RUN npm install -g pnpm@$PNPM_VERSION
-
-# Builder stage: Prepares and builds the application
-FROM base AS builder
-
-# Update Alpine package manager and install compatibility libraries
-RUN apk update && apk add --no-cache libc6-compat
-
-# Set the working directory for the build process
+# Install dependencies only when needed
+FROM node:18-alpine AS deps
+# Check https://github.com/nodejs/docker-node/tree/b4117f9333da4138b03a546ec926ef50a31506c3#nodealpine to understand why libc6-compat might be needed.
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Install Turbo globally for managing monorepos and caching builds
-RUN pnpm add -g turbo@${TURBO_VERSION}
+# Install dependencies based on the preferred package manager
+COPY package.json ./
+RUN yarn global add pnpm && pnpm i 
 
-# Copy necessary project files for dependency installation and build
-COPY package.json . 
-COPY pnpm-lock.yaml . 
-COPY pnpm-workspace.yaml . 
-COPY tsconfig.json . 
-COPY turbo.json . 
-COPY apps/website/. apps/website/.
 
-# Prune the monorepo to include only the required dependencies for the target app
-RUN turbo prune @aura-design/website --docker
+# Rebuild the source code only when needed
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
 
-# Install dependencies using pnpm, leveraging caching for faster builds
-RUN --mount=type=cache,id=pnpm,target=/pnpm/store pnpm install --frozen-lockfile
+# Next.js collects completely anonymous telemetry data about general usage.
+# Learn more here: https://nextjs.org/telemetry
+# Uncomment the following line in case you want to disable telemetry during the build.
+# ENV NEXT_TELEMETRY_DISABLED 1
 
-# Build the application with Turbo, filtering for the target app
-RUN turbo build --filter=@aura-design/website...
+ARG NEXT_PUBLIC_MAP
 
-# Runner stage: Prepares the runtime environment for the application
-FROM base AS runner
+RUN yarn build
 
-# Set the working directory for the runtime container
+# If using npm comment out above and use below instead
+# RUN npm run build
+
+# Production image, copy all the files and run next
+FROM node:18-alpine AS runner
 WORKDIR /app
 
-# Create a non-root user and group for running the application
+ENV NODE_ENV production
+# Uncomment the following line in case you want to disable telemetry during runtime.
+# ENV NEXT_TELEMETRY_DISABLED 1
+
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy application-specific files from the builder stage to the runtime container
-COPY --from=builder --chown=nextjs:nodejs /app/apps/website/next.config.ts .
-COPY --from=builder --chown=nextjs:nodejs /app/apps/website/package.json .
-COPY --from=builder --chown=nextjs:nodejs /app/apps/website/.next/standalone ./
-COPY --from=builder --chown=nextjs:nodejs /app/apps/website/.next/static ./apps/website/.next/static
+#COPY --from=builder /app/public ./public
 
-# Ensure the cache directory is writable by the nextjs user
-RUN mkdir -p /app/apps/website/.next/cache && chown -R nextjs:nodejs /app/apps/website/.next
+# Automatically leverage output traces to reduce image size
+# https://nextjs.org/docs/advanced-features/output-file-tracing
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 
-# Switch to the non-root user for security best practices
 USER nextjs
 
-# Define the command to run the application
-CMD node apps/website/server.js
+EXPOSE 3000
+
+ENV PORT 3000
+
+CMD ["node", "server.js"]
