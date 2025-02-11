@@ -39,6 +39,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "code_block": {
+              "type": "SharedSlice"
+            },
             "text_block": {
               "type": "SharedSlice"
             }

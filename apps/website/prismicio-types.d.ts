@@ -4,7 +4,7 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type DocDocumentDataSlicesSlice = TextBlockSlice;
+type DocDocumentDataSlicesSlice = CodeBlockSlice | TextBlockSlice;
 
 /**
  * Content for Doc documents
@@ -340,6 +340,61 @@ export type AllDocumentTypes =
   | SettingsDocument;
 
 /**
+ * Primary content in *CodeBlock → Default → Primary*
+ */
+export interface CodeBlockSliceDefaultPrimary {
+  /**
+   * Language field in *CodeBlock → Default → Primary*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **API ID Path**: code_block.default.primary.language
+   * - **Documentation**: https://prismic.io/docs/field#select
+   */
+  language: prismic.SelectField<"bash" | "jsx" | "javascript" | "css">;
+
+  /**
+   * Code field in *CodeBlock → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: code_block.default.primary.code
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  code: prismic.RichTextField;
+}
+
+/**
+ * Default variation for CodeBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CodeBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CodeBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *CodeBlock*
+ */
+type CodeBlockSliceVariation = CodeBlockSliceDefault;
+
+/**
+ * CodeBlock Shared Slice
+ *
+ * - **API ID**: `code_block`
+ * - **Description**: CodeBlock
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type CodeBlockSlice = prismic.SharedSlice<
+  "code_block",
+  CodeBlockSliceVariation
+>;
+
+/**
  * Primary content in *HeroCard → Default → Primary*
  */
 export interface HeroCardSliceDefaultPrimary {
@@ -499,6 +554,10 @@ declare module "@prismicio/client" {
       SettingsDocumentData,
       SettingsDocumentDataSocialMediaItem,
       AllDocumentTypes,
+      CodeBlockSlice,
+      CodeBlockSliceDefaultPrimary,
+      CodeBlockSliceVariation,
+      CodeBlockSliceDefault,
       HeroCardSlice,
       HeroCardSliceDefaultPrimary,
       HeroCardSliceVariation,
