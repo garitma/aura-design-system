@@ -40,13 +40,13 @@
   --color-black-track: #000;
 
   --color-info: #e8ebfe;
-  --color-infocontrast: #0927ec;
+  --color-info-contrast: #0927ec;
   --color-success: #e8fef7;
-  --color-successcontrast: #045d3c;
+  --color-success-contrast: #045d3c;
   --color-danger: #feefe8;
-  --color-dangercontrast: #8e3106;
+  --color-danger-contrast: #8e3106;
   --color-warning: #fefbe8;
-  --color-warningcontrast: #5d5104;
+  --color-warning-contrast: #5d5104;
 }
 
 @layer base {
@@ -108,7 +108,7 @@
 
   .planet {
     --size: 33;
-    border: dotted 2px var(--color-black-12);
+    border: dotted 1px var(--color-black-12);
     background-color: var(--color-black-contrast);
     animation: planetRotate 10s linear infinite;
   }
@@ -124,7 +124,8 @@
     --size: 12;
     height: calc(var(--size) * 1%);
     margin-left: calc(var(--size) * -0.5%);
-    border: dotted 2px var(--color-black-12);
+    border: solid 1px var(--color-black-12);
+    background-color: var(--color-black-contrast);
     animation: moon calc(var(--duration)) linear infinite;
     rotate: 1 0 0 90deg;
   }
