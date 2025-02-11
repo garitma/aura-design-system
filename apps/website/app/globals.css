@@ -40,13 +40,13 @@
   --color-black-track: #000;
 
   --color-info: #e8ebfe;
-  --color-infocontrast: #0927ec;
+  --color-info-contrast: #0927ec;
   --color-success: #e8fef7;
-  --color-successcontrast: #045d3c;
+  --color-success-contrast: #045d3c;
   --color-danger: #feefe8;
-  --color-dangercontrast: #8e3106;
+  --color-danger-contrast: #8e3106;
   --color-warning: #fefbe8;
-  --color-warningcontrast: #5d5104;
+  --color-warning-contrast: #5d5104;
 }
 
 @layer base {
