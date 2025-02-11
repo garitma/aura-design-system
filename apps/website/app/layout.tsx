@@ -3,7 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 
-import "@/app/global.css";
+import "@/app/globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Nprogress from "@/components/ui/Nprocess";

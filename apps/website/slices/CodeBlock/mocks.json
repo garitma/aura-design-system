@@ -1,0 +1,25 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"language": {
+				"__TYPE__": "FieldContent",
+				"value": "javascript",
+				"type": "Select"
+			},
+			"code": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Laborum quis consequat adipisicing commodo duis. Cupidatat minim exercitation fugiat sint dolore ad aute do fugiat sunt magna laboris cupidatat ad. Do eu eiusmod qui dolor incididunt nisi in esse et dolor eu non est."
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
