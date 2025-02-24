@@ -1,15 +1,17 @@
 import { notFound } from "next/navigation";
 import { SliceZone } from "@prismicio/react";
-import Link from "next/link";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
 
 import { components } from "@/slices";
 import { createClient } from "@/prismicio";
 import { isFilled } from "@prismicio/client";
-import Button from "@/components/ui/Button";
 import { PrismicNextLink } from "@prismicio/next";
 
-export default async function SingleDocs({ params }) {
+type Params = { uid: string };
+
+export const relative = 60;
+
+export default async function SingleDocs({ params }: { params: Params }) {
   const client = createClient();
 
   const doc = await client.getByUID("doc", params.uid).catch(() => notFound());
@@ -25,7 +27,10 @@ export default async function SingleDocs({ params }) {
         <div className="flex justify-between h-auto p-1">
           <div>
             {isFilled.link(doc.data.previous) && (
-              <PrismicNextLink field={doc.data.previous} className="item h-auto">
+              <PrismicNextLink
+                field={doc.data.previous}
+                className="item h-auto"
+              >
                 <div>
                   <span className="text-black-9">Previous</span>
                 </div>

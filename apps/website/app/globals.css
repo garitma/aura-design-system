@@ -104,7 +104,7 @@
     border-radius: 50%;
     background-color: var(--color-black-contrast);
     border: 1px dashed var(--color-black-12);
-    animation: rotate 6s linear;
+    animation: rotate 6s linear infinite;
   }
   
   .orbitingCircle {
