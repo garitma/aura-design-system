@@ -21,7 +21,7 @@ const CodeBlock = ({ slice }: CodeBlockProps): JSX.Element => {
       container="smash"
       className="max-w-[100vw] py-0 px-1"
     >
-      <SyntaxHighlighter code={asText(slice.primary.code)} language="bash" />
+      <SyntaxHighlighter code={asText(slice.primary.code)} language={slice.primary.language} />
     </Section>
   );
 };

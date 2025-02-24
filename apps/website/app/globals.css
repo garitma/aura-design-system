@@ -51,6 +51,11 @@
 
 @layer base {
   @import "@aura-design/system/main.css";
+
+  *:root{
+    --aura-font-stack: 'Geist', 'Geist Fallback'
+  }
+
   h1,
   h2,
   h3,
@@ -58,6 +63,9 @@
   h5,
   h6 {
     font-weight: bold;
+  }
+  p {
+    line-height: 1.6;
   }
 }
 
@@ -85,65 +93,49 @@
     font-size: 13px!important;
   }
 
-  .system {
-    perspective: 1000px;
+  .wrapper {
     transform-style: preserve-3d;
-    height: 120px;
-    aspect-ratio: 1;
-    rotate: -45deg;
-    margin: auto;
+    perspective: 500px;
   }
 
-  .planet,
-  .orbit,
-  .moon {
-    position: absolute;
-    transform-style: preserve-3d;
-    inset: 0;
-    height: calc(var(--size) * 1%);
-    margin: auto;
-    aspect-ratio: 1;
+  .circle {
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
-  }
-
-  .planet {
-    --size: 33;
-    border: dotted 1px var(--color-black-12);
     background-color: var(--color-black-contrast);
-    animation: planetRotate 10s linear infinite;
+    border: 1px dashed var(--color-black-12);
+    animation: rotate 6s linear;
   }
-
-  .orbit {
-    --size: 66;
-    --duration: 8s;
-    animation: orbit calc(var(--duration)) linear infinite;
-    rotate: 1 0 0 90deg;
-  }
-
-  .moon {
-    --size: 12;
-    height: calc(var(--size) * 1%);
-    margin-left: calc(var(--size) * -0.5%);
-    border: solid 1px var(--color-black-12);
+  
+  .orbitingCircle {
+    width: 13px;
+    height: 13px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
     background-color: var(--color-black-contrast);
-    animation: moon calc(var(--duration)) linear infinite;
-    rotate: 1 0 0 90deg;
+    border: 1px solid var(--color-black-12);
+    animation: orbit 6s linear;
+    animation-iteration-count: infinite;
   }
 
-  @keyframes planetRotate {
+  @keyframes rotate {
+    from {
+      transform: rotateZ(0deg);
+    }
     to {
-      transform: rotate(360deg); /* Rotate around the Y-axis */
+      transform: rotateZ(360deg);
     }
   }
 
   @keyframes orbit {
-    to {
-      transform: rotate3d(0, 0, 1, 360deg);
+    from {
+      transform: translate(-50%, -50%) rotateY(0deg) translateZ(40px) rotateY(360deg);
     }
-  }
-  @keyframes moon {
     to {
-      transform: rotate3d(0, 1, 0, -360deg);
+      transform: translate(-50%, -50%) rotateY(360deg) translateZ(40px) rotateY(0deg);
     }
   }
 }
