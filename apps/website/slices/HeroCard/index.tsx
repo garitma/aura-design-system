@@ -22,9 +22,7 @@ const HeroCard = ({ slice }: HeroCardProps): JSX.Element => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      <div className="flex justify-center">
-        <Orbiting />
-      </div>
+      <Orbiting />
       <div>
         <div className="flex flex-col">
           {isFilled.richText(slice.primary.title) && (
@@ -34,20 +32,14 @@ const HeroCard = ({ slice }: HeroCardProps): JSX.Element => {
             <PrismicRichText field={slice.primary.description} />
           )}
         </div>
-        <div className="mt-0.5 md:flex items-center gap-1">
-          <div className="items-center">
-            {isFilled.link(slice.primary.button_link) && (
-              <PrismicNextLink field={slice.primary.button_link}>
-                <Button className="w-full md:w-auto" as="span">
-                  {slice.primary.button_link.text}
-                </Button>
-              </PrismicNextLink>
-            )}
-          </div>
-          <div className="w-full md:w-[400px]">
-            <CommandLine code={slice.primary.code} />
-          </div>
-        </div>
+
+        {isFilled.link(slice.primary.button_link) && (
+          <PrismicNextLink field={slice.primary.button_link}>
+            <Button className="w-full md:w-auto" as="span">
+              {slice.primary.button_link.text}
+            </Button>
+          </PrismicNextLink>
+        )}
       </div>
     </Section>
   );

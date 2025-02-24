@@ -20,7 +20,7 @@ export default async function SingleDocs({ params }) {
 
       <nav
         aria-label="pagination"
-        className="border-t border-black-3 pt-1 smash mt-2"
+        className="border-t border-black-3 pt-1 smash mt-2 mb-1"
       >
         <div className="flex justify-between h-auto p-1">
           <div>
