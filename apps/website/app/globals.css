@@ -64,6 +64,15 @@
   h6 {
     font-weight: bold;
   }
+  h1 strong,
+  h2 strong,
+  h3 strong,
+  h4 strong,
+  h5 strong,
+  h6 strong {
+    font-weight: bold;
+  }
+
   p {
     line-height: 1.6;
   }
@@ -72,6 +81,17 @@
 @layer utilities {
   .content a {
     text-decoration: underline;
+  }
+  .content ul {
+    list-style-type: disc;
+    margin: calc(var(--spacing) * 1.5);
+  }
+  .content ol {
+    list-style-type: decimal;
+    margin: calc(var(--spacing) * 1.5);
+  }
+  .content li {
+    margin-bottom: calc(var(--spacing) * 0.5);
   }
   a:has(.button-fill, .button-pill, .button-link) {
     outline: none !important;
@@ -104,7 +124,7 @@
     border-radius: 50%;
     background-color: var(--color-black-contrast);
     border: 1px dashed var(--color-black-12);
-    animation: rotate 6s linear;
+    animation: rotate 6s linear infinite;
   }
   
   .orbitingCircle {
