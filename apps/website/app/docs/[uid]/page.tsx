@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { SliceZone } from "@prismicio/react";
 import { ArrowLeftIcon, ArrowRightIcon } from "@radix-ui/react-icons";
+import { Metadata } from "next";
 
 import { components } from "@/slices";
 import { createClient } from "@/prismicio";
@@ -10,6 +11,24 @@ import { PrismicNextLink } from "@prismicio/next";
 type Params = { uid: string };
 
 export const relative = 60;
+
+import { getPrismicSEO } from "@/lib/prismic/utils/seo";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Params;
+}): Promise<Metadata> {
+  
+  const client = createClient();
+  const page = await client.getByUID("doc", params.uid);
+  const settings = await client.getSingle("settings");
+  
+  const seo = getPrismicSEO(page, settings);
+
+  return seo;
+}
+
 
 export default async function SingleDocs({ params }: { params: Params }) {
   const client = createClient();

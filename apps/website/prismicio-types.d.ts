@@ -351,7 +351,7 @@ export interface CodeBlockSliceDefaultPrimary {
    * - **API ID Path**: code_block.default.primary.language
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  language: prismic.SelectField<"bash" | "jsx" | "javascript" | "css">;
+  language: prismic.SelectField<"bash" | "jsx" | "javascript" | "css" | "html">;
 
   /**
    * Code field in *CodeBlock → Default → Primary*
