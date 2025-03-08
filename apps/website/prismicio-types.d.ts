@@ -4,7 +4,10 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type DocDocumentDataSlicesSlice = CodeBlockSlice | TextBlockSlice;
+type DocDocumentDataSlicesSlice =
+  | AccordionDemoSlice
+  | CodeBlockSlice
+  | TextBlockSlice;
 
 /**
  * Content for Doc documents
@@ -340,6 +343,36 @@ export type AllDocumentTypes =
   | SettingsDocument;
 
 /**
+ * Default variation for AccordionDemo Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AccordionDemoSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *AccordionDemo*
+ */
+type AccordionDemoSliceVariation = AccordionDemoSliceDefault;
+
+/**
+ * AccordionDemo Shared Slice
+ *
+ * - **API ID**: `accordion_demo`
+ * - **Description**: AccordionDemo
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AccordionDemoSlice = prismic.SharedSlice<
+  "accordion_demo",
+  AccordionDemoSliceVariation
+>;
+
+/**
  * Primary content in *CodeBlock → Default → Primary*
  */
 export interface CodeBlockSliceDefaultPrimary {
@@ -554,6 +587,9 @@ declare module "@prismicio/client" {
       SettingsDocumentData,
       SettingsDocumentDataSocialMediaItem,
       AllDocumentTypes,
+      AccordionDemoSlice,
+      AccordionDemoSliceVariation,
+      AccordionDemoSliceDefault,
       CodeBlockSlice,
       CodeBlockSliceDefaultPrimary,
       CodeBlockSliceVariation,

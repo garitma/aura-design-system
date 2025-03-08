@@ -19,9 +19,13 @@ const CodeBlock = ({ slice }: CodeBlockProps): JSX.Element => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       container="smash"
-      className="max-w-[100vw] py-0 px-1"
+      className="py-0"
     >
-      <SyntaxHighlighter code={asText(slice.primary.code)} language={slice.primary.language} />
+      <div className="overflow-x-auto">
+        <div className="min-w-0 w-full">
+          <SyntaxHighlighter code={asText(slice.primary.code)} language={slice.primary.language} />
+        </div>
+      </div>
     </Section>
   );
 };

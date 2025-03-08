@@ -3,7 +3,7 @@ import { createClient } from "@/prismicio";
 import Link from "next/link";
 
 import Menu from "@/components/Menu";
-import DrawerMenu from "@/components/ui/DrawerMenu";
+import DrawerMenu from "@/components/DrawerMenu";
 
 const Header = async () => {
   const client = createClient();
