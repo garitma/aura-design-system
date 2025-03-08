@@ -16,7 +16,7 @@ const TextBlock = ({ slice }: TextBlockProps): JSX.Element => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       container="smash"
-      className="content p-1"
+      className="content"
     >
       {isFilled.richText(slice.primary.content) && (
         <PrismicRichText field={slice.primary.content} />

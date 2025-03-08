@@ -1,0 +1,16 @@
+{
+  "id": "accordion_demo",
+  "type": "SharedSlice",
+  "name": "AccordionDemo",
+  "description": "AccordionDemo",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": ""
+    }
+  ]
+}

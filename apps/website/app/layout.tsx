@@ -6,7 +6,7 @@ import { repositoryName } from "@/prismicio";
 import "@/app/globals.css";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
-import Nprogress from "@/components/ui/Nprocess";
+import Nprogress from "@/components/Nprocess";
 
 
 const geistSans = Geist({
