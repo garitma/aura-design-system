@@ -5,7 +5,7 @@ export default function Section({
   subClassName,
   ...props
 }: SectionProps) {
-  const classNameConnect: string[] = ["px-2"];
+  const classNameConnect: string[] = ["px-2", "max-w-[100vw]"];
 
   if (className) {
     classNameConnect.push(className);
