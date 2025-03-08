@@ -1,11 +1,12 @@
 "use client";
 import React, { useRef, useState } from "react";
+import { ScrollArea } from "radix-ui";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { coy } from "react-syntax-highlighter/dist/cjs/styles/prism";
 import { CodeIcon, CheckIcon, CopyIcon } from "@radix-ui/react-icons";
+import { asText } from "@prismicio/client";
 
 import Button from "@/components/ui/Button";
-import { asText } from "@prismicio/client";
 
 function CodeBlockSyntaxHighlighter({ code, language }) {
   const codeRef = useRef<HTMLPreElement>(null);
@@ -43,9 +44,24 @@ function CodeBlockSyntaxHighlighter({ code, language }) {
           </Button>
         </div>
       </div>
-      <SyntaxHighlighter language={language} style={coy}>
-        {code}
-      </SyntaxHighlighter>
+      <ScrollArea.Root className="w-full">
+        <ScrollArea.Viewport className="size-full rounded-1 border border-black-3 rounded-t-none overflow-hidden">
+          <SyntaxHighlighter
+            language={language}
+            style={coy}
+            lineProps={{ className: "code-line" }}
+          >
+            {code}
+          </SyntaxHighlighter>
+        </ScrollArea.Viewport>
+        <ScrollArea.Scrollbar orientation="horizontal" className="flex touch-none select-none bg-black-a2 h-0.5 rounder-1">
+          <ScrollArea.Thumb className="bg-black-4 rounded-full" />
+        </ScrollArea.Scrollbar>
+        <ScrollArea.Scrollbar orientation="vertical" className="flex touch-none select-none bg-black-a2 h-0.5 rounder-1">
+          <ScrollArea.Thumb className="bg-black-4 rounded-full" />
+        </ScrollArea.Scrollbar>
+        <ScrollArea.Corner />
+      </ScrollArea.Root>
     </div>
   );
 }

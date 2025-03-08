@@ -40,31 +40,31 @@ export const WithRadix = () => (
 );>
 `;
 
-
 const AccordionDemo = ({ slice }: AccordionDemoProps): JSX.Element => {
   return (
     <Section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      container="smash"
       className="py-0"
     >
       <Tabs.Root className="flex flex-col" defaultValue="tab1">
         <Tabs.List className="border border-black-3 p-1 border-b-0 bg-black-2 flex rounded-t-1 gap-0.5">
           <Tabs.Trigger
-            className="bg-black-2 p-0.5 data-[state=active]:bg-black-4 rounded-2"
+            className="bg-black-2 p-0.5 data-[state=active]:bg-black-4 rounded-2 cursor-pointer"
             value="tab1"
           >
             Preview
           </Tabs.Trigger>
           <Tabs.Trigger
-            className="bg-black-2 p-0.5 data-[state=active]:bg-black-4 rounded-2"
+            className="bg-black-2 p-0.5 data-[state=active]:bg-black-4 rounded-2 cursor-pointer"
             value="tab2"
           >
             Code
           </Tabs.Trigger>
         </Tabs.List>
         <Tabs.Content
-          className="border border-black-3 rounded-1 rounded-t-none p-1"
+          className="border border-black-3 rounded-1 rounded-t-none p-1  min-h-[33vh]"
           value="tab1"
         >
           <Accordion.Root type="single" collapsible>
@@ -91,7 +91,7 @@ const AccordionDemo = ({ slice }: AccordionDemoProps): JSX.Element => {
         </Tabs.Content>
         <Tabs.Content
           value="tab2"
-          className="border border-black-3 rounded-1 rounded-t-none p-1 code-container"
+          className="border border-black-3 rounded-1 rounded-t-none p-1"
         >
           <SyntaxHighlighter code={code} language={"jsx"} />
         </Tabs.Content>

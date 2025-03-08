@@ -52,8 +52,8 @@
 @layer base {
   @import "@aura-design/system/main.css";
 
-  *:root {
-    --aura-font-stack: "Geist", "Geist Fallback";
+  *:root{
+    --aura-font-stack: 'Geist', 'Geist Fallback'
   }
 
   h1,
@@ -103,25 +103,11 @@
     display: none !important;
   }
 
-  .code-wrapper {
-    overflow-x: auto;
-    max-width: 740px;
-    margin: 0 auto;
-  }
-
-  .code-container .code-wrapper {
-    width: 100%;
-    max-width: calc(740px - calc(var(--spacing) * 2));
-  }
-
   .code-wrapper pre {
-    margin: 0 !important;
-    border: solid 1px var(--color-black-3);
+    margin: 0!important;
     padding: 19.5px 0 !important ;
-    border-bottom-left-radius: var(--radius-1);
-    border-bottom-right-radius: var(--radius-1);
-    font-family: "Geist Mono" !important;
-    font-size: 13px !important;
+    font-family: 'Geist Mono'!important;
+    font-size: 13px!important;
   }
 
   .wrapper {
@@ -138,6 +124,8 @@
     animation: rotate 6s linear infinite;
   }
 
+  
+  
   .orbitingCircle {
     width: 13px;
     height: 13px;
@@ -163,12 +151,10 @@
 
   @keyframes orbit {
     from {
-      transform: translate(-50%, -50%) rotateY(0deg) translateZ(40px)
-        rotateY(360deg);
+      transform: translate(-50%, -50%) rotateY(0deg) translateZ(40px) rotateY(360deg);
     }
     to {
-      transform: translate(-50%, -50%) rotateY(360deg) translateZ(40px)
-        rotateY(0deg);
+      transform: translate(-50%, -50%) rotateY(360deg) translateZ(40px) rotateY(0deg);
     }
   }
 }
