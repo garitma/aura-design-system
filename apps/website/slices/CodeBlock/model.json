@@ -26,6 +26,15 @@
             ]
           }
         },
+        "is_collapsible": {
+          "type": "Boolean",
+          "config": {
+            "label": "Is collapsible",
+            "placeholder_false": "false",
+            "placeholder_true": "true",
+            "default_value": false
+          }
+        },
         "code": {
           "type": "StructuredText",
           "config": {

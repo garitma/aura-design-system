@@ -18,6 +18,10 @@
 						}
 					}
 				]
+			},
+			"is_collapsible": {
+				"__TYPE__": "BooleanContent",
+				"value": true
 			}
 		},
 		"items": []

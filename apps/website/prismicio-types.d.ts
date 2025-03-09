@@ -387,6 +387,17 @@ export interface CodeBlockSliceDefaultPrimary {
   language: prismic.SelectField<"bash" | "jsx" | "javascript" | "css" | "html">;
 
   /**
+   * Is collapsible field in *CodeBlock → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: code_block.default.primary.is_collapsible
+   * - **Documentation**: https://prismic.io/docs/field#boolean
+   */
+  is_collapsible: prismic.BooleanField;
+
+  /**
    * Code field in *CodeBlock → Default → Primary*
    *
    * - **Field Type**: Rich Text
