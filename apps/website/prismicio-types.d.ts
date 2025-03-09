@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type DocDocumentDataSlicesSlice =
+  | ChipsBlockSlice
   | AccordionDemoSlice
   | CodeBlockSlice
   | TextBlockSlice;
@@ -373,6 +374,53 @@ export type AccordionDemoSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *ChipsBlock → Default → Primary*
+ */
+export interface ChipsBlockSliceDefaultPrimary {
+  /**
+   * Chips field in *ChipsBlock → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: chips_block.default.primary.chips
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  chips: prismic.Repeatable<
+    prismic.LinkField<string, string, unknown, prismic.FieldState, never>
+  >;
+}
+
+/**
+ * Default variation for ChipsBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ChipsBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ChipsBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ChipsBlock*
+ */
+type ChipsBlockSliceVariation = ChipsBlockSliceDefault;
+
+/**
+ * ChipsBlock Shared Slice
+ *
+ * - **API ID**: `chips_block`
+ * - **Description**: ChipsBlock
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ChipsBlockSlice = prismic.SharedSlice<
+  "chips_block",
+  ChipsBlockSliceVariation
+>;
+
+/**
  * Primary content in *CodeBlock → Default → Primary*
  */
 export interface CodeBlockSliceDefaultPrimary {
@@ -601,6 +649,10 @@ declare module "@prismicio/client" {
       AccordionDemoSlice,
       AccordionDemoSliceVariation,
       AccordionDemoSliceDefault,
+      ChipsBlockSlice,
+      ChipsBlockSliceDefaultPrimary,
+      ChipsBlockSliceVariation,
+      ChipsBlockSliceDefault,
       CodeBlockSlice,
       CodeBlockSliceDefaultPrimary,
       CodeBlockSliceVariation,

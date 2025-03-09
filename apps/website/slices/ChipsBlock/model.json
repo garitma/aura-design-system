@@ -1,0 +1,30 @@
+{
+  "id": "chips_block",
+  "type": "SharedSlice",
+  "name": "ChipsBlock",
+  "description": "ChipsBlock",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "chips": {
+          "type": "Link",
+          "config": {
+            "label": "Chips",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": true,
+            "allowText": true,
+            "repeat": true
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

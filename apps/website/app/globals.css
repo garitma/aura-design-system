@@ -52,8 +52,8 @@
 @layer base {
   @import "@aura-design/system/main.css";
 
-  *:root{
-    --aura-font-stack: 'Geist', 'Geist Fallback'
+  *:root {
+    --aura-font-stack: "Geist", "Geist Fallback";
   }
 
   h1,
@@ -104,10 +104,10 @@
   }
 
   .code-wrapper pre {
-    margin: 0!important;
+    margin: 0 !important;
     padding: 19.5px 0 !important ;
-    font-family: 'Geist Mono'!important;
-    font-size: 13px!important;
+    font-family: "Geist Mono" !important;
+    font-size: 13px !important;
   }
 
   .wrapper {
@@ -124,8 +124,6 @@
     animation: rotate 6s linear infinite;
   }
 
-  
-  
   .orbitingCircle {
     width: 13px;
     height: 13px;
@@ -151,10 +149,13 @@
 
   @keyframes orbit {
     from {
-      transform: translate(-50%, -50%) rotateY(0deg) translateZ(40px) rotateY(360deg);
+      transform: translate(-50%, -50%) rotateY(0deg) translateZ(40px)
+        rotateY(360deg);
     }
     to {
-      transform: translate(-50%, -50%) rotateY(360deg) translateZ(40px) rotateY(0deg);
+      transform: translate(-50%, -50%) rotateY(360deg) translateZ(40px)
+        rotateY(0deg);
     }
   }
+
 }
