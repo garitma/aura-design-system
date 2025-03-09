@@ -41,7 +41,7 @@ export default async function DocsLayout({ children }: DocsLayoutType) {
               {menu && (
                 <ul>
                   {menu.data.tabs.map((tab, index) => (
-                    <li key={index}>
+                    <li key={index} className="relative pb-1">
                       <PrismicNextLink
                         className="font-medium"
                         field={tab.tab_item}
@@ -75,12 +75,12 @@ export default async function DocsLayout({ children }: DocsLayoutType) {
           {menu && (
             <ul>
               {menu.data.tabs.map((tab, index) => (
-                <li key={index}>
+                <li key={index} className="relative pb-1">
                   <PrismicNextLink className="font-medium" field={tab.tab_item}>
                     {tab.tab_item.text}
                   </PrismicNextLink>
                   {tab.sub_tab_item.length > 0 && (
-                    <ul className="mt-1 px-0.5 last-of-type:mb-0 mb-8">
+                    <ul className="mt-1 px-0.5">
                       {tab.sub_tab_item.map((subTab) => {
                         return (
                           <li key={subTab.key}>

@@ -19,21 +19,23 @@ export async function generateMetadata({
 }: {
   params: Params;
 }): Promise<Metadata> {
-  
+  const { uid } = await params;
+
   const client = createClient();
-  const page = await client.getByUID("doc", params.uid);
+  const page = await client.getByUID("doc", uid);
   const settings = await client.getSingle("settings");
-  
+
   const seo = getPrismicSEO(page, settings);
 
   return seo;
 }
 
-
 export default async function SingleDocs({ params }: { params: Params }) {
   const client = createClient();
 
-  const doc = await client.getByUID("doc", params.uid).catch(() => notFound());
+  const { uid } = await params;
+
+  const doc = await client.getByUID("doc", uid).catch(() => notFound());
 
   return (
     <div>

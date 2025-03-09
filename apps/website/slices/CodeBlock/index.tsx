@@ -1,9 +1,9 @@
+import { JSX } from "react";
 import { Content, asText } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 
 import Section from "@/components/ui/Section";
-import SyntaxHighlighter from "@/components/SyntaxHighlighter"
-
+import SyntaxHighlighter from "@/components/SyntaxHighlighter";
 
 /**
  * Props for `CodeBlock`.
@@ -19,13 +19,13 @@ const CodeBlock = ({ slice }: CodeBlockProps): JSX.Element => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       container="smash"
-      className="py-0"
+      className="max-w-[100vw] py-0 px-1"
     >
-      <div className="overflow-x-auto">
-        <div className="min-w-0 w-full">
-          <SyntaxHighlighter code={asText(slice.primary.code)} language={slice.primary.language} />
-        </div>
-      </div>
+      <SyntaxHighlighter
+        code={asText(slice.primary.code)}
+        language={slice.primary.language}
+        collapsible={slice.primary.is_collapsible}
+      />
     </Section>
   );
 };
