@@ -28,8 +28,8 @@ export default function DrawerMenu({ menu }: DrawerMenuProps) {
       onOpenChange={setOpen}
     >
       <Drawer.Trigger asChild className="flex md:hidden">
-        <div className="px-0.5">
-          <Button mode="link">
+        <div>
+          <Button mode="link" className="p-1.5">
             <HamburgerMenuIcon className="icon" />
           </Button>
         </div>
@@ -45,7 +45,7 @@ export default function DrawerMenu({ menu }: DrawerMenuProps) {
               <ul className="nav-list">
                 <li></li>
                 <li>
-                  <Button mode="link" onClick={() => setOpen(false)}>
+                  <Button mode="link" className="p-1.5" onClick={() => setOpen(false)}>
                     <Cross1Icon className="icon" />
                   </Button>
                 </li>

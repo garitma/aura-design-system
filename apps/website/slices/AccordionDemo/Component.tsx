@@ -29,10 +29,12 @@ const Component = () => {
           />
         </Accordion.Trigger>
         <Accordion.Content
-          className="px-2 py-1 bg-black-2"
+          className="bg-black-2 data-[state=open]:animate-accordion-open data-[state=closed]:animate-accordion-closed"
           data-display-name="Accordion.Content"
         >
-          Yes. It adheres to the WAI-ARIA design pattern.
+          <div className="px-2 py-1">
+            Yes. It adheres to the WAI-ARIA design pattern.
+          </div>
         </Accordion.Content>
       </Accordion.Item>
       <Accordion.Item
@@ -52,11 +54,13 @@ const Component = () => {
           />
         </Accordion.Trigger>
         <Accordion.Content
-          className="px-2 py-1 bg-black-2 "
+          className="bg-black-2 data-[state=open]:animate-accordion-open data-[state=closed]:animate-accordion-closed"
           data-display-name="Accordion.Content"
         >
-          Yes. It's unstyled by default, giving you freedom over the look and
-          feel.
+          <div className="px-2 py-1">
+            Yes. It's unstyled by default, giving you freedom over the look and
+            feel.
+          </div>
         </Accordion.Content>
       </Accordion.Item>
       <Accordion.Item
@@ -76,10 +80,12 @@ const Component = () => {
           />
         </Accordion.Trigger>
         <Accordion.Content
-          className="px-2 py-1 bg-black-2"
+          className="bg-black-2 data-[state=open]:animate-accordion-open data-[state=closed]:animate-accordion-closed"
           data-display-name="Accordion.Content"
         >
-          Yes! You can animate the Accordion with CSS or JavaScript.
+          <div className="px-2 py-1">
+            Yes! You can animate the Accordion with CSS or JavaScript.
+          </div>
         </Accordion.Content>
       </Accordion.Item>
     </Accordion.Root>
