@@ -21,7 +21,7 @@ const Header = async () => {
             </Link>
           </li>
 
-          <li className="item">
+          <li>
             <DrawerMenu menu={menu} />
             <Menu menu={menu} />
           </li>

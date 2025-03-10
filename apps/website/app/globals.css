@@ -1,13 +1,18 @@
+/* Import Tailwind CSS */
 @import "tailwindcss";
 
+/* Theme variables */
 @theme {
+  /* Border radius variables */
   --radius-0.5: calc(var(--spacing) * 0.5);
   --radius-1: calc(var(--spacing) * 1);
   --radius-1.5: calc(var(--spacing) * 1.5);
   --radius-2: calc(var(--spacing) * 2);
 
+  /* Base spacing unit */
   --spacing: 13px;
 
+  /* Black color scale */
   --color-black-1: #fcfcff;
   --color-black-2: #f9f9fe;
   --color-black-3: #efeff8;
@@ -21,6 +26,7 @@
   --color-black-11: #626276;
   --color-black-12: #1f1f2c;
 
+  /* Black alpha color scale */
   --color-black-a1: #0000ff03;
   --color-black-a2: #0000d506;
   --color-black-a3: #00009010;
@@ -34,11 +40,13 @@
   --color-black-a11: #0000219d;
   --color-black-a12: #00000fe0;
 
+  /* Utility colors */
   --color-black-contrast: #fff;
   --color-black-surface: #f8f8fecc;
   --color-black-indicator: #000;
   --color-black-track: #000;
 
+  /* Status colors */
   --color-info: #e8ebfe;
   --color-info-contrast: #0927ec;
   --color-success: #e8fef7;
@@ -47,15 +55,43 @@
   --color-danger-contrast: #8e3106;
   --color-warning: #fefbe8;
   --color-warning-contrast: #5d5104;
+
+  /* Accordion animations */
+  --animate-accordion-open: slideDownAccordion 250ms ease-in-out;
+  --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;
+
+  /* Accordion slide down animation */
+  @keyframes slideDownAccordion {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  
+  /* Accordion slide up animation */
+  @keyframes slideUpAccordion {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
 }
 
+/* Base styles */
 @layer base {
+  /* Import Aura design system */
   @import "@aura-design/system/main.css";
 
+  /* Set default font stack */
   *:root {
     --aura-font-stack: "Geist", "Geist Fallback";
   }
 
+  /* Heading styles */
   h1,
   h2,
   h3,
@@ -73,12 +109,15 @@
     font-weight: bold;
   }
 
+  /* Paragraph styles */
   p {
     line-height: 1.6;
   }
 }
 
+/* Utility classes */
 @layer utilities {
+  /* Content styles */
   .content a {
     text-decoration: underline;
   }
@@ -93,16 +132,20 @@
   .content li {
     margin-bottom: calc(var(--spacing) * 0.5);
   }
+  /* Remove outline from buttons */
   a:has(.button-fill, .button-pill, .button-link) {
     outline: none !important;
   }
 }
 
+/* Component styles */
 @layer components {
+  /* Hide NProgress peg */
   #nprogress .peg {
     display: none !important;
   }
 
+  /* Code wrapper styles */
   .code-wrapper pre {
     margin: 0 !important;
     padding: 19.5px 0 !important ;
@@ -110,11 +153,13 @@
     font-size: 13px !important;
   }
 
+  /* 3D transform wrapper */
   .wrapper {
     transform-style: preserve-3d;
     perspective: 500px;
   }
 
+  /* Main circle styles */
   .circle {
     height: 50px;
     width: 50px;
@@ -124,6 +169,7 @@
     animation: rotate 6s linear infinite;
   }
 
+  /* Orbiting circle styles */
   .orbitingCircle {
     width: 13px;
     height: 13px;
@@ -138,6 +184,7 @@
     animation-iteration-count: infinite;
   }
 
+  /* Rotation animation */
   @keyframes rotate {
     from {
       transform: rotateZ(0deg);
@@ -147,6 +194,7 @@
     }
   }
 
+  /* Orbit animation */
   @keyframes orbit {
     from {
       transform: translate(-50%, -50%) rotateY(0deg) translateZ(40px)
@@ -157,5 +205,4 @@
         rotateY(0deg);
     }
   }
-
 }
