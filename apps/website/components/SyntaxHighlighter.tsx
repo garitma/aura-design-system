@@ -1,11 +1,12 @@
 "use client";
 // Required for client-side functionality
 import React, { useRef, useState } from "react";
-import { ScrollArea, Collapsible } from "radix-ui";
+import { Collapsible } from "radix-ui";
 import { CodeIcon, CheckIcon, CopyIcon } from "@radix-ui/react-icons";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { coy } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
+import ScrollArea from "@/components/ui/ScrollArea";
 import Button from "@/components/ui/Button";
 
 // Props type definition for the component
@@ -80,26 +81,16 @@ function CodeBlockSyntaxHighlighter({
             </Button>
           </div>
         </div>
-        <ScrollArea.Root className="w-full">
-          <ScrollArea.Viewport className={classNameViewport.join(" ")}>
-            <SyntaxHighlighter language={language} style={coy}>
-              {code}
-            </SyntaxHighlighter>
-          </ScrollArea.Viewport>
-          <ScrollArea.Scrollbar
-            orientation="horizontal"
-            className="flex touch-none select-none bg-black-a2 h-0.5 rounder-1"
-          >
-            <ScrollArea.Thumb className="bg-black-4 rounded-full" />
-          </ScrollArea.Scrollbar>
-          <ScrollArea.Scrollbar
-            orientation="vertical"
-            className="flex touch-none select-none bg-black-a2 h-0.5 rounder-1"
-          >
-            <ScrollArea.Thumb className="bg-black-4 rounded-full" />
-          </ScrollArea.Scrollbar>
-          <ScrollArea.Corner />
-        </ScrollArea.Root>
+        <ScrollArea
+          rootProps={{
+            clarssName: "w-full",
+          }}
+          viewportProps={{ className: classNameViewport.join(" ") }}
+        >
+          <SyntaxHighlighter language={language} style={coy}>
+            {code}
+          </SyntaxHighlighter>
+        </ScrollArea>
       </div>
     );
   }
@@ -139,9 +130,7 @@ function CodeBlockSyntaxHighlighter({
             </SyntaxHighlighter>
             <div className="absolute left-0 right-0 top-0 bottom-0 pb-0.5 flex items-end justify-center bg-gradient-to-t from-black-1 to-black-a-1">
               <Collapsible.Trigger asChild>
-                <Button className="p-1 h-3">
-                  Expand code
-                </Button>
+                <Button className="p-1 h-3">Expand code</Button>
               </Collapsible.Trigger>
             </div>
           </div>
@@ -149,34 +138,20 @@ function CodeBlockSyntaxHighlighter({
 
         {/* Expanded view with scrollable content */}
         <Collapsible.Content>
-          <ScrollArea.Root className="w-full">
-            <ScrollArea.Viewport className={classNameViewport.join(" ")}>
-              <SyntaxHighlighter language={language} style={coy}>
-                {code}
-              </SyntaxHighlighter>
-            </ScrollArea.Viewport>
-            {/* Horizontal scrollbar */}
-            <ScrollArea.Scrollbar
-              orientation="horizontal"
-              className="flex touch-none select-none bg-black-a2 h-0.5 rounder-1"
-            >
-              <ScrollArea.Thumb className="bg-black-4 rounded-full" />
-            </ScrollArea.Scrollbar>
-            {/* Vertical scrollbar */}
-            <ScrollArea.Scrollbar
-              orientation="vertical"
-              className="flex touch-none select-none bg-black-a2 h-0.5 rounder-1"
-            >
-              <ScrollArea.Thumb className="bg-black-4 rounded-full" />
-            </ScrollArea.Scrollbar>
-            <ScrollArea.Corner />
-          </ScrollArea.Root>
+          <ScrollArea
+            rootProps={{
+              clarssName: "w-full",
+            }}
+            viewportProps={{ className: classNameViewport.join(" ") }}
+          >
+            <SyntaxHighlighter language={language} style={coy}>
+              {code}
+            </SyntaxHighlighter>
+          </ScrollArea>
           {/* Collapse button container */}
-          <div className="absolute left-0 right-0 top-0 bottom-0.5 flex items-end justify-center">
+          <div className="absolute left-0 right-0 top-auto bottom-0.5 flex items-end justify-center">
             <Collapsible.Trigger asChild>
-              <Button className="p-1 h-3">
-                Collapse code
-              </Button>
+              <Button className="p-1 h-3">Collapse code</Button>
             </Collapsible.Trigger>
           </div>
         </Collapsible.Content>
