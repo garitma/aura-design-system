@@ -1,26 +1,25 @@
-import { JSX } from "react";
+import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 
 import { generateComponentCode } from "@/utils/data-view";
 import Section from "@/components/ui/Section";
 import CodePreviewTabs from "@/components/CodePreviewTabs";
-import Component, { importString } from "./Component";
+import Components, {importString} from "./Components";
 
 /**
- * Props for `AccordionDemo`.
+ * Props for `AlertDialogDemo`.
  */
-export type AccordionDemoProps =
-  SliceComponentProps<Content.AccordionDemoSlice>;
+export type AlertDialogDemoProps =
+  SliceComponentProps<Content.AlertDialogDemoSlice>;
 
 /**
- * Component for "AccordionDemo" Slices.
+ * Component for "AlertDialogDemo" Slices.
  */
-
-const AccordionDemo = ({ slice }: AccordionDemoProps): JSX.Element => {
+const AlertDialogDemo: FC<AlertDialogDemoProps> = ({ slice }) => {
   
-  const code = generateComponentCode(Component, {
-    name: "AccordionDemo",
+  const code = generateComponentCode(Components, {
+    name: "AlertDialogDemo",
     importString,
   });
 
@@ -32,10 +31,10 @@ const AccordionDemo = ({ slice }: AccordionDemoProps): JSX.Element => {
       className="py-0"
     >
       <CodePreviewTabs code={code} language={"tsx"}>
-        <Component />
+        <Components />
       </CodePreviewTabs>
     </Section>
   );
 };
 
-export default AccordionDemo;
+export default AlertDialogDemo;

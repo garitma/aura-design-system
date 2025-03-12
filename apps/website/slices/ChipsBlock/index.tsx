@@ -27,7 +27,7 @@ const ChipsBlock: FC<ChipsBlockProps> = ({ slice }) => {
         {slice.primary.chips.map((item) => (
           <div key={item.key}>
             <PrismicNextLink field={item}>
-              <Button mode="pill" as="span" className="rounded-full">
+              <Button mode="pill" as="span" className="rounded-full" size="small">
                 {item.text}
 
                 <ExternalLinkIcon className="icon ml-0.5"/>

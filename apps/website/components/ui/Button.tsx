@@ -1,5 +1,17 @@
-import AuraButton, { ButtonProps } from "@aura-design/system/button"
+import AuraButton, {
+  ButtonProps as AuraButtonProps,
+} from "@aura-design/system/button";
 
-export default function Button ({...props}: ButtonProps) {
-    return <AuraButton {...props} />
+export interface ButtonProps extends AuraButtonProps {
+  size?: "small" | "default";
+}
+
+export default function Button({ size = "default", ...props }: ButtonProps) {
+  const classNameConnect: string[] = [];
+
+  if (size === "small") {
+    classNameConnect.push("p-1 h-3");
+  }
+
+  return <AuraButton {...props} className={classNameConnect.join(" ")} />;
 }

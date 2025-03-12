@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type DocDocumentDataSlicesSlice =
+  | AlertDialogDemoSlice
   | ChipsBlockSlice
   | AccordionDemoSlice
   | CodeBlockSlice
@@ -374,6 +375,36 @@ export type AccordionDemoSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Default variation for AlertDialogDemo Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AlertDialogDemoSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *AlertDialogDemo*
+ */
+type AlertDialogDemoSliceVariation = AlertDialogDemoSliceDefault;
+
+/**
+ * AlertDialogDemo Shared Slice
+ *
+ * - **API ID**: `alert_dialog_demo`
+ * - **Description**: AlertDialogDemo
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AlertDialogDemoSlice = prismic.SharedSlice<
+  "alert_dialog_demo",
+  AlertDialogDemoSliceVariation
+>;
+
+/**
  * Primary content in *ChipsBlock → Default → Primary*
  */
 export interface ChipsBlockSliceDefaultPrimary {
@@ -432,7 +463,9 @@ export interface CodeBlockSliceDefaultPrimary {
    * - **API ID Path**: code_block.default.primary.language
    * - **Documentation**: https://prismic.io/docs/field#select
    */
-  language: prismic.SelectField<"bash" | "jsx" | "javascript" | "css" | "html">;
+  language: prismic.SelectField<
+    "bash" | "jsx" | "javascript" | "css" | "html" | "terminal" | "tsx"
+  >;
 
   /**
    * Is collapsible field in *CodeBlock → Default → Primary*
@@ -649,6 +682,9 @@ declare module "@prismicio/client" {
       AccordionDemoSlice,
       AccordionDemoSliceVariation,
       AccordionDemoSliceDefault,
+      AlertDialogDemoSlice,
+      AlertDialogDemoSliceVariation,
+      AlertDialogDemoSliceDefault,
       ChipsBlockSlice,
       ChipsBlockSliceDefaultPrimary,
       ChipsBlockSliceVariation,

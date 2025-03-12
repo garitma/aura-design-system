@@ -59,6 +59,9 @@
   /* Accordion animations */
   --animate-accordion-open: slideDownAccordion 250ms ease-in-out;
   --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;
+  /* AlertDialog animations */
+  --animate-overlay-show: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-content-show: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
 
   /* Accordion slide down animation */
   @keyframes slideDownAccordion {
@@ -69,7 +72,7 @@
       height: var(--radix-accordion-content-height);
     }
   }
-  
+
   /* Accordion slide up animation */
   @keyframes slideUpAccordion {
     from {
@@ -77,6 +80,26 @@
     }
     to {
       height: 0;
+    }
+  }
+
+  @keyframes overlayShow {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes contentShow {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
     }
   }
 }
@@ -117,6 +140,9 @@
 
 /* Utility classes */
 @layer utilities {
+  html {
+    font-size: 17px;
+  }
   /* Content styles */
   .content a {
     text-decoration: underline;
@@ -203,6 +229,25 @@
     to {
       transform: translate(-50%, -50%) rotateY(360deg) translateZ(40px)
         rotateY(0deg);
+    }
+  }
+  @keyframes overlayShow {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes contentShow {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -48%) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
     }
   }
 }
