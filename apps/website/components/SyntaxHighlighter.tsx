@@ -64,7 +64,7 @@ function CodeBlockSyntaxHighlighter({
     return (
       <div className="code-wrapper">
         <div
-          className="border border-black-3 p-1 border-b-0 bg-black-2 flex rounded-t-1 justify-between"
+          className="border border-black-3 px-1 border-b-0 bg-black-2 flex rounded-t-1 justify-between"
           ref={codeRef}
         >
           <div className="flex items-center gap-1 text-black-9">
@@ -99,7 +99,7 @@ function CodeBlockSyntaxHighlighter({
     <div className="code-wrapper">
       {/* Header section with language indicator and copy button */}
       <div
-        className="border border-black-3 p-1 border-b-0 bg-black-1 flex rounded-t-1 justify-between"
+        className="border border-black-3 px-1 border-b-0 bg-black-1 flex rounded-t-1 justify-between"
         ref={codeRef}
       >
         <div className="flex items-center gap-1 text-black-9">

@@ -22,7 +22,9 @@
               "jsx",
               "javascript",
               "css",
-              "html"
+              "html",
+              "terminal",
+              "tsx"
             ]
           }
         },

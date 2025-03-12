@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 
 export const components = {
   accordion_demo: dynamic(() => import("./AccordionDemo")),
+  alert_dialog_demo: dynamic(() => import("./AlertDialogDemo")),
   chips_block: dynamic(() => import("./ChipsBlock")),
   code_block: dynamic(() => import("./CodeBlock")),
   hero_card: dynamic(() => import("./HeroCard")),

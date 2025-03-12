@@ -39,6 +39,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "alert_dialog_demo": {
+              "type": "SharedSlice"
+            },
             "chips_block": {
               "type": "SharedSlice"
             },
