@@ -83,7 +83,7 @@ function CodeBlockSyntaxHighlighter({
         </div>
         <ScrollArea
           rootProps={{
-            clarssName: "w-full",
+            className: "w-full",
           }}
           viewportProps={{ className: classNameViewport.join(" ") }}
         >
