@@ -60,8 +60,8 @@
   --animate-accordion-open: slideDownAccordion 250ms ease-in-out;
   --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;
   /* AlertDialog animations */
-  --animate-overlay-show: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-  --animate-content-show: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-overlay-show: overlayShow 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  --animate-content-show: contentShow 500ms cubic-bezier(0.19, 1, 0.22, 1);
 
   /* Accordion slide down animation */
   @keyframes slideDownAccordion {
@@ -96,10 +96,12 @@
     from {
       opacity: 0;
       transform: scale(0.96);
+  
     }
     to {
       opacity: 1;
-      transform: scale(1);
+      transform:  scale(1);
+      
     }
   }
 }
