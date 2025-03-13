@@ -29,7 +29,7 @@ const Component = () => (
           This action cannot be undone. This will permanently delete your
           account and remove your data from our servers.
         </AlertDialog.Description>
-        <div className="flex justify-end gap-2" data-display-name="div">
+        <div className="flex-col md:flex-row flex justify-end gap-1 md:gap-2" data-display-name="div">
           <AlertDialog.Cancel asChild data-display-name="AlertDialog.Cancel">
             <Button mode="link" data-display-name="Button">
               Cancel

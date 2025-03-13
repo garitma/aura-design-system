@@ -80,7 +80,7 @@ const AlertDialog = ({
           {description}
         </AlertDialogRadix.Description>
         {/* Container for action buttons */}
-        <div className="flex justify-end gap-2">
+        <div className="flex-col md:flex-row flex justify-end gap-1 md:gap-2" data-display-name="div">
           <AlertDialogRadix.Cancel asChild {...cancelProps}>
             <Button {...cancelButton} mode="link" />
           </AlertDialogRadix.Cancel>
