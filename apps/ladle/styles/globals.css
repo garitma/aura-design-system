@@ -1,0 +1,82 @@
+@import "tailwindcss";
+
+@theme {
+  --radius-0.5: calc(var(--spacing) * 0.5);
+  --radius-1: calc(var(--spacing) * 1);
+  --radius-1.5: calc(var(--spacing) * 1.5);
+  --radius-2: calc(var(--spacing) * 2);
+
+  --spacing: 13px;
+
+  --color-black-1: #fcfcff;
+  --color-black-2: #f9f9fe;
+  --color-black-3: #efeff8;
+  --color-black-4: #e7e7f3;
+  --color-black-5: #dfdfee;
+  --color-black-6: #d8d8e9;
+  --color-black-7: #cdcde1;
+  --color-black-8: #b9b9d2;
+  --color-black-9: #000;
+  --color-black-10: #2c2c3b;
+  --color-black-11: #626276;
+  --color-black-12: #1f1f2c;
+
+  --color-black-a1: #0000ff03;
+  --color-black-a2: #0000d506;
+  --color-black-a3: #00009010;
+  --color-black-a4: #00008018;
+  --color-black-a5: #00007820;
+  --color-black-a6: #00007027;
+  --color-black-a7: #00006632;
+  --color-black-a8: #00005c46;
+  --color-black-a9: #000000;
+  --color-black-a10: #000012d3;
+  --color-black-a11: #0000219d;
+  --color-black-a12: #00000fe0;
+
+  --color-black-contrast: #fff;
+  --color-black-surface: #f8f8fecc;
+  --color-black-indicator: #000;
+  --color-black-track: #000;
+
+  --color-info: #e8ebfe;
+  --color-info-contrast: #0927ec;
+  --color-success: #e8fef7;
+  --color-success-contrast: #045d3c;
+  --color-danger: #feefe8;
+  --color-danger-contrast: #8e3106;
+  --color-warning: #fefbe8;
+  --color-warning-contrast: #5d5104;
+}
+
+@layer base {
+  @import "@aura-design/system/main.css";
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: bold;
+  }
+  p {
+    line-height: 1.6;
+  }
+}
+
+@layer utilities {
+
+  html {
+    font-size: 17px;
+  }
+
+  .content a {
+    text-decoration: underline;
+  }
+  a:has(.button-fill, .button-pill, .button-link) {
+    outline: none !important;
+  }
+}
+
+@layer components {}
