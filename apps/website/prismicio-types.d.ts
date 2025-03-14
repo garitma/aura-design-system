@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type DocDocumentDataSlicesSlice =
+  | AlertDemoSlice
   | AlertDialogDemoSlice
   | ChipsBlockSlice
   | AccordionDemoSlice
@@ -375,6 +376,36 @@ export type AccordionDemoSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Default variation for AlertDemo Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AlertDemoSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *AlertDemo*
+ */
+type AlertDemoSliceVariation = AlertDemoSliceDefault;
+
+/**
+ * AlertDemo Shared Slice
+ *
+ * - **API ID**: `alert_demo`
+ * - **Description**: AlertDemo
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type AlertDemoSlice = prismic.SharedSlice<
+  "alert_demo",
+  AlertDemoSliceVariation
+>;
+
+/**
  * Default variation for AlertDialogDemo Slice
  *
  * - **API ID**: `default`
@@ -682,6 +713,9 @@ declare module "@prismicio/client" {
       AccordionDemoSlice,
       AccordionDemoSliceVariation,
       AccordionDemoSliceDefault,
+      AlertDemoSlice,
+      AlertDemoSliceVariation,
+      AlertDemoSliceDefault,
       AlertDialogDemoSlice,
       AlertDialogDemoSliceVariation,
       AlertDialogDemoSliceDefault,
