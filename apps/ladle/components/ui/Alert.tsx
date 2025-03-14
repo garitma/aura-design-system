@@ -15,7 +15,18 @@ type AlertProps = {
   showIcon?: boolean;
 };
 
-const Alert = ({ status = "other", label, children, icon, showIcon = true }: AlertProps) => {
+const Alert = ({
+  status = "other",
+  label,
+  children,
+  icon,
+  showIcon = true,
+  ...props
+}: AlertProps) => {
+  const classNameConnect: string[] = [
+    "flex items-center gap-1 p-1 rounded-1 border",
+  ];
+
   const statusConfig = {
     info: {
       icon: InfoCircledIcon,
@@ -52,10 +63,10 @@ const Alert = ({ status = "other", label, children, icon, showIcon = true }: Ale
   const config = status ? statusConfig[status] : statusConfig.other;
   const { icon: DefaultIcon, bgColor, textColor, borderColor } = config;
 
+  classNameConnect.push(bgColor, textColor, borderColor);
+
   return (
-    <div
-      className={`flex items-center gap-1 p-1 rounded-1 border ${bgColor} ${textColor} ${borderColor}`}
-    >
+    <div className={classNameConnect.join(" ")} {...props}>
       {showIcon && (icon ? icon : <DefaultIcon className="icon" />)}
       <div>
         {label && <div>{label}</div>}

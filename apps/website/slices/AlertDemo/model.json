@@ -1,0 +1,16 @@
+{
+  "id": "alert_demo",
+  "type": "SharedSlice",
+  "name": "AlertDemo",
+  "description": "AlertDemo",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": ""
+    }
+  ]
+}

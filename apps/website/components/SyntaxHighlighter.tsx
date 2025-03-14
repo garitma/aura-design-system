@@ -140,7 +140,7 @@ function CodeBlockSyntaxHighlighter({
         <Collapsible.Content>
           <ScrollArea
             rootProps={{
-              clarssName: "w-full",
+              className: "w-full",
             }}
             viewportProps={{ className: classNameViewport.join(" ") }}
           >
