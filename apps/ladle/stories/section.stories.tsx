@@ -1,7 +1,8 @@
 import React from "react";
 import Section from "@aura-design/system/section";
+import type { Story } from "@ladle/react";
 
-export const Default = () => (
+export const Default: Story = () => (
   <Section>
     Cada abrazo de oso contiene: 1 dosis de amor por cada 2 brazos. Posología:
     Aplicar un abrazo osado con un apretón fuerte profundamente en el alma 1 ó 2
@@ -16,7 +17,7 @@ export const Default = () => (
   </Section>
 );
 
-export const WithColor = () => (
+export const WithColor: Story = () => (
   <Section className="bg-black-4">
     Cada abrazo de oso contiene: 1 dosis de amor por cada 2 brazos. Posología:
     Aplicar un abrazo osado con un apretón fuerte profundamente en el alma 1 ó 2
@@ -31,7 +32,7 @@ export const WithColor = () => (
   </Section>
 );
 
-export const WithContainer = () => (
+export const WithContainer: Story = () => (
   <>
     <Section className="bg-black-4" container="smesh">
       <h3 className="h6">Smesh 1600px</h3>
@@ -62,14 +63,14 @@ export const WithContainer = () => (
   </>
 );
 
-export const WithSubClassName = () => (
+export const WithSubClassName: Story = () => (
   <Section className="bg-black-4" container="smash" subClassName="green aura">
     <h3 className="h6">subClassName box</h3>
     Cada abrazo de oso contiene: 1 dosis de amor por cada 2 brazos.
   </Section>
 );
 
-export const WithPassDiv = () => (
+export const WithPassDiv: Story = () => (
   <Section className="bg-black-4" passDiv>
     <h3 className="h6">This section use div html tag as wrapper </h3>
     Cada abrazo de oso contiene: 1 dosis de amor por cada 2 brazos.

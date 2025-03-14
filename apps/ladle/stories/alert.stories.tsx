@@ -1,8 +1,9 @@
 import React from "react";
+import type { Story } from "@ladle/react";
 
 import Alert from "../components/ui/Alert";
 
-export const Info = () => (
+export const Info: Story = () => (
   <Alert
     status="info"
     label="This is an informational message providing helpful details about a feature
@@ -10,7 +11,7 @@ export const Info = () => (
   />
 );
 
-export const Success = () => (
+export const Success: Story = () => (
   <Alert
     status="success"
     label="Operation completed successfully! Your changes have been saved and all processes
@@ -18,7 +19,7 @@ export const Success = () => (
   />
 );
 
-export const Warning = () => (
+export const Warning: Story = () => (
   <Alert
     status="warning"
     label="Please proceed with caution. This action may have unexpected consequences
@@ -26,7 +27,7 @@ export const Warning = () => (
   />
 );
 
-export const Danger = () => (
+export const Danger: Story = () => (
   <Alert
     status="danger"
     label=" Critical error detected! This operation cannot be completed and immediate
@@ -34,17 +35,17 @@ export const Danger = () => (
   />
 );
 
-export const NoStatus = () => (
+export const NoStatus: Story = () => (
   <Alert
     label="This is a neutral message that doesn't fit into the other alert categories
     but still contains important information to convey."
   />
 );
 
-export const NoIcon = () => (
-    <Alert
-      label="This is a neutral message that doesn't fit into the other alert categories
+export const NoIcon: Story = () => (
+  <Alert
+    label="This is a neutral message that doesn't fit into the other alert categories
       but still contains important information to convey."
-      showIcon={false}
-    />
-  );
+    showIcon={false}
+  />
+);
