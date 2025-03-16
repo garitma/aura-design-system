@@ -78,8 +78,6 @@ input:not(.default)
         outline: var(--aura-outline)
     &::placeholder
         color: var(--aura-input-placeholder-color);
-    &:not(:placeholder-shown):not(.naked)
-        padding calc(var(--aura) * 2.5) calc(var(--aura) * 2) calc(var(--aura) * 1.5) calc(var(--aura) * 2)
     &:placeholder-shown + label 
         cursor: text;
         max-width: 66.66%;
@@ -95,7 +93,12 @@ input:not(.default)
         z-index 0
     &:disabled
         @extend .disabled
-      
+    
+    
+.inputer 
+    input:not(.default) 
+        &:not(:placeholder-shown):not(.naked)
+            padding calc(var(--aura) * 2.5) calc(var(--aura) * 2) calc(var(--aura) * 1.5) calc(var(--aura) * 2) 
         
     
     
