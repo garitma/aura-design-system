@@ -9,6 +9,8 @@ import {
   FormSubmit,
 } from "../components/ui/Form";
 import Button from "../components/ui/Button";
+import { validateFormData } from "../utils/web-validation";
+import { createTicketSchema } from "../schemas/ticketSchema";
 
 export const FormDemo = () => {
   const formRef = useRef(null);
@@ -17,8 +19,6 @@ export const FormDemo = () => {
     lastName: "text",
     email: "text",
     department: "select",
-    category: "select",
-    question: "textarea",
     accept: "checkbox",
     priority: "select",
     description: "textarea",
@@ -46,12 +46,26 @@ export const FormDemo = () => {
     statusUpdates,
   } = formData.getFields();
 
-  const handleOnSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const { valid, errors } = validateFormData(createTicketSchema, formData.getValues());
+
+  console.log(errors);
+
+  const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     formData.setFetchStatus("loading");
-    setTimeout(() => {
-      formData.setFetchStatus("success");
-    }, 2000);
+    try{
+      const bodyParams = formData.getValues()
+      console.log(bodyParams)
+      const response = await fetch("http://localhost:61001/api/tickets", {
+        method: "POST",
+        body: JSON.stringify(formData.getValues()),
+      });
+      console.log(await response.json());
+      formData.setFetchStatus("idle");
+    } catch (error) {
+      //console.error(error);
+      formData.setFetchStatus("error");
+    }
   };
 
   const handleOnReset = () => {
@@ -70,6 +84,8 @@ export const FormDemo = () => {
       handleOnReset();
     }
   }, []);
+
+  
 
   return (
     <Form
