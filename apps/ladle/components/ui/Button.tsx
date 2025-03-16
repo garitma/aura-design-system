@@ -14,7 +14,11 @@ import AuraButton, {
     if (size === "small") {
       classNameConnect.push("p-1 h-3");
     }
-  
+
+    if (props.className) {
+      classNameConnect.push(props.className);
+    }
+
     return <AuraButton {...props} className={classNameConnect.join(" ")} />;
   }
   

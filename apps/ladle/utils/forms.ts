@@ -37,6 +37,9 @@ const useInputValueFields = (initialValues: FormFields = {}) => {
 };
 
 export const useFormDynamic = (initialValues: FormFields) => {
+  const [fetchStatus, setFetchStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
   const fields = useInputValueFields(initialValues);
 
   const updateField = (
@@ -87,6 +90,7 @@ export const useFormDynamic = (initialValues: FormFields) => {
     };
 
     return {
+      type: fields.types[name],
       value: fields.value[name] ?? defaultValue,
       setValue: (value: string | boolean) =>
         updateField(name, { value, touch: true }),
@@ -114,11 +118,13 @@ export const useFormDynamic = (initialValues: FormFields) => {
     );
   };
 
-  const resetForm = () => {
+  const resetForm = (formRef, initialValues) => {
     const fields = getFields();
+
     for (const field in fields) {
       fields[field].reset();
       fields[field].setTouch(false);
+      fields[field].setFormFieldValue(formRef, initialValues?.[field] ?? initialValueResolver[fields[field].type]);
     }
   };
 
@@ -146,5 +152,7 @@ export const useFormDynamic = (initialValues: FormFields) => {
     field,
     getFields,
     getValues,
+    fetchStatus,
+    setFetchStatus,
   };
 };
