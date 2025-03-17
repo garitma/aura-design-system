@@ -80,9 +80,20 @@ export const FormDemo = () => {
     });
   };
 
+  const handleOnInit = () => {
+    if (formData.fetchStatus === "loading") return;
+
+    formData.resetForm(formRef, {
+      verified: true,
+      notifications: true,
+      autoReply: true,
+      priority: "low",
+    });
+  };
+
   useEffect(() => {
     if (formRef?.current) {
-      handleOnReset();
+      handleOnInit();
     }
   }, []);
 
