@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type DocDocumentDataSlicesSlice =
+  | FormsDemoSlice
   | AlertDemoSlice
   | AlertDialogDemoSlice
   | ChipsBlockSlice
@@ -551,6 +552,61 @@ export type CodeBlockSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *FormsDemo → Default → Primary*
+ */
+export interface FormsDemoSliceDefaultPrimary {
+  /**
+   * Title field in *FormsDemo → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: forms_demo.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Description field in *FormsDemo → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: forms_demo.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Default variation for FormsDemo Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FormsDemoSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FormsDemoSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *FormsDemo*
+ */
+type FormsDemoSliceVariation = FormsDemoSliceDefault;
+
+/**
+ * FormsDemo Shared Slice
+ *
+ * - **API ID**: `forms_demo`
+ * - **Description**: FormsDemo
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FormsDemoSlice = prismic.SharedSlice<
+  "forms_demo",
+  FormsDemoSliceVariation
+>;
+
+/**
  * Primary content in *HeroCard → Default → Primary*
  */
 export interface HeroCardSliceDefaultPrimary {
@@ -727,6 +783,10 @@ declare module "@prismicio/client" {
       CodeBlockSliceDefaultPrimary,
       CodeBlockSliceVariation,
       CodeBlockSliceDefault,
+      FormsDemoSlice,
+      FormsDemoSliceDefaultPrimary,
+      FormsDemoSliceVariation,
+      FormsDemoSliceDefault,
       HeroCardSlice,
       HeroCardSliceDefaultPrimary,
       HeroCardSliceVariation,

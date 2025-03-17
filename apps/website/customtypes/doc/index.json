@@ -39,6 +39,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "forms_demo": {
+              "type": "SharedSlice"
+            },
             "alert_demo": {
               "type": "SharedSlice"
             },
