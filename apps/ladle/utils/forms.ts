@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, ChangeEventHandler } from "react";
 
 type FieldType = "text" | "textarea" | "select" | "checkbox";
 
@@ -43,7 +43,7 @@ export type FieldProps = {
   setValue: (value: string | boolean) => void;
   setFormFieldValue: (formRef: React.RefObject<HTMLFormElement>, value: string | boolean) => void;
   onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
-  onCheckedChange: (checked: boolean) => void;
+  onCheckedChange: any;
   touch: boolean;
   setTouch: (value: boolean) => void;
   reset: () => void;

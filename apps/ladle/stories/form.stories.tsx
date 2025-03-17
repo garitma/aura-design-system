@@ -1,16 +1,16 @@
 import React, { useEffect, useRef } from "react";
 
-import { useFormDynamic } from "../utils/forms";
+import { useFormDynamic } from "@/utils/forms";
 import {
   Form,
   FormField,
   FormCheckbox,
   FormSwitch,
   FormSubmit,
-} from "../components/ui/Form";
-import Button from "../components/ui/Button";
-import { validateFormData } from "../utils/web-validation";
-import { createTicketSchema } from "../schemas/ticketSchema";
+} from "@/components/ui/Form";
+import Button from "@/components/ui/Button";
+import { validateFormData } from "@/utils/web-validation";
+import { createTicketSchema } from "@/schemas/ticketSchema";
 
 export const FormDemo = () => {
   const formRef = useRef(null);

@@ -7,8 +7,8 @@ import {
 } from "radix-ui";
 import { ChevronDownIcon, CheckIcon, SymbolIcon } from "@radix-ui/react-icons";
 
-import Button, { ButtonProps } from "./Button";
-import { FieldProps } from "../../utils/forms";
+import Button, { ButtonProps } from "@/components/ui/Button";
+import { FieldProps } from "@/utils/forms";
 
 interface FormProps extends FormRadix.FormProps {
   errors?: ErrorObject<string, Record<string, any>, unknown>[];
@@ -172,7 +172,7 @@ export const FormSwitch = React.forwardRef<HTMLDivElement, FormSwitchProps>(
           )}
           <SwitchRadix.Root
             id={idConnect}
-            checked={field?.value}
+            checked={Boolean(field?.value)}
             onCheckedChange={field?.onCheckedChange}
             className="relative h-1.5 w-2.5 cursor-pointer rounded-full outline-none bg-black-4 data-[state=checked]:bg-black-10"
           >
@@ -182,7 +182,7 @@ export const FormSwitch = React.forwardRef<HTMLDivElement, FormSwitchProps>(
         <FormRadix.Control
           value="on"
           type="checkbox"
-          checked={field?.value}
+          checked={Boolean(field?.value)}
           onChange={field?.onCheckedChange}
           className="border-0 absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap break-normal clip-rect hidden"
         />
@@ -218,7 +218,7 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
           <CheckboxRadix.Root
             id={idConnect}
             className="border flex size-1.5 items-center justify-center rounded outline-none"
-            checked={field?.value}
+            checked={Boolean(field?.value)}
             onCheckedChange={field?.onCheckedChange}
           >
             <CheckboxRadix.Indicator>
@@ -232,7 +232,7 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
         <FormRadix.Control
           value="on"
           type="checkbox"
-          checked={field?.value}
+          checked={Boolean(field?.value)}
           onChange={field?.onCheckedChange}
           className="border-0 absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap break-normal clip-rect hidden"
         />
