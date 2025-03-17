@@ -1,4 +1,4 @@
-import { useState, useRef, ChangeEventHandler } from "react";
+import { useState, useRef } from "react";
 
 type FieldType = "text" | "textarea" | "select" | "checkbox";
 
@@ -43,7 +43,7 @@ export type FieldProps = {
   setValue: (value: string | boolean) => void;
   setFormFieldValue: (formRef: React.RefObject<HTMLFormElement>, value: string | boolean) => void;
   onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
-  onCheckedChange: any;
+  onCheckedChange: React.ChangeEventHandler<HTMLInputElement> & ((checked: boolean) => void);
   touch: boolean;
   setTouch: (value: boolean) => void;
   reset: () => void;
@@ -85,7 +85,7 @@ export const useFormDynamic = (initialValues: useFormDynamicProps) => {
       });
     };
 
-    const handleOnCheckedChange = (event: boolean) => {
+    const handleOnCheckedChange = (event: boolean): any => {
       updateField(name, {
         value: event,
         touch: true,
@@ -110,7 +110,7 @@ export const useFormDynamic = (initialValues: useFormDynamicProps) => {
         updateField(name, { value, touch: true }),
       setFormFieldValue,
       onChange: handleChange,
-      onCheckedChange: handleOnCheckedChange,
+      onCheckedChange: handleOnCheckedChange as React.ChangeEventHandler<HTMLInputElement> & ((checked: boolean) => void),
       touch: fields.touch[name],
       setTouch: (value: boolean) => updateField(name, { touch: value }),
       reset: () =>
