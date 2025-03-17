@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { useFormDynamic } from "../utils/forms";
 import {
@@ -46,16 +46,17 @@ export const FormDemo = () => {
     statusUpdates,
   } = formData.getFields();
 
-  const { valid, errors } = validateFormData(createTicketSchema, formData.getValues());
-
-  console.log(errors);
+  const { valid, errors } = validateFormData(
+    createTicketSchema,
+    formData.getValues()
+  );
 
   const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     formData.setFetchStatus("loading");
-    try{
-      const bodyParams = formData.getValues()
-      console.log(bodyParams)
+    try {
+      const bodyParams = formData.getValues();
+      console.log(bodyParams);
       const response = await fetch("http://localhost:61001/api/tickets", {
         method: "POST",
         body: JSON.stringify(formData.getValues()),
@@ -85,22 +86,21 @@ export const FormDemo = () => {
     }
   }, []);
 
-  
-
   return (
     <Form
       className="grid gap-2 p-4 max-w-2xl mx-auto"
       onSubmit={handleOnSubmit}
       ref={formRef}
+      errors={errors}
     >
       <div className="grid grid-cols-2 gap-2">
-        <FormField label="First Name" name="firstName" field={firstName} />
-        <FormField label="Last Name" name="lastName" field={lastName} />
+        <FormField label="First Name" field={firstName} />
+        <FormField label="Last Name" field={lastName} />
       </div>
 
-      <FormField label="Email Address" name="email" field={email} />
+      <FormField label="Email Address" field={email} />
 
-      <FormField label="Department" name="department" field={department}>
+      <FormField label="Department" field={department}>
         <select>
           <option value="">Select a department</option>
           <option value="sales">Sales</option>
@@ -110,7 +110,7 @@ export const FormDemo = () => {
         </select>
       </FormField>
 
-      <FormField label="Priority Level" name="priority" field={priority}>
+      <FormField label="Priority Level" field={priority}>
         <select>
           <option value="">Select priority</option>
           <option value="low">Low</option>
@@ -120,53 +120,34 @@ export const FormDemo = () => {
         </select>
       </FormField>
 
-      <FormField
-        label="Issue Description"
-        name="description"
-        field={description}
-      >
+      <FormField label="Issue Description" field={description}>
         <textarea
           placeholder="Please describe your issue in detail..."
           className="min-h-[120px]"
         />
       </FormField>
       <div className="border border-black-4 rounded-1 p-2 space-y-2 bg-black-1">
-        <FormSwitch
-          label="Enable notifications"
-          name="notifications"
-          field={notifications}
-        />
-        <FormSwitch
-          label="Enable auto-replies"
-          name="autoReply"
-          field={autoReply}
-        />
+        <FormSwitch label="Enable notifications" field={notifications} />
+        <FormSwitch label="Enable auto-replies" field={autoReply} />
         <FormSwitch
           label="Enable ticket tracking"
           name="tracking"
           field={tracking}
         />
-        <FormSwitch
-          label="Enable status updates"
-          name="statusUpdates"
-          field={statusUpdates}
-        />
+        <FormSwitch label="Enable status updates" field={statusUpdates} />
       </div>
 
       <div className="space-y-2">
         <FormCheckbox
           label="I have verified this information is correct"
-          name="verified"
           field={verified}
         />
         <FormCheckbox
           label="Send me email updates about this ticket"
-          name="updates"
           field={updates}
         />
         <FormCheckbox
           label="I agree to the terms and conditions"
-          name="accept"
           field={accept}
         />
       </div>

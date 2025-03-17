@@ -126,4 +126,8 @@
 }
 
 @layer components {
+  :where(input, select, textarea)[data-invalid="true"] {
+    --aura-outline: solid 2px var(--color-warning-contrast);
+    --aura-input-bg: var(--color-warning);
+  }
 }

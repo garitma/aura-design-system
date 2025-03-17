@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 
 type FieldType = "text" | "textarea" | "select" | "checkbox";
 
-interface FormFields {
+interface useFormDynamicProps {
   [key: string]: FieldType;
 }
 const initialValueResolver = {
@@ -12,7 +12,7 @@ const initialValueResolver = {
   checkbox: false,
 };
 
-const useInputValueFields = (initialValues: FormFields = {}) => {
+const useInputValueFields = (initialValues: useFormDynamicProps = {}) => {
   const resolvedInitialValues = Object.entries(initialValues).reduce(
     (acc, [key, type]) => {
       acc[key] = initialValueResolver[type];
@@ -36,7 +36,21 @@ const useInputValueFields = (initialValues: FormFields = {}) => {
   };
 };
 
-export const useFormDynamic = (initialValues: FormFields) => {
+export type FieldProps = {
+  name: string;
+  type: FieldType;
+  value: string | boolean;
+  setValue: (value: string | boolean) => void;
+  setFormFieldValue: (formRef: React.RefObject<HTMLFormElement>, value: string | boolean) => void;
+  onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
+  onCheckedChange: (checked: boolean) => void;
+  touch: boolean;
+  setTouch: (value: boolean) => void;
+  reset: () => void;
+  
+};
+
+export const useFormDynamic = (initialValues: useFormDynamicProps) => {
   const [fetchStatus, setFetchStatus] = useState<
     "idle" | "loading" | "success" | "error"
   >("idle");
@@ -52,10 +66,9 @@ export const useFormDynamic = (initialValues: FormFields) => {
     });
 
     fields.setTouch((prev) => ({ ...prev, [name]: updates.touch }));
-    fields.setError((prev) => ({ ...prev, [name]: updates.error }));
   };
 
-  const field = (name: string) => {
+  const field = (name: string): FieldProps => {
     const fieldType = fields.value[name];
     const defaultValue = initialValueResolver[fieldType];
 
@@ -90,6 +103,7 @@ export const useFormDynamic = (initialValues: FormFields) => {
     };
 
     return {
+      name,
       type: fields.types[name],
       value: fields.value[name] ?? defaultValue,
       setValue: (value: string | boolean) =>
@@ -103,7 +117,6 @@ export const useFormDynamic = (initialValues: FormFields) => {
         updateField(name, {
           value: defaultValue,
           touch: false,
-          error: null,
         }),
     };
   };
@@ -123,8 +136,10 @@ export const useFormDynamic = (initialValues: FormFields) => {
 
     for (const field in fields) {
       fields[field].reset();
-      fields[field].setTouch(false);
-      fields[field].setFormFieldValue(formRef, initialValues?.[field] ?? initialValueResolver[fields[field].type]);
+      fields[field].setFormFieldValue(
+        formRef,
+        initialValues?.[field] ?? initialValueResolver[fields[field].type]
+      );
     }
   };
 

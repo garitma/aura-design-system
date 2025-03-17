@@ -1,21 +1,62 @@
 import * as React from "react";
+import { ErrorObject } from "ajv";
 import {
   Form as FormRadix,
   Switch as SwitchRadix,
   Checkbox as CheckboxRadix,
 } from "radix-ui";
 import { ChevronDownIcon, CheckIcon, SymbolIcon } from "@radix-ui/react-icons";
+
 import Button, { ButtonProps } from "./Button";
+import { FieldProps } from "../../utils/forms";
 
-interface FormFieldProps extends FormRadix.FormFieldProps {
-  label: React.ReactNode;
-  labelProps?: FormRadix.FormLabelProps;
-  controlProps?: FormRadix.FormControlProps;
-  field?: any;
-  messages?: FormRadix.FormMessageProps[];
+interface FormProps extends FormRadix.FormProps {
+  errors?: ErrorObject<string, Record<string, any>, unknown>[];
 }
+export const Form = React.forwardRef<HTMLFormElement, FormProps>(
+  ({ children, errors, ...props }, forwardedRef) => {
+    const childrenArray = React.Children.toArray(children);
 
-export const Form = FormRadix.Root;
+    const processChildren = (
+      children: React.ReactNode[]
+    ): React.ReactNode[] => {
+      return children.map((child) => {
+        if (!React.isValidElement(child)) {
+          return child;
+        }
+
+        if (child.props?.field) {
+          const fieldErrors = errors?.filter(
+            (error) => error.instancePath.slice(1) === child.props?.field?.name
+          );
+
+          return React.cloneElement(child as React.ReactElement, {
+            ...child.props,
+            errors: fieldErrors,
+          });
+        }
+
+        if (child.props?.children) {
+          const processedChildren = processChildren(
+            React.Children.toArray(child.props.children)
+          );
+          return React.cloneElement(child as React.ReactElement, {
+            ...child.props,
+            children: processedChildren,
+          });
+        }
+
+        return child;
+      });
+    };
+
+    return (
+      <FormRadix.Root {...props} ref={forwardedRef}>
+        {processChildren(childrenArray)}
+      </FormRadix.Root>
+    );
+  }
+);
 
 interface FormSubmitProps extends FormRadix.FormSubmitProps {
   buttonProps?: ButtonProps;
@@ -41,29 +82,41 @@ export const FormSubmit = React.forwardRef<HTMLButtonElement, FormSubmitProps>(
   }
 );
 
+interface FormFieldProps extends Partial<FormRadix.FormFieldProps> {
+  label: React.ReactNode;
+  labelProps?: FormRadix.FormLabelProps;
+  controlProps?: FormRadix.FormControlProps;
+  field?: FieldProps;
+  errors?: ErrorObject<string, Record<string, any>, unknown>[];
+}
+
 export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
   (
-    { labelProps, label, controlProps, messages, children, field, ...props },
+    { labelProps, label, controlProps, children, field, errors, ...props },
     forwardedRef
   ) => {
-    const classNameConnect: string[] = ["grid gap-0.5"];
-
+    const classNameConnect: string[] = ["flex flex-col gap-0.5"];
+    const hasError = field.touch && errors && errors.length > 0;
     const hasSelect = React.Children.toArray(children).some(
-      (child) => child?.type === "select"
+      (child: any) => child?.type === "select"
     );
 
     if (props.className) {
       classNameConnect.push(props.className);
     }
 
+    const name = props.name || field?.name;
+
     return (
       <FormRadix.Field
         className={classNameConnect.join(" ")}
+        name={name}
         {...props}
+        serverInvalid={hasError}
         ref={forwardedRef}
       >
         {label && <FormRadix.Label {...labelProps}>{label}</FormRadix.Label>}
-        <div className="relative">
+        <div className="relative ">
           <FormRadix.Control
             {...controlProps}
             onChange={field?.onChange}
@@ -77,33 +130,42 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
             </div>
           )}
         </div>
-        {messages &&
-          messages.length > 0 &&
-          messages.map((messageProps, index) => (
-            <FormRadix.Message {...messageProps} key={index} />
+
+        {hasError &&
+          errors?.map((error, index) => (
+            <FormRadix.Message className="text-warning-contrast" key={index}>
+              {error.message}
+            </FormRadix.Message>
           ))}
       </FormRadix.Field>
     );
   }
 );
 
-interface FormSwitchProps extends FormRadix.FormFieldProps {
+interface FormSwitchProps extends Partial<FormRadix.FormFieldProps> {
   id?: string;
   label: React.ReactNode;
   labelProps?: FormRadix.FormLabelProps;
   controlProps?: FormRadix.FormControlProps;
-  field?: any;
+  field?: FieldProps;
+  errors?: ErrorObject<string, Record<string, any>, unknown>[];
 }
 
 export const FormSwitch = React.forwardRef<HTMLDivElement, FormSwitchProps>(
   (
-    { labelProps, label, controlProps, field, children, id, ...props },
+    { labelProps, label, controlProps, field, children, id, errors, ...props },
     forwardedRef
   ) => {
     const idConnect = id ? id : React.useId();
+    const name = props.name || field?.name;
 
     return (
-      <FormRadix.Field {...props} ref={forwardedRef}>
+      <FormRadix.Field
+        {...props}
+        ref={forwardedRef}
+        name={name}
+        serverInvalid={field?.touch && errors?.length > 0}
+      >
         <div className="flex items-center gap-1">
           {label && (
             <FormRadix.Label htmlFor={idConnect}>{label}</FormRadix.Label>
@@ -129,23 +191,29 @@ export const FormSwitch = React.forwardRef<HTMLDivElement, FormSwitchProps>(
   }
 );
 
-interface FormCheckboxProps extends FormRadix.FormFieldProps {
+interface FormCheckboxProps extends Partial<FormRadix.FormFieldProps> {
   id?: string;
   label: React.ReactNode;
   labelProps?: FormRadix.FormLabelProps;
   controlProps?: FormRadix.FormControlProps;
-  field?: any;
+  field?: FieldProps;
+  errors?: ErrorObject<string, Record<string, any>, unknown>[];
 }
 
 export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
   (
-    { labelProps, label, controlProps, field, children, id, ...props },
+    { labelProps, label, controlProps, field, children, id, errors, ...props },
     forwardedRef
   ) => {
     const idConnect = id ? id : React.useId();
-
+    const name = props.name || field?.name;
     return (
-      <FormRadix.Field {...props} ref={forwardedRef}>
+      <FormRadix.Field
+        {...props}
+        ref={forwardedRef}
+        name={name}
+        serverInvalid={field?.touch && errors?.length > 0}
+      >
         <div className="flex items-center gap-1">
           <CheckboxRadix.Root
             id={idConnect}
