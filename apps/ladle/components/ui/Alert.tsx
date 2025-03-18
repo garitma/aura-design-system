@@ -7,7 +7,7 @@ import {
   QuoteIcon,
 } from "@radix-ui/react-icons";
 
-type AlertProps = {
+export type AlertProps = {
   status?: "info" | "success" | "warning" | "danger" | "other";
   label?: React.ReactNode;
   children?: React.ReactNode;

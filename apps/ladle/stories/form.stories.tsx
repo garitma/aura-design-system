@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
+import { createTicketSchema } from "@/schemas/ticketSchema";
+import { validateFormData } from "@/utils/web-validation";
 import { useFormDynamic } from "@/utils/forms";
 import {
   Form,
@@ -7,10 +9,10 @@ import {
   FormCheckbox,
   FormSwitch,
   FormSubmit,
+  FormAlert,
 } from "@/components/ui/Form";
 import Button from "@/components/ui/Button";
-import { validateFormData } from "@/utils/web-validation";
-import { createTicketSchema } from "@/schemas/ticketSchema";
+import { toast } from "sonner";
 
 export const FormDemo = () => {
   const formRef = useRef(null);
@@ -51,21 +53,40 @@ export const FormDemo = () => {
     formData.getValues()
   );
 
+
+
   const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     formData.setFetchStatus("loading");
+    
+    if (!valid) {
+      formData.setFetchStatus("error");
+      formData.touchForm();
+      formData.setError("Please fill in all fields");
+      return;
+    }
+
+    console.log("run");
+
     try {
-      const bodyParams = formData.getValues();
-      console.log(bodyParams);
-      const response = await fetch("http://localhost:61001/api/tickets", {
+      await new Promise((resolve) => setTimeout(resolve, 1000));
+
+      const res = await fetch("http://localhost:61001/api/tickets", {
         method: "POST",
         body: JSON.stringify(formData.getValues()),
       });
-      console.log(await response.json());
-      formData.setFetchStatus("idle");
+
+      if (res.ok) {
+        formData.setFetchStatus("success");
+        toast.success("Ticket created successfully");
+      } else {
+        formData.setFetchStatus("error");
+        formData.setError("Something went wrong");
+      }
     } catch (error) {
-      //console.error(error);
+      console.error(error);
       formData.setFetchStatus("error");
+      formData.setError("Something went wrong");
     }
   };
 
@@ -176,6 +197,7 @@ export const FormDemo = () => {
           buttonProps={{ label: "Submit Ticket" }}
         />
       </div>
+      <FormAlert formData={formData} />
     </Form>
   );
 };

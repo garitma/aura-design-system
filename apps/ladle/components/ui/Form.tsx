@@ -7,6 +7,7 @@ import {
 } from "radix-ui";
 import { ChevronDownIcon, CheckIcon, SymbolIcon } from "@radix-ui/react-icons";
 
+import Alert, { AlertProps } from "@/components/ui/Alert";
 import Button, { ButtonProps } from "@/components/ui/Button";
 import { FieldProps } from "@/utils/forms";
 
@@ -240,3 +241,10 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
     );
   }
 );
+
+export const FormAlert = ({ children, formData, ...props }) => {
+  if (formData.fetchStatus !== "error") {
+    return null;
+  }
+  return <Alert status="danger" label={formData.error} />;
+};

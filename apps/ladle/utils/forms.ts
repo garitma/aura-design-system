@@ -22,7 +22,7 @@ const useInputValueFields = (initialValues: useFormDynamicProps = {}) => {
   );
 
   const [value, setValue] = useState(resolvedInitialValues);
-  const [error, setError] = useState<Record<string, string>>({});
+  const [error, setError] = useState<string>(null);
   const [touch, setTouch] = useState<Record<string, boolean>>({});
 
   return {
@@ -41,13 +41,20 @@ export type FieldProps = {
   type: FieldType;
   value: string | boolean;
   setValue: (value: string | boolean) => void;
-  setFormFieldValue: (formRef: React.RefObject<HTMLFormElement>, value: string | boolean) => void;
-  onChange: (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => void;
-  onCheckedChange: React.ChangeEventHandler<HTMLInputElement> & ((checked: boolean) => void);
+  setFormFieldValue: (
+    formRef: React.RefObject<HTMLFormElement>,
+    value: string | boolean
+  ) => void;
+  onChange: (
+    event: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => void;
+  onCheckedChange: React.ChangeEventHandler<HTMLInputElement> &
+    ((checked: boolean) => void);
   touch: boolean;
   setTouch: (value: boolean) => void;
   reset: () => void;
-  
 };
 
 export const useFormDynamic = (initialValues: useFormDynamicProps) => {
@@ -110,7 +117,9 @@ export const useFormDynamic = (initialValues: useFormDynamicProps) => {
         updateField(name, { value, touch: true }),
       setFormFieldValue,
       onChange: handleChange,
-      onCheckedChange: handleOnCheckedChange as React.ChangeEventHandler<HTMLInputElement> & ((checked: boolean) => void),
+      onCheckedChange:
+        handleOnCheckedChange as React.ChangeEventHandler<HTMLInputElement> &
+          ((checked: boolean) => void),
       touch: fields.touch[name],
       setTouch: (value: boolean) => updateField(name, { touch: value }),
       reset: () =>
@@ -146,7 +155,8 @@ export const useFormDynamic = (initialValues: useFormDynamicProps) => {
   const touchForm = () => {
     const fields = getFields();
     for (const field in fields) {
-      fields[field].setTouch(true);
+      updateField(field, { value: fields[field].value, touch: true });
+   
     }
   };
 
