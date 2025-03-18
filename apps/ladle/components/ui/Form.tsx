@@ -157,6 +157,7 @@ export const FormSwitch = React.forwardRef<HTMLDivElement, FormSwitchProps>(
     { labelProps, label, controlProps, field, children, id, errors, ...props },
     forwardedRef
   ) => {
+    const hasError = field.touch && errors && errors.length > 0;
     const idConnect = id ? id : React.useId();
     const name = props.name || field?.name;
 
@@ -165,7 +166,7 @@ export const FormSwitch = React.forwardRef<HTMLDivElement, FormSwitchProps>(
         {...props}
         ref={forwardedRef}
         name={name}
-        serverInvalid={field?.touch && errors?.length > 0}
+        serverInvalid={hasError}
       >
         <div className="flex items-center gap-1">
           {label && (
@@ -187,6 +188,12 @@ export const FormSwitch = React.forwardRef<HTMLDivElement, FormSwitchProps>(
           onChange={field?.onCheckedChange}
           className="border-0 absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap break-normal clip-rect hidden"
         />
+        {hasError &&
+          errors?.map((error, index) => (
+            <FormRadix.Message className="text-warning-contrast" key={index}>
+              {error.message}
+            </FormRadix.Message>
+          ))}
       </FormRadix.Field>
     );
   }
@@ -206,6 +213,7 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
     { labelProps, label, controlProps, field, children, id, errors, ...props },
     forwardedRef
   ) => {
+    const hasError = field.touch && errors && errors.length > 0;
     const idConnect = id ? id : React.useId();
     const name = props.name || field?.name;
     return (
@@ -213,9 +221,10 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
         {...props}
         ref={forwardedRef}
         name={name}
-        serverInvalid={field?.touch && errors?.length > 0}
+        serverInvalid={hasError}
       >
         <div className="flex items-center gap-1">
+          <div>
           <CheckboxRadix.Root
             id={idConnect}
             className="border flex size-1.5 items-center justify-center rounded outline-none"
@@ -226,6 +235,7 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
               <CheckIcon />
             </CheckboxRadix.Indicator>
           </CheckboxRadix.Root>
+          </div>
           {label && (
             <FormRadix.Label htmlFor={idConnect}>{label}</FormRadix.Label>
           )}
@@ -237,14 +247,24 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
           onChange={field?.onCheckedChange}
           className="border-0 absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap break-normal clip-rect hidden"
         />
+        {hasError &&
+          errors?.map((error, index) => (
+            <FormRadix.Message className="text-warning-contrast" key={index}>
+              {error.message}
+            </FormRadix.Message>
+          ))}
       </FormRadix.Field>
     );
   }
 );
 
-export const FormAlert = ({ children, formData, ...props }) => {
+interface FormAlertProps extends AlertProps {
+  formData: any;
+}
+
+export const FormAlert = ({ children, formData, ...props }: FormAlertProps) => {
   if (formData.fetchStatus !== "error") {
     return null;
   }
-  return <Alert status="danger" label={formData.error} />;
+  return <Alert status="danger" {...props} label={formData.error} />;
 };

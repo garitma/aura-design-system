@@ -1,9 +1,11 @@
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
 import { NextResponse } from "next/server";
+import addErrors from "ajv-errors";
 
-const ajv = new Ajv({ allErrors: true });
+const ajv = new Ajv({ allErrors: true, $data: true });
 addFormats(ajv);
+addErrors(ajv);
 
 export function withValidation(
   schema: object,
@@ -17,6 +19,8 @@ export function withValidation(
       // Validate the body against the schema
       const validate = ajv.compile(schema);
       const isValid = validate(body);
+
+      console.log(validate.errors);
 
       if (!isValid) {
         return NextResponse.json({ errors: validate.errors }, { status: 400 });

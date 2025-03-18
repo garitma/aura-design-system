@@ -1,8 +1,10 @@
 import Ajv from "ajv";
 import addFormats from "ajv-formats";
+import addErrors from "ajv-errors";
 
-const ajv = new Ajv({ allErrors: true });
+const ajv = new Ajv({ allErrors: true, $data: true });
 addFormats(ajv);
+addErrors(ajv);
 
 export function validateFormData(schema: object, data: unknown) {
   const validate = ajv.compile(schema);
@@ -10,13 +12,13 @@ export function validateFormData(schema: object, data: unknown) {
 
   if (!isValid) {
     return {
-      valid: false,
+      isValid: false,
       errors: validate.errors
     };
   }
 
   return {
-    valid: true,
+    isValid: true,
     errors: null
   };
 }

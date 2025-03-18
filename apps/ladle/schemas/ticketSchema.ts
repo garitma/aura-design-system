@@ -1,7 +1,13 @@
 export const ticketSchema = {
   type: "object",
   properties: {
-    firstName: { type: "string", minLength: 1 },
+    firstName: {
+      type: "string",
+      minLength: 1,
+      errorMessage: {
+        minLength: "First name is required",
+      },
+    },
     lastName: { type: "string", minLength: 1 },
     email: { type: "string", format: "email" },
     department: {
@@ -24,6 +30,22 @@ export const createTicketSchema = {
   type: "object",
   properties: {
     ...ticketSchema.properties,
+    notifications: {
+      type: "boolean",
+      const: true,
+      errorMessage: {
+        const: "Notifications are required.",
+      },
+    },
+    accept: {
+      type: "boolean",
+      const: true,
+      errorMessage: {
+        const: "Accept terms and conditions is required.",
+      },
+    },
+    verified: { type: "boolean", const: true },
+    updates: { type: "boolean", const: true },
   },
   required: [
     "firstName",
