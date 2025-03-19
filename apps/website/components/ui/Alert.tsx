@@ -7,7 +7,7 @@ import {
   QuoteIcon,
 } from "@radix-ui/react-icons";
 
-type AlertProps = {
+export type AlertProps = {
   status?: "info" | "success" | "warning" | "danger" | "other";
   label?: React.ReactNode;
   children?: React.ReactNode;
@@ -23,10 +23,7 @@ const Alert = ({
   showIcon = true,
   ...props
 }: AlertProps) => {
-  
-  const classNameConnect: string[] = [
-    "flex items-center gap-1 p-1 rounded-1 border",
-  ];
+  const classNameConnect: string[] = ["flex gap-1 p-1 rounded-1 border"];
 
   const statusConfig = {
     info: {
@@ -68,7 +65,7 @@ const Alert = ({
 
   return (
     <div className={classNameConnect.join(" ")} {...props}>
-      {showIcon && (icon ? icon : <DefaultIcon className="icon" />)}
+      {showIcon && <div>{icon ? icon : <DefaultIcon className="icon" />}</div>}
       <div>
         {label && <div>{label}</div>}
         {children}

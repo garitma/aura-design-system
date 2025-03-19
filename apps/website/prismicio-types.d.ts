@@ -5,6 +5,7 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type DocDocumentDataSlicesSlice =
+  | TableBlockSlice
   | FormsDemoSlice
   | AlertDemoSlice
   | AlertDialogDemoSlice
@@ -688,6 +689,51 @@ export type HeroCardSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *TableBlock → Default → Primary*
+ */
+export interface TableBlockSliceDefaultPrimary {
+  /**
+   * Content field in *TableBlock → Default → Primary*
+   *
+   * - **Field Type**: Table
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table_block.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#table
+   */
+  content: prismic.TableField;
+}
+
+/**
+ * Default variation for TableBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TableBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TableBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *TableBlock*
+ */
+type TableBlockSliceVariation = TableBlockSliceDefault;
+
+/**
+ * TableBlock Shared Slice
+ *
+ * - **API ID**: `table_block`
+ * - **Description**: TableBlock
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TableBlockSlice = prismic.SharedSlice<
+  "table_block",
+  TableBlockSliceVariation
+>;
+
+/**
  * Primary content in *TextBlock → Default → Primary*
  */
 export interface TextBlockSliceDefaultPrimary {
@@ -791,6 +837,10 @@ declare module "@prismicio/client" {
       HeroCardSliceDefaultPrimary,
       HeroCardSliceVariation,
       HeroCardSliceDefault,
+      TableBlockSlice,
+      TableBlockSliceDefaultPrimary,
+      TableBlockSliceVariation,
+      TableBlockSliceDefault,
       TextBlockSlice,
       TextBlockSliceDefaultPrimary,
       TextBlockSliceVariation,

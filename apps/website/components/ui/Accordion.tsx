@@ -9,11 +9,12 @@ type AccordionItem = {
 
 type AccordionProps = {
   items: AccordionItem[];
+  className?: string;
 };
 
-const Accordion = ({ items, ...props }: AccordionProps) => {
+const Accordion = ({ items, className, ...props }: AccordionProps) => {
   return (
-    <AccordionRadix.Root collapsible type="single" {...props}>
+    <AccordionRadix.Root collapsible type="single" className={className} {...props}>
       {items.map((item, index) => (
         <AccordionRadix.Item
           className="overflow-hidden"

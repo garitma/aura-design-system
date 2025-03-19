@@ -29,7 +29,6 @@ const AccordionDemo = ({ slice }: AccordionDemoProps): JSX.Element => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       container="smash"
-      className="py-0"
     >
       <CodePreviewTabs code={code} language={"tsx"}>
         <Component />

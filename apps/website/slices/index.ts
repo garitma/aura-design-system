@@ -10,5 +10,6 @@ export const components = {
   code_block: dynamic(() => import("./CodeBlock")),
   forms_demo: dynamic(() => import("./FormsDemo")),
   hero_card: dynamic(() => import("./HeroCard")),
+  table_block: dynamic(() => import("./TableBlock")),
   text_block: dynamic(() => import("./TextBlock")),
 };
