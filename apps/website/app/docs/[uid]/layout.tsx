@@ -16,7 +16,7 @@ export default async function DocsLayout({ children }: DocsLayoutType) {
     <div className="smush h-full">
       <div className="md:flex flex-row gap-1 h-full">
         {menu && <AsideMenu menu={menu} />}
-        <main className="w-full">{children}</main>
+        <main className="w-full main-doc-content">{children}</main>
       </div>
     </div>
   );

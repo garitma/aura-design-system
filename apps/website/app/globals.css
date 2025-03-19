@@ -274,6 +274,10 @@
   }
   .content td {
     padding: 0 calc(var(--spacing) * 1);
-
+  }
+  @media screen and (min-width: 768px) {
+    .main-doc-content {
+      max-width: calc(100vw - 350px);
+    }
   }
 }
