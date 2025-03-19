@@ -28,7 +28,6 @@ const AlertDialogDemo: FC<AlertDialogDemoProps> = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       container="smash"
-      className="py-0"
     >
       <CodePreviewTabs code={code} language={"tsx"}>
         <Components />

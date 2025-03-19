@@ -4,8 +4,10 @@ export const importString = `import { InfoCircledIcon } from "@radix-ui/react-ic
 
 const Component = () => {
   return (
-    <div className="flex items-center gap-1 p-1 rounded-1 border bg-info text-info-contrast border-info-contrast">
-      <InfoCircledIcon className="icon" data-display-name="InfoCircledIcon"/>
+    <div className="flex gap-1 p-1 rounded-1 border bg-info text-info-contrast border-info-contrast">
+      <div>
+        <InfoCircledIcon className="icon" data-display-name="InfoCircledIcon" />
+      </div>
       <div>
         <div>
           This is an informational message providing helpful details about a

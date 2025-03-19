@@ -19,7 +19,7 @@ const CodeBlock = ({ slice }: CodeBlockProps): JSX.Element => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       container="smash"
-      className="max-w-[100vw] py-0 px-1"
+      className="max-w-[100vw]"
     >
       <SyntaxHighlighter
         code={asText(slice.primary.code)}

@@ -1,7 +1,7 @@
 import React from "react";
 import type { Story } from "@ladle/react";
 
-import Alert from "../components/ui/Alert";
+import Alert from "@/components/ui/Alert";
 
 export const Info: Story = () => (
   <Alert

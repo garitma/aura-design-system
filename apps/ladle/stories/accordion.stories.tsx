@@ -1,6 +1,7 @@
 import React from "react";
 import type { Story } from "@ladle/react";
-import Accordion from "../components/ui/Accordion";
+
+import Accordion from "@/components/ui/Accordion";
 
 export const Default: Story = () => {
   const items = [

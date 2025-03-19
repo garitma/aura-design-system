@@ -1,0 +1,25 @@
+{
+  "id": "table_block",
+  "type": "SharedSlice",
+  "name": "TableBlock",
+  "description": "TableBlock",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "content": {
+          "type": "Table",
+          "config": {
+            "label": "Content"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

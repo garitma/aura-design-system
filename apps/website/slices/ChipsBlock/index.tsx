@@ -21,7 +21,6 @@ const ChipsBlock: FC<ChipsBlockProps> = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       container="smash"
-      className="pt-0"
     >
       <div className="flex flex-wrap gap-1">
         {slice.primary.chips.map((item) => (

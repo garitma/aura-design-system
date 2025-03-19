@@ -5,6 +5,8 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type DocDocumentDataSlicesSlice =
+  | TableBlockSlice
+  | FormsDemoSlice
   | AlertDemoSlice
   | AlertDialogDemoSlice
   | ChipsBlockSlice
@@ -551,6 +553,61 @@ export type CodeBlockSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *FormsDemo → Default → Primary*
+ */
+export interface FormsDemoSliceDefaultPrimary {
+  /**
+   * Title field in *FormsDemo → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: forms_demo.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * Description field in *FormsDemo → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: forms_demo.default.primary.description
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+}
+
+/**
+ * Default variation for FormsDemo Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FormsDemoSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<FormsDemoSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *FormsDemo*
+ */
+type FormsDemoSliceVariation = FormsDemoSliceDefault;
+
+/**
+ * FormsDemo Shared Slice
+ *
+ * - **API ID**: `forms_demo`
+ * - **Description**: FormsDemo
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type FormsDemoSlice = prismic.SharedSlice<
+  "forms_demo",
+  FormsDemoSliceVariation
+>;
+
+/**
  * Primary content in *HeroCard → Default → Primary*
  */
 export interface HeroCardSliceDefaultPrimary {
@@ -629,6 +686,51 @@ type HeroCardSliceVariation = HeroCardSliceDefault;
 export type HeroCardSlice = prismic.SharedSlice<
   "hero_card",
   HeroCardSliceVariation
+>;
+
+/**
+ * Primary content in *TableBlock → Default → Primary*
+ */
+export interface TableBlockSliceDefaultPrimary {
+  /**
+   * Content field in *TableBlock → Default → Primary*
+   *
+   * - **Field Type**: Table
+   * - **Placeholder**: *None*
+   * - **API ID Path**: table_block.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#table
+   */
+  content: prismic.TableField;
+}
+
+/**
+ * Default variation for TableBlock Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TableBlockSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<TableBlockSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *TableBlock*
+ */
+type TableBlockSliceVariation = TableBlockSliceDefault;
+
+/**
+ * TableBlock Shared Slice
+ *
+ * - **API ID**: `table_block`
+ * - **Description**: TableBlock
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type TableBlockSlice = prismic.SharedSlice<
+  "table_block",
+  TableBlockSliceVariation
 >;
 
 /**
@@ -727,10 +829,18 @@ declare module "@prismicio/client" {
       CodeBlockSliceDefaultPrimary,
       CodeBlockSliceVariation,
       CodeBlockSliceDefault,
+      FormsDemoSlice,
+      FormsDemoSliceDefaultPrimary,
+      FormsDemoSliceVariation,
+      FormsDemoSliceDefault,
       HeroCardSlice,
       HeroCardSliceDefaultPrimary,
       HeroCardSliceVariation,
       HeroCardSliceDefault,
+      TableBlockSlice,
+      TableBlockSliceDefaultPrimary,
+      TableBlockSliceVariation,
+      TableBlockSliceDefault,
       TextBlockSlice,
       TextBlockSliceDefaultPrimary,
       TextBlockSliceVariation,
