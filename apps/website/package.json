@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
-    "@slicemachine/adapter-next": "^0.3.70",
+    "@slicemachine/adapter-next": "^0.3.74",
     "@tailwindcss/postcss": "^4.0.0",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -36,7 +36,7 @@
     "eslint": "^9",
     "eslint-config-next": "15.1.6",
     "postcss": "^8",
-    "slice-machine-ui": "^2.14.0",
+    "slice-machine-ui": "^2.15.1",
     "tailwindcss": "^4.0.0",
     "typescript": "^5"
   }
