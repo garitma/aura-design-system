@@ -5,7 +5,7 @@
 		"primary": {
 			"language": {
 				"__TYPE__": "FieldContent",
-				"value": "jsx",
+				"value": "tsx",
 				"type": "Select"
 			},
 			"code": {

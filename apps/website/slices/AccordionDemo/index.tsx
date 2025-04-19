@@ -4,7 +4,7 @@ import { SliceComponentProps } from "@prismicio/react";
 
 import { generateComponentCode } from "@/utils/data-view";
 import Section from "@/components/ui/Section";
-import CodePreviewTabs from "@/components/CodePreviewTabs";
+import CodePreviewTabs from "@/components/common/CodePreviewTabs";
 import Component, { importString } from "./Component";
 
 /**

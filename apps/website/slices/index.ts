@@ -8,8 +8,9 @@ export const components = {
   alert_dialog_demo: dynamic(() => import("./AlertDialogDemo")),
   chips_block: dynamic(() => import("./ChipsBlock")),
   code_block: dynamic(() => import("./CodeBlock")),
-  forms_demo: dynamic(() => import("./FormsDemo")),
+  form_demo: dynamic(() => import("./FormDemo")),
   hero_card: dynamic(() => import("./HeroCard")),
+  note: dynamic(() => import("./Note")),
   table_block: dynamic(() => import("./TableBlock")),
   text_block: dynamic(() => import("./TextBlock")),
 };

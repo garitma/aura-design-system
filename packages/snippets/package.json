@@ -1,0 +1,11 @@
+{
+    "name": "@aura-design/snippets",
+    "version": "1.0.0",
+    "description": "Aura Design Snippets",
+    "main": "index.js",
+    "scripts": {
+      "generate": "node scripts/css-to-js.mjs"
+    },
+    "dependencies": {}
+  }
+  

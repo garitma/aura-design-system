@@ -1,0 +1,16 @@
+{
+  "id": "form_demo",
+  "type": "SharedSlice",
+  "name": "FormDemo",
+  "description": "FormDemo",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": ""
+    }
+  ]
+}

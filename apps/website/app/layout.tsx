@@ -4,9 +4,9 @@ import { PrismicPreview } from "@prismicio/next";
 import { repositoryName } from "@/prismicio";
 
 import "@/app/globals.css";
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
-import Nprogress from "@/components/Nprocess";
+import Footer from "@/components/common/Footer";
+import Header from "@/components/common/Header";
+import Nprogress from "@/components/common/Nprocess";
 
 
 const geistSans = Geist({

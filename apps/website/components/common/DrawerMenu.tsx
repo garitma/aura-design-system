@@ -39,7 +39,7 @@ export default function DrawerMenu({ menu }: DrawerMenuProps) {
         <VisuallyHidden.Root>
           <Drawer.Title>Menu</Drawer.Title>
         </VisuallyHidden.Root>
-        <Drawer.Content className="bg-black-1 flex flex-col h-[95svh] fixed top-0 left-0 right-0 z-20 overflow-y-auto">
+        <Drawer.Content className="bg-black-1 flex flex-col h-[20svh] fixed top-0 left-0 right-0 z-20 overflow-y-auto">
           <div className="overflow-y-auto">
             <div className="p-0.5">
               <ul className="nav-list">

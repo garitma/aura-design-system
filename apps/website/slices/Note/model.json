@@ -1,8 +1,8 @@
 {
-  "id": "forms_demo",
+  "id": "note",
   "type": "SharedSlice",
-  "name": "FormsDemo",
-  "description": "FormsDemo",
+  "name": "Note",
+  "description": "Note",
   "variations": [
     {
       "id": "default",
@@ -12,19 +12,10 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "title": {
+        "content": {
           "type": "StructuredText",
           "config": {
-            "label": "Title",
-            "placeholder": "",
-            "allowTargetBlank": false,
-            "multi": "heading1,heading2,heading3,heading4,heading5,heading6"
-          }
-        },
-        "description": {
-          "type": "StructuredText",
-          "config": {
-            "label": "Description",
+            "label": "Content",
             "placeholder": "",
             "allowTargetBlank": true,
             "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"

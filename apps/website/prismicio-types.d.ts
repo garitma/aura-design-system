@@ -5,8 +5,9 @@ import type * as prismic from "@prismicio/client";
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type DocDocumentDataSlicesSlice =
+  | NoteSlice
+  | FormDemoSlice
   | TableBlockSlice
-  | FormsDemoSlice
   | AlertDemoSlice
   | AlertDialogDemoSlice
   | ChipsBlockSlice
@@ -497,7 +498,7 @@ export interface CodeBlockSliceDefaultPrimary {
    * - **Documentation**: https://prismic.io/docs/field#select
    */
   language: prismic.SelectField<
-    "bash" | "jsx" | "javascript" | "css" | "html" | "terminal" | "tsx"
+    "bash" | "jsx" | "javascript" | "css" | "html" | "terminal" | "tsx" | "ts"
   >;
 
   /**
@@ -553,58 +554,33 @@ export type CodeBlockSlice = prismic.SharedSlice<
 >;
 
 /**
- * Primary content in *FormsDemo → Default → Primary*
- */
-export interface FormsDemoSliceDefaultPrimary {
-  /**
-   * Title field in *FormsDemo → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: forms_demo.default.primary.title
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  title: prismic.RichTextField;
-
-  /**
-   * Description field in *FormsDemo → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: forms_demo.default.primary.description
-   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
-   */
-  description: prismic.RichTextField;
-}
-
-/**
- * Default variation for FormsDemo Slice
+ * Default variation for FormDemo Slice
  *
  * - **API ID**: `default`
  * - **Description**: Default
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type FormsDemoSliceDefault = prismic.SharedSliceVariation<
+export type FormDemoSliceDefault = prismic.SharedSliceVariation<
   "default",
-  Simplify<FormsDemoSliceDefaultPrimary>,
+  Record<string, never>,
   never
 >;
 
 /**
- * Slice variation for *FormsDemo*
+ * Slice variation for *FormDemo*
  */
-type FormsDemoSliceVariation = FormsDemoSliceDefault;
+type FormDemoSliceVariation = FormDemoSliceDefault;
 
 /**
- * FormsDemo Shared Slice
+ * FormDemo Shared Slice
  *
- * - **API ID**: `forms_demo`
- * - **Description**: FormsDemo
+ * - **API ID**: `form_demo`
+ * - **Description**: FormDemo
  * - **Documentation**: https://prismic.io/docs/slice
  */
-export type FormsDemoSlice = prismic.SharedSlice<
-  "forms_demo",
-  FormsDemoSliceVariation
+export type FormDemoSlice = prismic.SharedSlice<
+  "form_demo",
+  FormDemoSliceVariation
 >;
 
 /**
@@ -687,6 +663,48 @@ export type HeroCardSlice = prismic.SharedSlice<
   "hero_card",
   HeroCardSliceVariation
 >;
+
+/**
+ * Primary content in *Note → Default → Primary*
+ */
+export interface NoteSliceDefaultPrimary {
+  /**
+   * Content field in *Note → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: note.default.primary.content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  content: prismic.RichTextField;
+}
+
+/**
+ * Default variation for Note Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NoteSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<NoteSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Note*
+ */
+type NoteSliceVariation = NoteSliceDefault;
+
+/**
+ * Note Shared Slice
+ *
+ * - **API ID**: `note`
+ * - **Description**: Note
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type NoteSlice = prismic.SharedSlice<"note", NoteSliceVariation>;
 
 /**
  * Primary content in *TableBlock → Default → Primary*
@@ -829,14 +847,17 @@ declare module "@prismicio/client" {
       CodeBlockSliceDefaultPrimary,
       CodeBlockSliceVariation,
       CodeBlockSliceDefault,
-      FormsDemoSlice,
-      FormsDemoSliceDefaultPrimary,
-      FormsDemoSliceVariation,
-      FormsDemoSliceDefault,
+      FormDemoSlice,
+      FormDemoSliceVariation,
+      FormDemoSliceDefault,
       HeroCardSlice,
       HeroCardSliceDefaultPrimary,
       HeroCardSliceVariation,
       HeroCardSliceDefault,
+      NoteSlice,
+      NoteSliceDefaultPrimary,
+      NoteSliceVariation,
+      NoteSliceDefault,
       TableBlockSlice,
       TableBlockSliceDefaultPrimary,
       TableBlockSliceVariation,
