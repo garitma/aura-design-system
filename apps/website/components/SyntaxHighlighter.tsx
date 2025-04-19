@@ -4,7 +4,8 @@ import React, { useRef, useState } from "react";
 import { Collapsible } from "radix-ui";
 import { CodeIcon, CheckIcon, CopyIcon } from "@radix-ui/react-icons";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { coy } from "react-syntax-highlighter/dist/cjs/styles/prism";
+//import { coy } from "react-syntax-highlighter/dist/cjs/styles/prism";
+import coy from "@/lib/hljs/aura-light"
 
 import ScrollArea from "@/components/ui/ScrollArea";
 import Button from "@/components/ui/Button";

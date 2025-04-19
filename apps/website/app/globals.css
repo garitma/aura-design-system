@@ -177,8 +177,8 @@
   .code-wrapper pre {
     margin: 0 !important;
     padding: 19.5px 0 !important ;
-    font-family: "Geist Mono" !important;
     font-size: 13px !important;
+    background-color: #fff!important;
   }
 
   /* 3D transform wrapper */
