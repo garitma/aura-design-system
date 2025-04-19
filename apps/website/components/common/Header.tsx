@@ -2,8 +2,8 @@ import { PrismicNextImage } from "@prismicio/next";
 import { createClient } from "@/prismicio";
 import Link from "next/link";
 
-import Menu from "@/components/Menu";
-import DrawerMenu from "@/components/DrawerMenu";
+import Menu from "@/components/common/Menu";
+import DrawerMenu from "@/components/common/DrawerMenu";
 
 const Header = async () => {
   const client = createClient();
