@@ -7,9 +7,9 @@ import {
 } from "radix-ui";
 import { ChevronDownIcon, CheckIcon, SymbolIcon } from "@radix-ui/react-icons";
 
-import Alert, { AlertProps } from "@/components/ui/Alert";
-import Button, { ButtonProps } from "@/components/ui/Button";
-import { FieldProps } from "@/utils/forms";
+import { FieldProps } from "@/hooks/use-dynamic-form";
+import Alert, { AlertProps } from "@/components/ui/alert";
+import Button, { ButtonProps } from "@/components/ui/button";
 
 interface FormProps extends FormRadix.FormProps {
   errors?: ErrorObject<string, Record<string, any>, unknown>[];

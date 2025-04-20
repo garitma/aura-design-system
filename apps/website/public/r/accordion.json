@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion",
+  "type": "registry:ui",
+  "description": "accordion component",
+  "dependencies": [
+    "radix-ui",
+    "@radix-ui/react-icons"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/accordion.tsx",
+      "content": "import React, { ReactNode } from \"react\";\nimport { Accordion as AccordionRadix } from \"radix-ui\";\nimport { ChevronDownIcon } from \"@radix-ui/react-icons\";\n\ntype AccordionItem = {\n  title: ReactNode;\n  content: ReactNode;\n};\n\ntype AccordionProps = {\n  items: AccordionItem[];\n};\n\nconst Accordion = ({ items, ...props }: AccordionProps) => {\n  return (\n    <AccordionRadix.Root collapsible type=\"single\" {...props}>\n      {items.map((item, index) => (\n        <AccordionRadix.Item\n          className=\"overflow-hidden\"\n          value={`item-${index}`}\n          key={`item-${index}`}\n        >\n          <AccordionRadix.Trigger className=\"group flex justify-between flex-1 cursor-pointer items-center gap-1 p-1 w-full h6 hover:bg-black3 border border-b-1 border-black-3 border-x-0 border-t-0 px-2\">\n            {item.title}\n            <ChevronDownIcon\n              aria-hidden\n              className=\"group-data-[state=open]:rotate-180 transition duration-300\"\n            />\n          </AccordionRadix.Trigger>\n          <AccordionRadix.Content className=\"bg-black-2 data-[state=open]:animate-accordion-open data-[state=closed]:animate-accordion-closed\">\n            <div className=\"px-2 py-1\">{item.content}</div>\n          </AccordionRadix.Content>\n        </AccordionRadix.Item>\n      ))}\n    </AccordionRadix.Root>\n  );\n};\n\nexport default Accordion;\n",
+      "type": "registry:ui"
+    }
+  ]
+}

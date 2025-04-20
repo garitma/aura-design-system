@@ -4,6 +4,18 @@
   "homepage": "https://auradesignsystem.com",
   "items": [
     {
+      "name": "accordion",
+      "type": "registry:ui",
+      "description": "accordion component",
+      "dependencies": ["radix-ui", "@radix-ui/react-icons"],
+      "files": [
+        {
+          "path": "registry/default/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "alert",
       "type": "registry:ui",
       "description": "alert component",
@@ -24,6 +36,34 @@
         {
           "path": "registry/default/ui/button.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:component",
+      "description": "Form component",
+      "dependencies": ["radix-ui", "ajv", "ajv-formats", "ajv-errors"],
+      "registryDependencies": [
+        "http://localhost:61001/r/use-dynamic-form.json",
+        "http://localhost:61001/r/web-validation.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "web-validation",
+      "type": "registry:lib",
+      "dependencies": ["radix-ui", "ajv", "ajv-formats", "ajv-errors"],
+      "description": "Web validation ajv ",
+      "files": [
+        {
+          "path": "registry/default/utils/web-validation.ts",
+          "type": "registry:lib"
         }
       ]
     },

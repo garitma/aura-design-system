@@ -7,24 +7,15 @@ import {
 } from "radix-ui";
 import { ChevronDownIcon, CheckIcon, SymbolIcon } from "@radix-ui/react-icons";
 
-import Alert, { AlertProps } from "@/components/ui/Alert";
-import Button, { ButtonProps } from "@/components/ui/Button";
-import { FieldProps } from "@/utils/forms";
+import { FieldProps } from "@/hooks/use-dynamic-form";
+import Alert, { AlertProps } from "@/components/ui/alert";
+import Button, { ButtonProps } from "@/components/ui/button";
 
 interface FormProps extends FormRadix.FormProps {
   errors?: ErrorObject<string, Record<string, any>, unknown>[];
 }
 export const Form = React.forwardRef<HTMLFormElement, FormProps>(
   ({ children, errors, ...props }, forwardedRef) => {
-    
-    if (!errors) {
-      return (
-        <FormRadix.Root {...props} ref={forwardedRef}>
-          {children}
-        </FormRadix.Root>
-      );
-    }
-
     const childrenArray = React.Children.toArray(children);
 
     const processChildren = (
@@ -106,7 +97,7 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
     forwardedRef
   ) => {
     const classNameConnect: string[] = ["flex flex-col gap-0.5"];
-    const hasError = field?.touch && errors && errors.length > 0;
+    const hasError = field.touch && errors && errors.length > 0;
     const hasSelect = React.Children.toArray(children).some(
       (child: any) => child?.type === "select"
     );
@@ -119,14 +110,14 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
 
     return (
       <FormRadix.Field
-        className={classNameConnect.join(" ")}
+        className={classNameConnect.join("")}
         name={name}
         {...props}
         serverInvalid={hasError}
         ref={forwardedRef}
       >
         {label && <FormRadix.Label {...labelProps}>{label}</FormRadix.Label>}
-        <div className="relative ">
+        <div className="relative">
           <FormRadix.Control
             {...controlProps}
             onChange={field?.onChange}
@@ -166,7 +157,7 @@ export const FormSwitch = React.forwardRef<HTMLDivElement, FormSwitchProps>(
     { labelProps, label, controlProps, field, children, id, errors, ...props },
     forwardedRef
   ) => {
-    const hasError = field?.touch && errors && errors.length > 0;
+    const hasError = field.touch && errors && errors.length > 0;
     const idConnect = id ? id : React.useId();
     const name = props.name || field?.name;
 
@@ -183,11 +174,9 @@ export const FormSwitch = React.forwardRef<HTMLDivElement, FormSwitchProps>(
           )}
           <SwitchRadix.Root
             id={idConnect}
+            checked={Boolean(field?.value)}
+            onCheckedChange={field?.onCheckedChange}
             className="relative h-1.5 w-2.5 cursor-pointer rounded-full outline-none bg-black-4 data-[state=checked]:bg-black-10"
-            {...(field && {
-              checked: Boolean(field?.value),
-              onCheckedChange: field?.onCheckedChange,
-            })}
           >
             <SwitchRadix.Thumb className="block size-1 translate-x-[3.5px] rounded-full bg-black-1 shadow-md transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[15.5px]" />
           </SwitchRadix.Root>
@@ -224,7 +213,7 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
     { labelProps, label, controlProps, field, children, id, errors, ...props },
     forwardedRef
   ) => {
-    const hasError = field?.touch && errors && errors.length > 0;
+    const hasError = field.touch && errors && errors.length > 0;
     const idConnect = id ? id : React.useId();
     const name = props.name || field?.name;
     return (
@@ -236,18 +225,16 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
       >
         <div className="flex items-center gap-1">
           <div>
-            <CheckboxRadix.Root
-              id={idConnect}
-              className="border flex size-1.5 items-center justify-center rounded outline-none"
-              {...(field && {
-                checked: Boolean(field?.value),
-                onCheckedChange: field?.onCheckedChange,
-              })}
-            >
-              <CheckboxRadix.Indicator>
-                <CheckIcon />
-              </CheckboxRadix.Indicator>
-            </CheckboxRadix.Root>
+          <CheckboxRadix.Root
+            id={idConnect}
+            className="border flex size-1.5 items-center justify-center rounded outline-none"
+            checked={Boolean(field?.value)}
+            onCheckedChange={field?.onCheckedChange}
+          >
+            <CheckboxRadix.Indicator>
+              <CheckIcon />
+            </CheckboxRadix.Indicator>
+          </CheckboxRadix.Root>
           </div>
           {label && (
             <FormRadix.Label htmlFor={idConnect}>{label}</FormRadix.Label>
@@ -276,7 +263,7 @@ interface FormAlertProps extends AlertProps {
 }
 
 export const FormAlert = ({ children, formData, ...props }: FormAlertProps) => {
-  if (formData?.fetchStatus !== "error") {
+  if (formData.fetchStatus !== "error") {
     return null;
   }
   return <Alert status="danger" {...props} label={formData.error} />;
