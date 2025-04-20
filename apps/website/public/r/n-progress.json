@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "n-progress",
+  "type": "registry:component",
+  "description": "accordion component",
+  "dependencies": [
+    "next-nprogress-bar"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/n-progress.tsx",
+      "content": "\"use client\";\nimport { AppProgressBar as ProgressBar } from \"next-nprogress-bar\";\n\nexport default function Nprogress() {\n  return (\n    <ProgressBar\n      height=\"4px\"\n      color=\"#000012d3\"\n      options={{ showSpinner: false }}\n      shallowRouting\n    />\n  );\n}\n",
+      "type": "registry:component"
+    }
+  ]
+}

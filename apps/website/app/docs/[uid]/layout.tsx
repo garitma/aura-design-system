@@ -1,6 +1,6 @@
 import { createClient } from "@/prismicio";
 
-import AsideMenu from "@/components/common/AsideMenu";
+import AsideMenu from "@/components/AsideMenu";
 
 type DocsLayoutType = {
   children: React.ReactNode;

@@ -3,7 +3,7 @@ import addFormats from "ajv-formats";
 import { NextResponse } from "next/server";
 import addErrors from "ajv-errors";
 
-import { getUserByEmail } from "@/utils/prisma-client";
+// import { getUserByEmail } from "@/utils/prisma-client";
 import { getSession } from "@/utils/auth-client";
 
 /**
@@ -92,8 +92,9 @@ export function withAuth(handler: EnhancedHandler) {
       // Return a 401 error if the user is not authenticated
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-
-    const user = await getUserByEmail({ email: session.user.email });
+    // TODO: Get user 
+    //const user = await getUserByEmail({ email: session.user.email });
+    const user = {}
 
     // Pass the user to the handler
     return await handler(request, { ...context, user: user });

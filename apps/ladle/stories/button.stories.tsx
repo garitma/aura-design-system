@@ -1,7 +1,7 @@
 import React from "react";
 import type { Story } from "@ladle/react";
 
-import Button from "@/registry/default/ui/button";
+import Button from "@/components/ui/button";
 
 export const ButtonFill: Story = () => <Button label="Button fill" />;
 export const ButtonPill: Story = () => (

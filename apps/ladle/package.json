@@ -5,7 +5,7 @@
     "build": "pnpm ladle build --stories=stories",
     "dev": "pnpm ladle serve --stories=stories & pnpm dev:next --port 61001",
     "dev:next": "next dev",
-    "registry:build": "shadcn build && rm -rf ../website/public && mv public/ ../website/public/"
+    "registry:build": "shadcn build && rsync -av public/ ../website/public/"
   },
   "keywords": [],
   "author": {
@@ -20,6 +20,9 @@
     "ajv": "^8.17.1",
     "ajv-errors": "^3.0.0",
     "ajv-formats": "^3.0.1",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.501.0",
     "next": "15.2.2",
     "postcss": "^8",
     "radix-ui": "^1.1.2",
@@ -27,6 +30,7 @@
     "react-dom": "^19.0.0",
     "shadcn": "2.5.0-canary.1",
     "sonner": "^2.0.1",
+    "tailwind-merge": "^3.2.0",
     "tailwindcss": "^4.0.0"
   },
   "devDependencies": {

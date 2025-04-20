@@ -11,8 +11,8 @@ import {
   FormSwitch,
   FormSubmit,
   FormAlert,
-} from "@/components/ui/Form";
-import Button from "@/components/ui/Button";
+} from "@/components/form";
+import Button from "@/components/ui/button";
 import { toast } from "sonner";
 
 export const FormDemo = () => {

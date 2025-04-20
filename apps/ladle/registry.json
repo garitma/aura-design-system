@@ -4,6 +4,18 @@
   "homepage": "https://auradesignsystem.com",
   "items": [
     {
+      "name": "accordion",
+      "type": "registry:ui",
+      "description": "accordion component",
+      "dependencies": ["radix-ui", "@radix-ui/react-icons"],
+      "files": [
+        {
+          "path": "registry/default/ui/accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "alert",
       "type": "registry:ui",
       "description": "alert component",
@@ -28,6 +40,34 @@
       ]
     },
     {
+      "name": "form",
+      "type": "registry:component",
+      "description": "Form component",
+      "dependencies": ["radix-ui", "ajv", "ajv-formats", "ajv-errors"],
+      "registryDependencies": [
+        "https://auradesignsystem.com/r/use-dynamic-form.json",
+        "https://auradesignsystem.com/r/web-validation.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "web-validation",
+      "type": "registry:lib",
+      "dependencies": ["radix-ui", "ajv", "ajv-formats", "ajv-errors"],
+      "description": "Web validation ajv ",
+      "files": [
+        {
+          "path": "registry/default/utils/web-validation.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "use-dynamic-form",
       "type": "registry:hook",
       "description": "flexible form state management solution designed to handle dynamic forms with various field types",
@@ -35,6 +75,18 @@
         {
           "path": "registry/default/hooks/use-dynamic-form.ts",
           "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "n-progress",
+      "type": "registry:component",
+      "description": "accordion component",
+      "dependencies": ["next-nprogress-bar"],
+      "files": [
+        {
+          "path": "registry/default/components/n-progress.tsx",
+          "type": "registry:component"
         }
       ]
     }
