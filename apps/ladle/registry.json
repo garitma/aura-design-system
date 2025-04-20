@@ -4,12 +4,22 @@
   "homepage": "https://auradesignsystem.com",
   "items": [
     {
+      "name": "alert",
+      "type": "registry:ui",
+      "description": "alert component",
+      "dependencies": ["@radix-ui/react-icons"],
+      "files": [
+        {
+          "path": "registry/default/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "description": "button component",
-      "dependencies": [
-        "@aura-design/system"
-      ],
+      "dependencies": ["@aura-design/system"],
       "files": [
         {
           "path": "registry/default/ui/button.tsx",
