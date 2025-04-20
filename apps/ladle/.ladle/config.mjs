@@ -1,8 +1,6 @@
 /** @type {import('@ladle/react').UserConfig} */
 
 export default {
-  appendToHead:
-    '<link rel="canonical" href="https://ladle.auradesignsystem.com/">',
   outDir: "./build/dist",
   addons: {
     theme: {

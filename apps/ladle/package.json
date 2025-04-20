@@ -4,7 +4,8 @@
   "scripts": {
     "build": "pnpm ladle build --stories=stories",
     "dev": "pnpm ladle serve --stories=stories & pnpm dev:next --port 61001",
-    "dev:next": "next dev"
+    "dev:next": "next dev",
+    "registry:build": "shadcn build && rm -rf ../website/public && mv public/ ../website/public/"
   },
   "keywords": [],
   "author": {
@@ -24,6 +25,7 @@
     "radix-ui": "^1.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "shadcn": "2.5.0-canary.1",
     "sonner": "^2.0.1",
     "tailwindcss": "^4.0.0"
   },
