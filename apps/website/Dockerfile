@@ -21,7 +21,7 @@ COPY . .
 # Uncomment the following line in case you want to disable telemetry during the build.
 # ENV NEXT_TELEMETRY_DISABLED 1
 
-ARG NEXT_PUBLIC_MAP
+
 
 RUN yarn build
 

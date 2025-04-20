@@ -1,1 +1,0 @@
-import{j as t}from"./index-BAtNeeTY.js";import{C as e}from"./checkbox-DFydjsnP.js";import"./input-vF8JH-6q.js";const c={title:"Checkbox"},s=()=>t.jsx(e,{label:"Accept terms and conditions."});typeof window<"u"&&window.document&&window.document.createElement&&document.documentElement.setAttribute("data-storyloaded","");export{s as Default,c as default};
