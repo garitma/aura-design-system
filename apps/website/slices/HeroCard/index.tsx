@@ -5,8 +5,8 @@ import { PrismicNextLink } from "@prismicio/next";
 import Section from "@/components/ui/Section";
 import Button from "@/components/ui/Button";
 
-import CommandLine from "@/components/common/CommandLine";
-import Orbiting from "@/components/common/Orbiting";
+import CommandLine from "@/components/CommandLine";
+import Orbiting from "@/components/Orbiting";
 
 /**
  * Props for `HeroCard`.

@@ -10,8 +10,8 @@
     "ajv-errors"
   ],
   "registryDependencies": [
-    "http://localhost:61001/r/use-dynamic-form.json",
-    "http://localhost:61001/r/web-validation.json"
+    "https://auradesignsystem.com/r/use-dynamic-form.json",
+    "https://auradesignsystem.com/r/web-validation.json"
   ],
   "files": [
     {

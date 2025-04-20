@@ -1,7 +1,7 @@
 // Import required components from Radix UI and local components
 import { Tabs } from "radix-ui";
 
-import SyntaxHighlighter from "@/components/common/SyntaxHighlighter";
+import SyntaxHighlighter from "@/components/SyntaxHighlighter";
 
 // Define props interface for CodePreviewTabs component
 type CodePreviewTabsProps = {

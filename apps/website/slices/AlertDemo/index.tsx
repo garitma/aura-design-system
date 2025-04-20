@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Content } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 import Section from "@/components/ui/Section";
-import CodePreviewTabs from "@/components/common/CodePreviewTabs";
+import CodePreviewTabs from "@/components/CodePreviewTabs";
 import Component, { importString } from "./Component";
 import { generateComponentCode } from "@/utils/data-view";
 

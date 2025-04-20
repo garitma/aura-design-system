@@ -45,8 +45,8 @@
       "description": "Form component",
       "dependencies": ["radix-ui", "ajv", "ajv-formats", "ajv-errors"],
       "registryDependencies": [
-        "http://localhost:61001/r/use-dynamic-form.json",
-        "http://localhost:61001/r/web-validation.json"
+        "https://auradesignsystem.com/r/use-dynamic-form.json",
+        "https://auradesignsystem.com/r/web-validation.json"
       ],
       "files": [
         {
@@ -75,6 +75,18 @@
         {
           "path": "registry/default/hooks/use-dynamic-form.ts",
           "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "n-progress",
+      "type": "registry:component",
+      "description": "accordion component",
+      "dependencies": ["next-nprogress-bar"],
+      "files": [
+        {
+          "path": "registry/default/components/n-progress.tsx",
+          "type": "registry:component"
         }
       ]
     }

@@ -8,7 +8,6 @@ export default function Nprogress() {
       color="#000012d3"
       options={{ showSpinner: false }}
       shallowRouting
-
     />
   );
 }

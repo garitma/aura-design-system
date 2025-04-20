@@ -3,7 +3,7 @@ import { Content, asText } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 
 import Section from "@/components/ui/Section";
-import SyntaxHighlighter from "@/components/common/SyntaxHighlighter";
+import SyntaxHighlighter from "@/components/SyntaxHighlighter";
 
 /**
  * Props for `CodeBlock`.
