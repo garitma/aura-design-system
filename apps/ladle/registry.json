@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "auradesign",
+  "homepage": "https://auradesignsystem.com",
+  "items": [
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "description": "button component",
+      "dependencies": [
+        "@aura-design/system"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "use-dynamic-form",
+      "type": "registry:hook",
+      "description": "flexible form state management solution designed to handle dynamic forms with various field types",
+      "files": [
+        {
+          "path": "registry/default/hooks/use-dynamic-form.ts",
+          "type": "registry:hook"
+        }
+      ]
+    }
+  ]
+}
