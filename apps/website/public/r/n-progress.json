@@ -9,8 +9,25 @@
   "files": [
     {
       "path": "registry/default/components/n-progress.tsx",
-      "content": "\"use client\";\nimport { AppProgressBar as ProgressBar } from \"next-nprogress-bar\";\n\nexport default function Nprogress() {\n  return (\n    <ProgressBar\n      height=\"4px\"\n      color=\"#000012d3\"\n      options={{ showSpinner: false }}\n      shallowRouting\n    />\n  );\n}\n",
+      "content": "\"use client\";\nimport \"./n-progress.css\"\nimport { AppProgressBar as ProgressBar } from \"next-nprogress-bar\";\n\nexport default function Nprogress() {\n  return (\n    <ProgressBar\n      options={{ showSpinner: false }}\n      shallowRouting\n    />\n  );\n}\n",
       "type": "registry:component"
     }
-  ]
+  ],
+  "css": {
+    "@layer components": {
+      ".nprogress": {
+        "pointer-events": "none",
+        "z-index": "99999"
+      },
+      ".nprogress .bar": {
+        "background": "var(--aura-loader)",
+        "position": "fixed",
+        "z-index": "99999",
+        "top": "0",
+        "left": "0",
+        "width": "100%",
+        "height": "4px"
+      }
+    }
+  }
 }

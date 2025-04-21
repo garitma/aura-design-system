@@ -24,6 +24,7 @@
     "clsx": "^2.1.1",
     "lucide-react": "^0.501.0",
     "next": "15.2.2",
+    "next-nprogress-bar": "^2.4.3",
     "postcss": "^8",
     "radix-ui": "^1.1.2",
     "react": "^19.0.0",
@@ -31,7 +32,8 @@
     "shadcn": "2.5.0-canary.1",
     "sonner": "^2.0.1",
     "tailwind-merge": "^3.2.0",
-    "tailwindcss": "^4.0.0"
+    "tailwindcss": "^4.0.0",
+    "tw-animate-css": "^1.2.7"
   },
   "devDependencies": {
     "@aura-design/system": "workspace:*",
