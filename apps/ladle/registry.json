@@ -83,14 +83,27 @@
       "type": "registry:component",
       "description": "accordion component",
       "dependencies": ["next-nprogress-bar"],
+      "css": {
+        "@layer components": {
+          ".nprogress": {
+            "pointer-events": "none",
+            "z-index": "99999"
+          },
+          ".nprogress .bar": {
+            "background": "var(--aura-loader)",
+            "position": "fixed",
+            "z-index": "99999",
+            "top": "0",
+            "left": "0",
+            "width": "100%",
+            "height": "4px"
+          }
+        }
+      },
       "files": [
         {
           "path": "registry/default/components/n-progress.tsx",
           "type": "registry:component"
-        },
-        {
-          "path": "registry/default/styles/n-progress.css",
-          "type": "registry:theme"
         }
       ]
     }
