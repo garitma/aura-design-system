@@ -1,21 +1,16 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
-  "name": "n-progress",
-  "type": "registry:component",
+  "name": "n-progress-style",
+  "type": "registry:style",
   "description": "accordion component",
   "dependencies": [
     "next-nprogress-bar"
   ],
   "files": [
     {
-      "path": "registry/default/components/n-progress.tsx",
-      "content": "\"use client\";\nimport \"./n-progress.css\"\nimport { AppProgressBar as ProgressBar } from \"next-nprogress-bar\";\n\nexport default function Nprogress() {\n  return (\n    <ProgressBar\n      options={{ showSpinner: false }}\n      shallowRouting\n    />\n  );\n}\n",
-      "type": "registry:component"
-    },
-    {
       "path": "registry/default/styles/n-progress.css",
       "content": ".nprogress {\n    pointer-events: none;\n    z-index: 99999;\n}\n\n.nprogress .bar {\n    background: #000012d3;\n    position: fixed;\n    z-index: 99999;\n    top: 0;\n    left: 0;\n    width: 100%;\n    height: 4px;\n}",
-      "type": "registry:theme"
+      "type": "registry:component"
     }
   ]
 }

@@ -87,6 +87,10 @@
         {
           "path": "registry/default/components/n-progress.tsx",
           "type": "registry:component"
+        },
+        {
+          "path": "registry/default/styles/n-progress.css",
+          "type": "registry:theme"
         }
       ]
     }
