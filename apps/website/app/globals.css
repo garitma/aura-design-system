@@ -1,5 +1,8 @@
 /* Import Tailwind CSS */
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 /* Theme variables */
 @theme {
@@ -56,32 +59,9 @@
   --color-warning: #fefbe8;
   --color-warning-contrast: #5d5104;
 
-  /* Accordion animations */
-  --animate-accordion-open: slideDownAccordion 250ms ease-in-out;
-  --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;
   /* AlertDialog animations */
   --animate-overlay-show: overlayShow 500ms cubic-bezier(0.19, 1, 0.22, 1);
   --animate-content-show: contentShow 500ms cubic-bezier(0.19, 1, 0.22, 1);
-
-  /* Accordion slide down animation */
-  @keyframes slideDownAccordion {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-
-  /* Accordion slide up animation */
-  @keyframes slideUpAccordion {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
 
   @keyframes overlayShow {
     from {
@@ -278,6 +258,27 @@
   @media screen and (min-width: 768px) {
     .main-doc-content {
       max-width: calc(100vw - 350px);
+    }
+  }
+}
+
+@theme inline {
+  --animate-accordion-open: slideDownAccordion 250ms ease-in-out;
+  --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;
+  @keyframes slideDownAccordion {
+  from {
+    height: 0;
+    }
+  to {
+    height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes slideUpAccordion {
+  from {
+    height: var(--radix-accordion-content-height);
+    }
+  to {
+    height: 0;
     }
   }
 }
