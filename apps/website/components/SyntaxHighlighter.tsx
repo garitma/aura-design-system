@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 import { Collapsible } from "radix-ui";
 import { CodeIcon, CheckIcon, CopyIcon } from "@radix-ui/react-icons";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import auraLight from "@/lib/hljs/aura-light"
+import { coy } from "react-syntax-highlighter/dist/esm/styles/prism";
 
 import ScrollArea from "@/components/ui/ScrollArea";
 import Button from "@/components/ui/Button";
@@ -87,7 +87,7 @@ function CodeBlockSyntaxHighlighter({
           }}
           viewportProps={{ className: classNameViewport.join(" ") }}
         >
-          <SyntaxHighlighter language={language} style={auraLight}>
+          <SyntaxHighlighter language={language} style={coy}>
             {code}
           </SyntaxHighlighter>
         </ScrollArea>
@@ -125,7 +125,7 @@ function CodeBlockSyntaxHighlighter({
         {/* Collapsed view */}
         {!isOpen && (
           <div className={classNameTrigger.join(" ")}>
-            <SyntaxHighlighter language={language} style={auraLight}>
+            <SyntaxHighlighter language={language} style={coy}>
               {code}
             </SyntaxHighlighter>
             <div className="absolute left-0 right-0 top-0 bottom-0 pb-0.5 flex items-end justify-center bg-gradient-to-t from-black-1 to-black-a-1">
@@ -144,7 +144,7 @@ function CodeBlockSyntaxHighlighter({
             }}
             viewportProps={{ className: classNameViewport.join(" ") }}
           >
-            <SyntaxHighlighter language={language} style={auraLight}>
+            <SyntaxHighlighter language={language} style={coy}>
               {code}
             </SyntaxHighlighter>
           </ScrollArea>

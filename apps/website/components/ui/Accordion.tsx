@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 import { Accordion as AccordionRadix } from "radix-ui";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 
@@ -9,19 +9,18 @@ type AccordionItem = {
 
 type AccordionProps = {
   items: AccordionItem[];
-  className?: string;
 };
 
-const Accordion = ({ items, className, ...props }: AccordionProps) => {
+const Accordion = ({ items, ...props }: AccordionProps) => {
   return (
-    <AccordionRadix.Root collapsible type="single" className={className} {...props}>
+    <AccordionRadix.Root collapsible type="single" {...props}>
       {items.map((item, index) => (
         <AccordionRadix.Item
           className="overflow-hidden"
           value={`item-${index}`}
           key={`item-${index}`}
         >
-          <AccordionRadix.Trigger className="group flex justify-between flex-1 cursor-pointer items-center gap-1 p-1 w-full h6 hover:bg-black3 border border-b-1 border-black-3 border-x-0 border-t-0 px-2">
+          <AccordionRadix.Trigger className="group flex justify-between flex-1 cursor-pointer items-center gap-1 p-1 w-full h6 hover:bg-black3 border border-neutral-200 border-b-1 border-black-3 border-x-0 border-t-0 px-2 dark:border-neutral-800">
             {item.title}
             <ChevronDownIcon
               aria-hidden

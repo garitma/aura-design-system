@@ -1,7 +1,7 @@
 import { PrismicNextLink } from "@prismicio/next";
 import { Content } from "@prismicio/client";
 
-import Accordion from "@/components/ui/Accordion";
+import Accordion from "@/components/ui/accordion";
 
 type AsideMenuProps = {
   menu: Content.NavigationDocument;

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 exports["default"] = void 0;
 var _default = exports["default"] = {
   "code[class*=\"language-\"]": {
-    "color":  "#a666e4",
+    "color":  "#1f1f2c",
     "background": "none",
     "fontFamily": "Geist Mono, Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace",
     "fontSize": "1em",
