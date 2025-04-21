@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 @theme {
   --radius-0.5: calc(var(--spacing) * 0.5);
@@ -47,53 +50,6 @@
   --color-danger-contrast: #8e3106;
   --color-warning: #fefbe8;
   --color-warning-contrast: #5d5104;
-
-  /* Accordion animations */
-  --animate-accordion-open: slideDownAccordion 250ms ease-in-out;
-  --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;
-  /* AlertDialog animations */
-  --animate-overlay-show: overlayShow 500ms cubic-bezier(0.19, 1, 0.22, 1);
-  --animate-content-show: contentShow 500ms cubic-bezier(0.19, 1, 0.22, 1);
-
-  /* Accordion slide down animation */
-  @keyframes slideDownAccordion {
-    from {
-      height: 0;
-    }
-    to {
-      height: var(--radix-accordion-content-height);
-    }
-  }
-
-  /* Accordion slide up animation */
-  @keyframes slideUpAccordion {
-    from {
-      height: var(--radix-accordion-content-height);
-    }
-    to {
-      height: 0;
-    }
-  }
-
-  @keyframes overlayShow {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes contentShow {
-    from {
-      opacity: 0;
-      transform: scale(0.96);
-    }
-    to {
-      opacity: 1;
-      transform: scale(1);
-    }
-  }
 }
 
 @layer base {
@@ -130,17 +86,62 @@
     --aura-outline: solid 2px var(--color-warning-contrast);
     --aura-input-bg: var(--color-warning);
   }
-  .nprogress {
-    pointer-events: none;
-    z-index: 99999;
+}
+
+@theme inline {
+  --animate-accordion-open: slideDownAccordion 250ms ease-in-out;
+  --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;
+
+  @keyframes slideDownAccordion {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
   }
-  .nprogress .bar {
-    background: var(--aura-loader);
-    position: fixed;
-    z-index: 99999;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
+  @keyframes slideUpAccordion {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  @keyframes slideDownAccordion {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+  @keyframes slideUpAccordion {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+  --animate-overlay-show: overlayShow 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  --animate-content-show: contentShow 500ms cubic-bezier(0.19, 1, 0.22, 1);
+  @keyframes overlayShow {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes contentShow {
+    from {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
   }
 }

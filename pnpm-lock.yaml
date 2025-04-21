@@ -77,6 +77,9 @@ importers:
       tailwindcss:
         specifier: ^4.0.0
         version: 4.0.0
+      tw-animate-css:
+        specifier: ^1.2.7
+        version: 1.2.7
     devDependencies:
       '@aura-design/system':
         specifier: workspace:*
@@ -5706,6 +5709,9 @@ packages:
   turbo@2.0.11:
     resolution: {integrity: sha512-imDlFFAvitbCm1JtDFJ6eG882qwxHUmVT2noPb3p2jq5o5DuXOchMbkVS9kUeC3/4WpY5N0GBZ3RvqNyjHZw1Q==}
     hasBin: true
+
+  tw-animate-css@1.2.7:
+    resolution: {integrity: sha512-7JejnC2dkGrV2ZqBioKslkPVRBAFZNuASkBzj2kJb08aoVkvWOFZD8LDfeTH3+l3vPjP7DtY8RppluF7wRrktA==}
 
   type-check@0.4.0:
     resolution: {integrity: sha512-XleUoc9uwGXqjWwXaUTZAmzMcFZ5858QA2vvx1Ur5xIcixXIP+8LnFDgRplU30us6teqdlskFfu+ae4K79Ooew==}
@@ -13200,6 +13206,8 @@ snapshots:
       turbo-linux-arm64: 2.0.11
       turbo-windows-64: 2.0.11
       turbo-windows-arm64: 2.0.11
+
+  tw-animate-css@1.2.7: {}
 
   type-check@0.4.0:
     dependencies:
