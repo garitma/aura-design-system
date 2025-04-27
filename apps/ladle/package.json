@@ -2,10 +2,9 @@
   "name": "@aura-design/ladle",
   "version": "1.0.1",
   "scripts": {
-    "build": "pnpm ladle build --stories=stories",
+    "build": "shadcn build && rsync -av registry/theming/. ./public/r/",
     "dev": "pnpm ladle serve --stories=stories & pnpm dev:next --port 61001",
-    "dev:next": "next dev",
-    "registry:build": "shadcn build && rsync -av public/ ../website/public/"
+    "dev:next": "next dev"
   },
   "keywords": [],
   "author": {
