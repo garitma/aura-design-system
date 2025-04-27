@@ -8,8 +8,8 @@ import {
 import { ChevronDownIcon, CheckIcon, SymbolIcon } from "@radix-ui/react-icons";
 
 import { FieldProps } from "@/hooks/use-dynamic-form";
-import Alert, { AlertProps } from "@/components/ui/alert";
-import Button, { ButtonProps } from "@/components/ui/button";
+import Alert, { AlertProps } from "@/components/ui/Alert";
+import Button, { ButtonProps } from "@/components/ui/Button";
 
 interface FormProps extends FormRadix.FormProps {
   errors?: ErrorObject<string, Record<string, any>, unknown>[];
@@ -110,14 +110,14 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
 
     return (
       <FormRadix.Field
-        className={classNameConnect.join("")}
+        className={classNameConnect.join(" ")}
         name={name}
         {...props}
         serverInvalid={hasError}
         ref={forwardedRef}
       >
         {label && <FormRadix.Label {...labelProps}>{label}</FormRadix.Label>}
-        <div className="relative">
+        <div className="relative ">
           <FormRadix.Control
             {...controlProps}
             onChange={field?.onChange}

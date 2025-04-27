@@ -3,14 +3,11 @@
 
 export const registryTags = [
   // ui
-  "accordion",
-  "alert",
-  "button",
-  "form",
+  "Form",
   // hooks
   "use-dynamic-form",
   // utils
-  "web-validation"
+  "web-validation",
 ] as const;
 
 export type RegistryTag = (typeof registryTags)[number];

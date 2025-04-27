@@ -8,7 +8,7 @@
   ],
   "files": [
     {
-      "path": "registry/default/components/n-progress.tsx",
+      "path": "registry/default/components/Nprogress.tsx",
       "content": "\"use client\";\nimport \"./n-progress.css\"\nimport { AppProgressBar as ProgressBar } from \"next-nprogress-bar\";\n\nexport default function Nprogress() {\n  return (\n    <ProgressBar\n      options={{ showSpinner: false }}\n      shallowRouting\n    />\n  );\n}\n",
       "type": "registry:component"
     }

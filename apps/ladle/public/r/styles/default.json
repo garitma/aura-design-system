@@ -1,0 +1,33 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "default",
+  "type": "registry:style",
+  "dependencies": ["@aura-design/system", "@radix-ui/react-icons"],
+  "registryDependencies": [],
+  "cssVars": {
+    "theme": {
+      "font-sans": "Inter, sans-serif",
+      "info": "#e8ebfe",
+      "info-contrast": "#0927ec",
+      "success": "#e8fef7",
+      "success-contrast": "#045d3c",
+      "danger": "#feefe8",
+      "danger-contrast": "#8e3106",
+      "warning": "#fefbe8",
+      "warning-contrast": "#5d5104",
+      "radius-0.5": "calc(var(--spacing) * 0.5)",
+      "radius-1": "calc(var(--spacing) * 1)",
+      "radius-1.5": "calc(var(--spacing) * 1.5)",
+      "radius-2": "calc(var(--spacing) * 2)"
+    },
+    "light": {
+      "radius": "13px",
+      "background": "#fcfcff",
+      "foreground": "#2c2c3b"
+    },
+    "dark": {
+      "background": "#2c2c3b",
+      "foreground": "#fcfcff"
+    }
+  }
+}

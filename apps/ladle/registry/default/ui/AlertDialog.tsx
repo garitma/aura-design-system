@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { AlertDialog as AlertDialogRadix } from "radix-ui";
 
-import Button, { ButtonProps } from "@/components/ui/button";
+import Button, { ButtonProps } from "@/components/ui/Button";
 
 /**
  * Props for the AlertDialog component
