@@ -1,12 +1,35 @@
 {
-  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "$schema": "http://ui.shadcn.com/schema/registry.json",
   "name": "auradesign",
-  "homepage": "https://auradesignsystem.com",
+  "homepage": "http://auradesignsystem.com",
   "items": [
+    {
+      "name": "header",
+      "type": "registry:component",
+      "description": "Header content",
+      "files": [
+        {
+          "path": "registry/default/components/Header.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "footer",
+      "type": "registry:component",
+      "description": "Footer content",
+      "files": [
+        {
+          "path": "registry/default/components/Footer.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+
     {
       "name": "n-progress",
       "type": "registry:component",
-      "description": "accordion component",
+      "description": "A customizable progress bar component for Next.js applications, providing visual feedback during page transitions and data loading.",
       "dependencies": ["next-nprogress-bar"],
       "css": {
         "@layer components": {
@@ -29,6 +52,39 @@
         {
           "path": "registry/default/components/Nprogress.tsx",
           "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "layout-pancake",
+      "type": "registry:component",
+      "description": "Layout Header content and Footer",
+      "registryDependencies": [
+        "http://localhost:3000/r/header.json",
+        "http://localhost:3000/r/footer.json",
+        "http://localhost:3000/r/n-progress.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/LayoutPancake.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "home-hello",
+      "type": "registry:page",
+      "description": "Hello Aura Home",
+      "files": [
+        {
+          "path": "registry/default/pages/hello/page.tsx",
+          "type": "registry:page",
+          "target": "app/page.tsx"
+        },
+        {
+          "path": "registry/default/pages/hello/layout.tsx",
+          "type": "registry:page",
+          "target": "app/layout.tsx"
         }
       ]
     }
