@@ -57,6 +57,12 @@
       "gray-a10": "#000012d3",
       "gray-a11": "#0000219d",
       "gray-a12": "#00000fe0",
+
+      "gray-contrast": "#FFFFFF",
+      "gray-surface": "#ffffffcc",
+      "gray-indicator": "#8b8ba4",
+      "gray-track": "#8b8ba4",
+
       "primary": "var(--accent-9)",
       "primary-foreground": "var(--accent-contrast)",
       "secundary": "var(--accent-8)",
@@ -86,7 +92,12 @@
       "gray-a9": "#ffffff",
       "gray-a10": "#ffffffd3",
       "gray-a11": "#ffffff9d",
-      "gray-a12": "#ffffffe0"
+      "gray-a12": "#ffffffe0",
+
+      "accent-contrast": "#fff",
+      "accent-surface": "#f0f8ffcc",
+      "accent-indicator": "#007",
+      "accent-track": "#007"
     }
   }
 }

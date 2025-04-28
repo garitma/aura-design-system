@@ -2,14 +2,14 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "n-progress",
   "type": "registry:component",
-  "description": "accordion component",
+  "description": "A customizable progress bar component for Next.js applications, providing visual feedback during page transitions and data loading.",
   "dependencies": [
     "next-nprogress-bar"
   ],
   "files": [
     {
       "path": "registry/default/components/Nprogress.tsx",
-      "content": "\"use client\";\nimport \"./n-progress.css\"\nimport { AppProgressBar as ProgressBar } from \"next-nprogress-bar\";\n\nexport default function Nprogress() {\n  return (\n    <ProgressBar\n      options={{ showSpinner: false }}\n      shallowRouting\n    />\n  );\n}\n",
+      "content": "\"use client\";\n\nimport { AppProgressBar as ProgressBar } from \"next-nprogress-bar\";\n\nexport default function Nprogress() {\n  return (\n    <ProgressBar\n      options={{ showSpinner: false }}\n      shallowRouting\n    />\n  );\n}\n",
       "type": "registry:component"
     }
   ],
