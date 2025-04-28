@@ -87,6 +87,69 @@
           "target": "app/layout.tsx"
         }
       ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "description": "button component",
+      "dependencies": ["@aura-design/system"],
+      "files": [
+        {
+          "path": "registry/default/ui/button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "form",
+      "type": "registry:component",
+      "description": "Form component",
+      "dependencies": ["radix-ui", "ajv", "ajv-formats", "ajv-errors"],
+      "registryDependencies": [
+        "https://auradesignsystem.com/r/use-dynamic-form.json",
+        "https://auradesignsystem.com/r/web-validation.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/form.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "web-validation",
+      "type": "registry:lib",
+      "dependencies": ["radix-ui", "ajv", "ajv-formats", "ajv-errors"],
+      "description": "Web validation ajv ",
+      "files": [
+        {
+          "path": "registry/default/utils/web-validation.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "use-dynamic-form",
+      "type": "registry:hook",
+      "description": "flexible form state management solution designed to handle dynamic forms with various field types",
+      "files": [
+        {
+          "path": "registry/default/hooks/use-dynamic-form.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "description": "alert component",
+      "dependencies": ["@radix-ui/react-icons"],
+      "files": [
+        {
+          "path": "registry/default/ui/alert.tsx",
+          "type": "registry:ui"
+        }
+      ]
     }
   ]
 }
