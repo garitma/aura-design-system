@@ -5,8 +5,10 @@
   "dependencies": ["@aura-design/system", "@radix-ui/react-icons"],
   "registryDependencies": [],
   "css": {
-    "html": {
-      "font-size": "17px"
+    "@layer base": {
+      "html": {
+        "font-size": "17px"
+      }
     }
   },
   "cssVars": {
