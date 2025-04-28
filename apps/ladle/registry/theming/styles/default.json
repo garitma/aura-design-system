@@ -4,8 +4,8 @@
   "type": "registry:style",
   "dependencies": ["@aura-design/system", "@radix-ui/react-icons"],
   "registryDependencies": [
-    "http://localhost:3000/r/layout-pancake.json",
-    "http://localhost:3000/r/home-hello.json"
+    "https://auradesignsystem.com/r/layout-pancake.json",
+    "https://auradesignsystem.com/r/home-hello.json"
   ],
   "css": {
     "@layer base": {
