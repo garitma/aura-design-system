@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:ui",
+  "description": "button component",
+  "dependencies": [
+    "@aura-design/system"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/button.tsx",
+      "content": "import React from \"react\";\n\nimport AuraButton, {\n  ButtonProps as AuraButtonProps,\n} from \"@aura-design/system/button\";\n\nexport interface ButtonProps extends AuraButtonProps {\n  size?: \"small\" | \"default\";\n}\n\nexport default function Button({ size = \"default\", ...props }: ButtonProps) {\n  const classNameConnect: string[] = [];\n\n  if (size === \"small\") {\n    classNameConnect.push(\"p-1 h-3\");\n  }\n\n  if (props.className) {\n    classNameConnect.push(props.className);\n  }\n\n  return <AuraButton {...props} className={classNameConnect.join(\" \")} />;\n}\n",
+      "type": "registry:ui"
+    }
+  ]
+}
