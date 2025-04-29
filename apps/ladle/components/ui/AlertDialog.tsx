@@ -32,7 +32,10 @@ function AlertDialogOverlay({
   return (
     <AlertDialogRadix.Overlay
       data-slot="alert-dialog-overlay"
-      className={cn("", className)}
+      className={cn(
+        "fixed inset-0 bg-black-a10 z-10 data-[state=open]:animate-overlay-show",
+        className
+      )}
       {...props}
     />
   );
@@ -47,7 +50,10 @@ function AlertDialogContent({
       <AlertDialogOverlay />
       <AlertDialogRadix.Content
         data-slot="alert-dialog-content"
-        className={cn("", className)}
+        className={cn(
+          "smash fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] -translate-x-1/2 -translate-y-1/2 bg-black-1 p-2 rounded-1 z-10 data-[state=open]:animate-content-show",
+          className
+        )}
         {...props}
       />
     </AlertDialogPortal>
@@ -74,7 +80,10 @@ function AlertDialogFooter({
   return (
     <div
       data-slot="alert-dialog-footer"
-      className={cn("", className)}
+      className={cn(
+        "flex-col md:flex-row flex justify-end gap-1 md:gap-2",
+        className
+      )}
       {...props}
     />
   );
@@ -87,7 +96,7 @@ function AlertDialogTitle({
   return (
     <AlertDialogRadix.Title
       data-slot="alert-dialog-title"
-      className={cn("", className)}
+      className={cn("m-0", className)}
       {...props}
     />
   );
