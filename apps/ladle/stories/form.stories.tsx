@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { createTicketSchema } from "@/schemas/ticketSchema";
 import { signUpSchema, loginSchema } from "@/schemas/userSchema";
 import { validateFormData } from "@/utils/web-validation";
-import { useFormDynamic } from "@/utils/forms";
+import { useFormDynamic } from "@/hooks/use-dynamic-form";
 import {
   Form,
   FormField,
@@ -11,8 +11,8 @@ import {
   FormSwitch,
   FormSubmit,
   FormAlert,
-} from "@/components/form";
-import Button from "@/components/ui/button";
+} from "@/components/ui/Form";
+import Button from "@/components/ui/Button";
 import { toast } from "sonner";
 
 export const FormDemo = () => {

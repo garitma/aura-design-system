@@ -7,6 +7,7 @@ export default defineConfig({
     alias: {
       '@/registry': path.resolve(__dirname, './registry'),
       '@/components': path.resolve(__dirname, './components'),
+      '@/lib': path.resolve(__dirname, './lib'),
     },
   },
 });

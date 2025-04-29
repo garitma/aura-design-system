@@ -77,9 +77,6 @@ importers:
       tailwindcss:
         specifier: ^4.0.0
         version: 4.0.0
-      tw-animate-css:
-        specifier: ^1.2.7
-        version: 1.2.7
     devDependencies:
       '@aura-design/system':
         specifier: workspace:*
@@ -93,55 +90,9 @@ importers:
       autoprefixer:
         specifier: ^10.4.20
         version: 10.4.20(postcss@8.4.45)
-
-  apps/my-project:
-    dependencies:
-      class-variance-authority:
-        specifier: ^0.7.1
-        version: 0.7.1
-      clsx:
-        specifier: ^2.1.1
-        version: 2.1.1
-      lucide-react:
-        specifier: ^0.501.0
-        version: 0.501.0(react@19.1.0)
-      next:
-        specifier: 15.3.1
-        version: 15.3.1(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      next-nprogress-bar:
-        specifier: ^2.4.3
-        version: 2.4.3
-      react:
-        specifier: ^19.0.0
-        version: 19.1.0
-      react-dom:
-        specifier: ^19.0.0
-        version: 19.1.0(react@19.1.0)
-      tailwind-merge:
-        specifier: ^3.2.0
-        version: 3.2.0
-    devDependencies:
-      '@tailwindcss/postcss':
-        specifier: ^4
-        version: 4.0.0
-      '@types/node':
-        specifier: ^20
-        version: 20.17.16
-      '@types/react':
-        specifier: ^19
-        version: 19.0.8
-      '@types/react-dom':
-        specifier: ^19
-        version: 19.0.3(@types/react@19.0.8)
-      tailwindcss:
-        specifier: ^4
-        version: 4.0.0
       tw-animate-css:
         specifier: ^1.2.7
         version: 1.2.7
-      typescript:
-        specifier: ^5
-        version: 5.5.4
 
   apps/website:
     dependencies:
@@ -254,6 +205,15 @@ importers:
       typescript:
         specifier: ^5
         version: 5.5.4
+
+  packages/cli:
+    dependencies:
+      chalk:
+        specifier: ^5.3.0
+        version: 5.4.1
+      commander:
+        specifier: ^11.1.0
+        version: 11.1.0
 
   packages/styled-system:
     devDependencies:
@@ -2704,6 +2664,10 @@ packages:
   commander@10.0.1:
     resolution: {integrity: sha512-y4Mg2tXshplEbSGzx7amzPwKKOCGuoSRP/CjEdwwk0FOGlUbq6lKuoyDZTNZkmxHdJtp54hdfY/JUrdL7Xfdug==}
     engines: {node: '>=14'}
+
+  commander@11.1.0:
+    resolution: {integrity: sha512-yPVavfyCcRhmorC7rWlkHn15b4wDVgVmBA7kV4QVBsF7kv/9TKJAbAXVTxvTnwP8HHKjRCJDClKbciiYS7p0DQ==}
+    engines: {node: '>=16'}
 
   commander@12.1.0:
     resolution: {integrity: sha512-Vw8qHK3bZM9y/P10u3Vib8o/DdkvA2OtPtZvD871QKjy74Wj1WSKFILMPRPSdUSx5RFK1arlJzEtA4PkFgnbuA==}
@@ -8940,6 +8904,8 @@ snapshots:
   comma-separated-tokens@2.0.3: {}
 
   commander@10.0.1: {}
+
+  commander@11.1.0: {}
 
   commander@12.1.0: {}
 

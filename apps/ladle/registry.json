@@ -95,7 +95,7 @@
       "dependencies": ["@aura-design/system"],
       "files": [
         {
-          "path": "registry/default/ui/button.tsx",
+          "path": "registry/default/ui/Button.tsx",
           "type": "registry:ui"
         }
       ]
@@ -111,8 +111,8 @@
       ],
       "files": [
         {
-          "path": "registry/default/components/form.tsx",
-          "type": "registry:component"
+          "path": "registry/default/ui/Form.tsx",
+          "type": "registry:ui"
         }
       ]
     },
@@ -140,13 +140,62 @@
       ]
     },
     {
+      "name": "accordion",
+      "type": "registry:ui",
+      "description": "Accordion",
+      "dependencies": ["@radix-ui/react-icons"],
+      "cssVars": {
+        "theme": {
+          "--animate-accordion-open": "slideDownAccordion 250ms ease-in-out",
+          "--animate-accordion-closed": "slideUpAccordion 250ms ease-in-out"
+        }
+      },
+      "css": {
+        "@keyframes slideDownAccordion": {
+          "from": {
+            "height": "0"
+          },
+          "to": {
+            "height": "var(--radix-accordion-content-height)"
+          }
+        },
+        "@keyframes slideUpAccordion": {
+          "from": {
+            "height": "var(--radix-accordion-content-height)"
+          },
+          "to": {
+            "height": "0"
+          }
+        }
+      },
+      "files": [
+        {
+          "path": "registry/default/ui/Accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "accordion-list",
+      "type": "registry:component",
+      "description": "Accordion component",
+      "dependencies": ["@radix-ui/react-icons"],
+      "registryDependencies": ["https://auradesignsystem.com/r/accordion.json"],
+      "files": [
+        {
+          "path": "registry/default/components/AccordionList.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "alert",
       "type": "registry:ui",
       "description": "alert component",
       "dependencies": ["@radix-ui/react-icons"],
       "files": [
         {
-          "path": "registry/default/ui/alert.tsx",
+          "path": "registry/default/ui/Alert.tsx",
           "type": "registry:ui"
         }
       ]
