@@ -34,7 +34,7 @@ export function AccordionDemo() {
 }
 
 export function AccordionListDemo() {
-  const items = [
+   const itemsArray = [
     {
       title: "Is it accessible?",
       content: "Yes. It adheres to the WAI-ARIA design pattern.",
@@ -49,6 +49,16 @@ export function AccordionListDemo() {
       content:
         "Yes. It's animated by default, but you can disable it if you prefer.",
     },
+    {
+      title: "Can I use it in my project?",
+      content: "Yes, you can use it in any project.",
+    },
+    {
+      title: "Is it free?",
+      content: "Yes, it is free to use.",
+    },
   ];
-  return <AccordionList items={items} type="single" collapsible />;
+
+
+  return <AccordionList items={itemsArray} type="single" collapsible />;
 }

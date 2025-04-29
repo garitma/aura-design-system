@@ -7,7 +7,11 @@ import {
 } from "@/components/ui/Accordion";
 
 type AccordionListProps = {
-  items: React.ComponentProps<typeof AccordionItem>[];
+  items: {
+    title: React.ReactNode;
+    content: React.ReactNode;
+    itemProps?: React.ComponentProps<typeof AccordionItem>;
+  }[];
 } & React.ComponentProps<typeof Accordion>;
 
 const AccordionList = ({ items, ...props }: AccordionListProps) => {
