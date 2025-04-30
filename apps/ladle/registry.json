@@ -25,7 +25,6 @@
         }
       ]
     },
-
     {
       "name": "n-progress",
       "type": "registry:component",
@@ -196,6 +195,58 @@
       "files": [
         {
           "path": "registry/default/ui/Alert.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "description": "Alert Dialog Custom Primitives",
+      "dependencies": ["@radix-ui/react-icons"],
+
+      "files": [
+        {
+          "path": "registry/default/ui/AlertDialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "description": "Alert Dialog Custom Primitives",
+      "dependencies": ["@radix-ui/react-icons"],
+      "cssVars": {
+        "theme": {
+          "--animate-overlay-show": "overlayShow 500ms cubic-bezier(0.19, 1, 0.22, 1)",
+          " --animate-content-show": "contentShow 500ms cubic-bezier(0.19, 1, 0.22, 1)"
+        }
+      },
+      "css": {
+        "@keyframes overlayShow": {
+          "from": {
+            "height": "0"
+          },
+          "to": {
+            "height": "1"
+          }
+        },
+        "@keyframes contentShow": {
+          "from": {
+            "height": "scale(0.96);"
+          },
+          "to": {
+            "height": "scale(1);"
+          }
+        }
+      },
+      "registryDependencies": [
+        "https://auradesignsystem.com/r/alert-dialog.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/AlertDialogModal.tsx",
           "type": "registry:ui"
         }
       ]

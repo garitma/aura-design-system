@@ -1,0 +1,43 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-dialog",
+  "type": "registry:ui",
+  "description": "Alert Dialog Custom Primitives",
+  "dependencies": [
+    "@radix-ui/react-icons"
+  ],
+  "registryDependencies": [
+    "https://auradesignsystem.com/r/alert-dialog.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/AlertDialogModal.tsx",
+      "content": "import React from \"react\";\nimport {\n  AlertDialog,\n  AlertDialogAction,\n  AlertDialogCancel,\n  AlertDialogContent,\n  AlertDialogDescription,\n  AlertDialogFooter,\n  AlertDialogHeader,\n  AlertDialogTitle,\n  AlertDialogTrigger,\n} from \"@/components/ui/AlertDialog\";\nimport Button from \"@/components/ui/Button\"; \n\ninterface AlertDialogModalProps {\n  trigger: React.ReactNode;\n  title: string;\n  description: string;\n  actionLabel?: string;\n  onAction?: () => void;\n  cancelLabel?: string;\n  onCancel?: () => void;\n}\n\nfunction AlertDialogModal({\n  trigger,\n  title,\n  description,\n  actionLabel = \"Confirm\",\n  onAction,\n  cancelLabel = \"Cancel\",\n  onCancel,\n}: AlertDialogModalProps) {\n  return (\n    <AlertDialog>\n      <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>\n      <AlertDialogContent>\n        <AlertDialogHeader>\n          <AlertDialogTitle>{title}</AlertDialogTitle>\n          <AlertDialogDescription>{description}</AlertDialogDescription>\n        </AlertDialogHeader>\n        <AlertDialogFooter>\n          <AlertDialogCancel asChild>\n            <Button mode=\"pill\" onClick={onCancel}>\n              {cancelLabel}\n            </Button>\n          </AlertDialogCancel>\n          <AlertDialogAction asChild>\n            <Button onClick={onAction}>{actionLabel}</Button>\n          </AlertDialogAction>\n        </AlertDialogFooter>\n      </AlertDialogContent>\n    </AlertDialog>\n  );\n}\n\nexport default AlertDialogModal;\n",
+      "type": "registry:ui"
+    }
+  ],
+  "cssVars": {
+    "theme": {
+      "--animate-overlay-show": "overlayShow 500ms cubic-bezier(0.19, 1, 0.22, 1)",
+      " --animate-content-show": "contentShow 500ms cubic-bezier(0.19, 1, 0.22, 1)"
+    }
+  },
+  "css": {
+    "@keyframes overlayShow": {
+      "from": {
+        "height": "0"
+      },
+      "to": {
+        "height": "1"
+      }
+    },
+    "@keyframes contentShow": {
+      "from": {
+        "height": "scale(0.96);"
+      },
+      "to": {
+        "height": "scale(1);"
+      }
+    }
+  }
+}
