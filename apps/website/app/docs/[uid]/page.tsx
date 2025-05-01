@@ -39,8 +39,9 @@ export default async function SingleDocs({ params }: { params: Params }) {
 
   return (
     <div>
-      <SliceZone slices={doc.data.slices} components={components} />
-
+      <div className="grid gap-1.5 mt-2">
+        <SliceZone slices={doc.data.slices} components={components} />
+      </div>
       <nav
         aria-label="pagination"
         className="border-t border-black-3 pt-1 smash mt-2 mb-1 px-1 md:px-0"
