@@ -8,7 +8,6 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Nprogress from "@/components/Nprocess";
 
-
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -18,6 +17,8 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const { UMAMI_WEBSITE_ID } = process.env;
 
 export const metadata: Metadata = {
   title: "Aura Design System",
@@ -30,6 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id={UMAMI_WEBSITE_ID}
+        ></script>
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
