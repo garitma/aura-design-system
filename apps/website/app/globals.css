@@ -140,6 +140,15 @@
   .content li {
     margin-bottom: calc(var(--spacing) * 0.5);
   }
+  .content em strong {
+    font-weight: 600;
+    font-family: "Geist Mono", "Geist Mono Fallback";
+    font-style: normal;
+    background-color: var(--color-black-3);
+    padding: 0 calc(var(--spacing) * 0.25);
+    font-size: 13px;
+
+  }
   /* Remove outline from buttons */
   a:has(.button-fill, .button-pill, .button-link) {
     outline: none !important;
