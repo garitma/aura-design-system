@@ -36,7 +36,8 @@ export default function RootLayout({
           defer
           src="https://cloud.umami.is/script.js"
           data-website-id={UMAMI_WEBSITE_ID}
-        ></script>
+          data-domains="auradesignsystem.com"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
