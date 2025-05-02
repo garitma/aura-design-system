@@ -32,13 +32,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {process.env.NODE_ENV === "production" ? (
-          <script
-            defer
-            src="https://cloud.umami.is/script.js"
-            data-website-id={UMAMI_WEBSITE_ID}
-          ></script>
-        ) : null}
+        <script
+          defer
+          src="https://cloud.umami.is/script.js"
+          data-website-id={UMAMI_WEBSITE_ID}
+        ></script>
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
