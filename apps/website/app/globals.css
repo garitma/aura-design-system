@@ -159,6 +159,7 @@
     padding: 19.5px 0 !important ;
     font-size: 13px !important;
     background-color: #fff!important;
+    font-family: "Geist Mono", "Geist Mono Fallback"!important
   }
 
   /* 3D transform wrapper */
@@ -255,6 +256,15 @@
   .content td {
     padding: 0 calc(var(--spacing) * 1);
   }
+  .content em strong {
+    font-size: 13px;
+    font-family: "Geist Mono", "Geist Mono Fallback";
+    font-weight: 700;
+    font-style: normal;
+    background-color: var(--color-black-3);
+    padding: calc(var(--spacing) * 0.25)
+  }
+
   @media screen and (min-width: 768px) {
     .main-doc-content {
       max-width: calc(100vw - 350px);
