@@ -32,14 +32,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <script
-          suppressHydrationWarning
-          dangerouslySetInnerHTML={{
-            __html: `
-              ${process.env.NODE_ENV === "production" ? `<script defer src="https://cloud.umami.is/script.js" data-website-id="${UMAMI_WEBSITE_ID}"></script>` : ""}
-            `,
-          }}
-        />
+        {process.env.NODE_ENV === "production" ? (
+          <script
+            defer
+            src="https://cloud.umami.is/script.js"
+            data-website-id={UMAMI_WEBSITE_ID}
+          ></script>
+        ) : null}
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
