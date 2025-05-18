@@ -3,11 +3,42 @@
 import { program } from "commander";
 import inquirer from "inquirer";
 import chalk from "chalk";
-import { exec, spawn } from "child_process";
+import { spawn } from "child_process";
+import fs from "fs";
+import path from "path";
 
 import { modifyGlobalsCss } from "../utils/file-utils.js";
 
-const components = ["Accordion", "AccordionList"];
+const __dirname = path.dirname(new URL(import.meta.url).pathname);
+
+const registryPath = path.resolve(
+  __dirname,
+  "../../../apps/ladle/registry.json"
+);
+
+let components = [];
+let hooks = [];
+let utils = [];
+
+try {
+  const registryData = JSON.parse(fs.readFileSync(registryPath, "utf-8"));
+  components = registryData.items
+    .filter((item) => ["registry:component", "registry:ui"].includes(item.type))
+    .map((item) => item.name)
+    .sort();
+
+  hooks = registryData.items
+    .filter((item) => ["registry:hook"].includes(item.type))
+    .map((item) => item.name)
+    .sort();
+
+  utils = registryData.items
+    .filter((item) => ["registry:lib"].includes(item.type))
+    .map((item) => item.name)
+    .sort();
+} catch (error) {
+  console.error(chalk.red("Error reading registry file:"), error);
+}
 
 program
   .command("init")
@@ -52,7 +83,9 @@ componentsCommand
         },
       ])
       .then((answers) => {
-        const baseUrl = options.local ? "https://localhost:3000" : "https://auradesignsystem.com";
+        const baseUrl = options.local
+          ? "https://localhost:3000"
+          : "https://auradesignsystem.com";
         const componentUrl = `${baseUrl}/r/${answers.component.toLowerCase()}.json`;
         const command = "pnpm";
         const args = ["dlx", "shadcn@latest", "add", componentUrl];
@@ -73,6 +106,32 @@ componentsCommand
           }
         });
       });
+  });
+
+const hooksCommand = program
+  .command("hooks")
+  .description("Manage hooks in the Aura Design System");
+
+hooksCommand
+  .command("list")
+  .description("List all hooks in the Aura Design System")
+  .action(() => {
+    hooks.forEach((component) => {
+      console.log(chalk.blue(`- ${component}`));
+    });
+  });
+
+const utilsCommand = program
+  .command("utils")
+  .description("Manage Utils in the Aura Design System");
+
+utilsCommand
+  .command("list")
+  .description("List all utils in the Aura Design System")
+  .action(() => {
+    utils.forEach((component) => {
+      console.log(chalk.blue(`- ${component}`));
+    });
   });
 
 program.parse(process.argv);
