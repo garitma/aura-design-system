@@ -1,85 +1,23 @@
-import React, { forwardRef CSSProperties } from "react";
+import React from "react";
 
-export interface SharedBasic {
-  className?: string;
-  children?: React.ReactNode;
-  style?: React.CSSProperties;
-}
+import AuraButton, {
+  ButtonProps as AuraButtonProps,
+} from "@aura-design/system/button";
 
-export type ButtonMode = "link" | "fill" | "pill" | "menu";
-
-export type ButtonType = "button" | "submit" | "reset";
-
-export type Target = "_self" | "_blank" | "_parent" | "_top" | "framename";
-
-// Props that are inherited from the intrinsic HTML button or anchor tag
-interface IntrinsicProps {
-  onClick?: (event?: any) => void;
-  target?: Target;
-  type?: ButtonType;
-  style?: CSSProperties;
-}
-
-// Props specific to the Button component
-export interface ButtonProps extends SharedBasic, IntrinsicProps {
-  isDisabled?: boolean;
-  isFluid?: boolean;
-  isLoading?: boolean;
-  isLoadingText?: React.ReactNode;
-  mode?: ButtonMode;
-  label?: React.ReactNode;
-  href?: string;
-  as?: any;
+export interface ButtonProps extends AuraButtonProps {
   size?: "small" | "default";
-  className?: string;
-  children?: React.ReactNode;
 }
 
-const Button = forwardRef<HTMLAnchorElement | HTMLButtonElement, ButtonProps>(
-  (
-    {
-      isDisabled = false,
-      isFluid = false,
-      isLoading = false,
-      isLoadingText = "...",
-      mode = "fill",
-      label,
-      className,
-      href,
-      children,
-      as: AuraButton = href ? `a` : "button",
-      size = "default",
-      ...props
-    }: ButtonProps,
-    ref
-  ): JSX.Element => {
-    const classConnect: string[] = [className!, `button-${mode}`];
+export default function Button({ size = "default", ...props }: ButtonProps) {
+  const classNameConnect: string[] = [];
 
-    if (isFluid) {
-      classConnect.push("fluid");
-    }
-
-    if (isDisabled || isLoading) {
-      classConnect.push("disabled");
-    }
-
-    if (size === "small") {
-      classConnect.push("p-1 h-3");
-    }
-
-    return (
-      <AuraButton
-        className={classConnect.join(" ").trim()}
-        disabled={isDisabled || isLoading}
-        href={href}
-        ref={ref}
-        {...(props as IntrinsicProps)}
-      >
-        {isLoading ? isLoadingText : label}
-        {children}
-      </AuraButton>
-    );
+  if (size === "small") {
+    classNameConnect.push("p-1 h-3");
   }
-);
 
-export default Button;
+  if (props.className) {
+    classNameConnect.push(props.className);
+  }
+
+  return <AuraButton {...props} className={classNameConnect.join(" ")} />;
+}
