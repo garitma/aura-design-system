@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "section",
+  "type": "registry:ui",
+  "description": "Progress Menu component",
+  "registryDependencies": [
+    "https://auradesignsystem.com/r/wrapper.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/Section.tsx",
+      "content": "import { Wrapper, WrapperContainer } from \"@/components/ui/Wraper\";\n\n\nconst Section = ({ children, ...props }) => {\n  <Wrapper {...props}>\n    <WrapperContainer>{children}</WrapperContainer>\n  </Wrapper>;\n};\n\n\nexport default Section",
+      "type": "registry:ui"
+    }
+  ]
+}

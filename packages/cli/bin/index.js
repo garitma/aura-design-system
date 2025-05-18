@@ -70,42 +70,82 @@ componentsCommand
   .command("add")
   .description("Select and add a component in the Aura Design System")
   .option("--local", "Use the local server instead of the remote server")
+  .option("--name <componentName>", "Name of the component to add") // Added option for component name
+  .option("--all", "Add all components from the registry") // Added option to add all components
   .action((options) => {
-    console.log(chalk.blue("Available components:"));
+    if (options.all) {
+      console.log(chalk.blue("Adding all components from the registry..."));
 
-    inquirer
-      .prompt([
-        {
-          type: "list",
-          name: "component",
-          message: "Select a component to add:",
-          choices: components,
-        },
-      ])
-      .then((answers) => {
+      components.forEach((component) => {
         const baseUrl = options.local
-          ? "https://localhost:3000"
+          ? "http://localhost:3000"
           : "https://auradesignsystem.com";
-        const componentUrl = `${baseUrl}/r/${answers.component.toLowerCase()}.json`;
+        const componentUrl = `${baseUrl}/r/${component.toLowerCase()}.json`;
         const command = "pnpm";
         const args = ["dlx", "shadcn@latest", "add", componentUrl];
 
-        console.log(chalk.blue(`Adding ${answers.component} component...`));
+        console.log(chalk.blue(`Adding ${component} component...`));
 
         const child = spawn(command, args, { stdio: "inherit" });
 
         child.on("error", (error) => {
-          console.error(chalk.red(`Error executing command: ${error.message}`));
+          console.error(chalk.red(`Error adding ${component}: ${error.message}`));
         });
 
         child.on("close", (code) => {
           if (code === 0) {
-            console.log(chalk.green("Component added successfully!"));
+            console.log(chalk.green(`${component} added successfully!`));
           } else {
-            console.error(chalk.red(`Command exited with code ${code}`));
+            console.error(chalk.red(`Failed to add ${component}, exited with code ${code}`));
           }
         });
       });
+
+      return;
+    }
+
+    const selectedComponent = options.name || null;
+
+    if (selectedComponent && !components.includes(selectedComponent)) {
+      console.error(chalk.red(`Component '${selectedComponent}' not found in the registry.`));
+      process.exit(1);
+    }
+
+    const prompt = selectedComponent
+      ? Promise.resolve({ component: selectedComponent })
+      : inquirer.prompt([
+          {
+            type: "list",
+            name: "component",
+            message: "Select a component to add:",
+            choices: components, // Use the provided components list
+          },
+        ]);
+
+    prompt.then((answers) => {
+      const baseUrl = options.local
+        ? "http://localhost:3000"
+        : "https://auradesignsystem.com";
+      const componentUrl = `${baseUrl}/r/${answers.component.toLowerCase()}.json`;
+      const command = "pnpm"; // Assuming pnpm is the package manager
+      const args = ["dlx", "shadcn@latest", "add", componentUrl];
+
+      console.log(chalk.blue(`Adding ${answers.component} component...`));
+
+      const child = spawn(command, args, { stdio: "inherit" });
+
+      child.on("error", (error) => {
+        console.error(chalk.red(`Error executing command: ${error.message}`));
+      });
+
+      child.on("close", (code) => {
+        if (code === 0) {
+          console.log(chalk.green("Component added successfully!"));
+        } else {
+          console.error(chalk.red(`Command exited with code ${code}`));
+        }
+      });
+    });
   });
 
 const hooksCommand = program
