@@ -4,9 +4,9 @@
   "type": "registry:component",
   "description": "Layout Header content and Footer",
   "registryDependencies": [
-    "https://auradesignsystem.com/r/header.json",
-    "https://auradesignsystem.com/r/footer.json",
-    "https://auradesignsystem.com/r/n-progress.json"
+    "http://localhost:3000/r/header.json",
+    "http://localhost:3000/r/footer.json",
+    "http://localhost:3000/r/n-progress.json"
   ],
   "files": [
     {

@@ -4,7 +4,7 @@
   "type": "registry:ui",
   "description": "Progress Menu component",
   "registryDependencies": [
-    "https://auradesignsystem.com/r/wrapper.json"
+    "http://localhost:3000/r/wrapper.json"
   ],
   "files": [
     {
