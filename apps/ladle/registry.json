@@ -204,19 +204,6 @@
       "type": "registry:ui",
       "description": "Alert Dialog Custom Primitives",
       "dependencies": ["@radix-ui/react-icons"],
-
-      "files": [
-        {
-          "path": "registry/default/ui/AlertDialog.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "alert-dialog",
-      "type": "registry:ui",
-      "description": "Alert Dialog Custom Primitives",
-      "dependencies": ["@radix-ui/react-icons"],
       "cssVars": {
         "theme": {
           "--animate-overlay-show": "overlayShow 500ms cubic-bezier(0.19, 1, 0.22, 1)",
@@ -247,6 +234,113 @@
       "files": [
         {
           "path": "registry/default/components/AlertDialogModal.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "aspect-ration",
+      "type": "registry:ui",
+      "description": "Aspect ration component",
+      "dependencies": ["radix-ui"],
+      "files": [
+        {
+          "path": "registry/default/ui/AspectRation.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "description": "alert component",
+      "dependencies": ["radix-ui"],
+      "files": [
+        {
+          "path": "registry/default/ui/Avatar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "description": "Card component",
+      "files": [
+        {
+          "path": "registry/default/ui/Card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "description": "Collapsible component",
+      "dependencies": ["radix-ui"],
+      "files": [
+        {
+          "path": "registry/default/ui/Collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "description": "Context Menu component",
+      "dependencies": ["radix-ui"],
+      "files": [
+        {
+          "path": "registry/default/ui/ContextMenu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "description": "Dialog component",
+      "dependencies": ["radix-ui"],
+      "files": [
+        {
+          "path": "registry/default/ui/Dialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "description": "Drawer component",
+      "dependencies": ["vaul"],
+      "files": [
+        {
+          "path": "registry/default/ui/Drawer.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "description": "Dropdown Menu component",
+      "dependencies": ["radix-ui"],
+      "files": [
+        {
+          "path": "registry/default/ui/DropdownMenu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "description": "Hover Card component",
+      "dependencies": ["radix-ui"],
+      "files": [
+        {
+          "path": "registry/default/ui/HoverCard.tsx",
           "type": "registry:ui"
         }
       ]

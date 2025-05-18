@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "avatar",
+  "type": "registry:ui",
+  "description": "alert component",
+  "dependencies": [
+    "radix-ui"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Avatar.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Avatar as AvatarRadix } from \"radix-ui\";\n\nfunction Avatar({ ...props }: React.ComponentProps<typeof AvatarRadix.Root>) {\n  return <AvatarRadix.Root data-slot=\"avatar\" {...props} />;\n}\n\nfunction AvatarImage({\n  ...props\n}: React.ComponentProps<typeof AvatarRadix.Image>) {\n  return <AvatarRadix.Image data-slot=\"avatar-image\" {...props} />;\n}\n\nfunction AvatarFallback({\n  ...props\n}: React.ComponentProps<typeof AvatarRadix.Fallback>) {\n  return <AvatarRadix.Fallback data-slot=\"avatar-fallback\" {...props} />;\n}\n\nexport { Avatar, AvatarImage, AvatarFallback };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -14,7 +14,7 @@
   "author": "Pablo Orozco <me@pablopvsky.com>",
   "license": "MIT",
   "bin": {
-    "aura-design": "./bin/index.js"
+    "aura": "./bin/index.js"
   },
   "publishConfig": {
     "access": "public"
@@ -31,6 +31,8 @@
   },
   "dependencies": {
     "chalk": "^5.3.0",
-    "commander": "^11.1.0"
+    "commander": "^11.1.0",
+    "execa": "^9.5.3",
+    "inquirer": "^12.6.1"
   }
 }
