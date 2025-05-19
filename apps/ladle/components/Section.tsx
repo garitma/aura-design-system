@@ -12,11 +12,13 @@ const Section = ({
   subClassName,
   ...props
 }: SectionProps) => {
-  <Wrapper {...props}>
-    <WrapperContainer container={container} className={subClassName}>
-      {children}
-    </WrapperContainer>
-  </Wrapper>;
+  return (
+    <Wrapper {...props}>
+      <WrapperContainer container={container} className={subClassName}>
+        {children}
+      </WrapperContainer>
+    </Wrapper>
+  );
 };
 
 export default Section;

@@ -12,15 +12,12 @@ function Wrapper({ className, ...props }: React.ComponentProps<"div">) {
 
 function WrapperContainer({
   container = "smush",
-  children,
   ...props
 }: React.ComponentProps<"div"> & {
   container?: AuraContainer;
 }) {
   return (
-    <div data-slot="wrapper-container" className={cn(container)} {...props}>
-      {children}
-    </div>
+    <div data-slot="wrapper-container" className={cn(container)} {...props} />
   );
 }
 

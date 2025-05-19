@@ -191,13 +191,13 @@
       ]
     },
     {
-      "name": "aspect-ration",
+      "name": "aspect-ratio",
       "type": "registry:ui",
-      "description": "Aspect ration component",
+      "description": "Aspect ratio component",
       "dependencies": ["radix-ui"],
       "files": [
         {
-          "path": "registry/default/ui/AspectRation.tsx",
+          "path": "registry/default/ui/AspectRatio.tsx",
           "type": "registry:ui"
         }
       ]
