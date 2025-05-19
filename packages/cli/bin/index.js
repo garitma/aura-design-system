@@ -67,16 +67,28 @@ componentsCommand
   });
 
 componentsCommand
-  .command("add")
+  .command("add [componentName]") // Make componentName optional
   .description("Select and add a component in the Aura Design System")
   .option("--local", "Use the local server instead of the remote server")
-  .option("--name <componentName>", "Name of the component to add") // Added option for component name
-  .option("--all", "Add all components from the registry") // Added option to add all components
-  .action(async (options) => { // Changed to async
-    if (options.all) {
+  .action(async (componentName, options) => {
+    if (!componentName) {
+      // If no componentName is provided
+      const answers = await inquirer.prompt([
+        {
+          type: "list",
+          name: "selectedComponent",
+          message: "Select a component to add:",
+          choices: components, // List all components
+        },
+      ]);
+      componentName = answers.selectedComponent; // Set the selected component
+    }
+
+    if (componentName === "all") {
+      // Check if componentName is 'all'
       console.log(chalk.blue("Adding all components from the registry..."));
 
-      for (const component of components) { // Changed to for...of loop for sequential execution
+      for (const component of components) {
         const baseUrl = options.local
           ? "http://localhost:3000"
           : "https://auradesignsystem.com";
@@ -86,11 +98,13 @@ componentsCommand
 
         console.log(chalk.blue(`Adding ${component} component...`));
 
-        await new Promise((resolve, reject) => { // Await each addition
+        await new Promise((resolve, reject) => {
           const child = spawn(command, args, { stdio: "inherit" });
 
           child.on("error", (error) => {
-            console.error(chalk.red(`Error adding ${component}: ${error.message}`));
+            console.error(
+              chalk.red(`Error adding ${component}: ${error.message}`)
+            );
             reject(error);
           });
 
@@ -99,7 +113,11 @@ componentsCommand
               console.log(chalk.green(`${component} added successfully!`));
               resolve();
             } else {
-              console.error(chalk.red(`Failed to add ${component}, exited with code ${code}`));
+              console.error(
+                chalk.red(
+                  `Failed to add ${component}, exited with code ${code}`
+                )
+              );
               reject(new Error(`Exited with code ${code}`));
             }
           });
@@ -109,47 +127,35 @@ componentsCommand
       return;
     }
 
-    const selectedComponent = options.name || null;
+    if (componentName && !components.includes(componentName)) {
+      console.error(
+        chalk.red(`Component '${componentName}' not found in the registry.`)
+      );
 
-    if (selectedComponent && !components.includes(selectedComponent)) {
-      console.error(chalk.red(`Component '${selectedComponent}' not found in the registry.`));
       process.exit(1);
     }
 
-    const prompt = selectedComponent
-      ? Promise.resolve({ component: selectedComponent })
-      : inquirer.prompt([
-          {
-            type: "list",
-            name: "component",
-            message: "Select a component to add:",
-            choices: components, // Use the provided components list
-          },
-        ]);
+    const baseUrl = options.local
+      ? "http://localhost:3000"
+      : "https://auradesignsystem.com";
+    const componentUrl = `${baseUrl}/r/${componentName.toLowerCase()}.json`;
+    const command = "pnpm";
+    const args = ["dlx", "shadcn@latest", "add", componentUrl];
 
-    prompt.then((answers) => {
-      const baseUrl = options.local
-        ? "http://localhost:3000"
-        : "https://auradesignsystem.com";
-      const componentUrl = `${baseUrl}/r/${answers.component.toLowerCase()}.json`;
-      const command = "pnpm"; // Assuming pnpm is the package manager
-      const args = ["dlx", "shadcn@latest", "add", componentUrl];
+    console.log(chalk.blue(`Adding ${componentName} component...`));
 
-      console.log(chalk.blue(`Adding ${answers.component} component...`));
+    const child = spawn(command, args, { stdio: "inherit" });
 
-      const child = spawn(command, args, { stdio: "inherit" });
+    child.on("error", (error) => {
+      console.error(chalk.red(`Error executing command: ${error.message}`));
+    });
 
-      child.on("error", (error) => {
-        console.error(chalk.red(`Error executing command: ${error.message}`));
-      });
-
-      child.on("close", (code) => {
-        if (code === 0) {
-          console.log(chalk.green("Component added successfully!"));
-        } else {
-          console.error(chalk.red(`Command exited with code ${code}`));
-        }
-      });
+    child.on("close", (code) => {
+      if (code === 0) {
+        console.log(chalk.green("Component added successfully!"));
+      } else {
+        console.error(chalk.red(`Command exited with code ${code}`));
+      }
     });
   });
 
