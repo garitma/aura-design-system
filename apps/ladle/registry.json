@@ -180,6 +180,18 @@
       "type": "registry:ui",
       "description": "Alert Dialog Custom Primitives",
       "dependencies": ["@radix-ui/react-icons"],
+      "files": [
+        {
+          "path": "registry/default/components/ui/AlertDialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog-modal",
+      "type": "registry:ui",
+      "description": "Alert Dialog Modal",
+      "dependencies": ["@radix-ui/react-icons"],
       "registryDependencies": [
         "https://auradesignsystem.com/r/alert-dialog.json"
       ],
