@@ -365,7 +365,7 @@
       "files": [
         {
           "path": "registry/default/components/Section.tsx",
-          "type": "registry:ui"
+          "type": "registry:component"
         }
       ]
     }
