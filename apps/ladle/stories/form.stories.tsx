@@ -10,7 +10,7 @@ import {
   FormCheckbox,
   FormSwitch,
   FormSubmit,
-  FormAlert,
+  //FormAlert,
 } from "@/components/ui/Form";
 import Button from "@/components/ui/Button";
 import { toast } from "sonner";
@@ -194,7 +194,7 @@ export const FormDemo = () => {
           buttonProps={{ label: "Submit Ticket" }}
         />
       </div>
-      <FormAlert formData={formData} />
+      {/* <FormAlert formData={formData} /> */}
     </Form>
   );
 };
@@ -274,7 +274,7 @@ export const FormSignUp = () => {
         fetchStatus={formData.fetchStatus}
         buttonProps={{ label: "Create Account" }}
       />
-      <FormAlert formData={formData} />
+      {/* <FormAlert formData={formData} /> */}
     </Form>
   );
 };
@@ -347,7 +347,7 @@ export const FormLogin = () => {
         buttonProps={{ label: "Sign In" }}
       />
 
-      <FormAlert formData={formData} />
+      {/* <FormAlert formData={formData} /> */}
     </Form>
   );
 };

@@ -1,7 +1,7 @@
 {
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "section",
-  "type": "registry:ui",
+  "type": "registry:component",
   "description": "Progress Menu component",
   "registryDependencies": [
     "https://auradesignsystem.com/r/wrapper.json"

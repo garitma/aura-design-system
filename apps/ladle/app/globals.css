@@ -97,9 +97,6 @@
   --color-accent-3: var(--accent-3);
   --color-accent-2: var(--accent-2);
   --color-accent-1: var(--accent-1);
-  --animate-accordion-open: slideDownAccordion 250ms ease-in-out;
-  --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;
-
 }
 
 :root {
@@ -232,11 +229,3 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}

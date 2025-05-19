@@ -13,7 +13,7 @@ const __dirname = path.dirname(new URL(import.meta.url).pathname);
 
 const registryPath = path.resolve(
   __dirname,
-  "../../../apps/ladle/registry.json"
+  "../registry.json"
 );
 
 let components = [];

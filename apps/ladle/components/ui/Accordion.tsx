@@ -55,7 +55,7 @@ function AccordionContent({
   return (
     <AccordionRadix.Content
       data-slot="accordion-content"
-      className="bg-gray-2 data-[state=open]:animate-accordion-open data-[state=closed]:animate-accordion-closed"
+      className="bg-gray-2"
       {...props}
     >
       <div className={cn("px-2 py-1", className)}>{children}</div>

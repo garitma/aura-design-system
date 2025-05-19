@@ -1,13 +1,12 @@
 {
   "name": "@aura-design/ladle",
   "version": "1.0.1",
-  "type": "module",
   "scripts": {
     "build": "pnpm run clean && shadcn build && rsync -av registry/theming/. ./public/r/ && pnpm run distribution && pnpm run distribution:local",
     "distribution": "rsync -av ./public/r/ ../website/public/r/",
-    "distribution:local": "node ./scripts/replace-urls.js",
+    "distribution:local": "node ./scripts/replace-urls.js && cp ./registry.json ../../packages/cli/registry.json",
     "clean": "rm -rf ./public/r && mkdir -p ./public/r && rm -rf ../website/public/ && mkdir -p ../website/public/r",
-    "dev": "pnpm ladle serve --stories=stories & pnpm dev:next --port 61001",
+    "dev": "pnpm ladle serve --stories=stories",
     "dev:next": "next dev"
   },
   "keywords": [],
