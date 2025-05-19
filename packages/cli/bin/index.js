@@ -70,6 +70,7 @@ componentsCommand
   .command("add [componentName]") // Make componentName optional
   .description("Select and add a component in the Aura Design System")
   .option("--local", "Use the local server instead of the remote server")
+  .option("--overwrite", "Overwrite existing components") // Add overwrite option
   .action(async (componentName, options) => {
     if (!componentName) {
       // If no componentName is provided
@@ -95,6 +96,10 @@ componentsCommand
         const componentUrl = `${baseUrl}/r/${component.toLowerCase()}.json`;
         const command = "pnpm";
         const args = ["dlx", "shadcn@latest", "add", componentUrl];
+
+        if (options.overwrite) {
+          args.push("--overwrite"); // Add overwrite flag if provided
+        }
 
         console.log(chalk.blue(`Adding ${component} component...`));
 
@@ -141,6 +146,10 @@ componentsCommand
     const componentUrl = `${baseUrl}/r/${componentName.toLowerCase()}.json`;
     const command = "pnpm";
     const args = ["dlx", "shadcn@latest", "add", componentUrl];
+
+    if (options.overwrite) {
+      args.push("--overwrite"); // Add overwrite flag if provided
+    }
 
     console.log(chalk.blue(`Adding ${componentName} component...`));
 
