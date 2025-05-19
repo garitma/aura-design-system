@@ -9,7 +9,7 @@
   "files": [
     {
       "path": "registry/default/components/Section.tsx",
-      "content": "import { Wrapper, WrapperContainer } from \"@/components/ui/Wrapper\";\n\ntype SectionProps = {\n  children: React.ReactNode;\n  container?: React.ComponentProps<typeof WrapperContainer>[\"container\"];\n  subClassName?: string;\n} & React.ComponentProps<typeof Wrapper>;\n\nconst Section = ({\n  children,\n  container,\n  subClassName,\n  ...props\n}: SectionProps) => {\n  <Wrapper {...props}>\n    <WrapperContainer container={container} className={subClassName}>\n      {children}\n    </WrapperContainer>\n  </Wrapper>;\n};\n\nexport default Section;\n",
+      "content": "import { Wrapper, WrapperContainer } from \"@/components/ui/Wrapper\";\n\ntype SectionProps = {\n  children: React.ReactNode;\n  container?: React.ComponentProps<typeof WrapperContainer>[\"container\"];\n  subClassName?: string;\n} & React.ComponentProps<typeof Wrapper>;\n\nconst Section = ({\n  children,\n  container,\n  subClassName,\n  ...props\n}: SectionProps) => {\n  return (\n    <Wrapper {...props}>\n      <WrapperContainer container={container} className={subClassName}>\n        {children}\n      </WrapperContainer>\n    </Wrapper>\n  );\n};\n\nexport default Section;\n",
       "type": "registry:component"
     }
   ]
