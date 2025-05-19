@@ -72,11 +72,11 @@ componentsCommand
   .option("--local", "Use the local server instead of the remote server")
   .option("--name <componentName>", "Name of the component to add") // Added option for component name
   .option("--all", "Add all components from the registry") // Added option to add all components
-  .action((options) => {
+  .action(async (options) => { // Changed to async
     if (options.all) {
       console.log(chalk.blue("Adding all components from the registry..."));
 
-      components.forEach((component) => {
+      for (const component of components) { // Changed to for...of loop for sequential execution
         const baseUrl = options.local
           ? "http://localhost:3000"
           : "https://auradesignsystem.com";
@@ -86,20 +86,25 @@ componentsCommand
 
         console.log(chalk.blue(`Adding ${component} component...`));
 
-        const child = spawn(command, args, { stdio: "inherit" });
+        await new Promise((resolve, reject) => { // Await each addition
+          const child = spawn(command, args, { stdio: "inherit" });
 
-        child.on("error", (error) => {
-          console.error(chalk.red(`Error adding ${component}: ${error.message}`));
-        });
+          child.on("error", (error) => {
+            console.error(chalk.red(`Error adding ${component}: ${error.message}`));
+            reject(error);
+          });
 
-        child.on("close", (code) => {
-          if (code === 0) {
-            console.log(chalk.green(`${component} added successfully!`));
-          } else {
-            console.error(chalk.red(`Failed to add ${component}, exited with code ${code}`));
-          }
+          child.on("close", (code) => {
+            if (code === 0) {
+              console.log(chalk.green(`${component} added successfully!`));
+              resolve();
+            } else {
+              console.error(chalk.red(`Failed to add ${component}, exited with code ${code}`));
+              reject(new Error(`Exited with code ${code}`));
+            }
+          });
         });
-      });
+      }
 
       return;
     }
