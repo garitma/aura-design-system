@@ -1,14 +1,26 @@
 import * as React from "react";
 
-function Alert({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
-  return <div data-slot="alert" role="alert" {...props} />;
+import { cn } from "@/lib/utils";
+
+function Alert({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="alert"
+      role="alert"
+      className={cn("flex gap-1 space-y-0.5 p-1 rounded-1 border", className)}
+      {...props}
+    />
+  );
 }
 
 function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
-  return <div data-slot="alert-title" {...props} />;
+  return (
+    <div
+      data-slot="alert-title"
+      className={cn("font-bold", className)}
+      {...props}
+    />
+  );
 }
 
 function AlertDescription({
@@ -18,4 +30,18 @@ function AlertDescription({
   return <div data-slot="alert-description" {...props} />;
 }
 
-export { Alert, AlertTitle, AlertDescription };
+function AlertContent({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
+  return <div data-slot="alert-content" {...props} />;
+}
+
+function AlertIcon({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
+  return <div data-slot="alert-icon" {...props} />;
+}
+
+export { Alert, AlertTitle, AlertDescription, AlertIcon, AlertContent };

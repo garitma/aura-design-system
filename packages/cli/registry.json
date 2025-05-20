@@ -80,6 +80,23 @@
       ]
     },
     {
+      "name": "alert-status",
+      "type": "registry:component",
+      "description": "alert component",
+      "dependencies": [
+        "@radix-ui/react-icons"
+      ],
+      "registryDependencies": [
+        "https://auradesignsystem.com/r/alert.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/AlertStatus.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "aspect-ratio",
       "type": "registry:ui",
       "description": "Aspect ratio component",
