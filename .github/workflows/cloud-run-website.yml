@@ -2,7 +2,7 @@ name: Docker Build and Push to Artifact Registry
 
 on:
   push:
-    branches: [ deploy/website/production ]  
+    branches: [ deploy/production ]  
 
 env:
   PROJECT_ID: ${{ secrets.CLOUD_RUN_PROJECT_ID }}
