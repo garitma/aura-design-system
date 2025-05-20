@@ -182,7 +182,7 @@
       "dependencies": ["@radix-ui/react-icons"],
       "files": [
         {
-          "path": "registry/default/components/ui/AlertDialog.tsx",
+          "path": "registry/default/ui/AlertDialog.tsx",
           "type": "registry:ui"
         }
       ]
@@ -264,12 +264,25 @@
     {
       "name": "dialog",
       "type": "registry:ui",
-      "description": "Dialog component",
+      "description": "Dialog primitive",
       "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "registry/default/ui/Dialog.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dialog-modal",
+      "type": "registry:component",
+      "description": "Dialog component",
+      "dependencies": ["@radix-ui/react-icons"],
+      "registryDependencies": ["https://auradesignsystem.com/r/dialog.json"],
+      "files": [
+        {
+          "path": "registry/default/components/DialogModal.tsx",
+          "type": "registry:component"
         }
       ]
     },

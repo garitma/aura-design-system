@@ -5956,14 +5956,14 @@ snapshots:
     dependencies:
       '@ampproject/remapping': 2.2.0
       '@babel/code-frame': 7.26.2
-      '@babel/generator': 7.26.3
+      '@babel/generator': 7.27.0
       '@babel/helper-compilation-targets': 7.25.9
       '@babel/helper-module-transforms': 7.26.0(@babel/core@7.26.0)
       '@babel/helpers': 7.26.0
-      '@babel/parser': 7.26.3
-      '@babel/template': 7.25.9
-      '@babel/traverse': 7.26.4
-      '@babel/types': 7.26.3
+      '@babel/parser': 7.27.0
+      '@babel/template': 7.27.0
+      '@babel/traverse': 7.27.0
+      '@babel/types': 7.27.0
       convert-source-map: 2.0.0
       debug: 4.4.0
       gensync: 1.0.0-beta.2
@@ -6022,7 +6022,7 @@ snapshots:
 
   '@babel/helper-module-imports@7.25.9':
     dependencies:
-      '@babel/traverse': 7.26.4
+      '@babel/traverse': 7.27.0
       '@babel/types': 7.27.0
     transitivePeerDependencies:
       - supports-color
@@ -6032,7 +6032,7 @@ snapshots:
       '@babel/core': 7.26.0
       '@babel/helper-module-imports': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
-      '@babel/traverse': 7.26.4
+      '@babel/traverse': 7.27.0
     transitivePeerDependencies:
       - supports-color
 
@@ -6068,8 +6068,8 @@ snapshots:
 
   '@babel/helpers@7.26.0':
     dependencies:
-      '@babel/template': 7.25.9
-      '@babel/types': 7.26.3
+      '@babel/template': 7.27.0
+      '@babel/types': 7.27.0
 
   '@babel/parser@7.26.3':
     dependencies:
@@ -11469,7 +11469,7 @@ snapshots:
       '@bundled-es-modules/cookie': 2.0.1
       '@bundled-es-modules/statuses': 1.0.1
       '@bundled-es-modules/tough-cookie': 0.1.6
-      '@inquirer/confirm': 5.1.1(@types/node@22.7.5)
+      '@inquirer/confirm': 5.1.10(@types/node@22.7.5)
       '@mswjs/interceptors': 0.37.3
       '@open-draft/deferred-promise': 2.2.0
       '@open-draft/until': 2.1.0

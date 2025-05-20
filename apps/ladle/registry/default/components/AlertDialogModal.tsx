@@ -10,7 +10,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/AlertDialog";
-import Button from "@/components/ui/Button"; 
+import Button from "@/components/ui/Button";
 
 interface AlertDialogModalProps {
   trigger: React.ReactNode;
@@ -35,10 +35,14 @@ function AlertDialogModal({
     <AlertDialog>
       <AlertDialogTrigger asChild>{trigger}</AlertDialogTrigger>
       <AlertDialogContent>
-        <AlertDialogHeader>
-          <AlertDialogTitle>{title}</AlertDialogTitle>
-          <AlertDialogDescription>{description}</AlertDialogDescription>
-        </AlertDialogHeader>
+        {title || description ? (
+          <AlertDialogHeader>
+            {title && <AlertDialogTitle>{title}</AlertDialogTitle>}
+            {description && (
+              <AlertDialogDescription>{description}</AlertDialogDescription>
+            )}
+          </AlertDialogHeader>
+        ) : null}
         <AlertDialogFooter>
           <AlertDialogCancel asChild>
             <Button mode="pill" onClick={onCancel}>

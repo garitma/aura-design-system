@@ -1,6 +1,7 @@
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
+import Button from "./Button";
 
 function Dialog({
   ...props
@@ -59,8 +60,10 @@ function DialogContent({
         {...props}
       >
         {children}
-        <DialogPrimitive.Close>
-          <Cross2Icon />
+        <DialogPrimitive.Close className="absolute top-0.5 right-0.5">
+          <Button mode="link">
+          <Cross2Icon className="icon"/>
+          </Button>
         </DialogPrimitive.Close>
       </DialogPrimitive.Content>
     </DialogPortal>

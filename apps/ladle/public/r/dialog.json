@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dialog",
   "type": "registry:ui",
-  "description": "Dialog component",
+  "description": "Dialog primitive",
   "dependencies": [
     "radix-ui"
   ],
