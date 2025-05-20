@@ -8,6 +8,7 @@ import {
 import { ChevronDownIcon, CheckIcon, SymbolIcon } from "@radix-ui/react-icons";
 
 import { FieldProps } from "@/hooks/use-dynamic-form";
+import Alert, { AlertProps } from "@/components/ui/Alert";
 import Button, { ButtonProps } from "@/components/ui/Button";
 
 interface FormProps extends FormRadix.FormProps {
@@ -261,9 +262,9 @@ interface FormAlertProps extends AlertProps {
   formData: any;
 }
 
-// export const FormAlert = ({ children, formData, ...props }: FormAlertProps) => {
-//   if (formData.fetchStatus !== "error") {
-//     return null;
-//   }
-//   return <Alert status="danger" {...props} label={formData.error} />;
-// };
+export const FormAlert = ({ children, formData, ...props }: FormAlertProps) => {
+  if (formData.fetchStatus !== "error") {
+    return null;
+  }
+  return <Alert status="danger" {...props} label={formData.error} />;
+};

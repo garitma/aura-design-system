@@ -1,7 +1,8 @@
 import * as React from "react";
-import type { AuraContainer } from "@aura-design/system/types/global";
 
 import { cn } from "@/lib/utils";
+
+export type AuraContainer = "smash" | "smesh" | "smish" | "smosh" | "smush";
 
 function Wrapper({ className, ...props }: React.ComponentProps<"div">) {
   return (

@@ -1,6 +1,5 @@
 import { AuraContainer } from "@aura-design/system/types/global";
 
-import Button from "@/components/ui/Button";
 import {
   Dialog,
   DialogContent,
@@ -14,11 +13,11 @@ import { cn } from "@/lib/utils";
 
 interface DialogModalProps {
   trigger: React.ReactNode;
-  title?: React.ReactNode;
-  description?: React.ReactNode;
-  container?: AuraContainer;
-  footer?: React.ReactNode;
-  children?: React.ReactNode;
+  title: React.ReactNode;
+  description: React.ReactNode;
+  container: AuraContainer;
+  footer: React.ReactNode;
+  children: React.ReactNode;
 }
 
 function DialogModal({
@@ -37,7 +36,9 @@ function DialogModal({
           <DialogHeader>
             {title && <DialogTitle>{title}</DialogTitle>}
             {description && (
-              <DialogDescription>{description}</DialogDescription>
+              <DialogDescription>
+                {description}
+              </DialogDescription>
             )}
           </DialogHeader>
         ) : null}

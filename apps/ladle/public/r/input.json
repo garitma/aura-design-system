@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "type": "registry:ui",
+  "description": "Input",
+  "files": [
+    {
+      "path": "registry/default/ui/Input.tsx",
+      "content": "import * as React from \"react\";\n\nfunction Input({ ...props }: React.ComponentProps<\"input\">) {\n  return <input data-slot=\"input\" {...props} />;\n}\n\nexport { Input };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

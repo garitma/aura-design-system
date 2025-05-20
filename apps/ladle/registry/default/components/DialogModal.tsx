@@ -1,6 +1,5 @@
 import { AuraContainer } from "@aura-design/system/types/global";
 
-import Button from "@/components/ui/Button";
 import {
   Dialog,
   DialogContent,
