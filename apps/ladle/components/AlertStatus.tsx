@@ -73,7 +73,7 @@ const AlertStatus = ({
   return (
     <Alert className={classNameConnect.join(" ")} {...props}>
       <AlertIcon>
-        <DefaultIcon />
+        <DefaultIcon className="icon" />
       </AlertIcon>
       <AlertContent>
         {title && <AlertTitle>{title}</AlertTitle>}

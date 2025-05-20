@@ -8,7 +8,7 @@ import {
 import { ChevronDownIcon, CheckIcon, SymbolIcon } from "@radix-ui/react-icons";
 
 import { FieldProps } from "@/hooks/use-dynamic-form";
-import Alert, { AlertProps } from "@/components/ui/Alert";
+import AlertStatus from "@/components/AlertStatus";
 import Button, { ButtonProps } from "@/components/ui/Button";
 
 interface FormProps extends FormRadix.FormProps {
@@ -225,16 +225,16 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
       >
         <div className="flex items-center gap-1">
           <div>
-          <CheckboxRadix.Root
-            id={idConnect}
-            className="border flex size-1.5 items-center justify-center rounded outline-none"
-            checked={Boolean(field?.value)}
-            onCheckedChange={field?.onCheckedChange}
-          >
-            <CheckboxRadix.Indicator>
-              <CheckIcon />
-            </CheckboxRadix.Indicator>
-          </CheckboxRadix.Root>
+            <CheckboxRadix.Root
+              id={idConnect}
+              className="border flex size-1.5 items-center justify-center rounded outline-none"
+              checked={Boolean(field?.value)}
+              onCheckedChange={field?.onCheckedChange}
+            >
+              <CheckboxRadix.Indicator>
+                <CheckIcon />
+              </CheckboxRadix.Indicator>
+            </CheckboxRadix.Root>
           </div>
           {label && (
             <FormRadix.Label htmlFor={idConnect}>{label}</FormRadix.Label>
@@ -258,13 +258,20 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
   }
 );
 
-interface FormAlertProps extends AlertProps {
+interface FormAlertProps {
   formData: any;
 }
 
-export const FormAlert = ({ children, formData, ...props }: FormAlertProps) => {
+export const FormAlert = ({ formData, ...props }: FormAlertProps) => {
   if (formData.fetchStatus !== "error") {
     return null;
   }
-  return <Alert status="danger" {...props} label={formData.error} />;
+
+  if (!formData.error) {
+    return null;
+  }
+
+  return (
+    <AlertStatus status="danger" {...props} description={formData.error} />
+  );
 };
