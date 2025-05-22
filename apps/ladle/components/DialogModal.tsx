@@ -12,12 +12,12 @@ import {
 import { cn } from "@/lib/utils";
 
 interface DialogModalProps {
-  trigger: React.ReactNode;
-  title: React.ReactNode;
-  description: React.ReactNode;
-  container: AuraContainer;
-  footer: React.ReactNode;
-  children: React.ReactNode;
+  trigger?: React.ReactNode;
+  title?: React.ReactNode;
+  description?: React.ReactNode;
+  container?: AuraContainer;
+  footer?: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 function DialogModal({
@@ -27,18 +27,17 @@ function DialogModal({
   container = "smash",
   footer,
   children,
-}: DialogModalProps) {
+  ...props
+}: DialogModalProps & React.ComponentProps<typeof Dialog>) {
   return (
-    <Dialog>
+    <Dialog {...props}>
       <DialogTrigger asChild>{trigger}</DialogTrigger>
       <DialogContent className={cn(container)}>
         {title || description ? (
           <DialogHeader>
             {title && <DialogTitle>{title}</DialogTitle>}
             {description && (
-              <DialogDescription>
-                {description}
-              </DialogDescription>
+              <DialogDescription>{description}</DialogDescription>
             )}
           </DialogHeader>
         ) : null}
