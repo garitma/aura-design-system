@@ -12,7 +12,7 @@
       "items": {
         "type": "array",
         "items": {
-          "$ref": "https://ui.shadcn.com/schema/registry-item.json"
+          "$ref": "http://localhost:3000/r/registry-items/default.json"
         }
       }
     },

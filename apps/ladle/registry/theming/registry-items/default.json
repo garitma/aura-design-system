@@ -79,7 +79,8 @@
                 "registry:hook",
                 "registry:theme",
                 "registry:page",
-                "registry:file"
+                "registry:file",
+                "registry:slice"
               ],
               "description": "The type of the file. This is used to determine the type of the file when resolved for a project."
             },

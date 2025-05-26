@@ -1,21 +1,22 @@
 {
     "$schema": "http://localhost:3000/r/schemas/default.json",
-    "style": "new-york",
+    "style": "default",
     "rsc": true,
     "tsx": true,
     "tailwind": {
       "config": "",
       "css": "app/globals.css",
-      "baseColor": "neutral",
+      "baseColor": "default",
       "cssVariables": true,
       "prefix": ""
     },
     "aliases": {
       "components": "@/components",
-      "utils": "@/lib/utils",
+      "utils": "@/utils",
       "ui": "@/components/ui",
       "lib": "@/lib",
-      "hooks": "@/hooks"
+      "hooks": "@/hooks",
+      "slices": "@/slices"
     },
     "iconLibrary": "radix-icons"
   }

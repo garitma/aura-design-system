@@ -40,5 +40,6 @@
       "background": "#2c2c3b",
       "foreground": "#fcfcff"
     }
-  }
+  },
+  "extends": "none"
 }
