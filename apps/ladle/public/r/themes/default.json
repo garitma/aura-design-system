@@ -1,5 +1,5 @@
 {
-  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "$schema": "http://localhost:3000/r/registry-items/default.json",
   "name": "custom-theme",
   "type": "registry:theme",
   "cssVars": {

@@ -1,5 +1,5 @@
 {
-  "$schema": "http://ui.shadcn.com/schema/registry.json",
+  "$schema": "https://auradesignsystem.com/r/registries/default.json",
   "name": "auradesign",
   "homepage": "http://auradesignsystem.com",
   "items": [

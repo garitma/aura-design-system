@@ -1,6 +1,6 @@
 {
-  "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "new-york",
+  "$schema": "https://auradesignsystem.com/r/registries/default.json",
+  "style": "default",
   "rsc": true,
   "tsx": true,
   "tailwind": {
@@ -15,7 +15,8 @@
     "utils": "@/lib/utils",
     "ui": "@/components/ui",
     "lib": "@/lib",
-    "hooks": "@/hooks"
+    "hooks": "@/hooks",
+    "slices": "@/slices"
   },
-  "iconLibrary": "lucide"
+  "iconLibrary": "radix-icons"
 }

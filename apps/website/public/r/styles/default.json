@@ -1,5 +1,5 @@
 {
-  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "$schema": "https://auradesignsystem.com/r/registry-items/default.json",
   "name": "default",
   "type": "registry:style",
   "dependencies": ["@aura-design/system", "@radix-ui/react-icons"],
