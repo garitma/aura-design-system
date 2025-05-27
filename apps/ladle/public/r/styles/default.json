@@ -4,15 +4,13 @@
   "name": "default",
   "type": "registry:style",
   "dependencies": [
-    "utils",
     "@aura-design/system",
-    "@radix-ui/react-icons",
-    "tailwind-merge",
-    "clsx"
+    "@radix-ui/react-icons"
   ],
   "registryDependencies": [
     "http://localhost:3000/r/layout-pancake.json",
-    "http://localhost:3000/r/home-hello.json"
+    "http://localhost:3000/r/home-hello.json",
+    "http://localhost:3000/r/class-names.json"
   ],
   "css": {
     "@layer base": {
@@ -33,10 +31,10 @@
       "danger-contrast": "#8e3106",
       "warning": "#fefbe8",
       "warning-contrast": "#5d5104",
-      "radius-0.5": "calc(var(--spacing) * 0.5)",
-      "radius-1": "calc(var(--spacing) * 1)",
-      "radius-1.5": "calc(var(--spacing) * 1.5)",
-      "radius-2": "calc(var(--spacing) * 2)"
+      "radius-sm": "calc(var(--spacing) * 0.5)",
+      "radius-md": "calc(var(--spacing) * 1)",
+      "radius-lg": "calc(var(--spacing) * 1.5)",
+      "radius-xl": "calc(var(--spacing) * 2)"
     },
     "light": {
       "aura-loader": "var(--primary)",

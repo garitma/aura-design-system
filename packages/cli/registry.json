@@ -478,6 +478,17 @@
       ]
     },
     {
+      "name": "class-names",
+      "type": "registry:lib",
+      "description": "General class names utils",
+      "files": [
+        {
+          "path": "registry/default/utils/class-names.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
       "name": "wrapper",
       "type": "registry:ui",
       "description": "Progress Menu component",
