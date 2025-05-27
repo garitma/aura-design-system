@@ -1,8 +1,15 @@
 {
   "$schema": "http://localhost:3000/r/registry-items/default.json",
+  "extends": "none",
   "name": "default",
   "type": "registry:style",
-  "dependencies": ["@aura-design/system", "@radix-ui/react-icons"],
+  "dependencies": [
+    "utils",
+    "@aura-design/system",
+    "@radix-ui/react-icons",
+    "tailwind-merge",
+    "clsx"
+  ],
   "registryDependencies": [
     "http://localhost:3000/r/layout-pancake.json",
     "http://localhost:3000/r/home-hello.json"
@@ -16,6 +23,7 @@
   },
   "cssVars": {
     "theme": {
+      "--spacing": "13px",
       "font-sans": "Inter, sans-serif",
       "info": "#e8ebfe",
       "info-contrast": "#0927ec",
@@ -40,6 +48,5 @@
       "background": "#2c2c3b",
       "foreground": "#fcfcff"
     }
-  },
-  "extends": "none"
+  }
 }
