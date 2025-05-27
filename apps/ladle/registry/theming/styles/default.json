@@ -8,7 +8,8 @@
     "@aura-design/system",
     "@radix-ui/react-icons",
     "tailwind-merge",
-    "clsx"
+    "clsx",
+    "tw-animate-css"
   ],
   "registryDependencies": [
     "https://auradesignsystem.com/r/layout-pancake.json",
