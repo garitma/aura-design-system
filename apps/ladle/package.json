@@ -2,7 +2,7 @@
   "name": "@aura-design/ladle",
   "version": "1.0.1",
   "scripts": {
-    "build": "pnpm run clean && shadcn build && rsync -av registry/theming/. ./public/r/ && pnpm run distribution && pnpm run distribution:local && pnpm run distribution:cli",
+    "build": "pnpm run clean && shadcn build && rsync -av registry/theming/. ./public/ && pnpm run distribution && pnpm run distribution:local && pnpm run distribution:cli",
     "registry:sort": "node ./scripts/sort-registry.js",
     "distribution": "rsync -av ./public/r/ ../website/public/r/",
     "distribution:local": "node ./scripts/replace-urls.js",

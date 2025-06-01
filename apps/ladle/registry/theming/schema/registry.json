@@ -12,7 +12,7 @@
       "items": {
         "type": "array",
         "items": {
-          "$ref": "http://localhost:3000/r/registry-items/default.json"
+          "$ref": "https://auradesignsystem.com/r/registry-items/default.json"
         }
       }
     },

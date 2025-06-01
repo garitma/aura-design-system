@@ -1,5 +1,5 @@
 {
-  "$schema": "https://auradesignsystem.com/r/registry-items/default.json",
+  "$schema": "https://auradesignsystem.com/schema/registry-item.json",
   "extends": "none",
   "name": "default",
   "type": "registry:style",

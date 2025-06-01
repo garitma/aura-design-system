@@ -1,5 +1,5 @@
 {
-  "$schema": "http://localhost:3000/r/registry-items/default.json",
+  "$schema": "https://auradesignsystem.com/schema/registry-item.json",
   "extends": "none",
   "name": "default",
   "type": "registry:style",
@@ -8,9 +8,9 @@
     "@radix-ui/react-icons"
   ],
   "registryDependencies": [
-    "http://localhost:3000/r/layout-pancake.json",
-    "http://localhost:3000/r/home-hello.json",
-    "http://localhost:3000/r/class-names.json"
+    "https://auradesignsystem.com/r/layout-pancake.json",
+    "https://auradesignsystem.com/r/home-hello.json",
+    "https://auradesignsystem.com/r/class-names.json"
   ],
   "css": {
     "@layer base": {
