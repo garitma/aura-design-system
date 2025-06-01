@@ -30,7 +30,6 @@
         "required": [
           "config",
           "css",
-          "baseColor",
           "cssVariables"
         ]
       },
