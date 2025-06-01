@@ -62,6 +62,9 @@
           },
           "slices":{
             "type": "string"
+          },
+          "css": {
+            "type": "string"
           }
         },
         "required": [

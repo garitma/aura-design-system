@@ -1,5 +1,5 @@
 {
-  "$schema": "https://auradesignsystem.com/r/registries/default.json",
+  "$schema": "https://auradesignsystem.com/schema/registry.json",
   "name": "auradesign",
   "homepage": "http://auradesignsystem.com",
   "items": [
@@ -7,9 +7,7 @@
       "name": "accordion",
       "type": "registry:ui",
       "description": "Accordion",
-      "dependencies": [
-        "@radix-ui/react-icons"
-      ],
+      "dependencies": ["@radix-ui/react-icons"],
       "files": [
         {
           "path": "registry/default/ui/Accordion.tsx",
@@ -21,12 +19,8 @@
       "name": "accordion-list",
       "type": "registry:component",
       "description": "Accordion component",
-      "dependencies": [
-        "@radix-ui/react-icons"
-      ],
-      "registryDependencies": [
-        "https://auradesignsystem.com/r/accordion.json"
-      ],
+      "dependencies": ["@radix-ui/react-icons"],
+      "registryDependencies": ["https://auradesignsystem.com/r/accordion.json"],
       "files": [
         {
           "path": "registry/default/components/AccordionList.tsx",
@@ -38,9 +32,7 @@
       "name": "alert",
       "type": "registry:ui",
       "description": "alert component",
-      "dependencies": [
-        "@radix-ui/react-icons"
-      ],
+      "dependencies": ["@radix-ui/react-icons"],
       "files": [
         {
           "path": "registry/default/ui/Alert.tsx",
@@ -52,9 +44,7 @@
       "name": "alert-dialog",
       "type": "registry:ui",
       "description": "Alert Dialog Custom Primitives",
-      "dependencies": [
-        "@radix-ui/react-icons"
-      ],
+      "dependencies": ["@radix-ui/react-icons"],
       "files": [
         {
           "path": "registry/default/ui/AlertDialog.tsx",
@@ -66,9 +56,7 @@
       "name": "alert-dialog-modal",
       "type": "registry:ui",
       "description": "Alert Dialog Modal",
-      "dependencies": [
-        "@radix-ui/react-icons"
-      ],
+      "dependencies": ["@radix-ui/react-icons"],
       "registryDependencies": [
         "https://auradesignsystem.com/r/alert-dialog.json"
       ],
@@ -83,12 +71,8 @@
       "name": "alert-status",
       "type": "registry:component",
       "description": "alert component",
-      "dependencies": [
-        "@radix-ui/react-icons"
-      ],
-      "registryDependencies": [
-        "https://auradesignsystem.com/r/alert.json"
-      ],
+      "dependencies": ["@radix-ui/react-icons"],
+      "registryDependencies": ["https://auradesignsystem.com/r/alert.json"],
       "files": [
         {
           "path": "registry/default/components/AlertStatus.tsx",
@@ -100,9 +84,7 @@
       "name": "aspect-ratio",
       "type": "registry:ui",
       "description": "Aspect ratio component",
-      "dependencies": [
-        "radix-ui"
-      ],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "registry/default/ui/AspectRatio.tsx",
@@ -114,9 +96,7 @@
       "name": "avatar",
       "type": "registry:ui",
       "description": "alert component",
-      "dependencies": [
-        "radix-ui"
-      ],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "registry/default/ui/Avatar.tsx",
@@ -128,9 +108,7 @@
       "name": "button",
       "type": "registry:ui",
       "description": "button component",
-      "dependencies": [
-        "@aura-design/system"
-      ],
+      "dependencies": ["@aura-design/system"],
       "files": [
         {
           "path": "registry/default/ui/Button.tsx",
@@ -153,9 +131,7 @@
       "name": "collapsible",
       "type": "registry:ui",
       "description": "Collapsible component",
-      "dependencies": [
-        "radix-ui"
-      ],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "registry/default/ui/Collapsible.tsx",
@@ -167,9 +143,7 @@
       "name": "context-menu",
       "type": "registry:ui",
       "description": "Context Menu component",
-      "dependencies": [
-        "radix-ui"
-      ],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "registry/default/ui/ContextMenu.tsx",
@@ -181,9 +155,7 @@
       "name": "dialog",
       "type": "registry:ui",
       "description": "Dialog primitive",
-      "dependencies": [
-        "radix-ui"
-      ],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "registry/default/ui/Dialog.tsx",
@@ -195,12 +167,8 @@
       "name": "dialog-modal",
       "type": "registry:component",
       "description": "Dialog component",
-      "dependencies": [
-        "@radix-ui/react-icons"
-      ],
-      "registryDependencies": [
-        "https://auradesignsystem.com/r/dialog.json"
-      ],
+      "dependencies": ["@radix-ui/react-icons"],
+      "registryDependencies": ["https://auradesignsystem.com/r/dialog.json"],
       "files": [
         {
           "path": "registry/default/components/DialogModal.tsx",
@@ -212,9 +180,7 @@
       "name": "drawer",
       "type": "registry:ui",
       "description": "Drawer component",
-      "dependencies": [
-        "vaul"
-      ],
+      "dependencies": ["vaul"],
       "files": [
         {
           "path": "registry/default/ui/Drawer.tsx",
@@ -226,9 +192,7 @@
       "name": "dropdown-menu",
       "type": "registry:ui",
       "description": "Dropdown Menu component",
-      "dependencies": [
-        "radix-ui"
-      ],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "registry/default/ui/DropdownMenu.tsx",
@@ -251,12 +215,7 @@
       "name": "form",
       "type": "registry:component",
       "description": "Form component",
-      "dependencies": [
-        "radix-ui",
-        "ajv",
-        "ajv-formats",
-        "ajv-errors"
-      ],
+      "dependencies": ["radix-ui", "ajv", "ajv-formats", "ajv-errors"],
       "registryDependencies": [
         "https://auradesignsystem.com/r/use-dynamic-form.json",
         "https://auradesignsystem.com/r/web-validation.json"
@@ -300,9 +259,7 @@
       "name": "hover-card",
       "type": "registry:ui",
       "description": "Hover Card component",
-      "dependencies": [
-        "radix-ui"
-      ],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "registry/default/ui/HoverCard.tsx",
@@ -352,9 +309,7 @@
       "name": "menubar",
       "type": "registry:ui",
       "description": "Menubar component",
-      "dependencies": [
-        "radix-ui"
-      ],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "registry/default/ui/Menubar.tsx",
@@ -366,9 +321,7 @@
       "name": "n-progress",
       "type": "registry:component",
       "description": "A customizable progress bar component for Next.js applications, providing visual feedback during page transitions and data loading.",
-      "dependencies": [
-        "next-nprogress-bar"
-      ],
+      "dependencies": ["next-nprogress-bar"],
       "css": {
         "@layer components": {
           ".nprogress": {
@@ -397,9 +350,7 @@
       "name": "navigation-menu",
       "type": "registry:ui",
       "description": "Navigation Menu component",
-      "dependencies": [
-        "radix-ui"
-      ],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "registry/default/ui/NavigationMenu.tsx",
@@ -411,9 +362,7 @@
       "name": "popover",
       "type": "registry:ui",
       "description": "Popover Menu component",
-      "dependencies": [
-        "radix-ui"
-      ],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "registry/default/ui/Popover.tsx",
@@ -425,9 +374,7 @@
       "name": "progress",
       "type": "registry:ui",
       "description": "Progress Menu component",
-      "dependencies": [
-        "radix-ui"
-      ],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "registry/default/ui/Progress.tsx",
@@ -439,9 +386,7 @@
       "name": "section",
       "type": "registry:component",
       "description": "Progress Menu component",
-      "registryDependencies": [
-        "https://auradesignsystem.com/r/wrapper.json"
-      ],
+      "registryDependencies": ["https://auradesignsystem.com/r/wrapper.json"],
       "files": [
         {
           "path": "registry/default/components/Section.tsx",
@@ -463,12 +408,7 @@
     {
       "name": "web-validation",
       "type": "registry:lib",
-      "dependencies": [
-        "radix-ui",
-        "ajv",
-        "ajv-formats",
-        "ajv-errors"
-      ],
+      "dependencies": ["radix-ui", "ajv", "ajv-formats", "ajv-errors"],
       "description": "Web validation ajv ",
       "files": [
         {
@@ -492,9 +432,7 @@
       "name": "wrapper",
       "type": "registry:ui",
       "description": "Progress Menu component",
-      "dependencies": [
-        "radix-ui"
-      ],
+      "dependencies": ["radix-ui"],
       "files": [
         {
           "path": "registry/default/ui/Wrapper.tsx",

@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import Router from "next/router";
 import { asText, isFilled, asLink, Content } from "@prismicio/client";
 
 export function getPrismicSEO(

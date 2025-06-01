@@ -43,7 +43,6 @@
     "@aura-design/system": "workspace:*",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
-    "autoprefixer": "^10.4.20",
-    "tw-animate-css": "^1.2.7"
+    "autoprefixer": "^10.4.20"
   }
 }

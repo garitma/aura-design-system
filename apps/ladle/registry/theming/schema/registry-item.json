@@ -18,7 +18,8 @@
           "registry:page",
           "registry:file",
           "registry:style",
-          "registry:slice"
+          "registry:slice",
+          "registry:css"
         ],
         "description": "The type of the item. This is used to determine the type and target path of the item when resolved for a project."
       },
@@ -101,33 +102,6 @@
           },
           "else": {
             "required": ["path", "type"]
-          }
-        }
-      },
-      "tailwind": {
-        "type": "object",
-        "description": "The tailwind configuration for the registry item. This is an object with a config property. Use cssVars for Tailwind v4 projects.",
-        "properties": {
-          "config": {
-            "type": "object",
-            "properties": {
-              "content": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              },
-              "theme": {
-                "type": "object",
-                "additionalProperties": true
-              },
-              "plugins": {
-                "type": "array",
-                "items": {
-                  "type": "string"
-                }
-              }
-            }
           }
         }
       },
