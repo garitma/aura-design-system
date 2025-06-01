@@ -1,5 +1,5 @@
 {
-  "$schema": "https://auradesignsystem.com/r/schemas/default.json",
+  "$schema": "https://auradesignsystem.com/schema/default.json",
   "style": "default",
   "rsc": true,
   "tsx": true,
