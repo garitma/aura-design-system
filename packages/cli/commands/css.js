@@ -222,9 +222,38 @@ export function registerCssCommand(program) {
       // Regex to match the exact block (with optional whitespace)
       const blockRegex = /\*\s*\{\s*@apply border-border outline-ring\/50;\s*\}/g;
       let newGlobalsCssContent = globalsCssContent.replace(blockRegex, "");
+      // Regex to match the body block
+      const bodyBlockRegex = /body\s*\{\s*@apply bg-background text-foreground;\s*\}/g;
+      newGlobalsCssContent = newGlobalsCssContent.replace(bodyBlockRegex, "");
       // Regex to match the import line
       const importRegex = /^\s*@import\s+"tw-animate-css";\s*$/gm;
       newGlobalsCssContent = newGlobalsCssContent.replace(importRegex, "");
+
+      // Remove empty @layer base blocks
+      const emptyLayerBaseRegex = /@layer base\s*\{\s*\}/gm;
+      newGlobalsCssContent = newGlobalsCssContent.replace(emptyLayerBaseRegex, "");
+
+      // Remove duplicate @layer base blocks, keep only the first
+      const layerBaseRegex = /@layer base\s*\{[\s\S]*?\n?\}/gm;
+      let match;
+      let firstLayerBase = null;
+      let layerBaseMatches = [];
+      while ((match = layerBaseRegex.exec(newGlobalsCssContent)) !== null) {
+        layerBaseMatches.push({ start: match.index, end: layerBaseRegex.lastIndex, text: match[0] });
+      }
+      if (layerBaseMatches.length > 1) {
+        firstLayerBase = layerBaseMatches[0];
+        // Remove all but the first occurrence
+        for (let i = 1; i < layerBaseMatches.length; i++) {
+          const { start, end } = layerBaseMatches[i];
+          newGlobalsCssContent = newGlobalsCssContent.slice(0, start) + newGlobalsCssContent.slice(end);
+          // Adjust subsequent indices after removal
+          for (let j = i + 1; j < layerBaseMatches.length; j++) {
+            layerBaseMatches[j].start -= (end - start);
+            layerBaseMatches[j].end -= (end - start);
+          }
+        }
+      }
 
       if (globalsCssContent !== newGlobalsCssContent) {
         fs.writeFileSync(globalsCssPath, newGlobalsCssContent, "utf-8");

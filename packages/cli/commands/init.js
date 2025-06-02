@@ -100,12 +100,7 @@ export function registerInitCommand(program) {
           console.error(chalk.red('Failed to run aura css main.'));
           process.exit(1);
         }
-        // Run aura css link
-        const linkResult = spawnSync('pnpm', ["dlx","@aura-design/cli", 'css', 'link'], { stdio: 'inherit' });
-        if (linkResult.status !== 0) {
-          console.error(chalk.red('Failed to run aura css link.'));
-          process.exit(1);
-        }
+   
         console.log(chalk.green("Aura Design System initialized successfully!"));
       } catch (error) {
         console.error(chalk.red("Error initializing Aura Design System:"), error);
