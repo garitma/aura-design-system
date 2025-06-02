@@ -3,6 +3,7 @@ import fs from "fs";
 import path from "path";
 import chalk from "chalk";
 import { getRegistryItems } from "../utils/registry-utils.js";
+import readline from "readline";
 
 export function registerCssCommand(program) {
   const { css } = getRegistryItems();
@@ -146,5 +147,90 @@ export function registerCssCommand(program) {
       css.forEach((util) => {
         console.log(chalk.blue(`- ${util}`));
       });
+    });
+
+  cssCommand
+    .command("prune")
+    .description(
+      "Remove all content from app/globals.css except for @import 'tailwindcss'; or add it if not present."
+    )
+    .action(() => {
+      const projectRoot = process.cwd();
+      const globalsCssPath = path.join(projectRoot, "./app/globals.css");
+      const tailwindImport = '@import "tailwindcss";';
+
+      console.warn(
+        chalk.yellow(
+          'Warning: This will remove all content from globals.css except for @import "tailwindcss";.'
+        )
+      );
+
+      const rl = readline.createInterface({
+        input: process.stdin,
+        output: process.stdout,
+      });
+
+      rl.question("Are you sure you want to continue? (y/N) ", (answer) => {
+        rl.close();
+        const normalized = answer.trim().toLowerCase();
+        if (normalized !== "y" && normalized !== "yes") {
+          console.log(chalk.blue("Aborted. No changes made to globals.css."));
+          return;
+        }
+
+        if (!fs.existsSync(globalsCssPath)) {
+          fs.writeFileSync(globalsCssPath, tailwindImport + "\n", "utf-8");
+          console.log(
+            chalk.blue('globals.css created with only @import "tailwindcss";')
+          );
+          return;
+        }
+
+        let globalsCssContent = fs.readFileSync(globalsCssPath, "utf-8").trim();
+        if (globalsCssContent === tailwindImport) {
+          console.log(
+            chalk.blue(
+              'globals.css already contains only @import "tailwindcss";'
+            )
+          );
+          return;
+        }
+        fs.writeFileSync(globalsCssPath, tailwindImport + "\n", "utf-8");
+        console.log(
+          chalk.blue(
+            'globals.css updated to contain only @import "tailwindcss";'
+          )
+        );
+      });
+    });
+
+  cssCommand
+    .command("clean")
+    .description(
+      "Remove '* { @apply border-border outline-ring/50; }' from app/globals.css if present."
+    )
+    .action(() => {
+      const projectRoot = process.cwd();
+      const globalsCssPath = path.join(projectRoot, "./app/globals.css");
+
+      if (!fs.existsSync(globalsCssPath)) {
+        console.error(chalk.red(`globals.css not found at ${globalsCssPath}`));
+        process.exit(1);
+      }
+
+      let globalsCssContent = fs.readFileSync(globalsCssPath, "utf-8");
+      // Regex to match the exact block (with optional whitespace)
+      const blockRegex = /\*\s*\{\s*@apply border-border outline-ring\/50;\s*\}/g;
+      let newGlobalsCssContent = globalsCssContent.replace(blockRegex, "");
+      // Regex to match the import line
+      const importRegex = /^\s*@import\s+"tw-animate-css";\s*$/gm;
+      newGlobalsCssContent = newGlobalsCssContent.replace(importRegex, "");
+
+      if (globalsCssContent !== newGlobalsCssContent) {
+        fs.writeFileSync(globalsCssPath, newGlobalsCssContent, "utf-8");
+        console.log(chalk.blue("Removed '* { @apply border-border outline-ring/50; }' and '@import \"tw-animate-css\";' from globals.css."));
+      } else {
+        console.log(chalk.blue("No '* { @apply border-border outline-ring/50; }' block or '@import \"tw-animate-css\";' found in globals.css."));
+      }
     });
 }
