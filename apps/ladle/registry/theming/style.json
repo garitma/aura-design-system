@@ -5,7 +5,8 @@
   "type": "registry:style",
   "dependencies": [
     "@aura-design/system",
-    "@radix-ui/react-icons"
+    "@radix-ui/react-icons",
+    "radix-ui"
   ],
   "registryDependencies": [
     "https://auradesignsystem.com/r/layout-pancake.json",
