@@ -6,7 +6,7 @@
   "files": [
     {
       "path": "registry/default/css/accordion.css",
-      "content": "@theme animatons {\n    --animate-accordion-open: slideDownAccordion 250ms ease-in-out;\n    --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;\n  }\n  @layer components {\n    @keyframes slideDownAccordion {\n      from {\n        height: 0;\n      }\n      to {\n        height: var(--radix-accordion-content-height);\n      }\n    }\n  \n    @keyframes slideUpAccordion {\n      from {\n        height: var(--radix-accordion-content-height);\n      }\n      to {\n        height: 0;\n      }\n    }\n  }\n  \n  --animate-overlay-show: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);\n  --animate-content-show: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);\n  \n  @keyframes overlayShow {\n    from {\n      opacity: 0;\n    }\n    to {\n      opacity: 1;\n    }\n  }\n  \n  @keyframes contentShow {\n    from {\n      opacity: 0;\n      transform: scale(0.96);\n    }\n    to {\n      opacity: 1;\n      transform: scale(1);\n    }\n  }\n  ",
+      "content": "@theme animatons {\n  --animate-accordion-open: slideDownAccordion 250ms ease-in-out;\n  --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;\n}\n@layer components {\n  @keyframes slideDownAccordion {\n    from {\n      height: 0;\n    }\n    to {\n      height: var(--radix-accordion-content-height);\n    }\n  }\n\n  @keyframes slideUpAccordion {\n    from {\n      height: var(--radix-accordion-content-height);\n    }\n    to {\n      height: 0;\n    }\n  }\n}\n",
       "type": "registry:file",
       "target": "./styles/accordion.css"
     }
