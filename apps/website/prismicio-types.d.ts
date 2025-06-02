@@ -6,12 +6,8 @@ type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
 type DocDocumentDataSlicesSlice =
   | NoteSlice
-  | FormDemoSlice
   | TableBlockSlice
-  | AlertDemoSlice
-  | AlertDialogDemoSlice
   | ChipsBlockSlice
-  | AccordionDemoSlice
   | CodeBlockSlice
   | TextBlockSlice;
 
@@ -349,96 +345,6 @@ export type AllDocumentTypes =
   | SettingsDocument;
 
 /**
- * Default variation for AccordionDemo Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type AccordionDemoSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Record<string, never>,
-  never
->;
-
-/**
- * Slice variation for *AccordionDemo*
- */
-type AccordionDemoSliceVariation = AccordionDemoSliceDefault;
-
-/**
- * AccordionDemo Shared Slice
- *
- * - **API ID**: `accordion_demo`
- * - **Description**: AccordionDemo
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type AccordionDemoSlice = prismic.SharedSlice<
-  "accordion_demo",
-  AccordionDemoSliceVariation
->;
-
-/**
- * Default variation for AlertDemo Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type AlertDemoSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Record<string, never>,
-  never
->;
-
-/**
- * Slice variation for *AlertDemo*
- */
-type AlertDemoSliceVariation = AlertDemoSliceDefault;
-
-/**
- * AlertDemo Shared Slice
- *
- * - **API ID**: `alert_demo`
- * - **Description**: AlertDemo
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type AlertDemoSlice = prismic.SharedSlice<
-  "alert_demo",
-  AlertDemoSliceVariation
->;
-
-/**
- * Default variation for AlertDialogDemo Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type AlertDialogDemoSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Record<string, never>,
-  never
->;
-
-/**
- * Slice variation for *AlertDialogDemo*
- */
-type AlertDialogDemoSliceVariation = AlertDialogDemoSliceDefault;
-
-/**
- * AlertDialogDemo Shared Slice
- *
- * - **API ID**: `alert_dialog_demo`
- * - **Description**: AlertDialogDemo
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type AlertDialogDemoSlice = prismic.SharedSlice<
-  "alert_dialog_demo",
-  AlertDialogDemoSliceVariation
->;
-
-/**
  * Primary content in *ChipsBlock → Default → Primary*
  */
 export interface ChipsBlockSliceDefaultPrimary {
@@ -551,36 +457,6 @@ type CodeBlockSliceVariation = CodeBlockSliceDefault;
 export type CodeBlockSlice = prismic.SharedSlice<
   "code_block",
   CodeBlockSliceVariation
->;
-
-/**
- * Default variation for FormDemo Slice
- *
- * - **API ID**: `default`
- * - **Description**: Default
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type FormDemoSliceDefault = prismic.SharedSliceVariation<
-  "default",
-  Record<string, never>,
-  never
->;
-
-/**
- * Slice variation for *FormDemo*
- */
-type FormDemoSliceVariation = FormDemoSliceDefault;
-
-/**
- * FormDemo Shared Slice
- *
- * - **API ID**: `form_demo`
- * - **Description**: FormDemo
- * - **Documentation**: https://prismic.io/docs/slice
- */
-export type FormDemoSlice = prismic.SharedSlice<
-  "form_demo",
-  FormDemoSliceVariation
 >;
 
 /**
@@ -830,15 +706,6 @@ declare module "@prismicio/client" {
       SettingsDocumentData,
       SettingsDocumentDataSocialMediaItem,
       AllDocumentTypes,
-      AccordionDemoSlice,
-      AccordionDemoSliceVariation,
-      AccordionDemoSliceDefault,
-      AlertDemoSlice,
-      AlertDemoSliceVariation,
-      AlertDemoSliceDefault,
-      AlertDialogDemoSlice,
-      AlertDialogDemoSliceVariation,
-      AlertDialogDemoSliceDefault,
       ChipsBlockSlice,
       ChipsBlockSliceDefaultPrimary,
       ChipsBlockSliceVariation,
@@ -847,9 +714,6 @@ declare module "@prismicio/client" {
       CodeBlockSliceDefaultPrimary,
       CodeBlockSliceVariation,
       CodeBlockSliceDefault,
-      FormDemoSlice,
-      FormDemoSliceVariation,
-      FormDemoSliceDefault,
       HeroCardSlice,
       HeroCardSliceDefaultPrimary,
       HeroCardSliceVariation,

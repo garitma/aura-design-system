@@ -42,22 +42,10 @@
             "note": {
               "type": "SharedSlice"
             },
-            "form_demo": {
-              "type": "SharedSlice"
-            },
             "table_block": {
               "type": "SharedSlice"
             },
-            "alert_demo": {
-              "type": "SharedSlice"
-            },
-            "alert_dialog_demo": {
-              "type": "SharedSlice"
-            },
             "chips_block": {
-              "type": "SharedSlice"
-            },
-            "accordion_demo": {
               "type": "SharedSlice"
             },
             "code_block": {
