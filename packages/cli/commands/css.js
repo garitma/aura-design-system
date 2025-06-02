@@ -1,4 +1,3 @@
-import { Command } from "commander";
 import fs from "fs";
 import path from "path";
 import chalk from "chalk";
@@ -66,7 +65,7 @@ export function registerCssCommand(program) {
 
       // Prepare new imports
       const newImports = styleFiles.map(
-        (file) => `@import './styles/${file}';`
+        (file) => `@import '../styles/${file}';`
       );
 
       // Insert imports after aura import if present, else at the top
@@ -222,9 +221,9 @@ export function registerCssCommand(program) {
       // Regex to match the exact block (with optional whitespace)
       const blockRegex = /\*\s*\{\s*@apply border-border outline-ring\/50;\s*\}/g;
       let newGlobalsCssContent = globalsCssContent.replace(blockRegex, "");
-      // Regex to match the body block
-      const bodyBlockRegex = /body\s*\{\s*@apply bg-background text-foreground;\s*\}/g;
-      newGlobalsCssContent = newGlobalsCssContent.replace(bodyBlockRegex, "");
+      // Regex to match the body block with background, color, and font-family
+      const bodyFullBlockRegex = /body\s*\{\s*background:\s*var\(--background\);\s*color:\s*var\(--foreground\);\s*font-family:\s*Arial,\s*Helvetica,\s*sans-serif;\s*\}/g;
+      newGlobalsCssContent = newGlobalsCssContent.replace(bodyFullBlockRegex, "");
       // Regex to match the import line
       const importRegex = /^\s*@import\s+"tw-animate-css";\s*$/gm;
       newGlobalsCssContent = newGlobalsCssContent.replace(importRegex, "");
@@ -254,6 +253,10 @@ export function registerCssCommand(program) {
           }
         }
       }
+
+      // Regex to match the dark mode root block
+      const darkModeRootRegex = /@media\s*\(prefers-color-scheme:\s*dark\)\s*\{\s*:root\s*\{[\s\S]*?\}\s*\}/g;
+      newGlobalsCssContent = newGlobalsCssContent.replace(darkModeRootRegex, "");
 
       if (globalsCssContent !== newGlobalsCssContent) {
         fs.writeFileSync(globalsCssPath, newGlobalsCssContent, "utf-8");
