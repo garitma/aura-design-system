@@ -8,7 +8,7 @@ import { registerUtilsCommand } from "../commands/utils.js";
 import { registerCssCommand } from "../commands/css.js";
 import { registerUpgradeCommand } from "../commands/upgrade.js";
 import { registerColorsCommand } from "../commands/colors.js";
-import { registerThemeCommand } from "../commands/theme.js";
+import { registerThemeCommand } from "../commands/themes.js";
 
 registerInitCommand(program);
 registerComponentsCommand(program);
