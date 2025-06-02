@@ -1,6 +1,4 @@
 @import "tailwindcss";
-@import "../styles/accordion.css";
-@import "../styles/dialog.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -99,8 +97,6 @@
   --color-accent-2: var(--accent-2);
   --color-accent-1: var(--accent-1);
 }
-
-
 
 :root {
   --aura-loader: var(--primary);
@@ -206,11 +202,12 @@
 }
 
 @layer base {
-  @import "@aura-design/system/main.css";
-
-  body {
+@import "@aura-design/system/main.css";
+@import './styles/accordion.css';
+@import './styles/dialog.css';
+body {
     @apply bg-background text-foreground;
-  }
+}
   html {
     font-size: 17px;
   }
