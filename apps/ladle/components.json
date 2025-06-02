@@ -11,12 +11,10 @@
   },
   "aliases": {
     "components": "@/components",
-    "utils": "@/lib/utils",
+    "utils": "@/utils/",
     "ui": "@/components/ui",
-    "lib": "@/lib",
-    "hooks": "@/hooks",
-    "slices": "@/slices",
-    "css": "@/styles"
+    "lib": "@/utils",
+    "hooks": "@/hooks"
   },
   "iconLibrary": "radix-icons"
 }

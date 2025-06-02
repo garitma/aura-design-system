@@ -1,5 +1,5 @@
 {
-  "$schema": "https://auradesignsystem.com/schema/registry.json",
+  "$schema": "http://localhost:3000/schema/registry.json",
   "name": "auradesign",
   "homepage": "http://auradesignsystem.com",
   "items": [
@@ -12,6 +12,11 @@
         {
           "path": "registry/default/ui/Accordion.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/css/accordion.css",
+          "type": "registry:file",
+          "target": "./styles/accordion.css"
         }
       ]
     },
