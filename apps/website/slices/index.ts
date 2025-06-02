@@ -3,12 +3,8 @@
 import dynamic from "next/dynamic";
 
 export const components = {
-  accordion_demo: dynamic(() => import("./AccordionDemo")),
-  alert_demo: dynamic(() => import("./AlertDemo")),
-  alert_dialog_demo: dynamic(() => import("./AlertDialogDemo")),
   chips_block: dynamic(() => import("./ChipsBlock")),
   code_block: dynamic(() => import("./CodeBlock")),
-  form_demo: dynamic(() => import("./FormDemo")),
   hero_card: dynamic(() => import("./HeroCard")),
   note: dynamic(() => import("./Note")),
   table_block: dynamic(() => import("./TableBlock")),
