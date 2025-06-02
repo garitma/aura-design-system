@@ -11,7 +11,7 @@ type MenuProps = {
 
 export default function Menu({ menu }: MenuProps) {
   return (
-    <NavigationMenu.Root className="relative z-10 w-full justify-end hidden md:!flex">
+    <NavigationMenu.Root className="relative z-10 w-full justify-end flex">
       {isFilled.group(menu.data.tabs) && (
         <NavigationMenu.List className="center m-0 flex p-1 gap-1">
           {menu.data.tabs.map((tab, index) => {

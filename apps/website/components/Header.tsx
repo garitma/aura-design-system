@@ -22,7 +22,7 @@ const Header = async () => {
           </li>
 
           <li>
-            <DrawerMenu menu={menu} />
+            {/* <DrawerMenu menu={menu} /> */}
             <Menu menu={menu} />
           </li>
         </ul>

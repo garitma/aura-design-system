@@ -1,16 +1,11 @@
 /* Import Tailwind CSS */
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
 /* Theme variables */
 @theme {
-  /* Border radius variables */
-  --radius-0.5: calc(var(--spacing) * 0.5);
-  --radius-1: calc(var(--spacing) * 1);
-  --radius-1.5: calc(var(--spacing) * 1.5);
-  --radius-2: calc(var(--spacing) * 2);
+ 
 
   /* Base spacing unit */
   --spacing: 13px;
