@@ -6,17 +6,14 @@
   "dependencies": [
     "@radix-ui/react-icons"
   ],
+  "registryDependencies": [
+    "https://auradesignsystem.com/r/accordion-css.json"
+  ],
   "files": [
     {
       "path": "registry/default/ui/Accordion.tsx",
       "content": "\"use client\";\n\nimport React from \"react\";\nimport { Accordion as AccordionRadix } from \"radix-ui\";\nimport { ChevronDownIcon } from \"@radix-ui/react-icons\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction Accordion({\n  ...props\n}: React.ComponentProps<typeof AccordionRadix.Root>) {\n  return <AccordionRadix.Root data-slot=\"accordion\" {...props} />;\n}\n\nfunction AccordionItem({\n  className,\n  ...props\n}: React.ComponentProps<typeof AccordionRadix.Item>) {\n  return (\n    <AccordionRadix.Item\n      data-slot=\"accordion-item\"\n      className={cn(\"overflow-hidden\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction AccordionTrigger({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof AccordionRadix.Trigger>) {\n  return (\n    <AccordionRadix.Header className=\"flex\">\n      <AccordionRadix.Trigger\n        data-slot=\"accordion-trigger\"\n        className={cn(\n          \"group flex justify-between flex-1 cursor-pointer items-center gap-1 p-1 w-full h6 hover:bg-gray3 border border-b-1 border-gray-3 border-x-0 border-t-0 px-2\",\n          className\n        )}\n        {...props}\n      >\n        {children}\n        <ChevronDownIcon className=\"group-data-[state=open]:rotate-180 transition duration-300\" />\n      </AccordionRadix.Trigger>\n    </AccordionRadix.Header>\n  );\n}\n\nfunction AccordionContent({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof AccordionRadix.Content>) {\n  return (\n    <AccordionRadix.Content\n      data-slot=\"accordion-content\"\n      className=\"bg-gray-2 data-[state=open]:animate-accordion-open data-[state=closed]:animate-accordion-closed\"\n      {...props}\n    >\n      <div className={cn(\"px-2 py-1\", className)}>{children}</div>\n    </AccordionRadix.Content>\n  );\n}\n\nexport { Accordion, AccordionItem, AccordionTrigger, AccordionContent };\n",
       "type": "registry:ui"
-    },
-    {
-      "path": "registry/default/css/accordion.css",
-      "content": "@theme animatons {\n    --animate-accordion-open: slideDownAccordion 250ms ease-in-out;\n    --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;\n  }\n  @layer components {\n    @keyframes slideDownAccordion {\n      from {\n        height: 0;\n      }\n      to {\n        height: var(--radix-accordion-content-height);\n      }\n    }\n  \n    @keyframes slideUpAccordion {\n      from {\n        height: var(--radix-accordion-content-height);\n      }\n      to {\n        height: 0;\n      }\n    }\n  }\n  \n  --animate-overlay-show: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);\n  --animate-content-show: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);\n  \n  @keyframes overlayShow {\n    from {\n      opacity: 0;\n    }\n    to {\n      opacity: 1;\n    }\n  }\n  \n  @keyframes contentShow {\n    from {\n      opacity: 0;\n      transform: scale(0.96);\n    }\n    to {\n      opacity: 1;\n      transform: scale(1);\n    }\n  }\n  ",
-      "type": "registry:file",
-      "target": "./styles/accordion.css"
     }
   ]
 }

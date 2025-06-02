@@ -1,5 +1,5 @@
 {
-  "$schema": "http://localhost:3000/schema/registry.json",
+  "$schema": "https://auradesignsystem.com/schema/registry.json",
   "name": "auradesign",
   "homepage": "http://auradesignsystem.com",
   "items": [
@@ -8,11 +8,22 @@
       "type": "registry:ui",
       "description": "Accordion",
       "dependencies": ["@radix-ui/react-icons"],
+      "registryDependencies": [
+        "https://auradesignsystem.com/r/accordion-css.json"
+      ],
       "files": [
         {
           "path": "registry/default/ui/Accordion.tsx",
           "type": "registry:ui"
-        },
+        }
+      ]
+    },
+    {
+      "name": "accordion-css",
+      "type": "registry:file",
+      "description": "Accordion animation css",
+      "meta": { "css": true },
+      "files": [
         {
           "path": "registry/default/css/accordion.css",
           "type": "registry:file",
@@ -129,6 +140,17 @@
         {
           "path": "registry/default/ui/Card.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "class-names",
+      "type": "registry:lib",
+      "description": "General class names utils",
+      "files": [
+        {
+          "path": "registry/default/utils/class-names.ts",
+          "type": "registry:lib"
         }
       ]
     },
@@ -418,17 +440,6 @@
       "files": [
         {
           "path": "registry/default/utils/web-validation.ts",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "class-names",
-      "type": "registry:lib",
-      "description": "General class names utils",
-      "files": [
-        {
-          "path": "registry/default/utils/class-names.ts",
           "type": "registry:lib"
         }
       ]

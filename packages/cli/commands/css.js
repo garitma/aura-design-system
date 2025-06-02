@@ -2,8 +2,11 @@ import { Command } from "commander";
 import fs from "fs";
 import path from "path";
 import chalk from "chalk";
+import { getRegistryItems } from "../utils/registry-utils.js";
 
 export function registerCssCommand(program) {
+  const { css } = getRegistryItems();
+
   const cssCommand = program
     .command("css")
     .description("CSS utilities for Aura Design System");
@@ -48,12 +51,14 @@ export function registerCssCommand(program) {
       let afterLayerBase = globalsCssContent.slice(layerBaseRegex.lastIndex);
 
       // Find main aura import inside @layer base
-      const mainAuraImportRegex = /@import\s+['\"]@aura-design\/system\/main.css['\"];\s*/;
+      const mainAuraImportRegex =
+        /@import\s+['\"]@aura-design\/system\/main.css['\"];\s*/;
       const auraImportMatch = mainAuraImportRegex.exec(layerBaseContent);
       let auraImport = auraImportMatch ? auraImportMatch[0] : null;
 
       // Remove all style imports from everywhere
-      const styleImportRegex = /@import\s+['\"]\.\/styles\/[\w\-]+\.css['\"];\s*/g;
+      const styleImportRegex =
+        /@import\s+['\"]\.\/styles\/[\w\-]+\.css['\"];\s*/g;
       beforeLayerBase = beforeLayerBase.replace(styleImportRegex, "");
       afterLayerBase = afterLayerBase.replace(styleImportRegex, "");
       layerBaseContent = layerBaseContent.replace(styleImportRegex, "");
@@ -67,7 +72,10 @@ export function registerCssCommand(program) {
       let newLayerBaseContent = layerBaseContent;
       if (auraImport) {
         // Remove aura import from layerBaseContent
-        newLayerBaseContent = newLayerBaseContent.replace(mainAuraImportRegex, "");
+        newLayerBaseContent = newLayerBaseContent.replace(
+          mainAuraImportRegex,
+          ""
+        );
         newLayerBaseContent = `${auraImport}\n${newImports.join("\n")}\n${newLayerBaseContent.trim()}`;
       } else {
         newLayerBaseContent = `${newImports.join("\n")}\n${newLayerBaseContent.trim()}`;
@@ -77,7 +85,11 @@ export function registerCssCommand(program) {
       const newGlobalsCssContent = `${beforeLayerBase}@layer base {\n${newLayerBaseContent}\n}${afterLayerBase}`;
 
       fs.writeFileSync(globalsCssPath, newGlobalsCssContent, "utf-8");
-      console.log(chalk.blue("globals.css updated: all style imports are now inside @layer base after the main aura import."));
+      console.log(
+        chalk.blue(
+          "globals.css updated: all style imports are now inside @layer base after the main aura import."
+        )
+      );
     });
 
   cssCommand
@@ -107,7 +119,8 @@ export function registerCssCommand(program) {
       let afterLayerBase = globalsCssContent.slice(layerBaseRegex.lastIndex);
 
       // Remove all main aura imports from everywhere
-      const mainAuraImportRegex = /@import\s+['\"]@aura-design\/system\/main.css['\"];\s*/g;
+      const mainAuraImportRegex =
+        /@import\s+['\"]@aura-design\/system\/main.css['\"];\s*/g;
       beforeLayerBase = beforeLayerBase.replace(mainAuraImportRegex, "");
       afterLayerBase = afterLayerBase.replace(mainAuraImportRegex, "");
       layerBaseContent = layerBaseContent.replace(mainAuraImportRegex, "");
@@ -119,6 +132,19 @@ export function registerCssCommand(program) {
       const newGlobalsCssContent = `${beforeLayerBase}@layer base {\n${newLayerBaseContent}\n}${afterLayerBase}`;
 
       fs.writeFileSync(globalsCssPath, newGlobalsCssContent, "utf-8");
-      console.log(chalk.blue("globals.css updated: @import '@aura-design/system/main.css'; is now at the top of @layer base."));
+      console.log(
+        chalk.blue(
+          "globals.css updated: @import '@aura-design/system/main.css'; is now at the top of @layer base."
+        )
+      );
+    });
+
+  cssCommand
+    .command("list")
+    .description("List all utils in the Aura Design System")
+    .action(() => {
+      css.forEach((util) => {
+        console.log(chalk.blue(`- ${util}`));
+      });
     });
 }
