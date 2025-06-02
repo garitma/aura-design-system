@@ -89,19 +89,19 @@ export function registerInitCommand(program) {
           process.exit(1);
         }
         // Run aura css clean
-        const cleanResult = spawnSync('aura', ['css', 'clean'], { stdio: 'inherit' });
+        const cleanResult = spawnSync('pnpm', ["dlx","@aura-design/cli", 'css', 'clean'], { stdio: 'inherit' });
         if (cleanResult.status !== 0) {
           console.error(chalk.red('Failed to run aura css clean.'));
           process.exit(1);
         }
         // Run aura css main
-        const mainResult = spawnSync('aura', ['css', 'main'], { stdio: 'inherit' });
+        const mainResult = spawnSync('pnpm', ["dlx","@aura-design/cli", 'css', 'main'], { stdio: 'inherit' });
         if (mainResult.status !== 0) {
           console.error(chalk.red('Failed to run aura css main.'));
           process.exit(1);
         }
         // Run aura css link
-        const linkResult = spawnSync('aura', ['css', 'link'], { stdio: 'inherit' });
+        const linkResult = spawnSync('pnpm', ["dlx","@aura-design/cli", 'css', 'link'], { stdio: 'inherit' });
         if (linkResult.status !== 0) {
           console.error(chalk.red('Failed to run aura css link.'));
           process.exit(1);
