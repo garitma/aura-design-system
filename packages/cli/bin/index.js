@@ -9,6 +9,7 @@ import { registerCssCommand } from "../commands/css.js";
 import { registerUpgradeCommand } from "../commands/upgrade.js";
 import { registerColorsCommand } from "../commands/colors.js";
 import { registerThemeCommand } from "../commands/themes.js";
+import { registerTypographyCommand } from "../commands/typography.js";
 
 registerInitCommand(program);
 registerComponentsCommand(program);
@@ -18,5 +19,6 @@ registerCssCommand(program);
 registerUpgradeCommand(program);
 registerColorsCommand(program);
 registerThemeCommand(program);
-    
+registerTypographyCommand(program);
+
 program.parse(process.argv);
