@@ -7,7 +7,7 @@ function Alert({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="alert"
       role="alert"
-      className={cn("flex gap-1 space-y-0.5 p-1 rounded-1 border", className)}
+      className={cn("flex gap-1 space-y-0.5 p-1 rounded-md border", className)}
       {...props}
     />
   );

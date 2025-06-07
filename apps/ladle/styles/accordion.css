@@ -1,47 +1,23 @@
 @theme animatons {
-    --animate-accordion-open: slideDownAccordion 250ms ease-in-out;
-    --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;
-  }
-  @layer components {
-    @keyframes slideDownAccordion {
-      from {
-        height: 0;
-      }
-      to {
-        height: var(--radix-accordion-content-height);
-      }
-    }
-  
-    @keyframes slideUpAccordion {
-      from {
-        height: var(--radix-accordion-content-height);
-      }
-      to {
-        height: 0;
-      }
-    }
-  }
-  
-  --animate-overlay-show: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-  --animate-content-show: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
-  
-  @keyframes overlayShow {
+  --animate-accordion-open: slideDownAccordion 250ms ease-in-out;
+  --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;
+}
+@layer components {
+  @keyframes slideDownAccordion {
     from {
-      opacity: 0;
+      height: 0;
     }
     to {
-      opacity: 1;
+      height: var(--radix-accordion-content-height);
     }
   }
-  
-  @keyframes contentShow {
+
+  @keyframes slideUpAccordion {
     from {
-      opacity: 0;
-      transform: scale(0.96);
+      height: var(--radix-accordion-content-height);
     }
     to {
-      opacity: 1;
-      transform: scale(1);
+      height: 0;
     }
   }
-  
+}

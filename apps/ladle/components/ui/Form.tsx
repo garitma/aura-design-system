@@ -8,6 +8,7 @@ import {
 import { ChevronDownIcon, CheckIcon, SymbolIcon } from "@radix-ui/react-icons";
 
 import { FieldProps } from "@/hooks/use-dynamic-form";
+import AlertStatus from "@/components/AlertStatus";
 import Button, { ButtonProps } from "@/components/ui/Button";
 
 interface FormProps extends FormRadix.FormProps {
@@ -175,9 +176,9 @@ export const FormSwitch = React.forwardRef<HTMLDivElement, FormSwitchProps>(
             id={idConnect}
             checked={Boolean(field?.value)}
             onCheckedChange={field?.onCheckedChange}
-            className="relative h-1.5 w-2.5 cursor-pointer rounded-full outline-none bg-black-4 data-[state=checked]:bg-black-10"
+            className="relative h-1.5 w-2.5 cursor-pointer rounded-full outline-none bg-accent-4 data-[state=checked]:bg-accent-10"
           >
-            <SwitchRadix.Thumb className="block size-1 translate-x-[3.5px] rounded-full bg-black-1 shadow-md transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[15.5px]" />
+            <SwitchRadix.Thumb className="block size-1 translate-x-[3.5px] rounded-full bg-gray-1 shadow-md transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[15.5px]" />
           </SwitchRadix.Root>
         </div>
         <FormRadix.Control
@@ -224,16 +225,16 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
       >
         <div className="flex items-center gap-1">
           <div>
-          <CheckboxRadix.Root
-            id={idConnect}
-            className="border flex size-1.5 items-center justify-center rounded outline-none"
-            checked={Boolean(field?.value)}
-            onCheckedChange={field?.onCheckedChange}
-          >
-            <CheckboxRadix.Indicator>
-              <CheckIcon />
-            </CheckboxRadix.Indicator>
-          </CheckboxRadix.Root>
+            <CheckboxRadix.Root
+              id={idConnect}
+              className="border flex size-1.5 items-center justify-center rounded outline-none"
+              checked={Boolean(field?.value)}
+              onCheckedChange={field?.onCheckedChange}
+            >
+              <CheckboxRadix.Indicator>
+                <CheckIcon />
+              </CheckboxRadix.Indicator>
+            </CheckboxRadix.Root>
           </div>
           {label && (
             <FormRadix.Label htmlFor={idConnect}>{label}</FormRadix.Label>
@@ -257,13 +258,20 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
   }
 );
 
-interface FormAlertProps extends AlertProps {
+interface FormAlertProps {
   formData: any;
 }
 
-// export const FormAlert = ({ children, formData, ...props }: FormAlertProps) => {
-//   if (formData.fetchStatus !== "error") {
-//     return null;
-//   }
-//   return <Alert status="danger" {...props} label={formData.error} />;
-// };
+export const FormAlert = ({ formData, ...props }: FormAlertProps) => {
+  if (formData.fetchStatus !== "error") {
+    return null;
+  }
+
+  if (!formData.error) {
+    return null;
+  }
+
+  return (
+    <AlertStatus status="danger" {...props} description={formData.error} />
+  );
+};

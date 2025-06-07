@@ -23,7 +23,7 @@ const Alert = ({
   showIcon = true,
   ...props
 }: AlertProps) => {
-  const classNameConnect: string[] = ["flex gap-1 p-1 rounded-1 border"];
+  const classNameConnect: string[] = ["flex gap-1 p-1 rounded-md border"];
 
   const statusConfig = {
     info: {

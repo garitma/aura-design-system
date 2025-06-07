@@ -14,10 +14,6 @@
   --danger-contrast: #8e3106;
   --warning: #fefbe8;
   --warning-contrast: #5d5104;
-  --radius-0.5: calc(var(--spacing) * 0.5);
-  --radius-1: calc(var(--spacing) * 1);
-  --radius-1.5: calc(var(--spacing) * 1.5);
-  --radius-2: calc(var(--spacing) * 2);
   --color-foreground: var(--foreground);
   --color-background: var(--background);
   --aura-loader: var(--aura-loader);
@@ -30,10 +26,10 @@
   --color-info-contrast: var(--info-contrast);
   --color-info: var(--info);
 
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: calc(var(--spacing) * 0.5);
+  --radius-md: calc(var(--spacing) * 1);
+  --radius-lg: calc(var(--spacing) * 1.5);
+  --radius-xl: calc(var(--spacing) * 2);
   --secundary-foreground: var(--secundary-foreground);
   --secundary: var(--secundary);
   --primary-foreground: var(--primary-foreground);
@@ -157,7 +153,7 @@
   --gray-a10: #000012d3;
   --gray-a11: #0000219d;
   --gray-a12: #00000fe0;
-  --gray-contrast: #ffffff;
+  --gray-contrast: #FFFFFF;
   --gray-surface: #ffffffcc;
   --gray-indicator: #8b8ba4;
   --gray-track: #8b8ba4;
@@ -203,8 +199,8 @@
 
 @layer base {
 @import "@aura-design/system/main.css";
-@import './styles/accordion.css';
-@import './styles/dialog.css';
+@import '../styles/accordion.css';
+@import '../styles/dialog.css';
 body {
     @apply bg-background text-foreground;
 }
@@ -228,3 +224,4 @@ body {
     height: 4px;
   }
 }
+

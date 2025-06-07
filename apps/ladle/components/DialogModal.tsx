@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/Dialog";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/class-names";
 
 interface DialogModalProps {
   trigger?: React.ReactNode;

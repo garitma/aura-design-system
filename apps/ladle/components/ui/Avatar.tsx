@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { Avatar as AvatarRadix } from "radix-ui";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/class-names";
 
 function Avatar({
   className,

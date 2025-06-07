@@ -40,7 +40,7 @@ const CodePreviewTabs = ({
 
       {/* Preview tab content */}
       <Tabs.Content
-        className="border border-black-3 rounded-1 rounded-t-none p-1 min-h-[33vh]"
+        className="border border-black-3 rounded-md rounded-t-none p-1 min-h-[33vh]"
         value="tab1"
       >
         {children}
@@ -49,7 +49,7 @@ const CodePreviewTabs = ({
       {/* Code tab content with syntax highlighting */}
       <Tabs.Content
         value="tab2"
-        className="border border-black-3 rounded-1 rounded-t-none p-1"
+        className="border border-black-3 rounded-md rounded-t-none p-1"
       >
         <SyntaxHighlighter code={code} language={language || "jsx"} />
       </Tabs.Content>

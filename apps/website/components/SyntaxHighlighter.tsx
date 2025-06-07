@@ -31,7 +31,7 @@ function CodeBlockSyntaxHighlighter({
   // Common viewport styling classes
   const classNameViewport: string[] = [
     "size-full",
-    "rounded-1",
+    "rounded-md",
     "border",
     "border-black-3",
     "rounded-t-none",

@@ -40,7 +40,7 @@ export default function Menu({ menu }: MenuProps) {
                 </NavigationMenu.Trigger>
 
                 <NavigationMenu.Content>
-                  <ul className="absolute top-4 bg-black-1 w-[200px] shadow-md p-0.5 rounded-1">
+                  <ul className="absolute top-4 bg-black-1 w-[200px] shadow-md p-0.5 rounded-md">
                     {tab.sub_tab_item.map((subTab) => {
                       return (
                         <li key={subTab.key}>

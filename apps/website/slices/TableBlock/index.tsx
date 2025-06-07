@@ -22,7 +22,7 @@ const TableBlock: FC<TableBlockProps> = ({ slice }) => {
       className="content"
     >
       {isFilled.table(slice.primary.content) && (
-        <ScrollArea rootProps={{ className: "w-full border-1 border-black-3 rounded-1 overflow-hidden" }}>
+        <ScrollArea rootProps={{ className: "w-full border-1 border-black-3 rounded-md overflow-hidden" }}>
           <PrismicTable field={slice.primary.content} />
         </ScrollArea>
       )}

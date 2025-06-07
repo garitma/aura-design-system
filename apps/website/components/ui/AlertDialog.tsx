@@ -70,7 +70,7 @@ const AlertDialog = ({
       />
       {/* Main dialog content container */}
       <AlertDialogRadix.Content
-        className="smash fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] -translate-x-1/2 -translate-y-1/2 bg-black-1 p-2 rounded-1 z-10"
+        className="smash fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] -translate-x-1/2 -translate-y-1/2 bg-black-1 p-2 rounded-md z-10"
         {...contentProps}
       >
         <AlertDialogRadix.Title className="m-0" {...titleProps}>

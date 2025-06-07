@@ -3,7 +3,7 @@ import { NavigationMenu as NavigationMenuRadix } from "radix-ui";
 
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/class-names";
 
 function NavigationMenu({
   className,

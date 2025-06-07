@@ -3,7 +3,7 @@
 import * as React from "react";
 import { AlertDialog as AlertDialogRadix } from "radix-ui";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/class-names";
 
 function AlertDialog({
   ...props
@@ -51,7 +51,7 @@ function AlertDialogContent({
       <AlertDialogRadix.Content
         data-slot="alert-dialog-content"
         className={cn(
-          "smash fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] -translate-x-1/2 -translate-y-1/2 bg-gray-1 p-2 rounded-1 z-10 data-[state=open]:animate-content-show",
+          "smash fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] -translate-x-1/2 -translate-y-1/2 bg-gray-1 p-2 rounded-md z-10 data-[state=open]:animate-content-show",
           className
         )}
         {...props}
