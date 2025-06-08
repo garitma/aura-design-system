@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "web-validation",
   "type": "registry:lib",
-  "description": "Web validation ajv ",
+  "description": "A library for client-side data validation using AJV, supporting JSON Schema and various formats.",
   "dependencies": [
     "radix-ui",
     "ajv",

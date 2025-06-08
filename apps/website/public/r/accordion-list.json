@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "accordion-list",
   "type": "registry:component",
-  "description": "Accordion component",
+  "description": "A pre-styled component that utilizes the accordion primitive to display a list of collapsible items.",
   "dependencies": [
     "@radix-ui/react-icons"
   ],

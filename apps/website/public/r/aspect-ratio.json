@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "aspect-ratio",
   "type": "registry:ui",
-  "description": "Aspect ratio component",
+  "description": "Displays content within a desired ratio, regardless of the content's original size.",
   "dependencies": [
     "radix-ui"
   ],

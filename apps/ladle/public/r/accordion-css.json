@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "accordion-css",
   "type": "registry:file",
-  "description": "Accordion animation css",
+  "description": "CSS styles providing animations for the accordion component.",
   "files": [
     {
       "path": "registry/default/css/accordion.css",

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "menubar",
   "type": "registry:ui",
-  "description": "Menubar component",
+  "description": "A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.",
   "dependencies": [
     "radix-ui"
   ],

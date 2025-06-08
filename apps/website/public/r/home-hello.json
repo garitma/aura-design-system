@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "home-hello",
   "type": "registry:page",
-  "description": "Hello Aura Home",
+  "description": "A pre-built landing page template demonstrating a basic 'Hello Aura' setup.",
   "files": [
     {
       "path": "registry/default/pages/hello/page.tsx",

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "header",
   "type": "registry:component",
-  "description": "Header content",
+  "description": "A standard header component, often containing branding, navigation, and user actions.",
   "files": [
     {
       "path": "registry/default/components/Header.tsx",

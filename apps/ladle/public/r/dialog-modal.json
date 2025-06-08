@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dialog-modal",
   "type": "registry:component",
-  "description": "Dialog component",
+  "description": "A pre-styled modal component built using the Dialog primitive for displaying custom content or forms.",
   "dependencies": [
     "@radix-ui/react-icons"
   ],

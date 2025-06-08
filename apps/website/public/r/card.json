@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "card",
   "type": "registry:ui",
-  "description": "Card component",
+  "description": "A container that groups related content and actions about a single subject.",
   "files": [
     {
       "path": "registry/default/ui/Card.tsx",

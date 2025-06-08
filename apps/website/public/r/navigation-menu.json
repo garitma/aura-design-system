@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "navigation-menu",
   "type": "registry:ui",
-  "description": "Navigation Menu component",
+  "description": "A collection of links for navigating websites, often used in site headers.",
   "dependencies": [
     "radix-ui"
   ],

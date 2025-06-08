@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "wrapper",
   "type": "registry:ui",
-  "description": "Progress Menu component",
+  "description": "A general-purpose container component used for layout and spacing of its children.",
   "dependencies": [
     "radix-ui"
   ],

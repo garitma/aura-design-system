@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "alert-dialog",
   "type": "registry:ui",
-  "description": "Alert Dialog Custom Primitives",
+  "description": "A modal dialog that interrupts the user with important content and expects a response.",
   "dependencies": [
     "@radix-ui/react-icons"
   ],

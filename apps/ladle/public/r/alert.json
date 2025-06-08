@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "alert",
   "type": "registry:ui",
-  "description": "alert component",
+  "description": "Displays a short, important message in a way that attracts the user's attention without interrupting their task.",
   "dependencies": [
     "@radix-ui/react-icons"
   ],

@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "class-names",
   "type": "registry:lib",
-  "description": "General class names utils",
+  "description": "A utility library for conditionally joining CSS class names together.",
   "files": [
     {
       "path": "registry/default/utils/class-names.ts",

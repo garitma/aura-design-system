@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "popover",
   "type": "registry:ui",
-  "description": "Popover Menu component",
+  "description": "Displays rich content in a portal, triggered by a button. Can be used for dropdowns, tooltips, and more.",
   "dependencies": [
     "radix-ui"
   ],

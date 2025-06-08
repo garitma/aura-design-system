@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "avatar",
   "type": "registry:ui",
-  "description": "alert component",
+  "description": "An image element with a fallback for representing a user or entity.",
   "dependencies": [
     "radix-ui"
   ],

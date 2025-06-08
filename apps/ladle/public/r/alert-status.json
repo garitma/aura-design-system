@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "alert-status",
   "type": "registry:component",
-  "description": "alert component",
+  "description": "A component that leverages the alert primitive to display status messages (e.g., success, error, warning).",
   "dependencies": [
     "@radix-ui/react-icons"
   ],

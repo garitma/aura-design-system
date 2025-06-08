@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "use-dynamic-form",
   "type": "registry:hook",
-  "description": "flexible form state management solution designed to handle dynamic forms with various field types",
+  "description": "A React hook providing a flexible state management solution for dynamic forms with diverse field types and validation.",
   "files": [
     {
       "path": "registry/default/hooks/use-dynamic-form.ts",

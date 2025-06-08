@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "button",
   "type": "registry:ui",
-  "description": "button component",
+  "description": "An interactive element that triggers an action or event when clicked.",
   "dependencies": [
     "@aura-design/system"
   ],

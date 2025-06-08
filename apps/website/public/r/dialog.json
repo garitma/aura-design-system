@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dialog",
   "type": "registry:ui",
-  "description": "Dialog primitive",
+  "description": "A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.",
   "dependencies": [
     "radix-ui"
   ],

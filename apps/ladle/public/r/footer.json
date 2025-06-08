@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "footer",
   "type": "registry:component",
-  "description": "Footer content",
+  "description": "A standard footer component, typically used for copyright information, navigation links, or site map.",
   "files": [
     {
       "path": "registry/default/components/Footer.tsx",

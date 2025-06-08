@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "section",
   "type": "registry:component",
-  "description": "Progress Menu component",
+  "description": "A semantic component used to group related content, often utilizing a wrapper for consistent spacing and styling.",
   "registryDependencies": [
     "http://localhost:3000/r/wrapper.json"
   ],

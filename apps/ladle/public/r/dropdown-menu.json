@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "dropdown-menu",
   "type": "registry:ui",
-  "description": "Dropdown Menu component",
+  "description": "Displays a menu to the user—such as a list of actions or functions—triggered by a button.",
   "dependencies": [
     "radix-ui"
   ],
