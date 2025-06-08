@@ -1,0 +1,23 @@
+@theme animatons {
+  --animate-accordion-open: slideDownAccordion 250ms ease-in-out;
+  --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;
+}
+@layer components {
+  @keyframes slideDownAccordion {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes slideUpAccordion {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
+    }
+  }
+}

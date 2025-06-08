@@ -4,6 +4,209 @@
   "homepage": "http://auradesignsystem.com",
   "items": [
     {
+      "name": "accordion",
+      "type": "registry:ui",
+      "description": "A vertically stacked set of interactive headings that each reveal a section of content.",
+      "dependencies": [
+        "@radix-ui/react-icons"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/accordion-css.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/Accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "accordion-css",
+      "type": "registry:file",
+      "description": "CSS styles providing animations for the accordion component.",
+      "meta": {
+        "css": true
+      },
+      "files": [
+        {
+          "path": "registry/default/css/accordion.css",
+          "type": "registry:file",
+          "target": "./styles/accordion.css"
+        }
+      ]
+    },
+    {
+      "name": "accordion-list",
+      "type": "registry:component",
+      "description": "A pre-styled component that utilizes the accordion primitive to display a list of collapsible items.",
+      "dependencies": [
+        "@radix-ui/react-icons"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/accordion.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/AccordionList.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "description": "Displays a short, important message in a way that attracts the user's attention without interrupting their task.",
+      "dependencies": [
+        "@radix-ui/react-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/Alert.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "description": "A modal dialog that interrupts the user with important content and expects a response.",
+      "dependencies": [
+        "@radix-ui/react-icons"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/AlertDialog.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "alert-dialog-modal",
+      "type": "registry:ui",
+      "description": "A pre-styled modal component built using the Alert Dialog primitive for critical user notifications.",
+      "dependencies": [
+        "@radix-ui/react-icons"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/alert-dialog.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/AlertDialogModal.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "alert-status",
+      "type": "registry:component",
+      "description": "A component that leverages the alert primitive to display status messages (e.g., success, error, warning).",
+      "dependencies": [
+        "@radix-ui/react-icons"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/alert.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/AlertStatus.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "description": "Displays content within a desired ratio, regardless of the content's original size.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/AspectRatio.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "description": "An image element with a fallback for representing a user or entity.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/Avatar.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "description": "An interactive element that triggers an action or event when clicked.",
+      "dependencies": [
+        "@aura-design/system"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/Button.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "description": "A container that groups related content and actions about a single subject.",
+      "files": [
+        {
+          "path": "registry/default/ui/Card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "class-names",
+      "type": "registry:lib",
+      "description": "A utility library for conditionally joining CSS class names together.",
+      "files": [
+        {
+          "path": "registry/default/utils/class-names.ts",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "description": "An interactive component which expands/collapses a content area.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/Collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "description": "Displays a menu to the user —such as a set of actions or functions—triggered by a right-click.",
+      "dependencies": [
+        "radix-ui"
+      ],
+      "files": [
+        {
+          "path": "registry/default/ui/ContextMenu.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "default",
       "extends": "none",
       "type": "registry:style",
@@ -48,187 +251,12 @@
       }
     },
     {
-      "name": "accordion",
-      "type": "registry:ui",
-      "description": "A vertically stacked set of interactive headings that each reveal a section of content.",
-      "dependencies": ["@radix-ui/react-icons"],
-      "registryDependencies": [
-        "http://localhost:3000/r/accordion-css.json"
-      ],
-      "files": [
-        {
-          "path": "registry/default/ui/Accordion.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "accordion-css",
-      "type": "registry:file",
-      "description": "CSS styles providing animations for the accordion component.",
-      "meta": {
-        "css": true
-      },
-      "files": [
-        {
-          "path": "registry/default/css/accordion.css",
-          "type": "registry:file",
-          "target": "./styles/accordion.css"
-        }
-      ]
-    },
-    {
-      "name": "accordion-list",
-      "type": "registry:component",
-      "description": "A pre-styled component that utilizes the accordion primitive to display a list of collapsible items.",
-      "dependencies": ["@radix-ui/react-icons"],
-      "registryDependencies": ["http://localhost:3000/r/accordion.json"],
-      "files": [
-        {
-          "path": "registry/default/components/AccordionList.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "alert",
-      "type": "registry:ui",
-      "description": "Displays a short, important message in a way that attracts the user's attention without interrupting their task.",
-      "dependencies": ["@radix-ui/react-icons"],
-      "files": [
-        {
-          "path": "registry/default/ui/Alert.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "alert-dialog",
-      "type": "registry:ui",
-      "description": "A modal dialog that interrupts the user with important content and expects a response.",
-      "dependencies": ["@radix-ui/react-icons"],
-      "files": [
-        {
-          "path": "registry/default/ui/AlertDialog.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "alert-dialog-modal",
-      "type": "registry:ui",
-      "description": "A pre-styled modal component built using the Alert Dialog primitive for critical user notifications.",
-      "dependencies": ["@radix-ui/react-icons"],
-      "registryDependencies": [
-        "http://localhost:3000/r/alert-dialog.json"
-      ],
-      "files": [
-        {
-          "path": "registry/default/components/AlertDialogModal.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "alert-status",
-      "type": "registry:component",
-      "description": "A component that leverages the alert primitive to display status messages (e.g., success, error, warning).",
-      "dependencies": ["@radix-ui/react-icons"],
-      "registryDependencies": ["http://localhost:3000/r/alert.json"],
-      "files": [
-        {
-          "path": "registry/default/components/AlertStatus.tsx",
-          "type": "registry:component"
-        }
-      ]
-    },
-    {
-      "name": "aspect-ratio",
-      "type": "registry:ui",
-      "description": "Displays content within a desired ratio, regardless of the content's original size.",
-      "dependencies": ["radix-ui"],
-      "files": [
-        {
-          "path": "registry/default/ui/AspectRatio.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "avatar",
-      "type": "registry:ui",
-      "description": "An image element with a fallback for representing a user or entity.",
-      "dependencies": ["radix-ui"],
-      "files": [
-        {
-          "path": "registry/default/ui/Avatar.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "button",
-      "type": "registry:ui",
-      "description": "An interactive element that triggers an action or event when clicked.",
-      "dependencies": ["@aura-design/system"],
-      "files": [
-        {
-          "path": "registry/default/ui/Button.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "card",
-      "type": "registry:ui",
-      "description": "A container that groups related content and actions about a single subject.",
-      "files": [
-        {
-          "path": "registry/default/ui/Card.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "class-names",
-      "type": "registry:lib",
-      "description": "A utility library for conditionally joining CSS class names together.",
-      "files": [
-        {
-          "path": "registry/default/utils/class-names.ts",
-          "type": "registry:lib"
-        }
-      ]
-    },
-    {
-      "name": "collapsible",
-      "type": "registry:ui",
-      "description": "An interactive component which expands/collapses a content area.",
-      "dependencies": ["radix-ui"],
-      "files": [
-        {
-          "path": "registry/default/ui/Collapsible.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
-      "name": "context-menu",
-      "type": "registry:ui",
-      "description": "Displays a menu to the user —such as a set of actions or functions—triggered by a right-click.",
-      "dependencies": ["radix-ui"],
-      "files": [
-        {
-          "path": "registry/default/ui/ContextMenu.tsx",
-          "type": "registry:ui"
-        }
-      ]
-    },
-    {
       "name": "dialog",
       "type": "registry:ui",
       "description": "A window overlaid on either the primary window or another dialog window, rendering the content underneath inert.",
-      "dependencies": ["radix-ui"],
+      "dependencies": [
+        "radix-ui"
+      ],
       "files": [
         {
           "path": "registry/default/ui/Dialog.tsx",
@@ -240,8 +268,12 @@
       "name": "dialog-modal",
       "type": "registry:component",
       "description": "A pre-styled modal component built using the Dialog primitive for displaying custom content or forms.",
-      "dependencies": ["@radix-ui/react-icons"],
-      "registryDependencies": ["http://localhost:3000/r/dialog.json"],
+      "dependencies": [
+        "@radix-ui/react-icons"
+      ],
+      "registryDependencies": [
+        "http://localhost:3000/r/dialog.json"
+      ],
       "files": [
         {
           "path": "registry/default/components/DialogModal.tsx",
@@ -253,7 +285,9 @@
       "name": "drawer",
       "type": "registry:ui",
       "description": "A dismissible sidebar that slides in from the edge of the screen, often used for navigation or supplemental content.",
-      "dependencies": ["vaul"],
+      "dependencies": [
+        "vaul"
+      ],
       "files": [
         {
           "path": "registry/default/ui/Drawer.tsx",
@@ -265,7 +299,9 @@
       "name": "dropdown-menu",
       "type": "registry:ui",
       "description": "Displays a menu to the user—such as a list of actions or functions—triggered by a button.",
-      "dependencies": ["radix-ui"],
+      "dependencies": [
+        "radix-ui"
+      ],
       "files": [
         {
           "path": "registry/default/ui/DropdownMenu.tsx",
@@ -288,7 +324,12 @@
       "name": "form",
       "type": "registry:component",
       "description": "Provides structure for building accessible and validated forms, integrating with dynamic form hooks and validation utilities.",
-      "dependencies": ["radix-ui", "ajv", "ajv-formats", "ajv-errors"],
+      "dependencies": [
+        "radix-ui",
+        "ajv",
+        "ajv-formats",
+        "ajv-errors"
+      ],
       "registryDependencies": [
         "http://localhost:3000/r/use-dynamic-form.json",
         "http://localhost:3000/r/web-validation.json"
@@ -332,7 +373,9 @@
       "name": "hover-card",
       "type": "registry:ui",
       "description": "For sighted users to preview content available behind a link.",
-      "dependencies": ["radix-ui"],
+      "dependencies": [
+        "radix-ui"
+      ],
       "files": [
         {
           "path": "registry/default/ui/HoverCard.tsx",
@@ -382,7 +425,9 @@
       "name": "menubar",
       "type": "registry:ui",
       "description": "A visually persistent menu common in desktop applications that provides quick access to a consistent set of commands.",
-      "dependencies": ["radix-ui"],
+      "dependencies": [
+        "radix-ui"
+      ],
       "files": [
         {
           "path": "registry/default/ui/Menubar.tsx",
@@ -394,7 +439,9 @@
       "name": "n-progress",
       "type": "registry:component",
       "description": "A customizable progress bar component for Next.js applications, providing visual feedback during page transitions and data loading.",
-      "dependencies": ["next-nprogress-bar"],
+      "dependencies": [
+        "next-nprogress-bar"
+      ],
       "css": {
         "@layer components": {
           ".nprogress": {
@@ -423,7 +470,9 @@
       "name": "navigation-menu",
       "type": "registry:ui",
       "description": "A collection of links for navigating websites, often used in site headers.",
-      "dependencies": ["radix-ui"],
+      "dependencies": [
+        "radix-ui"
+      ],
       "files": [
         {
           "path": "registry/default/ui/NavigationMenu.tsx",
@@ -435,7 +484,9 @@
       "name": "popover",
       "type": "registry:ui",
       "description": "Displays rich content in a portal, triggered by a button. Can be used for dropdowns, tooltips, and more.",
-      "dependencies": ["radix-ui"],
+      "dependencies": [
+        "radix-ui"
+      ],
       "files": [
         {
           "path": "registry/default/ui/Popover.tsx",
@@ -447,7 +498,9 @@
       "name": "progress",
       "type": "registry:ui",
       "description": "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
-      "dependencies": ["radix-ui"],
+      "dependencies": [
+        "radix-ui"
+      ],
       "files": [
         {
           "path": "registry/default/ui/Progress.tsx",
@@ -459,7 +512,9 @@
       "name": "radio-group",
       "type": "registry:ui",
       "description": "A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.",
-      "dependencies": ["@radix-ui/react-icons"],
+      "dependencies": [
+        "@radix-ui/react-icons"
+      ],
       "files": [
         {
           "path": "registry/default/ui/RadioGroup.tsx",
@@ -482,7 +537,9 @@
       "name": "section",
       "type": "registry:component",
       "description": "A semantic component used to group related content, often utilizing a wrapper for consistent spacing and styling.",
-      "registryDependencies": ["http://localhost:3000/r/wrapper.json"],
+      "registryDependencies": [
+        "http://localhost:3000/r/wrapper.json"
+      ],
       "files": [
         {
           "path": "registry/default/components/Section.tsx",
@@ -614,7 +671,12 @@
     {
       "name": "web-validation",
       "type": "registry:lib",
-      "dependencies": ["radix-ui", "ajv", "ajv-formats", "ajv-errors"],
+      "dependencies": [
+        "radix-ui",
+        "ajv",
+        "ajv-formats",
+        "ajv-errors"
+      ],
       "description": "A library for client-side data validation using AJV, supporting JSON Schema and various formats.",
       "files": [
         {
@@ -627,7 +689,9 @@
       "name": "wrapper",
       "type": "registry:ui",
       "description": "A general-purpose container component used for layout and spacing of its children.",
-      "dependencies": ["radix-ui"],
+      "dependencies": [
+        "radix-ui"
+      ],
       "files": [
         {
           "path": "registry/default/ui/Wrapper.tsx",

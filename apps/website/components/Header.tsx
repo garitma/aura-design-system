@@ -3,7 +3,7 @@ import { createClient } from "@/prismicio";
 import Link from "next/link";
 
 import Menu from "@/components/Menu";
-import DrawerMenu from "@/components/DrawerMenu";
+import MCPNavItem from "@/components/MCPNavItem";
 
 const Header = async () => {
   const client = createClient();
@@ -12,7 +12,7 @@ const Header = async () => {
   const settings = await client.getSingle("settings").catch((e) => e);
 
   return (
-    <header className="p-0.5 border-b border-b-black-3">
+    <header className="p-0.5 border-b border-b-gray-3">
       <div className="smush">
         <ul className="nav-list ">
           <li className="item">
@@ -21,10 +21,10 @@ const Header = async () => {
             </Link>
           </li>
 
-          <li>
-            {/* <DrawerMenu menu={menu} /> */}
+          <ul className="nav-list">
             <Menu menu={menu} />
-          </li>
+            <MCPNavItem />
+          </ul>
         </ul>
       </div>
     </header>

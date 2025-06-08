@@ -1,39 +1,66 @@
-import React, { ReactNode } from "react";
+"use client";
+
+import React from "react";
 import { Accordion as AccordionRadix } from "radix-ui";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 
-type AccordionItem = {
-  title: ReactNode;
-  content: ReactNode;
-};
+import { cn } from "@/utils/class-names";
 
-type AccordionProps = {
-  items: AccordionItem[];
-};
+function Accordion({
+  ...props
+}: React.ComponentProps<typeof AccordionRadix.Root>) {
+  return <AccordionRadix.Root data-slot="accordion" {...props} />;
+}
 
-const Accordion = ({ items, ...props }: AccordionProps) => {
+function AccordionItem({
+  className,
+  ...props
+}: React.ComponentProps<typeof AccordionRadix.Item>) {
   return (
-    <AccordionRadix.Root collapsible type="single" {...props}>
-      {items.map((item, index) => (
-        <AccordionRadix.Item
-          className="overflow-hidden"
-          value={`item-${index}`}
-          key={`item-${index}`}
-        >
-          <AccordionRadix.Trigger className="group flex justify-between flex-1 cursor-pointer items-center gap-1 p-1 w-full h6 hover:bg-black3 border border-neutral-200 border-b-1 border-black-3 border-x-0 border-t-0 px-2 dark:border-neutral-800">
-            {item.title}
-            <ChevronDownIcon
-              aria-hidden
-              className="group-data-[state=open]:rotate-180 transition duration-300"
-            />
-          </AccordionRadix.Trigger>
-          <AccordionRadix.Content className="bg-black-2 data-[state=open]:animate-accordion-open data-[state=closed]:animate-accordion-closed">
-            <div className="px-2 py-1">{item.content}</div>
-          </AccordionRadix.Content>
-        </AccordionRadix.Item>
-      ))}
-    </AccordionRadix.Root>
+    <AccordionRadix.Item
+      data-slot="accordion-item"
+      className={cn("overflow-hidden", className)}
+      {...props}
+    />
   );
-};
+}
 
-export default Accordion;
+function AccordionTrigger({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof AccordionRadix.Trigger>) {
+  return (
+    <AccordionRadix.Header className="flex">
+      <AccordionRadix.Trigger
+        data-slot="accordion-trigger"
+        className={cn(
+          "group flex justify-between flex-1 cursor-pointer items-center gap-1 p-1 w-full h6 hover:bg-gray3 border border-b-1 border-gray-3 border-x-0 border-t-0 px-2 font-normal",
+          className
+        )}
+        {...props}
+      >
+        {children}
+        <ChevronDownIcon className="group-data-[state=open]:rotate-180 transition duration-300" />
+      </AccordionRadix.Trigger>
+    </AccordionRadix.Header>
+  );
+}
+
+function AccordionContent({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof AccordionRadix.Content>) {
+  return (
+    <AccordionRadix.Content
+      data-slot="accordion-content"
+      className="bg-gray-2 data-[state=open]:animate-accordion-open data-[state=closed]:animate-accordion-closed"
+      {...props}
+    >
+      <div className={cn("px-2 py-1", className)}>{children}</div>
+    </AccordionRadix.Content>
+  );
+}
+
+export { Accordion, AccordionItem, AccordionTrigger, AccordionContent };

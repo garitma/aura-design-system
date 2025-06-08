@@ -1,8 +1,8 @@
-import Section from "@/components/ui/Section";
+import Section from "@/components/Section";
 const Footer = () => {
   return (
-    <footer className="border-t border-black-3">
-      <Section passDiv className="p-1">
+    <footer className="border-t border-gray-3">
+      <Section className="p-1">
         <p>Built by Garitma. The source code is available on <a href="https://github.com/garitma/aura-design-system" className="underline" target="_blank">GitHub</a>.</p>
       </Section>
     </footer>

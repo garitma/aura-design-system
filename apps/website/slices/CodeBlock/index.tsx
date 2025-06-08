@@ -2,7 +2,7 @@ import { JSX } from "react";
 import { Content, asText } from "@prismicio/client";
 import { SliceComponentProps } from "@prismicio/react";
 
-import Section from "@/components/ui/Section";
+import Section from "@/components/Section";
 import SyntaxHighlighter from "@/components/SyntaxHighlighter";
 
 /**

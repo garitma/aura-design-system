@@ -1,5 +1,5 @@
 {
-  "$schema": "https://auradesignsystem.com/schema/default.json",
+  "$schema": "https://auradesignsystem.com/schema.json",
   "style": "default",
   "rsc": true,
   "tsx": true,
@@ -7,16 +7,14 @@
     "config": "",
     "css": "app/globals.css",
     "baseColor": "neutral",
-    "cssVariables": false,
-    "prefix": ""
+    "cssVariables": true
   },
   "aliases": {
     "components": "@/components",
-    "utils": "@/utils/index",
+    "utils": "@/utils/class-names",
     "ui": "@/components/ui",
     "lib": "@/utils",
-    "hooks": "@/hooks",
-    "slices": "@/slices"
+    "hooks": "@/hooks"
   },
   "iconLibrary": "radix-icons"
 }

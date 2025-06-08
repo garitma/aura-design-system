@@ -33,7 +33,7 @@ function CodeBlockSyntaxHighlighter({
     "size-full",
     "rounded-md",
     "border",
-    "border-black-3",
+    "border-gray-3",
     "rounded-t-none",
     "overflow-hidden",
   ];
@@ -64,7 +64,7 @@ function CodeBlockSyntaxHighlighter({
     return (
       <div className="code-wrapper">
         <div
-          className="border border-black-3 px-1 border-b-0 bg-black-2 flex rounded-t-1 justify-between"
+          className="border border-gray-3 px-1 border-b-0 bg-gray-2 flex rounded-t-lg justify-between"
           ref={codeRef}
         >
           <div className="flex items-center gap-1 text-black-9">
@@ -99,7 +99,7 @@ function CodeBlockSyntaxHighlighter({
     <div className="code-wrapper">
       {/* Header section with language indicator and copy button */}
       <div
-        className="border border-black-3 px-1 border-b-0 bg-black-1 flex rounded-t-1 justify-between"
+        className="border border-gray-3 px-1 border-b-0 bg-gray-1 flex rounded-t-md justify-between"
         ref={codeRef}
       >
         <div className="flex items-center gap-1 text-black-9">
@@ -128,7 +128,7 @@ function CodeBlockSyntaxHighlighter({
             <SyntaxHighlighter language={language} style={coy}>
               {code}
             </SyntaxHighlighter>
-            <div className="absolute left-0 right-0 top-0 bottom-0 pb-0.5 flex items-end justify-center bg-gradient-to-t from-black-1 to-black-a-1">
+            <div className="absolute left-0 right-0 top-0 bottom-0 pb-0.5 flex items-end justify-center bg-gradient-to-t from-gray-1 to-black-a-1">
               <Collapsible.Trigger asChild>
                 <Button className="p-1 h-3">Expand code</Button>
               </Collapsible.Trigger>

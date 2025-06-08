@@ -40,13 +40,13 @@ export default function Menu({ menu }: MenuProps) {
                 </NavigationMenu.Trigger>
 
                 <NavigationMenu.Content>
-                  <ul className="absolute top-4 bg-black-1 w-[200px] shadow-md p-0.5 rounded-md">
+                  <ul className="absolute top-4 bg-gray-1 w-[200px] shadow-md p-0.5 rounded-md">
                     {tab.sub_tab_item.map((subTab) => {
                       return (
                         <li key={subTab.key}>
                           <PrismicNextLink
                             field={subTab}
-                            className="hover:bg-black-3 flex items-center h-2.5 px-0.5 button-menu !justify-start w-full"
+                            className="hover:bg-gray-3 flex items-center h-2.5 px-0.5 button-menu !justify-start w-full"
                           >
                             {subTab.text}
                           </PrismicNextLink>
