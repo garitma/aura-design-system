@@ -39,13 +39,7 @@
     },
     "light": {
       "aura-loader": "var(--primary)",
-      "radius": "13px",
-      "background": "#fcfcff",
-      "foreground": "#2c2c3b"
-    },
-    "dark": {
-      "background": "#2c2c3b",
-      "foreground": "#fcfcff"
+      "radius": "13px"
     }
   }
 }

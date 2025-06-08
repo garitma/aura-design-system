@@ -219,50 +219,74 @@ export function registerCssCommand(program) {
 
       let globalsCssContent = fs.readFileSync(globalsCssPath, "utf-8");
       // Regex to match the exact block (with optional whitespace)
-      const blockRegex = /\*\s*\{\s*@apply border-border outline-ring\/50;\s*\}/g;
+      const blockRegex =
+        /\*\s*\{\s*@apply border-border outline-ring\/50;\s*\}/g;
       let newGlobalsCssContent = globalsCssContent.replace(blockRegex, "");
       // Regex to match the body block with background, color, and font-family
-      const bodyFullBlockRegex = /body\s*\{\s*background:\s*var\(--background\);\s*color:\s*var\(--foreground\);\s*font-family:\s*Arial,\s*Helvetica,\s*sans-serif;\s*\}/g;
-      newGlobalsCssContent = newGlobalsCssContent.replace(bodyFullBlockRegex, "");
+      const bodyFullBlockRegex =
+        /body\s*\{\s*background:\s*var\(--background\);\s*color:\s*var\(--foreground\);\s*font-family:\s*Arial,\s*Helvetica,\s*sans-serif;\s*\}/g;
+      newGlobalsCssContent = newGlobalsCssContent.replace(
+        bodyFullBlockRegex,
+        ""
+      );
       // Regex to match the import line
       const importRegex = /^\s*@import\s+"tw-animate-css";\s*$/gm;
       newGlobalsCssContent = newGlobalsCssContent.replace(importRegex, "");
 
       // Remove empty @layer base blocks
       const emptyLayerBaseRegex = /@layer base\s*\{\s*\}/gm;
-      newGlobalsCssContent = newGlobalsCssContent.replace(emptyLayerBaseRegex, "");
+      newGlobalsCssContent = newGlobalsCssContent.replace(
+        emptyLayerBaseRegex,
+        ""
+      );
 
       // Remove duplicate @layer base blocks, keep only the first
-      const layerBaseRegex = /@layer base\s*\{[\s\S]*?\n?\}/gm;
-      let match;
-      let firstLayerBase = null;
-      let layerBaseMatches = [];
-      while ((match = layerBaseRegex.exec(newGlobalsCssContent)) !== null) {
-        layerBaseMatches.push({ start: match.index, end: layerBaseRegex.lastIndex, text: match[0] });
-      }
-      if (layerBaseMatches.length > 1) {
-        firstLayerBase = layerBaseMatches[0];
-        // Remove all but the first occurrence
-        for (let i = 1; i < layerBaseMatches.length; i++) {
-          const { start, end } = layerBaseMatches[i];
-          newGlobalsCssContent = newGlobalsCssContent.slice(0, start) + newGlobalsCssContent.slice(end);
-          // Adjust subsequent indices after removal
-          for (let j = i + 1; j < layerBaseMatches.length; j++) {
-            layerBaseMatches[j].start -= (end - start);
-            layerBaseMatches[j].end -= (end - start);
-          }
+      const layerBaseRegex = /(@layer base\s*\{[\s\S]*?\n?\})/gm; // Group 0 is the whole block
+      const matches = Array.from(newGlobalsCssContent.matchAll(layerBaseRegex));
+
+      if (matches.length > 1) {
+        let resultBuilder = [];
+        // Add content before the first @layer base
+        resultBuilder.push(newGlobalsCssContent.substring(0, matches[0].index));
+        // Add the first @layer base block itself
+        resultBuilder.push(matches[0][0]);
+
+        let currentPos = matches[0].index + matches[0][0].length;
+
+        for (let i = 1; i < matches.length; i++) {
+          // Add content between the end of the last kept/skipped layer and the start of the current one
+          resultBuilder.push(
+            newGlobalsCssContent.substring(currentPos, matches[i].index)
+          );
+          // Skip the current duplicate layer (matches[i][0]) by advancing currentPos
+          currentPos = matches[i].index + matches[i][0].length;
         }
+        // Add any remaining content after the last processed @layer base block
+        resultBuilder.push(newGlobalsCssContent.substring(currentPos));
+        newGlobalsCssContent = resultBuilder.join("");
       }
 
       // Regex to match the dark mode root block
-      const darkModeRootRegex = /@media\s*\(prefers-color-scheme:\s*dark\)\s*\{\s*:root\s*\{[\s\S]*?\}\s*\}/g;
-      newGlobalsCssContent = newGlobalsCssContent.replace(darkModeRootRegex, "");
+      const darkModeRootRegex =
+        /@media\s*\(prefers-color-scheme:\s*dark\)\s*\{\s*:root\s*\{[\s\S]*?\}\s*\}/g;
+      newGlobalsCssContent = newGlobalsCssContent.replace(
+        darkModeRootRegex,
+        ""
+      );
 
       if (globalsCssContent !== newGlobalsCssContent) {
         fs.writeFileSync(globalsCssPath, newGlobalsCssContent, "utf-8");
-        console.log(chalk.blue("Removed '* { @apply border-border outline-ring/50; }' and '@import \"tw-animate-css\";' from globals.css."));
+        console.log(
+          chalk.blue(
+            "Removed '* { @apply border-border outline-ring/50; }' and '@import \"tw-animate-css\";' from globals.css."
+          )
+        );
       } else {
-        console.log(chalk.blue("No '* { @apply border-border outline-ring/50; }' block or '@import \"tw-animate-css\";' found in globals.css."));
+        console.log(
+          chalk.blue(
+            "No '* { @apply border-border outline-ring/50; }' block or '@import \"tw-animate-css\";' found in globals.css."
+          )
+        );
       }
     });
 }
