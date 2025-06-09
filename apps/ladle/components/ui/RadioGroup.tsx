@@ -26,12 +26,16 @@ function RadioGroupItem({
   return (
     <RadioGroupPrimitive.Item
       data-slot="radio-group-item"
-      className={cn(className)}
+      className={cn(
+        className,
+        "size-2 cursor-default rounded-full border border-gray-a6 hover:bg-accent-2"
+      )}
       {...props}
     >
-      <RadioGroupPrimitive.Indicator data-slot="radio-group-indicator">
-        <CircleIcon />
-      </RadioGroupPrimitive.Indicator>
+      <RadioGroupPrimitive.Indicator
+        data-slot="radio-group-indicator"
+        className="relative flex size-full items-center justify-center after:block after:size-[11px] after:rounded-full after:bg-accent-9"
+      />
     </RadioGroupPrimitive.Item>
   );
 }

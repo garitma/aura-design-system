@@ -176,7 +176,7 @@ export const FormSwitch = React.forwardRef<HTMLDivElement, FormSwitchProps>(
             id={idConnect}
             checked={Boolean(field?.value)}
             onCheckedChange={field?.onCheckedChange}
-            className="relative h-1.5 w-2.5 cursor-pointer rounded-full outline-none bg-accent-4 data-[state=checked]:bg-accent-10"
+            className="relative h-1.5 w-2.5 cursor-pointer rounded-full outline-none bg-accent-4 data-[state=checked]:bg-accent-10 border border-gray-a6 hover:bg-accent-5"
           >
             <SwitchRadix.Thumb className="block size-1 translate-x-[3.5px] rounded-full bg-gray-1 shadow-md transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[15.5px]" />
           </SwitchRadix.Root>
@@ -227,7 +227,7 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
           <div>
             <CheckboxRadix.Root
               id={idConnect}
-              className="border flex size-1.5 items-center justify-center rounded outline-none"
+              className="border border-gray-a6 flex size-1.5 items-center justify-center rounded outline-none hover:bg-accent-2"
               checked={Boolean(field?.value)}
               onCheckedChange={field?.onCheckedChange}
             >
