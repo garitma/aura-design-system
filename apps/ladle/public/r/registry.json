@@ -1,5 +1,5 @@
 {
-  "$schema": "https://auradesignsystem.com/schema/registry.json",
+  "$schema": "http://localhost:3000/schema/registry.json",
   "name": "auradesign",
   "homepage": "http://auradesignsystem.com",
   "items": [
@@ -11,7 +11,7 @@
         "@radix-ui/react-icons"
       ],
       "registryDependencies": [
-        "https://auradesignsystem.com/r/accordion-css.json"
+        "http://localhost:3000/r/accordion-css.json"
       ],
       "files": [
         {
@@ -43,7 +43,7 @@
         "@radix-ui/react-icons"
       ],
       "registryDependencies": [
-        "https://auradesignsystem.com/r/accordion.json"
+        "http://localhost:3000/r/accordion.json"
       ],
       "files": [
         {
@@ -88,7 +88,7 @@
         "@radix-ui/react-icons"
       ],
       "registryDependencies": [
-        "https://auradesignsystem.com/r/alert-dialog.json"
+        "http://localhost:3000/r/alert-dialog.json"
       ],
       "files": [
         {
@@ -105,7 +105,7 @@
         "@radix-ui/react-icons"
       ],
       "registryDependencies": [
-        "https://auradesignsystem.com/r/alert.json"
+        "http://localhost:3000/r/alert.json"
       ],
       "files": [
         {
@@ -216,9 +216,9 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "https://auradesignsystem.com/r/layout-pancake.json",
-        "https://auradesignsystem.com/r/home-hello.json",
-        "https://auradesignsystem.com/r/class-names.json"
+        "http://localhost:3000/r/layout-pancake.json",
+        "http://localhost:3000/r/home-hello.json",
+        "http://localhost:3000/r/class-names.json"
       ],
       "css": {
         "@layer base": {
@@ -272,7 +272,7 @@
         "@radix-ui/react-icons"
       ],
       "registryDependencies": [
-        "https://auradesignsystem.com/r/dialog.json"
+        "http://localhost:3000/r/dialog.json"
       ],
       "files": [
         {
@@ -331,8 +331,8 @@
         "ajv-errors"
       ],
       "registryDependencies": [
-        "https://auradesignsystem.com/r/use-dynamic-form.json",
-        "https://auradesignsystem.com/r/web-validation.json"
+        "http://localhost:3000/r/use-dynamic-form.json",
+        "http://localhost:3000/r/web-validation.json"
       ],
       "files": [
         {
@@ -410,9 +410,9 @@
       "type": "registry:component",
       "description": "A full-page layout component featuring a header, main content area, and footer, often including progress indicators.",
       "registryDependencies": [
-        "https://auradesignsystem.com/r/header.json",
-        "https://auradesignsystem.com/r/footer.json",
-        "https://auradesignsystem.com/r/n-progress.json"
+        "http://localhost:3000/r/header.json",
+        "http://localhost:3000/r/footer.json",
+        "http://localhost:3000/r/n-progress.json"
       ],
       "files": [
         {
@@ -538,7 +538,7 @@
       "type": "registry:component",
       "description": "A semantic component used to group related content, often utilizing a wrapper for consistent spacing and styling.",
       "registryDependencies": [
-        "https://auradesignsystem.com/r/wrapper.json"
+        "http://localhost:3000/r/wrapper.json"
       ],
       "files": [
         {

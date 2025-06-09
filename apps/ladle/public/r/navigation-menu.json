@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navigation-menu",
+  "type": "registry:ui",
+  "description": "A collection of links for navigating websites, often used in site headers.",
+  "dependencies": [
+    "radix-ui"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/NavigationMenu.tsx",
+      "content": "import * as React from \"react\";\nimport { NavigationMenu as NavigationMenuRadix } from \"radix-ui\";\n\nimport { ChevronDownIcon } from \"@radix-ui/react-icons\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction NavigationMenu({\n  className,\n  children,\n  viewport = true,\n  ...props\n}: React.ComponentProps<typeof NavigationMenuRadix.Root> & {\n  viewport?: boolean;\n}) {\n  return (\n    <NavigationMenuRadix.Root data-slot=\"navigation-menu\" {...props}>\n      {children}\n      {viewport && <NavigationMenuViewport />}\n    </NavigationMenuRadix.Root>\n  );\n}\n\nfunction NavigationMenuList({\n  ...props\n}: React.ComponentProps<typeof NavigationMenuRadix.List>) {\n  return (\n    <NavigationMenuRadix.List data-slot=\"navigation-menu-list\" {...props} />\n  );\n}\n\nfunction NavigationMenuItem({\n  ...props\n}: React.ComponentProps<typeof NavigationMenuRadix.Item>) {\n  return (\n    <NavigationMenuRadix.Item data-slot=\"navigation-menu-item\" {...props} />\n  );\n}\n\nfunction NavigationMenuTrigger({\n  children,\n  ...props\n}: React.ComponentProps<typeof NavigationMenuRadix.Trigger>) {\n  return (\n    <NavigationMenuRadix.Trigger data-slot=\"navigation-menu-trigger\" {...props}>\n      {children} <ChevronDownIcon aria-hidden=\"true\" />\n    </NavigationMenuRadix.Trigger>\n  );\n}\n\nfunction NavigationMenuContent({\n  ...props\n}: React.ComponentProps<typeof NavigationMenuRadix.Content>) {\n  return (\n    <NavigationMenuRadix.Content\n      data-slot=\"navigation-menu-content\"\n      {...props}\n    />\n  );\n}\n\nfunction NavigationMenuViewport({\n  ...props\n}: React.ComponentProps<typeof NavigationMenuRadix.Viewport>) {\n  return (\n    <div\n      className={\"absolute top-full left-0 isolate z-50 flex justify-center\"}\n    >\n      <NavigationMenuRadix.Viewport\n        data-slot=\"navigation-menu-viewport\"\n        {...props}\n      />\n    </div>\n  );\n}\n\nfunction NavigationMenuLink({\n  className,\n  ...props\n}: React.ComponentProps<typeof NavigationMenuRadix.Link>) {\n  return (\n    <NavigationMenuRadix.Link data-slot=\"navigation-menu-link\" {...props} />\n  );\n}\n\nfunction NavigationMenuIndicator({\n  className,\n  ...props\n}: React.ComponentProps<typeof NavigationMenuRadix.Indicator>) {\n  return (\n    <NavigationMenuRadix.Indicator\n      data-slot=\"navigation-menu-indicator\"\n      {...props}\n    >\n      <div className=\"bg-border relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm shadow-md\" />\n    </NavigationMenuRadix.Indicator>\n  );\n}\n\nexport {\n  NavigationMenu,\n  NavigationMenuList,\n  NavigationMenuItem,\n  NavigationMenuContent,\n  NavigationMenuTrigger,\n  NavigationMenuLink,\n  NavigationMenuIndicator,\n  NavigationMenuViewport,\n};\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "card",
+  "type": "registry:ui",
+  "description": "A container that groups related content and actions about a single subject.",
+  "files": [
+    {
+      "path": "registry/default/ui/Card.tsx",
+      "content": "import * as React from \"react\";\n\nfunction Card({ className, ...props }: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"card\" {...props} />;\n}\n\nfunction CardHeader({ className, ...props }: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"card-header\" {...props} />;\n}\n\nfunction CardTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"card-title\" {...props} />;\n}\n\nfunction CardDescription({ className, ...props }: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"card-description\" {...props} />;\n}\n\nfunction CardAction({ className, ...props }: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"card-action\" {...props} />;\n}\n\nfunction CardContent({ className, ...props }: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"card-content\" {...props} />;\n}\n\nfunction CardFooter({ className, ...props }: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"card-footer\" {...props} />;\n}\n\nexport {\n  Card,\n  CardHeader,\n  CardFooter,\n  CardTitle,\n  CardAction,\n  CardDescription,\n  CardContent,\n};\n",
+      "type": "registry:ui"
+    }
+  ]
+}

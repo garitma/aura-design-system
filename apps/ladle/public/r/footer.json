@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "footer",
+  "type": "registry:component",
+  "description": "A standard footer component, typically used for copyright information, navigation links, or site map.",
+  "files": [
+    {
+      "path": "registry/default/components/Footer.tsx",
+      "content": "import Section from \"@aura-design/system/section\";\nconst Footer = () => {\n  return (\n    <footer>\n      <Section passDiv>\n        <span> © {new Date().getFullYear()} Aura Design System</span>\n      </Section>\n    </footer>\n  );\n};\n\nexport default Footer;\n\n",
+      "type": "registry:component"
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://auradesignsystem.com/schema/registry-item.json",
+  "extends": "none",
+  "name": "default",
+  "type": "registry:style",
+  "dependencies": [
+    "@aura-design/system",
+    "@radix-ui/react-icons",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "https://auradesignsystem.com/r/layout-pancake.json",
+    "https://auradesignsystem.com/r/home-hello.json",
+    "https://auradesignsystem.com/r/class-names.json"
+  ],
+  "css": {
+    "@layer base": {
+      "html": {
+        "font-size": "17px"
+      }
+    }
+  },
+  "cssVars": {
+    "theme": {
+      "--spacing": "13px",
+      "font-sans": "Inter, sans-serif",
+      "info": "#e8ebfe",
+      "info-contrast": "#0927ec",
+      "success": "#e8fef7",
+      "success-contrast": "#045d3c",
+      "danger": "#feefe8",
+      "danger-contrast": "#8e3106",
+      "warning": "#fefbe8",
+      "warning-contrast": "#5d5104",
+      "radius-sm": "calc(var(--spacing) * 0.5)",
+      "radius-md": "calc(var(--spacing) * 1)",
+      "radius-lg": "calc(var(--spacing) * 1.5)",
+      "radius-xl": "calc(var(--spacing) * 2)"
+    },
+    "light": {
+      "aura-loader": "var(--primary)",
+      "radius": "13px"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert",
+  "type": "registry:ui",
+  "description": "Displays a short, important message in a way that attracts the user's attention without interrupting their task.",
+  "dependencies": [
+    "@radix-ui/react-icons"
+  ],
+  "files": [
+    {
+      "path": "registry/default/ui/Alert.tsx",
+      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction Alert({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert\"\n      role=\"alert\"\n      className={cn(\"flex gap-1 space-y-0.5 p-1 rounded-md border\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction AlertTitle({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"alert-title\"\n      className={cn(\"font-bold\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction AlertDescription({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"alert-description\" {...props} />;\n}\n\nfunction AlertContent({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"alert-content\" {...props} />;\n}\n\nfunction AlertIcon({\n  className,\n  ...props\n}: React.ComponentProps<\"div\">) {\n  return <div data-slot=\"alert-icon\" {...props} />;\n}\n\nexport { Alert, AlertTitle, AlertDescription, AlertIcon, AlertContent };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -625,7 +625,7 @@
       ]
     },
     {
-      "name": "Togglebar",
+      "name": "togglebar",
       "type": "registry:ui",
       "description": "A container for grouping related Toggle buttons, often used for creating toolbars or mode switching interfaces.",
       "files": [
@@ -636,7 +636,7 @@
       ]
     },
     {
-      "name": "ToggleGroup",
+      "name": "toggle-group",
       "type": "registry:ui",
       "description": "A set of two-state buttons that can be toggled on or off. Can be constrained to allow only one or multiple toggles at a time.",
       "files": [
@@ -647,7 +647,7 @@
       ]
     },
     {
-      "name": "Tooltip",
+      "name": "tooltip",
       "type": "registry:ui",
       "description": "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
       "files": [
