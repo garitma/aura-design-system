@@ -1,0 +1,41 @@
+{
+  "name": "@aura-design/registry",
+  "version": "1.0.0",
+  "description": "Aura Design System CLI",
+  "type": "module",
+  "keywords": [
+    "react",
+    "react-component",
+    "uikit",
+    "ui-library",
+    "ui-components",
+    "cli"
+  ],
+  "author": "Pablo Orozco <me@pablopvsky.com>",
+  "license": "MIT",
+  "bin": {
+    "aura": "./bin/index.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/garitma/aura-design-system.git"
+  },
+  "bugs": {
+    "url": "https://github.com/garitma/aura-design-system/issues"
+  },
+  "scripts": {
+    "serve": "pnpm dlx serve public",
+    "clean": "rm -rf ./public/r && mkdir -p ./public/r && rm -rf ../website/public/ && mkdir -p ../website/public/r",
+    "build": "pnpm run clean && shadcn build && rsync -av registry/theming/. ./public/ && pnpm run distribution && pnpm run distribution:local && pnpm run distribution:cli",
+    "registry:sort": "node ./scripts/sort-registry.js",
+    "distribution": "cp ./registry.json ./public/r/registry.json && rsync -av ./public/ ../../apps/website/public/",
+    "distribution:local": "node ./scripts/replace-urls.js",
+    "distribution:cli": "cp ./registry.json ../cli/registry.json"
+  },
+  "dependencies": {
+    "shadcn": "2.5.0-canary.1"
+  }
+}

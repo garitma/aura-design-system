@@ -2,12 +2,6 @@
   "name": "@aura-design/ladle",
   "version": "1.0.1",
   "scripts": {
-    "build": "pnpm run clean && shadcn build && rsync -av registry/theming/. ./public/ && pnpm run distribution && pnpm run distribution:local && pnpm run distribution:cli",
-    "registry:sort": "node ./scripts/sort-registry.js",
-    "distribution": "cp ./registry.json ./public/r/registry.json && rsync -av ./public/ ../website/public/",
-    "distribution:local": "node ./scripts/replace-urls.js",
-    "distribution:cli": "cp ./registry.json ../../packages/cli/registry.json",
-    "clean": "rm -rf ./public/r && mkdir -p ./public/r && rm -rf ../website/public/ && mkdir -p ../website/public/r",
     "dev": "pnpm ladle serve --stories=stories",
     "dev:next": "next dev"
   },
@@ -32,7 +26,6 @@
     "radix-ui": "^1.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "shadcn": "2.5.0-canary.1",
     "sonner": "^2.0.1",
     "tailwind-merge": "^3.2.0",
     "tailwindcss": "^4.0.0",

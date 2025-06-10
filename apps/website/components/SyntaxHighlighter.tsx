@@ -33,7 +33,7 @@ function CodeBlockSyntaxHighlighter({
     "size-full",
     "rounded-md",
     "border",
-    "border-gray-3",
+    "border-gray-6",
     "rounded-t-none",
     "overflow-hidden",
   ];
@@ -64,7 +64,7 @@ function CodeBlockSyntaxHighlighter({
     return (
       <div className="code-wrapper">
         <div
-          className="border border-gray-3 px-1 border-b-0 bg-gray-2 flex rounded-t-lg justify-between"
+          className="border border-gray-6 px-1 border-b-0 bg-gray-2 flex rounded-t-md justify-between"
           ref={codeRef}
         >
           <div className="flex items-center gap-1 text-black-9">
@@ -99,7 +99,7 @@ function CodeBlockSyntaxHighlighter({
     <div className="code-wrapper">
       {/* Header section with language indicator and copy button */}
       <div
-        className="border border-gray-3 px-1 border-b-0 bg-gray-1 flex rounded-t-md justify-between"
+        className="border border-gray-6 px-1 border-b-0 bg-gray-1 flex rounded-t-md justify-between"
         ref={codeRef}
       >
         <div className="flex items-center gap-1 text-black-9">
