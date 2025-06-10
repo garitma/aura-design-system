@@ -4,7 +4,7 @@ import React from "react";
 import { Accordion as AccordionRadix } from "radix-ui";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/class-names";
 
 function Accordion({
   ...props
@@ -35,7 +35,7 @@ function AccordionTrigger({
       <AccordionRadix.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group flex justify-between flex-1 cursor-pointer items-center gap-1 p-1 w-full h6 hover:bg-gray3 border border-b-1 border-gray-3 border-x-0 border-t-0 px-2",
+          "group flex justify-between flex-1 cursor-pointer items-center gap-1 p-1 w-full h6 border border-b-1 border-gray-6 border-x-0 border-t-0 px-2",
           className
         )}
         {...props}

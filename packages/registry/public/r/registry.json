@@ -48,7 +48,7 @@
       "files": [
         {
           "path": "registry/default/components/AccordionList.tsx",
-          "type": "registry:ui"
+          "type": "registry:component"
         }
       ]
     },

@@ -155,7 +155,7 @@ export const FormDemo = () => {
           className="min-h-[120px]"
         />
       </FormField>
-      <div className="border border-black-4 rounded-md p-2 space-y-2 bg-black-1">
+      <div className="border border-gray-6 rounded-md p-2 space-y-2 bg-black-1">
         <FormSwitch label="Enable notifications" field={notifications} />
         <FormSwitch label="Enable auto-replies" field={autoReply} />
         <FormSwitch

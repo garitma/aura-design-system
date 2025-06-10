@@ -6,7 +6,7 @@
   "files": [
     {
       "path": "registry/default/ui/Label.tsx",
-      "content": "import * as React from \"react\";\n\nfunction label({ ...props }: React.ComponentProps<\"label\">) {\n  return <label data-slot=\"input\" {...props} />;\n}\n\nexport { label };\n",
+      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/utils/class-names\";\n\n\nfunction Label({ className, ...props }: React.ComponentProps<\"label\">) {\n  return <label data-slot=\"input\" className={cn(className, \"cursor-pointer\")} {...props} />;\n}\n\nexport { Label };\n",
       "type": "registry:ui"
     }
   ]
