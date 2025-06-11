@@ -99,6 +99,8 @@
   --radius: 13px;
   --background: #fcfcff;
   --foreground: #2c2c3b;
+  --aura-accents-primary: var(--accent-9);
+  --aura-button-hover: var(--accent-12);
 
   --accent-1: #fcfdff;
   --accent-2: #f3f9ff;
