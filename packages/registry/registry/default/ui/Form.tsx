@@ -1,15 +1,13 @@
 import * as React from "react";
 import { ErrorObject } from "ajv";
-import {
-  Form as FormRadix,
-  Switch as SwitchRadix,
-  Checkbox as CheckboxRadix,
-} from "radix-ui";
-import { ChevronDownIcon, CheckIcon, SymbolIcon } from "@radix-ui/react-icons";
+import { Form as FormRadix } from "radix-ui";
+import { ChevronDownIcon, SymbolIcon } from "@radix-ui/react-icons";
 
 import { FieldProps } from "@/hooks/use-dynamic-form";
 import AlertStatus from "@/components/AlertStatus";
 import Button, { ButtonProps } from "@/components/ui/Button";
+import { Checkbox } from "@/components/ui/Checkbox";
+import { Switch } from "@/components/ui/Switch";
 
 interface FormProps extends FormRadix.FormProps {
   errors?: ErrorObject<string, Record<string, any>, unknown>[];
@@ -172,14 +170,11 @@ export const FormSwitch = React.forwardRef<HTMLDivElement, FormSwitchProps>(
           {label && (
             <FormRadix.Label htmlFor={idConnect}>{label}</FormRadix.Label>
           )}
-          <SwitchRadix.Root
+          <Switch
             id={idConnect}
             checked={Boolean(field?.value)}
             onCheckedChange={field?.onCheckedChange}
-            className="relative h-1.5 w-2.5 cursor-pointer rounded-full outline-none bg-accent-4 data-[state=checked]:bg-accent-10 border border-gray-a6 hover:bg-accent-5"
-          >
-            <SwitchRadix.Thumb className="block size-1 translate-x-[3.5px] rounded-full bg-gray-1 shadow-md transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[15.5px]" />
-          </SwitchRadix.Root>
+          />
         </div>
         <FormRadix.Control
           value="on"
@@ -225,16 +220,12 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
       >
         <div className="flex items-center gap-1">
           <div>
-            <CheckboxRadix.Root
+            <Checkbox
               id={idConnect}
               className="border border-gray-a6 flex size-1.5 items-center justify-center rounded outline-none hover:bg-accent-2"
               checked={Boolean(field?.value)}
               onCheckedChange={field?.onCheckedChange}
-            >
-              <CheckboxRadix.Indicator>
-                <CheckIcon />
-              </CheckboxRadix.Indicator>
-            </CheckboxRadix.Root>
+            />
           </div>
           {label && (
             <FormRadix.Label htmlFor={idConnect}>{label}</FormRadix.Label>

@@ -7,16 +7,15 @@
   --font-sans: Inter, sans-serif;
   --info: #e8ebfe;
   --info-contrast: #0927ec;
-
   --success: #e8fef7;
   --success-contrast: #045d3c;
   --danger: #feefe8;
   --danger-contrast: #8e3106;
   --warning: #fefbe8;
   --warning-contrast: #5d5104;
+
   --color-foreground: var(--foreground);
   --color-background: var(--background);
-  --aura-loader: var(--aura-loader);
   --color-warning-contrast: var(--warning-contrast);
   --color-warning: var(--warning);
   --color-danger-contrast: var(--danger-contrast);
@@ -95,12 +94,10 @@
 }
 
 :root {
-  --aura-loader: var(--primary);
   --radius: 13px;
   --background: #fcfcff;
   --foreground: #2c2c3b;
-  --aura-accents-primary: var(--accent-9);
-  --aura-button-hover: var(--accent-12);
+
 
   --accent-1: #fcfdff;
   --accent-2: #f3f9ff;
@@ -163,6 +160,11 @@
   --primary-foreground: var(--accent-contrast);
   --secundary: var(--accent-8);
   --secundary-foreground: var(--accent-contrast);
+
+  --aura-loader: var(--primary);
+  --aura-accents-primary: var(--primary);
+  --aura-button-hover: var(--accent-12);
+  --aura-outline: var(--info-contrast) solid 2px;
 }
 
 .dark {
