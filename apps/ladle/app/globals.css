@@ -155,7 +155,7 @@
   --gray-a10: #000012d3;
   --gray-a11: #0000219d;
   --gray-a12: #00000fe0;
-  --gray-contrast: #FFFFFF;
+  --gray-contrast: #ffffff;
   --gray-surface: #ffffffcc;
   --gray-indicator: #8b8ba4;
   --gray-track: #8b8ba4;
@@ -200,18 +200,21 @@
 }
 
 @layer base {
-@import "@aura-design/system/main.css";
-@import '../styles/accordion.css';
-@import '../styles/dialog.css';
-body {
+  @import "@aura-design/system/main.css";
+  @import "../styles/accordion.css";
+  @import "../styles/dialog.css";
+  body {
     @apply bg-background text-foreground;
-}
+  }
   html {
     font-size: 17px;
   }
 }
 
 @layer components {
+  input, textarea, select {
+    border: solid 1px var(--gray-a6);
+  }
   .nprogress {
     pointer-events: none;
     z-index: 99999;
@@ -226,4 +229,3 @@ body {
     height: 4px;
   }
 }
-
