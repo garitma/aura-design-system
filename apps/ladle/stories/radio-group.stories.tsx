@@ -1,6 +1,7 @@
 import type { Story } from "@ladle/react";
-import { Label } from "../components/ui/Label";
-import { RadioGroup, RadioGroupItem } from "../components/ui/RadioGroup";
+
+import { Label } from "@/components/ui/Label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/RadioGroup";
 
 export const Default: Story = () => (
   <RadioGroup defaultValue="comfortable" className="space-y-0.5">

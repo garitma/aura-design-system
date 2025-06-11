@@ -10,6 +10,7 @@ import { ChevronDownIcon, CheckIcon, SymbolIcon } from "@radix-ui/react-icons";
 import { FieldProps } from "@/hooks/use-dynamic-form";
 import AlertStatus from "@/components/AlertStatus";
 import Button, { ButtonProps } from "@/components/ui/Button";
+import { Checkbox } from "@/components/ui/Checkbox";
 
 interface FormProps extends FormRadix.FormProps {
   errors?: ErrorObject<string, Record<string, any>, unknown>[];
@@ -225,16 +226,12 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
       >
         <div className="flex items-center gap-1">
           <div>
-            <CheckboxRadix.Root
+            <Checkbox
               id={idConnect}
               className="border border-gray-a6 flex size-1.5 items-center justify-center rounded outline-none hover:bg-accent-2"
               checked={Boolean(field?.value)}
               onCheckedChange={field?.onCheckedChange}
-            >
-              <CheckboxRadix.Indicator>
-                <CheckIcon />
-              </CheckboxRadix.Indicator>
-            </CheckboxRadix.Root>
+            />
           </div>
           {label && (
             <FormRadix.Label htmlFor={idConnect}>{label}</FormRadix.Label>
