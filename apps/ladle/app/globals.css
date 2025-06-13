@@ -202,16 +202,13 @@
 
 @layer base {
   @import "@aura-design/system/main.css";
-
   @import "../styles/accordion.css";
   @import "../styles/collapsible.css";
   @import "../styles/dialog.css";
-
   html {
     font-size: 17px;
   }
 }
-
 @layer components {
   input,
   textarea,

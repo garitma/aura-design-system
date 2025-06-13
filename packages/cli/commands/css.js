@@ -54,11 +54,11 @@ export function registerCssCommand(program) {
       const mainAuraImportRegex =
         /@import\s+['\"]@aura-design\/system\/main.css['\"];\s*/;
       const auraImportMatch = mainAuraImportRegex.exec(layerBaseContent);
-      let auraImport = auraImportMatch ? auraImportMatch[0] : null;
+      let auraImport = auraImportMatch ? auraImportMatch[0].trim() : null;
 
       // Remove all style imports from everywhere
-      const styleImportRegex =
-        /@import\s+['\"]\.\/styles\/[\w\-]+\.css['\"];\s*/g;
+      // Adjusted regex to correctly match '../styles/' paths
+      const styleImportRegex = /@import\s+['"]\.\.\/styles\/[\w\-]+\.css['\"];\s*/g;
       beforeLayerBase = beforeLayerBase.replace(styleImportRegex, "");
       afterLayerBase = afterLayerBase.replace(styleImportRegex, "");
       layerBaseContent = layerBaseContent.replace(styleImportRegex, "");
