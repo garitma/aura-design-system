@@ -98,7 +98,6 @@
   --background: #fcfcff;
   --foreground: #2c2c3b;
 
-
   --accent-1: #fcfdff;
   --accent-2: #f3f9ff;
   --accent-3: #e8f3ff;
@@ -203,18 +202,20 @@
 
 @layer base {
   @import "@aura-design/system/main.css";
+
   @import "../styles/accordion.css";
+  @import "../styles/collapsible.css";
   @import "../styles/dialog.css";
-  body {
-    @apply bg-background text-foreground;
-  }
+
   html {
     font-size: 17px;
   }
 }
 
 @layer components {
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     border: solid 1px var(--gray-a6);
   }
   .nprogress {
