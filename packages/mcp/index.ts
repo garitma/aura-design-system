@@ -249,7 +249,6 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
     throw error
   }
 })
-
 async function getRegistry(registryUrl: string) {
   const [registryJson] = await fetchRegistry([registryUrl], {
     useCache: false,
