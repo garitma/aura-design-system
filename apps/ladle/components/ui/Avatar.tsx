@@ -13,7 +13,7 @@ function Avatar({
       data-slot="avatar"
       className={cn(
         className,
-        "inline-flex size-2 items-center justify-center overflow-hidden rounded-full"
+        "inline-flex size-3 items-center justify-center overflow-hidden rounded-full"
       )}
       {...props}
     />
@@ -42,7 +42,7 @@ function AvatarFallback({
       data-slot="avatar-fallback"
       className={cn(
         className,
-        "flex size-full items-center justify-center bg-gray-1"
+        "flex size-full items-center justify-center bg-gray-3"
       )}
       {...props}
     />
