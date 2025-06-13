@@ -1,0 +1,24 @@
+@theme animatons {
+    --animate-collapsible-down: slideDownCollapsible 500ms ease;
+    --animate-collapsible-up: slideUpCollapsible 500ms ease;
+  }
+  @layer components {
+    @keyframes slideDownCollapsible {
+      from {
+        height: 0;
+      }
+      to {
+        height: var(--radix-collapsible-content-height);
+      }
+    }
+  
+    @keyframes slideUpCollapsible {
+      from {
+        height: var(--radix-collapsible-content-height);
+      }
+      to {
+        height: 0;
+      }
+    }
+  }
+  
