@@ -23,15 +23,15 @@ const CodePreviewTabs = ({
     <Tabs.Root className="flex flex-col" defaultValue="tab1">
       {/* Tab list header with Preview and Code options */}
 
-      <Tabs.List className="border border-black-3 p-1 border-b-0 bg-black-2 flex rounded-t-1 gap-0.5">
+      <Tabs.List className="border border-gray-3 p-1 border-b-0 bg-gray-2 flex rounded-t-md gap-0.5">
         <Tabs.Trigger
-          className="bg-black-2 p-0.5 data-[state=active]:bg-black-4 rounded-2 cursor-pointer"
+          className="bg-gray-2 p-0.5 data-[state=active]:bg-black-4 rounded-2 cursor-pointer"
           value="tab1"
         >
           Preview
         </Tabs.Trigger>
         <Tabs.Trigger
-          className="bg-black-2 p-0.5 data-[state=active]:bg-black-4 rounded-2 cursor-pointer"
+          className="bg-gray-2 p-0.5 data-[state=active]:bg-black-4 rounded-2 cursor-pointer"
           value="tab2"
         >
           Code
@@ -40,7 +40,7 @@ const CodePreviewTabs = ({
 
       {/* Preview tab content */}
       <Tabs.Content
-        className="border border-black-3 rounded-1 rounded-t-none p-1 min-h-[33vh]"
+        className="border border-gray-3 rounded-md rounded-t-none p-1 min-h-[33vh]"
         value="tab1"
       >
         {children}
@@ -49,7 +49,7 @@ const CodePreviewTabs = ({
       {/* Code tab content with syntax highlighting */}
       <Tabs.Content
         value="tab2"
-        className="border border-black-3 rounded-1 rounded-t-none p-1"
+        className="border border-gray-3 rounded-md rounded-t-none p-1"
       >
         <SyntaxHighlighter code={code} language={language || "jsx"} />
       </Tabs.Content>

@@ -1,7 +1,7 @@
 import { PrismicNextLink } from "@prismicio/next";
 import { Content } from "@prismicio/client";
 
-import Accordion from "@/components/ui/accordion";
+import AccordionList from "@/components/ui/AccordionList";
 
 type AsideMenuProps = {
   menu: Content.NavigationDocument;
@@ -10,11 +10,13 @@ type AsideMenuProps = {
 const AsideMenu = ({ menu }: AsideMenuProps) => {
   return (
     <>
-      <Accordion
+      <AccordionList
         className="md:hidden"
+        type="multiple"
         items={[
           {
             title: "Menu",
+            value: "menu",
             content: (
               <>
                 {menu && (

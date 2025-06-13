@@ -11,7 +11,7 @@ type MenuProps = {
 
 export default function Menu({ menu }: MenuProps) {
   return (
-    <NavigationMenu.Root className="relative z-10 w-full justify-end hidden md:!flex">
+    <NavigationMenu.Root className="relative z-10 w-full justify-end flex">
       {isFilled.group(menu.data.tabs) && (
         <NavigationMenu.List className="center m-0 flex p-1 gap-1">
           {menu.data.tabs.map((tab, index) => {
@@ -40,13 +40,13 @@ export default function Menu({ menu }: MenuProps) {
                 </NavigationMenu.Trigger>
 
                 <NavigationMenu.Content>
-                  <ul className="absolute top-4 bg-black-1 w-[200px] shadow-md p-0.5 rounded-1">
+                  <ul className="absolute top-4 bg-gray-1 w-[200px] shadow-md p-0.5 rounded-md">
                     {tab.sub_tab_item.map((subTab) => {
                       return (
                         <li key={subTab.key}>
                           <PrismicNextLink
                             field={subTab}
-                            className="hover:bg-black-3 flex items-center h-2.5 px-0.5 button-menu !justify-start w-full"
+                            className="hover:bg-gray-3 flex items-center h-2.5 px-0.5 button-menu !justify-start w-full"
                           >
                             {subTab.text}
                           </PrismicNextLink>

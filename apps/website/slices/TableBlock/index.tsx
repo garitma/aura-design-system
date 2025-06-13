@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Content, isFilled } from "@prismicio/client";
 import { SliceComponentProps, PrismicTable } from "@prismicio/react";
 
-import Section from "@/components/ui/Section";
+import Section from "@/components/Section";
 import ScrollArea from "@/components/ui/ScrollArea";
 
 /**
@@ -22,7 +22,7 @@ const TableBlock: FC<TableBlockProps> = ({ slice }) => {
       className="content"
     >
       {isFilled.table(slice.primary.content) && (
-        <ScrollArea rootProps={{ className: "w-full border-1 border-black-3 rounded-1 overflow-hidden" }}>
+        <ScrollArea rootProps={{ className: "w-full border-1 border-gray-3 rounded-md overflow-hidden" }}>
           <PrismicTable field={slice.primary.content} />
         </ScrollArea>
       )}

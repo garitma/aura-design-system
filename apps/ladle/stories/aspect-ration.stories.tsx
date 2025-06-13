@@ -2,7 +2,7 @@ import * as React from "react";
 import { AspectRatio } from "@/components/ui/AspectRatio";
 
 export const AspectRatioDemo = () => (
-  <div className="w-[300px] overflow-hidden rounded-1">
+  <div className="w-[300px] overflow-hidden rounded-md">
     <AspectRatio ratio={16 / 9}>
       <img
         className="size-full object-cover"

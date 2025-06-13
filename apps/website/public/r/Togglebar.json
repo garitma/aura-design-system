@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "togglebar",
+  "type": "registry:ui",
+  "description": "A container for grouping related Toggle buttons, often used for creating toolbars or mode switching interfaces.",
+  "files": [
+    {
+      "path": "registry/default/ui/Togglebar.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Toolbar } from \"radix-ui\";\n\nimport { cn } from \"@/lib/utils\";\n\nfunction ToggleBar({\n  className,\n  ...props\n}: React.ComponentProps<typeof Toolbar.Root>) {\n  return (\n    <Toolbar.Root data-slot=\"toggle-bar\" className={cn(className)} {...props} />\n  );\n}\n\nfunction ToggleBarButton({\n  className,\n  ...props\n}: React.ComponentProps<typeof Toolbar.Button>) {\n  return (\n    <Toolbar.Button\n      data-slot=\"toggle-bar-button\"\n      className={cn(className)}\n      {...props}\n    />\n  );\n}\n\nfunction ToggleBarSeparator({\n  className,\n  ...props\n}: React.ComponentProps<typeof Toolbar.Separator>) {\n  return (\n    <Toolbar.Separator\n      data-slot=\"toggle-bar-separator\"\n      className={cn(className)}\n      {...props}\n    />\n  );\n}\n\nfunction ToggleBarLink({\n  className,\n  ...props\n}: React.ComponentProps<typeof Toolbar.Link>) {\n  return (\n    <Toolbar.Link\n      data-slot=\"toggle-bar-link\"\n      className={cn(className)}\n      {...props}\n    />\n  );\n}\n\nfunction ToggleBarToggleGroup({\n  className,\n  ...props\n}: React.ComponentProps<typeof Toolbar.ToggleGroup>) {\n  return (\n    <Toolbar.ToggleGroup\n      data-slot=\"toggle-bar-toggle-group\"\n      className={cn(className)}\n      {...props}\n    />\n  );\n}\n\nfunction ToggleBarToggleItem({\n  className,\n  ...props\n}: React.ComponentProps<typeof Toolbar.ToggleItem>) {\n  return (\n    <Toolbar.ToggleItem\n      data-slot=\"toggle-bar-toggle-item\"\n      className={cn(className)}\n      {...props}\n    />\n  );\n}\n\nexport {\n  ToggleBar,\n  ToggleBarButton,\n  ToggleBarSeparator,\n  ToggleBarLink,\n  ToggleBarToggleGroup,\n  ToggleBarToggleItem,\n};\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -1,0 +1,53 @@
+/* Orbit animation */
+@keyframes orbit {
+  from {
+    transform: translate(-50%, -50%) rotateY(0deg) translateZ(40px)
+      rotateY(360deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotateY(360deg) translateZ(40px)
+      rotateY(0deg);
+  }
+}
+
+/* Orbiting circle styles */
+.orbitingCircle {
+  width: 13px;
+  height: 13px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background-color: var(--color-black-contrast);
+  border: 1px solid var(--color-gray-12);
+  animation: orbit 6s linear;
+  animation-iteration-count: infinite;
+}
+
+/* Rotation animation */
+@keyframes rotate {
+  from {
+    transform: rotateZ(0deg);
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+
+  /* 3D transform wrapper */
+  .wrapper {
+    transform-style: preserve-3d;
+    perspective: 500px;
+  }
+
+  /* Main circle styles */
+  .circle {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    background-color: var(--color-black-contrast);
+    border: 1px dashed var(--color-gray-12);
+    animation: rotate 6s linear infinite;
+  }

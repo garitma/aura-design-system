@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion-list",
+  "type": "registry:component",
+  "description": "A pre-styled component that utilizes the accordion primitive to display a list of collapsible items.",
+  "dependencies": [
+    "@radix-ui/react-icons"
+  ],
+  "registryDependencies": [
+    "http://localhost:3000/r/accordion.json"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/AccordionList.tsx",
+      "content": "import React from \"react\";\nimport {\n  Accordion,\n  AccordionContent,\n  AccordionItem,\n  AccordionTrigger,\n} from \"@/components/ui/Accordion\";\n\ntype AccordionListProps = {\n  items: React.ComponentProps<typeof AccordionItem>[];\n} & React.ComponentProps<typeof Accordion>;\n\nconst AccordionList = ({ items, ...props }: AccordionListProps) => {\n  return (\n    <Accordion {...props}>\n      {items.map((item, index) => (\n        <AccordionItem\n          className=\"overflow-hidden\"\n          value={`item-${index}`}\n          key={`item-${index}`}\n        >\n          <AccordionTrigger>{item.title}</AccordionTrigger>\n          <AccordionContent>{item.content}</AccordionContent>\n        </AccordionItem>\n      ))}\n    </Accordion>\n  );\n};\n\nexport default AccordionList;\n",
+      "type": "registry:component"
+    }
+  ]
+}

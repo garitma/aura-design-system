@@ -7,6 +7,10 @@ export default {
       enabled: false,
       defaultState: "light",
     },
-    
+  },
+  addons: {
+    a11y: {
+      enabled: true,
+    },
   },
 };

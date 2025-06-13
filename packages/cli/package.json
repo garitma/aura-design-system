@@ -1,6 +1,6 @@
 {
   "name": "@aura-design/cli",
-  "version": "1.1.5",
+  "version": "1.1.10",
   "description": "Aura Design System CLI",
   "type": "module",
   "keywords": [
@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "chalk": "^5.3.0",
+    "colorjs.io": "^0.5.2",
     "commander": "^11.1.0",
     "execa": "^9.5.3",
     "inquirer": "^12.6.1"

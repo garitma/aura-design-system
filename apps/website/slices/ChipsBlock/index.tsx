@@ -5,7 +5,7 @@ import { PrismicNextLink } from "@prismicio/next";
 import { ExternalLinkIcon } from "@radix-ui/react-icons";
 
 import Button from "@/components/ui/Button";
-import Section from "@/components/ui/Section";
+import Section from "@/components/Section";
 
 /**
  * Props for `ChipsBlock`.

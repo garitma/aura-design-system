@@ -4,7 +4,7 @@ import * as React from "react";
 import { Menubar as MenubarRadix } from "radix-ui";
 import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/class-names";
 
 function Menubar({ ...props }: React.ComponentProps<typeof MenubarRadix.Root>) {
   return <MenubarRadix.Root data-slot="menubar" {...props} />;

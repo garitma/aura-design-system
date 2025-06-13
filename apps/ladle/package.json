@@ -2,12 +2,6 @@
   "name": "@aura-design/ladle",
   "version": "1.0.1",
   "scripts": {
-    "build": "pnpm run clean && shadcn build && rsync -av registry/theming/. ./public/ && pnpm run distribution && pnpm run distribution:local && pnpm run distribution:cli",
-    "registry:sort": "node ./scripts/sort-registry.js",
-    "distribution": "rsync -av ./public/r/ ../website/public/r/",
-    "distribution:local": "node ./scripts/replace-urls.js",
-    "distribution:cli": "cp ./registry.json ../../packages/cli/registry.json",
-    "clean": "rm -rf ./public/r && mkdir -p ./public/r && rm -rf ../website/public/ && mkdir -p ../website/public/r",
     "dev": "pnpm ladle serve --stories=stories",
     "dev:next": "next dev"
   },
@@ -26,14 +20,12 @@
     "ajv-formats": "^3.0.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
-    "lucide-react": "^0.501.0",
     "next": "15.2.2",
     "next-nprogress-bar": "^2.4.3",
     "postcss": "^8",
     "radix-ui": "^1.1.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "shadcn": "2.5.0-canary.1",
     "sonner": "^2.0.1",
     "tailwind-merge": "^3.2.0",
     "tailwindcss": "^4.0.0",
@@ -43,7 +35,6 @@
     "@aura-design/system": "workspace:*",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
-    "autoprefixer": "^10.4.20",
-    "tw-animate-css": "^1.2.7"
+    "autoprefixer": "^10.4.20"
   }
 }

@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -8,20 +7,15 @@
   --font-sans: Inter, sans-serif;
   --info: #e8ebfe;
   --info-contrast: #0927ec;
-
   --success: #e8fef7;
   --success-contrast: #045d3c;
   --danger: #feefe8;
   --danger-contrast: #8e3106;
   --warning: #fefbe8;
   --warning-contrast: #5d5104;
-  --radius-0.5: calc(var(--spacing) * 0.5);
-  --radius-1: calc(var(--spacing) * 1);
-  --radius-1.5: calc(var(--spacing) * 1.5);
-  --radius-2: calc(var(--spacing) * 2);
+
   --color-foreground: var(--foreground);
   --color-background: var(--background);
-  --aura-loader: var(--aura-loader);
   --color-warning-contrast: var(--warning-contrast);
   --color-warning: var(--warning);
   --color-danger-contrast: var(--danger-contrast);
@@ -31,10 +25,10 @@
   --color-info-contrast: var(--info-contrast);
   --color-info: var(--info);
 
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-sm: calc(var(--spacing) * 0.5);
+  --radius-md: calc(var(--spacing) * 1);
+  --radius-lg: calc(var(--spacing) * 1.5);
+  --radius-xl: calc(var(--spacing) * 2);
   --secundary-foreground: var(--secundary-foreground);
   --secundary: var(--secundary);
   --primary-foreground: var(--primary-foreground);
@@ -99,15 +93,11 @@
   --color-accent-1: var(--accent-1);
 }
 
-@theme animatons {
-  
-}
-
 :root {
-  --aura-loader: var(--primary);
   --radius: 13px;
   --background: #fcfcff;
   --foreground: #2c2c3b;
+
 
   --accent-1: #fcfdff;
   --accent-2: #f3f9ff;
@@ -170,6 +160,11 @@
   --primary-foreground: var(--accent-contrast);
   --secundary: var(--accent-8);
   --secundary-foreground: var(--accent-contrast);
+
+  --aura-loader: var(--primary);
+  --aura-accents-primary: var(--primary);
+  --aura-button-hover: var(--accent-12);
+  --aura-outline: var(--info-contrast) solid 2px;
 }
 
 .dark {
@@ -208,7 +203,8 @@
 
 @layer base {
   @import "@aura-design/system/main.css";
-
+  @import "../styles/accordion.css";
+  @import "../styles/dialog.css";
   body {
     @apply bg-background text-foreground;
   }
@@ -218,6 +214,9 @@
 }
 
 @layer components {
+  input, textarea, select {
+    border: solid 1px var(--gray-a6);
+  }
   .nprogress {
     pointer-events: none;
     z-index: 99999;

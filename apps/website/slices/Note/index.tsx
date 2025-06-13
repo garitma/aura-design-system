@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { Content, isFilled } from "@prismicio/client";
 import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
-import Section from "@/components/ui/Section";
+import Section from "@/components/Section";
 
 /**
  * Props for `Note`.

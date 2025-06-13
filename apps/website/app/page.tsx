@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import { SliceZone } from "@prismicio/react";
 
-import { components } from "@/slices/index";
+import { components } from "@/slices";
 import { createClient } from "@/prismicio";
 import { getPrismicSEO } from "@/lib/prismic/utils/seo";
 

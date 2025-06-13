@@ -2,7 +2,7 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "layout-pancake",
   "type": "registry:component",
-  "description": "Layout Header content and Footer",
+  "description": "A full-page layout component featuring a header, main content area, and footer, often including progress indicators.",
   "registryDependencies": [
     "https://auradesignsystem.com/r/header.json",
     "https://auradesignsystem.com/r/footer.json",

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion-css",
+  "type": "registry:file",
+  "description": "CSS styles providing animations for the accordion component.",
+  "files": [
+    {
+      "path": "registry/default/css/accordion.css",
+      "content": "@theme animatons {\n  --animate-accordion-open: slideDownAccordion 250ms ease-in-out;\n  --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;\n}\n@layer components {\n  @keyframes slideDownAccordion {\n    from {\n      height: 0;\n    }\n    to {\n      height: var(--radix-accordion-content-height);\n    }\n  }\n\n  @keyframes slideUpAccordion {\n    from {\n      height: var(--radix-accordion-content-height);\n    }\n    to {\n      height: 0;\n    }\n  }\n}\n",
+      "type": "registry:file",
+      "target": "./styles/accordion.css"
+    }
+  ],
+  "meta": {
+    "css": true
+  }
+}

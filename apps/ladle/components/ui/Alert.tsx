@@ -1,13 +1,13 @@
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/class-names";
 
 function Alert({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="alert"
       role="alert"
-      className={cn("flex gap-1 space-y-0.5 p-1 rounded-1 border", className)}
+      className={cn("flex gap-1 space-y-0.5 p-1 rounded-md border", className)}
       {...props}
     />
   );

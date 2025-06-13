@@ -2,10 +2,10 @@ import { Content, isFilled } from "@prismicio/client";
 import { SliceComponentProps, PrismicRichText } from "@prismicio/react";
 import { PrismicNextLink } from "@prismicio/next";
 
-import Section from "@/components/ui/Section";
+import Section from "@/components/Section";
 import Button from "@/components/ui/Button";
 
-import CommandLine from "@/components/CommandLine";
+
 import Orbiting from "@/components/Orbiting";
 
 /**
