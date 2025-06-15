@@ -16,7 +16,7 @@ import {
   ContextMenuSubContent,
   ContextMenuSubTrigger,
   ContextMenuRadioGroup,
-} from "../components/ui/ContextMenu";
+} from "@/components/ui/ContextMenu";
 
 export const Default: Story = () => {
   return (

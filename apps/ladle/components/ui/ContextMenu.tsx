@@ -54,7 +54,7 @@ function ContextMenuRadioGroup({
   return (
     <ContextMenuRadix.RadioGroup
       data-slot="context-menu-radio-group"
-      lassName={cn(className, "p-0.5 hover:bg-accent-3 flex")}
+      lassName={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative")}
       {...props}
     />
   );
@@ -68,11 +68,13 @@ function ContextMenuSubTrigger({
   return (
     <ContextMenuRadix.SubTrigger
       data-slot="context-menu-sub-trigger"
-      className={cn(className, "p-0.5 hover:bg-accent-3 flex")}
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative")}
       {...props}
     >
       {children}
-      <ChevronRightIcon />
+      <div className="absolute right-0.5 top-0 bottom-0 items-center flex justify-center">
+        <ChevronRightIcon />
+      </div>
     </ContextMenuRadix.SubTrigger>
   );
 }
@@ -84,7 +86,10 @@ function ContextMenuSubContent({
   return (
     <ContextMenuRadix.SubContent
       data-slot="context-menu-sub-content"
-      className={cn(className, "bg-accent-1 border border-gray-a6 rounded-sm")}
+      className={cn(
+        className,
+        "bg-accent-1 border border-gray-a6 rounded-sm relative shadow-md"
+      )}
       {...props}
     />
   );
@@ -100,7 +105,7 @@ function ContextMenuContent({
         data-slot="context-menu-content"
         className={cn(
           className,
-          "bg-accent-1 border border-gray-a6 rounded-sm"
+          "bg-accent-1 border border-gray-a6 rounded-sm relative shadow-md"
         )}
         {...props}
       />
@@ -115,7 +120,7 @@ function ContextMenuItem({
   return (
     <ContextMenuRadix.Item
       data-slot="context-menu-item"
-      className={cn(className, "p-0.5 hover:bg-accent-3 flex")}
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative")}
       {...props}
     />
   );
@@ -130,13 +135,13 @@ function ContextMenuCheckboxItem({
   return (
     <ContextMenuRadix.CheckboxItem
       data-slot="context-menu-checkbox-item"
-      className={cn(className, "p-0.5 hover:bg-accent-3 flex")}
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative")}
       checked={checked}
       {...props}
     >
-      <span>
+      <span className="absolute left-0.5 top-0 bottom-0 items-center flex justify-center">
         <ContextMenuRadix.ItemIndicator>
-          <CheckIcon />
+          <CheckIcon className="text-accent-9"/>
         </ContextMenuRadix.ItemIndicator>
       </span>
       {children}
@@ -152,12 +157,12 @@ function ContextMenuRadioItem({
   return (
     <ContextMenuRadix.RadioItem
       data-slot="context-menu-radio-item"
-      className={cn(className, "p-0.5 hover:bg-accent-3 flex items-center")}
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative")}
       {...props}
     >
-      <span>
+      <span className="absolute left-0.5 top-0 bottom-0 items-center flex justify-center">
         <ContextMenuRadix.ItemIndicator>
-          <DotFilledIcon />
+          <DotFilledIcon  className="text-accent-9"/>
         </ContextMenuRadix.ItemIndicator>
       </span>
       {children}
@@ -166,15 +171,13 @@ function ContextMenuRadioItem({
 }
 
 function ContextMenuLabel({
-  inset,
+  className,
   ...props
-}: React.ComponentProps<typeof ContextMenuRadix.Label> & {
-  inset?: boolean;
-}) {
+}: React.ComponentProps<typeof ContextMenuRadix.Label>) {
   return (
     <ContextMenuRadix.Label
       data-slot="context-menu-label"
-      data-inset={inset}
+      className={cn(className, "p-0.5 px-2 text-gray-12")}
       {...props}
     />
   );
