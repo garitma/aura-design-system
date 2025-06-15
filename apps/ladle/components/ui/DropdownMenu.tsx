@@ -64,7 +64,7 @@ function DropdownMenuItem({
   return (
     <DropdownMenuRadix.Item
       data-slot="dropdown-menu-item"
-      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative")}
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")}
       {...props}
     />
   );
@@ -78,7 +78,7 @@ function DropdownMenuCheckboxItem({
   return (
     <DropdownMenuRadix.CheckboxItem
       data-slot="dropdown-menu-checkbox-item"
-      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative")}
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")}
       {...props}
     >
       <span className="absolute left-0.5 top-0 bottom-0 items-center flex justify-center">
@@ -112,7 +112,7 @@ function DropdownMenuRadioItem({
   return (
     <DropdownMenuRadix.RadioItem
       data-slot="dropdown-menu-radio-item"
-      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative")}
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")}
       {...props}
     >
       <span className="absolute left-0.5 top-0 bottom-0 items-center flex justify-center">
@@ -169,7 +169,7 @@ function DropdownMenuSubTrigger({
   return (
     <DropdownMenuRadix.SubTrigger
       data-slot="dropdown-menu-sub-trigger"
-      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative")}
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")}
       {...props}
     >
       {children}
