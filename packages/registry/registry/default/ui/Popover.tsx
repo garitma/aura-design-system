@@ -3,7 +3,7 @@
 import * as React from "react";
 import { Popover as PopoverRadix } from "radix-ui";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/class-names";
 
 function Popover({ ...props }: React.ComponentProps<typeof PopoverRadix.Root>) {
   return <PopoverRadix.Root data-slot="popover" {...props} />;

@@ -1,7 +1,7 @@
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { Cross2Icon } from "@radix-ui/react-icons";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/class-names";
 import Button from "@/components/ui/Button";
 
 function Dialog({

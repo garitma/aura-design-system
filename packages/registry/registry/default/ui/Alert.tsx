@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/class-names";
 
 function Alert({ className, ...props }: React.ComponentProps<"div">) {
   return (

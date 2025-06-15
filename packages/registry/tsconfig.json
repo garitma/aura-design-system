@@ -22,7 +22,7 @@
       "@/components/*": ["./registry/default/components/*"],
       "@/components/ui/*": ["./registry/default/ui/*"],
       "@/utils/*": ["./registry/default/utils/*"],
-      "@/hooks/*": ["./registry/default/hooks/*"],
+      "@/hooks/*": ["./registry/default/hooks/*"]
     }
   },
   "include": ["next-env.d.ts", ".next/types/**/*.ts", "**/*.ts", "**/*.tsx"],
