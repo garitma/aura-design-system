@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { DropdownMenu as DropdownMenuRadix } from "radix-ui";
-import { CheckIcon, ChevronRightIcon, CircleIcon } from "@radix-ui/react-icons";
+import { CheckIcon, ChevronRightIcon, CircleIcon, DotFilledIcon } from "@radix-ui/react-icons";
 
 import { cn } from "@/utils/class-names";
 
@@ -21,19 +21,32 @@ function DropdownMenuPortal({
 }
 
 function DropdownMenuTrigger({
+  className,
   ...props
 }: React.ComponentProps<typeof DropdownMenuRadix.Trigger>) {
   return (
-    <DropdownMenuRadix.Trigger data-slot="dropdown-menu-trigger" {...props} />
+    <DropdownMenuRadix.Trigger
+      data-slot="dropdown-menu-trigger"
+      className={cn(className)}
+      {...props}
+    />
   );
 }
 
 function DropdownMenuContent({
+  className,
   ...props
 }: React.ComponentProps<typeof DropdownMenuRadix.Content>) {
   return (
     <DropdownMenuRadix.Portal>
-      <DropdownMenuRadix.Content data-slot="dropdown-menu-content" {...props} />
+      <DropdownMenuRadix.Content
+        data-slot="dropdown-menu-content"
+        className={cn(
+          className,
+          "bg-accent-1 border border-gray-a6 rounded-sm relative shadow-md"
+        )}
+        {...props}
+      />
     </DropdownMenuRadix.Portal>
   );
 }
@@ -45,23 +58,32 @@ function DropdownMenuGroup({
 }
 
 function DropdownMenuItem({
+  className,
   ...props
 }: React.ComponentProps<typeof DropdownMenuRadix.Item>) {
-  return <DropdownMenuRadix.Item data-slot="dropdown-menu-item" {...props} />;
+  return (
+    <DropdownMenuRadix.Item
+      data-slot="dropdown-menu-item"
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative")}
+      {...props}
+    />
+  );
 }
 
 function DropdownMenuCheckboxItem({
   children,
+  className,
   ...props
 }: React.ComponentProps<typeof DropdownMenuRadix.CheckboxItem>) {
   return (
     <DropdownMenuRadix.CheckboxItem
       data-slot="dropdown-menu-checkbox-item"
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative")}
       {...props}
     >
-      <span>
+      <span className="absolute left-0.5 top-0 bottom-0 items-center flex justify-center">
         <DropdownMenuRadix.ItemIndicator>
-          <CheckIcon />
+          <CheckIcon className="text-accent-9"/>
         </DropdownMenuRadix.ItemIndicator>
       </span>
       {children}
@@ -70,11 +92,13 @@ function DropdownMenuCheckboxItem({
 }
 
 function DropdownMenuRadioGroup({
+  className,
   ...props
 }: React.ComponentProps<typeof DropdownMenuRadix.RadioGroup>) {
   return (
     <DropdownMenuRadix.RadioGroup
       data-slot="dropdown-menu-radio-group"
+      className={cn(className)}
       {...props}
     />
   );
@@ -82,16 +106,18 @@ function DropdownMenuRadioGroup({
 
 function DropdownMenuRadioItem({
   children,
+  className,
   ...props
 }: React.ComponentProps<typeof DropdownMenuRadix.RadioItem>) {
   return (
     <DropdownMenuRadix.RadioItem
       data-slot="dropdown-menu-radio-item"
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative")}
       {...props}
     >
-      <span className="pointer-events-none absolute left-2 flex size-3.5 items-center justify-center">
+      <span className="absolute left-0.5 top-0 bottom-0 items-center flex justify-center">
         <DropdownMenuRadix.ItemIndicator>
-          <CircleIcon className="size-2 fill-current" />
+          <DotFilledIcon className="fill-current text-accent-9" />
         </DropdownMenuRadix.ItemIndicator>
       </span>
       {children}
@@ -106,18 +132,20 @@ function DropdownMenuLabel({
   return (
     <DropdownMenuRadix.Label
       data-slot="dropdown-menu-label"
-      className={cn(className)}
+      className={cn(className, "p-0.5 px-2 text-gray-12")}
       {...props}
     />
   );
 }
 
 function DropdownMenuSeparator({
+  className,
   ...props
 }: React.ComponentProps<typeof DropdownMenuRadix.Separator>) {
   return (
     <DropdownMenuRadix.Separator
       data-slot="dropdown-menu-separator"
+      className={cn(className, "m-0.6 h-px bg-gray-a6")}
       {...props}
     />
   );
@@ -135,25 +163,34 @@ function DropdownMenuSub({
 
 function DropdownMenuSubTrigger({
   children,
+  className,
   ...props
 }: React.ComponentProps<typeof DropdownMenuRadix.SubTrigger>) {
   return (
     <DropdownMenuRadix.SubTrigger
       data-slot="dropdown-menu-sub-trigger"
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative")}
       {...props}
     >
       {children}
-      <ChevronRightIcon className="ml-auto size-4" />
+      <div className="absolute right-0.5 top-0 bottom-0 items-center flex justify-center">
+        <ChevronRightIcon />
+      </div>
     </DropdownMenuRadix.SubTrigger>
   );
 }
 
 function DropdownMenuSubContent({
+  className,
   ...props
 }: React.ComponentProps<typeof DropdownMenuRadix.SubContent>) {
   return (
     <DropdownMenuRadix.SubContent
       data-slot="dropdown-menu-sub-content"
+      className={cn(
+        className,
+        "bg-accent-1 border border-gray-a6 rounded-sm relative shadow-md"
+      )}
       {...props}
     />
   );
