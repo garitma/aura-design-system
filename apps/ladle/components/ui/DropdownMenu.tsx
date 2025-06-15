@@ -100,11 +100,16 @@ function DropdownMenuRadioItem({
 }
 
 function DropdownMenuLabel({
+  className,
   ...props
-}: React.ComponentProps<typeof DropdownMenuRadix.Label> & {
-  inset?: boolean;
-}) {
-  return <DropdownMenuRadix.Label data-slot="dropdown-menu-label" {...props} />;
+}: React.ComponentProps<typeof DropdownMenuRadix.Label>) {
+  return (
+    <DropdownMenuRadix.Label
+      data-slot="dropdown-menu-label"
+      className={cn(className)}
+      {...props}
+    />
+  );
 }
 
 function DropdownMenuSeparator({
