@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/class-names";
 
 export type AuraContainer = "smash" | "smesh" | "smish" | "smosh" | "smush";
 

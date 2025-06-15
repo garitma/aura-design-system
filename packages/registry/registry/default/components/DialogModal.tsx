@@ -1,4 +1,4 @@
-import { AuraContainer } from "@aura-design/system/types/global";
+import type { AuraContainer } from "@aura-design/system/types/global";
 
 import {
   Dialog,
@@ -9,7 +9,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/Dialog";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/class-names";
 
 interface DialogModalProps {
   trigger?: React.ReactNode;
