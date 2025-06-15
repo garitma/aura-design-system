@@ -1,4 +1,4 @@
-import type { AuraContainer } from "@aura-design/system/types/global";
+import { AuraContainer } from "@aura-design/system/types/global";
 
 import {
   Dialog,
