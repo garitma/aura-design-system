@@ -1,76 +1,89 @@
 import * as React from "react";
 import { NavigationMenu as NavigationMenuRadix } from "radix-ui";
 
-import { ChevronDownIcon } from "@radix-ui/react-icons";
-
 import { cn } from "@/utils/class-names";
 
 function NavigationMenu({
   className,
   children,
-  viewport = true,
   ...props
-}: React.ComponentProps<typeof NavigationMenuRadix.Root> & {
-  viewport?: boolean;
-}) {
+}: React.ComponentProps<typeof NavigationMenuRadix.Root>) {
   return (
-    <NavigationMenuRadix.Root data-slot="navigation-menu" {...props}>
+    <NavigationMenuRadix.Root
+      data-slot="navigation-menu"
+      className={cn(className)}
+      {...props}
+    >
       {children}
-      {viewport && <NavigationMenuViewport />}
     </NavigationMenuRadix.Root>
   );
 }
 
 function NavigationMenuList({
+  className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuRadix.List>) {
   return (
-    <NavigationMenuRadix.List data-slot="navigation-menu-list" {...props} />
+    <NavigationMenuRadix.List
+      data-slot="navigation-menu-list"
+      className={cn(className)}
+      {...props}
+    />
   );
 }
 
 function NavigationMenuItem({
+  className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuRadix.Item>) {
   return (
-    <NavigationMenuRadix.Item data-slot="navigation-menu-item" {...props} />
+    <NavigationMenuRadix.Item
+      data-slot="navigation-menu-item"
+      className={cn(className)}
+      {...props}
+    />
   );
 }
 
 function NavigationMenuTrigger({
+  className,
   children,
   ...props
 }: React.ComponentProps<typeof NavigationMenuRadix.Trigger>) {
   return (
-    <NavigationMenuRadix.Trigger data-slot="navigation-menu-trigger" {...props}>
-      {children} <ChevronDownIcon aria-hidden="true" />
+    <NavigationMenuRadix.Trigger
+      data-slot="navigation-menu-trigger"
+      {...props}
+      className={cn(className)}
+    >
+      {children}
     </NavigationMenuRadix.Trigger>
   );
 }
 
 function NavigationMenuContent({
+  className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuRadix.Content>) {
   return (
     <NavigationMenuRadix.Content
       data-slot="navigation-menu-content"
+      className={cn(className)}
       {...props}
     />
   );
 }
 
 function NavigationMenuViewport({
+  className,
   ...props
 }: React.ComponentProps<typeof NavigationMenuRadix.Viewport>) {
   return (
-    <div
-      className={"absolute top-full left-0 isolate z-50 flex justify-center"}
-    >
-      <NavigationMenuRadix.Viewport
-        data-slot="navigation-menu-viewport"
-        {...props}
-      />
-    </div>
+    <NavigationMenuRadix.Viewport
+      data-slot="navigation-menu-viewport"
+      {...props}
+      className={cn(className)}
+    />
   );
 }
 
@@ -79,7 +92,11 @@ function NavigationMenuLink({
   ...props
 }: React.ComponentProps<typeof NavigationMenuRadix.Link>) {
   return (
-    <NavigationMenuRadix.Link data-slot="navigation-menu-link" {...props} />
+    <NavigationMenuRadix.Link
+      data-slot="navigation-menu-link"
+      className={cn(className)}
+      {...props}
+    />
   );
 }
 
@@ -90,9 +107,10 @@ function NavigationMenuIndicator({
   return (
     <NavigationMenuRadix.Indicator
       data-slot="navigation-menu-indicator"
+      className={cn(className)}
       {...props}
     >
-      <div className="bg-border relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm shadow-md" />
+      <div />
     </NavigationMenuRadix.Indicator>
   );
 }
