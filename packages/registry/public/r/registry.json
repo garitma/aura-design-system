@@ -207,6 +207,21 @@
       ]
     },
     {
+      "name": "context-menu-list",
+      "type": "registry:component",
+      "description": "A pre-styled component that utilizes the context menu primitive to display a list of configurable menu items, allowing for dynamic rendering of different item types like standard items, checkboxes, radio buttons, sub-menus, and separators.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://localhost:3000/r/context-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/ContextMenuList.tsx",
+          "type": "registry:component"
+        }
+      ]
+    },
+    {
       "name": "default",
       "extends": "none",
       "type": "registry:style",
@@ -306,6 +321,21 @@
         {
           "path": "registry/default/ui/DropdownMenu.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "dropdown-menu-list",
+      "type": "registry:component",
+      "description": "A pre-styled component that utilizes the dropdown menu primitive to display a list of configurable menu items, allowing for dynamic rendering of different item types like standard items, checkboxes, radio buttons, sub-menus, and separators.",
+      "dependencies": [],
+      "registryDependencies": [
+        "http://localhost:3000/r/dropdown-menu.json"
+      ],
+      "files": [
+        {
+          "path": "registry/default/components/DropdownMenuList.tsx",
+          "type": "registry:component"
         }
       ]
     },

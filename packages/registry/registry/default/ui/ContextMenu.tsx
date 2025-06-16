@@ -2,7 +2,11 @@
 
 import * as React from "react";
 import { ContextMenu as ContextMenuRadix } from "radix-ui";
-import { CheckIcon, ChevronRightIcon, CircleIcon } from "@radix-ui/react-icons";
+import {
+  CheckIcon,
+  ChevronRightIcon,
+  DotFilledIcon,
+} from "@radix-ui/react-icons";
 
 import { cn } from "@/utils/class-names";
 
@@ -13,10 +17,15 @@ function ContextMenu({
 }
 
 function ContextMenuTrigger({
+  className,
   ...props
 }: React.ComponentProps<typeof ContextMenuRadix.Trigger>) {
   return (
-    <ContextMenuRadix.Trigger data-slot="context-menu-trigger" {...props} />
+    <ContextMenuRadix.Trigger
+      data-slot="context-menu-trigger"
+      className={cn(className)}
+      {...props}
+    />
   );
 }
 
@@ -39,69 +48,79 @@ function ContextMenuSub({
 }
 
 function ContextMenuRadioGroup({
+  className,
   ...props
 }: React.ComponentProps<typeof ContextMenuRadix.RadioGroup>) {
   return (
     <ContextMenuRadix.RadioGroup
       data-slot="context-menu-radio-group"
+      className={cn(className)}
       {...props}
     />
   );
 }
 
 function ContextMenuSubTrigger({
-  inset,
   children,
+  className,
   ...props
-}: React.ComponentProps<typeof ContextMenuRadix.SubTrigger> & {
-  inset?: boolean;
-}) {
+}: React.ComponentProps<typeof ContextMenuRadix.SubTrigger>) {
   return (
     <ContextMenuRadix.SubTrigger
       data-slot="context-menu-sub-trigger"
-      data-inset={inset}
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")}
       {...props}
     >
       {children}
-      <ChevronRightIcon />
+      <div className="absolute right-0.5 top-0 bottom-0 items-center flex justify-center">
+        <ChevronRightIcon />
+      </div>
     </ContextMenuRadix.SubTrigger>
   );
 }
 
 function ContextMenuSubContent({
+  className,
   ...props
 }: React.ComponentProps<typeof ContextMenuRadix.SubContent>) {
   return (
     <ContextMenuRadix.SubContent
       data-slot="context-menu-sub-content"
+      className={cn(
+        className,
+        "bg-accent-1 border border-gray-a6 rounded-sm relative shadow-md"
+      )}
       {...props}
     />
   );
 }
 
 function ContextMenuContent({
+  className,
   ...props
 }: React.ComponentProps<typeof ContextMenuRadix.Content>) {
   return (
     <ContextMenuRadix.Portal>
-      <ContextMenuRadix.Content data-slot="context-menu-content" {...props} />
+      <ContextMenuRadix.Content
+        data-slot="context-menu-content"
+        className={cn(
+          className,
+          "bg-accent-1 border border-gray-a6 rounded-sm relative shadow-md"
+        )}
+        {...props}
+      />
     </ContextMenuRadix.Portal>
   );
 }
 
 function ContextMenuItem({
-  inset,
-  variant = "default",
+  className,
   ...props
-}: React.ComponentProps<typeof ContextMenuRadix.Item> & {
-  inset?: boolean;
-  variant?: "default" | "destructive";
-}) {
+}: React.ComponentProps<typeof ContextMenuRadix.Item> & {}) {
   return (
     <ContextMenuRadix.Item
       data-slot="context-menu-item"
-      data-inset={inset}
-      data-variant={variant}
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")}
       {...props}
     />
   );
@@ -110,17 +129,19 @@ function ContextMenuItem({
 function ContextMenuCheckboxItem({
   children,
   checked,
+  className,
   ...props
 }: React.ComponentProps<typeof ContextMenuRadix.CheckboxItem>) {
   return (
     <ContextMenuRadix.CheckboxItem
       data-slot="context-menu-checkbox-item"
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")}
       checked={checked}
       {...props}
     >
-      <span>
+      <span className="absolute left-0.5 top-0 bottom-0 items-center flex justify-center">
         <ContextMenuRadix.ItemIndicator>
-          <CheckIcon />
+          <CheckIcon className="text-accent-9"/>
         </ContextMenuRadix.ItemIndicator>
       </span>
       {children}
@@ -130,13 +151,18 @@ function ContextMenuCheckboxItem({
 
 function ContextMenuRadioItem({
   children,
+  className,
   ...props
 }: React.ComponentProps<typeof ContextMenuRadix.RadioItem>) {
   return (
-    <ContextMenuRadix.RadioItem data-slot="context-menu-radio-item" {...props}>
-      <span>
+    <ContextMenuRadix.RadioItem
+      data-slot="context-menu-radio-item"
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")}
+      {...props}
+    >
+      <span className="absolute left-0.5 top-0 bottom-0 items-center flex justify-center">
         <ContextMenuRadix.ItemIndicator>
-          <CircleIcon />
+          <DotFilledIcon  className="text-accent-9"/>
         </ContextMenuRadix.ItemIndicator>
       </span>
       {children}
@@ -145,25 +171,28 @@ function ContextMenuRadioItem({
 }
 
 function ContextMenuLabel({
-  inset,
+  className,
   ...props
-}: React.ComponentProps<typeof ContextMenuRadix.Label> & {
-  inset?: boolean;
-}) {
+}: React.ComponentProps<typeof ContextMenuRadix.Label>) {
   return (
     <ContextMenuRadix.Label
       data-slot="context-menu-label"
-      data-inset={inset}
+      className={cn(className, "p-0.5 px-2 text-gray-12")}
       {...props}
     />
   );
 }
 
 function ContextMenuSeparator({
+  className,
   ...props
 }: React.ComponentProps<typeof ContextMenuRadix.Separator>) {
   return (
-    <ContextMenuRadix.Separator data-slot="context-menu-separator" {...props} />
+    <ContextMenuRadix.Separator
+      data-slot="context-menu-separator"
+      className={cn(className, "m-0.6 h-px bg-gray-a6")}
+      {...props}
+    />
   );
 }
 
