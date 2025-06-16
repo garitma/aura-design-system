@@ -6,7 +6,7 @@
   "files": [
     {
       "path": "registry/default/ui/Input.tsx",
-      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/utils/class-names\";\n\n\nfunction Input({ className, ...props }: React.ComponentProps<\"input\">) {\n  return <input data-slot=\"input\" className={cn(className)} {...props} />;\n}\n\nexport { Input };\n",
+      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/utils/class-names\";\n\nfunction Input({ className, ...props }: React.ComponentProps<\"input\">) {\n  return <input data-slot=\"input\" className={cn(className)} {...props} />;\n}\n\nexport { Input };\n",
       "type": "registry:ui"
     }
   ]
