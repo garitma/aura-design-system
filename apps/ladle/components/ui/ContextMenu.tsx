@@ -54,7 +54,7 @@ function ContextMenuRadioGroup({
   return (
     <ContextMenuRadix.RadioGroup
       data-slot="context-menu-radio-group"
-      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative")}
+      className={cn(className)}
       {...props}
     />
   );
