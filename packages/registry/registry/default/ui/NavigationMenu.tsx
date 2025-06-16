@@ -54,7 +54,7 @@ function NavigationMenuTrigger({
     <NavigationMenuRadix.Trigger
       data-slot="navigation-menu-trigger"
       {...props}
-      className={cn(className)}
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")}
     >
       {children}
     </NavigationMenuRadix.Trigger>
@@ -68,7 +68,10 @@ function NavigationMenuContent({
   return (
     <NavigationMenuRadix.Content
       data-slot="navigation-menu-content"
-      className={cn(className)}
+      className={cn(
+        className,
+        "absolute top-4 bg-gray-1 shadow-md rounded-md border border-gray-a6"
+      )}
       {...props}
     />
   );
@@ -94,7 +97,7 @@ function NavigationMenuLink({
   return (
     <NavigationMenuRadix.Link
       data-slot="navigation-menu-link"
-      className={cn(className)}
+      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer items-center")}
       {...props}
     />
   );
