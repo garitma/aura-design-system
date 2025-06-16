@@ -3,6 +3,8 @@
 import * as React from "react";
 import { HoverCard as HoverCardRadix } from "radix-ui";
 
+import { cn } from "@/utils/class-names";
+
 function HoverCard({
   ...props
 }: React.ComponentProps<typeof HoverCardRadix.Root>) {
@@ -10,17 +12,35 @@ function HoverCard({
 }
 
 function HoverCardTrigger({
+  className,
   ...props
 }: React.ComponentProps<typeof HoverCardRadix.Trigger>) {
-  return <HoverCardRadix.Trigger data-slot="hover-card-trigger" {...props} />;
+  return (
+    <HoverCardRadix.Trigger
+      data-slot="hover-card-trigger"
+      className={cn(className)}
+      {...props}
+    />
+  );
 }
 
 function HoverCardContent({
+  className,
+  children,
   ...props
 }: React.ComponentProps<typeof HoverCardRadix.Content>) {
   return (
     <HoverCardRadix.Portal data-slot="hover-card-portal">
-      <HoverCardRadix.Content data-slot="hover-card-content" {...props} />
+      <HoverCardRadix.Content
+        data-slot="hover-card-content"
+        className={cn(
+          className,
+          "bg-accent-1 border border-gray-a6 rounded-sm p-1 shadow-md"
+        )}
+        {...props}
+      >
+        {children}
+      </HoverCardRadix.Content>
     </HoverCardRadix.Portal>
   );
 }

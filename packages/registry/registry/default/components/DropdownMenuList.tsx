@@ -63,7 +63,7 @@ type DropdownMenuRadioGroupWrapperProps = React.ComponentProps<typeof DropdownMe
   items: DropdownMenuRadioItemProps[];
 };
 
-type DropdownMenuItemType = 
+export type DropdownMenuItemType = 
   | DropdownMenuItemProps
   | DropdownMenuCheckboxItemProps
   | DropdownMenuRadioItemProps
