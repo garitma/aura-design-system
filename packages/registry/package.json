@@ -14,7 +14,7 @@
   "author": "Pablo Orozco <me@pablopvsky.com>",
   "license": "MIT",
   "bin": {
-    "aura": "./bin/index.js"
+    "aura": "./dist/bin/index.js"
   },
   "publishConfig": {
     "access": "public"
@@ -26,23 +26,33 @@
   "bugs": {
     "url": "https://github.com/garitma/aura-design-system/issues"
   },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
   "scripts": {
-    "serve": "pnpm dlx serve public",
-    "clean": "rm -rf ./public/r && mkdir -p ./public/r && rm -rf ../website/public/ && mkdir -p ../website/public/r",
-    "build": "pnpm run clean && shadcn build && rsync -av registry/theming/. ./public/ && pnpm run distribution && pnpm run distribution:local && pnpm run distribution:cli",
-    "registry:sync": "node ./scripts/sync-to-registry",
-    "registry:sort": "node ./scripts/sort-registry.js",
-    "distribution": "cp ./registry.json ./public/r/registry.json && rsync -av ./public/ ../../apps/website/public/",
-    "distribution:local": "node ./scripts/replace-urls.js",
-    "distribution:cli": "cp ./registry.json ../cli/registry.json",
-    "distribution:mcp": "cp ./registry.json ../mcp/registry.json"
+    "build": "tsc --build",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "type-check": "tsc --noEmit"
   },
   "dependencies": {
     "@radix-ui/react-icons": "^1.3.0",
+    "commander": "^11.0.0",
     "fs-extra": "^11.3.0",
     "radix-ui": "^1.1.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "shadcn": "2.5.0-canary.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
   }
 }
