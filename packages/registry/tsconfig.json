@@ -21,7 +21,11 @@
     "rootDir": "./",
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["registry/default/*"]
+    }
   },
   "include": ["**/*.ts", "**/*.tsx", "registry.json"],
   "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]

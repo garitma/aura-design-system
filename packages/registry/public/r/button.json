@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "button",
+  "type": "registry:ui",
+  "title": "Button",
+  "description": "An interactive element that triggers an action or event when clicked.",
+  "files": [
+    {
+      "path": "registry/default/components/ui/Button.tsx",
+      "content": "import * as React from \"react\";\nimport { Slot } from \"@radix-ui/react-slot\";\n\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/utils/class-names\";\n\nconst buttonVariants = cva(\"button\", {\n  variants: {\n    variant: {\n      default: \"button-fill\",\n      fill: \"button-fill\",\n      pill: \"button-pill\",\n      link: \"button-link\",\n      menu: \"button-menu\",\n    },\n    size: {\n      default: \"\",\n      sm: \"\",\n      lg: \"\",\n      icon: \"\",\n      \"icon-sm\": \"\",\n      \"icon-lg\": \"\",\n    },\n  },\n  defaultVariants: {\n    variant: \"default\",\n    size: \"default\",\n  },\n});\n\ninterface ButtonProps\n  extends React.ComponentProps<\"button\">,\n    VariantProps<typeof buttonVariants> {\n  asChild?: boolean;\n}\n\nconst Button = React.forwardRef<HTMLButtonElement, ButtonProps>(\n  (props: ButtonProps, ref) => {\n    const { className, variant, size, asChild = false, ...rest } = props;\n    const Comp = asChild ? Slot : \"button\";\n\n    return (\n      <Comp\n        data-slot=\"button\"\n        className={cn(buttonVariants({ variant, size, className }))}\n        ref={ref}\n        {...rest}\n      />\n    );\n  }\n);\n\nButton.displayName = \"Button\";\n\nexport { Button, buttonVariants };\nexport type { ButtonProps };\n",
+      "type": "registry:ui"
+    }
+  ]
+}
