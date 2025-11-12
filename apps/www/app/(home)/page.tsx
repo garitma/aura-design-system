@@ -1,10 +1,15 @@
-import Button from "@aura-design/system/button";
+import Link from "next/link";
+
+import { Button } from "@/components/ui/Button";
+
 export default function HomePage() {
   return (
-    <main >
+    <main>
       <h1>Aura Design System</h1>
       <h3>Just another design system</h3>
-      <Button>Get Started</Button>
+      <Link href="/docs">
+        <Button as="span">Get Started</Button>
+      </Link>
     </main>
   );
 }
