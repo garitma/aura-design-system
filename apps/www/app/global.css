@@ -1,14 +1,26 @@
 @import 'tailwindcss';
-@import 'fumadocs-ui/css/neutral.css';
+/* @import 'fumadocs-ui/css/neutral.css'; */
 @import 'fumadocs-ui/css/preset.css';
 
-:root {
-  --aura-bg: ""
+@theme {
+  --color-fd-background: #0c122b;
+  --color-fd-foreground: #d4d4d4;
+  --color-fd-muted: #121a3f;
+  --color-fd-muted-foreground: #cd9ffb;
+  --color-fd-popover: #0c122b;
+  --color-fd-popover-foreground: #fafafa;
+  --color-fd-card: #121a3f;
+  --color-fd-card-foreground: #fafafa;
+  --color-fd-border: #121a3f;
+  --color-fd-primary: #fafafa;
+  --color-fd-primary-foreground: #0c122b;
+  --color-fd-secondary: #bf91ec;
+  --color-fd-secondary-foreground: #0c122b;
+  --color-fd-accent: #cd9ffb;
+  --color-fd-accent-foreground: #0c122b;
+  --color-fd-ring: #bf91ec;
 }
 
-@layer base {
-  @import '@aura-design/system/main.css'; 
-}
 
 
 @font-face {
@@ -67,6 +79,22 @@
   font-style: italic;
 }
 
+:root {
+  --aura-bg: inherit;
+  --aura-link: inherit;
+}
+
+
+@layer base {
+  @import '@aura-design/system/main.css'; 
+}
+
+
+
+
+
+
 body {
   font-family: 'iA Writer Duo', sans-serif;
+  background-color: var(--color-fd-background);
 }
