@@ -16,7 +16,7 @@
   --color-fd-primary-foreground: #0c122b;
   --color-fd-secondary: #bf91ec;
   --color-fd-secondary-foreground: #0c122b;
-  --color-fd-accent: #cd9ffb;
+  --color-fd-accent: #16204e;
   --color-fd-accent-foreground: #fafafa;
   --color-fd-ring: #bf91ec;
 }
@@ -47,6 +47,34 @@
 @font-face {
   font-family: 'iA Writer Duo';
   src: url('/iAWriterDuo/Webfonts/iAWriterDuoS-BoldItalic.woff2') format('woff2');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'iA Writer Quattro';
+  src: url('/iAWriterQuattro/Webfonts/iAWriterQuattroS-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'iA Writer Quattro';
+  src: url('/iAWriterQuattro/Webfonts/iAWriterQuattroS-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'iA Writer Quattro';
+  src: url('/iAWriterQuattro/Webfonts/iAWriterQuattroS-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'iA Writer Quattro';
+  src: url('/iAWriterQuattro/Webfonts/iAWriterQuattroS-BoldItalic.woff2') format('woff2');
   font-weight: bold;
   font-style: italic;
 }
@@ -83,7 +111,8 @@
   --aura-bg: inherit;
   --aura-link: inherit;
   --font-mono: 'iA Writer Mono', monospace;
-  --font-sans: 'iA Writer Duo', sans-serif;
+  --font-sans: 'iA Writer Quattro', sans-serif;
+  --font-serif: 'iA Writer Duo', serif;
 }
 
 
