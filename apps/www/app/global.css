@@ -79,9 +79,40 @@
   font-style: italic;
 }
 
+@font-face {
+  font-family: 'iA Writer Mono';
+  src: url('/iAWriterMono/Webfonts/iAWriterMonoS-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'iA Writer Mono';
+  src: url('/iAWriterMono/Webfonts/iAWriterMonoS-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'iA Writer Mono';
+  src: url('/iAWriterMono/Webfonts/iAWriterMonoS-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'iA Writer Mono';
+  src: url('/iAWriterMono/Webfonts/iAWriterMonoS-BoldItalic.woff2') format('woff2');
+  font-weight: bold;
+  font-style: italic;
+}
+
 :root {
   --aura-bg: inherit;
   --aura-link: inherit;
+  --font-mono: 'iA Writer Mono', monospace;
+  --font-sans: 'iA Writer Duo', sans-serif;
+  --font-serif: 'iA Writer Quattro', serif;
 }
 
 
