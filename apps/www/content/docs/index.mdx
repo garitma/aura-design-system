@@ -1,7 +1,29 @@
 ---
-title: Hello World
-description: Your first document
+title: Install Aura Design System with Next.js
+description: Setting up Tailwind CSS in a Next.js project with Aura Design System.
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+## Create your project
 
+
+Start by setting up a new Next.js project if you haven’t already. The most common method is to use Create Next App.
+
+```bash
+pnpm dlx create-next-app@latest my-aura-app
+```
+
+Enter to the root of the project `cd my-aura-app`
+
+```bash
+pnpm dlx @aura-design/cli init 
+```
+
+Explanation:
+
+- `pnpm dlx`: Executes a package directly from the npm registry without installing it globally.
+- `create-next-app`: Sets up a new Next.js project with your chosen configurations.
+- `@aura-design/cli init`: Initializes Aura-specific configurations within your project. Under the hood, this command leverages shadcn's component architecture while adding custom configurations.
+
+Following these steps will set up a Next.js project with Aura Design System, allowing you to start building your application with pre-styled, consistent components.
+
+**In summary**: The provided commands streamline the setup. First, a Next.js project is generated. Then, Aura's styling and theme are incorporated through the shadcn registry. Finally, Aura-specific configurations are applied, culminating in a Next.js project ready for development with Aura Design System.

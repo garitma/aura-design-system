@@ -17,7 +17,7 @@
   --color-fd-secondary: #bf91ec;
   --color-fd-secondary-foreground: #0c122b;
   --color-fd-accent: #cd9ffb;
-  --color-fd-accent-foreground: #0c122b;
+  --color-fd-accent-foreground: #fafafa;
   --color-fd-ring: #bf91ec;
 }
 
@@ -111,7 +111,7 @@
   --aura-bg: inherit;
   --aura-link: inherit;
   --font-mono: 'iA Writer Mono', monospace;
-  --font-sans: 'iA Writer Duo', sans-serif;
+  --font-sans: 'iA Writer Quattro', sans-serif;
   --font-serif: 'iA Writer Quattro', serif;
 }
 
@@ -119,9 +119,6 @@
 @layer base {
   @import '@aura-design/system/main.css'; 
 }
-
-
-
 
 
 
