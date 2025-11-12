@@ -62,7 +62,7 @@ export function baseOptions(): BaseLayoutProps {
               style={{ fill: "#04123e" }}
             />
           </svg>
-          Aura Design System
+          <span className="font-bold">Aura Design System</span>
         </>
       ),
     },

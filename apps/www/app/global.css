@@ -2,4 +2,71 @@
 @import 'fumadocs-ui/css/neutral.css';
 @import 'fumadocs-ui/css/preset.css';
 
-@import '@aura-design/system/main.css';
+:root {
+  --aura-bg: ""
+}
+
+@layer base {
+  @import '@aura-design/system/main.css'; 
+}
+
+
+@font-face {
+  font-family: 'iA Writer Duo';
+  src: url('/iAWriterDuo/Webfonts/iAWriterDuoS-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'iA Writer Duo';
+  src: url('/iAWriterDuo/Webfonts/iAWriterDuoS-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'iA Writer Duo';
+  src: url('/iAWriterDuo/Webfonts/iAWriterDuoS-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'iA Writer Duo';
+  src: url('/iAWriterDuo/Webfonts/iAWriterDuoS-BoldItalic.woff2') format('woff2');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'iA Writer Quattro';
+  src: url('/iAWriterQuattro/Webfonts/iAWriterQuattroS-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'iA Writer Quattro';
+  src: url('/iAWriterQuattro/Webfonts/iAWriterQuattroS-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'iA Writer Quattro';
+  src: url('/iAWriterQuattro/Webfonts/iAWriterQuattroS-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'iA Writer Quattro';
+  src: url('/iAWriterQuattro/Webfonts/iAWriterQuattroS-BoldItalic.woff2') format('woff2');
+  font-weight: bold;
+  font-style: italic;
+}
+
+body {
+  font-family: 'iA Writer Duo', sans-serif;
+}

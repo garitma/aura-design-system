@@ -1,17 +1,15 @@
-import '@/app/global.css';
-import { RootProvider } from 'fumadocs-ui/provider/next';
-import { M_PLUS_1p, M_PLUS_Rounded_1c } from 'next/font/google';
+import "@/app/global.css";
+import { RootProvider } from "fumadocs-ui/provider/next";
 
-const mPlus1p = M_PLUS_1p({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-});
-
-export default function Layout({ children }: LayoutProps<'/'>) {
+export default function Layout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={mPlus1p.className} suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body className="flex flex-col min-h-screen">
-        <RootProvider>{children}</RootProvider>
+        <RootProvider
+          theme={{ forcedTheme: "dark" }} // or "light"
+        >
+          {children}
+        </RootProvider>
       </body>
     </html>
   );
