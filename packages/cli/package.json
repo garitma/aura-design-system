@@ -14,7 +14,7 @@
   "author": "Pablo Orozco <me@pablopvsky.com>",
   "license": "MIT",
   "bin": {
-    "aura": "./bin/index.js"
+    "aura": "./dist/index.js"
   },
   "publishConfig": {
     "access": "public"
@@ -27,8 +27,9 @@
     "url": "https://github.com/garitma/aura-design-system/issues"
   },
   "scripts": {
-    "build": "tsc --build --noCheck",
+    "build": "tsc --build",
     "dev": "tsc --watch",
+    "link": "npm link",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

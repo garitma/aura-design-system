@@ -129,6 +129,7 @@ out/
 dist/*
 packages/system/dist
 packages/styles/dist
+packages/cli/dist
 
 # root inject
 packages/system/**.ts

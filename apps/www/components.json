@@ -1,23 +1,24 @@
 {
-    "$schema": "https://ui.shadcn.com/schema.json",
-    "style": "default",
-    "rsc": true,
-    "tsx": true,
-    "tailwind": {
-      "config": "",
-      "css": "app/globals.css",
-      "baseColor": "neutral",
-      "cssVariables": true,
-      "prefix": ""
-    },
-    "iconLibrary": "radix-icons",
-    "aliases": {
-      "components": "@/components",
-      "utils": "@/utils/class-names",
-      "ui": "@/components/ui",
-      "lib": "@/lib",
-      "hooks": "@/hooks"
-    },
-    "registries": {}
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "default",
+  "rsc": true,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "app/globals.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "iconLibrary": "radix-icons",
+  "aliases": {
+    "components": "@/components",
+    "utils": "@/utils/class-names",
+    "ui": "@/components/ui",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
+  },
+  "registries": {
+    "@aura-design": "https://auradesignsystem.com/r/{name}.json"
   }
-  
+}
