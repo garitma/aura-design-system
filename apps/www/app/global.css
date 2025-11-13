@@ -50,19 +50,25 @@
   font-style: italic;
 }
 
-:root {
-  --aura-bg: inherit;
-  --aura-link: inherit;
-  --font-mono: 'iA Writer Mono', monospace;
-}
+
 
 
 @layer base {
   @import '@aura-design/system/main.css'; 
+
+  :root {
+    --aura-bg: inherit;
+    --aura-link: inherit;
+    --font-mono: 'iA Writer Mono', monospace;
+    --aura-accents-primary:#cd9ffb;
+    --aura-button-hover: #dab7fc;
+    --aura-text-primary-inverse: #0c122b;
+  }
 }
 
 
 
 body {
   background-color: var(--color-fd-background);
+
 }
