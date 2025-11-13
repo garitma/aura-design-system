@@ -1,29 +1,28 @@
 ---
-title: Install Aura Design System with Next.js
-description: Setting up Tailwind CSS in a Next.js project with Aura Design System.
+title: Introduction
+description: Re-usable components built using Radix UI and Tailwind CSS.
 ---
 
-## Create your project
+This is not a component library in the traditional sense. It's a collection of components built from our team's experience, and we are distributing them using the 'shadcn mode'. It was built for our team, but you can use it too.
 
+**What do you mean by not a component library?**
 
-Start by setting up a new Next.js project if you haven’t already. The most common method is to use Create Next App.
+I mean you own the code. You can decide how the components are built and styled. You can copy and paste the code into your project and customize it to your needs.
 
-```bash
-pnpm dlx create-next-app@latest my-aura-app
-```
+## FAQ
 
-Enter to the root of the project `cd my-aura-app`
+### How is this different from other component libraries?
 
-```bash
-pnpm dlx @aura-design/cli init 
-```
+Just the taste. It's one more design system for the web.
 
-### Explanation:
+### How do I pull upstream updates?
 
-- `pnpm dlx`: Executes a package directly from the npm registry without installing it globally.
-- `create-next-app`: Sets up a new Next.js project with your chosen configurations.
-- `@aura-design/cli init`: Initializes Aura-specific configurations within your project. Under the hood, this command leverages shadcn's component architecture while adding custom configurations.
+The `@aura-design/cli init` command is a wrapper around the original `shadcn/ui` CLI. It includes some fixtures to adapt the components to the Aura Design System configuration.
 
-Following these steps will set up a Next.js project with Aura Design System, allowing you to start building your application with pre-styled, consistent components.
+When you run `init`, it will ask you if you want to overwrite the existing components. You can say yes to get the latest updates.
 
-**In summary**: The provided commands streamline the setup. First, a Next.js project is generated. Then, Aura's styling and theme are incorporated through the shadcn registry. Finally, Aura-specific configurations are applied, culminating in a Next.js project ready for development with Aura Design System.
+You can also manually copy and paste the code from the [GitHub repository](https://github.com/garitma/aura-design-system).
+
+### What is the `@aura-design/cli init` command?
+
+The `init` command from `@aura-design/cli` is a wrapper around the original `shadcn/ui` CLI. It has been adapted with specific fixtures to seamlessly integrate with the Aura Design System's configuration. This ensures that when you initialize components, they are already set up to work within the Aura ecosystem, saving you time and effort in manual configuration.
