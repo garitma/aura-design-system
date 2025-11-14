@@ -1,7 +1,33 @@
 ---
 title: Taste
-description: A registry in the context of shadcn/ui is a structured collection of components, hooks, and utilities that can be shared and reused across multiple projects. It serves as a centralized source for distributing your design system components in a way that’s compatible with the shadcn-ui CLI.
+description: The concept of "Taste" in a design system is the deliberate and cohesive aesthetic identity that differentiates it.
 ---
+## Spacing
+
+A unit of space in this system is 13px. Spacing tokens are defined in increments of 1 or 0.5 units, such as 1 (13px), 1.5 (19.5px), 2 (26px), 2.5 (32.5px), 3 (39px), 3.5 (45.5px), and 4 (52px).
+
+Example spacing scale:
+
+| Token   | Value  |
+|---------|--------|
+| 1       | 13px   |
+| 1.5     | 19.5px |
+| 2       | 26px   |
+| 2.5     | 32.5px |
+| 3       | 39px   |
+| 3.5     | 45.5px |
+| 4       | 52px   |
+
+In CSS, you might define these as:
+
+```css
+@theme inline {
+  --spacing: 13px;
+}
+```
+
+Use these variables for margin, padding, gaps, etc., to maintain consistent spacing across your design system.
+
 
 ## Colors
 To create a custom color palette, follow these steps:
