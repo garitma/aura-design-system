@@ -1,0 +1,14 @@
+{
+    "title": "Aura Design System",
+    "description": "Aura Design System is a collection of components built from our team's experience, and we are distributing them using the 'shadcn mode'. It was built for our team, but you can use it too.",
+    "icon": "Pencil",
+    "root": true,
+    "pages": [
+      "---Get Started---",
+      "index",
+      "registry",
+      "namespace",
+      "installation",
+      "taste"
+    ]
+  }
