@@ -18,6 +18,8 @@
       "lib": "@/lib",
       "hooks": "@/hooks"
     },
-    "registries": {}
+    "registries": {
+      "@aura-design": "https://auradesignsystem.com/r/{name}.json"
+    }
   }
   
