@@ -1,0 +1,788 @@
+---
+alwaysApply: true
+---
+# Aura Design System - Forms
+
+This document defines the form system architecture, validation patterns, and component usage for building accessible, validated forms with Radix UI primitives and AJV schema validation.
+
+## 🏗️ Form Architecture
+
+### Core Dependencies (REQUIRED)
+
+**MUST** use these dependencies for all forms:
+
+1. **AJV Validation** (`ajv`, `ajv-formats`, `ajv-errors`)
+   - Schema-based validation with JSON Schema
+   - Custom error messages via `errorMessage` keyword
+   - Format validation (email, url, uuid, etc.)
+
+2. **Validation Utility** (`utils/web-validation.ts`)
+   - `validateFormData(schema, data)` function
+   - Returns `{ isValid: boolean, errors: ErrorObject[] | null }`
+   - Centralized validation logic
+
+3. **Radix UI Form Primitives** (`components/ui/Form.tsx`)
+   - `Form` - Root form wrapper with error propagation
+   - `FormField` - Field wrapper with label and error display
+   - `FormSubmit` - Submit button with loading states
+   - `FormSwitch` - Switch/toggle field component
+   - `FormCheckbox` - Checkbox field component
+   - `FormAlert` - Error alert display
+
+4. **Dynamic Form Hook** (`hooks/use-dynamic-form.ts`)
+   - `useFormDynamic(initialValues)` hook
+   - Manages field state, validation, and touch states
+   - Provides field props and form utilities
+
+### Optional Enhancements
+
+- **Modal Wrapper** (`DialogModal`) - For modal-based forms (not required)
+- **Custom Field Components** (e.g., `InputUrlMask`) - For specialized inputs
+- **Toast Notifications** (`sonner`) - For user feedback
+
+## 📋 Form Implementation Pattern
+
+### 1. Schema Definition
+
+**MUST** define JSON Schema for validation:
+
+```typescript
+// schemas/entitySchema.ts
+export const createEntitySchema = {
+  type: "object",
+  properties: {
+    name: {
+      type: "string",
+      minLength: 1,
+      errorMessage: {
+        minLength: "El nombre es requerido",
+      },
+    },
+    email: {
+      type: "string",
+      format: "email",
+      errorMessage: {
+        format: "Por favor ingrese un email válido",
+      },
+    },
+    website: {
+      type: "string",
+      pattern: "^(|https?:\\/\\/[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\._~:/?#[\\]@!$&'()*+,;=%]+)$",
+      errorMessage: {
+        pattern: "Por favor ingrese una URL válida o deje el campo vacío",
+      },
+    },
+    age: {
+      type: "number",
+      minimum: 18,
+      errorMessage: {
+        minimum: "Debe ser mayor de 18 años",
+      },
+    },
+    password: {
+      type: "string",
+      minLength: 8,
+      pattern: "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$",
+      errorMessage: {
+        minLength: "La contraseña debe tener al menos 8 caracteres",
+        pattern: "La contraseña debe incluir mayúsculas, minúsculas, un número y un carácter especial",
+      },
+    },
+    confirmPassword: {
+      type: "string",
+      const: { $data: "1/password" },
+      errorMessage: {
+        const: "Las contraseñas no coinciden",
+      },
+    },
+  },
+  required: ["name", "email"],
+};
+```
+
+**Schema Best Practices:**
+- **MUST**: Use `errorMessage` for user-friendly validation messages
+- **MUST**: Define `required` array for mandatory fields
+- **SHOULD**: Use standard formats (`email`, `url`, `uuid`, `date-time`)
+- **SHOULD**: Create reusable field definitions for common patterns (URLs, passwords, etc.)
+- **MUST**: Use `$data` references for field-dependent validation (e.g., password confirmation)
+
+### 2. Form Component Structure
+
+**MUST** follow this component structure:
+
+```typescript
+"use client";
+import { useRef, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { toast } from "sonner";
+
+import { entitySchema } from "@/schemas/entitySchema";
+import { validateFormData } from "@/utils/web-validation";
+import { useFormDynamic } from "@/hooks/use-dynamic-form";
+import { Form, FormField, FormSubmit } from "@/components/ui/Form";
+import { Input } from "@/components/ui/Input";
+import Button from "@/components/ui/Button";
+
+const FormCreateEntity = () => {
+  const router = useRouter();
+  const formRef = useRef<HTMLFormElement>(null);
+  const [fetchStatus, setFetchStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [isSuccess, setIsSuccess] = useState(false);
+  
+  // Initialize form with field types
+  const formData = useFormDynamic({
+    name: "text",
+    email: "text",
+    website: "text",
+    age: "text",
+    acceptTerms: "checkbox",
+    role: "select",
+    bio: "textarea",
+  });
+
+  // Destructure field props
+  const { name, email, website, age, acceptTerms, role, bio } = formData.getFields();
+
+  // Validate form data
+  const { isValid, errors } = validateFormData(
+    entitySchema,
+    formData.getValues()
+  );
+
+  // Ensure errors is always array or undefined, never null
+  const formErrors = errors || undefined;
+
+  const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setFetchStatus("loading");
+
+    if (!isValid) {
+      setFetchStatus("error");
+      formData.touchForm(); // Show validation errors
+      formData.setError("Por favor complete todos los campos requeridos");
+      return;
+    }
+
+    try {
+      const response = await fetch(`/api/entities`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData.getValues()),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Error al crear la entidad');
+      }
+
+      const result = await response.json();
+
+      setFetchStatus("success");
+      router.refresh();
+
+      setTimeout(() => {
+        setIsSuccess(true);
+      }, 500);
+
+    } catch (error) {
+      console.error(error);
+      setFetchStatus("error");
+      formData.setError("Algo salió mal");
+      toast.error("Error al crear la entidad. Por favor, inténtelo de nuevo.");
+    }
+  };
+
+  return (
+    <Form
+      className="flex justify-center gap-1"
+      onSubmit={handleOnSubmit}
+      ref={formRef}
+      errors={formErrors}
+      id="form-create-entity"
+    >
+      <div className="flex flex-col gap-1 w-full">
+        <FormField field={name} label="Nombre *">
+          <Input placeholder="Ingrese el nombre" />
+        </FormField>
+
+        <FormField field={email} label="Email *">
+          <Input placeholder="Ingrese el email" type="email" />
+        </FormField>
+
+        <FormField field={website} label="Sitio Web">
+          <Input placeholder="Ingrese URL del sitio web" type="url" />
+        </FormField>
+
+        <FormField field={age} label="Edad">
+          <Input placeholder="Ingrese edad" type="number" />
+        </FormField>
+
+        <FormField field={role} label="Rol *">
+          <select>
+            <option value="">Seleccione un rol</option>
+            <option value="admin">Administrador</option>
+            <option value="user">Usuario</option>
+          </select>
+        </FormField>
+
+        <FormField field={bio} label="Biografía">
+          <textarea placeholder="Ingrese biografía" rows={4} />
+        </FormField>
+      </div>
+
+      <div className="flex gap-2 justify-center">
+        <Button type="button" mode="pill">
+          Cancelar
+        </Button>
+        <FormSubmit
+          fetchStatus={fetchStatus}
+          buttonProps={{ label: "Crear Entidad" }}
+          form="form-create-entity"
+        />
+      </div>
+    </Form>
+  );
+};
+
+export default FormCreateEntity;
+```
+
+## 🎯 Form Component Requirements
+
+### Form State Management
+
+**MUST** use `useFormDynamic` hook:
+
+```typescript
+const formData = useFormDynamic({
+  fieldName: "text" | "textarea" | "select" | "checkbox"
+});
+```
+
+**Available Methods:**
+- `getFields()` - Returns all field props
+- `getValues()` - Returns all current field values
+- `touchForm()` - Marks all fields as touched (triggers error display)
+- `resetForm(formRef, initialValues)` - Resets form to initial state
+- `setError(message)` - Sets form-level error message
+- `setFetchStatus(status)` - Updates submission status
+
+**Field Props (FieldProps):**
+```typescript
+{
+  name: string;              // Field name
+  type: FieldType;           // Field type
+  value: string | boolean;   // Current value
+  setValue: (value) => void; // Update value programmatically
+  onChange: (event) => void; // Handle input changes
+  onCheckedChange: (checked) => void; // Handle checkbox/switch changes
+  touch: boolean;            // Whether field has been touched
+  setTouch: (value) => void; // Update touch state
+  reset: () => void;         // Reset field to default
+  setFormFieldValue: (formRef, value) => void; // Update DOM value directly
+}
+```
+
+### Fetch Status States
+
+**MUST** manage form submission status:
+
+```typescript
+type FetchStatus = 'idle' | 'loading' | 'success' | 'error';
+```
+
+**Status Usage:**
+- `idle` - Initial state, form ready for input
+- `loading` - Form submission in progress (disable submit, show spinner)
+- `success` - Submission successful (show success state)
+- `error` - Submission failed (show error message, re-enable submit)
+
+### Validation Flow
+
+**MUST** follow this validation pattern:
+
+1. **Define Schema** - JSON Schema with validation rules
+2. **Validate on Render** - Call `validateFormData(schema, formData.getValues())`
+3. **Check on Submit** - Prevent submission if `!isValid`
+4. **Touch Form** - Call `formData.touchForm()` to display errors
+5. **Display Errors** - Pass `errors` to `Form` component for propagation
+
+**Error Display Rules:**
+- **MUST**: Only show errors after field is touched (`field.touch === true`)
+- **MUST**: Show all errors on submit attempt (via `touchForm()`)
+- **MUST**: Clear errors when field value changes and becomes valid
+- **MUST**: Display inline errors below each field via `FormField`
+
+## 🧩 Form Components Usage
+
+### Form (Root Wrapper)
+
+```typescript
+<Form
+  onSubmit={handleOnSubmit}
+  ref={formRef}
+  errors={formErrors}
+  id="form-id"
+  className="flex flex-col gap-1"
+>
+  {/* Form fields */}
+</Form>
+```
+
+**Props:**
+- `onSubmit` (required) - Form submission handler
+- `ref` (required) - Form ref for DOM manipulation
+- `errors` - Array of validation errors from AJV
+- `id` - Unique form identifier
+- Auto-propagates errors to nested `FormField` components
+
+### FormField (Field Wrapper)
+
+```typescript
+<FormField field={fieldProps} label="Field Label *">
+  <Input placeholder="Enter value…" />
+</FormField>
+```
+
+**Props:**
+- `field` (required) - Field props from `useFormDynamic`
+- `label` (required) - Field label (use `*` suffix for required fields)
+- `labelProps` - Props for Radix Label component
+- `controlProps` - Props for Radix Control component
+- Automatically displays validation errors when field is touched
+
+**Supported Children:**
+- `<Input />` - Text, email, url, password, tel, number inputs
+- `<textarea />` - Multi-line text
+- `<select>` - Dropdown selection (auto-adds chevron icon)
+- Custom input components
+
+### FormSubmit (Submit Button)
+
+```typescript
+<FormSubmit
+  fetchStatus={fetchStatus}
+  buttonProps={{ label: "Submit Form" }}
+  form="form-id"
+/>
+```
+
+**Props:**
+- `fetchStatus` - Current submission status
+- `buttonProps` - Props for Button component (label, mode, etc.)
+- `form` - Form ID to submit
+- Automatically shows spinner when `fetchStatus === "loading"`
+- Disables button during submission
+
+### FormSwitch (Toggle Field)
+
+```typescript
+<FormSwitch field={enabledField} label="Enable feature">
+</FormSwitch>
+```
+
+**Usage:**
+- For boolean on/off toggles
+- Automatically binds to field's `onCheckedChange`
+
+### FormCheckbox (Checkbox Field)
+
+```typescript
+<FormCheckbox field={acceptTerms} label="Accept terms and conditions">
+</FormCheckbox>
+```
+
+**Usage:**
+- For boolean checkboxes
+- Use for terms acceptance, opt-ins, etc.
+
+## 🎨 Advanced Patterns
+
+### 1. Dependent/Cascading Selects
+
+For fields that depend on other field values (e.g., Country → State → City):
+
+```typescript
+const [countries, setCountries] = useState<{ label: string, value: string }[]>([]);
+const [states, setStates] = useState<{ label: string, value: string }[]>([]);
+
+// Load countries on mount
+useEffect(() => {
+  fetchCountries().then(setCountries);
+}, []);
+
+// Load states when country changes
+useEffect(() => {
+  if (!countryId.value) {
+    setStates([]);
+    return;
+  }
+  fetchStates(countryId.value).then(setStates);
+}, [countryId.value]);
+
+// Reset dependent fields when parent changes
+const handleCountryChange = (value: string) => {
+  countryId.setValue(value);
+  stateId.setValue(""); // Reset dependent field
+};
+
+<FormField field={countryId} label="País">
+  <select onChange={(e) => handleCountryChange(e.target.value)}>
+    <option value="">Seleccione un país</option>
+    {countries.map((country) => (
+      <option key={country.value} value={country.value}>
+        {country.label}
+      </option>
+    ))}
+  </select>
+</FormField>
+
+<FormField field={stateId} label="Estado">
+  <select disabled={!countryId.value}>
+    <option value="">Seleccione un estado</option>
+    {states.map((state) => (
+      <option key={state.value} value={state.value}>
+        {state.label}
+      </option>
+    ))}
+  </select>
+</FormField>
+```
+
+**Rules:**
+- **MUST**: Reset dependent fields when parent value changes
+- **MUST**: Disable dependent fields until parent has value
+- **SHOULD**: Clear dependent field options when parent is empty
+
+### 2. Conditional Field Visibility
+
+For fields that appear based on other field values:
+
+```typescript
+const [shouldShowLeader, setShouldShowLeader] = useState(false);
+const [leaderError, setLeaderError] = useState<string>("");
+
+// Show/hide field based on role selection
+useEffect(() => {
+  const selectedRole = roles.find((role) => role.value === roleId.value);
+  
+  if (selectedRole?.name === "consultant") {
+    setShouldShowLeader(true);
+  } else {
+    setShouldShowLeader(false);
+    leaderId.setValue(""); // Clear hidden field
+  }
+}, [roleId.value]);
+
+// Custom validation for conditional required field
+const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  event.preventDefault();
+  
+  if (shouldShowLeader && !leaderId.value) {
+    setFetchStatus("error");
+    setLeaderError("El campo líder es requerido");
+    formData.touchForm();
+    return;
+  }
+  
+  // Continue with submission...
+};
+
+{shouldShowLeader && (
+  <FormField field={leaderId} label="Líder *">
+    <select>
+      <option value="">Seleccione un líder</option>
+      {leaders.map((leader) => (
+        <option key={leader.value} value={leader.value}>
+          {leader.label}
+        </option>
+      ))}
+    </select>
+  </FormField>
+)}
+```
+
+**Rules:**
+- **MUST**: Clear field values when hiding conditional fields
+- **MUST**: Implement custom validation for conditional required fields
+- **SHOULD**: Use state to manage field visibility
+- **MUST**: Clear custom errors when field becomes valid
+
+### 3. Custom Field Components
+
+Create specialized input components for complex validation:
+
+```typescript
+// components/InputUrlMask.tsx
+"use client";
+import { useState, useEffect } from "react";
+import { Input } from "@/components/ui/Input";
+import { FieldProps } from "@/hooks/use-dynamic-form";
+import { FormField } from "@/components/ui/Form";
+import { CheckCircle } from "lucide-react";
+
+interface InputUrlMaskProps extends React.ComponentProps<"input"> {
+  field: FieldProps;
+  label?: string;
+}
+
+const InputUrlMask = ({ field, label, ...props }: InputUrlMaskProps) => {
+  const [isValid, setIsValid] = useState(false);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    
+    // Custom validation logic
+    try {
+      let url;
+      if (!/^https?:\/\//i.test(value)) {
+        url = new URL("http://" + value);
+      } else {
+        url = new URL(value);
+      }
+      
+      fetch(url.toString(), { method: "HEAD", mode: "no-cors" })
+        .then(() => setIsValid(true))
+        .catch(() => setIsValid(false));
+    } catch (e) {
+      setIsValid(false);
+    }
+    
+    field.onChange(e);
+  };
+
+  return (
+    <div className="relative">
+      <FormField label={label} field={field} onChange={handleChange}>
+        <Input {...props} />
+      </FormField>
+      {isValid && (
+        <CheckCircle className="absolute right-3 top-3.5 text-info-contrast icon" />
+      )}
+    </div>
+  );
+};
+
+export default InputUrlMask;
+```
+
+**Usage:**
+```typescript
+<InputUrlMask
+  field={website}
+  label="Sitio Web"
+  placeholder="Ingrese URL del sitio web"
+/>
+```
+
+**Custom Component Guidelines:**
+- **MUST**: Accept `field` prop from `useFormDynamic`
+- **MUST**: Call `field.onChange` to update form state
+- **SHOULD**: Provide visual feedback for validation
+- **SHOULD**: Support all standard input props via spread
+
+### 4. Multi-Select with ComboBox
+
+For fields that accept multiple values:
+
+```typescript
+import ComboBox from "@/components/Combobox";
+
+const formData = useFormDynamic({
+  schoolIds: "select", // Type as select even for multi-select
+});
+
+const { schoolIds } = formData.getFields();
+
+<div className="flex flex-col gap-0.5">
+  <label htmlFor="schools-combobox">
+    Colegios
+  </label>
+  <ComboBox
+    containerRef={formRef}
+    options={schools}
+    multiple={true}
+    value={schoolIds?.value}
+    onChange={(value) => schoolIds?.setValue(value)}
+    placeholder="Seleccione uno o más colegios"
+  />
+</div>
+```
+
+**Multi-Select Rules:**
+- **MUST**: Pass form ref as `containerRef`
+- **MUST**: Handle array values in submission
+- **SHOULD**: Validate as array in schema if needed
+
+### 5. Form Reset and Edit Mode
+
+For edit forms, initialize with existing data:
+
+```typescript
+useEffect(() => {
+  if (entity && formRef.current) {
+    formData.resetForm(formRef, {
+      name: entity.name || "",
+      email: entity.email || "",
+      website: entity.website || "",
+      roleId: entity.roleId || "",
+    });
+  }
+}, [entity]);
+```
+
+**Reset Rules:**
+- **MUST**: Call `resetForm` with form ref and initial values
+- **SHOULD**: Reset form when modal closes or entity changes
+- **MUST**: Provide default values for all fields (empty string for text, false for boolean)
+
+### 6. Success State Display
+
+Show success message after submission:
+
+```typescript
+const [isSuccess, setIsSuccess] = useState(false);
+const [createdEntity, setCreatedEntity] = useState<{ name: string } | null>(null);
+
+// In handleOnSubmit success block:
+setFetchStatus("success");
+setCreatedEntity({ name: result.name });
+router.refresh();
+
+setTimeout(() => {
+  setIsSuccess(true);
+}, 500);
+
+// In render:
+{isSuccess ? (
+  <div className="flex flex-col items-center gap-4 py-8">
+    <div className="w-6 h-6 relative">
+      <Image
+        src="/isotipo.png"
+        alt="Logo"
+        fill
+        className="object-cover"
+      />
+    </div>
+    <div className="text-center">
+      <h3 className="text-accent-12 font-bold mb-2">
+        ¡Entidad creada exitosamente!
+      </h3>
+      <p className="text-accent-11 font-medium">
+        {createdEntity?.name}
+      </p>
+      <p className="text-accent-9 font-medium">
+        {format(new Date(), "medium")}
+      </p>
+    </div>
+  </div>
+) : (
+  // Form fields
+)}
+```
+
+**Success State Rules:**
+- **SHOULD**: Show success state after submission
+- **SHOULD**: Include created entity details
+- **SHOULD**: Provide "Continue" button to close modal
+- **MUST**: Reset success state when modal closes
+
+## ✅ Form Implementation Checklist
+
+**Setup:**
+- [ ] Define JSON Schema with validation rules and error messages
+- [ ] Create form component with `useFormDynamic` hook
+- [ ] Initialize form ref with `useRef<HTMLFormElement>(null)`
+- [ ] Set up `fetchStatus` state management
+
+**Form Structure:**
+- [ ] Wrap form in `<Form>` component with `onSubmit`, `ref`, `errors`, `id`
+- [ ] Use `<FormField>` for each input with `field` and `label` props
+- [ ] Use `<FormSubmit>` for submit button with `fetchStatus`
+- [ ] Mark required fields with `*` in labels
+
+**Validation:**
+- [ ] Call `validateFormData(schema, formData.getValues())`
+- [ ] Convert errors to `errors || undefined` (never null)
+- [ ] Check `isValid` before submission
+- [ ] Call `formData.touchForm()` on validation failure
+- [ ] Display inline errors via FormField
+
+**Submission:**
+- [ ] Set `fetchStatus` to "loading" on submit
+- [ ] Validate form before API call
+- [ ] Handle API errors with try-catch
+- [ ] Set `fetchStatus` to "success" or "error"
+- [ ] Show toast notifications for errors
+- [ ] Call `router.refresh()` after success
+
+**Advanced Features:**
+- [ ] Reset dependent fields when parent changes
+- [ ] Disable dependent fields until parent has value
+- [ ] Implement conditional field visibility
+- [ ] Clear hidden field values
+- [ ] Add custom validation for conditional required fields
+- [ ] Initialize form with existing data for edit mode
+- [ ] Show success state after submission
+- [ ] Reset form state when modal closes
+
+## 🚨 Common Pitfalls
+
+**AVOID:**
+- ❌ Allowing `errors` to be `null` (always use `errors || undefined`)
+- ❌ Showing errors before field is touched
+- ❌ Forgetting to call `formData.touchForm()` on submit failure
+- ❌ Not resetting dependent fields when parent changes
+- ❌ Not disabling dependent fields when parent is empty
+- ❌ Submitting form without validation check
+- ❌ Not handling API errors gracefully
+- ❌ Forgetting to refresh router after successful mutation
+- ❌ Not clearing hidden field values
+- ❌ Hardcoding validation logic instead of using schemas
+
+**ALWAYS:**
+- ✅ Use JSON Schema for validation
+- ✅ Use `validateFormData` utility
+- ✅ Use `useFormDynamic` for form state
+- ✅ Use `Form`, `FormField`, `FormSubmit` components
+- ✅ Manage `fetchStatus` for async operations
+- ✅ Touch form to display all errors on submit
+- ✅ Convert errors to `errors || undefined`
+- ✅ Reset dependent fields when parent changes
+- ✅ Clear hidden conditional fields
+- ✅ Handle loading states with cursor states
+- ✅ Provide user feedback with toast notifications
+- ✅ Refresh router after mutations
+
+## 🎯 Accessibility Requirements
+
+**MUST** implement:
+- Proper ARIA labels (handled by Radix UI Form primitives)
+- Keyboard navigation (Tab, Enter to submit)
+- Focus management (focus first error on validation failure)
+- Error announcements (use `aria-live` for dynamic errors)
+- Disabled state for submit during loading (`cursor-not-allowed`)
+- Loading state indication (`cursor-progress` or spinner)
+
+**FormField automatically provides:**
+- Associated label with `htmlFor` and `id`
+- Error message with `aria-describedby`
+- Invalid state with `aria-invalid`
+- Required indicator (visual `*` in label)
+
+## 📝 Example: Complete Form Implementation
+
+- Basic form with validation
+- Dependent/cascading selects (Country → State → City)
+- Conditional field visibility (role-based fields)
+- Multi-select with ComboBox
+- Custom field components (InputUrlMask)
+- Success state display
+- Modal integration (optional)
+- Form reset for edit mode
+- Custom validation logic
+- Error handling and user feedback
+

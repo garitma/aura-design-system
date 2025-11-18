@@ -1,0 +1,672 @@
+---
+alwaysApply: true
+---
+
+# Aura Design System - Base Rules
+
+This document defines the foundational design principles, built on Next.js 15 with shadcn/ui components and Radix UI primitives.
+
+## 12-Step Color System (Radix UI-inspired)
+
+The application uses a semantic 12-step color scale system providing consistent theming, proper contrast ratios, and simplified dark mode support.
+
+### Color Scales
+
+**Gray Scale**: `gray-1` to `gray-12` - Neutral colors for text, backgrounds, and UI elements
+**Accent Scale**: `accent-1` to `accent-12` - Primary brand colors for interactive elements
+**Alpha Variants**: `gray-a1` to `gray-a12`, `accent-a1` to `accent-a12` - Semi-transparent overlays
+
+### The 12 Steps Explained
+
+1. **Step 1** - `bg-gray-1` / `bg-accent-1` - Application background
+2. **Step 2** - `bg-gray-2` / `bg-accent-2` - Subtle background (cards, code blocks, containers)
+3. **Step 3** - `bg-gray-3` / `bg-accent-3` - UI element background (inputs, selects, buttons in normal state)
+4. **Step 4** - `bg-gray-4` / `bg-accent-4` - Hovered UI element background
+5. **Step 5** - `bg-gray-5` / `bg-accent-5` - Active/Selected UI element background
+6. **Step 6** - `border-gray-6` / `border-accent-6` - Subtle borders and separators
+7. **Step 7** - `border-gray-7` / `border-accent-7` - UI element borders and focus rings
+8. **Step 8** - `border-gray-8` / `border-accent-8` - Hovered UI element border
+9. **Step 9** - `bg-accent-9` - Solid backgrounds (primary buttons, badges)
+10. **Step 10** - `bg-accent-10` - Hovered solid backgrounds
+11. **Step 11** - `text-gray-11` / `text-accent-11` - Low-contrast text (secondary text, placeholders)
+12. **Step 12** - `text-gray-12` / `text-accent-12` - High-contrast text (primary text, headings)
+
+### Practical Examples
+
+```tsx
+// Card component with semantic colors
+<div className="bg-gray-2 border border-gray-6 text-gray-12">
+  <h2 className="text-gray-12">Primary Heading</h2>
+  <p className="text-gray-11">Secondary text or description</p>
+</div>
+
+// Button component (uses global Aura styles)
+import { Button } from "@/components/ui/Button"
+<Button>Primary Action</Button>
+
+// Input component (uses global Aura styles)
+import { Input } from "@/components/ui/Input"
+<Input placeholder="Enter text…" />
+
+// Table with row states
+<tr className="hover:bg-gray-3 data-[state=selected]:bg-gray-5">
+  <td className="text-gray-12">Data</td>
+</tr>
+```
+
+### Usage Rules
+
+- **MUST**: Use semantic color steps, not arbitrary values
+- **MUST**: Maintain proper contrast ratios (Step 12 on Step 1/2 backgrounds)
+- **MUST**: Use Step 11 for secondary text, Step 12 for primary text
+- **MUST**: Use Step 9/10 for solid interactive elements (buttons, badges)
+- **MUST**: Use Step 6/7 for borders, Step 8 for hover states
+- **SHOULD**: Prefer alpha variants (`gray-a6`) for adaptive transparency
+
+## 🎨 Status Color System
+
+The application uses a semantic status color system to communicate different states and feedback to users. Each status has a dedicated background, text, and contrast color for consistent visual communication.
+
+**IMPORTANT**: Status colors are already defined in `app/globals.css` as CSS custom properties:
+
+```css
+/* Status colors - DO NOT redefine these in Aura root variables */
+--info: #e8ebfe;
+--info-contrast: #0927ec;
+--success: #e8fef7;
+--success-contrast: #045d3c;
+--danger: #feefe8;
+--danger-contrast: #8e3106;
+--warning: #fefbe8;
+--warning-contrast: #5d5104;
+```
+
+These colors are consumed by Tailwind's configuration and should **NOT** be redefined elsewhere in the Aura Design System root variables to avoid conflicts.
+
+### Status Scales
+
+**Info**: `bg-info`, `text-info`, `text-info-contrast`, `border-info-contrast` - Informational messages and neutral states  
+**Success**: `bg-success`, `text-success`, `text-success-contrast`, `border-success-contrast` - Successful operations, confirmations  
+**Warning**: `bg-warning`, `text-warning`, `text-warning-contrast`, `border-warning-contrast` - Caution states, warnings, alerts  
+**Danger**: `bg-danger`, `text-danger`, `text-danger-contrast`, `border-danger-contrast` - Errors, destructive actions, critical alerts
+
+### Status Color Properties
+
+Each status includes three key properties:
+
+1. **Background** (`bg-{status}`): Solid background color for the status
+2. **Text Contrast** (`text-{status}-contrast`): High-contrast text color optimized for readability on status backgrounds
+3. **Border Contrast** (`border-{status}-contrast`): Border color matching the status with proper contrast
+
+### Practical Examples
+
+```tsx
+// Badge component with status colors (from components/ui/Badge.tsx)
+import { Badge } from "@/components/ui/Badge"
+
+// Info badge
+<Badge status="info">
+  Information
+</Badge>
+// Renders: bg-info text-info-contrast border border-info-contrast
+
+// Success badge
+<Badge status="success">
+  Completed
+</Badge>
+// Renders: bg-success text-success-contrast border border-success-contrast
+
+// Warning badge
+<Badge status="warning">
+  Pending
+</Badge>
+// Renders: bg-warning text-warning-contrast border border-warning-contrast
+
+// Danger badge
+<Badge status="danger">
+  Failed
+</Badge>
+// Renders: bg-danger text-danger-contrast border border-danger-contrast
+
+// Default badge (uses gray scale)
+<Badge>
+  Neutral
+</Badge>
+// Renders: bg-gray-2 text-gray-12 border border-gray-6
+```
+
+### Status in Different Contexts
+
+```tsx
+// Alert component with status background
+<div className="bg-warning text-warning-contrast border-l-4 border-warning-contrast p-1">
+  <p>Please review your information before submitting</p>
+</div>
+
+// Status indicator dot
+<span className="size-2 rounded-full bg-success" aria-label="Active" />
+
+// Card with status border
+<Card className="bg-gray-2 border-l-4 border-info-contrast">
+  <CardContent>
+    New notification available
+  </CardContent>
+</Card>
+
+// Text with status color
+<p className="text-danger">
+  This action cannot be undone
+</p>
+
+// Note: For Button components with status colors, use Badge or create custom
+// variants in the Button component file rather than adding className
+```
+
+### Usage Rules
+
+- **MUST**: Use status colors for semantic feedback (info, success, warning, danger)
+- **MUST**: Use the existing status color definitions from `app/globals.css` - do NOT redefine them
+- **MUST**: Pair status backgrounds with their contrast text colors for accessibility
+- **MUST**: Use status borders to reinforce visual hierarchy and state
+- **MUST**: Maintain consistent status meanings across the application
+- **MUST NOT**: Redefine status color CSS custom properties (`--info`, `--success`, etc.) in Aura root variables
+- **SHOULD**: Use `info` for neutral informational states
+- **SHOULD**: Use `success` for completed actions and positive confirmations
+- **SHOULD**: Use `warning` for cautionary states requiring attention
+- **SHOULD**: Use `danger` for errors and destructive actions
+- **SHOULD**: Default to gray scale (`bg-gray-2`, `text-gray-12`) for neutral UI elements without status
+- **AVOID**: Mixing status colors with arbitrary custom colors - maintain consistency
+- **AVOID**: Creating duplicate or conflicting status color definitions
+
+### Status Color Hierarchy
+
+Use status colors in this priority order:
+
+1. **Danger** - Highest priority: Errors, destructive actions, critical failures
+2. **Warning** - Medium-high priority: Cautions, pending actions, intermediate states
+3. **Success** - Medium priority: Confirmations, completions, positive feedback
+4. **Info** - Lower priority: Informational messages, neutral states, general notifications
+
+When multiple statuses apply, show the highest priority status to avoid confusion.
+
+## 📏 Spacing System (13px Base Module)
+
+The application employs a **13px base spacing module** for consistent layout rhythm and visual hierarchy. Tailwind's spacing scale is configured to use 13px as the base unit.
+
+### How Spacing Works
+
+**Configuration**: `--spacing: 13px` is defined in `app/globals.css`, which means:
+- `p-1` = 1 × 13px = **13px**
+- `p-2` = 2 × 13px = **26px**
+- `p-0.5` = 0.5 × 13px = **6.5px**
+- `p-1.5` = 1.5 × 13px = **19.5px**
+- `p-3` = 3 × 13px = **39px**
+- `p-4` = 4 × 13px = **52px**
+
+This applies to **all spacing utilities**: `m-*`, `p-*`, `gap-*`, `space-*`, `w-*`, `h-*`, `size-*`, etc.
+
+### Common Spacing Values
+
+| Multiplier | Value | Tailwind Class | Use Case |
+|------------|-------|----------------|----------|
+| 0.5x | 6.5px | `p-0.5`, `gap-0.5` | Compact spacing, tight layouts |
+| 1x | 13px | `p-1`, `gap-1` | **Default spacing** for most components |
+| 1.5x | 19.5px | `p-1.5`, `gap-1.5` | Medium spacing |
+| 2x | 26px | `p-2`, `gap-2` | Generous spacing, section padding |
+| 3x | 39px | `p-3`, `gap-3` | Large spacing |
+| 4x | 52px | `p-4`, `gap-4` | Extra large spacing |
+
+### Border Radius System
+
+```css
+--radius-sm: calc(var(--spacing) * 0.5)   /* 6.5px - rounded-sm */
+--radius-md: calc(var(--spacing) * 1)     /* 13px - rounded-md */
+--radius-lg: calc(var(--spacing) * 1.5)   /* 19.5px - rounded-lg */
+--radius-xl: calc(var(--spacing) * 2)     /* 26px - rounded-xl */
+```
+
+**Nested Radii Rule**: Child radius ≤ Parent radius for concentric elements
+
+```tsx
+// Parent card with child elements
+<div className="rounded-md p-1">  {/* Parent: 13px radius, 13px padding */}
+  <button className="rounded-sm p-0.5">  {/* Child: 6.5px radius, 6.5px padding */}
+    Action
+  </button>
+</div>
+```
+
+### Practical Spacing Examples
+
+```tsx
+// Card with standard spacing
+<Card className="p-1 gap-1">  {/* 13px padding and gap */}
+  <CardHeader className="pb-0.5">  {/* 6.5px bottom padding */}
+    <CardTitle>Title</CardTitle>
+  </CardHeader>
+  <CardContent className="space-y-1">  {/* 13px vertical spacing */}
+    <Input />
+    <Button>Submit</Button>
+  </CardContent>
+</Card>
+
+// Section with generous spacing
+<section className="p-2 gap-2">  {/* 26px padding and gap */}
+  <div className="space-y-1.5">  {/* 19.5px vertical spacing */}
+    {/* Content */}
+  </div>
+</section>
+```
+
+### Usage Rules
+
+- **MUST**: Use standard Tailwind spacing classes (`p-1`, `m-2`, `gap-1.5`, etc.)
+- **MUST**: Apply nested radius rule for concentric components
+- **MUST**: All spacing follows multiples of 13px (0.5, 1, 1.5, 2, 3, 4, etc.)
+- **SHOULD**: Default to `p-1` (13px) for standard component spacing
+- **SHOULD**: Use `p-0.5` (6.5px) for compact layouts, `p-2` (26px) for generous spacing
+- **AVOID**: Arbitrary values like `p-[13px]` - use standard scale instead
+
+## 🎯 Typography System
+
+### Base Font Size
+- **Root**: `17px` defined at the root level in `app/globals.css` (line 192)
+- **Font sizes**: Controlled by Aura Design System using fluid typography with `clamp()`
+- All heading sizes automatically scale between min and max values based on viewport width
+
+### Font Families
+- **Sans-serif**: `Inter` (defined as `--font-sans` in globals.css and `--aura-font-stack` in Aura)
+- **Monospace**: `Geist Mono` (defined as `--font-mono` in globals.css)
+
+### Heading Hierarchy
+
+The application uses **Aura Design System's fluid typography**. Font sizes come from the global CSS and scale responsively:
+
+| Element | Utility Class | Min Size | Max Size | Usage |
+|---------|---------------|----------|----------|-------|
+| `<h1>` | `.h1` | 1.9838rem | 3.052rem | Page titles, main headings |
+| `<h2>` | `.h2` | 1.58665rem | 2.441rem | Section headings |
+| `<h3>` | `.h3` | 1.482rem | 2.28rem | Subsection headings |
+| `<h4>` | `.h4` | 1.26945rem | 1.953rem | Card titles, minor headings |
+| `<h5>` | `.h5` | 1.17225rem | 1.563rem | Small headings |
+| `<h6>` | `.h6` | 1.0625rem | 1.25rem | Smallest headings |
+| `<p>` | `.p` | 1rem | 1rem | Body text (17px) |
+
+### How Typography Works
+
+Font sizes are defined in `@aura-design/system/main.css` using fluid typography:
+
+```css
+h1, .h1 { --min: 1.9838rem; --val: 4.03vw; --max: 3.052rem }
+h2, .h2 { --min: 1.58665rem; --val: 4.03vw; --max: 2.441rem }
+/* ... and so on */
+```
+
+You can use either:
+1. **Semantic HTML tags**: `<h1>`, `<h2>`, `<h3>`, `<h4>`, `<h5>`, `<h6>`
+2. **Utility classes**: `.h1`, `.h2`, `.h3`, `.h4`, `.h5`, `.h6` (when semantic tags can't be used)
+
+### Practical Typography Examples
+
+```tsx
+// Page heading - use semantic tag
+<h1 className="text-gray-12">
+  Dashboard Overview
+</h1>
+
+// Section heading
+<h2 className="text-gray-12">
+  Recent Diagnoses
+</h2>
+
+// Card title
+<h4 className="text-gray-12">
+  School Information
+</h4>
+
+// When you can't use semantic tags, use utility classes
+<div className="h3 text-gray-12">
+  Visual Heading (not semantically a heading)
+</div>
+
+// Body text
+<p className="text-gray-12">
+  Primary content with high contrast
+</p>
+
+// Secondary text - use inline styles or custom classes for smaller text
+<p className="text-gray-11" style={{ fontSize: '0.875rem' }}>
+  Secondary information with lower contrast
+</p>
+
+// Monospace for technical content
+<code className="font-mono text-gray-12">
+  DIAG-2024-001
+</code>
+
+// Tabular numbers for data comparison
+<span className="font-mono tabular-nums text-gray-12">
+  1,234.56
+</span>
+```
+
+### Usage Rules
+- **MUST**: Use semantic heading tags (`<h1>`-`<h6>`) for proper content hierarchy
+- **MUST**: Use utility classes (`.h1`-`.h6`) ONLY when semantic tags cannot be used
+- **MUST**: Let Aura's fluid typography handle font sizes - they scale automatically
+- **MUST**: Use `font-mono` for code, technical IDs, and tabular data
+- **MUST**: Apply `tabular-nums` class for number comparisons in tables
+- **MUST**: Use `text-gray-12` for primary text, `text-gray-11` for secondary text
+- **SHOULD**: Follow heading hierarchy (don't skip levels: h1 → h2 → h3)
+- **AVOID**: Tailwind's `text-*` size classes (`text-4xl`, `text-3xl`, etc.) - use Aura's typography system instead
+
+## 🧩 shadcn/ui Component Philosophy
+
+This project uses **shadcn/ui** - a collection of re-usable components built with Radix UI primitives. The philosophy emphasizes **composition over configuration**.
+
+### Core Principles
+
+1. **Copy, Don't Install**: Components live in `components/ui/` and are fully customizable
+2. **Unstyled Primitives**: Built on Radix UI for accessibility and keyboard navigation
+3. **Tailwind-First**: All styling uses Tailwind utility classes
+4. **Composable**: Build complex UIs by combining simple components
+5. **Accessible by Default**: ARIA attributes and keyboard support included
+
+### Component Structure
+
+```
+components/
+├── ui/                    # shadcn/ui base components (42 files)
+│   ├── button.tsx        # Base button primitive
+│   ├── card.tsx          # Card layout primitives
+│   ├── input.tsx         # Form input primitive
+│   └── ...               # Additional UI primitives
+└── [feature-components]   # Composed feature components
+    ├── FormCreateSchool.tsx    # Uses ui/input, ui/button, etc.
+    ├── TableDiagnoses/         # Uses ui/table primitives
+    └── ...
+```
+
+### Composition Example
+
+```tsx
+// Feature component composing shadcn/ui primitives
+import { Button } from "@/components/ui/Button"
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/Card"
+import { Input } from "@/components/ui/Input"
+
+export function SchoolForm() {
+  return (
+    <Card className="bg-gray-2 border-gray-6">
+      <CardHeader>
+        <CardTitle className="text-gray-12">Create School</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-1">
+        {/* Input uses global Aura styles - no className needed */}
+        <Input placeholder="School name…" />
+        
+        {/* Button uses global Aura styles - no className needed */}
+        <Button>Save</Button>
+      </CardContent>
+    </Card>
+  )
+}
+```
+
+### Button & Input Components - Global Styling
+
+**IMPORTANT**: `Button` and `Input` components have **global Aura Design System styles** defined in `app/globals.css`. These components work correctly WITHOUT adding className attributes.
+
+#### Button Component Rules
+
+- **AVOID**: Adding `className` for standard button styling (colors, borders, hover states are handled globally)
+- **USE**: `Button` component directly without className in most cases
+- **ONLY ADD className WHEN**:
+  - Layout-specific overrides needed (e.g., `className="w-full"` for full-width button)
+  - Specific positioning required (e.g., `className="absolute right-0"`)
+  - Disabled state styling override needed
+
+```tsx
+// ✅ CORRECT - Use Button without className
+<Button>Save Changes</Button>
+<Button disabled>Loading…</Button>
+
+// ✅ CORRECT - Add className only for layout/positioning
+<Button className="w-full">Full Width Button</Button>
+<Button className="absolute top-0 right-0">Close</Button>
+
+// ❌ WRONG - Don't add color/styling classes (already handled globally)
+<Button className="bg-accent-9 hover:bg-accent-10 text-accent-contrast">
+  Save
+</Button>
+```
+
+#### Input Component Rules
+
+- **AVOID**: Adding `className` for standard input styling (background, borders, focus states are handled globally)
+- **USE**: `Input` component directly without className in most cases
+- **ONLY ADD className WHEN**:
+  - Width adjustments needed (e.g., `className="w-full"`, `className="max-w-sm"`)
+  - Error state styling needed (e.g., `className="border-danger"`)
+  - Specific positioning required
+
+```tsx
+// ✅ CORRECT - Use Input without className
+<Input placeholder="Enter email…" type="email" />
+<Input placeholder="Search…" />
+
+// ✅ CORRECT - Add className only for layout/width
+<Input className="w-full" placeholder="Full width input…" />
+<Input className="max-w-xs" placeholder="Narrow input…" />
+
+// ✅ CORRECT - Add className for error state
+<Input className="border-danger" placeholder="Invalid input…" />
+
+// ❌ WRONG - Don't add color/styling classes (already handled globally)
+<Input 
+  className="bg-accent-2 border-gray-7 focus:border-accent-8 text-gray-12 cursor-text"
+  placeholder="Enter name…"
+/>
+```
+
+### Customization Rules
+
+- **MUST**: Modify `components/ui/` files directly for project-wide changes
+- **MUST**: Use `className` prop ONLY for layout, positioning, or state-specific overrides
+- **MUST**: Maintain Radix UI primitive structure (don't remove accessibility features)
+- **MUST NOT**: Add color, background, border, or text styling to `Button` or `Input` via className (use global styles)
+- **SHOULD**: Create feature-specific components in `components/` by composing `ui/` primitives
+- **SHOULD**: Use component variants for predictable state changes
+- **AVOID**: Redundant styling via className when global Aura styles already apply
+
+## Cursor States & Interactions
+
+### 1. Default (No Interaction)
+
+**Cursor**: `cursor-default`  
+**Purpose**: Baseline for non-interactive UI surfaces
+
+**Usage**:
+- Application background (`bg-gray-1`)
+- Non-interactive containers (`bg-gray-2`)
+- Static text (`text-gray-12`, `text-gray-11`)
+- Disabled form fields (paired with `cursor-not-allowed`)
+
+### 2. Link & Action (Clickable)
+
+**Cursor**: `cursor-pointer`  
+**Purpose**: Interactive elements that trigger actions or navigation
+
+**Usage**:
+- Buttons: All variants (`bg-accent-9`, secondary, ghost)
+- Links: `<a>` tags, `next/link` components
+- Navigation: Sidebar items, tabs, breadcrumbs
+- Data Tables: Selectable rows in `TableDiagnoses`, `TableSchools`, `TableUsers`
+- Interactive Icons: Delete, edit, filter actions
+- Form Elements: Checkboxes, radio buttons, dropdowns
+
+### 3. Text Selection (Editable)
+
+**Cursor**: `cursor-text`  
+**Purpose**: Selectable or editable text content
+
+**Usage**:
+- Input components (`bg-accent-2`, `border-gray-7`)
+- Textarea components
+- Lexical rich text editor editable regions
+- Any editable content fields
+
+### 4. Disabled (Action Unavailable)
+
+**Cursor**: `cursor-not-allowed`  
+**Purpose**: Communicate unavailable interactions (critical for accessibility)
+
+**Usage**:
+- Disabled Button components (e.g., "Generate Report" when diagnosis incomplete)
+- Read-only form inputs locked by diagnosis status
+- Features unavailable due to Role-Based Access Control (RBAC)
+
+### 5. Asynchronous Operations (Waiting)
+
+This project uses BullMQ for background jobs (AI research, report generation). Cursor states must reflect async operations.
+
+**Cursor**: `cursor-progress` (Preferred)  
+**Purpose**: Background task in progress, UI not blocked
+
+**Usage**:
+- Buttons after click (e.g., "Run AI Research") when BullMQ job queued/running
+- Non-blocking async operations
+- User can still navigate
+
+**Cursor**: `cursor-wait` (Use Sparingly)  
+**Purpose**: Critical blocking operation, user must wait
+
+**Usage**:
+- Full-page transitions (OAuth 2.0 + PKCE redirect with Santillana Connect)
+- Modal form submission blocking all UI interaction
+- Apply to `<html>` or `<body>` tag via global state
+
+### 6. Help & Information
+
+**Cursor**: `cursor-help`  
+**Purpose**: Help or tooltip available
+
+**Usage**:
+- Info icons (`<InfoIcon />`) next to form fields
+- shadcn/ui Tooltip triggers
+- Complex form labels in School Management or Diagnosis System
+
+### 7. Movement & Resizing
+
+**Cursor**: `cursor-grab` / `active:cursor-grabbing`  
+**Purpose**: Draggable elements
+
+**Usage**:
+- Draggable blocks in Lexical rich text editor
+- Re-ordering list items or dashboard widgets
+
+**Cursor**: `cursor-col-resize` / `cursor-row-resize`  
+**Purpose**: Resizable boundaries
+
+**Usage**:
+- Resizable columns in `TableDiagnoses`, `TableSchools`, `TableUsers`
+- Draggable panel dividers
+
+## Implementation Guidelines
+
+### Default Workflow
+
+1. **Use Tailwind Utilities**: Apply rules via utility classes
+   ```tsx
+   <button className="cursor-pointer hover:cursor-pointer">Click</button>
+   ```
+
+2. **Component Variants**: Build cursor states into shadcn/ui component variants
+   ```tsx
+   // In components/ui/button.tsx
+   variants: {
+     disabled: {
+       true: "cursor-not-allowed opacity-50"
+     }
+   }
+   ```
+
+3. **Global State**: Apply `cursor-wait` to `<body>` for app-wide loading
+   ```tsx
+   // In app/layout.tsx or provider component
+   <body className={isLoading ? 'cursor-wait' : ''}>
+   ```
+
+### Component Best Practices
+
+- **MUST**: Apply semantic color steps from 12-step system (`gray-1` to `gray-12`, `accent-1` to `accent-12`)
+- **MUST**: Use status colors for semantic feedback (`info`, `success`, `warning`, `danger`)
+- **MUST**: Use standard Tailwind spacing classes (`p-1`, `m-2`, `gap-1`, etc.) - each unit = 13px
+- **MUST**: Use Aura's fluid typography system (semantic tags `h1`-`h6` or utility classes `.h1`-`.h6`)
+- **MUST**: Use `Button` and `Input` components without className styling (global Aura styles apply automatically)
+- **MUST**: Implement proper cursor states for all interactive elements
+- **MUST**: Maintain accessibility features from Radix UI primitives
+- **MUST**: Use nested radius rule for concentric elements
+- **SHOULD**: Compose complex components from `components/ui/` primitives
+- **SHOULD**: Apply proper contrast ratios (Step 12 text on Step 1/2 backgrounds)
+- **SHOULD**: Use alpha variants for adaptive borders (`border-gray-a6`)
+- **SHOULD**: Pair status backgrounds with their contrast colors for accessibility
+- **AVOID**: Arbitrary spacing values like `p-[13px]` - use `p-1` instead
+- **AVOID**: Tailwind's `text-*` size classes (`text-4xl`, `text-base`, etc.) - use Aura's typography
+- **AVOID**: Mixing status colors with arbitrary custom colors
+- **AVOID**: Adding className to `Button` or `Input` for styling purposes (only use for layout/positioning)
+
+### Example: Complete Component
+
+```tsx
+import { Button } from "@/components/ui/Button"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card"
+import { Input } from "@/components/ui/Input"
+import { Badge } from "@/components/ui/Badge"
+
+export function DiagnosisForm() {
+  const [isLoading, setIsLoading] = useState(false)
+  const [status, setStatus] = useState<"success" | "danger" | null>(null)
+  
+  return (
+    <Card className="bg-gray-2 border border-gray-6 rounded-md">
+      <CardHeader className="p-1 border-b border-gray-6">
+        <CardTitle className="text-gray-12 flex items-center gap-0.5">
+          Create Diagnosis
+          {status === "success" && (
+            <Badge status="success">Saved</Badge>
+          )}
+          {status === "danger" && (
+            <Badge status="danger">Error</Badge>
+          )}
+        </CardTitle>
+      </CardHeader>
+      <CardContent className="p-1 space-y-1">
+        {/* Input uses global Aura styles - no className needed */}
+        <Input placeholder="Enter school name…" />
+        
+        {status === "danger" && (
+          <p className="text-danger text-sm">
+            Failed to save. Please try again.
+          </p>
+        )}
+        
+        {/* Button uses global Aura styles - no className needed */}
+        <Button disabled={isLoading}>
+          {isLoading ? 'Saving…' : 'Save Diagnosis'}
+        </Button>
+      </CardContent>
+    </Card>
+  )
+}
+```
+
+This component demonstrates:
+- ✅ **12-step color system**: `gray-2`, `gray-6`, `gray-12` used appropriately
+- ✅ **Status colors**: `Badge` with `success`/`danger` status, `text-danger` for error messages
+- ✅ **Correct spacing notation**: `p-1` (13px), `space-y-1` (13px), `gap-0.5` (6.5px), `rounded-md` (13px)
+- ✅ **Aura typography**: Font sizes handled by global CSS (CardTitle likely renders as h3 or uses .h* class)
+- ✅ **shadcn/ui composition**: Card, Button, Input, Badge primitives
+- ✅ **Global component styles**: Button and Input used without className (Aura styles apply automatically)
+- ✅ **Clean, maintainable code**: No redundant styling, global design system in use
+- ✅ **Semantic naming and consistent patterns**

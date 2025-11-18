@@ -21,7 +21,6 @@
   --color-fd-ring: #bf91ec;
 }
 
-
 @font-face {
   font-family: 'iA Writer Mono';
   src: url('/iAWriterMono/Webfonts/iAWriterMonoS-Regular.woff2') format('woff2');
@@ -50,25 +49,36 @@
   font-style: italic;
 }
 
-
-
-
 @layer base {
-  @import '@aura-design/system/main.css'; 
+  @import '@aura-design/system/main.css';
 
   :root {
     --aura-bg: inherit;
     --aura-link: inherit;
     --font-mono: 'iA Writer Mono', monospace;
-    --aura-accents-primary:#cd9ffb;
+    --aura-accents-primary: #cd9ffb;
     --aura-button-hover: #dab7fc;
     --aura-text-primary-inverse: #0c122b;
   }
 }
 
-
-
 body {
   background-color: var(--color-fd-background);
 
+}
+
+@layer components {
+  .nprogress {
+    pointer-events: none;
+    z-index: 99999;
+  }
+  .nprogress .bar {
+    background: var(--aura-loader);
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+  }
 }

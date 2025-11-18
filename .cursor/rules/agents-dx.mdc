@@ -1,0 +1,19 @@
+---
+alwaysApply: true
+---
+
+# Agent Developer Experience Rules
+
+## Examples and Summaries
+
+**MUST NOT**: Create examples or implementation summaries unless the user explicitly requests them.
+
+**MUST**: If you believe an example or explanation would be helpful, ask the user first before generating it.
+
+**Example Interactions**:
+- ❌ Bad: "Here's the implementation... Let me create an example of how to use it..."
+- ✅ Good: "Implementation complete. Would you like me to provide an example of how to use this?"
+- ✅ Good: "I've updated the code. Would you like me to explain the changes or provide usage examples?"
+
+**Why**: This keeps responses focused, avoids unnecessary verbosity, and respects the developer's workflow preferences.
+

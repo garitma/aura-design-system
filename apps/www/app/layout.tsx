@@ -1,4 +1,4 @@
-import "@/app/global.css";
+import "@/app/globals.css";
 import { RootProvider } from "fumadocs-ui/provider/next";
 import { IBM_Plex_Sans } from 'next/font/google';
 
