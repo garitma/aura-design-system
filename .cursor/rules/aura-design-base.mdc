@@ -382,7 +382,7 @@ components/
 │   ├── input.tsx         # Form input primitive
 │   └── ...               # Additional UI primitives
 └── [feature-components]   # Composed feature components
-    ├── FormCreateSchool.tsx    # Uses ui/input, ui/button, etc.
+    ├── FormCreateSchool.tsx    # Uses ui/input, ui/Button, etc.
     ├── TableDiagnoses/         # Uses ui/table primitives
     └── ...
 ```
@@ -583,7 +583,7 @@ This project uses BullMQ for background jobs (AI research, report generation). C
 
 2. **Component Variants**: Build cursor states into shadcn/ui component variants
    ```tsx
-   // In components/ui/button.tsx
+   // In components/ui/Button.tsx
    variants: {
      disabled: {
        true: "cursor-not-allowed opacity-50"
