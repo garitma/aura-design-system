@@ -19,6 +19,29 @@ export default function AuraAesthetic() {
     const [grayColor, setGrayColor] = useState("#8B8D98");
     const [backgroundColor, setBackgroundColor] = useState("#FAFAFA");
 
+    // Input state to allow flexible typing
+    const [accentInput, setAccentInput] = useState(accentColor);
+    const [grayInput, setGrayInput] = useState(grayColor);
+    const [backgroundInput, setBackgroundInput] = useState(backgroundColor);
+
+    const isValidHex = (hex: string) => {
+        return /^#?([0-9A-F]{3}){1,2}$/i.test(hex);
+    };
+
+    const handleColorChange = (
+        value: string,
+        setInput: (val: string) => void,
+        setColor: (val: string) => void
+    ) => {
+        setInput(value);
+
+        // Check if it's a valid hex (with or without #)
+        if (isValidHex(value)) {
+            const normalized = value.startsWith("#") ? value : `#${value}`;
+            setColor(normalized);
+        }
+    };
+
     const { cssVariables, exportCss } = useMemo(() => {
         const colors = generateRadixColors({
             accent: accentColor,
@@ -249,8 +272,8 @@ export default function AuraAesthetic() {
                             <div className="flex gap-2 items-center">
                                 <Input
                                     type="text"
-                                    value={accentColor}
-                                    onChange={(e) => setAccentColor(e.target.value)}
+                                    value={accentInput}
+                                    onChange={(e) => handleColorChange(e.target.value, setAccentInput, setAccentColor)}
                                     placeholder="#3D63DD"
                                     className="flex-1"
                                 />
@@ -266,8 +289,8 @@ export default function AuraAesthetic() {
                             <div className="flex gap-2 items-center">
                                 <Input
                                     type="text"
-                                    value={grayColor}
-                                    onChange={(e) => setGrayColor(e.target.value)}
+                                    value={grayInput}
+                                    onChange={(e) => handleColorChange(e.target.value, setGrayInput, setGrayColor)}
                                     placeholder="#8B8D98"
                                     className="flex-1"
                                 />
@@ -283,8 +306,8 @@ export default function AuraAesthetic() {
                             <div className="flex gap-2 items-center">
                                 <Input
                                     type="text"
-                                    value={backgroundColor}
-                                    onChange={(e) => setBackgroundColor(e.target.value)}
+                                    value={backgroundInput}
+                                    onChange={(e) => handleColorChange(e.target.value, setBackgroundInput, setBackgroundColor)}
                                     placeholder="#FAFAFA"
                                     className="flex-1"
                                 />
