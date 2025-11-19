@@ -13,24 +13,25 @@ import {
 } from "react";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "fumadocs-core/link";
-import { cn } from "../../../utils/class-names";
 import { useI18n } from "fumadocs-ui/contexts/i18n";
-import { useTreeContext, useTreePath } from "fumadocs-ui/contexts/tree";
 import type * as PageTree from "fumadocs-core/page-tree";
 import { usePathname } from "fumadocs-core/framework";
+import { useTreeContext, useTreePath } from "fumadocs-ui/contexts/tree";
+
+import { cn } from "@/utils/class-names";
 import {
   type BreadcrumbOptions,
   getBreadcrumbItemsFromPath,
 } from "fumadocs-core/breadcrumb";
 import { useNav } from "fumadocs-ui/contexts/layout";
-import { isActive } from "../../../utils/is-active";
+import { isActive } from "@/utils/is-active";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
-} from "../../ui/Collapsible";
+} from "@/components/ui/Collapsible";
 import { useSidebar } from "fumadocs-ui/contexts/sidebar";
-import { useTOCItems } from "../../ui/Toc";
+import { useTOCItems } from "@/components/ui/Toc";
 import { useActiveAnchor } from "fumadocs-core/toc";
 
 const TocPopoverContext = createContext<{

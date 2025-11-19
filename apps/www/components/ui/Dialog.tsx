@@ -1,8 +1,11 @@
+"use client";
+import React from "react"
+
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { Cross2Icon } from "@radix-ui/react-icons";
 
 import { cn } from "@/utils/class-names";
-import Button from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 
 function Dialog({
   ...props

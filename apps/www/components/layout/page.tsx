@@ -1,8 +1,11 @@
 import { type ComponentProps, forwardRef, type ReactNode } from "react";
-import { cn } from "../../utils/class-names";
-import { buttonVariants } from "../ui/Button";
 import { Edit } from "lucide-react";
+import type { AnchorProviderProps, TOCItemType } from "fumadocs-core/toc";
 import { I18nLabel } from "fumadocs-ui/contexts/i18n";
+
+import { cn } from "@/utils/class-names";
+
+import { buttonVariants } from "@/components/ui/Button";
 import {
   type BreadcrumbProps,
   type FooterProps,
@@ -18,8 +21,7 @@ import {
   PageTOCPopoverItems,
   PageTOCPopoverTrigger,
   PageTOCTitle,
-} from "./docs/page";
-import type { AnchorProviderProps, TOCItemType } from "fumadocs-core/toc";
+} from "@/components/layout/docs/page";
 
 interface EditOnGitHubOptions
   extends Omit<ComponentProps<"a">, "href" | "children"> {
@@ -143,9 +145,9 @@ export function DocsPage({
       toc={
         tocEnabled || tocPopoverEnabled
           ? {
-              toc,
-              single: tocOptions.single,
-            }
+            toc,
+            single: tocOptions.single,
+          }
           : false
       }
       {...container}
@@ -176,15 +178,7 @@ export function DocsPage({
         {footer.enabled !== false &&
           (footer.component ?? <PageFooter items={footer.items} />)}
       </PageArticle>
-      {tocEnabled &&
-        (tocReplace ?? (
-          <PageTOC>
-            {tocOptions.header}
-            <PageTOCTitle />
-            <PageTOCItems variant={tocOptions.style} />
-            {tocOptions.footer}
-          </PageTOC>
-        ))}
+
     </PageRoot>
   );
 }

@@ -1,9 +1,10 @@
 "use client";
 import * as Primitive from "fumadocs-core/toc";
 import { type ComponentProps, createContext, useContext, useRef } from "react";
-import { cn } from "@/utils/class-names";
 import { useI18n } from "fumadocs-ui/contexts/i18n";
-import { TocThumb } from "./toc-thumb";
+
+import { cn } from "@/utils/class-names";
+import { TocThumb } from "@/components/ui/TocThumb";
 import { mergeRefs } from "@/utils/merge-refs";
 
 const TOCContext = createContext<Primitive.TOCItemType[]>([]);

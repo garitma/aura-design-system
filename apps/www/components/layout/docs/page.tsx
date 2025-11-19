@@ -1,5 +1,10 @@
 import { type ComponentProps } from "react";
-import { cn } from "../../../utils/class-names";
+import { Text } from "lucide-react";
+import type { AnchorProviderProps } from "fumadocs-core/toc";
+import { I18nLabel } from "fumadocs-ui/contexts/i18n";
+
+import { cn } from "@/utils/class-names";
+
 import {
   type BreadcrumbProps,
   type FooterProps,
@@ -10,12 +15,10 @@ import {
   PageTOCPopover,
   PageTOCPopoverContent,
   PageTOCPopoverTrigger,
-} from "./page-client";
-import { TOCItems, TOCProvider, TOCScrollArea } from "../../ui/toc";
-import { Text } from "lucide-react";
-import { I18nLabel } from "fumadocs-ui/contexts/i18n";
-import ClerkTOCItems from "../../ui/toc-clerk";
-import type { AnchorProviderProps } from "fumadocs-core/toc";
+} from "@/components/layout/docs/page-client";
+import { TOCItems, TOCProvider, TOCScrollArea } from "@/components/ui/Toc";
+import ClerkTOCItems from "@/components/ui/TocClerk";
+
 
 export function PageTOCTitle(props: ComponentProps<"h2">) {
   return (
@@ -37,6 +40,7 @@ export function PageTOCItems({
   variant = "normal",
   ...props
 }: ComponentProps<"div"> & { variant?: "clerk" | "normal" }) {
+  console.log("variant", variant);
   return (
     <TOCScrollArea {...props}>
       {variant === "clerk" ? <ClerkTOCItems /> : <TOCItems />}

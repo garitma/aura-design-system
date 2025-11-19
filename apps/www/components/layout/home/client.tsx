@@ -1,3 +1,4 @@
+
 "use client";
 import { type ComponentProps, Fragment, useState } from "react";
 import { cva } from "class-variance-authority";
@@ -5,7 +6,9 @@ import Link from "fumadocs-core/link";
 import { useNav } from "fumadocs-ui/contexts/layout";
 
 import { cn } from "@/utils/class-names";
-import { BaseLinkItem, type LinkItemType } from "../shared/index";
+
+import { BaseLinkItem, type LinkItemType } from "@/components/layout/shared/index";
+import { buttonVariants } from "@/components/ui/Button";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -15,7 +18,6 @@ import {
   NavigationMenuTrigger,
   NavigationMenuViewport,
 } from "@/components/ui/NavigationMenu";
-import { buttonVariants } from "@/components/ui/Button";
 
 export const navItemVariants = cva("[&_svg]:size-4", {
   variants: {

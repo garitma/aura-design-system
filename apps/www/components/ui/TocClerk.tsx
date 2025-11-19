@@ -1,11 +1,12 @@
 "use client";
-import * as Primitive from "fumadocs-core/toc";
 import { type ComponentProps, useEffect, useRef, useState } from "react";
-import { cn } from "@/utils/class-names";
-import { TocThumb } from "./toc-thumb";
-import { useTOCItems } from "./toc";
-import { mergeRefs } from "@/utils/merge-refs";
+import * as Primitive from "fumadocs-core/toc";
 import { useI18n } from "fumadocs-ui/contexts/i18n";
+
+import { cn } from "@/utils/class-names";
+import { TocThumb } from "@/components/ui/TocThumb";
+import { useTOCItems } from "@/components/ui/Toc";
+import { mergeRefs } from "@/utils/merge-refs";
 
 export default function ClerkTOCItems({
   ref,
@@ -88,7 +89,7 @@ export default function ClerkTOCItems({
               encodeURIComponent(
                 `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svg.width} ${svg.height}"><path d="${svg.path}" stroke="black" stroke-width="1" fill="none" /></svg>`
               )
-            }")`,
+              }")`,
           }}
         >
           <TocThumb

@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactNode } from 'react';
-import type { NavProviderProps } from 'fumadocs-ui/contexts/layout';
 import type { I18nConfig } from 'fumadocs-core/i18n';
+import type { NavProviderProps } from 'fumadocs-ui/contexts/layout';
 
 export interface NavOptions extends NavProviderProps {
   enabled: boolean;
@@ -111,13 +111,13 @@ export interface MenuItemType extends Partial<BaseLinkType> {
 
   items: (
     | (MainItemType & {
-        /**
-         * Options when displayed on navigation menu
-         */
-        menu?: HTMLAttributes<HTMLElement> & {
-          banner?: ReactNode;
-        };
-      })
+      /**
+       * Options when displayed on navigation menu
+       */
+      menu?: HTMLAttributes<HTMLElement> & {
+        banner?: ReactNode;
+      };
+    })
     | CustomItemType
   )[];
 
@@ -172,4 +172,4 @@ export function getLinks(
   return result;
 }
 
-export { BaseLinkItem } from './client';
+export { BaseLinkItem } from '@/components/layout/shared/client';

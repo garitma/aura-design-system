@@ -1,25 +1,27 @@
 import { type HTMLAttributes, useMemo } from "react";
-import { cn } from "../../../utils/class-names";
+import { ChevronDown, Languages } from "lucide-react";
+import Link from "fumadocs-core/link";
+import { NavProvider } from "fumadocs-ui/contexts/layout";
+
+import { cn } from "@/utils/class-names";
+
+import { LanguageToggle, LanguageToggleText } from "@/components/LanguageToggle";
+import { LargeSearchToggle, SearchToggle } from "@/components/SearchToggle";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import {
+  MobileNavigationMenuContent,
+  MobileNavigationMenuLinkItem,
+  MobileNavigationMenuTrigger,
+  Navbar,
+  NavigationMenuItem,
+  NavigationMenuLinkItem,
+} from "@/components/layout/home/client";
 import {
   type BaseLayoutProps,
   getLinks,
   type LinkItemType,
   type NavOptions,
-} from "../shared/index";
-import { NavProvider } from "fumadocs-ui/contexts/layout";
-import { LargeSearchToggle, SearchToggle } from "../../SearchToggle";
-import { ThemeToggle } from "../../ThemeToggle";
-import { LanguageToggle, LanguageToggleText } from "../../LanguageToggle";
-import { ChevronDown, Languages } from "lucide-react";
-import Link from "fumadocs-core/link";
-import {
-  Navbar,
-  NavigationMenuLinkItem,
-  MobileNavigationMenuContent,
-  MobileNavigationMenuLinkItem,
-  MobileNavigationMenuTrigger,
-  NavigationMenuItem,
-} from "@/components/layout/home/client";
+} from "@/components/layout/shared/index";
 import { buttonVariants } from "@/components/ui/Button";
 
 export interface HomeLayoutProps extends BaseLayoutProps {
