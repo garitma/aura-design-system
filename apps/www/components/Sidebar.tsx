@@ -14,9 +14,9 @@ import {
 } from "react";
 import Link, { type LinkProps } from "fumadocs-core/link";
 import { useOnChange } from "fumadocs-core/utils/use-on-change";
-import { cn } from "../lib/cn";
+import { cn } from "../utils/class-names";
 import { ScrollArea, ScrollViewport } from "./ui/ScrollArea";
-import { isActive } from "../lib/is-active";
+import { isActive } from "../utils/is-active";
 import {
   Collapsible,
   CollapsibleContent,

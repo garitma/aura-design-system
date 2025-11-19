@@ -1,7 +1,7 @@
 "use client";
 import type { ComponentProps } from "react";
 import { usePathname } from "fumadocs-core/framework";
-import { isActive } from "../../../lib/is-active";
+import { isActive } from "../../../utils/is-active";
 import Link from "fumadocs-core/link";
 import type { BaseLinkType } from "./index";
 

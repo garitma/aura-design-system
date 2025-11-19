@@ -1,4 +1,4 @@
-import { baseOptions } from "@/lib/layout.shared";
+import { baseOptions } from "@/utils/layout.shared";
 import { HomeLayout } from "@/components/layout/home";
 import Footer from "@/components/Footer";
 

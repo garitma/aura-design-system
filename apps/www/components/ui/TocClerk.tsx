@@ -1,17 +1,17 @@
-'use client';
-import * as Primitive from 'fumadocs-core/toc';
-import { type ComponentProps, useEffect, useRef, useState } from 'react';
-import { cn } from '../../lib/cn';
-import { TocThumb } from './toc-thumb';
-import { useTOCItems } from './toc';
-import { mergeRefs } from '../../lib/merge-refs';
-import { useI18n } from 'fumadocs-ui/contexts/i18n';
+"use client";
+import * as Primitive from "fumadocs-core/toc";
+import { type ComponentProps, useEffect, useRef, useState } from "react";
+import { cn } from "@/utils/class-names";
+import { TocThumb } from "./toc-thumb";
+import { useTOCItems } from "./toc";
+import { mergeRefs } from "@/utils/merge-refs";
+import { useI18n } from "fumadocs-ui/contexts/i18n";
 
 export default function ClerkTOCItems({
   ref,
   className,
   ...props
-}: ComponentProps<'div'>) {
+}: ComponentProps<"div">) {
   const containerRef = useRef<HTMLDivElement>(null);
   const items = useTOCItems();
   const { text } = useI18n();
@@ -33,7 +33,7 @@ export default function ClerkTOCItems({
       const d: string[] = [];
       for (let i = 0; i < items.length; i++) {
         const element: HTMLElement | null = container.querySelector(
-          `a[href="#${items[i].url.slice(1)}"]`,
+          `a[href="#${items[i].url.slice(1)}"]`
         );
         if (!element) continue;
 
@@ -48,12 +48,12 @@ export default function ClerkTOCItems({
         w = Math.max(offset, w);
         h = Math.max(h, bottom);
 
-        d.push(`${i === 0 ? 'M' : 'L'}${offset} ${top}`);
+        d.push(`${i === 0 ? "M" : "L"}${offset} ${top}`);
         d.push(`L${offset} ${bottom}`);
       }
 
       setSvg({
-        path: d.join(' '),
+        path: d.join(" "),
         width: w + 1,
         height: h,
       });
@@ -86,7 +86,7 @@ export default function ClerkTOCItems({
             maskImage: `url("data:image/svg+xml,${
               // Inline SVG
               encodeURIComponent(
-                `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svg.width} ${svg.height}"><path d="${svg.path}" stroke="black" stroke-width="1" fill="none" /></svg>`,
+                `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svg.width} ${svg.height}"><path d="${svg.path}" stroke="black" stroke-width="1" fill="none" /></svg>`
               )
             }")`,
           }}
@@ -99,7 +99,7 @@ export default function ClerkTOCItems({
       ) : null}
       <div
         ref={mergeRefs(containerRef, ref)}
-        className={cn('flex flex-col', className)}
+        className={cn("flex flex-col", className)}
         {...props}
       >
         {items.map((item, i) => (
@@ -164,9 +164,9 @@ function TOCItem({
       ) : null}
       <div
         className={cn(
-          'absolute inset-y-0 w-px bg-fd-foreground/10',
-          offset !== upperOffset && 'top-1.5',
-          offset !== lowerOffset && 'bottom-1.5',
+          "absolute inset-y-0 w-px bg-fd-foreground/10",
+          offset !== upperOffset && "top-1.5",
+          offset !== lowerOffset && "bottom-1.5"
         )}
         style={{
           insetInlineStart: offset,

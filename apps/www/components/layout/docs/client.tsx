@@ -2,7 +2,7 @@
 
 import { Sidebar as SidebarIcon } from "lucide-react";
 import { type ComponentProps, useMemo } from "react";
-import { cn } from "../../../lib/cn";
+import { cn } from "../../../utils/class-names";
 import { buttonVariants } from "../../ui/Button";
 import { useSidebar } from "fumadocs-ui/contexts/sidebar";
 import { useNav } from "fumadocs-ui/contexts/layout";
@@ -10,7 +10,7 @@ import { SidebarCollapseTrigger } from "../../Sidebar";
 import { SearchToggle } from "../../SearchToggle";
 import type { Option } from "../../RootToggle";
 import { usePathname } from "fumadocs-core/framework";
-import { isTabActive } from "../../../lib/is-active";
+import { isTabActive } from "../../../utils/is-active";
 import Link from "fumadocs-core/link";
 
 export function Navbar(props: ComponentProps<"header">) {

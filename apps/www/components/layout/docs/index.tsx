@@ -6,7 +6,7 @@ import {
   useMemo,
 } from "react";
 import { Languages, Sidebar as SidebarIcon } from "lucide-react";
-import { cn } from "../../../lib/cn";
+import { cn } from "../../../utils/class-names";
 import { buttonVariants } from "../../ui/Button";
 import {
   Sidebar,
