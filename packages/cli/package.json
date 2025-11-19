@@ -38,10 +38,12 @@
     "colorjs.io": "^0.5.2",
     "commander": "^11.1.0",
     "execa": "^9.5.3",
+    "glob": "^13.0.0",
     "inquirer": "^12.6.1",
     "picocolors": "^1.1.1"
   },
   "devDependencies": {
+    "@types/glob": "^9.0.0",
     "@types/node": "^20",
     "typescript": "^5.0.0"
   }
