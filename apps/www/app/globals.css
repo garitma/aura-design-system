@@ -1,0 +1,84 @@
+@import 'tailwindcss';
+/* @import 'fumadocs-ui/css/neutral.css'; */
+@import 'fumadocs-ui/css/preset.css';
+
+@theme {
+  --color-fd-background: #0c122b;
+  --color-fd-foreground: #d4d4d4;
+  --color-fd-muted: #121a3f;
+  --color-fd-muted-foreground: #cd9ffb;
+  --color-fd-popover: #0c122b;
+  --color-fd-popover-foreground: #fafafa;
+  --color-fd-card: #121a3f;
+  --color-fd-card-foreground: #fafafa;
+  --color-fd-border: #121a3f;
+  --color-fd-primary: #fafafa;
+  --color-fd-primary-foreground: #0c122b;
+  --color-fd-secondary: #bf91ec;
+  --color-fd-secondary-foreground: #0c122b;
+  --color-fd-accent: #16204e;
+  --color-fd-accent-foreground: #fafafa;
+  --color-fd-ring: #bf91ec;
+}
+
+@font-face {
+  font-family: 'iA Writer Mono';
+  src: url('/iAWriterMono/Webfonts/iAWriterMonoS-Regular.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'iA Writer Mono';
+  src: url('/iAWriterMono/Webfonts/iAWriterMonoS-Italic.woff2') format('woff2');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'iA Writer Mono';
+  src: url('/iAWriterMono/Webfonts/iAWriterMonoS-Bold.woff2') format('woff2');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'iA Writer Mono';
+  src: url('/iAWriterMono/Webfonts/iAWriterMonoS-BoldItalic.woff2') format('woff2');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@layer base {
+  @import '@aura-design/system/main.css';
+
+  :root {
+    --aura-bg: inherit;
+    --aura-link: inherit;
+    --font-mono: 'iA Writer Mono', monospace;
+    --aura-accents-primary: #cd9ffb;
+    --aura-button-hover: #dab7fc;
+    --aura-text-primary-inverse: #0c122b;
+  }
+}
+
+body {
+  background-color: var(--color-fd-background);
+
+}
+
+@layer components {
+  .nprogress {
+    pointer-events: none;
+    z-index: 99999;
+  }
+  .nprogress .bar {
+    background: var(--aura-loader);
+    position: fixed;
+    z-index: 99999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+  }
+}

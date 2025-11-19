@@ -1,0 +1,25 @@
+---
+title: Registry
+description: A registry in the context of shadcn/ui is a structured collection of components, hooks, and utilities that can be shared and reused across multiple projects. It serves as a centralized source for distributing your design system components in a way that’s compatible with the shadcn-ui CLI.
+icon: Database 
+---
+
+## What is a Registry?
+
+A component registry is a system used to store, manage, and distribute individual pieces of our design system, such as components, utilities, or styles.
+
+Unlike a traditional component library published as a single package on npm (e.g., `material-ui` or `chakra-ui`), a registry holds the source code for each component separately. When you "install" a component, you are not adding a new dependency to your `node_modules`. Instead, you are **copying the actual source code** directly into your project.
+
+## Why Use a Registry?
+
+This registry-based approach provides several key advantages over traditional libraries:
+
+* **Full Ownership & Control:** Because the component code lives in your codebase (e.g., in a `/components/ui` folder), you have complete control. You can modify, adapt, and restyle any component to fit your specific needs without waiting for updates or fighting with library opinions.
+* **No "Black Box":** You can see exactly what the code is doing, making it easier to debug, customize, and understand.
+* **Pick What You Need:** You only add the components you are actively using. This prevents bloating your application with unused code that often comes bundled in a monolithic library.
+* **Framework Agnostic (by design):** The components are designed to be copied and pasted. They are not tied to a specific version of our library and don't create complex dependency chains. You own the code and its dependencies.
+* **Easy Updates:** While you own the code, our CLI tool makes it easy to check for updates to a component and "diff" the changes, allowing you to decide whether to incorporate them.
+
+## How to Consume the Registry
+
+Interaction with the registry is handled through our Command Line Interface (CLI). This tool is responsible for initializing your project and fetching component code.
