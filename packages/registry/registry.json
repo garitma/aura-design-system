@@ -4,14 +4,38 @@
   "homepage": "https://auradesignsystem.com",
   "items": [
     {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "description": "The Accordion component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Accordion.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
-      "description": "An interactive element that triggers an action or event when clicked.",
+      "description": "The Button component.",
       "files": [
         {
           "path": "registry/default/components/ui/Button.tsx",
           "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "class-names",
+      "type": "registry:lib",
+      "title": "class-names",
+      "description": "Utility: class-names",
+      "files": [
+        {
+          "path": "registry/default/utils/class-names.ts",
+          "type": "registry:lib"
         }
       ]
     }

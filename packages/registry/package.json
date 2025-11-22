@@ -20,7 +20,8 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "dev": "ladle dev",
-    "registry:build": "shadcn build"
+    "registry:build": "shadcn build",
+    "registry:generate": "npx tsx scripts/build-registry.ts"
   },
   "dependencies": {
     "@ladle/react": "^5.1.1",
