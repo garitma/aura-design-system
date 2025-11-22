@@ -29,3 +29,15 @@ export const Variants = () => (
     <Button variant="menu">Menu</Button>
   </div>
 );
+
+export const Disabled = () => <Button isDisabled>Disabled Button</Button>;
+
+export const Loading = () => <Button isLoading>Loading Button...</Button>;
+
+export const States = () => (
+  <div className="flex flex-col gap-4 items-start">
+    <Button>Normal</Button>
+    <Button isDisabled>Disabled</Button>
+    <Button isLoading>Loading</Button>
+  </div>
+);
