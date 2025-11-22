@@ -25,8 +25,9 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["registry/default/*"]
-    }
+    },
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
-  "include": ["**/*.ts", "**/*.tsx", "registry.json"],
-  "exclude": ["node_modules", "dist", "**/*.test.ts", "**/*.test.tsx"]
+  "include": ["**/*.ts", "**/*.tsx", "registry.json", "vitest.setup.ts", "vitest.config.ts"],
+  "exclude": ["node_modules", "dist"]
 }
