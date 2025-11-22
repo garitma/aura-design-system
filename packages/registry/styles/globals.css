@@ -6,6 +6,7 @@
 
 @layer base {
   @import "./main.css";
+  @import "../registry/default/styles/accordion.css";
 }
 
 @layer components {
