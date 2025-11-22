@@ -32,20 +32,41 @@ interface ButtonProps
   extends React.ComponentProps<"button">,
     VariantProps<typeof buttonVariants> {
   asChild?: boolean;
+  isDisabled?: boolean;
+  isLoading?: boolean;
 }
+
+import { ReloadIcon } from "@radix-ui/react-icons";
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props: ButtonProps, ref) => {
-    const { className, variant, size, asChild = false, ...rest } = props;
+    const {
+      className,
+      variant,
+      size,
+      asChild = false,
+      isDisabled,
+      isLoading,
+      children,
+      ...rest
+    } = props;
     const Comp = asChild ? Slot : "button";
+    const disabled = isDisabled || isLoading || props.disabled;
 
     return (
       <Comp
         data-slot="button"
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(
+          buttonVariants({ variant, size, className }),
+          disabled && "opacity-50 cursor-not-allowed"
+        )}
         ref={ref}
+        disabled={disabled}
         {...rest}
-      />
+      >
+        {isLoading && <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />}
+        {children}
+      </Comp>
     );
   }
 );
