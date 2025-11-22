@@ -315,7 +315,10 @@ hr {
 .smish,
 .smosh,
 .smash,
-.smush,
+.smush {
+  margin: 0 auto;
+}
+
 .smish {
   max-width: 250px;
 }

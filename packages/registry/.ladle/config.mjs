@@ -4,8 +4,5 @@ export default {
     a11y: {
       enabled: true,
     },
-    msw: {
-      enabled: false,
-    },
   },
 };

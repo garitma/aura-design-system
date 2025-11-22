@@ -1,4 +1,4 @@
-import { CodeIcon } from "@radix-ui/react-icons";
+import { BookmarkIcon } from "@radix-ui/react-icons";
 import {
   Alert,
   AlertContent,
@@ -12,7 +12,7 @@ export const AlertDemo = () => {
   return (
     <Alert>
       <AlertIcon>
-        <CodeIcon className="icon" />
+        <BookmarkIcon className="icon" />
       </AlertIcon>
       <AlertContent>
         <AlertTitle>Dummy Title</AlertTitle>
