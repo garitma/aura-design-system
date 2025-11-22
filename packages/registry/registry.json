@@ -16,6 +16,18 @@
       ]
     },
     {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "description": "The Alert component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Alert.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
