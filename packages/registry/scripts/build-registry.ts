@@ -41,6 +41,53 @@ const registry = {
   "items": [] as RegistryItem[]
 };
 
+/**
+ * Extract external dependencies from a file by parsing import statements
+ * Excludes react, react-dom, and internal imports (starting with @/)
+ */
+function extractDependencies(filePath: string): string[] {
+  const content = fs.readFileSync(filePath, "utf-8");
+  const dependencies = new Set<string>();
+  
+  // Match import statements: import ... from "package" or import ... from 'package'
+  const importRegex = /import\s+(?:(?:\{[^}]*\}|\*\s+as\s+\w+|\w+)\s+from\s+)?["']([^"']+)["']/g;
+  
+  let match;
+  while ((match = importRegex.exec(content)) !== null) {
+    const importPath = match[1];
+    
+    // Skip relative imports (starting with . or /)
+    if (importPath.startsWith('.') || importPath.startsWith('/')) {
+      continue;
+    }
+    
+    // Skip internal imports (starting with @/)
+    if (importPath.startsWith('@/')) {
+      continue;
+    }
+    
+    // Skip react and react-dom
+    if (importPath === 'react' || importPath === 'react-dom' || importPath === 'react/jsx-runtime') {
+      continue;
+    }
+    
+    // Extract package name (handle scoped packages like @radix-ui/react-icons)
+    let packageName = importPath;
+    if (importPath.startsWith('@')) {
+      // Scoped package: @scope/package or @scope/package/subpath
+      const parts = importPath.split('/');
+      packageName = `${parts[0]}/${parts[1]}`;
+    } else {
+      // Regular package: package or package/subpath
+      packageName = importPath.split('/')[0];
+    }
+    
+    dependencies.add(packageName);
+  }
+  
+  return Array.from(dependencies).sort();
+}
+
 function getComponentItems() {
   if (!fs.existsSync(COMPONENTS_PATH)) return [];
   
@@ -50,8 +97,12 @@ function getComponentItems() {
     .map((file) => {
       const name = file.replace(".tsx", "");
       const kebabName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+      const filePath = path.join(COMPONENTS_PATH, file);
       
-      return {
+      // Extract external dependencies from the component file
+      const dependencies = extractDependencies(filePath);
+      
+      const item: RegistryItem = {
         name: kebabName,
         type: "registry:ui" as const,
         title: name,
@@ -63,6 +114,13 @@ function getComponentItems() {
           },
         ],
       };
+      
+      // Only add dependencies field if there are external dependencies
+      if (dependencies.length > 0) {
+        item.dependencies = dependencies;
+      }
+      
+      return item;
     });
 }
 
@@ -75,8 +133,12 @@ function getUtilsItems() {
     .map((file) => {
       const name = file.replace(".ts", "");
       const kebabName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
-
-      return {
+      const filePath = path.join(UTILS_PATH, file);
+      
+      // Extract external dependencies from the utility file
+      const dependencies = extractDependencies(filePath);
+      
+      const item: RegistryItem = {
         name: kebabName,
         type: "registry:lib" as const,
         title: name,
@@ -88,6 +150,13 @@ function getUtilsItems() {
           },
         ],
       };
+      
+      // Only add dependencies field if there are external dependencies
+      if (dependencies.length > 0) {
+        item.dependencies = dependencies;
+      }
+      
+      return item;
     });
 }
 
