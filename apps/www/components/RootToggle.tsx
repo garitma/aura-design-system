@@ -36,7 +36,7 @@ export function RootToggle({
 
   const item = selected ? (
     <>
-      <div className="size-9 shrink-0 empty:hidden md:size-5">
+      <div className="size-3 shrink-0 empty:hidden md:size-1.5">
         {selected.icon}
       </div>
       <div>
@@ -56,15 +56,15 @@ export function RootToggle({
         <PopoverTrigger
           {...props}
           className={cn(
-            "flex items-center gap-2 rounded-lg p-2 border bg-fd-secondary/50 text-start text-fd-secondary-foreground transition-colors hover:bg-fd-accent data-[state=open]:bg-fd-accent data-[state=open]:text-fd-accent-foreground",
+            "flex items-center gap-0.5 rounded-lg p-0.5 border bg-fd-secondary/50 text-start text-fd-secondary-foreground transition-colors hover:bg-fd-accent data-[state=open]:bg-fd-accent data-[state=open]:text-fd-accent-foreground",
             props.className
           )}
         >
           {item}
-          <ChevronsUpDown className="shrink-0 ms-auto size-4 text-fd-muted-foreground" />
+          <ChevronsUpDown className="shrink-0 ms-auto size-1 text-fd-muted-foreground" />
         </PopoverTrigger>
       )}
-      <PopoverContent className="flex flex-col gap-1 w-(--radix-popover-trigger-width) p-1 fd-scroll-container">
+      <PopoverContent className="flex flex-col gap-0.5 w-(--radix-popover-trigger-width) p-0.5 fd-scroll-container">
         {options.map((item) => {
           const isActive = selected && item.url === selected.url;
           if (!isActive && item.unlisted) return;
@@ -76,11 +76,11 @@ export function RootToggle({
               onClick={onClick}
               {...item.props}
               className={cn(
-                "flex items-center gap-2 rounded-lg p-1.5 hover:bg-fd-accent hover:text-fd-accent-foreground",
+                "flex items-center gap-2 rounded-lg p-0.5 hover:bg-fd-accent hover:text-fd-accent-foreground",
                 item.props?.className
               )}
             >
-              <div className="shrink-0 size-9 md:mt-1 md:mb-auto md:size-5 empty:hidden">
+              <div className="shrink-0 size-9 md:mt-0.5 md:mb-auto md:size-5 empty:hidden">
                 {item.icon}
               </div>
               <div>
@@ -92,7 +92,7 @@ export function RootToggle({
 
               <Check
                 className={cn(
-                  "shrink-0 ms-auto size-3.5 text-fd-primary",
+                  "shrink-0 ms-auto size-1 text-fd-primary",
                   !isActive && "invisible"
                 )}
               />

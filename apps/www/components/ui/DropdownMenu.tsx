@@ -64,7 +64,7 @@ function DropdownMenuItem({
   return (
     <DropdownMenuRadix.Item
       data-slot="dropdown-menu-item"
-      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")}
+      className={cn(className, "p-0 px-0.5 hover:bg-accent-3 flex relative cursor-pointer")}
       {...props}
     />
   );
@@ -145,7 +145,7 @@ function DropdownMenuSeparator({
   return (
     <DropdownMenuRadix.Separator
       data-slot="dropdown-menu-separator"
-      className={cn(className, "m-0.6 h-px bg-gray-a6")}
+      className={cn(className, "m-0 h-px bg-gray-a6")}
       {...props}
     />
   );

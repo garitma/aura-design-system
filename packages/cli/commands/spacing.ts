@@ -31,30 +31,26 @@ function mapToCustomSpacing(defaultPxValue: number) {
     return closestSpacing;
 }
 
-function replaceSpacingClass(className: string) {
-    const spacingClassRegex = /\b(m|p|mt|mb|mr|ml|mx|my|pt|pb|pr|pl|px|py|gap|space-x|space-y|h|w)-((?:\d+\.)?\d+|auto)\b/g;
+function updateSpacingInContent(content: string) {
+    let hasChanges = false;
+    const spacingClassRegex = /(^|[\s"'])((?:[^"'\s]*:)?)(m|p|mt|mb|mr|ml|mx|my|pt|pb|pr|pl|px|py|gap|space-x|space-y|h|w|size)-((?:\d+\.)?\d+|auto)(?=$|[\s"'])/g;
 
-    return className.replace(spacingClassRegex, (match, prefix, value) => {
+    const updatedContent = content.replace(spacingClassRegex, (match, delimiter, variants, prefix, value) => {
         if (value === "auto") {
-            return `${prefix}-auto`;
+            return match;
         }
 
         const defaultPxValue = parseFloat(value) * 4;
         const closestSpacing = mapToCustomSpacing(defaultPxValue);
-        return `${prefix}-${closestSpacing}`;
+
+        const newClass = `${delimiter}${variants}${prefix}-${closestSpacing}`;
+        if (newClass !== match) {
+            hasChanges = true;
+        }
+        return newClass;
     });
-}
 
-function extractSpacingClasses(tsxContent: string) {
-    const spacingClasses = new Set<string>();
-    const spacingClassRegex = /\b(m|p|mt|mb|mr|ml|mx|my|pt|pb|pr|pl|px|py|gap|space-x|space-y|h|w)-((?:\d+\.)?\d+|auto)\b/g;
-
-    const matches = tsxContent.matchAll(spacingClassRegex);
-    for (const match of matches) {
-        spacingClasses.add(match[0]);
-    }
-
-    return Array.from(spacingClasses);
+    return { updatedContent, hasChanges };
 }
 
 export function registerSpacingCommand(program: Command) {
@@ -74,16 +70,11 @@ export function registerSpacingCommand(program: Command) {
                 const tsxFiles = await glob(`${directory}/**/*.tsx`);
 
                 for (const filePath of tsxFiles) {
-                    let tsxContent = await fs.promises.readFile(filePath, "utf-8");
-                    const extractedClasses = extractSpacingClasses(tsxContent);
+                    const tsxContent = await fs.promises.readFile(filePath, "utf-8");
+                    const { updatedContent, hasChanges } = updateSpacingInContent(tsxContent);
 
-                    if (extractedClasses.length > 0) {
-                        for (const className of extractedClasses) {
-                            const updatedClass = replaceSpacingClass(className);
-                            tsxContent = tsxContent.replace(className, updatedClass);
-                        }
-
-                        await fs.promises.writeFile(filePath, tsxContent, "utf-8");
+                    if (hasChanges) {
+                        await fs.promises.writeFile(filePath, updatedContent, "utf-8");
                         console.log(`Updated spacing classes in ${filePath}`);
                     }
                 }

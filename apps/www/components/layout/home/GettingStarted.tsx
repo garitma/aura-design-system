@@ -5,18 +5,18 @@ import { ArrowRight, Terminal } from "lucide-react";
 
 export default function GettingStarted() {
     return (
-        <Section className="py-16 md:py-24">
-            <div className="max-w-4xl mx-auto text-center space-y-12">
+        <Section className="py-5 md:py-7.5">
+            <div className="max-w-4xl mx-auto text-center space-y-3.5">
                 <h2 className="h2 font-bold text-gray-12">Ready to Build? Let’s Get Started.</h2>
 
-                <div className="grid md:grid-cols-2 gap-8 text-left">
-                    <div className="space-y-4">
-                        <div className="flex items-center gap-3">
-                            <div className="size-8 rounded-full bg-gray-12 text-gray-1 flex items-center justify-center font-bold">1</div>
+                <div className="grid md:grid-cols-2 gap-0.5.5 text-left">
+                    <div className="space-y-1">
+                        <div className="flex items-center gap-1">
+                            <div className="size-2.5 rounded-full bg-gray-12 text-gray-1 flex items-center justify-center font-bold">1</div>
                             <h3 className="h4 font-medium text-gray-12">Setup the CLI</h3>
                         </div>
-                        <div className="bg-gray-12 text-gray-1 p-4 rounded-lg font-mono text-sm flex items-center gap-2">
-                            <Terminal className="size-4 text-gray-8" />
+                        <div className="bg-gray-12 text-gray-1 p-1 rounded-lg font-mono text-sm flex items-center gap-2">
+                            <Terminal className="size-1 text-gray-8" />
                             <span>npx aura-cli init</span>
                         </div>
                         <p className="text-gray-11 text-sm">
@@ -39,7 +39,7 @@ export default function GettingStarted() {
                     </div>
                 </div>
 
-                <div className="pt-8">
+                <div className="pt-2.5">
                     <Button size="lg" asChild className="gap-2">
                         <Link href="/docs">
                             Read the Documentation <ArrowRight className="size-4" />

@@ -26,11 +26,11 @@ export function PageTOCTitle(props: ComponentProps<"h2">) {
       id="toc-title"
       {...props}
       className={cn(
-        "inline-flex items-center gap-1.5 text-sm text-fd-muted-foreground",
+        "inline-flex items-center gap-0.5 text-sm text-fd-muted-foreground",
         props.className
       )}
     >
-      <Text className="size-4" />
+      <Text className="size-1" />
       <I18nLabel label="toc" />
     </h3>
   );
@@ -64,7 +64,7 @@ export function PageArticle(props: ComponentProps<"article">) {
     <article
       {...props}
       className={cn(
-        "flex min-w-0 w-full flex-col gap-4 pt-8 px-4 md:px-6 md:mx-auto",
+        "flex min-w-0 w-full flex-col gap-1 pt-2.5 px-1 md:px-2 md:mx-auto",
         props.className
       )}
     >

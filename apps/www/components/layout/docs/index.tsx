@@ -137,7 +137,7 @@ export function DocsLayout({
             <SidebarLinkItem
               key={i}
               item={item}
-              className={cn(i === list.length - 1 && "mb-4")}
+              className={cn(i === list.length - 1 && "mb-1")}
             />
           ))}
         <SidebarPageTree components={components} />
@@ -147,7 +147,7 @@ export function DocsLayout({
     const mobile = (
       <SidebarContentMobile {...rest}>
         <SidebarHeader>
-          <div className="flex text-fd-muted-foreground items-center gap-1.5">
+          <div className="flex text-fd-muted-foreground items-center gap-0.5">
             <div className="flex flex-1">
               {iconLinks.map((item, i) => (
                 <BaseLinkItem
@@ -157,7 +157,7 @@ export function DocsLayout({
                     buttonVariants({
                       size: "icon-sm",
                       color: "ghost",
-                      className: "p-2",
+                      className: "p-0.5",
                     })
                   )}
                   aria-label={item.label}
@@ -168,7 +168,7 @@ export function DocsLayout({
             </div>
             {i18n ? (
               <LanguageToggle>
-                <Languages className="size-4.5" />
+                <Languages className="size-1.5" />
                 <LanguageToggleText />
               </LanguageToggle>
             ) : null}
@@ -202,7 +202,7 @@ export function DocsLayout({
           <div className="flex">
             <Link
               href={nav.url ?? "/"}
-              className="inline-flex text-[0.9375rem] items-center gap-2.5 font-medium me-auto"
+              className="inline-flex text-[0.9375rem] items-center gap-1 font-medium me-auto"
             >
               {nav.title}
             </Link>
@@ -318,7 +318,7 @@ export function DocsLayout({
         <LayoutBody
           {...props.containerProps}
           className={cn(
-            "md:[&_#nd-page_article]:pt-12 xl:[&_#nd-page_article]:px-8",
+            "md:[&_#nd-page_article]:pt-1.5 xl:[&_#nd-page_article]:px-2.5",
             sidebarEnabled && sidebarVariables,
             props.containerProps?.className
           )}
@@ -327,7 +327,7 @@ export function DocsLayout({
           {tabMode === "top" && tabs.length > 0 && (
             <LayoutTabs
               options={tabs}
-              className="sticky top-[calc(var(--fd-nav-height)+var(--fd-tocnav-height))] z-10 bg-fd-background border-b px-6 pt-3 xl:px-8 max-md:hidden"
+              className="sticky top-[calc(var(--fd-nav-height)+var(--fd-tocnav-height))] z-10 bg-fd-background border-b px-2 pt-3 xl:px-8 max-md:hidden"
             />
           )}
           {children}

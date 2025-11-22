@@ -35,7 +35,7 @@ function AccordionTrigger({
       <AccordionRadix.Trigger
         data-slot="accordion-trigger"
         className={cn(
-          "group flex justify-between flex-1 cursor-pointer items-center gap-1 p-1 w-full h6 border border-b-1 border-gray-6 border-x-0 border-t-0 px-2",
+          "group flex justify-between flex-1 cursor-pointer items-center gap-0.5 p-0.5 w-full h6 border border-b-1 border-gray-6 border-x-0 border-t-0 px-0.5",
           className
         )}
         {...props}
@@ -58,7 +58,7 @@ function AccordionContent({
       className="bg-gray-2 data-[state=open]:animate-accordion-open data-[state=closed]:animate-accordion-closed"
       {...props}
     >
-      <div className={cn("px-2 py-1", className)}>{children}</div>
+      <div className={cn("px-2 py-0.5", className)}>{children}</div>
     </AccordionRadix.Content>
   );
 }

@@ -38,7 +38,7 @@ function MenubarTrigger({
   className,
   ...props
 }: React.ComponentProps<typeof MenubarRadix.Trigger>) {
-  return <MenubarRadix.Trigger data-slot="menubar-trigger" className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")} {...props} />;
+  return <MenubarRadix.Trigger data-slot="menubar-trigger" className={cn(className, "p-0 px-0.5 hover:bg-accent-3 flex relative cursor-pointer")} {...props} />;
 }
 
 function MenubarContent({
@@ -108,7 +108,7 @@ function MenubarSeparator({
   className,
   ...props
 }: React.ComponentProps<typeof MenubarRadix.Separator>) {
-  return <MenubarRadix.Separator data-slot="menubar-separator" className={cn(className, "m-0.6 h-px bg-gray-a6")} {...props} />;
+  return <MenubarRadix.Separator data-slot="menubar-separator" className={cn(className, "m-0 h-px bg-gray-a6")} {...props} />;
 }
 
 function MenubarShortcut({ ...props }: React.ComponentProps<"span">) {

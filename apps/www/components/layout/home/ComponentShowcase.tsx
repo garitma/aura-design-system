@@ -7,16 +7,16 @@ import { Calendar } from "lucide-react";
 
 export default function ComponentShowcase() {
     return (
-        <Section className="py-16 md:py-24 bg-gray-2 border-y border-gray-6">
-            <div className="space-y-12">
-                <div className="text-center space-y-4 max-w-3xl mx-auto">
+        <Section className="py-5 md:py-7.5 bg-gray-2 border-y border-gray-6">
+            <div className="space-y-3.5">
+                <div className="text-center space-y-1 max-w-3xl mx-auto">
                     <h2 className="h2 font-bold text-gray-12">Built to Last: Accessible, Composable, and Robust.</h2>
                     <p className="p text-gray-11 text-lg">
                         Every component shares a common, predictable interface. This makes integrating new components feel intuitive, so you spend less time reading docs and more time shipping features.
                     </p>
                 </div>
 
-                <div className="grid lg:grid-cols-3 gap-6">
+                <div className="grid lg:grid-cols-3 gap-2">
                     {/* Data Table Showcase */}
                     <Card className="lg:col-span-2 bg-gray-1 border-gray-6">
                         <CardHeader>
@@ -60,8 +60,8 @@ export default function ComponentShowcase() {
                             <CardDescription>Complex state management.</CardDescription>
                         </CardHeader>
                         <CardContent>
-                            <div className="p-4 border border-gray-6 rounded-md bg-gray-2 flex flex-col items-center justify-center gap-4 min-h-[200px]">
-                                <Calendar className="size-12 text-gray-8" />
+                            <div className="p-1 border border-gray-6 rounded-md bg-gray-2 flex flex-col items-center justify-center gap-1 min-h-[200px]">
+                                <Calendar className="size-3.5 text-gray-8" />
                                 <div className="text-center">
                                     <p className="text-sm font-medium text-gray-12">Select a Date</p>
                                     <p className="text-xs text-gray-11">Interactive calendar component</p>

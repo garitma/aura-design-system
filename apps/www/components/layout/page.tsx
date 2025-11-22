@@ -167,7 +167,7 @@ export function DocsPage({
         {breadcrumbEnabled &&
           (breadcrumb ?? <PageBreadcrumb {...breadcrumbProps} />)}
         {children}
-        <div className="flex flex-row flex-wrap items-center justify-between gap-4 empty:hidden">
+        <div className="flex flex-row flex-wrap items-center justify-between gap-1 empty:hidden">
           {editOnGithub && (
             <EditOnGitHub
               href={`https://github.com/${editOnGithub.owner}/${editOnGithub.repo}/blob/${editOnGithub.sha}/${editOnGithub.path.startsWith("/") ? editOnGithub.path.slice(1) : editOnGithub.path}`}
@@ -193,14 +193,14 @@ export function EditOnGitHub(props: ComponentProps<"a">) {
         buttonVariants({
           color: "secondary",
           size: "sm",
-          className: "gap-1.5 not-prose",
+          className: "gap-0.5 not-prose",
         }),
         props.className
       )}
     >
       {props.children ?? (
         <>
-          <Edit className="size-3.5" />
+          <Edit className="size-1" />
           <I18nLabel label="editOnGithub" />
         </>
       )}
@@ -232,7 +232,7 @@ export const DocsDescription = forwardRef<
     <p
       ref={ref}
       {...props}
-      className={cn("mb-8 text-lg text-fd-muted-foreground", props.className)}
+      className={cn("mb-2.5 text-lg text-fd-muted-foreground", props.className)}
     >
       {props.children}
     </p>
@@ -262,7 +262,7 @@ DocsTitle.displayName = "DocsTitle";
  */
 export function withArticle(props: ComponentProps<"main">): ReactNode {
   return (
-    <main {...props} className={cn("container py-12", props.className)}>
+    <main {...props} className={cn("container py-3.5", props.className)}>
       <article className="prose">{props.children}</article>
     </main>
   );

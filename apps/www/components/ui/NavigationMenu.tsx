@@ -54,7 +54,7 @@ function NavigationMenuTrigger({
     <NavigationMenuRadix.Trigger
       data-slot="navigation-menu-trigger"
       {...props}
-      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")}
+      className={cn(className, "p-0 px-0.5 hover:bg-accent-3 flex relative cursor-pointer")}
     >
       {children}
     </NavigationMenuRadix.Trigger>

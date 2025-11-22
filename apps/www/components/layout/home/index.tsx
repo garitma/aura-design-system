@@ -53,7 +53,7 @@ export function HomeLayout(
       <main
         id="nd-home-layout"
         {...rest}
-        className={cn("flex flex-1 flex-col pt-14", rest.className)}
+        className={cn("flex flex-1 flex-col pt-4.5", rest.className)}
       >
         {nav.enabled !== false &&
           (nav.component ?? (
@@ -96,19 +96,19 @@ export function Header({
     <Navbar>
       <Link
         href={nav.url ?? "/"}
-        className="inline-flex items-center gap-2.5 font-semibold"
+        className="inline-flex items-center gap-1 font-semibold"
       >
         {nav.title}
       </Link>
       {nav.children}
-      <ul className="flex flex-row items-center gap-2 px-6 max-sm:hidden">
+      <ul className="flex flex-row items-center gap-0.5 px-2 max-sm:hidden">
         {navItems
           .filter((item) => !isSecondary(item))
           .map((item, i) => (
             <NavigationMenuLinkItem key={i} item={item} className="text-sm" />
           ))}
       </ul>
-      <div className="flex flex-row items-center justify-end gap-1.5 flex-1 max-lg:hidden">
+      <div className="flex flex-row items-center justify-end gap-0.5 flex-1 max-lg:hidden">
         {searchToggle.enabled !== false &&
           (searchToggle.components?.lg ?? (
             <LargeSearchToggle
@@ -120,15 +120,15 @@ export function Header({
           (themeSwitch.component ?? <ThemeToggle mode={themeSwitch?.mode} />)}
         {i18n && (
           <LanguageToggle>
-            <Languages className="size-5" />
+            <Languages className="size-1.5" />
           </LanguageToggle>
         )}
-        <ul className="flex flex-row gap-2 items-center empty:hidden">
+        <ul className="flex flex-row gap-0.5 items-center empty:hidden">
           {navItems.filter(isSecondary).map((item, i) => (
             <NavigationMenuLinkItem
               key={i}
               className={cn(
-                item.type === "icon" && "-mx-1 first:ms-0 last:me-0"
+                item.type === "icon" && "-mx-0.5 first:ms-0 last:me-0"
               )}
               item={item}
             />
@@ -147,7 +147,7 @@ export function Header({
               buttonVariants({
                 size: "icon",
                 color: "ghost",
-                className: "group [&_svg]:size-5.5",
+                className: "group [&_svg]:size-1.5",
               })
             )}
             enableHover={nav.enableHoverToOpen}
@@ -164,7 +164,7 @@ export function Header({
                   className="sm:hidden"
                 />
               ))}
-            <div className="-ms-1.5 flex flex-row items-center gap-2 max-sm:mt-2">
+            <div className="-ms-1.5 flex flex-row items-center gap-2 max-sm:mt-0.5">
               {menuItems.filter(isSecondary).map((item, i) => (
                 <MobileNavigationMenuLinkItem
                   key={i}
@@ -177,7 +177,7 @@ export function Header({
                 <LanguageToggle>
                   <Languages className="size-5" />
                   <LanguageToggleText />
-                  <ChevronDown className="size-3 text-fd-muted-foreground" />
+                  <ChevronDown className="size-1 text-fd-muted-foreground" />
                 </LanguageToggle>
               )}
               {themeSwitch.enabled !== false &&

@@ -258,18 +258,18 @@ export default function AuraAesthetic() {
     }, [accentColor, grayColor, backgroundColor, radius, mode]);
 
     return (
-        <Section className="py-16 md:py-24">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <div className="space-y-6">
+        <Section className="py-5 md:py-7.5">
+            <div className="grid lg:grid-cols-2 gap-3.5 items-center">
+                <div className="space-y-0.5">
                     <h2 className="h2 font-bold text-gray-12">Make It Yours: Your Brand, Our Beautiful Base.</h2>
                     <p className="p text-gray-11 text-lg">
                         Aura isn't just a library; it's a starting point. Tweak the tokens to match your brand identity instantly.
                     </p>
 
-                    <div className="space-y-6 p-6 bg-gray-2 rounded-xl border border-gray-6">
-                        <div className="space-y-3">
+                    <div className="space-y-6 p-2 bg-gray-2 rounded-xl border border-gray-6">
+                        <div className="space-y-1">
                             <Label>Accent Color</Label>
-                            <div className="flex gap-2 items-center">
+                            <div className="flex gap-0.5 items-center">
                                 <Input
                                     type="text"
                                     value={accentInput}
@@ -278,7 +278,7 @@ export default function AuraAesthetic() {
                                     className="flex-1"
                                 />
                                 <div
-                                    className="size-10 rounded border-2 border-gray-6 shrink-0"
+                                    className="size-3 rounded border-2 border-gray-6 shrink-0"
                                     style={{ backgroundColor: accentColor }}
                                 />
                             </div>
@@ -343,7 +343,7 @@ export default function AuraAesthetic() {
 
                     <div className="space-y-2">
                         <p className="text-sm font-medium text-gray-12">Export Configuration</p>
-                        <pre className="p-4 rounded-lg bg-gray-12 text-gray-1 overflow-x-auto text-sm font-mono h-64">
+                        <pre className="p-1 rounded-lg bg-gray-12 text-gray-1 overflow-x-auto text-sm font-mono h-19.5">
                             {exportCss}
                         </pre>
                         <p className="text-xs text-gray-11">
@@ -352,7 +352,7 @@ export default function AuraAesthetic() {
                     </div>
                 </div>
 
-                <div className={`p-8 rounded-2xl border border-gray-6 transition-colors duration-300 ${mode === "dark" ? "bg-gray-12 text-gray-1" : "bg-white text-gray-12"
+                <div className={`p-2.5 rounded-2xl border border-gray-6 transition-colors duration-300 ${mode === "dark" ? "bg-gray-12 text-gray-1" : "bg-white text-gray-12"
                     }`}>
                     {/* We apply the generated variables to this container */}
                     <div className="max-w-md mx-auto space-y-6" style={cssVariables as React.CSSProperties}>
@@ -363,7 +363,7 @@ export default function AuraAesthetic() {
                                     Enter your details to get started.
                                 </CardDescription>
                             </CardHeader>
-                            <CardContent className="space-y-4">
+                            <CardContent className="space-y-1">
                                 <div className="space-y-2">
                                     <Label>Email</Label>
                                     <Input

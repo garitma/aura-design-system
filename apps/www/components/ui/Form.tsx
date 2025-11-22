@@ -74,7 +74,7 @@ export const FormSubmit = React.forwardRef<HTMLButtonElement, FormSubmitProps>(
               <SymbolIcon className="icon animate-spin" />
             </>
           }
-          className="min-w-10"
+          className="min-w-3"
         />
       </FormRadix.Submit>
     );
@@ -94,7 +94,7 @@ export const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
     { labelProps, label, controlProps, children, field, errors, ...props },
     forwardedRef
   ) => {
-    const classNameConnect: string[] = ["flex flex-col gap-0.5"];
+    const classNameConnect: string[] = ["flex flex-col gap-0"];
     const hasError = field.touch && errors && errors.length > 0;
     const hasSelect = React.Children.toArray(children).some(
       (child: any) => child?.type === "select"
@@ -166,7 +166,7 @@ export const FormSwitch = React.forwardRef<HTMLDivElement, FormSwitchProps>(
         name={name}
         serverInvalid={hasError}
       >
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-0.5">
           {label && (
             <FormRadix.Label htmlFor={idConnect}>{label}</FormRadix.Label>
           )}
@@ -222,7 +222,7 @@ export const FormCheckbox = React.forwardRef<HTMLDivElement, FormCheckboxProps>(
           <div>
             <Checkbox
               id={idConnect}
-              className="border border-gray-a6 flex size-1.5 items-center justify-center rounded outline-none hover:bg-accent-2"
+              className="border border-gray-a6 flex size-0.5 items-center justify-center rounded outline-none hover:bg-accent-2"
               checked={Boolean(field?.value)}
               onCheckedChange={field?.onCheckedChange}
             />

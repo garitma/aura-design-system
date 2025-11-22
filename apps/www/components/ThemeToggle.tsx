@@ -7,7 +7,7 @@ import { type HTMLAttributes, useLayoutEffect, useState } from "react";
 import { cn } from "@/utils/class-names";
 
 const itemVariants = cva(
-  "size-6.5 rounded-full p-1.5 text-fd-muted-foreground",
+  "size-2 rounded-full p-0.5 text-fd-muted-foreground",
   {
     variants: {
       active: {
@@ -39,7 +39,7 @@ export function ThemeToggle({
   }, []);
 
   const container = cn(
-    "inline-flex items-center rounded-full border p-1",
+    "inline-flex items-center rounded-full border p-0.5",
     className
   );
 

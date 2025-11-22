@@ -12,17 +12,17 @@ const variants = {
 } as const;
 
 export const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-md p-2 text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring",
+  "inline-flex items-center justify-center rounded-md p-0.5 text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring",
   {
     variants: {
       variant: variants,
       // fumadocs use `color` instead of `variant`
       color: variants,
       size: {
-        sm: "gap-1 px-2 py-1.5 text-xs",
-        icon: "p-1.5 [&_svg]:size-5",
-        "icon-sm": "p-1.5 [&_svg]:size-4.5",
-        "icon-xs": "p-1 [&_svg]:size-4",
+        sm: "gap-0.5 px-0.5 py-0.5 text-xs",
+        icon: "p-0.5 [&_svg]:size-1.5",
+        "icon-sm": "p-0.5.5 [&_svg]:size-1.5",
+        "icon-xs": "p-1 [&_svg]:size-1",
       },
     },
   }

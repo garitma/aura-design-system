@@ -55,7 +55,7 @@ export function PageTOCPopoverTrigger(props: ComponentProps<"button">) {
     <CollapsibleTrigger
       {...props}
       className={cn(
-        "flex w-full h-(--fd-tocnav-height) items-center text-sm text-fd-muted-foreground gap-2.5 px-4 py-2.5 text-start focus-visible:outline-none [&_svg]:size-4 md:px-6",
+        "flex w-full h-(--fd-tocnav-height) items-center text-sm text-fd-muted-foreground gap-1 px-1 py-1 text-start focus-visible:outline-none [&_svg]:size-1 md:px-2",
         props.className
       )}
     >
@@ -85,7 +85,7 @@ export function PageTOCPopoverTrigger(props: ComponentProps<"button">) {
       </span>
       <ChevronDown
         className={cn(
-          "shrink-0 transition-transform mx-0.5",
+          "shrink-0 transition-transform mx-0",
           open && "rotate-180"
         )}
       />
@@ -301,7 +301,7 @@ export function PageFooter({ items, ...props }: FooterProps) {
     <div
       {...props}
       className={cn(
-        "@container grid gap-4 pb-6",
+        "@container grid gap-1 pb-0.5",
         previous && next ? "grid-cols-2" : "grid-cols-1",
         props.className
       )}
@@ -320,17 +320,17 @@ function FooterItem({ item, index }: { item: Item; index: 0 | 1 }) {
     <Link
       href={item.url}
       className={cn(
-        "flex flex-col gap-2 rounded-lg border p-4 text-sm transition-colors hover:bg-fd-accent/80 hover:text-fd-accent-foreground @max-lg:col-span-full",
+        "flex flex-col gap-0.5 rounded-lg border p-1 text-sm transition-colors hover:bg-fd-accent/80 hover:text-fd-accent-foreground @max-lg:col-span-full",
         index === 1 && "text-end"
       )}
     >
       <div
         className={cn(
-          "inline-flex items-center gap-1.5 font-medium",
+          "inline-flex items-center gap-0.5 font-medium",
           index === 1 && "flex-row-reverse"
         )}
       >
-        <Icon className="-mx-1 size-4 shrink-0 rtl:rotate-180" />
+        <Icon className="-mx-0.5 size-4 shrink-0 rtl:rotate-180" />
         <p>{item.name}</p>
       </div>
       <p className="text-fd-muted-foreground truncate">
@@ -376,7 +376,7 @@ export function PageBreadcrumb({
 
         return (
           <Fragment key={i}>
-            {i !== 0 && <ChevronRight className="size-3.5 shrink-0" />}
+            {i !== 0 && <ChevronRight className="size-1 shrink-0" />}
             {item.url ? (
               <Link
                 href={item.url}
@@ -403,7 +403,7 @@ export function PageTOC(props: ComponentProps<"div">) {
       id="nd-toc"
       {...props}
       className={cn(
-        "fixed bottom-0 pt-12 pb-2 pr-(--removed-body-scroll-bar-size,0) xl:on-root:[--fd-toc-width:286px] max-xl:hidden",
+        "fixed bottom-0 pt-3.5 pb-2 pr-(--removed-body-scroll-bar-size,0) xl:on-root:[--fd-toc-width:286px] max-xl:hidden",
         props.className
       )}
       style={{

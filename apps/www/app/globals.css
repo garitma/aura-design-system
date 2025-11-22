@@ -3,6 +3,7 @@
 @import 'fumadocs-ui/css/preset.css';
 
 @theme {
+  --spacing: 13px;
   --color-fd-background: #0c122b;
   --color-fd-foreground: #d4d4d4;
   --color-fd-muted: #121a3f;

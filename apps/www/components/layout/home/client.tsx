@@ -19,13 +19,13 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/NavigationMenu";
 
-export const navItemVariants = cva("[&_svg]:size-4", {
+export const navItemVariants = cva("[&_svg]:size-1", {
   variants: {
     variant: {
-      main: "inline-flex items-center gap-1 p-2 text-fd-muted-foreground transition-colors hover:text-fd-accent-foreground data-[active=true]:text-fd-primary",
+      main: "inline-flex items-center gap-0.5 p-0.5 text-fd-muted-foreground transition-colors hover:text-fd-accent-foreground data-[active=true]:text-fd-primary",
       button: buttonVariants({
         color: "secondary",
-        className: "gap-1.5",
+        className: "gap-0.5",
       }),
       icon: buttonVariants({
         color: "ghost",
@@ -55,7 +55,7 @@ export function Navbar(props: ComponentProps<"div">) {
         )}
       >
         <NavigationMenuList
-          className="flex h-14 w-full items-center px-4"
+          className="flex h-4.5 w-full items-center px-1"
           asChild
         >
           <nav>{props.children}</nav>
@@ -86,7 +86,7 @@ export function NavigationMenuLinkItem({
 
       const {
         banner = child.icon ? (
-          <div className="w-fit rounded-md border bg-fd-muted p-1 [&_svg]:size-4">
+          <div className="w-fit rounded-md border bg-fd-muted p-0.5 [&_svg]:size-4">
             {child.icon}
           </div>
         ) : null,
@@ -100,7 +100,7 @@ export function NavigationMenuLinkItem({
             external={child.external}
             {...rest}
             className={cn(
-              "flex flex-col gap-2 rounded-lg border bg-fd-card p-3 transition-colors hover:bg-fd-accent/80 hover:text-fd-accent-foreground",
+              "flex flex-col gap-0.5 rounded-lg border bg-fd-card p-1 transition-colors hover:bg-fd-accent/80 hover:text-fd-accent-foreground",
               rest.className
             )}
           >
@@ -129,7 +129,7 @@ export function NavigationMenuLinkItem({
             item.text
           )}
         </NavigationMenuTrigger>
-        <NavigationMenuContent className="grid grid-cols-1 gap-2 p-4 md:grid-cols-2 lg:grid-cols-3">
+        <NavigationMenuContent className="grid grid-cols-1 gap-2 p-1 md:grid-cols-2 lg:grid-cols-3">
           {children}
         </NavigationMenuContent>
       </NavigationMenuItem>
@@ -170,7 +170,7 @@ export function MobileNavigationMenuLinkItem({
     );
 
     return (
-      <div className={cn("mb-4 flex flex-col", props.className)}>
+      <div className={cn("mb-0.5 flex flex-col", props.className)}>
         <p className="mb-1 text-sm text-fd-muted-foreground">
           {item.url ? (
             <NavigationMenuLink asChild>
@@ -195,7 +195,7 @@ export function MobileNavigationMenuLinkItem({
         item={item}
         className={cn(
           {
-            main: "inline-flex items-center gap-2 py-1.5 transition-colors hover:text-fd-popover-foreground/50 data-[active=true]:font-medium data-[active=true]:text-fd-primary [&_svg]:size-4",
+            main: "inline-flex items-center gap-2 py-0.5 transition-colors hover:text-fd-popover-foreground/50 data-[active=true]:font-medium data-[active=true]:text-fd-primary [&_svg]:size-4",
             icon: buttonVariants({
               size: "icon",
               color: "ghost",

@@ -63,7 +63,7 @@ export function CollapsibleControl() {
   return (
     <div
       className={cn(
-        "fixed flex shadow-lg transition-opacity rounded-xl p-0.5 border bg-fd-muted text-fd-muted-foreground z-10 max-md:hidden xl:start-4 max-xl:end-4",
+        "fixed flex shadow-lg transition-opacity rounded-xl p-0 border bg-fd-muted text-fd-muted-foreground z-10 max-md:hidden xl:start-4 max-xl:end-4",
         !collapsed && "pointer-events-none opacity-0"
       )}
       style={{
@@ -101,7 +101,7 @@ export function LayoutTabs({
     <div
       {...props}
       className={cn(
-        "flex flex-row items-end gap-6 overflow-auto",
+        "flex flex-row items-end gap-0.5 overflow-auto",
         props.className
       )}
     >
@@ -128,7 +128,7 @@ function LayoutTab({
       href={url}
       {...props}
       className={cn(
-        "inline-flex border-b-2 border-transparent transition-colors items-center pb-1.5 font-medium gap-2 text-fd-muted-foreground text-sm text-nowrap hover:text-fd-accent-foreground",
+        "inline-flex border-b-2 border-transparent transition-colors items-center pb-0.5 font-medium gap-2 text-fd-muted-foreground text-sm text-nowrap hover:text-fd-accent-foreground",
         unlisted && !selected && "hidden",
         selected && "border-fd-primary text-fd-primary",
         props?.className

@@ -69,7 +69,7 @@ interface InternalContext {
 }
 
 const itemVariants = cva(
-  "relative flex flex-row items-center gap-2 rounded-lg p-2 ps-(--sidebar-item-offset) text-start text-fd-muted-foreground [overflow-wrap:anywhere] [&_svg]:size-4 [&_svg]:shrink-0",
+  "relative flex flex-row items-center gap-0.5 rounded-lg p-0.5 ps-(--sidebar-item-offset) text-start text-fd-muted-foreground [overflow-wrap:anywhere] [&_svg]:size-1 [&_svg]:shrink-0",
   {
     variants: {
       active: {
@@ -217,7 +217,7 @@ export function SidebarHeader(props: ComponentProps<"div">) {
   return (
     <div
       {...props}
-      className={cn("flex flex-col gap-3 p-4 pb-2", props.className)}
+      className={cn("flex flex-col gap-1 p-1 pb-0.5", props.className)}
     >
       {props.children}
     </div>
@@ -228,7 +228,7 @@ export function SidebarFooter(props: ComponentProps<"div">) {
   return (
     <div
       {...props}
-      className={cn("flex flex-col border-t p-4 pt-2", props.className)}
+      className={cn("flex flex-col border-t p-4 pt-0.5", props.className)}
     >
       {props.children}
     </div>
@@ -259,7 +259,7 @@ export function SidebarSeparator(props: ComponentProps<"p">) {
     <p
       {...props}
       className={cn(
-        "inline-flex items-center gap-2 mb-1.5 px-2 ps-(--sidebar-item-offset) empty:mb-0 [&_svg]:size-4 [&_svg]:shrink-0",
+        "inline-flex items-center gap-2 mb-0.5 px-0.5 ps-(--sidebar-item-offset) empty:mb-0 [&_svg]:size-4 [&_svg]:shrink-0",
         props.className
       )}
     >
@@ -480,7 +480,7 @@ export function SidebarPageTree(props: {
         if (item.type === "separator") {
           if (Separator) return <Separator key={i} item={item} />;
           return (
-            <SidebarSeparator key={i} className={cn(i !== 0 && "mt-6")}>
+            <SidebarSeparator key={i} className={cn(i !== 0 && "mt-2")}>
               {item.icon}
               {item.name}
             </SidebarSeparator>
