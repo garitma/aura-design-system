@@ -1,7 +1,7 @@
+import * as React from "react";
 import { render, screen } from "@testing-library/react";
 import { AspectRatio } from "../registry/default/components/ui/AspectRatio";
 import { describe, it, expect } from "vitest";
-import * as React from "react";
 
 describe("AspectRatio", () => {
   it("renders children correctly", () => {
