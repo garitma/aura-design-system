@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@theme {
+  --spacing: 13px;
+}
+
+@layer base {
+  @import "./main.css";
+}
+
+@layer components {
+}

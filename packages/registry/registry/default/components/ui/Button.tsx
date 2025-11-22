@@ -2,7 +2,7 @@ import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 
 import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "../../utils/class-names";
+import { cn } from "@/utils/class-names";
 
 const buttonVariants = cva("button", {
   variants: {
@@ -14,12 +14,12 @@ const buttonVariants = cva("button", {
       menu: "button-menu",
     },
     size: {
-      default: "",
-      sm: "",
-      lg: "",
-      icon: "",
-      "icon-sm": "",
-      "icon-lg": "",
+      default: "h-3 px-2",
+      xs: "h-2.5 px-1.5",
+      sm: "h-3 px-2",
+      md: "h-4 px-2.5",
+      lg: "h-5 px-3",
+      xl: "h-6 px-3.5",
     },
   },
   defaultVariants: {
