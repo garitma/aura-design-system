@@ -64,8 +64,14 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         disabled={disabled}
         {...rest}
       >
-        {isLoading && <ReloadIcon className="mr-0.5 icon animate-spin" />}
-        {children}
+        {asChild ? (
+          children
+        ) : (
+          <>
+            {isLoading && <ReloadIcon className="mr-0.5 icon animate-spin" />}
+            {children}
+          </>
+        )}
       </Comp>
     );
   }

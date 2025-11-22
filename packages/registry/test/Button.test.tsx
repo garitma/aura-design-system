@@ -75,4 +75,21 @@ describe("Button", () => {
     expect(link).toHaveAttribute("href", "/test");
     expect(link).toHaveClass("button-fill"); // Should still have button classes
   });
+
+  it("handles isDisabled prop", () => {
+    render(<Button isDisabled>Disabled Button</Button>);
+    const button = screen.getByRole("button", { name: "Disabled Button" });
+    expect(button).toBeDisabled();
+    expect(button).toHaveClass("opacity-50", "cursor-not-allowed");
+  });
+
+  it("handles isLoading prop", () => {
+    render(<Button isLoading>Loading Button</Button>);
+    const button = screen.getByRole("button", { name: "Loading Button" });
+    expect(button).toBeDisabled();
+    expect(button).toHaveClass("opacity-50", "cursor-not-allowed");
+    // Check for the reload icon
+    const icon = button.querySelector(".animate-spin");
+    expect(icon).toBeInTheDocument();
+  });
 });
