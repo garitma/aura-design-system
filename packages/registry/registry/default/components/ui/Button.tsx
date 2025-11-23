@@ -34,6 +34,7 @@ interface ButtonProps
   asChild?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;
+  mode?: VariantProps<typeof buttonVariants>["variant"];
 }
 
 import { ReloadIcon } from "@radix-ui/react-icons";
@@ -43,6 +44,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     const {
       className,
       variant,
+      mode,
       size,
       asChild = false,
       isDisabled,
@@ -52,12 +54,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     } = props;
     const Comp = asChild ? Slot : "button";
     const disabled = isDisabled || isLoading || props.disabled;
+    const effectiveVariant = variant ?? mode;
 
     return (
       <Comp
         data-slot="button"
         className={cn(
-          buttonVariants({ variant, size, className }),
+          buttonVariants({ variant: effectiveVariant, size, className }),
           disabled && "opacity-50 cursor-not-allowed"
         )}
         ref={ref}

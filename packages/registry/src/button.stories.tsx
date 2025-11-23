@@ -41,3 +41,13 @@ export const States = () => (
     <Button isLoading>Loading</Button>
   </div>
 );
+
+export const ModeProp = () => (
+  <div className="flex flex-col gap-4 items-start">
+    <Button mode="default">Default (mode)</Button>
+    <Button mode="fill">Fill (mode)</Button>
+    <Button mode="pill">Pill (mode)</Button>
+    <Button mode="link">Link (mode)</Button>
+    <Button mode="menu">Menu (mode)</Button>
+  </div>
+);
