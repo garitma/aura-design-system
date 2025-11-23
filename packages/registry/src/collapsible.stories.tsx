@@ -7,31 +7,6 @@ import {
 import { Button } from "../registry/default/components/ui/Button";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 
-export const Default = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <div className="flex items-center justify-between gap-1">
-        <h4 className="text-sm font-semibold">Can I use this in my project?</h4>
-        <CollapsibleTrigger asChild>
-          <Button variant="menu" size="sm">
-            <ChevronDownIcon
-              className={`size-1 transition-transform ${isOpen ? "rotate-180" : ""}`}
-            />
-          </Button>
-        </CollapsibleTrigger>
-      </div>
-      <CollapsibleContent>
-        <div className="pt-1 text-sm text-gray-11">
-          Yes. Free to use for personal and commercial projects. No attribution
-          required.
-        </div>
-      </CollapsibleContent>
-    </Collapsible>
-  );
-};
-
 export const DefaultOpen = () => {
   return (
     <Collapsible defaultOpen>
