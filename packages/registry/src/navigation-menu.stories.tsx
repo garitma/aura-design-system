@@ -174,7 +174,7 @@ export function NavigationMenuDemo() {
         <NavigationMenuItem>
           <NavigationMenuTrigger>List</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid gap-1">
+            <ul className="grid gap-1 w-[400px]">
               <li>
                 <NavigationMenuLink>
                   <div>

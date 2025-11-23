@@ -72,7 +72,7 @@ function NavigationMenuContent({
     <NavigationMenuRadix.Content
       data-slot="navigation-menu-content"
       className={cn(
-        "absolute top-full mt-0.5 bg-gray-1 shadow-md rounded-md border border-gray-a6",
+        "absolute top-full mt-0.5 bg-gray-1 shadow-md rounded-md border border-gray-a6 overflow-hidden",
         className
       )}
       {...props}
