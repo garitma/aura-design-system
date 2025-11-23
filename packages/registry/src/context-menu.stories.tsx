@@ -132,10 +132,10 @@ export const ComplexMenu = () => {
 
   return (
     <ContextMenu>
-      <ContextMenuTrigger className="flex h-[150px] -[300px] items-center justify-center rounded-md border border-dashed border-gray-6 text-sm">
+      <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed border-gray-6 text-sm">
         Right click here
       </ContextMenuTrigger>
-      <ContextMenuContent className="14">
+      <ContextMenuContent className="w-20">
         <ContextMenuItem>
           Back
           <ContextMenuShortcut>⌘[</ContextMenuShortcut>

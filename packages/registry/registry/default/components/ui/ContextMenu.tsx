@@ -106,6 +106,7 @@ function ContextMenuContent({
     <ContextMenuRadix.Portal>
       <ContextMenuRadix.Content
         data-slot="context-menu-content"
+        collisionPadding={8}
         className={cn(
           className,
           "bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md"
@@ -189,7 +190,7 @@ function ContextMenuLabel({
   return (
     <ContextMenuRadix.Label
       data-slot="context-menu-label"
-      className={cn(className, "p-0.5 px-2 text-accent-10")}
+      className={cn(className, "p-0.5 px-2 text-gray-12")}
       {...props}
     />
   );
