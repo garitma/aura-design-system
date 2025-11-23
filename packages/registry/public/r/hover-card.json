@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hover-card",
+  "type": "registry:ui",
+  "title": "HoverCard",
+  "description": "The HoverCard component.",
+  "dependencies": [
+    "radix-ui"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/HoverCard.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { HoverCard as HoverCardRadix } from \"radix-ui\";\n\nimport { cn } from \"@/utils/class-names\";\n\nfunction HoverCard({\n  ...props\n}: React.ComponentProps<typeof HoverCardRadix.Root>) {\n  return <HoverCardRadix.Root data-slot=\"hover-card\" {...props} />;\n}\n\nfunction HoverCardTrigger({\n  className,\n  ...props\n}: React.ComponentProps<typeof HoverCardRadix.Trigger>) {\n  return (\n    <HoverCardRadix.Trigger\n      data-slot=\"hover-card-trigger\"\n      className={cn(className)}\n      {...props}\n    />\n  );\n}\n\nfunction HoverCardContent({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof HoverCardRadix.Content>) {\n  return (\n    <HoverCardRadix.Portal data-slot=\"hover-card-portal\">\n      <HoverCardRadix.Content\n        data-slot=\"hover-card-content\"\n        collisionPadding={8}\n        className={cn(\n          className,\n          \"bg-gray-1 border border-gray-a6 rounded-sm p-1 shadow-md\"\n        )}\n        {...props}\n      >\n        {children}\n      </HoverCardRadix.Content>\n    </HoverCardRadix.Portal>\n  );\n}\n\nexport { HoverCard, HoverCardTrigger, HoverCardContent };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

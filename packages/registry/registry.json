@@ -36,6 +36,21 @@
       ]
     },
     {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "AlertDialog",
+      "description": "The AlertDialog component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/AlertDialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "radix-ui"
+      ]
+    },
+    {
       "name": "aspect-ratio",
       "type": "registry:ui",
       "title": "AspectRatio",
@@ -126,6 +141,170 @@
       ]
     },
     {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "ContextMenu",
+      "description": "The ContextMenu component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/ContextMenu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "radix-ui"
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "description": "The Dialog component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Dialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "radix-ui"
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "description": "The Drawer component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Drawer.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "vaul"
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "DropdownMenu",
+      "description": "The DropdownMenu component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/DropdownMenu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "radix-ui"
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "HoverCard",
+      "description": "The HoverCard component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/HoverCard.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "radix-ui"
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "description": "The Input component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Input.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "description": "The Label component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Label.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "title": "Menubar",
+      "description": "The Menubar component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Menubar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "radix-ui"
+      ]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "NavigationMenu",
+      "description": "The NavigationMenu component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/NavigationMenu.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "radix-ui"
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "description": "The Popover component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Popover.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "radix-ui"
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "description": "The Progress component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Progress.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "radix-ui"
+      ]
+    },
+    {
       "name": "section",
       "type": "registry:ui",
       "title": "Section",
@@ -135,6 +314,21 @@
           "path": "registry/default/components/ui/Section.tsx",
           "type": "registry:ui"
         }
+      ]
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "description": "The Switch component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Switch.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "radix-ui"
       ]
     },
     {
@@ -151,6 +345,38 @@
       "dependencies": [
         "clsx",
         "tailwind-merge"
+      ]
+    },
+    {
+      "name": "colors",
+      "type": "registry:lib",
+      "title": "colors",
+      "description": "Utility: colors",
+      "files": [
+        {
+          "path": "registry/default/utils/colors.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "colorjs.io"
+      ]
+    },
+    {
+      "name": "custom-color-functions",
+      "type": "registry:lib",
+      "title": "custom-color-functions",
+      "description": "Utility: custom-color-functions",
+      "files": [
+        {
+          "path": "registry/default/utils/custom-color-functions.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/colors",
+        "bezier-easing",
+        "colorjs.io"
       ]
     }
   ]
