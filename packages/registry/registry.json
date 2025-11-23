@@ -51,6 +51,21 @@
       ]
     },
     {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "description": "The Avatar component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Avatar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "radix-ui"
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -65,6 +80,49 @@
         "@radix-ui/react-icons",
         "@radix-ui/react-slot",
         "class-variance-authority"
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "description": "The Card component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Card.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "description": "The Checkbox component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Checkbox.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "radix-ui"
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "description": "The Collapsible component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Collapsible.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "radix-ui"
       ]
     },
     {
