@@ -1,0 +1,188 @@
+import { useState } from "react";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "../registry/default/components/ui/Collapsible";
+import { Button } from "../registry/default/components/ui/Button";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
+
+export const Default = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+      <div className="flex items-center justify-between gap-1">
+        <h4 className="text-sm font-semibold">Can I use this in my project?</h4>
+        <CollapsibleTrigger asChild>
+          <Button variant="menu" size="sm">
+            <ChevronDownIcon
+              className={`size-1 transition-transform ${isOpen ? "rotate-180" : ""}`}
+            />
+          </Button>
+        </CollapsibleTrigger>
+      </div>
+      <CollapsibleContent>
+        <div className="pt-1 text-sm text-gray-11">
+          Yes. Free to use for personal and commercial projects. No attribution
+          required.
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+};
+
+export const DefaultOpen = () => {
+  return (
+    <Collapsible defaultOpen>
+      <div className="flex items-center justify-between gap-1">
+        <h4 className="text-sm font-semibold">This is open by default</h4>
+        <CollapsibleTrigger asChild>
+          <Button variant="menu" size="sm">
+            Toggle
+          </Button>
+        </CollapsibleTrigger>
+      </div>
+      <CollapsibleContent>
+        <div className="pt-1 text-sm text-gray-11">
+          This collapsible starts in an open state. Click the toggle button to
+          collapse it.
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+};
+
+export const WithRichContent = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+      <div className="flex items-center justify-between gap-1 p-1 border border-gray-6 rounded-md bg-gray-2">
+        <h4 className="text-sm font-semibold">View Details</h4>
+        <CollapsibleTrigger asChild>
+          <Button variant="menu" size="sm">
+            {isOpen ? "Hide" : "Show"}
+          </Button>
+        </CollapsibleTrigger>
+      </div>
+      <CollapsibleContent>
+        <div className="p-1 border-x border-b border-gray-6 rounded-b-md space-y-1">
+          <div>
+            <h5 className="text-sm font-semibold text-gray-12">
+              Product Information
+            </h5>
+            <p className="text-sm text-gray-11">
+              This is a premium product with advanced features.
+            </p>
+          </div>
+          <div className="grid grid-cols-2 gap-1 text-sm">
+            <div>
+              <span className="font-medium text-gray-12">Price:</span>
+              <span className="text-gray-11"> $99.00</span>
+            </div>
+            <div>
+              <span className="font-medium text-gray-12">Stock:</span>
+              <span className="text-gray-11"> In Stock</span>
+            </div>
+            <div>
+              <span className="font-medium text-gray-12">SKU:</span>
+              <span className="text-gray-11"> AUR-001</span>
+            </div>
+            <div>
+              <span className="font-medium text-gray-12">Category:</span>
+              <span className="text-gray-11"> Components</span>
+            </div>
+          </div>
+          <div className="flex gap-0.5 pt-0.5">
+            <Button size="sm">Add to Cart</Button>
+            <Button variant="menu" size="sm">
+              View More
+            </Button>
+          </div>
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+};
+
+export const CustomTrigger = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+      <CollapsibleTrigger className="flex items-center justify-between w-full p-1 border border-gray-6 rounded-md bg-gray-2 hover:bg-gray-3 transition-colors cursor-pointer">
+        <div className="flex items-center gap-1">
+          <ChevronDownIcon
+            className={`size-1 transition-transform ${isOpen ? "rotate-180" : ""}`}
+          />
+          <h4 className="text-sm font-semibold">Click anywhere to toggle</h4>
+        </div>
+        <span className="text-xs text-gray-11">
+          {isOpen ? "Expanded" : "Collapsed"}
+        </span>
+      </CollapsibleTrigger>
+      <CollapsibleContent>
+        <div className="p-1 text-sm text-gray-11 border-x border-b border-gray-6 rounded-b-md">
+          The entire header area is clickable, not just the button.
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+};
+
+export const WithList = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const items = [
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Radix UI",
+    "Vite",
+    "Vitest",
+  ];
+
+  return (
+    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
+      <div className="flex items-center justify-between gap-1">
+        <h4 className="text-sm font-semibold">Technologies ({items.length})</h4>
+        <CollapsibleTrigger asChild>
+          <Button variant="menu" size="sm">
+            {isOpen ? "Hide" : "Show"} All
+          </Button>
+        </CollapsibleTrigger>
+      </div>
+      <CollapsibleContent>
+        <ul className="pt-1 space-y-0.5 text-sm text-gray-11">
+          {items.map((item, index) => (
+            <li key={index} className="flex items-center gap-0.5">
+              <span className="size-0.5 rounded-full bg-accent-9" />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+};
+
+export const Disabled = () => {
+  return (
+    <Collapsible disabled>
+      <div className="flex items-center justify-between gap-1 opacity-50">
+        <h4 className="text-sm font-semibold">Disabled Collapsible</h4>
+        <CollapsibleTrigger asChild>
+          <Button variant="menu" size="sm" disabled>
+            Toggle
+          </Button>
+        </CollapsibleTrigger>
+      </div>
+      <CollapsibleContent>
+        <div className="pt-1 text-sm text-gray-11">
+          This content cannot be toggled because the collapsible is disabled.
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+};
