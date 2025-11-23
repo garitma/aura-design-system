@@ -1,0 +1,160 @@
+import { useState } from "react";
+import { Switch } from "../registry/default/components/ui/Switch";
+
+export const Default = () => {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <div className="flex items-center gap-2">
+      <Switch id="default" checked={checked} onCheckedChange={setChecked} />
+      <label
+        htmlFor="default"
+        className="text-sm font-medium leading-none cursor-pointer"
+      >
+        Airplane Mode
+      </label>
+    </div>
+  );
+};
+
+export const Checked = () => (
+  <div className="flex items-center gap-2">
+    <Switch id="checked" defaultChecked />
+    <label
+      htmlFor="checked"
+      className="text-sm font-medium leading-none cursor-pointer"
+    >
+      Bluetooth
+    </label>
+  </div>
+);
+
+export const Unchecked = () => (
+  <div className="flex items-center gap-2">
+    <Switch id="unchecked" />
+    <label
+      htmlFor="unchecked"
+      className="text-sm font-medium leading-none cursor-pointer"
+    >
+      Wi-Fi
+    </label>
+  </div>
+);
+
+export const Disabled = () => (
+  <div className="flex flex-col gap-2">
+    <div className="flex items-center gap-2">
+      <Switch id="disabled-unchecked" disabled />
+      <label
+        htmlFor="disabled-unchecked"
+        className="text-sm font-medium leading-none text-gray-a8 cursor-not-allowed"
+      >
+        Disabled unchecked
+      </label>
+    </div>
+    <div className="flex items-center gap-2">
+      <Switch id="disabled-checked" disabled defaultChecked />
+      <label
+        htmlFor="disabled-checked"
+        className="text-sm font-medium leading-none text-gray-a8 cursor-not-allowed"
+      >
+        Disabled checked
+      </label>
+    </div>
+  </div>
+);
+
+export const WithDescription = () => {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <div className="flex items-start gap-2">
+      <Switch
+        id="with-description"
+        checked={checked}
+        onCheckedChange={setChecked}
+        className="mt-0.5"
+      />
+      <div className="flex flex-col gap-1">
+        <label
+          htmlFor="with-description"
+          className="text-sm font-medium leading-none cursor-pointer"
+        >
+          Marketing emails
+        </label>
+        <p className="text-sm text-gray-a11 m-0">
+          Receive emails about new products, features, and more.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export const SwitchGroup = () => {
+  const [settings, setSettings] = useState({
+    notifications: true,
+    marketing: false,
+    security: true,
+    updates: false,
+  });
+
+  const items = [
+    {
+      id: "notifications",
+      label: "Push Notifications",
+      description: "Receive push notifications on your device",
+    },
+    {
+      id: "marketing",
+      label: "Marketing Emails",
+      description: "Receive emails about new products and features",
+    },
+    {
+      id: "security",
+      label: "Two-Factor Authentication",
+      description: "Enable two-factor authentication for your account",
+    },
+    {
+      id: "updates",
+      label: "Automatic Updates",
+      description: "Automatically install software updates",
+    },
+  ];
+
+  const handleCheckedChange = (
+    key: keyof typeof settings,
+    checked: boolean
+  ) => {
+    setSettings((prev) => ({ ...prev, [key]: checked }));
+  };
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="text-sm font-semibold">System Settings:</div>
+      {items.map((item) => (
+        <div key={item.id} className="flex items-start gap-2">
+          <Switch
+            id={item.id}
+            checked={settings[item.id as keyof typeof settings]}
+            onCheckedChange={(checked) =>
+              handleCheckedChange(item.id as keyof typeof settings, checked)
+            }
+            className="mt-0.5"
+          />
+          <div className="flex flex-col gap-1">
+            <label
+              htmlFor={item.id}
+              className="text-sm font-medium leading-none cursor-pointer"
+            >
+              {item.label}
+            </label>
+            <p className="text-sm text-gray-a11 m-0">{item.description}</p>
+          </div>
+        </div>
+      ))}
+      <div className="mt-2 text-sm text-gray-a11">
+        Active settings: {Object.values(settings).filter(Boolean).length}
+      </div>
+    </div>
+  );
+};
