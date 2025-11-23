@@ -1,0 +1,215 @@
+import { useState } from "react";
+import { Checkbox } from "../registry/default/components/ui/Checkbox";
+
+export const Default = () => {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <div className="flex items-center gap-1">
+      <Checkbox
+        id="default"
+        checked={checked}
+        onCheckedChange={(checked) => setChecked(checked as boolean)}
+      />
+      <label
+        htmlFor="default"
+        className="text-sm font-medium leading-none cursor-pointer"
+      >
+        Accept terms and conditions
+      </label>
+    </div>
+  );
+};
+
+export const Checked = () => (
+  <div className="flex items-center gap-1">
+    <Checkbox id="checked" defaultChecked />
+    <label
+      htmlFor="checked"
+      className="text-sm font-medium leading-none cursor-pointer"
+    >
+      I agree to the privacy policy
+    </label>
+  </div>
+);
+
+export const Unchecked = () => (
+  <div className="flex items-center gap-1">
+    <Checkbox id="unchecked" />
+    <label
+      htmlFor="unchecked"
+      className="text-sm font-medium leading-none cursor-pointer"
+    >
+      Subscribe to newsletter
+    </label>
+  </div>
+);
+
+export const Disabled = () => (
+  <div className="flex flex-col gap-1">
+    <div className="flex items-center gap-1">
+      <Checkbox id="disabled-unchecked" disabled />
+      <label
+        htmlFor="disabled-unchecked"
+        className="text-sm font-medium leading-none text-gray-a8 cursor-not-allowed"
+      >
+        Disabled unchecked
+      </label>
+    </div>
+    <div className="flex items-center gap-1">
+      <Checkbox id="disabled-checked" disabled defaultChecked />
+      <label
+        htmlFor="disabled-checked"
+        className="text-sm font-medium leading-none text-gray-a8 cursor-not-allowed"
+      >
+        Disabled checked
+      </label>
+    </div>
+  </div>
+);
+
+export const WithDescription = () => {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <div className="flex items-start gap-1">
+      <Checkbox
+        id="with-description"
+        checked={checked}
+        onCheckedChange={(checked) => setChecked(checked as boolean)}
+      />
+      <div className="flex flex-col gap-1">
+        <label
+          htmlFor="with-description"
+          className="text-sm font-medium leading-none cursor-pointer"
+        >
+          Marketing emails
+        </label>
+        <p className="text-sm text-gray-a11 m-0">
+          Receive emails about new products, features, and more.
+        </p>
+      </div>
+    </div>
+  );
+};
+
+export const CheckboxGroup = () => {
+  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+
+  const items = [
+    {
+      id: "item-1",
+      label: "React",
+      description: "A JavaScript library for building user interfaces",
+    },
+    {
+      id: "item-2",
+      label: "TypeScript",
+      description: "JavaScript with syntax for types",
+    },
+    {
+      id: "item-3",
+      label: "Tailwind CSS",
+      description: "A utility-first CSS framework",
+    },
+    {
+      id: "item-4",
+      label: "Next.js",
+      description: "The React Framework for the Web",
+    },
+  ];
+
+  const handleCheckedChange = (itemId: string, checked: boolean) => {
+    setSelectedItems((prev) =>
+      checked ? [...prev, itemId] : prev.filter((id) => id !== itemId)
+    );
+  };
+
+  return (
+    <div className="flex flex-col gap-1">
+      <div className="text-sm font-semibold">Select your tech stack:</div>
+      {items.map((item) => (
+        <div key={item.id} className="flex items-start gap-1">
+          <Checkbox
+            id={item.id}
+            checked={selectedItems.includes(item.id)}
+            onCheckedChange={(checked) =>
+              handleCheckedChange(item.id, checked as boolean)
+            }
+            className=""
+          />
+          <div className="flex flex-col gap-1">
+            <label
+              htmlFor={item.id}
+              className="text-sm font-medium leading-none cursor-pointer"
+            >
+              {item.label}
+            </label>
+            <p className="text-sm text-gray-a11 m-0">{item.description}</p>
+          </div>
+        </div>
+      ))}
+      {selectedItems.length > 0 && (
+        <div className="mt-2 text-sm text-gray-a11">
+          Selected: {selectedItems.length} item
+          {selectedItems.length !== 1 ? "s" : ""}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export const Indeterminate = () => {
+  const [selectedItems, setSelectedItems] = useState<string[]>(["sub-1"]);
+
+  const allItems = ["sub-1", "sub-2", "sub-3"];
+  const allChecked = allItems.every((item) => selectedItems.includes(item));
+  const someChecked = selectedItems.length > 0 && !allChecked;
+
+  const handleParentChange = (checked: boolean) => {
+    setSelectedItems(checked ? allItems : []);
+  };
+
+  const handleChildChange = (itemId: string, checked: boolean) => {
+    setSelectedItems((prev) =>
+      checked ? [...prev, itemId] : prev.filter((id) => id !== itemId)
+    );
+  };
+
+  return (
+    <div className="flex flex-col gap-1.5">
+      <div className="flex items-center gap-1">
+        <Checkbox
+          id="parent"
+          checked={allChecked ? true : someChecked ? "indeterminate" : false}
+          onCheckedChange={(checked) => handleParentChange(checked as boolean)}
+        />
+        <label
+          htmlFor="parent"
+          className="text-sm font-semibold leading-none cursor-pointer"
+        >
+          Select all notifications
+        </label>
+      </div>
+      <div className="ml-1.5 flex flex-col gap-1 border-l-2 border-gray-a6 pl-1.5">
+        {allItems.map((item, index) => (
+          <div key={item} className="flex items-center gap-1">
+            <Checkbox
+              id={item}
+              checked={selectedItems.includes(item)}
+              onCheckedChange={(checked) =>
+                handleChildChange(item, checked as boolean)
+              }
+            />
+            <label
+              htmlFor={item}
+              className="text-sm font-medium leading-none cursor-pointer"
+            >
+              Notification {index + 1}
+            </label>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+};
