@@ -117,65 +117,58 @@
   --aura-loader: var(--primary);
   --aura-skeleton-start: var(--gray-8);
   --aura-skeleton-end: var(--gray-5);
+  --radius: 0.5rem;
 
   /* Existing color scale */
-  --radius: 0.5rem;
-  --accent-1: #f8fafd;
-  --accent-2: #f0f6fe;
-  --accent-3: #e3efff;
-  --accent-4: #d3e9ff;
-  --accent-5: #c0dfff;
-  --accent-6: #aad1ff;
-  --accent-7: #8ebfff;
-  --accent-8: #62a7fd;
-  --accent-9: #083d77;
-  --accent-10: #1e4f8b;
-  --accent-11: #2a6fc0;
-  --accent-12: #00336c;
 
-  --accent-a1: #f8faffe3;
-  --accent-a2: #f0f6fff1;
-  --accent-a3: #e3efff;
-  --accent-a4: #d3e9ff;
-  --accent-a5: #c0dfff;
-  --accent-a6: #aad1ff;
-  --accent-a7: #8ebfff;
-  --accent-a8: #4f9dffe3;
-  --accent-a9: #003774f7;
-  --accent-a10: #00387ee1;
-  --accent-a11: #0053b7d5;
-  --accent-a12: #00336c;
-
-  --accent-contrast: #fff;
-  --accent-surface: #edf5ffcc;
-  --accent-indicator: #083d77;
-  --accent-track: #083d77;
-
-  --gray-1: #fcfaea;
-  --gray-2: #f8f6e5;
-  --gray-3: #f0eed8;
-  --gray-4: #e8e5d0;
-  --gray-5: #e1dec7;
-  --gray-6: #d9d6bf;
-  --gray-7: #cecbb4;
-  --gray-8: #bbb8a1;
-  --gray-9: #8b8973;
-  --gray-10: #817e69;
-  --gray-11: #63604c;
-  --gray-12: #22200d;
-
-  --gray-a1: #403e2e04;
-  --gray-a2: #39370b09;
-  --gray-a3: #59570517;
-  --gray-a4: #483e0620;
-  --gray-a5: #453d0129;
-  --gray-a6: #3e370232;
-  --gray-a7: #3630033e;
-  --gray-a8: #2c260152;
-  --gray-a9: #1f1d0284;
-  --gray-a10: #1f1b028f;
-  --gray-a11: #1b1702ae;
-  --gray-a12: #161401f2;
+  --accent-1: #f6f7f9;
+  --accent-2: #f0f2f9;
+  --accent-3: #e6eaf9;
+  --accent-4: #d9e1fd;
+  --accent-5: #cad5ff;
+  --accent-6: #b8c7ff;
+  --accent-7: #a2b3f9;
+  --accent-8: #8398f2;
+  --accent-9: #3331c4;
+  --accent-10: #2918b1;
+  --accent-11: #3f49cc;
+  --accent-12: #212967;
+  --accent-a1: #f4f6ffb7;
+  --accent-a2: #ecefffb7;
+  --accent-a3: #dee4ffb7;
+  --accent-a4: #d6dfffe7;
+  --accent-a5: #cad5ff;
+  --accent-a6: #b8c7ff;
+  --accent-a7: #7f98ffb7;
+  --accent-a8: #0000ff62;
+  --accent-a9: #0401bbce;
+  --accent-a10: #1300abe7;
+  --accent-a11: #010fc2c0;
+  --accent-a12: #000a54de;
+  --gray-1: #f7f7f4;
+  --gray-2: #f3f2ef;
+  --gray-3: #eae9e4;
+  --gray-4: #e2e1d9;
+  --gray-5: #dadad1;
+  --gray-6: #d2d1c6;
+  --gray-7: #c8c7b8;
+  --gray-8: #b5b3a1;
+  --gray-9: #87856f;
+  --gray-10: #7c7a66;
+  --gray-11: #5d5c4c;
+  --gray-12: #222113;
+  --gray-a1: #f2f4ff7a;
+  --gray-a2: #d7d9ff3d;
+  --gray-a3: #0b169a13;
+  --gray-a4: #070e4a1b;
+  --gray-a5: #05113423;
+  --gray-a6: #0207142b;
+  --gray-a7: #0b0e0237;
+  --gray-a8: #1a170150;
+  --gray-a9: #1f1d0287;
+  --gray-a10: #19170090;
+  --gray-a11: #121202ad;
+  --gray-a12: #0f0e01eb;
 
   --gray-contrast: #ffffff;
   --gray-surface: #ffffffcc;
@@ -186,6 +179,15 @@
   --primary-foreground: var(--accent-contrast);
   --secundary: var(--accent-8);
   --secundary-foreground: var(--accent-contrast);
+
+  /* Ladle tokens */
+  --ladle-bg-color-primary: var(--gray-1);
+  --ladle-bg-color-secondary: var(--gray-2);
+  --ladle-color-primary: var(--gray-12);
+  --ladle-color-secondary: var(--gray-11);
+  --ladle-color-hover: var(--gray-10);
+  --ladle-color-accent: var(--primary);
+  --ladle-blueprint: var(--gray-11);
 }
 
 @layer base {

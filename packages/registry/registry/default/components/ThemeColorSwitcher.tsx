@@ -16,6 +16,44 @@ export function ThemeColorSwitcher() {
   const [grayColor, setGrayColor] = useState("#8b8973");
   const [backgroundColor, setBackgroundColor] = useState("#fcfaea");
 
+  const STORAGE_KEY = "aura-theme-colors";
+
+  // Load from local storage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (parsed.accent) {
+          setAccentColor(parsed.accent);
+          setAccentInput(parsed.accent);
+        }
+        if (parsed.gray) {
+          setGrayColor(parsed.gray);
+          setGrayInput(parsed.gray);
+        }
+        if (parsed.background) {
+          setBackgroundColor(parsed.background);
+          setBackgroundInput(parsed.background);
+        }
+      } catch (e) {
+        console.error("Failed to parse theme colors", e);
+      }
+    }
+  }, []);
+
+  // Save to local storage when colors change
+  useEffect(() => {
+    localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({
+        accent: accentColor,
+        gray: grayColor,
+        background: backgroundColor,
+      })
+    );
+  }, [accentColor, grayColor, backgroundColor]);
+
   // Input state to allow flexible typing
   const [accentInput, setAccentInput] = useState(accentColor);
   const [grayInput, setGrayInput] = useState(grayColor);
@@ -136,6 +174,8 @@ export function ThemeColorSwitcher() {
       <Popover>
         <PopoverTrigger asChild>
           <button
+            aria-label="Customize colors"
+            type="button"
             style={{
               display: "flex",
               alignItems: "center",
