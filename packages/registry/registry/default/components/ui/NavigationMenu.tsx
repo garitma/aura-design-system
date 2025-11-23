@@ -26,7 +26,7 @@ function NavigationMenuList({
   return (
     <NavigationMenuRadix.List
       data-slot="navigation-menu-list"
-      className={cn(className)}
+      className={cn("flex", className)}
       {...props}
     />
   );
@@ -39,7 +39,7 @@ function NavigationMenuItem({
   return (
     <NavigationMenuRadix.Item
       data-slot="navigation-menu-item"
-      className={cn(className)}
+      className={cn("relative", className)}
       {...props}
     />
   );
