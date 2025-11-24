@@ -1,47 +1,86 @@
-import React from "react";
-import { cva, type VariantProps } from "class-variance-authority";
-import { cn } from "@/utils/class-names";
+import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 
-const variants = {
-  primary: "bg-fd-primary text-fd-primary-foreground hover:bg-fd-primary/80",
-  outline: "border hover:bg-fd-accent hover:text-fd-accent-foreground",
-  ghost: "hover:bg-fd-accent hover:text-fd-accent-foreground",
-  secondary:
-    "border bg-fd-secondary text-fd-secondary-foreground hover:bg-fd-accent hover:text-fd-accent-foreground",
-} as const;
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/utils/class-names";
 
-export const buttonVariants = cva(
-  "inline-flex items-center justify-center rounded-md p-0.5 text-sm font-medium transition-colors duration-100 disabled:pointer-events-none disabled:opacity-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-fd-ring",
-  {
-    variants: {
-      variant: variants,
-      // fumadocs use `color` instead of `variant`
-      color: variants,
-      size: {
-        sm: "gap-0.5 px-0.5 py-0.5 text-xs",
-        icon: "p-0.5 [&_svg]:size-1.5",
-        "icon-sm": "p-0.5.5 [&_svg]:size-1.5",
-        "icon-xs": "p-1 [&_svg]:size-1",
-      },
+const buttonVariants = cva("button", {
+  variants: {
+    variant: {
+      default: "button-fill",
+      fill: "button-fill",
+      pill: "button-pill",
+      link: "button-link",
+      menu: "button-menu",
     },
-  }
-);
+    size: {
+      default: "h-3 px-2",
+      xs: "h-2.5 px-1.5",
+      sm: "h-3 px-2",
+      md: "h-4 px-2.5",
+      lg: "h-5 px-3",
+      xl: "h-6 px-3.5",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+  },
+});
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+interface ButtonProps
+  extends React.ComponentProps<"button">,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  mode?: VariantProps<typeof buttonVariants>["variant"];
+}
+
+import { ReloadIcon } from "@radix-ui/react-icons";
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props: ButtonProps, ref) => {
-    const { className, variant, size, asChild = false, ...rest } = props;
+    const {
+      className,
+      variant,
+      mode,
+      size,
+      asChild = false,
+      isDisabled,
+      isLoading,
+      children,
+      ...rest
+    } = props;
     const Comp = asChild ? Slot : "button";
+    const disabled = isDisabled || isLoading || props.disabled;
+    const effectiveVariant = variant ?? mode;
 
     return (
       <Comp
         data-slot="button"
-        className={cn(buttonVariants({ variant, size, className }))}
+        className={cn(
+          buttonVariants({ variant: effectiveVariant, size, className }),
+          disabled && "opacity-50 cursor-not-allowed"
+        )}
         ref={ref}
+        disabled={disabled}
         {...rest}
-      />
+      >
+        {asChild ? (
+          children
+        ) : (
+          <>
+            {isLoading && <ReloadIcon className="mr-0.5 icon animate-spin" />}
+            {children}
+          </>
+        )}
+      </Comp>
     );
   }
 );
 
-export type ButtonProps = VariantProps<typeof buttonVariants>;
+Button.displayName = "Button";
+
+export { Button, buttonVariants };
+export type { ButtonProps };

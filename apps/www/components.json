@@ -15,10 +15,10 @@
     "components": "@/components",
     "utils": "@/utils/class-names",
     "ui": "@/components/ui",
-    "lib": "@/lib",
+    "lib": "@/utils",
     "hooks": "@/hooks"
   },
   "registries": {
-    "@aura-design": "https://auradesignsystem.com/r/{name}.json"
+    "@aura-design": "http://localhost:6000/r/{name}.json"
   }
 }

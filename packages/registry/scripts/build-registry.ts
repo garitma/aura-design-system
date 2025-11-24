@@ -6,7 +6,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const REGISTRY_PATH = path.join(__dirname, "../registry.json");
-const COMPONENTS_PATH = path.join(__dirname, "../registry/default/components/ui");
+const ROOT_COMPONENTS_PATH = path.join(__dirname, "../registry/default/components");
+const UI_COMPONENTS_PATH = path.join(__dirname, "../registry/default/components/ui");
 const UTILS_PATH = path.join(__dirname, "../registry/default/utils");
 
 type RegistryItemType = 
@@ -88,16 +89,16 @@ function extractDependencies(filePath: string): string[] {
   return Array.from(dependencies).sort();
 }
 
-function getComponentItems() {
-  if (!fs.existsSync(COMPONENTS_PATH)) return [];
+function getComponentItemsFromPath(dirPath: string, registryPrefix: string) {
+  if (!fs.existsSync(dirPath)) return [];
   
-  const files = fs.readdirSync(COMPONENTS_PATH);
+  const files = fs.readdirSync(dirPath);
   return files
     .filter((file) => file.endsWith(".tsx"))
     .map((file) => {
       const name = file.replace(".tsx", "");
       const kebabName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
-      const filePath = path.join(COMPONENTS_PATH, file);
+      const filePath = path.join(dirPath, file);
       
       // Extract external dependencies from the component file
       const dependencies = extractDependencies(filePath);
@@ -109,7 +110,7 @@ function getComponentItems() {
         description: `The ${name} component.`,
         files: [
           {
-            path: `registry/default/components/ui/${file}`,
+            path: `${registryPrefix}/${file}`,
             type: "registry:ui" as const,
           },
         ],
@@ -122,6 +123,13 @@ function getComponentItems() {
       
       return item;
     });
+}
+
+function getComponentItems() {
+  const rootItems = getComponentItemsFromPath(ROOT_COMPONENTS_PATH, "registry/default/components");
+  const uiItems = getComponentItemsFromPath(UI_COMPONENTS_PATH, "registry/default/components/ui");
+  
+  return [...rootItems, ...uiItems];
 }
 
 function getUtilsItems() {

@@ -4,6 +4,21 @@
   "homepage": "https://auradesignsystem.com",
   "items": [
     {
+      "name": "theme-color-switcher",
+      "type": "registry:ui",
+      "title": "ThemeColorSwitcher",
+      "description": "The ThemeColorSwitcher component.",
+      "files": [
+        {
+          "path": "registry/default/components/ThemeColorSwitcher.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons"
+      ]
+    },
+    {
       "name": "accordion",
       "type": "registry:ui",
       "title": "Accordion",
