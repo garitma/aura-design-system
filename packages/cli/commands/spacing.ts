@@ -55,21 +55,32 @@ function updateSpacingInContent(content: string) {
 
 export function registerSpacingCommand(program: Command) {
     program
-        .command("spacing")
+        .command("spacing [target]")
         .description("Translate tailwind spacing from 4px to 13px")
         .option(
             "-d, --dir <directory>",
             "Specify directory to scan for TSX files. Defaults to current directory.",
             "."
         )
-        .action(async (options) => {
-            const directory = path.resolve(options.dir);
-            console.log(`Scanning directory: ${directory}`);
+        .action(async (target, options) => {
+            const targetPath = target ? path.resolve(target) : path.resolve(options.dir);
 
             try {
-                const tsxFiles = await glob(`${directory}/**/*.tsx`);
+                const stats = await fs.promises.stat(targetPath);
+                let filesToProcess: string[] = [];
 
-                for (const filePath of tsxFiles) {
+                if (stats.isFile()) {
+                    console.log(`Processing file: ${targetPath}`);
+                    filesToProcess = [targetPath];
+                } else if (stats.isDirectory()) {
+                    console.log(`Scanning directory: ${targetPath}`);
+                    filesToProcess = await glob(`${targetPath}/**/*.tsx`);
+                } else {
+                    console.error("Target is neither a file nor a directory.");
+                    return;
+                }
+
+                for (const filePath of filesToProcess) {
                     const tsxContent = await fs.promises.readFile(filePath, "utf-8");
                     const { updatedContent, hasChanges } = updateSpacingInContent(tsxContent);
 

@@ -7,43 +7,97 @@ import { Input } from "./ui/Input";
 import { Label } from "./ui/Label";
 import { generateRadixColors } from "../utils/custom-color-functions";
 
-export function ThemeColorSwitcher() {
+export interface ThemeColorSwitcherProps {
+  config?: {
+    accent: string;
+    gray: string;
+    background: string;
+    appearance: "light" | "dark";
+  };
+  onConfigChange?: (config: {
+    accent: string;
+    gray: string;
+    background: string;
+    appearance: "light" | "dark";
+  }) => void;
+  enableGlobalStyles?: boolean;
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+export function ThemeColorSwitcher({
+  config,
+  onConfigChange,
+  enableGlobalStyles = true,
+  className,
+  style,
+}: ThemeColorSwitcherProps) {
   // Detect appearance (light or dark mode)
-  const [appearance, setAppearance] = useState<"light" | "dark">("light");
+  const [internalAppearance, setInternalAppearance] = useState<
+    "light" | "dark"
+  >("light");
 
   // Color state with defaults
-  const [accentColor, setAccentColor] = useState("#083d77");
-  const [grayColor, setGrayColor] = useState("#8b8973");
-  const [backgroundColor, setBackgroundColor] = useState("#fcfaea");
+  const [internalAccentColor, setInternalAccentColor] = useState("#083d77");
+  const [internalGrayColor, setInternalGrayColor] = useState("#8b8973");
+  const [internalBackgroundColor, setInternalBackgroundColor] =
+    useState("#fcfaea");
+
+  // Derived state (controlled vs uncontrolled)
+  const isControlled = !!config;
+  const appearance = isControlled ? config.appearance : internalAppearance;
+  const accentColor = isControlled ? config.accent : internalAccentColor;
+  const grayColor = isControlled ? config.gray : internalGrayColor;
+  const backgroundColor = isControlled
+    ? config.background
+    : internalBackgroundColor;
+
+  // Input state to allow flexible typing
+  const [accentInput, setAccentInput] = useState(accentColor);
+  const [grayInput, setGrayInput] = useState(grayColor);
+  const [backgroundInput, setBackgroundInput] = useState(backgroundColor);
+
+  // Sync inputs when props change in controlled mode
+  useEffect(() => {
+    if (isControlled) {
+      setAccentInput(config.accent);
+      setGrayInput(config.gray);
+      setBackgroundInput(config.background);
+    }
+  }, [config, isControlled]);
 
   const STORAGE_KEY = "aura-theme-colors";
 
-  // Load from local storage on mount
+  // Load from local storage on mount (only if uncontrolled)
   useEffect(() => {
+    if (isControlled) return;
+
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
         if (parsed.accent) {
-          setAccentColor(parsed.accent);
+          setInternalAccentColor(parsed.accent);
           setAccentInput(parsed.accent);
         }
         if (parsed.gray) {
-          setGrayColor(parsed.gray);
+          setInternalGrayColor(parsed.gray);
           setGrayInput(parsed.gray);
         }
         if (parsed.background) {
-          setBackgroundColor(parsed.background);
+          setInternalBackgroundColor(parsed.background);
           setBackgroundInput(parsed.background);
         }
       } catch (e) {
         console.error("Failed to parse theme colors", e);
       }
     }
-  }, []);
+  }, [isControlled]);
 
-  // Save to local storage when colors change
+  // Save to local storage when colors change (only if uncontrolled)
   useEffect(() => {
+    if (isControlled) return;
+
     localStorage.setItem(
       STORAGE_KEY,
       JSON.stringify({
@@ -52,12 +106,7 @@ export function ThemeColorSwitcher() {
         background: backgroundColor,
       })
     );
-  }, [accentColor, grayColor, backgroundColor]);
-
-  // Input state to allow flexible typing
-  const [accentInput, setAccentInput] = useState(accentColor);
-  const [grayInput, setGrayInput] = useState(grayColor);
-  const [backgroundInput, setBackgroundInput] = useState(backgroundColor);
+  }, [accentColor, grayColor, backgroundColor, isControlled]);
 
   const isValidHex = (hex: string) => {
     return /^#?([0-9A-F]{3}){1,2}$/i.test(hex);
@@ -66,34 +115,48 @@ export function ThemeColorSwitcher() {
   const handleColorChange = (
     value: string,
     setInput: (val: string) => void,
-    setColor: (val: string) => void
+    setColor: (val: string) => void,
+    key: "accent" | "gray" | "background"
   ) => {
     setInput(value);
 
     // Check if it's a valid hex (with or without #)
     if (isValidHex(value)) {
       const normalized = value.startsWith("#") ? value : `#${value}`;
-      setColor(normalized);
+      if (isControlled) {
+        onConfigChange?.({
+          accent: key === "accent" ? normalized : accentColor,
+          gray: key === "gray" ? normalized : grayColor,
+          background: key === "background" ? normalized : backgroundColor,
+          appearance,
+        });
+      } else {
+        setColor(normalized);
+      }
     }
   };
 
-  // Detect system appearance on mount
+  // Detect system appearance on mount (only if uncontrolled)
   useEffect(() => {
+    if (isControlled) return;
+
     const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setAppearance(isDark ? "dark" : "light");
+    setInternalAppearance(isDark ? "dark" : "light");
 
     // Listen for changes
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = (e: MediaQueryListEvent) => {
-      setAppearance(e.matches ? "dark" : "light");
+      setInternalAppearance(e.matches ? "dark" : "light");
     };
 
     mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
+  }, [isControlled]);
 
   // Inject CSS variables into :root when colors change to override globals
   useEffect(() => {
+    if (!enableGlobalStyles) return;
+
     const rootElement = document.documentElement; // :root selector
 
     const colors = generateRadixColors({
@@ -165,11 +228,19 @@ export function ThemeColorSwitcher() {
       "--secundary-foreground",
       `var(--accent-contrast)`
     );
-  }, [appearance, accentColor, grayColor, backgroundColor]);
+  }, [appearance, accentColor, grayColor, backgroundColor, enableGlobalStyles]);
+
+  const defaultStyle: React.CSSProperties = {
+    position: "fixed",
+    top: "16px",
+    right: "16px",
+    zIndex: 9999,
+  };
 
   return (
     <div
-      style={{ position: "fixed", top: "16px", right: "16px", zIndex: 9999 }}
+      className={className}
+      style={className ? style : { ...defaultStyle, ...style }}
     >
       <Popover>
         <PopoverTrigger asChild>
@@ -232,7 +303,8 @@ export function ThemeColorSwitcher() {
                     handleColorChange(
                       e.target.value,
                       setAccentInput,
-                      setAccentColor
+                      setInternalAccentColor,
+                      "accent"
                     )
                   }
                   placeholder="#3D63DD"
@@ -251,8 +323,17 @@ export function ThemeColorSwitcher() {
                   value={accentColor}
                   onChange={(e) => {
                     const newColor = e.target.value;
-                    setAccentColor(newColor);
-                    setAccentInput(newColor);
+                    if (isControlled) {
+                      onConfigChange?.({
+                        accent: newColor,
+                        gray: grayColor,
+                        background: backgroundColor,
+                        appearance,
+                      });
+                    } else {
+                      setInternalAccentColor(newColor);
+                      setAccentInput(newColor);
+                    }
                   }}
                   style={{
                     width: "32px",
@@ -289,7 +370,8 @@ export function ThemeColorSwitcher() {
                     handleColorChange(
                       e.target.value,
                       setGrayInput,
-                      setGrayColor
+                      setInternalGrayColor,
+                      "gray"
                     )
                   }
                   placeholder="#8B8D98"
@@ -308,8 +390,17 @@ export function ThemeColorSwitcher() {
                   value={grayColor}
                   onChange={(e) => {
                     const newColor = e.target.value;
-                    setGrayColor(newColor);
-                    setGrayInput(newColor);
+                    if (isControlled) {
+                      onConfigChange?.({
+                        accent: accentColor,
+                        gray: newColor,
+                        background: backgroundColor,
+                        appearance,
+                      });
+                    } else {
+                      setInternalGrayColor(newColor);
+                      setGrayInput(newColor);
+                    }
                   }}
                   style={{
                     width: "32px",
@@ -346,7 +437,8 @@ export function ThemeColorSwitcher() {
                     handleColorChange(
                       e.target.value,
                       setBackgroundInput,
-                      setBackgroundColor
+                      setInternalBackgroundColor,
+                      "background"
                     )
                   }
                   placeholder="#FAFAFA"
@@ -365,8 +457,17 @@ export function ThemeColorSwitcher() {
                   value={backgroundColor}
                   onChange={(e) => {
                     const newColor = e.target.value;
-                    setBackgroundColor(newColor);
-                    setBackgroundInput(newColor);
+                    if (isControlled) {
+                      onConfigChange?.({
+                        accent: accentColor,
+                        gray: grayColor,
+                        background: newColor,
+                        appearance,
+                      });
+                    } else {
+                      setInternalBackgroundColor(newColor);
+                      setBackgroundInput(newColor);
+                    }
                   }}
                   style={{
                     width: "32px",

@@ -10,8 +10,6 @@ export default function HomePage() {
       <HeroSection />
       <ArchitecturalAdvantage />
       <AuraAesthetic />
-      <ComponentShowcase />
-      <GettingStarted />
     </main>
   );
 }
