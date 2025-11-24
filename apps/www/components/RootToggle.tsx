@@ -85,7 +85,7 @@ export function RootToggle({
               </div>
               <div>
                 <p className="text-sm font-medium">{item.title}</p>
-                <p className="text-[0.8125rem] text-fd-muted-foreground empty:hidden">
+                <p className="text-[0.8125rem] text-gray-11 empty:hidden">
                   {item.description}
                 </p>
               </div>

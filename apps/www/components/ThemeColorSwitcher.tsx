@@ -38,10 +38,10 @@ export function ThemeColorSwitcher({
   >("light");
 
   // Color state with defaults
-  const [internalAccentColor, setInternalAccentColor] = useState("#083d77");
-  const [internalGrayColor, setInternalGrayColor] = useState("#8b8973");
+  const [internalAccentColor, setInternalAccentColor] = useState("#bf91ec");
+  const [internalGrayColor, setInternalGrayColor] = useState("#5268b8");
   const [internalBackgroundColor, setInternalBackgroundColor] =
-    useState("#fcfaea");
+    useState("#0c122a");
 
   // Derived state (controlled vs uncontrolled)
   const isControlled = !!config;
@@ -307,7 +307,7 @@ export function ThemeColorSwitcher({
                       "accent"
                     )
                   }
-                  placeholder="#3D63DD"
+                  placeholder="#bf91ec"
                   style={{
                     flex: 1,
                     padding: "8px 12px",
@@ -374,7 +374,7 @@ export function ThemeColorSwitcher({
                       "gray"
                     )
                   }
-                  placeholder="#8B8D98"
+                  placeholder="#5268b8"
                   style={{
                     flex: 1,
                     padding: "8px 12px",
@@ -441,7 +441,7 @@ export function ThemeColorSwitcher({
                       "background"
                     )
                   }
-                  placeholder="#FAFAFA"
+                  placeholder="#0c122a"
                   style={{
                     flex: 1,
                     padding: "8px 12px",

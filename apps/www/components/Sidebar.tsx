@@ -73,9 +73,9 @@ const itemVariants = cva(
   {
     variants: {
       active: {
-        true: "bg-fd-primary/10 text-fd-primary",
+        true: "bg-accent-3 text-accent-11",
         false:
-          "transition-colors hover:bg-fd-accent/50 hover:text-fd-accent-foreground/80 hover:transition-none",
+          "transition-colors hover:bg-gray-3 hover:text-gray-12 hover:transition-none",
       },
     },
   }
@@ -126,7 +126,7 @@ export function SidebarContent(props: ComponentProps<"aside">) {
       {...props}
       data-collapsed={collapsed}
       className={cn(
-        "fixed left-0 rtl:left-auto rtl:right-(--removed-body-scroll-bar-size,0) flex flex-col items-end top-(--fd-sidebar-top) bottom-(--fd-sidebar-margin) z-20 bg-fd-card text-sm border-e transition-[top,opacity,translate,width] duration-200 max-md:hidden *:w-(--fd-sidebar-width)",
+        "fixed left-0 rtl:left-auto rtl:right-(--removed-body-scroll-bar-size,0) flex flex-col items-end top-(--fd-sidebar-top) bottom-(--fd-sidebar-margin) z-20 bg-gray-2 text-sm border-e transition-[top,opacity,translate,width] duration-200 max-md:hidden *:w-(--fd-sidebar-width)",
         collapsed && [
           "rounded-xl border translate-x-(--fd-sidebar-offset) rtl:-translate-x-(--fd-sidebar-offset)",
           hover ? "z-50 shadow-lg" : "opacity-0",
@@ -200,7 +200,7 @@ export function SidebarContentMobile({
             {...props}
             data-state={state}
             className={cn(
-              "fixed text-[0.9375rem] flex flex-col shadow-lg border-s end-0 inset-y-0 w-[85%] max-w-[380px] z-40 bg-fd-background data-[state=open]:animate-fd-sidebar-in data-[state=closed]:animate-fd-sidebar-out",
+              "fixed text-[0.9375rem] flex flex-col shadow-lg border-s end-0 inset-y-0 w-[85%] max-w-[380px] z-40 bg-gray-1 data-[state=open]:animate-fd-sidebar-in data-[state=closed]:animate-fd-sidebar-out",
               !present && "invisible",
               className
             )}
@@ -379,8 +379,8 @@ export function SidebarFolderContent(props: CollapsibleContentProps) {
       className={cn(
         "relative",
         level === 1 && [
-          "before:content-[''] before:absolute before:w-px before:inset-y-1 before:bg-fd-border before:start-2.5",
-          "**:data-[active=true]:before:content-[''] **:data-[active=true]:before:bg-fd-primary **:data-[active=true]:before:absolute **:data-[active=true]:before:w-px **:data-[active=true]:before:inset-y-2.5 **:data-[active=true]:before:start-2.5",
+          "before:content-[''] before:absolute before:w-px before:inset-y-1 before:bg-gray-6 before:start-2.5",
+          "**:data-[active=true]:before:content-[''] **:data-[active=true]:before:bg-accent-9 **:data-[active=true]:before:absolute **:data-[active=true]:before:w-px **:data-[active=true]:before:inset-y-2.5 **:data-[active=true]:before:start-2.5",
         ],
         props.className
       )}

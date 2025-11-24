@@ -20,9 +20,9 @@ export default function AuraAesthetic() {
   const [mode, setMode] = useState<"light" | "dark">("dark");
 
   // Custom color inputs with defaults
-  const [accentColor, setAccentColor] = useState("#3D63DD");
-  const [grayColor, setGrayColor] = useState("#8B8D98");
-  const [backgroundColor, setBackgroundColor] = useState("#FAFAFA");
+  const [accentColor, setAccentColor] = useState("#bf91ec");
+  const [grayColor, setGrayColor] = useState("#5268b8");
+  const [backgroundColor, setBackgroundColor] = useState("#0c122a");
 
   const { cssVariables, exportCss } = useMemo(() => {
     const colors = generateRadixColors({
@@ -180,24 +180,69 @@ export default function AuraAesthetic() {
   --aura-skeleton-end: var(--gray-5);
 
   /* Existing color scale */
-  --radius: ${radius}rem;
-  ${colors.accentScale.map((val, i) => `--accent-${i + 1}: ${val};`).join("\n  ")}
 
-  ${colors.accentScaleAlpha.map((val, i) => `--accent-a${i + 1}: ${val};`).join("\n  ")}
+  --accent-1: #17121c;
+  --accent-2: #1c1524;
+  --accent-3: #2e1d3d;
+  --accent-4: #3b2351;
+  --accent-5: #462b5e;
+  --accent-6: #52356b;
+  --accent-7: #634381;
+  --accent-8: #7d55a2;
+  --accent-9: #bf91ec;
+  --accent-10: #b486e0;
+  --accent-11: #cea0fc;
+  --accent-12: #e9dbf9;
 
-  --accent-contrast: ${colors.accentContrast};
-  --accent-surface: ${colors.accentSurface};
-  --accent-indicator: ${colors.accentScale[8]};
-  --accent-track: ${colors.accentScale[8]};
+  --accent-a1: #f613000c;
+  --accent-a2: #fc3f0011;
+  --accent-a3: #fd60ab24;
+  --accent-a4: #fc69ed32;
+  --accent-a5: #fb79fc3e;
+  --accent-a6: #f486ff4d;
+  --accent-a7: #e28afe68;
+  --accent-a8: #d589fe90;
+  --accent-a9: #d09dfee9;
+  --accent-a10: #d099ffda;
+  --accent-a11: #d0a2fefc;
+  --accent-a12: #f0e1fff8;
 
-  ${colors.grayScale.map((val, i) => `--gray-${i + 1}: ${val};`).join("\n  ")}
+  --accent-contrast: #fff;
+  --accent-surface: #2c181e80;
+  --accent-indicator: #bf91ec;
+  --accent-track: #bf91ec;
 
-  ${colors.grayScaleAlpha.map((val, i) => `--gray-a${i + 1}: ${val};`).join("\n  ")}
+  --gray-1: #0c122a;
+  --gray-2: #131931;
+  --gray-3: #182043;
+  --gray-4: #1b2554;
+  --gray-5: #1f2b62;
+  --gray-6: #243275;
+  --gray-7: #2e3f8b;
+  --gray-8: #455aa9;
+  --gray-9: #5268b8;
+  --gray-10: #5f75c7;
+  --gray-11: #94afff;
+  --gray-12: #e5eeff;
 
-  --gray-contrast: ${colors.grayContrast};
-  --gray-surface: ${colors.graySurface};
-  --gray-indicator: ${colors.grayScale[8]};
-  --gray-track: ${colors.grayScale[8]};
+  --gray-a1: #0d130106;
+  --gray-a2: #ecf2eb08;
+  --gray-a3: #768eff1d;
+  --gray-a4: #5973fc32;
+  --gray-a5: #5572fd43;
+  --gray-a6: #506dfd5a;
+  --gray-a7: #5675ff74;
+  --gray-a8: #6c8bff98;
+  --gray-a9: #7593ffaa;
+  --gray-a10: #7d98ffbc;
+  --gray-a11: #94afff;
+  --gray-a12: #e5eeff;
+
+  --gray-contrast: #FFFFFF;
+  --gray-surface: rgba(0, 0, 0, 0.05);
+  --gray-indicator: #5268b8;
+  --gray-track: #5268b8;
+
   --primary: var(--accent-9);
   --primary-foreground: var(--accent-contrast);
   --secundary: var(--accent-8);
