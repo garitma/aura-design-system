@@ -22,8 +22,8 @@ export function ThemeColorSwitcher() {
     light: ThemeColors;
     dark: ThemeColors;
   }>({
-    light: { accent: "#083d77", gray: "#8b8973", background: "#fcfaea" },
-    dark: { accent: "#3D63DD", gray: "#8B8D98", background: "#111111" },
+    light: { accent: "#bf91ec", gray: "#16204e", background: "#fcfcfc" },
+    dark: { accent: "#bf91ec", gray: "#16204e", background: "#0c122b" },
   });
 
   const STORAGE_KEY = "aura-theme-colors-v2";
@@ -249,40 +249,40 @@ export function ThemeColorSwitcher() {
                 Theme Settings
               </Label>
               <div style={{ display: "flex", backgroundColor: "var(--gray-3)", padding: "2px", borderRadius: "6px" }}>
-                 <button
-                    type="button"
-                    onClick={() => setAppearance("light")}
-                    style={{
-                      padding: "4px 8px",
-                      borderRadius: "4px",
-                      border: "none",
-                      backgroundColor: appearance === "light" ? "var(--gray-1)" : "transparent",
-                      color: appearance === "light" ? "var(--gray-12)" : "var(--gray-11)",
-                      cursor: "pointer",
-                      fontSize: "12px",
-                      fontWeight: 500,
-                      boxShadow: appearance === "light" ? "0 1px 2px rgba(0,0,0,0.1)" : "none",
-                    }}
-                 >
-                   Light
-                 </button>
-                 <button
-                    type="button"
-                    onClick={() => setAppearance("dark")}
-                    style={{
-                      padding: "4px 8px",
-                      borderRadius: "4px",
-                      border: "none",
-                      backgroundColor: appearance === "dark" ? "var(--gray-1)" : "transparent",
-                      color: appearance === "dark" ? "var(--gray-12)" : "var(--gray-11)",
-                      cursor: "pointer",
-                      fontSize: "12px",
-                      fontWeight: 500,
-                      boxShadow: appearance === "dark" ? "0 1px 2px rgba(0,0,0,0.1)" : "none",
-                    }}
-                 >
-                   Dark
-                 </button>
+                <button
+                  type="button"
+                  onClick={() => setAppearance("light")}
+                  style={{
+                    padding: "4px 8px",
+                    borderRadius: "4px",
+                    border: "none",
+                    backgroundColor: appearance === "light" ? "var(--gray-1)" : "transparent",
+                    color: appearance === "light" ? "var(--gray-12)" : "var(--gray-11)",
+                    cursor: "pointer",
+                    fontSize: "12px",
+                    fontWeight: 500,
+                    boxShadow: appearance === "light" ? "0 1px 2px rgba(0,0,0,0.1)" : "none",
+                  }}
+                >
+                  Light
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setAppearance("dark")}
+                  style={{
+                    padding: "4px 8px",
+                    borderRadius: "4px",
+                    border: "none",
+                    backgroundColor: appearance === "dark" ? "var(--gray-1)" : "transparent",
+                    color: appearance === "dark" ? "var(--gray-12)" : "var(--gray-11)",
+                    cursor: "pointer",
+                    fontSize: "12px",
+                    fontWeight: 500,
+                    boxShadow: appearance === "dark" ? "0 1px 2px rgba(0,0,0,0.1)" : "none",
+                  }}
+                >
+                  Dark
+                </button>
               </div>
             </div>
 
