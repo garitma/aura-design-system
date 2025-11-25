@@ -126,6 +126,4 @@ A product showcase card with interactive hotspots.
 To fully realize these blocks, you should ask the LLM to generate these specific missing primitives before assembling the blocks:
 
 1.  **`Slider.tsx`** (Critical for Blocks 1 & 7)
-2.  **`ScrollArea.tsx`** (Critical for Blocks 2, 4, & 9)
-3.  **`Badge.tsx`** (Critical for Block 2 & 3)
 4.  **`Image.tsx`** (A wrapper for `img` with skeleton loading states, needed for almost all blocks).
