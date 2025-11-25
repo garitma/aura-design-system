@@ -96,6 +96,21 @@
       ]
     },
     {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "description": "The Badge component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Badge.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -320,6 +335,21 @@
       ]
     },
     {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "ScrollArea",
+      "description": "The ScrollArea component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/ScrollArea.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "radix-ui"
+      ]
+    },
+    {
       "name": "section",
       "type": "registry:ui",
       "title": "Section",
@@ -329,6 +359,21 @@
           "path": "registry/default/components/ui/Section.tsx",
           "type": "registry:ui"
         }
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "description": "The Slider component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Slider.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "radix-ui"
       ]
     },
     {

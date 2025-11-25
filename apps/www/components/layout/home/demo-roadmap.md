@@ -1,7 +1,7 @@
 ### Design System Overview
 
 - **Visual Style:** "Soft Pop" / Material You.
-- **Key Traits:** Large rounded corners (`rounded-3xl`), blur effects, masonry-style layouts, and playfulness.
+- **Key Traits:** Large rounded corners, masonry-style layouts, and playfulness.
 
 ---
 
@@ -14,8 +14,8 @@ A full-height immersive media player card featuring large typography and playbac
   - `Card` (The main container with `overflow-hidden`).
   - `Button` (Large primary Play button, smaller Skip/Previous icon buttons).
   - `Section` (To group the controls at the bottom).
-  - **[NEW]** `Slider` (Required for the waveform/progress bar at the bottom—essential for media players).
-  - **[NEW]** `Image` (Primitive for the album art).
+  - `Slider` (Required for the waveform/progress bar at the bottom—essential for media players).
+  - `Image` (Primitive for the album art).
 
 ### Block 2: "Music Night Out" Group Chat (Bottom Left)
 
@@ -27,8 +27,8 @@ A dark-mode messaging interface showing a group conversation context.
   - `Avatar` (Used multiple times: clustered in the header, and one small one next to the message).
   - `Button` (Icon buttons for video call/phone in header).
   - `Input` (The pill-shaped text field saying "Who's got that group photo?").
-  - **[NEW]** `Badge` (To indicate the active status or notification count on the group icon).
-  - **[NEW]** `ScrollArea` (To handle the list of messages semantically, even if static here).
+  - `Badge` (To indicate the active status or notification count on the group icon).
+  - `ScrollArea` (To handle the list of messages semantically, even if static here).
 
 ### Block 3: "Echo Bridge" Event Invite (Top Left)
 
@@ -50,8 +50,8 @@ A horizontal scroll interface for selecting image presets.
 - **Components:**
   - `Card` (The editor container).
   - `Button` (Icon buttons for Crop, Rotate, etc.).
-  - **[NEW]** `Carousel` or `ScrollArea` (Horizontal scroll is critical here for the filter thumbnails).
-  - **[NEW]** `Image` (For the filter thumbnails).
+  - `ScrollArea` (Horizontal scroll is critical here for the filter thumbnails).
+  - `Image` (For the filter thumbnails).
 
 ### Block 5: "Feeding Times" Alarm Widget (Bottom Right)
 
@@ -82,8 +82,8 @@ A dark-mode system control panel for hardware toggles.
 - **Components:**
   - `Card` (Container).
   - `Button` (Icon buttons with active/inactive states).
-  - **[NEW]** `Slider` (Thick, touch-friendly sliders for volume and brightness).
-  - **[NEW]** `Icon` (You likely need a centralized Icon primitive or library, though `Button` can wrap SVGs).
+  - `Slider` (Thick, touch-friendly sliders for volume and brightness).
+  - `Icon` (You likely need a centralized Icon primitive or library, though `Button` can wrap SVGs).
 
 ### Block 8: Gardening Checklist (Bottom Left - Overlay)
 
@@ -121,9 +121,3 @@ A product showcase card with interactive hotspots.
 
 ---
 
-### Summary of "NEW" Components Needed
-
-To fully realize these blocks, you should ask the LLM to generate these specific missing primitives before assembling the blocks:
-
-1.  **`Slider.tsx`** (Critical for Blocks 1 & 7)
-4.  **`Image.tsx`** (A wrapper for `img` with skeleton loading states, needed for almost all blocks).
