@@ -436,8 +436,8 @@ a:active {
   background-color: var(--aura-button-hover);
 }
 .button-pill {
-  color: var(--aura-accents-primary);
-  border-color: var(--aura-accents-primary);
+  color: var(--aura-link);
+  border-color: var(--aura-link);
   background-color: transparent;
 }
 .button-pill:hover:not(:disabled),

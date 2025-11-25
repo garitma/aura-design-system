@@ -178,7 +178,7 @@
   --gray-a11: #94afff;
   --gray-a12: #e5eeff;
 
-  --gray-contrast: #FFFFFF;
+  --gray-contrast: #ffffff;
   --gray-surface: rgba(0, 0, 0, 0.05);
   --gray-indicator: #5268b8;
   --gray-track: #5268b8;
@@ -198,6 +198,71 @@
   --ladle-blueprint: var(--gray-11);
 }
 
+@media (prefers-color-scheme: dark) {
+  :root {
+    --accent-1: #17121c;
+    --accent-2: #1c1524;
+    --accent-3: #2e1d3d;
+    --accent-4: #3b2351;
+    --accent-5: #462b5e;
+    --accent-6: #52356b;
+    --accent-7: #634381;
+    --accent-8: #7d55a2;
+    --accent-9: #bf91ec;
+    --accent-10: #b486e0;
+    --accent-11: #cea0fc;
+    --accent-12: #e9dbf9;
+
+    --accent-a1: #f613000c;
+    --accent-a2: #fc3f0011;
+    --accent-a3: #fd60ab24;
+    --accent-a4: #fc69ed32;
+    --accent-a5: #fb79fc3e;
+    --accent-a6: #f486ff4d;
+    --accent-a7: #e28afe68;
+    --accent-a8: #d589fe90;
+    --accent-a9: #d09dfee9;
+    --accent-a10: #d099ffda;
+    --accent-a11: #d0a2fefc;
+    --accent-a12: #f0e1fff8;
+
+    --accent-contrast: #fff;
+    --accent-surface: #2c181e80;
+    --accent-indicator: #bf91ec;
+    --accent-track: #bf91ec;
+
+    --gray-1: #f6f9ff;
+    --gray-2: #f0f6ff;
+    --gray-3: #e3ecff;
+    --gray-4: #d7e4ff;
+    --gray-5: #ccdcff;
+    --gray-6: #c2d4ff;
+    --gray-7: #b4c8ff;
+    --gray-8: #99b3ff;
+    --gray-9: #6d84d5;
+    --gray-10: #647ac5;
+    --gray-11: #4b5c9a;
+    --gray-12: #121b48;
+    --gray-a1: #f6f9ff;
+    --gray-a2: #f0f6ff;
+    --gray-a3: #e3ecff;
+    --gray-a4: #d7e4ff;
+    --gray-a5: #ccdcff;
+    --gray-a6: #c2d4ff;
+    --gray-a7: #b4c8ff;
+    --gray-a8: #99b3ff;
+    --gray-a9: #0029b791;
+    --gray-a10: #0025a19a;
+    --gray-a11: #021a72b4;
+    --gray-a12: #000a3aed;
+
+    --gray-contrast: #ffffff;
+    --gray-surface: rgba(0, 0, 0, 0.05);
+    --gray-indicator: #5268b8;
+    --gray-track: #5268b8;
+  }
+}
+
 @layer base {
   @import "@aura-design/system/main.css";
 
@@ -210,4 +275,5 @@
   }
 }
 
-@layer components {}
+@layer components {
+}

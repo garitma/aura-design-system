@@ -7,49 +7,9 @@ import { Input } from "./ui/Input";
 import { Label } from "./ui/Label";
 import { generateRadixColors } from "../utils/custom-color-functions";
 
-export interface ThemeColorSwitcherProps {
-  config?: {
-    light: {
-      accent: string;
-      gray: string;
-      background: string;
-    };
-    dark: {
-      accent: string;
-      gray: string;
-      background: string;
-    };
-    appearance: "light" | "dark";
-  };
-  onConfigChange?: (config: {
-    light: {
-      accent: string;
-      gray: string;
-      background: string;
-    };
-    dark: {
-      accent: string;
-      gray: string;
-      background: string;
-    };
-    appearance: "light" | "dark";
-  }) => void;
-  enableGlobalStyles?: boolean;
-  className?: string;
-  style?: React.CSSProperties;
-}
-
-export function ThemeColorSwitcher({
-  config,
-  onConfigChange,
-  enableGlobalStyles = true,
-  className,
-  style,
-}: ThemeColorSwitcherProps) {
+export function ThemeColorSwitcher() {
   // Detect appearance (light or dark mode)
-  const [internalAppearance, setInternalAppearance] = useState<
-    "light" | "dark"
-  >("light");
+  const [appearance, setAppearance] = useState<"light" | "dark">("light");
 
   type ThemeColors = {
     accent: string;
@@ -58,7 +18,7 @@ export function ThemeColorSwitcher({
   };
 
   // Color state with defaults for both modes
-  const [internalThemeColors, setInternalThemeColors] = useState<{
+  const [themeColors, setThemeColors] = useState<{
     light: ThemeColors;
     dark: ThemeColors;
   }>({
@@ -66,47 +26,54 @@ export function ThemeColorSwitcher({
     dark: { accent: "#bf91ec", gray: "#16204e", background: "#0c122b" },
   });
 
-  // Derived state (controlled vs uncontrolled)
-  const isControlled = !!config;
-  const appearance = isControlled ? config.appearance : internalAppearance;
-  const themeColors = isControlled
-    ? { light: config.light, dark: config.dark }
-    : internalThemeColors;
-
-  const currentColors = themeColors[appearance];
-
   const STORAGE_KEY = "aura-theme-colors-v2";
 
-  // Load from local storage on mount (only if uncontrolled)
+  // Load from local storage on mount
   useEffect(() => {
-    if (isControlled) return;
-
     const saved = localStorage.getItem(STORAGE_KEY);
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
+        // Basic validation to check if it matches our new schema
         if (parsed.light && parsed.dark) {
-          setInternalThemeColors(parsed);
+          setThemeColors(parsed);
         }
       } catch (e) {
         console.error("Failed to parse theme colors", e);
       }
+    } else {
+      // Try to migrate from v1 if v2 doesn't exist
+      const oldSaved = localStorage.getItem("aura-theme-colors");
+      if (oldSaved) {
+        try {
+          const parsed = JSON.parse(oldSaved);
+          // We don't know which mode the old colors were for, but we'll assume they might be useful
+          // Or we just stick to defaults. Let's stick to defaults to avoid confusion,
+          // or maybe map them to light mode if they look light?
+          // For now, let's just ignore migration to keep it clean and use defaults.
+        } catch (e) {
+          // ignore
+        }
+      }
     }
-  }, [isControlled]);
+  }, []);
 
-  // Save to local storage when colors change (only if uncontrolled)
+  // Save to local storage when colors change
   useEffect(() => {
-    if (isControlled) return;
-
     localStorage.setItem(STORAGE_KEY, JSON.stringify(themeColors));
-  }, [themeColors, isControlled]);
+  }, [themeColors]);
+
+  // Current mode colors
+  const currentColors = themeColors[appearance];
 
   // Input state to allow flexible typing (sync with current mode colors)
   const [accentInput, setAccentInput] = useState(currentColors.accent);
   const [grayInput, setGrayInput] = useState(currentColors.gray);
-  const [backgroundInput, setBackgroundInput] = useState(currentColors.background);
+  const [backgroundInput, setBackgroundInput] = useState(
+    currentColors.background
+  );
 
-  // Sync inputs when appearance or underlying colors change
+  // Update inputs when appearance or underlying colors change
   useEffect(() => {
     setAccentInput(currentColors.accent);
     setGrayInput(currentColors.gray);
@@ -126,62 +93,36 @@ export function ThemeColorSwitcher({
     // Update actual color if valid
     if (isValidHex(value)) {
       const normalized = value.startsWith("#") ? value : `#${value}`;
-
-      if (isControlled) {
-        onConfigChange?.({
-          ...themeColors,
-          [appearance]: {
-            ...themeColors[appearance],
-            [field]: normalized,
-          },
-          appearance,
-        });
-      } else {
-        setInternalThemeColors((prev) => ({
-          ...prev,
-          [appearance]: {
-            ...prev[appearance],
-            [field]: normalized,
-          },
-        }));
-      }
+      setThemeColors((prev) => ({
+        ...prev,
+        [appearance]: {
+          ...prev[appearance],
+          [field]: normalized,
+        },
+      }));
     }
   };
 
-  const handleAppearanceChange = (newAppearance: "light" | "dark") => {
-    if (isControlled) {
-      onConfigChange?.({
-        ...themeColors,
-        appearance: newAppearance,
-      });
-    } else {
-      setInternalAppearance(newAppearance);
-    }
-  };
-
-  // Detect system appearance on mount (only if uncontrolled)
+  // Detect system appearance on mount
   useEffect(() => {
-    if (isControlled) return;
-
     const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setInternalAppearance(isDark ? "dark" : "light");
+    setAppearance(isDark ? "dark" : "light");
 
     // Listen for changes
     const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const handleChange = (e: MediaQueryListEvent) => {
-      setInternalAppearance(e.matches ? "dark" : "light");
+      setAppearance(e.matches ? "dark" : "light");
     };
 
     mediaQuery.addEventListener("change", handleChange);
     return () => mediaQuery.removeEventListener("change", handleChange);
-  }, [isControlled]);
+  }, []);
 
   // Inject CSS variables into :root when colors change to override globals
   useEffect(() => {
-    if (!enableGlobalStyles) return;
-
     const rootElement = document.documentElement; // :root selector
 
+    // We need to generate colors based on the CURRENT appearance and its specific colors
     const colors = generateRadixColors({
       appearance,
       accent: currentColors.accent,
@@ -251,19 +192,11 @@ export function ThemeColorSwitcher({
       "--secundary-foreground",
       `var(--accent-contrast)`
     );
-  }, [appearance, currentColors, enableGlobalStyles]);
-
-  const defaultStyle: React.CSSProperties = {
-    position: "fixed",
-    top: "16px",
-    right: "16px",
-    zIndex: 9999,
-  };
+  }, [appearance, currentColors]);
 
   return (
     <div
-      className={className}
-      style={className ? style : { ...defaultStyle, ...style }}
+      style={{ position: "fixed", top: "16px", right: "16px", zIndex: 9999 }}
     >
       <Popover>
         <PopoverTrigger asChild>
@@ -304,7 +237,13 @@ export function ThemeColorSwitcher({
           <div
             style={{ display: "flex", flexDirection: "column", gap: "16px" }}
           >
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
               <Label
                 style={{
                   fontSize: "14px",
@@ -314,37 +253,58 @@ export function ThemeColorSwitcher({
               >
                 Theme Settings
               </Label>
-              <div style={{ display: "flex", backgroundColor: "var(--gray-3)", padding: "2px", borderRadius: "6px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  backgroundColor: "var(--gray-3)",
+                  padding: "2px",
+                  borderRadius: "6px",
+                }}
+              >
                 <button
                   type="button"
-                  onClick={() => handleAppearanceChange("light")}
+                  onClick={() => setAppearance("light")}
                   style={{
                     padding: "4px 8px",
                     borderRadius: "4px",
                     border: "none",
-                    backgroundColor: appearance === "light" ? "var(--gray-1)" : "transparent",
-                    color: appearance === "light" ? "var(--gray-12)" : "var(--gray-11)",
+                    backgroundColor:
+                      appearance === "light" ? "var(--gray-1)" : "transparent",
+                    color:
+                      appearance === "light"
+                        ? "var(--gray-12)"
+                        : "var(--gray-11)",
                     cursor: "pointer",
                     fontSize: "12px",
                     fontWeight: 500,
-                    boxShadow: appearance === "light" ? "0 1px 2px rgba(0,0,0,0.1)" : "none",
+                    boxShadow:
+                      appearance === "light"
+                        ? "0 1px 2px rgba(0,0,0,0.1)"
+                        : "none",
                   }}
                 >
                   Light
                 </button>
                 <button
                   type="button"
-                  onClick={() => handleAppearanceChange("dark")}
+                  onClick={() => setAppearance("dark")}
                   style={{
                     padding: "4px 8px",
                     borderRadius: "4px",
                     border: "none",
-                    backgroundColor: appearance === "dark" ? "var(--gray-1)" : "transparent",
-                    color: appearance === "dark" ? "var(--gray-12)" : "var(--gray-11)",
+                    backgroundColor:
+                      appearance === "dark" ? "var(--gray-1)" : "transparent",
+                    color:
+                      appearance === "dark"
+                        ? "var(--gray-12)"
+                        : "var(--gray-11)",
                     cursor: "pointer",
                     fontSize: "12px",
                     fontWeight: 500,
-                    boxShadow: appearance === "dark" ? "0 1px 2px rgba(0,0,0,0.1)" : "none",
+                    boxShadow:
+                      appearance === "dark"
+                        ? "0 1px 2px rgba(0,0,0,0.1)"
+                        : "none",
                   }}
                 >
                   Dark
@@ -464,7 +424,9 @@ export function ThemeColorSwitcher({
                 <Input
                   type="text"
                   value={backgroundInput}
-                  onChange={(e) => handleColorChange(e.target.value, "background")}
+                  onChange={(e) =>
+                    handleColorChange(e.target.value, "background")
+                  }
                   placeholder="#FAFAFA"
                   style={{
                     flex: 1,
@@ -479,7 +441,9 @@ export function ThemeColorSwitcher({
                 <input
                   type="color"
                   value={currentColors.background}
-                  onChange={(e) => handleColorChange(e.target.value, "background")}
+                  onChange={(e) =>
+                    handleColorChange(e.target.value, "background")
+                  }
                   style={{
                     width: "32px",
                     height: "32px",
