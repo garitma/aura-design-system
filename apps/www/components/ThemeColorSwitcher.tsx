@@ -28,8 +28,8 @@ export function ThemeColorSwitcher() {
     light: ThemeColors;
     dark: ThemeColors;
   }>({
-    light: { accent: "#bf91ec", gray: "#16204e", background: "#fcfcfc" },
-    dark: { accent: "#bf91ec", gray: "#16204e", background: "#0c122b" },
+    light: { accent: "#964CE1", gray: "#16204e", background: "#fcfcfc" },
+    dark: { accent: "#964CE1", gray: "#16204e", background: "#0c122b" },
   });
 
   const STORAGE_KEY = "aura-theme-colors";
@@ -187,120 +187,118 @@ export function ThemeColorSwitcher() {
   }, [appearance, currentColors]);
 
   return (
-    <div className="fixed top-4 right-4 z-[9999]">
-      <Popover>
-        <PopoverTrigger asChild>
-          <button
-            aria-label="Customize colors"
-            type="button"
-            className="flex items-center justify-center w-3 h-3 rounded-sm border border-gray-6 bg-gray-1 cursor-pointer transition-colors hover:bg-gray-3"
-          >
-            <MixerHorizontalIcon className="w-1 h-1 text-gray-11" />
-          </button>
-        </PopoverTrigger>
-        <PopoverContent className="min-w-[320px] p-1" align="end">
-          <div className="flex flex-col gap-1">
-            <div className="flex items-center justify-between">
-              <Label className="text-sm font-semibold text-gray-12">
-                Theme Settings
-              </Label>
-              <div className="flex bg-gray-3 p-0 rounded-sm">
-                <button
-                  type="button"
-                  onClick={() => setAppearance("light")}
-                  className={cn(
-                    "px-0.5 py-0.5 rounded border-none cursor-pointer text-xs font-medium transition-all",
-                    appearance === "light"
-                      ? "bg-gray-1 text-gray-12 shadow-sm"
-                      : "bg-transparent text-gray-11"
-                  )}
-                >
-                  Light
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setAppearance("dark")}
-                  className={cn(
-                    "px-0.5 py-0.5 rounded border-none cursor-pointer text-xs font-medium transition-all",
-                    appearance === "dark"
-                      ? "bg-gray-1 text-gray-12 shadow-sm"
-                      : "bg-transparent text-gray-11"
-                  )}
-                >
-                  Dark
-                </button>
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-0.5">
-              <Label className="text-sm font-medium text-gray-12">
-                Accent Color
-              </Label>
-              <div className="flex gap-0.5 items-center relative">
-                <Input
-                  type="text"
-                  value={accentInput}
-                  onChange={(e) => handleColorChange(e.target.value, "accent")}
-                  placeholder="#3D63DD"
-                  className="flex-1 px-1 py-0.5  border border-gray-6 bg-gray-1 text-sm text-gray-12"
-                />
-                <Input
-                  type="color"
-                  value={currentColors.accent}
-                  onChange={(e) => handleColorChange(e.target.value, "accent")}
-                  className="w-2.5 h-2.5  border-2 border-gray-6 cursor-pointer shrink-0 p-0 absolute right-0.5 top-1/2 -translate-y-1/2"
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-0.5">
-              <Label className="text-sm font-medium text-gray-12">
-                Gray Color
-              </Label>
-              <div className="flex gap-0.5 items-center relative">
-                <Input
-                  type="text"
-                  value={grayInput}
-                  onChange={(e) => handleColorChange(e.target.value, "gray")}
-                  placeholder="#8B8D98"
-                  className="flex-1 px-1 py-0.5  border border-gray-6 bg-gray-1 text-sm text-gray-12"
-                />
-                <Input
-                  type="color"
-                  value={currentColors.gray}
-                  onChange={(e) => handleColorChange(e.target.value, "gray")}
-                  className="w-2.5 h-2.5  border-2 border-gray-6 cursor-pointer shrink-0 p-0 absolute right-0.5 top-1/2 -translate-y-1/2"
-                />
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-0.5">
-              <Label className="text-sm font-medium text-gray-12">
-                Background Color
-              </Label>
-              <div className="flex gap-0.5 items-center relative">
-                <Input
-                  type="text"
-                  value={backgroundInput}
-                  onChange={(e) =>
-                    handleColorChange(e.target.value, "background")
-                  }
-                  placeholder="#FAFAFA"
-                  className="flex-1 px-1 py-0.5  border border-gray-6 bg-gray-1 text-sm text-gray-12"
-                />
-                <Input
-                  type="color"
-                  value={currentColors.background}
-                  onChange={(e) =>
-                    handleColorChange(e.target.value, "background")
-                  }
-                  className="w-2.5 h-2.5 border-2 border-gray-6 cursor-pointer shrink-0 p-0 absolute right-0.5 top-1/2 -translate-y-1/2"
-                />
-              </div>
+    <Popover>
+      <PopoverTrigger asChild>
+        <button
+          aria-label="Customize colors"
+          type="button"
+          className="flex items-center justify-center w-3 h-3 rounded-sm border border-gray-6 bg-gray-1 cursor-pointer transition-colors hover:bg-gray-3"
+        >
+          <MixerHorizontalIcon className="w-1 h-1 text-gray-11" />
+        </button>
+      </PopoverTrigger>
+      <PopoverContent className="min-w-[320px] p-1" align="end">
+        <div className="flex flex-col gap-1">
+          <div className="flex items-center justify-between">
+            <Label className="text-sm font-semibold text-gray-12">
+              Theme Settings
+            </Label>
+            <div className="flex bg-gray-3 p-0 rounded-sm">
+              <button
+                type="button"
+                onClick={() => setAppearance("light")}
+                className={cn(
+                  "px-0.5 py-0.5 rounded border-none cursor-pointer text-xs font-medium transition-all",
+                  appearance === "light"
+                    ? "bg-gray-1 text-gray-12 shadow-sm"
+                    : "bg-transparent text-gray-11"
+                )}
+              >
+                Light
+              </button>
+              <button
+                type="button"
+                onClick={() => setAppearance("dark")}
+                className={cn(
+                  "px-0.5 py-0.5 rounded border-none cursor-pointer text-xs font-medium transition-all",
+                  appearance === "dark"
+                    ? "bg-gray-1 text-gray-12 shadow-sm"
+                    : "bg-transparent text-gray-11"
+                )}
+              >
+                Dark
+              </button>
             </div>
           </div>
-        </PopoverContent>
-      </Popover>
-    </div>
+
+          <div className="flex flex-col gap-0.5">
+            <Label className="text-sm font-medium text-gray-12">
+              Accent Color
+            </Label>
+            <div className="flex gap-0.5 items-center relative">
+              <Input
+                type="text"
+                value={accentInput}
+                onChange={(e) => handleColorChange(e.target.value, "accent")}
+                placeholder="#3D63DD"
+                className="flex-1 px-1 py-0.5  border border-gray-6 bg-gray-1 text-sm text-gray-12"
+              />
+              <Input
+                type="color"
+                value={currentColors.accent}
+                onChange={(e) => handleColorChange(e.target.value, "accent")}
+                className="w-2.5 h-2.5  border-2 border-gray-6 cursor-pointer shrink-0 p-0 absolute right-0.5 top-1/2 -translate-y-1/2"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-0.5">
+            <Label className="text-sm font-medium text-gray-12">
+              Gray Color
+            </Label>
+            <div className="flex gap-0.5 items-center relative">
+              <Input
+                type="text"
+                value={grayInput}
+                onChange={(e) => handleColorChange(e.target.value, "gray")}
+                placeholder="#8B8D98"
+                className="flex-1 px-1 py-0.5  border border-gray-6 bg-gray-1 text-sm text-gray-12"
+              />
+              <Input
+                type="color"
+                value={currentColors.gray}
+                onChange={(e) => handleColorChange(e.target.value, "gray")}
+                className="w-2.5 h-2.5  border-2 border-gray-6 cursor-pointer shrink-0 p-0 absolute right-0.5 top-1/2 -translate-y-1/2"
+              />
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-0.5">
+            <Label className="text-sm font-medium text-gray-12">
+              Background Color
+            </Label>
+            <div className="flex gap-0.5 items-center relative">
+              <Input
+                type="text"
+                value={backgroundInput}
+                onChange={(e) =>
+                  handleColorChange(e.target.value, "background")
+                }
+                placeholder="#FAFAFA"
+                className="flex-1 px-1 py-0.5  border border-gray-6 bg-gray-1 text-sm text-gray-12"
+              />
+              <Input
+                type="color"
+                value={currentColors.background}
+                onChange={(e) =>
+                  handleColorChange(e.target.value, "background")
+                }
+                className="w-2.5 h-2.5 border-2 border-gray-6 cursor-pointer shrink-0 p-0 absolute right-0.5 top-1/2 -translate-y-1/2"
+              />
+            </div>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
   );
 }

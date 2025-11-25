@@ -6,7 +6,9 @@ import { ThemeColorSwitcher } from "../registry/default/components/ThemeColorSwi
 
 export const Provider: GlobalProvider = ({ children }) => (
   <div>
-    <ThemeColorSwitcher />
+    <div className="fixed top-1 right-1 z-[9999]">
+      <ThemeColorSwitcher />
+    </div>
     {children}
   </div>
 );

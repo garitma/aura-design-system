@@ -1,32 +1,97 @@
 "use client";
-import * as PopoverPrimitive from "@radix-ui/react-popover";
+
 import * as React from "react";
+import { Popover as PopoverRadix } from "radix-ui";
+import { Cross2Icon } from "@radix-ui/react-icons";
+
 import { cn } from "@/utils/class-names";
 
-const Popover = PopoverPrimitive.Root;
+function Popover({ ...props }: React.ComponentProps<typeof PopoverRadix.Root>) {
+  return <PopoverRadix.Root data-slot="popover" {...props} />;
+}
 
-const PopoverTrigger = PopoverPrimitive.Trigger;
-
-const PopoverContent = React.forwardRef<
-  React.ComponentRef<typeof PopoverPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof PopoverPrimitive.Content>
->(({ className, align = "center", sideOffset = 4, ...props }, ref) => (
-  <PopoverPrimitive.Portal>
-    <PopoverPrimitive.Content
-      ref={ref}
-      align={align}
-      sideOffset={sideOffset}
-      side="bottom"
-      className={cn(
-        "z-50 origin-(--radix-popover-content-transform-origin) overflow-y-auto max-h-(--radix-popover-content-available-height) min-w-[240px] max-w-[98vw] rounded-xl border bg-fd-popover/60 backdrop-blur-lg p-0.5 text-sm text-fd-popover-foreground shadow-lg focus-visible:outline-none data-[state=closed]:animate-fd-popover-out data-[state=open]:animate-fd-popover-in",
-        className
-      )}
+function PopoverTrigger({
+  className,
+  ...props
+}: React.ComponentProps<typeof PopoverRadix.Trigger>) {
+  return (
+    <PopoverRadix.Trigger
+      data-slot="popover-trigger"
+      className={cn(className)}
       {...props}
     />
-  </PopoverPrimitive.Portal>
-));
-PopoverContent.displayName = PopoverPrimitive.Content.displayName;
+  );
+}
 
-const PopoverClose = PopoverPrimitive.PopoverClose;
+function PopoverAnchor({
+  ...props
+}: React.ComponentProps<typeof PopoverRadix.Anchor>) {
+  return <PopoverRadix.Anchor data-slot="popover-anchor" {...props} />;
+}
 
-export { Popover, PopoverTrigger, PopoverContent, PopoverClose };
+function PopoverPortal({
+  ...props
+}: React.ComponentProps<typeof PopoverRadix.Portal>) {
+  return <PopoverRadix.Portal data-slot="popover-portal" {...props} />;
+}
+
+function PopoverContent({
+  className,
+  ...props
+}: React.ComponentProps<typeof PopoverRadix.Content>) {
+  return (
+    <PopoverRadix.Portal>
+      <PopoverRadix.Content
+        data-slot="popover-content"
+        collisionPadding={8}
+        className={cn(
+          className,
+          "bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md"
+        )}
+        {...props}
+      />
+    </PopoverRadix.Portal>
+  );
+}
+
+function PopoverArrow({
+  className,
+  ...props
+}: React.ComponentProps<typeof PopoverRadix.Arrow>) {
+  return (
+    <PopoverRadix.Arrow
+      data-slot="popover-arrow"
+      className={cn(className, "fill-gray-1")}
+      {...props}
+    />
+  );
+}
+
+function PopoverClose({
+  className,
+  ...props
+}: React.ComponentProps<typeof PopoverRadix.Close>) {
+  return (
+    <PopoverRadix.Close
+      data-slot="popover-close"
+      className={cn(
+        className,
+        "absolute right-0.5 top-0.5 inline-flex items-center justify-center rounded-sm p-0.5 hover:bg-accent-3 cursor-pointer"
+      )}
+      {...props}
+    >
+      <Cross2Icon className="size-1" />
+      <span className="sr-only">Close</span>
+    </PopoverRadix.Close>
+  );
+}
+
+export {
+  Popover,
+  PopoverTrigger,
+  PopoverAnchor,
+  PopoverPortal,
+  PopoverContent,
+  PopoverArrow,
+  PopoverClose,
+};

@@ -1,4 +1,3 @@
-
 "use client";
 import { type ComponentProps, Fragment, useState } from "react";
 import { cva } from "class-variance-authority";
@@ -7,7 +6,10 @@ import { useNav } from "fumadocs-ui/contexts/layout";
 
 import { cn } from "@/utils/class-names";
 
-import { BaseLinkItem, type LinkItemType } from "@/components/layout/shared/index";
+import {
+  BaseLinkItem,
+  type LinkItemType,
+} from "@/components/layout/shared/index";
 import { buttonVariants } from "@/components/ui/Button";
 import {
   NavigationMenu,
@@ -48,9 +50,8 @@ export function Navbar(props: ComponentProps<"div">) {
         id="nd-nav"
         {...props}
         className={cn(
-          "fixed top-0 z-40 left-0 right-(--removed-body-scroll-bar-size,0) backdrop-blur-lg border-b transition-colors *:mx-auto *:max-w-fd-container",
+          "fixed top-0 z-40 left-0 right-(--removed-body-scroll-bar-size,0) border-b transition-colors *:mx-auto *:max-w-fd-container bg-gray-1 border-gray-a6",
           value.length > 0 && "max-lg:shadow-lg max-lg:rounded-b-2xl",
-          (!isTransparent || value.length > 0) && "bg-fd-background/80",
           props.className
         )}
       >

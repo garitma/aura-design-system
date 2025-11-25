@@ -264,7 +264,7 @@
 }
 
 @layer base {
-  @import "@aura-design/system/main.css";
+  @import "../styles/main.css";
 
   html {
     font-size: 17px;
