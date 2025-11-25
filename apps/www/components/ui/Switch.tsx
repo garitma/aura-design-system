@@ -13,7 +13,7 @@ function Switch({
     <SwitchPrimitive.Root
       data-slot="switch"
       className={cn(
-        "relative h-0.5 w-1 cursor-pointer rounded-full outline-none bg-accent-4 data-[state=checked]:bg-accent-10 border border-gray-a6 hover:bg-accent-5",
+        "relative h-1.5 w-2.5 cursor-pointer rounded-full outline-none bg-accent-4 data-[state=checked]:bg-accent-10 border border-gray-a6 hover:bg-accent-5",
         className
       )}
       {...props}
@@ -31,7 +31,7 @@ function SwitchThumb({
     <SwitchPrimitive.Thumb
       data-slot="switch-thumb"
       className={cn(
-        "block size-0.5 translate-x-[3.5px] rounded-full bg-gray-1 shadow-md transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[15.5px]",
+        "block size-1 translate-x-[3.5px] rounded-full bg-gray-1 shadow-md transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[15.5px]",
         className
       )}
       {...props}

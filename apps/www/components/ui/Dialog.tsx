@@ -1,6 +1,3 @@
-"use client";
-import React from "react"
-
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { Cross2Icon } from "@radix-ui/react-icons";
 
@@ -39,7 +36,7 @@ function DialogOverlay({
     <DialogPrimitive.Overlay
       data-slot="dialog-overlay"
       className={cn(
-        "fixed inset-0 bg-gray-a10 z-10 data-[state=open]:animate-overlay-show",
+        "fixed inset-0 bg-accent-surface z-10 data-[state=open]:animate-overlay-show",
         className
       )}
       {...props}
@@ -58,7 +55,7 @@ function DialogContent({
       <DialogPrimitive.Content
         data-slot="dialog-content"
         className={cn(
-          "smash fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] -translate-x-1/2 -translate-y-1/2 bg-gray-1 p-0.5 rounded-md z-10 data-[state=open]:animate-content-show",
+          "smash fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] -translate-x-1/2 -translate-y-1/2 bg-gray-1 p-2 rounded-md z-10 data-[state=open]:animate-content-show",
           className
         )}
         {...props}
@@ -79,7 +76,13 @@ function DialogHeader({ ...props }: React.ComponentProps<"div">) {
 }
 
 function DialogFooter({ ...props }: React.ComponentProps<"div">) {
-  return <div data-slot="dialog-footer" {...props} />;
+  return (
+    <div
+      data-slot="dialog-footer"
+      className="flex justify-end gap-1"
+      {...props}
+    />
+  );
 }
 
 function DialogTitle({

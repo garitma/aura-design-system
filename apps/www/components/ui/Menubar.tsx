@@ -2,12 +2,25 @@
 
 import * as React from "react";
 import { Menubar as MenubarRadix } from "radix-ui";
-import { CheckIcon, ChevronRightIcon, CircleIcon, DotFilledIcon } from "@radix-ui/react-icons";
+import {
+  CheckIcon,
+  ChevronRightIcon,
+  DotFilledIcon,
+} from "@radix-ui/react-icons";
 
 import { cn } from "@/utils/class-names";
 
-function Menubar({ className, ...props }: React.ComponentProps<typeof MenubarRadix.Root>) {
-  return <MenubarRadix.Root data-slot="menubar" className={cn(className, "flex")} {...props} />;
+function Menubar({
+  className,
+  ...props
+}: React.ComponentProps<typeof MenubarRadix.Root>) {
+  return (
+    <MenubarRadix.Root
+      data-slot="menubar"
+      className={cn("flex", className)}
+      {...props}
+    />
+  );
 }
 
 function MenubarMenu({
@@ -38,7 +51,16 @@ function MenubarTrigger({
   className,
   ...props
 }: React.ComponentProps<typeof MenubarRadix.Trigger>) {
-  return <MenubarRadix.Trigger data-slot="menubar-trigger" className={cn(className, "p-0 px-0.5 hover:bg-accent-3 flex relative cursor-pointer")} {...props} />;
+  return (
+    <MenubarRadix.Trigger
+      data-slot="menubar-trigger"
+      className={cn(
+        "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer",
+        className
+      )}
+      {...props}
+    />
+  );
 }
 
 function MenubarContent({
@@ -47,10 +69,13 @@ function MenubarContent({
 }: React.ComponentProps<typeof MenubarRadix.Content>) {
   return (
     <MenubarPortal>
-      <MenubarRadix.Content 
-        data-slot="menubar-content" 
-        className={cn(className, "bg-accent-1 border border-gray-a6 rounded-sm relative shadow-md")}
-        {...props} 
+      <MenubarRadix.Content
+        data-slot="menubar-content"
+        className={cn(
+          "bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md",
+          className
+        )}
+        {...props}
       />
     </MenubarPortal>
   );
@@ -60,7 +85,16 @@ function MenubarItem({
   className,
   ...props
 }: React.ComponentProps<typeof MenubarRadix.Item>) {
-  return <MenubarRadix.Item data-slot="menubar-item" className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")} {...props} />;
+  return (
+    <MenubarRadix.Item
+      data-slot="menubar-item"
+      className={cn(
+        "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer justify-between",
+        className
+      )}
+      {...props}
+    />
+  );
 }
 
 function MenubarCheckboxItem({
@@ -69,7 +103,14 @@ function MenubarCheckboxItem({
   ...props
 }: React.ComponentProps<typeof MenubarRadix.CheckboxItem>) {
   return (
-    <MenubarRadix.CheckboxItem data-slot="menubar-checkbox-item" className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")} {...props}>
+    <MenubarRadix.CheckboxItem
+      data-slot="menubar-checkbox-item"
+      className={cn(
+        "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer",
+        className
+      )}
+      {...props}
+    >
       <span className="absolute left-0.5 top-0 bottom-0 items-center flex justify-center">
         <MenubarRadix.ItemIndicator>
           <CheckIcon className="text-accent-9" />
@@ -86,10 +127,17 @@ function MenubarRadioItem({
   ...props
 }: React.ComponentProps<typeof MenubarRadix.RadioItem>) {
   return (
-    <MenubarRadix.RadioItem data-slot="menubar-radio-item" className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")} {...props}>
+    <MenubarRadix.RadioItem
+      data-slot="menubar-radio-item"
+      className={cn(
+        "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer",
+        className
+      )}
+      {...props}
+    >
       <span className="absolute left-0.5 top-0 bottom-0 items-center flex justify-center">
         <MenubarRadix.ItemIndicator>
-          <DotFilledIcon className="fill-current text-accent-9"/>
+          <DotFilledIcon className="fill-current text-accent-9" />
         </MenubarRadix.ItemIndicator>
       </span>
       {children}
@@ -101,14 +149,26 @@ function MenubarLabel({
   className,
   ...props
 }: React.ComponentProps<typeof MenubarRadix.Label>) {
-  return <MenubarRadix.Label data-slot="menubar-label" className={cn(className, "p-0.5 px-2 text-gray-12")} {...props} />;
+  return (
+    <MenubarRadix.Label
+      data-slot="menubar-label"
+      className={cn("p-0.5 px-2 text-gray-12", className)}
+      {...props}
+    />
+  );
 }
 
 function MenubarSeparator({
   className,
   ...props
 }: React.ComponentProps<typeof MenubarRadix.Separator>) {
-  return <MenubarRadix.Separator data-slot="menubar-separator" className={cn(className, "m-0 h-px bg-gray-a6")} {...props} />;
+  return (
+    <MenubarRadix.Separator
+      data-slot="menubar-separator"
+      className={cn("m-0.6 h-px bg-gray-a6", className)}
+      {...props}
+    />
+  );
 }
 
 function MenubarShortcut({ ...props }: React.ComponentProps<"span">) {
@@ -129,7 +189,14 @@ function MenubarSubTrigger({
   inset?: boolean;
 }) {
   return (
-    <MenubarRadix.SubTrigger data-slot="menubar-sub-trigger" className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")} {...props}>
+    <MenubarRadix.SubTrigger
+      data-slot="menubar-sub-trigger"
+      className={cn(
+        "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer",
+        className
+      )}
+      {...props}
+    >
       {children}
       <div className="absolute right-0.5 top-0 bottom-0 items-center flex justify-center">
         <ChevronRightIcon />
@@ -142,7 +209,16 @@ function MenubarSubContent({
   className,
   ...props
 }: React.ComponentProps<typeof MenubarRadix.SubContent>) {
-  return <MenubarRadix.SubContent data-slot="menubar-sub-content" className={cn(className, "bg-accent-1 border border-gray-a6 rounded-sm relative shadow-md")} {...props} />;
+  return (
+    <MenubarRadix.SubContent
+      data-slot="menubar-sub-content"
+      className={cn(
+        "bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md",
+        className
+      )}
+      {...props}
+    />
+  );
 }
 
 export {

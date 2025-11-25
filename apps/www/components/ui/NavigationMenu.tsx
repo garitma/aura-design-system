@@ -26,7 +26,7 @@ function NavigationMenuList({
   return (
     <NavigationMenuRadix.List
       data-slot="navigation-menu-list"
-      className={cn(className)}
+      className={cn("flex", className)}
       {...props}
     />
   );
@@ -39,7 +39,7 @@ function NavigationMenuItem({
   return (
     <NavigationMenuRadix.Item
       data-slot="navigation-menu-item"
-      className={cn(className)}
+      className={cn("relative", className)}
       {...props}
     />
   );
@@ -54,7 +54,10 @@ function NavigationMenuTrigger({
     <NavigationMenuRadix.Trigger
       data-slot="navigation-menu-trigger"
       {...props}
-      className={cn(className, "p-0 px-0.5 hover:bg-accent-3 flex relative cursor-pointer")}
+      className={cn(
+        "p-0.5 px-1 hover:bg-accent-3 flex relative cursor-pointer",
+        className
+      )}
     >
       {children}
     </NavigationMenuRadix.Trigger>
@@ -69,8 +72,8 @@ function NavigationMenuContent({
     <NavigationMenuRadix.Content
       data-slot="navigation-menu-content"
       className={cn(
-        className,
-        "absolute top-4 bg-gray-1 shadow-md rounded-md border border-gray-a6"
+        "absolute top-full mt-0.5 bg-gray-1 shadow-md rounded-md border border-gray-a6 overflow-hidden",
+        className
       )}
       {...props}
     />
@@ -97,7 +100,10 @@ function NavigationMenuLink({
   return (
     <NavigationMenuRadix.Link
       data-slot="navigation-menu-link"
-      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer items-center")}
+      className={cn(
+        "p-0.5 px-1 hover:bg-accent-3 flex relative cursor-pointer items-center",
+        className
+      )}
       {...props}
     />
   );

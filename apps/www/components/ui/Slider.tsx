@@ -1,65 +1,28 @@
-"use client";
+"use client"
 
-import * as React from "react";
-import { Slider as SliderPrimitive } from "radix-ui";
+import * as React from "react"
+import { Slider as SliderPrimitive } from "radix-ui"
 
-import { cn } from "@/utils/class-names";
+import { cn } from "@/utils/class-names"
 
-function Slider({
-  className,
-  ...props
-}: React.ComponentProps<typeof SliderPrimitive.Root>) {
-  return (
+const Slider = React.forwardRef<
+    React.ElementRef<typeof SliderPrimitive.Root>,
+    React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
+>(({ className, ...props }, ref) => (
     <SliderPrimitive.Root
-      data-slot="slider"
-      className={cn(className)}
-      {...props}
-    />
-  );
-}
+        ref={ref}
+        className={cn(
+            "relative flex w-full touch-none select-none items-center",
+            className
+        )}
+        {...props}
+    >
+        <SliderPrimitive.Track className="relative h-0.5 w-full grow overflow-hidden rounded-full bg-gray-3">
+            <SliderPrimitive.Range className="absolute h-full bg-gray-12" />
+        </SliderPrimitive.Track>
+        <SliderPrimitive.Thumb className="block size-1.5 rounded-full border border-gray-12 bg-gray-1 ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" />
+    </SliderPrimitive.Root>
+))
+Slider.displayName = SliderPrimitive.Root.displayName
 
-function SliderPrimitiveTrack({
-  className,
-  ...props
-}: React.ComponentProps<typeof SliderPrimitive.Track>) {
-  return (
-    <SliderPrimitive.Track
-      data-slot="slider-track"
-      className={cn(className)}
-      {...props}
-    />
-  );
-}
-
-function SliderPrimitiveRange({
-  className,
-  ...props
-}: React.ComponentProps<typeof SliderPrimitive.Range>) {
-  return (
-    <SliderPrimitive.Range
-      data-slot="slider-range"
-      className={cn(className)}
-      {...props}
-    />
-  );
-}
-
-function SliderPrimitiveThumb({
-  className,
-  ...props
-}: React.ComponentProps<typeof SliderPrimitive.Thumb>) {
-  return (
-    <SliderPrimitive.Thumb
-      data-slot="slider-thumb"
-      className={cn(className)}
-      {...props}
-    />
-  );
-}
-
-export {
-  Slider,
-  SliderPrimitiveTrack,
-  SliderPrimitiveRange,
-  SliderPrimitiveThumb,
-};
+export { Slider }

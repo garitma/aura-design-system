@@ -14,7 +14,7 @@ const buttonVariants = cva("button", {
       menu: "button-menu",
     },
     size: {
-      default: "h-3 px-2",
+      default: "h-4 px-2.5",
       xs: "h-2.5 px-1.5",
       sm: "h-3 px-2",
       md: "h-4 px-2.5",

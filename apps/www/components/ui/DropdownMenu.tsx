@@ -2,7 +2,12 @@
 
 import * as React from "react";
 import { DropdownMenu as DropdownMenuRadix } from "radix-ui";
-import { CheckIcon, ChevronRightIcon, CircleIcon, DotFilledIcon } from "@radix-ui/react-icons";
+import {
+  CheckIcon,
+  ChevronRightIcon,
+  CircleIcon,
+  DotFilledIcon,
+} from "@radix-ui/react-icons";
 
 import { cn } from "@/utils/class-names";
 
@@ -41,9 +46,10 @@ function DropdownMenuContent({
     <DropdownMenuRadix.Portal>
       <DropdownMenuRadix.Content
         data-slot="dropdown-menu-content"
+        collisionPadding={8}
         className={cn(
           className,
-          "bg-accent-1 border border-gray-a6 rounded-sm relative shadow-md"
+          "bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md"
         )}
         {...props}
       />
@@ -64,7 +70,10 @@ function DropdownMenuItem({
   return (
     <DropdownMenuRadix.Item
       data-slot="dropdown-menu-item"
-      className={cn(className, "p-0 px-0.5 hover:bg-accent-3 flex relative cursor-pointer")}
+      className={cn(
+        className,
+        "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer justify-between"
+      )}
       {...props}
     />
   );
@@ -78,12 +87,15 @@ function DropdownMenuCheckboxItem({
   return (
     <DropdownMenuRadix.CheckboxItem
       data-slot="dropdown-menu-checkbox-item"
-      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")}
+      className={cn(
+        className,
+        "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer"
+      )}
       {...props}
     >
       <span className="absolute left-0.5 top-0 bottom-0 items-center flex justify-center">
         <DropdownMenuRadix.ItemIndicator>
-          <CheckIcon className="text-accent-9"/>
+          <CheckIcon className="text-accent-9" />
         </DropdownMenuRadix.ItemIndicator>
       </span>
       {children}
@@ -112,7 +124,10 @@ function DropdownMenuRadioItem({
   return (
     <DropdownMenuRadix.RadioItem
       data-slot="dropdown-menu-radio-item"
-      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")}
+      className={cn(
+        className,
+        "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer"
+      )}
       {...props}
     >
       <span className="absolute left-0.5 top-0 bottom-0 items-center flex justify-center">
@@ -145,7 +160,7 @@ function DropdownMenuSeparator({
   return (
     <DropdownMenuRadix.Separator
       data-slot="dropdown-menu-separator"
-      className={cn(className, "m-0 h-px bg-gray-a6")}
+      className={cn(className, "m-0.6 h-px bg-gray-a6")}
       {...props}
     />
   );
@@ -169,7 +184,10 @@ function DropdownMenuSubTrigger({
   return (
     <DropdownMenuRadix.SubTrigger
       data-slot="dropdown-menu-sub-trigger"
-      className={cn(className, "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer")}
+      className={cn(
+        className,
+        "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer"
+      )}
       {...props}
     >
       {children}
@@ -189,7 +207,7 @@ function DropdownMenuSubContent({
       data-slot="dropdown-menu-sub-content"
       className={cn(
         className,
-        "bg-accent-1 border border-gray-a6 rounded-sm relative shadow-md"
+        "bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md"
       )}
       {...props}
     />
