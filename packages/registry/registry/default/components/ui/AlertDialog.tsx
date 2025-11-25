@@ -33,7 +33,7 @@ function AlertDialogOverlay({
     <AlertDialogRadix.Overlay
       data-slot="alert-dialog-overlay"
       className={cn(
-        "fixed inset-0 bg-gray-a6 z-10 data-[state=open]:animate-overlay-show",
+        "fixed inset-0 bg-accent-surface z-10 data-[state=open]:animate-overlay-show",
         className
       )}
       {...props}

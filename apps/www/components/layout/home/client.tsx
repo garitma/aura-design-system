@@ -50,7 +50,7 @@ export function Navbar(props: ComponentProps<"div">) {
         id="nd-nav"
         {...props}
         className={cn(
-          "fixed top-0 z-40 left-0 right-(--removed-body-scroll-bar-size,0) border-b transition-colors *:mx-auto *:max-w-fd-container bg-gray-1 border-gray-a6",
+          "fixed top-0 z-40 left-0 right-(--removed-body-scroll-bar-size,0) border-b transition-colors *:mx-auto *:max-w-fd-container bg-gray-1 border-gray-a6 text-gray-12",
           value.length > 0 && "max-lg:shadow-lg max-lg:rounded-b-2xl",
           props.className
         )}
