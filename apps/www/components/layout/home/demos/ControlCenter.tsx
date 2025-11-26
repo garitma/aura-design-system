@@ -13,22 +13,43 @@ export function ControlCenter() {
       data-block="control-center"
     >
       <div className="grid grid-cols-2 gap-1">
-        <Button variant="fill">
-          <div className="p-0.5 bg-accent-9 rounded-full text-accent-contrast">
+        <Card className="p-1.5 bg-gray-3 border-gray-6 flex flex-col justify-between cursor-pointer hover:bg-gray-4 transition-colors">
+          <div className="text-accent-9">
             <Wifi className="icon" />
           </div>
-          <span className="font-medium text-sm">Wi-Fi</span>
-        </Button>
-        <div className="grid grid-rows-2 gap-1">
-          <Button variant="fill">
+          <div>
+            <div className="font-medium text-sm">Wi-Fi</div>
+            <div className="text-xs text-gray-11">Connected</div>
+          </div>
+        </Card>
+
+        <Card className="p-1.5 bg-gray-3 border-gray-6 flex flex-col justify-between cursor-pointer hover:bg-gray-4 transition-colors">
+          <div className="text-accent-9">
             <Bluetooth className="icon" />
-            <span className="font-medium text-xs">Bluetooth</span>
-          </Button>
-          <Button variant="fill">
+          </div>
+          <div>
+            <div className="font-medium text-sm">Bluetooth</div>
+            <div className="text-xs text-gray-11">On</div>
+          </div>
+        </Card>
+        <Card className="p-1.5 bg-gray-3 border-gray-6 flex flex-col justify-between cursor-pointer hover:bg-gray-4 transition-colors">
+          <div className="text-warning-contrast">
             <Tv className="icon" />
-            <span className="font-medium text-xs">Living Room</span>
-          </Button>
-        </div>
+          </div>
+          <div>
+            <div className="font-medium text-sm">Living Room</div>
+            <div className="text-xs text-gray-11">Apple TV</div>
+          </div>
+        </Card>
+        <Card className="p-1.5 bg-gray-3 border-gray-6 flex flex-col justify-between cursor-pointer hover:bg-gray-4 transition-colors">
+          <div className="text-warning-contrast">
+            <Sun className="icon" />
+          </div>
+          <div>
+            <div className="font-medium text-sm">Sun</div>
+            <div className="text-xs text-gray-11">On</div>
+          </div>
+        </Card>
       </div>
 
       <div className="space-y-1.5">
