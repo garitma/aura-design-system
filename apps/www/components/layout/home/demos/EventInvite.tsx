@@ -30,7 +30,7 @@ export function EventInvite() {
         </div>
 
         <div className="grid grid-cols-2 gap-1.5">
-          <div className="space-y-0.5">
+          <div className="flex flex-col gap-0.5">
             <Label className="text-xs text-gray-11 tracking-wider font-semibold">
               Where
             </Label>
@@ -39,7 +39,7 @@ export function EventInvite() {
               <span>The Loft, NYC</span>
             </div>
           </div>
-          <div className="space-y-0.5">
+          <div className="flex flex-col gap-0.5">
             <Label className="text-xs text-gray-11 tracking-wider font-semibold">
               When
             </Label>
@@ -51,11 +51,11 @@ export function EventInvite() {
         </div>
       </div>
 
-      <div className="space-y-1 mt-2">
+      <div className="flex flex-col gap-0.5 mt-2">
         <Label className="text-xs text-gray-11 tracking-wider font-semibold">
           Registration
         </Label>
-        <div className="bg-gray-3 p-0.5 rounded-full border border-gray-6 flex">
+        <div className="bg-gray-3 p-0.5 border border-gray-6 flex">
           <Button variant="menu">Going</Button>
           <Button variant="menu">Maybe</Button>
           <Button variant="menu">No</Button>

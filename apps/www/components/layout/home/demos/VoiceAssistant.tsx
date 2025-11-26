@@ -8,12 +8,12 @@ import { Input } from "@/components/ui/Input";
 
 export function VoiceAssistant() {
   return (
-    <Card className="rounded-full p-1 pl-2 flex items-center gap-1 bg-gray-2 border-gray-6 shadow-lg shadow-gray-a3">
+    <Card className="p-1 pl-2 flex items-center gap-1 bg-gray-2 border-gray-6 shadow-lg shadow-gray-a3">
       <div className="p-0.5 bg-gradient-to-tr from-accent-9 to-accent-11 rounded-full text-accent-contrast">
         <Sparkles className="icon" />
       </div>
       <Input
-        className="border-0 bg-transparent shadow-none focus-visible:ring-0 px-0 h-auto placeholder:text-gray-11 font-medium text-gray-12"
+        className="border-0 bg-transparent text-gray-12"
         placeholder="Make me a fit..."
       />
       <Button>

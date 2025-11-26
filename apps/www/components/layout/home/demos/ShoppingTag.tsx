@@ -29,7 +29,7 @@ export function ShoppingTag() {
           <HoverCardTrigger asChild>
             <div className="w-2 h-2 bg-gray-contrast rounded-full shadow-lg cursor-pointer animate-pulse hover:animate-none" />
           </HoverCardTrigger>
-          <HoverCardContent side="top" className="w-48">
+          <HoverCardContent side="top">
             <div className="flex justify-between items-start mb-2">
               <div className="space-y-0.5">
                 <h4 className="text-sm font-medium text-gray-12">Silk Dress</h4>
@@ -37,7 +37,7 @@ export function ShoppingTag() {
               </div>
               <span className="text-sm font-medium text-gray-12">$120</span>
             </div>
-            <Button className="w-full gap-1">
+            <Button className="w-full gap-0.5">
               <ShoppingBag className="icon" />
               Add to Cart
             </Button>
@@ -46,7 +46,7 @@ export function ShoppingTag() {
       </div>
 
       <div className="absolute bottom-2 left-2">
-        <Button>
+        <Button className="gap-0.5">
           <Tag className="icon" />
           <span>Shop Look</span>
         </Button>

@@ -31,6 +31,28 @@ export function AlarmWidget() {
         </div>
         <div className="bg-gray-a2 p-1.5 rounded-xl flex flex-col justify-between gap-1.5 border border-accent-a6">
           <span className="h2  text-accent-12 tracking-tight">
+            07:35{" "}
+            <span className="text-sm font-sans text-accent-11 font-medium">
+              AM
+            </span>
+          </span>
+          <div className="flex justify-end">
+            <Switch defaultChecked />
+          </div>
+        </div>
+        <div className="bg-gray-a2 p-1.5 rounded-xl flex flex-col justify-between gap-1.5 border border-accent-a6">
+          <span className="h2  text-accent-12 tracking-tight">
+            07:40{" "}
+            <span className="text-sm font-sans text-accent-11 font-medium">
+              AM
+            </span>
+          </span>
+          <div className="flex justify-end">
+            <Switch defaultChecked />
+          </div>
+        </div>
+        <div className="bg-gray-a2 p-1.5 rounded-xl flex flex-col justify-between gap-1.5 border border-accent-a6">
+          <span className="h2  text-accent-12 tracking-tight">
             12:30{" "}
             <span className="text-sm font-sans text-accent-11 font-medium">
               PM

@@ -11,22 +11,30 @@ import { MusicPlayer } from "./demos/MusicPlayer";
 import { PhotoEditor } from "./demos/PhotoEditor";
 import { ShoppingTag } from "./demos/ShoppingTag";
 import { VoiceAssistant } from "./demos/VoiceAssistant";
+import { cn } from "@/utils/class-names";
 
 export default function AuraAesthetic() {
   return (
     <Section container="smesh" className="border-t border-gray-6 bg-gray-2">
       <div className="relative">
         <div className="text-center smash mb-2">
-          <h2 className="font-bold">Soft Pop & Material You</h2>
+          <h2 className="font-bold">With Aura, The Soul is Yours.</h2>
           <p className="text-gray-11">
-            Aura's aesthetic combines large rounded corners, masonry-style
-            layouts, and playful interactions to create a warm, inviting digital
-            environment.
+            We've compiled the high-quality basic ingredients for your product;
+            by adding just a few of taste—your final signature touch—we believe
+            you can achieve something truly great. We think the best systems
+            empower you to build something diferent. <b>Do you?</b>
           </p>
         </div>
         {/* Demo Blocks */}
-        <div className="flex justify-center overflow-hidden w-full mask-linear-fade">
-          <div className="flex animate-marquee w-max">
+        <div
+          className={cn(
+            "flex justify-center  w-full mask-linear-fade",
+            // "overflow-scroll"
+            "overflow-hidden"
+          )}
+        >
+          <div className={cn("flex w-max", "animate-marquee")}>
             {/* Original Set */}
             <div className="flex gap-2 mr-2">
               {/* Column 1 */}

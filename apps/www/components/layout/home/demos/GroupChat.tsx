@@ -11,7 +11,10 @@ import { ScrollArea } from "@/components/ui/ScrollArea";
 
 export function GroupChat() {
   return (
-    <Card className="flex flex-col h-full bg-gray-2 text-gray-12 border-gray-6 overflow-hidden">
+    <Card
+      className="flex flex-col h-full bg-gray-2 text-gray-12 border-gray-6 overflow-hidden"
+      data-block="group-chat"
+    >
       {/* Header */}
       <div className="p-1.5 border-b border-gray-6 flex items-center justify-between bg-gray-2 z-10">
         <div className="flex items-center gap-1">
@@ -31,19 +34,21 @@ export function GroupChat() {
           </div>
           <div>
             <div className="flex items-center gap-0.5">
-              <h3 className="font-semibold text-sm text-gray-12">
+              <h3 className="font-semibold text-sm text-gray-12 m-0">
                 Music Night Out
               </h3>
-              <Badge className="h-2 px-0.5 text-[10px]">3</Badge>
+              <Badge className="size-2 p-0 flex items-center justify-center">
+                3
+              </Badge>
             </div>
-            <p className="text-xs text-gray-11">Active now</p>
+            <p className="text-xs text-gray-11 m-0">Active now</p>
           </div>
         </div>
         <div className="flex gap-0.5">
-          <Button variant="menu">
+          <Button variant="menu" className="size-3 p-0">
             <Phone className="icon" />
           </Button>
-          <Button variant="menu">
+          <Button variant="menu" className="size-3 p-0">
             <Video className="icon" />
           </Button>
         </div>
@@ -87,12 +92,12 @@ export function GroupChat() {
       {/* Input */}
       <div className="p-1 bg-gray-2">
         <div className="relative flex items-center gap-0.5">
-          <Button variant="menu">
+          <Button variant="menu" className="px-1">
             <Plus className="icon" />
           </Button>
           <Input
             placeholder="Message..."
-            className="rounded-full bg-gray-3 border-transparent text-gray-12 placeholder:text-gray-11 focus-visible:ring-gray-7"
+            className="bg-gray-3 border-transparent"
           />
           <Button>
             <Send className="icon" />

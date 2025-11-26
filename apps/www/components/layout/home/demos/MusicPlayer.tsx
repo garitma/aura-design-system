@@ -15,24 +15,18 @@ export function MusicPlayer() {
         src="https://images.unsplash.com/photo-1493225255756-d9584f8606e9?q=80&w=2000&auto=format&fit=crop"
         alt="Album Art"
         fill
-        className="object-cover transition-transform duration-700 group-hover:scale-105"
+        className="object-cover transition-transform duration-700 group-hover:scale-105 opacity-5"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-gray-1 via-gray-a4 to-transparent" />
 
       <div className="relative z-10 space-y-2 p-1">
         <div className="space-y-0.5">
-          <h2 className="h2 text-gray-12 tracking-tight">Serafina</h2>
-          <p className="text-gray-11 text-lg">Midnight Sessions</p>
+          <h2>Serafina</h2>
+          <p>Midnight Sessions</p>
         </div>
 
         <div className="space-y-1.5">
-          <Slider
-            defaultValue={[33]}
-            max={100}
-            step={1}
-            className="[&_[role=slider]]:h-2 [&_[role=slider]]:w-2"
-          />
-          <div className="flex items-center justify-between text-xs text-gray-11 font-medium">
+          <Slider defaultValue={[33]} max={100} step={1} />
+          <div className="flex items-center justify-between font-medium">
             <span>1:24</span>
             <span>4:12</span>
           </div>
