@@ -9,7 +9,10 @@ import { Label } from "@/components/ui/Label";
 
 export function GardeningChecklist() {
   return (
-    <Card className="relative overflow-hidden group">
+    <Card
+      className="relative overflow-hidden group"
+      data-block="gardening-checklist"
+    >
       <AspectRatio ratio={4 / 5}>
         <Image
           src="https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=800&q=80"
@@ -19,7 +22,7 @@ export function GardeningChecklist() {
         />
       </AspectRatio>
 
-      <Card className="absolute bottom-1.5 right-1.5 w-16 p-1.5 bg-gray-2/90 backdrop-blur-md shadow-lg border-gray-6 rotate-[-2deg] hover:rotate-0 transition-transform duration-300">
+      <Card className="absolute bottom-1.5 right-1.5 w-16 p-1.5 bg-gray-2 shadow-lg border-gray-6 rotate-[-2deg] hover:rotate-0 transition-transform duration-300">
         <h4 className="h4  text-lg mb-1 text-success-contrast">To Water</h4>
         <div className="space-y-1">
           <div className="flex items-center space-x-1">

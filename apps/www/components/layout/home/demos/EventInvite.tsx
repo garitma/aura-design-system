@@ -10,7 +10,10 @@ import { Badge } from "@/components/ui/Badge";
 
 export function EventInvite() {
   return (
-    <Card className="h-full p-2 flex flex-col justify-between bg-gray-2 border-gray-6 shadow-sm">
+    <Card
+      className="h-full p-2 flex flex-col justify-between bg-gray-2 border-gray-6 shadow-sm"
+      data-block="event-invite"
+    >
       <div className="space-y-2">
         <div className="flex justify-between items-start">
           <div className="space-y-0.5">
@@ -32,7 +35,7 @@ export function EventInvite() {
               Where
             </Label>
             <div className="flex items-center gap-0.5 text-sm text-gray-12 font-medium">
-              <MapPin className="w-2 h-2 text-accent-9" />
+              <MapPin className="icon" />
               <span>The Loft, NYC</span>
             </div>
           </div>
@@ -41,7 +44,7 @@ export function EventInvite() {
               When
             </Label>
             <div className="flex items-center gap-0.5 text-sm text-gray-12 font-medium">
-              <Calendar className="w-2 h-2 text-accent-9" />
+              <Calendar className="icon" />
               <span>Oct 24, 8 PM</span>
             </div>
           </div>
@@ -53,24 +56,9 @@ export function EventInvite() {
           Registration
         </Label>
         <div className="bg-gray-3 p-0.5 rounded-full border border-gray-6 flex">
-          <Button
-            variant="menu"
-            className="flex-1 rounded-full text-xs h-4 hover:bg-gray-1 hover:shadow-sm data-[state=active]:bg-gray-1 data-[state=active]:shadow-sm data-[state=active]:text-gray-12 transition-all"
-          >
-            Going
-          </Button>
-          <Button
-            variant="menu"
-            className="flex-1 rounded-full text-xs h-4 hover:bg-gray-1 hover:shadow-sm text-gray-11"
-          >
-            Maybe
-          </Button>
-          <Button
-            variant="menu"
-            className="flex-1 rounded-full text-xs h-4 hover:bg-gray-1 hover:shadow-sm text-gray-11"
-          >
-            No
-          </Button>
+          <Button variant="menu">Going</Button>
+          <Button variant="menu">Maybe</Button>
+          <Button variant="menu">No</Button>
         </div>
       </div>
     </Card>

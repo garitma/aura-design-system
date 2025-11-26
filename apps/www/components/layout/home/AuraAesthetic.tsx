@@ -5,7 +5,6 @@ import Section from "@/components/Section";
 import { AlarmWidget } from "./demos/AlarmWidget";
 import { ControlCenter } from "./demos/ControlCenter";
 import { EventInvite } from "./demos/EventInvite";
-import { GardeningChecklist } from "./demos/GardeningChecklist";
 import { GroupChat } from "./demos/GroupChat";
 import { MusicList } from "./demos/MusicList";
 import { MusicPlayer } from "./demos/MusicPlayer";
@@ -31,7 +30,7 @@ export default function AuraAesthetic() {
             {/* Original Set */}
             <div className="flex gap-2 mr-2">
               {/* Column 1 */}
-              <div className="flex flex-col gap-4 h-full w-[280px]">
+              <div className="flex flex-col gap-4 h-full ">
                 <div className="flex-[0.4]">
                   <EventInvite />
                 </div>
@@ -41,7 +40,7 @@ export default function AuraAesthetic() {
               </div>
 
               {/* Column 2 */}
-              <div className="flex flex-col gap-4 h-full w-[280px]">
+              <div className="flex flex-col gap-4 h-full ">
                 <div className="flex-[0.3]">
                   <PhotoEditor />
                 </div>
@@ -51,7 +50,7 @@ export default function AuraAesthetic() {
               </div>
 
               {/* Column 3 */}
-              <div className="flex flex-col gap-4 h-full w-[280px]">
+              <div className="flex flex-col gap-4 h-full min-w-[400px]">
                 <div className="flex-[0.4]">
                   <ControlCenter />
                 </div>
@@ -64,7 +63,7 @@ export default function AuraAesthetic() {
               </div>
 
               {/* Column 4 */}
-              <div className="flex flex-col gap-4 h-full w-[280px]">
+              <div className="flex flex-col gap-4 h-full ">
                 <div className="flex-[0.4]">
                   <ShoppingTag />
                 </div>
@@ -77,7 +76,7 @@ export default function AuraAesthetic() {
             {/* Duplicate Set */}
             <div className="flex gap-2 mr-2" aria-hidden="true">
               {/* Column 1 */}
-              <div className="flex flex-col gap-4 h-full w-[280px]">
+              <div className="flex flex-col gap-4 h-full ">
                 <div className="flex-[0.4]">
                   <EventInvite />
                 </div>
@@ -87,7 +86,7 @@ export default function AuraAesthetic() {
               </div>
 
               {/* Column 2 */}
-              <div className="flex flex-col gap-4 h-full w-[280px]">
+              <div className="flex flex-col gap-4 h-full ">
                 <div className="flex-[0.3]">
                   <PhotoEditor />
                 </div>
@@ -97,7 +96,7 @@ export default function AuraAesthetic() {
               </div>
 
               {/* Column 3 */}
-              <div className="flex flex-col gap-4 h-full w-[280px]">
+              <div className="flex flex-col gap-4 h-full min-w-[400px]">
                 <div className="flex-[0.4]">
                   <ControlCenter />
                 </div>
@@ -110,7 +109,7 @@ export default function AuraAesthetic() {
               </div>
 
               {/* Column 4 */}
-              <div className="flex flex-col gap-4 h-full w-[280px]">
+              <div className="flex flex-col gap-4 h-full ">
                 <div className="flex-[0.4]">
                   <ShoppingTag />
                 </div>

@@ -48,14 +48,14 @@ const TRACKS = [
 
 export function MusicList() {
   return (
-    <Card className="h-full flex flex-col bg-gray-2 border-gray-6 overflow-hidden">
-      <div className="p-1.5 border-b border-gray-6 bg-gray-2/50 backdrop-blur-md z-10 flex items-center justify-between">
+    <Card
+      className="h-full flex flex-col bg-gray-2 border-gray-6 overflow-hidden"
+      data-block="music-list"
+    >
+      <div className="p-1.5 border-b border-gray-6 bg-gray-2 z-10 flex items-center justify-between">
         <h3 className="h4  text-gray-12">Aura Wave</h3>
-        <Button
-          variant="menu"
-          className="h-4 w-4 text-gray-11 hover:text-gray-12 p-0"
-        >
-          <MoreHorizontal className="w-2 h-2" />
+        <Button variant="menu">
+          <MoreHorizontal className="icon" />
         </Button>
       </div>
       <ScrollArea className="flex-1">
@@ -72,8 +72,8 @@ export function MusicList() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                  <Play className="w-2 h-2 text-white fill-current" />
+                <div className="absolute inset-0 bg-gray-a8 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                  <Play className="icon fill-current" />
                 </div>
               </div>
               <div className="flex-1 min-w-0">
@@ -86,11 +86,8 @@ export function MusicList() {
                 <span className="text-xs text-gray-11 tabular-nums">
                   {track.duration}
                 </span>
-                <Button
-                  variant="menu"
-                  className="h-4 w-4 text-gray-11 hover:text-accent-9 hover:bg-accent-3 p-0"
-                >
-                  <Heart className="w-2 h-2" />
+                <Button variant="menu">
+                  <Heart className="icon" />
                 </Button>
               </div>
             </div>
