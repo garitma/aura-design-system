@@ -5,7 +5,7 @@ import { GithubIcon } from "@/components/icon";
 export default function Footer() {
   return (
     <footer className="border-t border-gray-6 bg-gray-1">
-      <Section>
+      <Section className="p-1">
         <div className="flex flex-col md:flex-row justify-between items-center gap-1 text-sm text-gray-11">
           <p>
             © {new Date().getFullYear()} Aura Design System. All rights

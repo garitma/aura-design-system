@@ -96,7 +96,7 @@
 
   /* Aura Background & Text - Mapped to gray scale */
   --aura-bg: var(--gray-1);
-  --aura-text-primary: var(--accent-12);
+  --aura-text-primary: var(--gray-12);
   --aura-text-primary-inverse: var(--gray-contrast);
 
   --aura-accents-primary: var(--accent-9);
@@ -276,4 +276,29 @@
 }
 
 @layer components {
+}
+
+@layer utilities {
+  .animate-marquee {
+    animation: marquee 50s linear infinite;
+  }
+
+  @keyframes marquee {
+    from {
+      transform: translateX(25%);
+    }
+    to {
+      transform: translateX(-25%);
+    }
+  }
+
+  .mask-linear-fade {
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 10%,
+      black 90%,
+      transparent 100%
+    );
+  }
 }

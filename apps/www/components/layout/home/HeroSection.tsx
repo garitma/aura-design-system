@@ -10,22 +10,22 @@ export default function HeroSection() {
       <div className="flex flex-col items-center text-center gap-0.5">
         <div className="space-y-1">
           <h1 className="h1 font-bold tracking-tight text-gray-12">
-            Beautiful Components, Full Control.{" "}
-            <br className="hidden md:block" />
+            Another design system. <br className="hidden md:block" />
             <span className="text-gray-11">
-              Start with Great Taste, Finish with Your Own Vision.
+              Start with Great Taste, Finish with Your Own Flavor.
             </span>
           </h1>
           <p className="p text-gray-11 max-w-2xl mx-auto text-lg">
-            Unbundled and Opinionated. We provide a thoughtfully styled,
-            production-ready foundation that you install as source code, not a
-            dependency. Say goodbye to version conflicts and unexpected updates.
+            Provide the robust architecture and modern conventions you need for
+            flexibility, but we deliberately leave room for your signature
+            style. It is engineered to adapt to any scenario, ensuring that
+            while the foundation is solid, the final identity is yours.
           </p>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-1 items-center">
           <Button size="lg" asChild>
-            <Link href="/docs">Explore Components</Link>
+            <Link href="/docs">Get Started</Link>
           </Button>
           <Button variant="pill" size="lg" asChild>
             <Link
