@@ -58,7 +58,7 @@ export function LargeSearchToggle({
       data-search-full=""
       {...props}
       className={cn(
-        "inline-flex items-center gap-0 rounded-lg border bg-fd-secondary/50 p-0.5 ps-2 text-sm text-fd-muted-foreground transition-colors hover:bg-fd-accent hover:text-fd-accent-foreground",
+        "inline-flex items-center gap-0  border border-gray-7 bg-gray-3 p-0.5 ps-1.5 text-sm text-gray-11 transition-colors hover:bg-accent-4 hover:text-accent-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-7",
         props.className
       )}
       onClick={() => {
@@ -69,7 +69,10 @@ export function LargeSearchToggle({
       {text.search}
       <div className="ms-auto inline-flex gap-0.5">
         {hotKey.map((k, i) => (
-          <kbd key={i} className="rounded-md border bg-fd-background px-0.5">
+          <kbd
+            key={i}
+            className="rounded-md border border-gray-7 bg-gray-2 px-0.5 text-gray-12"
+          >
             {k.display}
           </kbd>
         ))}

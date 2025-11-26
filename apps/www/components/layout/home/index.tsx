@@ -5,7 +5,10 @@ import { NavProvider } from "fumadocs-ui/contexts/layout";
 
 import { cn } from "@/utils/class-names";
 
-import { LanguageToggle, LanguageToggleText } from "@/components/LanguageToggle";
+import {
+  LanguageToggle,
+  LanguageToggleText,
+} from "@/components/LanguageToggle";
 import { LargeSearchToggle, SearchToggle } from "@/components/SearchToggle";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import {
