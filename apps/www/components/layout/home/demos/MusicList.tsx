@@ -21,7 +21,7 @@ const TRACKS = [
     duration: "3:50",
 
     cover:
-      "https://images.unsplash.com/photo-1614613535308-eb5fbd3d2c17?w=128&h=128&fit=crop",
+      "https://images.unsplash.com/photo-1494232410401-ad00d5433cfa?w=128&h=128&fit=crop",
   },
   {
     title: "Get Lucky",
