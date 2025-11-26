@@ -44,10 +44,10 @@ export function PhotoEditor() {
           className="object-contain p-1.5"
         />
         <div className="absolute top-1.5 right-1.5 flex flex-col gap-0.5">
-          <Button>
+          <Button variant="link">
             <Crop className="icon" />
           </Button>
-          <Button>
+          <Button variant="link">
             <RotateCw className="icon" />
           </Button>
         </div>
