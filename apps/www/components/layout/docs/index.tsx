@@ -219,9 +219,9 @@ export function DocsLayout({
               <SidebarCollapseTrigger
                 className={cn(
                   buttonVariants({
-                    color: "ghost",
-                    size: "icon-sm",
-                    className: "mb-auto text-fd-muted-foreground",
+                    variant: "pill",
+                    size: "sm",
+                    className: "p-0.5",
                   })
                 )}
               >
@@ -312,9 +312,9 @@ export function DocsLayout({
                 <SidebarTrigger
                   className={cn(
                     buttonVariants({
-                      color: "ghost",
-                      size: "icon-sm",
-                      className: "p-2",
+                      variant: "pill",
+                      size: "sm",
+                      className: "p-0.5",
                     })
                   )}
                 >
