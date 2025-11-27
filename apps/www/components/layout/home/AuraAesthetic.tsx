@@ -15,9 +15,9 @@ import { cn } from "@/utils/class-names";
 
 export default function AuraAesthetic() {
   return (
-    <Section container="smesh" className="border-t border-gray-6 bg-gray-2">
+    <section className="border-t border-gray-6 bg-gray-2 overflow-hidden mb-2">
       <div className="relative">
-        <div className="text-center smash mb-2">
+        <div className="text-center smash mb-2 pad">
           <h2 className="font-bold">
             {" "}
             Start with Great Taste, Finish with{" "}
@@ -133,6 +133,6 @@ export default function AuraAesthetic() {
           </div>
         </div>
       </div>
-    </Section>
+    </section>
   );
 }
