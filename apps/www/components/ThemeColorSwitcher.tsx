@@ -23,14 +23,16 @@ export function ThemeColorSwitcher() {
     background: string;
   };
 
+  const DEFAULT_THEME_COLORS = {
+    light: { accent: "#964CE1", gray: "#16204e", background: "#fcfcfc" },
+    dark: { accent: "#964CE1", gray: "#16204e", background: "#0c122b" },
+  };
+
   // Color state with defaults for both modes
   const [themeColors, setThemeColors] = useState<{
     light: ThemeColors;
     dark: ThemeColors;
-  }>({
-    light: { accent: "#964CE1", gray: "#16204e", background: "#fcfcfc" },
-    dark: { accent: "#964CE1", gray: "#16204e", background: "#0c122b" },
-  });
+  }>(DEFAULT_THEME_COLORS);
 
   const STORAGE_KEY = "aura-theme-colors";
 
@@ -93,6 +95,11 @@ export function ThemeColorSwitcher() {
         },
       }));
     }
+  };
+
+  const resetDefaults = () => {
+    setThemeColors(DEFAULT_THEME_COLORS);
+    localStorage.removeItem(STORAGE_KEY);
   };
 
   // Detect system appearance on mount
@@ -197,7 +204,7 @@ export function ThemeColorSwitcher() {
           <MixerHorizontalIcon className="w-1 h-1 text-gray-11" />
         </button>
       </PopoverTrigger>
-      <PopoverContent className="min-w-[320px] p-1" align="end">
+      <PopoverContent className="min-w-[320px] p-1 z-50" align="end">
         <div className="flex flex-col gap-1">
           <div className="flex items-center justify-between">
             <Label className="text-sm font-semibold text-gray-12">
@@ -297,6 +304,14 @@ export function ThemeColorSwitcher() {
               />
             </div>
           </div>
+
+          <button
+            type="button"
+            onClick={resetDefaults}
+            className="w-full mt-1 px-1 py-0.5 rounded border border-gray-6 bg-gray-2 text-xs font-medium text-gray-11 hover:bg-gray-3 hover:text-gray-12 transition-colors cursor-pointer"
+          >
+            Reset Defaults
+          </button>
         </div>
       </PopoverContent>
     </Popover>

@@ -19,7 +19,6 @@ import {
 import { TOCItems, TOCProvider, TOCScrollArea } from "@/components/ui/Toc";
 import ClerkTOCItems from "@/components/ui/TocClerk";
 
-
 export function PageTOCTitle(props: ComponentProps<"h2">) {
   return (
     <h3
@@ -64,7 +63,7 @@ export function PageArticle(props: ComponentProps<"article">) {
     <article
       {...props}
       className={cn(
-        "flex min-w-0 w-full flex-col gap-1 pt-2.5 px-1 md:px-2 md:mx-auto",
+        "flex min-w-0 w-full flex-col gap-1 pt-3 px-1.5 md:px-3 md:mx-auto",
         props.className
       )}
     >
