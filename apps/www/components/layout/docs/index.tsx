@@ -15,7 +15,10 @@ import {
 } from "fumadocs-ui/utils/get-sidebar-tabs";
 import { cn } from "@/utils/class-names";
 
-import { LanguageToggle, LanguageToggleText } from "@/components/LanguageToggle";
+import {
+  LanguageToggle,
+  LanguageToggleText,
+} from "@/components/LanguageToggle";
 import { type Option, RootToggle } from "@/components/RootToggle";
 import { LargeSearchToggle, SearchToggle } from "@/components/SearchToggle";
 import {
@@ -38,7 +41,12 @@ import {
 } from "@/components/Sidebar";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { buttonVariants } from "@/components/ui/Button";
-import { CollapsibleControl, LayoutBody, LayoutTabs, Navbar } from "@/components/layout/docs/client";
+import {
+  CollapsibleControl,
+  LayoutBody,
+  LayoutTabs,
+  Navbar,
+} from "@/components/layout/docs/client";
 import {
   type BaseLayoutProps,
   BaseLinkItem,
@@ -61,7 +69,7 @@ export interface DocsLayoutProps extends BaseLayoutProps {
 
 interface SidebarOptions
   extends ComponentProps<"aside">,
-  Pick<SidebarProps, "defaultOpenLevel" | "prefetch"> {
+    Pick<SidebarProps, "defaultOpenLevel" | "prefetch"> {
   enabled?: boolean;
   component?: ReactNode;
   components?: Partial<SidebarComponents>;
@@ -179,9 +187,9 @@ export function DocsLayout({
             <SidebarTrigger
               className={cn(
                 buttonVariants({
-                  color: "ghost",
-                  size: "icon-sm",
-                  className: "p-2",
+                  variant: "pill",
+                  size: "sm",
+                  className: "p-0.5",
                 })
               )}
             >
@@ -235,36 +243,36 @@ export function DocsLayout({
           iconLinks.length > 0 ||
           themeSwitch?.enabled !== false ||
           footer) && (
-            <SidebarFooter>
-              <div className="flex text-fd-muted-foreground items-center empty:hidden">
-                {i18n && (
-                  <LanguageToggle>
-                    <Languages className="size-4.5" />
-                  </LanguageToggle>
-                )}
-                {iconLinks.map((item, i) => (
-                  <BaseLinkItem
-                    key={i}
-                    item={item}
-                    className={cn(
-                      buttonVariants({ size: "icon-sm", color: "ghost" })
-                    )}
-                    aria-label={item.label}
-                  >
-                    {item.icon}
-                  </BaseLinkItem>
+          <SidebarFooter>
+            <div className="flex text-fd-muted-foreground items-center empty:hidden">
+              {i18n && (
+                <LanguageToggle>
+                  <Languages className="size-4.5" />
+                </LanguageToggle>
+              )}
+              {iconLinks.map((item, i) => (
+                <BaseLinkItem
+                  key={i}
+                  item={item}
+                  className={cn(
+                    buttonVariants({ size: "icon-sm", color: "ghost" })
+                  )}
+                  aria-label={item.label}
+                >
+                  {item.icon}
+                </BaseLinkItem>
+              ))}
+              {themeSwitch.enabled !== false &&
+                (themeSwitch.component ?? (
+                  <ThemeToggle
+                    className="ms-auto p-0"
+                    mode={themeSwitch.mode}
+                  />
                 ))}
-                {themeSwitch.enabled !== false &&
-                  (themeSwitch.component ?? (
-                    <ThemeToggle
-                      className="ms-auto p-0"
-                      mode={themeSwitch.mode}
-                    />
-                  ))}
-              </div>
-              {footer}
-            </SidebarFooter>
-          )}
+            </div>
+            {footer}
+          </SidebarFooter>
+        )}
       </SidebarContent>
     );
 

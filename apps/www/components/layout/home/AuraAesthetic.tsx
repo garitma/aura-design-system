@@ -18,7 +18,11 @@ export default function AuraAesthetic() {
     <Section container="smesh" className="border-t border-gray-6 bg-gray-2">
       <div className="relative">
         <div className="text-center smash mb-2">
-          <h2 className="font-bold">With Aura, The Soul is Yours.</h2>
+          <h2 className="font-bold">
+            {" "}
+            Start with Great Taste, Finish with{" "}
+            <span className="text-gray-11">Your Own Flavor</span>.
+          </h2>
           <p className="text-gray-11">
             We've compiled the high-quality basic ingredients for your product;
             by adding just a few of taste—your final signature touch—we believe

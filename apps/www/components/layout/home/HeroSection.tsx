@@ -11,9 +11,7 @@ export default function HeroSection() {
         <div className="space-y-1">
           <h1 className="h1 font-bold tracking-tight text-gray-12">
             Another design system. <br className="hidden md:block" />
-            <span className="text-gray-11">
-              Start with Great Taste, Finish with Your Own Flavor.
-            </span>
+            <span className="text-gray-11">With Aura, The Soul is Yours</span>
           </h1>
           <p className="p text-gray-11 max-w-2xl mx-auto text-lg">
             Provide the robust architecture and modern conventions you need for

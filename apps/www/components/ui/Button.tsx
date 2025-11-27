@@ -8,8 +8,8 @@ const buttonVariants = cva("button", {
   variants: {
     variant: {
       default: "button-fill",
-      fill: "button-fill",
-      pill: "button-pill",
+      fill: "button-fill transition-colors",
+      pill: "button-pill border border-gray-6 text-gray-11 hover:bg-gray-2",
       link: "button-link",
       menu: "button-menu",
     },
