@@ -2,10 +2,11 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "input",
   "type": "registry:ui",
-  "description": "A foundational component for user text input.",
+  "title": "Input",
+  "description": "The Input component.",
   "files": [
     {
-      "path": "registry/default/ui/Input.tsx",
+      "path": "registry/default/components/ui/Input.tsx",
       "content": "import * as React from \"react\";\n\nimport { cn } from \"@/utils/class-names\";\n\nfunction Input({ className, ...props }: React.ComponentProps<\"input\">) {\n  return <input data-slot=\"input\" className={cn(className)} {...props} />;\n}\n\nexport { Input };\n",
       "type": "registry:ui"
     }

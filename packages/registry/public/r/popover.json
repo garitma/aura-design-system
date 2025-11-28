@@ -2,14 +2,16 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "popover",
   "type": "registry:ui",
-  "description": "Displays rich content in a portal, triggered by a button. Can be used for dropdowns, tooltips, and more.",
+  "title": "Popover",
+  "description": "The Popover component.",
   "dependencies": [
+    "@radix-ui/react-icons",
     "radix-ui"
   ],
   "files": [
     {
-      "path": "registry/default/ui/Popover.tsx",
-      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Popover as PopoverRadix } from \"radix-ui\";\n\nimport { cn } from \"@/utils/class-names\";\n\nfunction Popover({ ...props }: React.ComponentProps<typeof PopoverRadix.Root>) {\n  return <PopoverRadix.Root data-slot=\"popover\" {...props} />;\n}\n\nfunction PopoverTrigger({\n  ...props\n}: React.ComponentProps<typeof PopoverRadix.Trigger>) {\n  return <PopoverRadix.Trigger data-slot=\"popover-trigger\" {...props} />;\n}\n\nfunction PopoverContent({\n  className,\n\n  ...props\n}: React.ComponentProps<typeof PopoverRadix.Content>) {\n  return (\n    <PopoverRadix.Portal>\n      <PopoverRadix.Content data-slot=\"popover-content\" {...props} />\n    </PopoverRadix.Portal>\n  );\n}\n\nfunction PopoverAnchor({\n  ...props\n}: React.ComponentProps<typeof PopoverRadix.Anchor>) {\n  return <PopoverRadix.Anchor data-slot=\"popover-anchor\" {...props} />;\n}\n\nexport { Popover, PopoverTrigger, PopoverContent, PopoverAnchor };\n",
+      "path": "registry/default/components/ui/Popover.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Popover as PopoverRadix } from \"radix-ui\";\nimport { Cross2Icon } from \"@radix-ui/react-icons\";\n\nimport { cn } from \"@/utils/class-names\";\n\nfunction Popover({ ...props }: React.ComponentProps<typeof PopoverRadix.Root>) {\n  return <PopoverRadix.Root data-slot=\"popover\" {...props} />;\n}\n\nfunction PopoverTrigger({\n  className,\n  ...props\n}: React.ComponentProps<typeof PopoverRadix.Trigger>) {\n  return (\n    <PopoverRadix.Trigger\n      data-slot=\"popover-trigger\"\n      className={cn(className)}\n      {...props}\n    />\n  );\n}\n\nfunction PopoverAnchor({\n  ...props\n}: React.ComponentProps<typeof PopoverRadix.Anchor>) {\n  return <PopoverRadix.Anchor data-slot=\"popover-anchor\" {...props} />;\n}\n\nfunction PopoverPortal({\n  ...props\n}: React.ComponentProps<typeof PopoverRadix.Portal>) {\n  return <PopoverRadix.Portal data-slot=\"popover-portal\" {...props} />;\n}\n\nfunction PopoverContent({\n  className,\n  ...props\n}: React.ComponentProps<typeof PopoverRadix.Content>) {\n  return (\n    <PopoverRadix.Portal>\n      <PopoverRadix.Content\n        data-slot=\"popover-content\"\n        collisionPadding={8}\n        className={cn(\n          className,\n          \"bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md\"\n        )}\n        {...props}\n      />\n    </PopoverRadix.Portal>\n  );\n}\n\nfunction PopoverArrow({\n  className,\n  ...props\n}: React.ComponentProps<typeof PopoverRadix.Arrow>) {\n  return (\n    <PopoverRadix.Arrow\n      data-slot=\"popover-arrow\"\n      className={cn(className, \"fill-gray-1\")}\n      {...props}\n    />\n  );\n}\n\nfunction PopoverClose({\n  className,\n  ...props\n}: React.ComponentProps<typeof PopoverRadix.Close>) {\n  return (\n    <PopoverRadix.Close\n      data-slot=\"popover-close\"\n      className={cn(\n        className,\n        \"absolute right-0.5 top-0.5 inline-flex items-center justify-center rounded-sm p-0.5 hover:bg-accent-3 cursor-pointer\"\n      )}\n      {...props}\n    >\n      <Cross2Icon className=\"size-1\" />\n      <span className=\"sr-only\">Close</span>\n    </PopoverRadix.Close>\n  );\n}\n\nexport {\n  Popover,\n  PopoverTrigger,\n  PopoverAnchor,\n  PopoverPortal,\n  PopoverContent,\n  PopoverArrow,\n  PopoverClose,\n};\n",
       "type": "registry:ui"
     }
   ]

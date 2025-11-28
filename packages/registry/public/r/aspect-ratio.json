@@ -2,14 +2,15 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "aspect-ratio",
   "type": "registry:ui",
-  "description": "Displays content within a desired ratio, regardless of the content's original size.",
+  "title": "AspectRatio",
+  "description": "The AspectRatio component.",
   "dependencies": [
-    "radix-ui"
+    "@radix-ui/react-aspect-ratio"
   ],
   "files": [
     {
-      "path": "registry/default/ui/AspectRatio.tsx",
-      "content": "import { AspectRatio as AspectRatioPradix } from \"radix-ui\";\n\nfunction AspectRatio({\n  ...props\n}: React.ComponentProps<typeof AspectRatioPradix.Root>) {\n  return <AspectRatioPradix.Root data-slot=\"aspect-ratio\" {...props} />;\n}\n\nexport { AspectRatio };\n",
+      "path": "registry/default/components/ui/AspectRatio.tsx",
+      "content": "import * as AspectRatioPrimitive from \"@radix-ui/react-aspect-ratio\";\n\nfunction AspectRatio({\n  ...props\n}: React.ComponentProps<typeof AspectRatioPrimitive.Root>) {\n  return <AspectRatioPrimitive.Root data-slot=\"aspect-ratio\" {...props} />;\n}\n\nexport { AspectRatio };\n",
       "type": "registry:ui"
     }
   ]

@@ -1,0 +1,44 @@
+---
+title: Namespaces
+description: Re-usable components built using Radix UI and Tailwind CSS.
+icon: Tags
+---
+
+## What is a Namespace?
+
+In the context of our design system's CLI, a namespace is a unique prefix used to identify a specific source of components. Think of it as a label for a component "store" or library.
+
+This system is built to be flexible. It allows you to pull components from multiple different sources, such as your own internal registry, a third-party registry (like Radix UI), or the default design system registry.
+
+The namespace is what tells the CLI where to look for the component you're requesting.
+
+## Why Use Namespaces?
+
+- **Clarity**: When you run a command like add `@aura-design/button`, it's perfectly clear that you want the "button" component specifically from the "@aura-design" source.
+
+- **Flexibility**: It prevents naming conflicts. You could have a "button" in your internal `@aura-design` registry and a different "button" in another registry (e.g., `@acme/button`), and the CLI can tell them apart.
+
+- **Targeting**: It allows the CLI to look up the correct URL for fetching the component's metadata, which is defined in your `components.json` configuration file.
+
+Your components.json (or similar configuration file) includes this registries object:
+
+```json
+{
+  "registries": {
+    "@aura-design": "https://auradesignsystem.com/r/{name}.json"
+  }
+}
+```
+
+Let's break this down:
+
+- `registries:` This is the main object that holds all your component sources.
+
+- `@aura-design`: This is the namespace. It's the unique prefix you will use in the CLI.
+
+- "https://auradesignsystem.com/r/{name}.json": This is the URL endpoint for that namespace. It's a template that tells the CLI how to fetch information about a component.
+
+The `{name}` part is a placeholder that will be replaced by the component name you request.
+
+### How it Works in Practice
+Here is the step-by-step workflow when you want to add a component:

@@ -2,11 +2,12 @@
   "$schema": "https://ui.shadcn.com/schema/registry-item.json",
   "name": "label",
   "type": "registry:ui",
-  "description": "Renders an accessible label associated with a form control.",
+  "title": "Label",
+  "description": "The Label component.",
   "files": [
     {
-      "path": "registry/default/ui/Label.tsx",
-      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/utils/class-names\";\n\n\nfunction Label({ className, ...props }: React.ComponentProps<\"label\">) {\n  return <label data-slot=\"input\" className={cn(className, \"cursor-pointer\")} {...props} />;\n}\n\nexport { Label };\n",
+      "path": "registry/default/components/ui/Label.tsx",
+      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/utils/class-names\";\n\nfunction Label({ className, ...props }: React.ComponentProps<\"label\">) {\n  return <label data-slot=\"input\" className={cn(className)} {...props} />;\n}\n\nexport { Label };\n",
       "type": "registry:ui"
     }
   ]
