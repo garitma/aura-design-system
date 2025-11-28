@@ -4,7 +4,7 @@ import {
   type ComponentProps,
   Fragment,
   useEffect,
-  useEffectEvent,
+  useCallback,
   createContext,
   useMemo,
   useRef,
@@ -169,12 +169,15 @@ export function PageTOCPopover(props: ComponentProps<"div">) {
   const { collapsed } = useSidebar();
   const { isTransparent } = useNav();
 
-  const onClick = useEffectEvent((e: Event) => {
-    if (!open) return;
+  const onClick = useCallback(
+    (e: Event) => {
+      if (!open) return;
 
-    if (ref.current && !ref.current.contains(e.target as HTMLElement))
-      setOpen(false);
-  });
+      if (ref.current && !ref.current.contains(e.target as HTMLElement))
+        setOpen(false);
+    },
+    [open]
+  );
 
   useEffect(() => {
     window.addEventListener("click", onClick);
@@ -182,7 +185,7 @@ export function PageTOCPopover(props: ComponentProps<"div">) {
     return () => {
       window.removeEventListener("click", onClick);
     };
-  }, []);
+  }, [onClick]);
 
   return (
     <TocPopoverContext
@@ -330,7 +333,7 @@ function FooterItem({ item, index }: { item: Item; index: 0 | 1 }) {
           index === 1 && "flex-row-reverse"
         )}
       >
-        <Icon className="-mx-0.5 size-4 shrink-0 rtl:rotate-180" />
+        <Icon className="-mx-0.5 icon shrink-0 rtl:rotate-180" />
         <p>{item.name}</p>
       </div>
       <p className="text-fd-muted-foreground truncate">

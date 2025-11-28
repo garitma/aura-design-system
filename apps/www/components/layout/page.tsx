@@ -145,9 +145,9 @@ export function DocsPage({
       toc={
         tocEnabled || tocPopoverEnabled
           ? {
-            toc,
-            single: tocOptions.single,
-          }
+              toc,
+              single: tocOptions.single,
+            }
           : false
       }
       {...container}
@@ -178,7 +178,15 @@ export function DocsPage({
         {footer.enabled !== false &&
           (footer.component ?? <PageFooter items={footer.items} />)}
       </PageArticle>
-
+      {tocEnabled &&
+        (tocReplace ?? (
+          <PageTOC>
+            <PageTOCTitle />
+            {tocOptions.header}
+            <PageTOCItems variant={tocOptions.style} />
+            {tocOptions.footer}
+          </PageTOC>
+        ))}
     </PageRoot>
   );
 }

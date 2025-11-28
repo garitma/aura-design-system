@@ -1,10 +1,6 @@
 import { getPageImage, source } from "@/utils/source";
-import {
-  DocsBody,
-  DocsDescription,
-  DocsPage,
-  DocsTitle,
-} from "fumadocs-ui/page";
+import { DocsBody, DocsDescription, DocsTitle } from "fumadocs-ui/page";
+import { DocsPage } from "@/components/layout/page";
 import { notFound } from "next/navigation";
 import { getMDXComponents } from "@/mdx-components";
 import type { Metadata } from "next";
