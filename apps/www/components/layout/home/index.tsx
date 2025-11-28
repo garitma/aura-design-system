@@ -138,59 +138,61 @@ export function Header({
           ))}
         </ul>
       </div>
-      <ul className="flex flex-row items-center ms-auto -me-1.5 lg:hidden">
+      <div className="flex flex-row items-center ms-auto lg:hidden gap-0.5">
         {searchToggle.enabled !== false &&
           (searchToggle.components?.sm ?? (
             <SearchToggle className="p-2" hideIfDisabled />
           ))}
-        <NavigationMenuItem>
-          <MobileNavigationMenuTrigger
-            aria-label="Toggle Menu"
-            className={cn(
-              buttonVariants({
-                size: "icon",
-                color: "ghost",
-                className: "group [&_svg]:size-1.5",
-              })
-            )}
-            enableHover={nav.enableHoverToOpen}
-          >
-            <ChevronDown className="transition-transform duration-300 group-data-[state=open]:rotate-180" />
-          </MobileNavigationMenuTrigger>
-          <MobileNavigationMenuContent className="sm:flex-row sm:items-center sm:justify-end">
-            {menuItems
-              .filter((item) => !isSecondary(item))
-              .map((item, i) => (
-                <MobileNavigationMenuLinkItem
-                  key={i}
-                  item={item}
-                  className="sm:hidden"
-                />
-              ))}
-            <div className="-ms-1.5 flex flex-row items-center gap-2 max-sm:mt-0.5">
-              {menuItems.filter(isSecondary).map((item, i) => (
-                <MobileNavigationMenuLinkItem
-                  key={i}
-                  item={item}
-                  className={cn(item.type === "icon" && "-mx-1 first:ms-0")}
-                />
-              ))}
-              <div role="separator" className="flex-1" />
-              {i18n && (
-                <LanguageToggle>
-                  <Languages className="size-5" />
-                  <LanguageToggleText />
-                  <ChevronDown className="size-1 text-fd-muted-foreground" />
-                </LanguageToggle>
+        {themeSwitch.enabled !== false &&
+          (themeSwitch.component ?? (
+            <ThemeToggle mode={themeSwitch?.mode} />
+          ))}
+        {menuItems.length > 0 && (
+          <NavigationMenuItem>
+            <MobileNavigationMenuTrigger
+              aria-label="Toggle Menu"
+              className={cn(
+                buttonVariants({
+                  size: "icon",
+                  color: "ghost",
+                  className: "group [&_svg]:size-1.5",
+                })
               )}
-              {themeSwitch.enabled !== false &&
-                (themeSwitch.component ?? (
-                  <ThemeToggle mode={themeSwitch?.mode} />
+              enableHover={nav.enableHoverToOpen}
+            >
+              <ChevronDown className="transition-transform duration-300 group-data-[state=open]:rotate-180" />
+            </MobileNavigationMenuTrigger>
+            <MobileNavigationMenuContent className="sm:flex-row sm:items-center sm:justify-end">
+              {menuItems
+                .filter((item) => !isSecondary(item))
+                .map((item, i) => (
+                  <MobileNavigationMenuLinkItem
+                    key={i}
+                    item={item}
+                    className="sm:hidden"
+                  />
                 ))}
-            </div>
-          </MobileNavigationMenuContent>
-        </NavigationMenuItem>
-      </ul>
+              <div className="-ms-1.5 flex flex-row items-center gap-2 max-sm:mt-0.5">
+                {menuItems.filter(isSecondary).map((item, i) => (
+                  <MobileNavigationMenuLinkItem
+                    key={i}
+                    item={item}
+                    className={cn(item.type === "icon" && "-mx-1 first:ms-0")}
+                  />
+                ))}
+                <div role="separator" className="flex-1" />
+                {i18n && (
+                  <LanguageToggle>
+                    <Languages className="size-5" />
+                    <LanguageToggleText />
+                    <ChevronDown className="size-1 text-fd-muted-foreground" />
+                  </LanguageToggle>
+                )}
+              </div>
+            </MobileNavigationMenuContent>
+          </NavigationMenuItem>
+        )}
+      </div>
     </Navbar>
   );
 }

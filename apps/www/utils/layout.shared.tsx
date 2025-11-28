@@ -30,28 +30,28 @@ export function baseOptions(): BaseLayoutProps {
               cx="258.188"
               cy="258.719"
               r="236.344"
-              style={{ fill: "#010927" }}
+              style={{ fill: "var(--gray-9)" }}
             />
             <circle
               id="Elipse-1-copia-4"
               cx="258.188"
               cy="258.719"
               r="219.969"
-              style={{ fill: "#5dfbdd" }}
+              style={{ fill: "var(--accent-9)" }}
             />
             <circle
               id="Elipse-1-copia-2"
               cx="258.188"
               cy="258.719"
               r="203.594"
-              style={{ fill: "#04123e" }}
+              style={{ fill: "var(--gray-11)" }}
             />
             <circle
               id="Elipse-1"
               cx="258.172"
               cy="258.734"
               r="182.859"
-              style={{ fill: "#dda0fe" }}
+              style={{ fill: "var(--accent-7)" }}
             />
             <ellipse
               id="Elipse-1-copia"
@@ -59,10 +59,10 @@ export function baseOptions(): BaseLayoutProps {
               cy="258.734"
               rx="159.938"
               ry="159.922"
-              style={{ fill: "#04123e" }}
+              style={{ fill: "var(--gray-a11)" }}
             />
           </svg>
-          <span className="font-bold">Aura Design System</span>
+          <span className="font-bold text-gray-11">Aura Design System</span>
         </>
       ),
     },

@@ -36,12 +36,12 @@ export default function HeroSection() {
           </Button>
         </div>
 
-        <div className="pt-2.5 flex items-center gap-1 text-sm text-gray-11">
+        <div className="pt-2.5 flex flex-col md:flex-row items-center gap-1 text-sm text-gray-11">
           <div className="flex items-center gap-1">
             <AccessibilityIcon className="icon" />
             <span>Accessible Primitives (Radix UI)</span>
           </div>
-          <div className="w-px h-1 bg-gray-6" />
+          <div className="w-px h-1 bg-gray-6 hidden md:block" />
           <div className="flex items-center gap-1">
             <TokensIcon className="icon" />
             <span>Utility-First Styling (Tailwind)</span>
