@@ -16,7 +16,6 @@ COPY pnpm-lock.yaml pnpm-workspace.yaml turbo.json package.json ./
 
 # Copy all package.json files for workspace resolution
 COPY apps/www/package.json ./apps/www/
-COPY packages/system/package.json ./packages/system/
 COPY packages/registry/package.json ./packages/registry/
 
 # Copy full source for pruning
