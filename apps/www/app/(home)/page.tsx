@@ -1,5 +1,5 @@
-import HeroSection from "@/components/layout/home/HeroSection";
-import AuraAesthetic from "@/components/layout/home/AuraAesthetic";
+import HeroSection from "@/components/HeroSection";
+import AuraAesthetic from "@/components/AuraAesthetic";
 
 export default function HomePage() {
   return (

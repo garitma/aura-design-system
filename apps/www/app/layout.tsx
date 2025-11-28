@@ -11,12 +11,7 @@ export default function Layout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${ibmPlexSans.className} flex flex-col min-h-screen`}>
-        <RootProvider
-          theme={{ forcedTheme: "dark" }} // or "light"
-          search={{ enabled: false }}
-        >
-          {children}
-        </RootProvider>
+        <RootProvider search={{ enabled: false }}>{children}</RootProvider>
       </body>
     </html>
   );

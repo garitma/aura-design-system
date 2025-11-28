@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
 import { MixerHorizontalIcon } from "@radix-ui/react-icons";
 
 import { generateRadixColors } from "@/utils/custom-color-functions";
@@ -14,8 +15,14 @@ import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
 
 export function ThemeColorSwitcher() {
-  // Detect appearance (light or dark mode)
-  const [appearance, setAppearance] = useState<"light" | "dark">("light");
+  const { setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const appearance = mounted && resolvedTheme === "dark" ? "dark" : "light";
 
   type ThemeColors = {
     accent: string;
@@ -101,21 +108,6 @@ export function ThemeColorSwitcher() {
     setThemeColors(DEFAULT_THEME_COLORS);
     localStorage.removeItem(STORAGE_KEY);
   };
-
-  // Detect system appearance on mount
-  useEffect(() => {
-    const isDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    setAppearance(isDark ? "dark" : "light");
-
-    // Listen for changes
-    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
-    const handleChange = (e: MediaQueryListEvent) => {
-      setAppearance(e.matches ? "dark" : "light");
-    };
-
-    mediaQuery.addEventListener("change", handleChange);
-    return () => mediaQuery.removeEventListener("change", handleChange);
-  }, []);
 
   // Inject CSS variables into :root when colors change to override globals
   useEffect(() => {
@@ -213,7 +205,7 @@ export function ThemeColorSwitcher() {
             <div className="flex bg-gray-3 p-0 rounded-sm">
               <button
                 type="button"
-                onClick={() => setAppearance("light")}
+                onClick={() => setTheme("light")}
                 className={cn(
                   "px-0.5 py-0.5 rounded border-none cursor-pointer text-xs font-medium transition-all",
                   appearance === "light"
@@ -225,7 +217,7 @@ export function ThemeColorSwitcher() {
               </button>
               <button
                 type="button"
-                onClick={() => setAppearance("dark")}
+                onClick={() => setTheme("dark")}
                 className={cn(
                   "px-0.5 py-0.5 rounded border-none cursor-pointer text-xs font-medium transition-all",
                   appearance === "dark"

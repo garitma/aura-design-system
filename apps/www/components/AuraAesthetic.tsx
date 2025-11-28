@@ -1,6 +1,10 @@
 "use client";
 
-import Section from "@/components/Section";
+import Link from "next/link";
+import { useRef, useState, useEffect } from "react";
+import { ArrowRightIcon } from "@radix-ui/react-icons";
+
+import { Button } from "@/components/ui/Button";
 
 import { AlarmWidget } from "./demos/AlarmWidget";
 import { ControlCenter } from "./demos/ControlCenter";
@@ -14,6 +18,28 @@ import { VoiceAssistant } from "./demos/VoiceAssistant";
 import { cn } from "@/utils/class-names";
 
 export default function AuraAesthetic() {
+  const [isVisible, setIsVisible] = useState(false);
+  const marqueeRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0.2 }
+    );
+
+    if (marqueeRef.current) {
+      observer.observe(marqueeRef.current);
+    }
+
+    return () => {
+      if (marqueeRef.current) {
+        observer.unobserve(marqueeRef.current);
+      }
+    };
+  }, []);
+
   return (
     <section className="border-t border-gray-6 bg-gray-2 overflow-hidden mb-2">
       <div className="relative">
@@ -32,6 +58,7 @@ export default function AuraAesthetic() {
         </div>
         {/* Demo Blocks */}
         <div
+          ref={marqueeRef}
           className={cn(
             "flex justify-center  w-full mask-linear-fade",
             // "overflow-scroll"
@@ -131,6 +158,21 @@ export default function AuraAesthetic() {
               </div>
             </div>
           </div>
+        </div>
+
+        <div
+          className={cn(
+            "fixed bottom-4 left-1/2 -translate-x-1/2 z-50 transition-all duration-500 ease-out",
+            isVisible
+              ? "opacity-100 translate-y-0 pointer-events-auto"
+              : "opacity-0 translate-y-4 pointer-events-none"
+          )}
+        >
+          <Button asChild size="lg" className="shadow-2xl">
+            <Link href="/docs">
+              Get Started <ArrowRightIcon className="ml-2 icon" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

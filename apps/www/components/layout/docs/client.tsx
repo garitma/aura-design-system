@@ -73,13 +73,13 @@ export function CollapsibleControl() {
       <SidebarCollapseTrigger
         className={cn(
           buttonVariants({
-            color: "ghost",
-            size: "icon-sm",
-            className: "rounded-lg",
+            variant: "fill",
+            size: "sm",
+            className: "p-0.5 size-3 ",
           })
         )}
       >
-        <SidebarIcon />
+        <SidebarIcon className="icon" />
       </SidebarCollapseTrigger>
       <SearchToggle hideIfDisabled />
     </div>

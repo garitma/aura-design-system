@@ -39,7 +39,6 @@ export function PageTOCItems({
   variant = "normal",
   ...props
 }: ComponentProps<"div"> & { variant?: "clerk" | "normal" }) {
-  console.log("variant", variant);
   return (
     <TOCScrollArea {...props}>
       {variant === "clerk" ? <ClerkTOCItems /> : <TOCItems />}

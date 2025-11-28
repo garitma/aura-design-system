@@ -23,7 +23,7 @@ export default async function Page(props: PageProps<"/docs/[[...slug]]">) {
       full={page.data.full}
       article={{
         className:
-          "flex min-w-0 w-full flex-col gap-1 pt-3 px-1.5 md:px-3 md:mx-auto",
+          "flex min-w-0 max-w-[860px] flex-col gap-1 pt-3 px-1.5 md:px-3 md:mx-auto",
       }}
     >
       <DocsTitle>{page.data.title}</DocsTitle>

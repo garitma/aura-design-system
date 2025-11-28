@@ -119,7 +119,7 @@ export function DocsLayout({
   }, [tree, sidebarTabs]);
   const links = getLinks(props.links ?? [], props.githubUrl);
   const sidebarVariables = cn(
-    "md:[--fd-sidebar-width:268px] lg:[--fd-sidebar-width:286px]"
+    "md:[--fd-sidebar-width:268px] lg:[--fd-sidebar-width:286px] xl:[--fd-toc-width:268px]"
   );
 
   function sidebar() {
@@ -189,11 +189,11 @@ export function DocsLayout({
                 buttonVariants({
                   variant: "pill",
                   size: "sm",
-                  className: "p-0.5",
+                  className: "p-0.5 size-3",
                 })
               )}
             >
-              <SidebarIcon />
+              <SidebarIcon className="icon" />
             </SidebarTrigger>
           </div>
           {tabs.length > 0 && <RootToggle options={tabs} />}
@@ -221,11 +221,11 @@ export function DocsLayout({
                   buttonVariants({
                     variant: "pill",
                     size: "sm",
-                    className: "p-0.5",
+                    className: "p-0.5 size-3",
                   })
                 )}
               >
-                <SidebarIcon />
+                <SidebarIcon className="icon" />
               </SidebarCollapseTrigger>
             )}
           </div>
@@ -314,11 +314,11 @@ export function DocsLayout({
                     buttonVariants({
                       variant: "pill",
                       size: "sm",
-                      className: "p-0.5",
+                      className: "p-0.5 size-3",
                     })
                   )}
                 >
-                  <SidebarIcon />
+                  <SidebarIcon className="icon" />
                 </SidebarTrigger>
               )}
             </Navbar>
