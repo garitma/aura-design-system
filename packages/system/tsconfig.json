@@ -1,9 +1,0 @@
-{
-  "extends": "../../tsconfig.json",
-  "compilerOptions": {
-    "outDir": "dist/",
-    "types": ["react"]
-  },
-  "include": ["./components", "./hooks", "./utils"],
-  "exclude": ["node_modules", "dist"]
-}
