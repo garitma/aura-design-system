@@ -1,13 +1,27 @@
+# Build from monorepo root:
+#   docker build -f apps/www/Dockerfile -t aura-www .
+
 FROM node:20-alpine AS base
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
 RUN corepack enable
+RUN pnpm add -g turbo
 
 # Stage 1: Prune the monorepo to only include the www app and its dependencies
 FROM base AS pruner
 WORKDIR /app
-RUN pnpm add -g turbo
+
+# Copy workspace config files first
+COPY pnpm-lock.yaml pnpm-workspace.yaml turbo.json package.json ./
+
+# Copy all package.json files for workspace resolution
+COPY apps/www/package.json ./apps/www/
+COPY packages/system/package.json ./packages/system/
+COPY packages/registry/package.json ./packages/registry/
+
+# Copy full source for pruning
 COPY . .
+
 RUN turbo prune @aura-design/www --docker
 
 # Stage 2: Install dependencies
@@ -17,10 +31,9 @@ WORKDIR /app
 # Copy lockfile and package.json files from pruned workspace
 COPY --from=pruner /app/out/json/ .
 COPY --from=pruner /app/out/pnpm-lock.yaml ./pnpm-lock.yaml
-COPY --from=pruner /app/out/pnpm-workspace.yaml ./pnpm-workspace.yaml
 
-# Install dependencies
-RUN pnpm install --no-frozen-lockfile
+# Install dependencies (ignore scripts since source files aren't available yet)
+RUN pnpm install --frozen-lockfile --ignore-scripts
 
 # Stage 3: Build the application
 FROM base AS builder
@@ -32,8 +45,9 @@ COPY --from=installer /app/ .
 # Copy source code from pruned workspace
 COPY --from=pruner /app/out/full/ .
 
-# Build the www app
-RUN pnpm turbo run build --filter=@aura-design/www
+# Run postinstall scripts now that source is available, then build
+RUN pnpm --filter @aura-design/www run postinstall && \
+    turbo run build --filter=@aura-design/www
 
 # Stage 4: Production runner
 FROM node:20-alpine AS runner

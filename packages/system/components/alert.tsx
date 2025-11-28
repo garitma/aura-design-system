@@ -1,4 +1,5 @@
 // Importing the SharedBasic type from "../types/global"
+import type { JSX } from "react";
 import { SharedBasic } from "../types/global";
 
 // Defining the props for the Alert component

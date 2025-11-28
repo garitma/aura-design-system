@@ -1,5 +1,6 @@
 // Importing the ChevronDownIcon component from "radix icons" and some types from "share types global"
 import { ChevronDownIcon } from "@radix-ui/react-icons";
+import type { JSX } from "react";
 import { SharedBasic, AuraHeadline, AuraColors } from "../types/global";
 
 // Defining the props for the Accordion component

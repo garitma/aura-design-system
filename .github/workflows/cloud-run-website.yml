@@ -22,10 +22,11 @@ jobs:
 
       - name: Build and tag image
         run: |-
-          docker build . \
-            --file ./apps/www/Dockerfile \
-            --tag "${{env.GAR_LOCATION}}-docker.pkg.dev/${{env.PROJECT_ID}}/${{env.REPOSITORY}}/${{env.IMAGE}}:$GITHUB_SHA" \
-            --build-arg NEXT_PUBLIC_ENV="production"
+          docker build \
+            -f apps/www/Dockerfile \
+            -t "${{env.GAR_LOCATION}}-docker.pkg.dev/${{env.PROJECT_ID}}/${{env.REPOSITORY}}/${{env.IMAGE}}:$GITHUB_SHA" \
+            --build-arg NEXT_PUBLIC_ENV="production" \
+            .
 
       - id: auth
         name: Authenticate with Google Cloud

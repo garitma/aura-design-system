@@ -1,4 +1,5 @@
 import { forwardRef, RefObject, CSSProperties } from "react";
+import type { JSX } from "react";
 import { Target, SharedBasic, ButtonMode, ButtonType } from "../types/global";
 
 // Props that are inherited from the intrinsic HTML button or anchor tag

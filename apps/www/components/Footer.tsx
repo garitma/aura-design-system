@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Section from "@/components/Section";
-import { GithubIcon } from "@/components/icon";
+import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 export default function Footer() {
   return (
@@ -18,7 +18,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               className="hover:text-gray-12 transition-colors"
             >
-              <GithubIcon />
+              <GitHubLogoIcon />
               <span className="sr-only">GitHub</span>
             </Link>
           </div>
