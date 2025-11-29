@@ -203,8 +203,7 @@ export function PageTOCPopover(props: ComponentProps<"div">) {
           id="nd-tocnav"
           {...props}
           className={cn(
-            "fixed pr-(--removed-body-scroll-bar-size,0) z-10 border-b transition-colors xl:hidden max-xl:on-root:[--fd-tocnav-height:40px]",
-            (!isTransparent || open) && "bg-fd-background",
+            "fixed pr-(--removed-body-scroll-bar-size,0) z-10 border-b transition-colors bg-gray-2 xl:hidden max-xl:on-root:[--fd-tocnav-height:40px]",
             open && "shadow-lg",
             props.className
           )}

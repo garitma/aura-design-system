@@ -73,7 +73,7 @@ export function PhotoEditor() {
                     className="object-cover"
                   />
                 </div>
-                <span className="text-[10px] text-gray-11 group-hover:text-gray-12 transition-colors">
+                <span className="text-gray-11 group-hover:text-gray-12 transition-colors">
                   {filter.name}
                 </span>
               </button>

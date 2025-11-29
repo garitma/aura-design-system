@@ -23,7 +23,7 @@ export function Navbar(props: ComponentProps<"header">) {
       id="nd-subnav"
       {...props}
       className={cn(
-        "bg-gray-2 fixed top-(--fd-banner-height) left-0 right-(--removed-body-scroll-bar-size,0) z-30 flex items-center ps-4 pe-2.5 border-b transition-colors",
+        "bg-gray-2 fixed top-(--fd-banner-height) left-0 right-(--removed-body-scroll-bar-size,0) z-30 flex items-center px-1 border-b transition-colors",
         props.className
       )}
     >
