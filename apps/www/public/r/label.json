@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "label",
+  "type": "registry:ui",
+  "title": "Label",
+  "description": "The Label component.",
+  "files": [
+    {
+      "path": "registry/default/components/ui/Label.tsx",
+      "content": "/**\n * @description Renders an accessible label associated with form controls.\n */\nimport * as React from \"react\";\n\nimport { cn } from \"@/utils/class-names\";\n\nfunction Label({ className, ...props }: React.ComponentProps<\"label\">) {\n  return <label data-slot=\"input\" className={cn(className)} {...props} />;\n}\n\nexport { Label };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

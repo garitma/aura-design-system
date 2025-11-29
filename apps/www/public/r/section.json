@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "section",
+  "type": "registry:ui",
+  "title": "Section",
+  "description": "The Section component.",
+  "files": [
+    {
+      "path": "registry/default/components/ui/Section.tsx",
+      "content": "/**\n * @description A semantic section container with configurable layout variants.\n */\nimport * as React from \"react\";\n\nimport { cn } from \"@/utils/class-names\";\n\nexport type AuraContainer = \"smash\" | \"smesh\" | \"smish\" | \"smosh\" | \"smush\";\n\nfunction Wrapper({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <section className={cn(\"pad\", className)} data-slot=\"wrapper\" {...props} />\n  );\n}\n\nfunction WrapperContainer({\n  container = \"smush\",\n  className,\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  container?: AuraContainer;\n  className?: string;\n}) {\n  return (\n    <div\n      data-slot=\"wrapper-container\"\n      className={cn(container, className)}\n      {...props}\n    />\n  );\n}\n\ntype SectionProps = {\n  children: React.ReactNode;\n  container?: React.ComponentProps<typeof WrapperContainer>[\"container\"];\n  subClassName?: string;\n} & React.ComponentProps<typeof Wrapper>;\n\nconst Section = ({\n  children,\n  container,\n  subClassName,\n  ...props\n}: SectionProps) => {\n  return (\n    <Wrapper {...props}>\n      <WrapperContainer container={container} className={subClassName}>\n        {children}\n      </WrapperContainer>\n    </Wrapper>\n  );\n};\n\nexport { Wrapper, WrapperContainer, Section };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

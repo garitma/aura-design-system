@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "input",
+  "type": "registry:ui",
+  "title": "Input",
+  "description": "The Input component.",
+  "files": [
+    {
+      "path": "registry/default/components/ui/Input.tsx",
+      "content": "/**\n * @description Displays a form input field or a component that looks like an input field.\n */\nimport * as React from \"react\";\n\nimport { cn } from \"@/utils/class-names\";\n\nfunction Input({ className, ...props }: React.ComponentProps<\"input\">) {\n  return <input data-slot=\"input\" className={cn(className)} {...props} />;\n}\n\nexport { Input };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "badge",
+  "type": "registry:ui",
+  "title": "Badge",
+  "description": "The Badge component.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Badge.tsx",
+      "content": "/**\n * @description Displays a badge or a component that looks like a badge.\n */\nimport * as React from \"react\"\nimport { cva, type VariantProps } from \"class-variance-authority\"\nimport { cn } from \"@/utils/class-names\"\n\nconst badgeVariants = cva(\n    \"inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2\",\n    {\n        variants: {\n            variant: {\n                default:\n                    \"border-transparent bg-gray-12 text-gray-1 hover:bg-gray-12/80\",\n                secondary:\n                    \"border-transparent bg-gray-3 text-gray-12 hover:bg-gray-3/80\",\n                destructive:\n                    \"border-transparent bg-danger text-danger-contrast hover:bg-danger/80\",\n                outline: \"text-gray-12\",\n            },\n            status: {\n                default: \"\",\n                success: \"border-transparent bg-success text-success-contrast hover:bg-success/80\",\n                warning: \"border-transparent bg-warning text-warning-contrast hover:bg-warning/80\",\n                danger: \"border-transparent bg-danger text-danger-contrast hover:bg-danger/80\",\n                info: \"border-transparent bg-info text-info-contrast hover:bg-info/80\",\n            }\n        },\n        defaultVariants: {\n            variant: \"default\",\n            status: \"default\",\n        },\n    }\n)\n\nexport interface BadgeProps\n    extends React.HTMLAttributes<HTMLDivElement>,\n    VariantProps<typeof badgeVariants> { }\n\nfunction Badge({ className, variant, status, ...props }: BadgeProps) {\n    return (\n        <div className={cn(badgeVariants({ variant, status }), className)} {...props} />\n    )\n}\n\nexport { Badge, badgeVariants }\n",
+      "type": "registry:ui"
+    }
+  ]
+}
