@@ -96,17 +96,24 @@ function cleanDescription(text: string): string {
 }
 
 /**
- * Generate MDX frontmatter content
+ * Generate MDX content with frontmatter and installation command
  */
 function generateMdxContent(
   componentName: string,
   description: string
 ): string {
   const title = toTitleCase(componentName);
+  const kebabName = toKebabCase(componentName);
   return `---
 title: ${title}
 description: ${description}
 ---
+
+## Installation
+
+\`\`\`bash
+pnpm dlx shadcn@latest add @aura-design/${kebabName}
+\`\`\`
 `;
 }
 
