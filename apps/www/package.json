@@ -10,7 +10,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@aura-design/system": "workspace:*",
     "@radix-ui/colors": "^3.0.0",
     "@radix-ui/react-collapsible": "^1.1.12",
     "@radix-ui/react-icons": "^1.3.0",

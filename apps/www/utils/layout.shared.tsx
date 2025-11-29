@@ -59,7 +59,7 @@ export function baseOptions(): BaseLayoutProps {
               cy="258.734"
               rx="159.938"
               ry="159.922"
-              style={{ fill: "var(--gray-a11)" }}
+              style={{ fill: "var(--accent-1)" }}
             />
           </svg>
           <span className="font-bold text-gray-11">Aura Design System</span>
