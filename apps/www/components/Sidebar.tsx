@@ -69,7 +69,7 @@ interface InternalContext {
 }
 
 const itemVariants = cva(
-  "relative flex flex-row items-center gap-0.5 rounded-lg p-0.5 ps-(--sidebar-item-offset) text-start text-fd-muted-foreground [overflow-wrap:anywhere] [&_svg]:size-1 [&_svg]:shrink-0",
+  "relative flex flex-row items-center gap-0.5 rounded-lg p-0.5 ps-(--sidebar-item-offset) text-start text-fd-muted-foreground [overflow-wrap:anywhere] [&_svg]:size-1 [&_svg]:shrink-0 mx-0.5",
   {
     variants: {
       active: {
