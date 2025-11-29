@@ -259,7 +259,7 @@ export function SidebarSeparator(props: ComponentProps<"p">) {
     <p
       {...props}
       className={cn(
-        "inline-flex items-center gap-2 mb-0.5 px-0.5 ps-(--sidebar-item-offset) empty:mb-0 [&_svg]:size-4 [&_svg]:shrink-0",
+        "inline-flex items-center gap-2 mb-0.5 px-0.5 ps-(--sidebar-item-offset) empty:mb-0 [&_svg]:size-4 [&_svg]:shrink-0 font-medium",
         props.className
       )}
     >
