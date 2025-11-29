@@ -1,5 +1,7 @@
+"use client";
+
 import { Link } from "lucide-react";
-import type { ComponentPropsWithoutRef, ElementType } from "react";
+import type { ComponentPropsWithoutRef } from "react";
 
 type HeadingLevel = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
@@ -54,3 +56,5 @@ export function Heading5(props: Omit<HeadingProps, "as">) {
 export function Heading6(props: Omit<HeadingProps, "as">) {
   return <HeadingBase as="h6" {...props} />;
 }
+
+
