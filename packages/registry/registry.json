@@ -442,6 +442,20 @@
       ]
     },
     {
+      "name": "accordion-animation",
+      "type": "registry:style",
+      "cssVars": {
+        "theme": {
+          "--animate-accordion-open": "slideDownAccordion 250ms ease-in-out",
+          "--animate-accordion-closed": "slideUpAccordion 250ms ease-in-out"
+        }
+      },
+      "css": {
+        "@keyframes slideDownAccordion": {},
+        "@keyframes slideUpAccordion": {}
+      }
+    },
+    {
       "name": "page-get-starter",
       "type": "registry:page",
       "title": "PageGetStarter",
@@ -451,6 +465,19 @@
           "path": "registry/default/layout/get-starter/page.tsx",
           "type": "registry:page",
           "target": "apps/page.tsx"
+        }
+      ]
+    },
+    {
+      "name": "css-main",
+      "type": "registry:file",
+      "title": "CSSMain",
+      "description": "The CSSMain file.",
+      "files": [
+        {
+          "path": "registry/default/styles/main.css",
+          "type": "registry:file",
+          "target": "styles/main.css"
         }
       ]
     }

@@ -12,6 +12,19 @@
           "target": "apps/page.tsx"
         }
       ]
+    },
+    {
+      "name": "css-main",
+      "type": "registry:file",
+      "title": "CSSMain",
+      "description": "The CSSMain file.",
+      "files": [
+        {
+          "path": "registry/default/styles/main.css",
+          "type": "registry:file",
+          "target": "styles/main.css"
+        }
+      ]
     }
   ]
 }

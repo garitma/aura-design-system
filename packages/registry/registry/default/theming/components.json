@@ -19,7 +19,8 @@
       "hooks": "@/hooks"
     },
     "registries": {
-      "@aura-design": "https://auradesignsystem.com/r/{name}.json"
+      "@aura": "https://auradesignsystem.com/r/{name}.json",
+      "@aura/dev": "http://localhost:4000/r/{name}.json"
     }
   }
   

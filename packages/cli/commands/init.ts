@@ -119,7 +119,8 @@ async function initializeAura() {
           hooks: "@/hooks",
         },
         registries: {
-          "@aura-design": "https://auradesignsystem.com/r/{name}.json",
+          "@aura": "https://auradesignsystem.com/r/{name}.json",
+          "@aura/dev": "http://localhost:4000/r/{name}.json",
         },
       }, null, 2);
     }
@@ -428,7 +429,7 @@ async function initializeAura() {
     console.log("\nAdding class-names utility...");
     await execa(
       "pnpm",
-      ["dlx", "shadcn@latest", "add", "@aura-design/class-names"],
+      ["dlx", "shadcn@latest", "add", "@aura/class-names"],
       {
         stdio: "inherit",
         cwd: appDir,

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "accordion-animation",
+  "type": "registry:style",
+  "cssVars": {
+    "theme": {
+      "--animate-accordion-open": "slideDownAccordion 250ms ease-in-out",
+      "--animate-accordion-closed": "slideUpAccordion 250ms ease-in-out"
+    }
+  },
+  "css": {
+    "@keyframes slideDownAccordion": {},
+    "@keyframes slideUpAccordion": {}
+  }
+}

@@ -10,6 +10,7 @@ const CUSTOM_ITEMS_PATH = path.join(__dirname, "../registry-items.custom.json");
 const ROOT_COMPONENTS_PATH = path.join(__dirname, "../registry/default/components");
 const UI_COMPONENTS_PATH = path.join(__dirname, "../registry/default/components/ui");
 const UTILS_PATH = path.join(__dirname, "../registry/default/utils");
+const STYLES_PATH = path.join(__dirname, "../registry/default/styles");
 
 type RegistryItemType = 
   | "registry:lib"
@@ -26,14 +27,18 @@ type RegistryItemType =
 interface RegistryItem {
   name: string;
   type: RegistryItemType;
-  title: string;
-  description: string;
-  files: Array<{
+  title?: string;
+  description?: string;
+  files?: Array<{
     path: string;
     type: RegistryItemType;
   }>;
   dependencies?: string[];
   registryDependencies?: string[];
+  cssVars?: {
+    theme: Record<string, string>;
+  };
+  css?: Record<string, Record<string, string> | Record<string, Record<string, string>>>;
 }
 
 const registry = {
@@ -194,12 +199,119 @@ function getCustomItems(): RegistryItem[] {
   }
 }
 
+/**
+ * Parse CSS variables from @theme block
+ * Example: @theme animations { --animate-foo: bar 1s ease; }
+ */
+function parseCssVars(content: string): Record<string, string> {
+  const vars: Record<string, string> = {};
+  
+  // Match @theme block (handles both "animations" and "animatons" typo)
+  const themeMatch = content.match(/@theme\s+\w+\s*\{([^}]+)\}/);
+  if (themeMatch) {
+    const themeContent = themeMatch[1];
+    // Match CSS variable declarations
+    const varRegex = /(--[\w-]+)\s*:\s*([^;]+);/g;
+    let match;
+    while ((match = varRegex.exec(themeContent)) !== null) {
+      vars[match[1].trim()] = match[2].trim();
+    }
+  }
+  
+  return vars;
+}
+
+/**
+ * Parse @keyframes from CSS content
+ * Returns an object with keyframe definitions
+ */
+function parseKeyframes(content: string): Record<string, Record<string, Record<string, string>>> {
+  const keyframes: Record<string, Record<string, Record<string, string>>> = {};
+  
+  // First, extract the @layer components block
+  const layerMatch = content.match(/@layer\s+\w+\s*\{([\s\S]*)\}/);
+  const searchContent = layerMatch ? layerMatch[1] : content;
+  
+  // Match each @keyframes
+  const keyframeBlockRegex = /@keyframes\s+([\w-]+)\s*\{([\s\S]*?)\n\s*\}/g;
+  let match;
+  
+  while ((match = keyframeBlockRegex.exec(searchContent)) !== null) {
+    const keyframeName = match[1];
+    const keyframeContent = match[2];
+    
+    const frames: Record<string, Record<string, string>> = {};
+    
+    // Match frame selectors (from, to, percentages)
+    const frameRegex = /(from|to|\d+%(?:\s*,\s*\d+%)*)\s*\{([^}]+)\}/g;
+    let frameMatch;
+    
+    while ((frameMatch = frameRegex.exec(keyframeContent)) !== null) {
+      const selector = frameMatch[1].trim();
+      const properties = frameMatch[2];
+      
+      const props: Record<string, string> = {};
+      // Match property declarations
+      const propRegex = /([\w-]+)\s*:\s*([^;]+);?/g;
+      let propMatch;
+      
+      while ((propMatch = propRegex.exec(properties)) !== null) {
+        props[propMatch[1].trim()] = propMatch[2].trim();
+      }
+      
+      frames[selector] = props;
+    }
+    
+    keyframes[`@keyframes ${keyframeName}`] = frames;
+  }
+  
+  return keyframes;
+}
+
+/**
+ * Get animation style items from .animation.css files
+ */
+function getAnimationStyleItems(): RegistryItem[] {
+  if (!fs.existsSync(STYLES_PATH)) return [];
+
+  const files = fs.readdirSync(STYLES_PATH);
+  return files
+    .filter((file) => file.endsWith(".animation.css"))
+    .map((file) => {
+      const name = file.replace(".animation.css", "");
+      const kebabName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+      const filePath = path.join(STYLES_PATH, file);
+      const content = fs.readFileSync(filePath, "utf-8");
+      
+      const cssVars = parseCssVars(content);
+      const keyframes = parseKeyframes(content);
+      
+      const item: RegistryItem = {
+        name: `${kebabName}-animation`,
+        type: "registry:style" as const,
+      };
+      
+      // Add cssVars if there are any
+      if (Object.keys(cssVars).length > 0) {
+        item.cssVars = { theme: cssVars };
+      }
+      
+      // Add css (keyframes) if there are any
+      if (Object.keys(keyframes).length > 0) {
+        item.css = keyframes;
+      }
+      
+      return item;
+    });
+}
+
 function buildRegistry() {
   const components = getComponentItems();
   const utils = getUtilsItems();
+  const animationStyles = getAnimationStyleItems();
   const customItems = getCustomItems();
 
-  registry.items = [...components, ...utils, ...customItems];
+  registry.items = [...components, ...utils, ...animationStyles, ...customItems];
 
   fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2));
   console.log(`Registry generated at ${REGISTRY_PATH}`);
