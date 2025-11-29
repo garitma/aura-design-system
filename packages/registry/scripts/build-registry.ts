@@ -6,6 +6,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const REGISTRY_PATH = path.join(__dirname, "../registry.json");
+const CUSTOM_ITEMS_PATH = path.join(__dirname, "../registry-items.custom.json");
 const ROOT_COMPONENTS_PATH = path.join(__dirname, "../registry/default/components");
 const UI_COMPONENTS_PATH = path.join(__dirname, "../registry/default/components/ui");
 const UTILS_PATH = path.join(__dirname, "../registry/default/utils");
@@ -89,7 +90,7 @@ function extractDependencies(filePath: string): string[] {
   return Array.from(dependencies).sort();
 }
 
-function getComponentItemsFromPath(dirPath: string, registryPrefix: string) {
+function getComponentItemsFromPath(dirPath: string, registryPrefix: string, itemType: RegistryItemType) {
   if (!fs.existsSync(dirPath)) return [];
   
   const files = fs.readdirSync(dirPath);
@@ -105,13 +106,13 @@ function getComponentItemsFromPath(dirPath: string, registryPrefix: string) {
       
       const item: RegistryItem = {
         name: kebabName,
-        type: "registry:ui" as const,
+        type: itemType,
         title: name,
         description: `The ${name} component.`,
         files: [
           {
             path: `${registryPrefix}/${file}`,
-            type: "registry:ui" as const,
+            type: itemType,
           },
         ],
       };
@@ -126,8 +127,8 @@ function getComponentItemsFromPath(dirPath: string, registryPrefix: string) {
 }
 
 function getComponentItems() {
-  const rootItems = getComponentItemsFromPath(ROOT_COMPONENTS_PATH, "registry/default/components");
-  const uiItems = getComponentItemsFromPath(UI_COMPONENTS_PATH, "registry/default/components/ui");
+  const rootItems = getComponentItemsFromPath(ROOT_COMPONENTS_PATH, "registry/default/components", "registry:component");
+  const uiItems = getComponentItemsFromPath(UI_COMPONENTS_PATH, "registry/default/components/ui", "registry:ui");
   
   return [...rootItems, ...uiItems];
 }
@@ -168,11 +169,37 @@ function getUtilsItems() {
     });
 }
 
+/**
+ * Load custom registry items from registry-items.custom.json
+ */
+function getCustomItems(): RegistryItem[] {
+  if (!fs.existsSync(CUSTOM_ITEMS_PATH)) {
+    console.log("No custom items file found at", CUSTOM_ITEMS_PATH);
+    return [];
+  }
+
+  try {
+    const content = fs.readFileSync(CUSTOM_ITEMS_PATH, "utf-8");
+    const customRegistry = JSON.parse(content);
+    
+    if (customRegistry.items && Array.isArray(customRegistry.items)) {
+      console.log(`Loaded ${customRegistry.items.length} custom item(s) from registry-items.custom.json`);
+      return customRegistry.items;
+    }
+    
+    return [];
+  } catch (error) {
+    console.error("Error loading custom items:", error);
+    return [];
+  }
+}
+
 function buildRegistry() {
   const components = getComponentItems();
   const utils = getUtilsItems();
+  const customItems = getCustomItems();
 
-  registry.items = [...components, ...utils];
+  registry.items = [...components, ...utils, ...customItems];
 
   fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2));
   console.log(`Registry generated at ${REGISTRY_PATH}`);

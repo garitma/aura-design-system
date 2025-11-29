@@ -1,0 +1,17 @@
+{
+  "items": [
+    {
+      "name": "page-get-starter",
+      "type": "registry:page",
+      "title": "PageGetStarter",
+      "description": "The PageGetStarter page.",
+      "files": [
+        {
+          "path": "registry/default/layout/get-starter/page.tsx",
+          "type": "registry:page",
+          "target": "apps/page.tsx"
+        }
+      ]
+    }
+  ]
+}
