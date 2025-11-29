@@ -1,5 +1,7 @@
 "use client"
-
+/**
+ * @description An input where the user selects a value from within a given range.
+ */
 import * as React from "react"
 import { Slider as SliderPrimitive } from "radix-ui"
 

@@ -1,5 +1,7 @@
 "use client";
-
+/**
+ * @description Displays an indicator showing the completion progress of a task.
+ */
 import * as React from "react";
 import { Progress as ProgressRadix } from "radix-ui";
 

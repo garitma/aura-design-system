@@ -23,6 +23,7 @@
     "registry:serve": "pnpm dlx serve public -p 6000",
     "registry:build": "shadcn build",
     "registry:generate": "npx tsx scripts/build-registry.ts",
+    "docs:generate": "npx tsx scripts/generate-docs.ts",
     "test": "vitest"
   },
   "dependencies": {

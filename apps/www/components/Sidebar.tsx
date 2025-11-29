@@ -228,7 +228,7 @@ export function SidebarFooter(props: ComponentProps<"div">) {
   return (
     <div
       {...props}
-      className={cn("flex flex-col border-t p-1 pt-0.5", props.className)}
+      className={cn("flex flex-col border-t p-1 pt-0.5 gap-1", props.className)}
     >
       {props.children}
     </div>

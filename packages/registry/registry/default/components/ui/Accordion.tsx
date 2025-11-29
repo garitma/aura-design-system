@@ -1,5 +1,9 @@
 "use client";
 
+/**
+ * @description A vertically stacked set of interactive headings that each reveal a section of content.
+ */
+
 import React from "react";
 import { Accordion as AccordionRadix } from "radix-ui";
 import { ChevronDownIcon } from "@radix-ui/react-icons";

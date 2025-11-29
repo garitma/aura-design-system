@@ -1,5 +1,7 @@
 "use client";
-
+/**
+ * @description A visually persistent menu common in desktop applications.
+ */
 import * as React from "react";
 import { Menubar as MenubarRadix } from "radix-ui";
 import {

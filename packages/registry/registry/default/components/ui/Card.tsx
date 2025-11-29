@@ -1,3 +1,6 @@
+/**
+ * @description Displays a card with header, content, and footer sections.
+ */
 import * as React from "react";
 
 import { cn } from "@/utils/class-names";

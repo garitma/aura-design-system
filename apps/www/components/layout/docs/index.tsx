@@ -69,7 +69,7 @@ export interface DocsLayoutProps extends BaseLayoutProps {
 
 interface SidebarOptions
   extends ComponentProps<"aside">,
-    Pick<SidebarProps, "defaultOpenLevel" | "prefetch"> {
+  Pick<SidebarProps, "defaultOpenLevel" | "prefetch"> {
   enabled?: boolean;
   component?: ReactNode;
   components?: Partial<SidebarComponents>;
@@ -163,9 +163,9 @@ export function DocsLayout({
                   item={item}
                   className={cn(
                     buttonVariants({
-                      size: "icon-sm",
-                      color: "ghost",
-                      className: "p-0.5",
+                      size: "sm",
+                      variant: "pill",
+                      className: "p-0.5 size-3",
                     })
                   )}
                   aria-label={item.label}
@@ -200,7 +200,9 @@ export function DocsLayout({
           {banner}
         </SidebarHeader>
         {viewport}
-        <SidebarFooter className="empty:hidden">{footer}</SidebarFooter>
+        <SidebarFooter className="empty:hidden">{footer}
+          <div className="flex flex-col border-t p-1 pt-0.5">hol</div>
+        </SidebarFooter>
       </SidebarContentMobile>
     );
 
@@ -243,36 +245,40 @@ export function DocsLayout({
           iconLinks.length > 0 ||
           themeSwitch?.enabled !== false ||
           footer) && (
-          <SidebarFooter>
-            <div className="flex text-fd-muted-foreground items-center empty:hidden">
-              {i18n && (
-                <LanguageToggle>
-                  <Languages className="size-4.5" />
-                </LanguageToggle>
-              )}
-              {iconLinks.map((item, i) => (
-                <BaseLinkItem
-                  key={i}
-                  item={item}
-                  className={cn(
-                    buttonVariants({ size: "icon-sm", color: "ghost" })
-                  )}
-                  aria-label={item.label}
-                >
-                  {item.icon}
-                </BaseLinkItem>
-              ))}
-              {themeSwitch.enabled !== false &&
-                (themeSwitch.component ?? (
-                  <ThemeToggle
-                    className="ms-auto p-0"
-                    mode={themeSwitch.mode}
-                  />
+            <SidebarFooter>
+              <div className="flex text-fd-muted-foreground items-center empty:hidden">
+                {i18n && (
+                  <LanguageToggle>
+                    <Languages className="size-4.5" />
+                  </LanguageToggle>
+                )}
+                {iconLinks.map((item, i) => (
+                  <BaseLinkItem
+                    key={i}
+                    item={item}
+                    className={cn(
+                      buttonVariants({
+                        size: "sm",
+                        variant: "pill",
+                        className: "p-0.5 size-3",
+                      })
+                    )}
+                    aria-label={item.label}
+                  >
+                    {item.icon}
+                  </BaseLinkItem>
                 ))}
-            </div>
-            {footer}
-          </SidebarFooter>
-        )}
+                {themeSwitch.enabled !== false &&
+                  (themeSwitch.component ?? (
+                    <ThemeToggle
+                      className="ms-auto p-0"
+                      mode={themeSwitch.mode}
+                    />
+                  ))}
+              </div>
+              {footer}
+            </SidebarFooter>
+          )}
       </SidebarContent>
     );
 

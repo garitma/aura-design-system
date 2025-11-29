@@ -1,4 +1,4 @@
-import type { BaseLayoutProps } from "fumadocs-ui/layouts/shared";
+import type { BaseLayoutProps } from "@/components/layout/shared/index";
 
 /**
  * Shared layout configurations
@@ -70,8 +70,9 @@ export function baseOptions(): BaseLayoutProps {
     },
     // see https://fumadocs.dev/docs/ui/navigation/links
     links: [],
-    search: {
+    searchToggle: {
       enabled: false,
     },
+    githubUrl: "https://github.com/garitma/aura-design-system",
   };
 }

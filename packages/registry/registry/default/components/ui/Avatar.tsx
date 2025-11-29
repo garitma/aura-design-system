@@ -1,5 +1,7 @@
 "use client";
-
+/**
+ * @description An image element with a fallback for representing the user.
+ */
 import * as React from "react";
 import { Avatar as AvatarRadix } from "radix-ui";
 import { cn } from "@/utils/class-names";

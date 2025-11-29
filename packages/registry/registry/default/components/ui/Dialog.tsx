@@ -1,3 +1,6 @@
+/**
+ * @description A window overlaid on the primary content, rendering content in a layer above the page.
+ */
 import { Dialog as DialogPrimitive } from "radix-ui";
 import { Cross2Icon } from "@radix-ui/react-icons";
 
