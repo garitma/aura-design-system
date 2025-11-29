@@ -189,7 +189,7 @@ export function SidebarContentMobile({
       <Presence present={open}>
         <div
           data-state={state}
-          className="fixed z-40 inset-0 backdrop-blur-xs data-[state=open]:animate-fd-fade-in data-[state=closed]:animate-fd-fade-out"
+          className="fixed z-40 inset-0 data-[state=open]:animate-fd-fade-in data-[state=closed]:animate-fd-fade-out"
           onClick={() => setOpen(false)}
         />
       </Presence>

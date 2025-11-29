@@ -277,6 +277,9 @@
 }
 
 @layer components {
+  article {
+    --spacing: 4px;
+  }
 }
 
 @layer utilities {
