@@ -11,5 +11,10 @@
       "type": "registry:file",
       "target": "styles/main.css"
     }
-  ]
+  ],
+  "css": {
+    "@layer components": {
+      "@import \"../styles/main.css\"": {}
+    }
+  }
 }

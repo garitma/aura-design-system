@@ -464,7 +464,7 @@
         {
           "path": "registry/default/layout/get-starter/page.tsx",
           "type": "registry:page",
-          "target": "apps/page.tsx"
+          "target": "app/page.tsx"
         }
       ]
     },
@@ -473,6 +473,11 @@
       "type": "registry:file",
       "title": "CSSMain",
       "description": "The CSSMain file.",
+      "css": {
+        "@layer components": {
+          "@import \"../styles/main.css\"": {}
+        }
+      },
       "files": [
         {
           "path": "registry/default/styles/main.css",

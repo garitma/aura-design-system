@@ -115,12 +115,12 @@ async function initializeAura() {
           components: "@/components",
           utils: "@/utils/class-names",
           ui: "@/components/ui",
-          lib: "@/lib",
+          lib: "@/utils",
           hooks: "@/hooks",
         },
         registries: {
           "@aura": "https://auradesignsystem.com/r/{name}.json",
-          "@aura/dev": "http://localhost:4000/r/{name}.json",
+          "@aura-dev": "http://localhost:4000/r/{name}.json",
         },
       }, null, 2);
     }
@@ -429,7 +429,7 @@ async function initializeAura() {
     console.log("\nAdding class-names utility...");
     await execa(
       "pnpm",
-      ["dlx", "shadcn@latest", "add", "@aura/class-names"],
+      ["dlx", "shadcn@latest", "add", "@aura/class-names", "@aura/page-get-starter", "@aura/css-main"],
       {
         stdio: "inherit",
         cwd: appDir,
