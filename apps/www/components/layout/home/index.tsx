@@ -143,19 +143,14 @@ export function Header({
           (searchToggle.components?.sm ?? (
             <SearchToggle className="p-2" hideIfDisabled />
           ))}
-        {themeSwitch.enabled !== false &&
-          (themeSwitch.component ?? (
-            <ThemeToggle mode={themeSwitch?.mode} />
-          ))}
         {menuItems.length > 0 && (
           <NavigationMenuItem>
             <MobileNavigationMenuTrigger
               aria-label="Toggle Menu"
               className={cn(
                 buttonVariants({
-                  size: "icon",
-                  color: "ghost",
-                  className: "group [&_svg]:size-1.5",
+                  variant: "pill",
+                  className: "group p-0.5 size-3 [&_svg]:size-1.5",
                 })
               )}
               enableHover={nav.enableHoverToOpen}
@@ -188,6 +183,10 @@ export function Header({
                     <ChevronDown className="size-1 text-fd-muted-foreground" />
                   </LanguageToggle>
                 )}
+                {themeSwitch.enabled !== false &&
+                  (themeSwitch.component ?? (
+                    <ThemeToggle mode={themeSwitch?.mode} />
+                  ))}
               </div>
             </MobileNavigationMenuContent>
           </NavigationMenuItem>
