@@ -303,8 +303,7 @@ ${generateExtraVars("gray", darkColors)}
 }
 
 @layer base {
-  @import "./main.css";
-  @import "../registry/default/styles/accordion.css";
+  @import "../styles/main.css";
 
   html {
     font-size: 17px;
