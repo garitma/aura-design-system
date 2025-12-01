@@ -24,7 +24,7 @@ import {
 export const navItemVariants = cva("[&_svg]:size-1", {
   variants: {
     variant: {
-      main: "inline-flex items-center gap-0.5 p-0.5 text-fd-muted-foreground transition-colors hover:text-fd-accent-foreground data-[active=true]:text-fd-primary",
+      main: "inline-flex items-center gap-0.5 p-0.5 text-gray-11 transition-colors hover:text-gray-12 data-[active=true]:text-accent-11",
       button: buttonVariants({
         variant: "fill",
         className: "gap-0.5",

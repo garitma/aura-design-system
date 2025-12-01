@@ -69,7 +69,18 @@ export function baseOptions(): BaseLayoutProps {
       ),
     },
     // see https://fumadocs.dev/docs/ui/navigation/links
-    links: [],
+    links: [
+      {
+        text: "Get Started",
+        url: "/docs",
+        active: "nested-url",
+      },
+      {
+        text: "Components",
+        url: "/docs/components/accordion",
+        active: "nested-url",
+      },
+    ],
     searchToggle: {
       enabled: false,
     },

@@ -138,7 +138,7 @@ export function Header({
           ))}
         </ul>
       </div>
-      <div className="flex flex-row items-center ms-auto lg:hidden gap-0.5">
+      <ul className="flex flex-row items-center ms-auto lg:hidden gap-0.5">
         {searchToggle.enabled !== false &&
           (searchToggle.components?.sm ?? (
             <SearchToggle className="p-2" hideIfDisabled />
@@ -191,7 +191,7 @@ export function Header({
             </MobileNavigationMenuContent>
           </NavigationMenuItem>
         )}
-      </div>
+      </ul>
     </Navbar>
   );
 }
