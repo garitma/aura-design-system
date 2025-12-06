@@ -130,6 +130,7 @@ dist/*
 packages/system/dist
 packages/styles/dist
 packages/cli/dist
+packages/react-fixture/dist
 
 # root inject
 packages/system/**.ts
