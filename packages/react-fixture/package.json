@@ -4,6 +4,9 @@
   "description": "React Fixture Update Utility",
   "type": "module",
   "main": "./dist/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "bin": {
     "react-fixture": "./dist/index.js"
   },
