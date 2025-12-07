@@ -265,7 +265,7 @@
 
 @layer base {
   @import "./main.css";
-  @import "../registry/default/styles/accordion.css";
+  @import "../registry/default/styles/accordion.animation.css";
 
   html {
     font-size: 17px;
