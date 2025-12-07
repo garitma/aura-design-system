@@ -20,7 +20,7 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "start": "pnpm ladle preview",
-    "build": "pnpm ladle build",
+    "build": "pnpm ladle build -o public",
     "dev": "pnpm ladle serve",
     "registry:serve": "pnpm dlx serve public -p 6000",
     "registry:build": "shadcn build -o ../../apps/www/public/r",
