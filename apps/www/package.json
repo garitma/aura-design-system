@@ -18,6 +18,7 @@
     "@radix-ui/react-presence": "^1.1.5",
     "@radix-ui/react-scroll-area": "^1.2.10",
     "@radix-ui/react-slot": "^1.2.3",
+    "@vercel/analytics": "^1.6.1",
     "ajv": "^8.17.1",
     "ajv-errors": "^3.0.0",
     "ajv-formats": "^3.0.1",
