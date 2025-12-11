@@ -3,27 +3,49 @@ import fs from "node:fs";
 import path from "node:path";
 import chalk from "chalk";
 
-// --- Versiones Seguras Recomendadas ---
-// Basadas en la información de tu imagen para la vulnerabilidad CVE-2025-5518 y CVE-2025-6647
+// Secure Recommended Versions
+// Based on security advisories for CVE-2025-5518 and CVE-2025-6647
 const SECURE_VERSIONS: Record<string, any> = {
-  // Para Next.js: si estás entre 15 y 16, actualiza a una de estas
+  // Next.js: specific versions per branch
   next: {
-    "15.x": "15.3.6", // O la versión más alta de su rama (15.0.5, 15.1.9, 15.2.6, 15.3.6)
-    "16.x": "16.0.7", // O la versión más alta de su rama
-    // Como convención, usaremos la versión de parche más alta recomendada para cada rama mayor/menor.
+    "14.x": "14.2.34",
+    "15.0.x": "15.0.6",
+    "15.1.x": "15.1.10",
+    "15.2.x": "15.2.7",
+    "15.3.x": "15.3.7",
+    "15.4.x": "15.4.9",
+    "15.5.x": "15.5.8",
+    "15.x-canary": "15.6.0-canary.59", // For all 15.x canary releases
+    "16.0.x": "16.0.9",
+    "16.x-canary": "16.1.0-canary.17", // For all 16.x canary releases
+    // Fallback for unspecified versions
+    "15.x": "15.5.8", // Uses the latest stable version of 15.x
+    "16.x": "16.0.9", // Uses the latest stable version of 16.x
   },
-  // Para React Server Components (React, react-dom)
-  react: "19.2.1",
-  "react-dom": "19.2.1",
-  // Si estás usando React 19.0.x o 19.1.x, actualiza a la última de esas ramas (19.0.1, 19.1.2, 19.2.1)
+  // React Server Components (React, react-dom)
+  // Only React 19.x is updated; React 18.x is left unchanged
+  react: {
+    "19.0.x": "19.0.1",
+    "19.1.x": "19.1.2",
+    "19.2.x": "19.2.1",
+    // Fallback for unspecified 19.x versions
+    "19.x": "19.2.1",
+  },
+  "react-dom": {
+    "19.0.x": "19.0.1",
+    "19.1.x": "19.1.2",
+    "19.2.x": "19.2.1",
+    // Fallback for unspecified 19.x versions
+    "19.x": "19.2.1",
+  },
 };
 
 const PACKAGE_JSON_PATH = path.resolve("./package.json");
 
 /**
- * Normaliza y elimina prefijos de versionado (^, ~)
- * @param {string} version - La cadena de versión de package.json.
- * @returns {string} La versión sin prefijos semver.
+ * Normalizes and removes versioning prefixes (^, ~)
+ * @param {string} version - The version string from package.json
+ * @returns {string} The version without semver prefixes
  */
 function normalizeVersion(version: string): string | null {
   if (!version) return null;
@@ -31,44 +53,135 @@ function normalizeVersion(version: string): string | null {
 }
 
 /**
- * Comprueba si una versión de Next.js está en el rango afectado (entre 15.0.0 y < 16.x)
- * @param {string} version - La versión normalizada de Next.js.
- * @returns {boolean} Si la versión está en el rango 15.x o 16.x (afectado).
+ * Checks if a Next.js version is within the affected range (14.x, 15.x, or 16.x)
+ * @param {string} version - The normalized Next.js version
+ * @returns {boolean} Whether the version is in the affected range (14.x, 15.x, or 16.x)
  */
 function isNextVersionAffected(version: string): boolean {
   if (!version) return false;
   const major = parseInt(version.split(".")[0], 10);
 
-  // El texto dice "cada versión entre Next.js 15 y 16 es afectada"
-  // Esto se interpreta como las ramas Next.js 15.x y Next.js 16.x (asumiendo que 17.x es la no afectada).
-  return major === 15 || major === 16;
+  // Includes Next.js branches 14.x, 15.x, and 16.x
+  return major === 14 || major === 15 || major === 16;
 }
 
 /**
- * Obtiene la versión de Next.js segura a la que se debe actualizar.
- * Mantiene la rama menor actual si está disponible.
- * @param {string} currentVersion - La versión normalizada de Next.js.
- * @param {string} originalVersionString - La versión original con prefijo.
- * @returns {string} La nueva versión segura, o null si no se debe actualizar.
+ * Retrieves the secure Next.js version to update to.
+ * Preserves the current minor branch if available.
+ * @param {string} currentVersion - The normalized Next.js version
+ * @param {string} originalVersionString - The original version string with prefix
+ * @returns {string} The new secure version, or null if no update is needed
  */
 function getNewNextVersion(currentVersion: string, originalVersionString: string): string | null {
-  const major = parseInt(currentVersion.split(".")[0], 10);
-  const majorMinorKey = `${major}.x`;
-
-  if (SECURE_VERSIONS.next[majorMinorKey]) {
-    // Mantiene el prefijo semver si existía
+  const parts = currentVersion.split(".");
+  const major = parseInt(parts[0], 10);
+  const minor = parts[1] ? parseInt(parts[1], 10) : null;
+  
+  // Check for canary versions
+  const isCanary = currentVersion.includes("-canary");
+  
+  // For canary versions, check major.x-canary first
+  if (isCanary) {
+    const canaryKey = `${major}.x-canary`;
+    if (SECURE_VERSIONS.next[canaryKey]) {
+      const semverPrefix = originalVersionString.match(/^[\^~]/) ? originalVersionString[0] : "";
+      return semverPrefix + SECURE_VERSIONS.next[canaryKey];
+    }
+  }
+  
+  // Try to find exact match for stable versions (major.minor.x)
+  if (minor !== null && !isCanary) {
+    const versionKey = `${major}.${minor}.x`;
+    if (SECURE_VERSIONS.next[versionKey]) {
+      const semverPrefix = originalVersionString.match(/^[\^~]/) ? originalVersionString[0] : "";
+      return semverPrefix + SECURE_VERSIONS.next[versionKey];
+    }
+  }
+  
+  // Fallback to major.x
+  const majorKey = `${major}.x`;
+  if (SECURE_VERSIONS.next[majorKey]) {
     const semverPrefix = originalVersionString.match(/^[\^~]/) ? originalVersionString[0] : "";
-    return semverPrefix + SECURE_VERSIONS.next[majorMinorKey];
+    return semverPrefix + SECURE_VERSIONS.next[majorKey];
   }
 
-  // Si la versión actual es mayor a 16 (ej. 17.x), puede que ya esté corregida,
-  // pero si está usando React Server Components, quizás necesite la versión de Next.js más nueva
-  // que soporte la versión segura de React. En este script, solo actualizamos los rangos afectados explícitos.
+  // If the current version is greater than 16 (e.g., 17.x), it may already be patched.
+  // However, if using React Server Components, a newer Next.js version that supports
+  // the secure React version may be required. This script only updates explicitly listed affected ranges.
   console.warn(
     chalk.yellow(
-      `[WARN] La versión de Next.js ${currentVersion} no está en las ramas de corrección de Next.js explícitamente listadas (15.x, 16.x). No se actualiza automáticamente. Revisar manualmente.`
+      `[WARN] Next.js version ${currentVersion} is not in the explicitly listed patched branches (14.x, 15.x, 16.x). Automatic update skipped. Please review manually.`
     )
   );
+  return null;
+}
+
+/**
+ * Checks if a React version is within the affected range (React 19.x only)
+ * @param {string} version - The normalized React version
+ * @returns {boolean} Whether the version is React 19.x (affected). React 18.x is not modified.
+ */
+function isReactVersionAffected(version: string): boolean {
+  if (!version) return false;
+  const major = parseInt(version.split(".")[0], 10);
+  
+  // Only React 19.x is updated; React 18.x is left unchanged
+  return major === 19;
+}
+
+/**
+ * Retrieves the secure React version to update to.
+ * Preserves the current minor branch if available.
+ * Only processes React 19.x; React 18.x is not modified.
+ * @param {string} currentVersion - The normalized React version
+ * @param {string} originalVersionString - The original version string with prefix
+ * @param {string} packageName - The package name ("react" or "react-dom")
+ * @returns {string} The new secure version, or null if no update is needed
+ */
+function getNewReactVersion(
+  currentVersion: string,
+  originalVersionString: string,
+  packageName: string
+): string | null {
+  const parts = currentVersion.split(".");
+  const major = parseInt(parts[0], 10);
+  const minor = parts[1] ? parseInt(parts[1], 10) : null;
+  
+  // React 18.x is not modified
+  if (major === 18) {
+    console.log(
+      chalk.gray(
+        `'${packageName}' (v${originalVersionString}) is React 18.x. Update skipped (only React 19.x is updated).`
+      )
+    );
+    return null;
+  }
+  
+  // Only React 19.x is processed
+  if (major !== 19) {
+    console.warn(
+      chalk.yellow(
+        `[WARN] ${packageName} version ${currentVersion} is not React 19.x. Automatic update skipped. Please review manually.`
+      )
+    );
+    return null;
+  }
+  
+  // Try to find exact match for minor versions (19.minor.x)
+  if (minor !== null) {
+    const versionKey = `19.${minor}.x`;
+    if (SECURE_VERSIONS[packageName] && SECURE_VERSIONS[packageName][versionKey]) {
+      const semverPrefix = originalVersionString.match(/^[\^~]/) ? originalVersionString[0] : "^";
+      return semverPrefix + SECURE_VERSIONS[packageName][versionKey];
+    }
+  }
+  
+  // Fallback to 19.x
+  if (SECURE_VERSIONS[packageName] && SECURE_VERSIONS[packageName]["19.x"]) {
+    const semverPrefix = originalVersionString.match(/^[\^~]/) ? originalVersionString[0] : "^";
+    return semverPrefix + SECURE_VERSIONS[packageName]["19.x"];
+  }
+  
   return null;
 }
 
@@ -77,21 +190,21 @@ export function registerUpdateDepsCommand(program: Command) {
     .command("update-deps")
     .description("Update dependencies to secure versions based on CVE-2025-5518 and CVE-2025-6647")
     .action(() => {
-      console.log(chalk.cyan("✨ Iniciando script de actualización de seguridad..."));
+      console.log(chalk.cyan("Initiating security update script..."));
 
       try {
         if (!fs.existsSync(PACKAGE_JSON_PATH)) {
-            console.error(chalk.red("❌ No package.json found in the current directory."));
+            console.error(chalk.red("No package.json found in the current directory."));
             return;
         }
 
-        // 1. Leer el package.json
+        // Read package.json
         const packageJsonContent = fs.readFileSync(PACKAGE_JSON_PATH, "utf8");
         const currentPackage = JSON.parse(packageJsonContent);
 
         let changesMade = false;
 
-        // --- Secciones a revisar ---
+        // Sections to review
         const dependencySections = ["dependencies", "devDependencies"];
 
         for (const section of dependencySections) {
@@ -99,7 +212,7 @@ export function registerUpdateDepsCommand(program: Command) {
 
           const deps = currentPackage[section];
 
-          // 2. Actualizar Next.js
+          // Update Next.js
           if (deps["next"]) {
             const currentVersionWithPrefix = deps["next"];
             const normalizedVersion = normalizeVersion(currentVersionWithPrefix);
@@ -109,7 +222,7 @@ export function registerUpdateDepsCommand(program: Command) {
               if (newVersion) {
                 console.log(
                   chalk.green(
-                    `✅ Actualizando 'next': ${currentVersionWithPrefix} -> ${newVersion} (Corrección CVE-2025-6647)`
+                    `Updating 'next': ${currentVersionWithPrefix} -> ${newVersion} (CVE-2025-6647 patch)`
                   )
                 );
                 deps["next"] = newVersion;
@@ -118,14 +231,14 @@ export function registerUpdateDepsCommand(program: Command) {
             } else {
               console.log(
                 chalk.gray(
-                  `➖ 'next' (v${currentVersionWithPrefix}) no está en el rango afectado 15.x o 16.x. No se actualiza.`
+                  `'next' (v${currentVersionWithPrefix}) is not in the affected range (14.x, 15.x, or 16.x). Update skipped.`
                 )
               );
             }
           }
 
-          // 3. Actualizar React y React-DOM
-          // Se asume que el usuario debe actualizar a la última versión segura si usa Server Components.
+          // Update React and React-DOM
+          // Only React 19.x is updated; React 18.x is left unchanged
           const reactPackages = ["react", "react-dom"];
           for (const pkg of reactPackages) {
             if (deps[pkg]) {
@@ -134,59 +247,57 @@ export function registerUpdateDepsCommand(program: Command) {
 
               if (!normalizedVersion) continue;
 
-              // Si la versión actual es menor que la versión segura recomendada
-              // Nota: localeCompare con numeric: true hace comparación básica, pero para semver real sería mejor semver.lt
-              // Aquí mantenemos la lógica original del script
-              if (
-                normalizedVersion.localeCompare(SECURE_VERSIONS[pkg], undefined, {
-                  numeric: true,
-                  sensitivity: "base",
-                }) === -1
-              ) {
-                // Mantiene el prefijo semver si existía, de lo contrario usa '^' como buena práctica
-                const semverPrefix = currentVersionWithPrefix.match(/^[\^~]/)
-                  ? currentVersionWithPrefix[0]
-                  : "^";
-                const newVersion = semverPrefix + SECURE_VERSIONS[pkg];
-
-                console.log(
-                  chalk.green(
-                    `✅ Actualizando '${pkg}': ${currentVersionWithPrefix} -> ${newVersion} (Corrección CVE-2025-5518)`
-                  )
-                );
-                deps[pkg] = newVersion;
-                changesMade = true;
+              if (isReactVersionAffected(normalizedVersion)) {
+                const newVersion = getNewReactVersion(normalizedVersion, currentVersionWithPrefix, pkg);
+                if (newVersion) {
+                  console.log(
+                    chalk.green(
+                      `Updating '${pkg}': ${currentVersionWithPrefix} -> ${newVersion} (CVE-2025-5518 patch)`
+                    )
+                  );
+                  deps[pkg] = newVersion;
+                  changesMade = true;
+                }
               } else {
-                console.log(
-                  chalk.gray(
-                    `➖ '${pkg}' (v${currentVersionWithPrefix}) ya es igual o mayor a la versión segura recomendada (${SECURE_VERSIONS[pkg]}). No se necesita actualizar.`
-                  )
-                );
+                // React 18.x or unaffected versions
+                if (normalizedVersion.startsWith("18.")) {
+                  console.log(
+                    chalk.gray(
+                      `'${pkg}' (v${currentVersionWithPrefix}) is React 18.x. Update skipped (only React 19.x is updated).`
+                    )
+                  );
+                } else {
+                  console.log(
+                    chalk.gray(
+                      `'${pkg}' (v${currentVersionWithPrefix}) is not in the affected range (React 19.x). Update skipped.`
+                    )
+                  );
+                }
               }
             }
           }
         }
 
-        // 4. Escribir el package.json modificado
+        // Write the modified package.json
         if (changesMade) {
-          // Escribe el archivo con 2 espacios de indentación para que se vea limpio
+          // Write the file with 2-space indentation for clean formatting
           fs.writeFileSync(PACKAGE_JSON_PATH, JSON.stringify(currentPackage, null, 2) + "\n", "utf8");
-          console.log(chalk.bold.green("\n✅ ¡package.json actualizado con las versiones seguras!"));
+          console.log(chalk.bold.green("\npackage.json has been updated with secure versions."));
           console.log(
-            "👉 Ejecuta " +
+            "Please run " +
               chalk.bold("npm install") +
-              " (o tu gestor de paquetes) para instalar las nuevas dependencias."
+              " (or your package manager) to install the new dependencies."
           );
         } else {
           console.log(
-            chalk.blue("\n🎉 No se encontraron dependencias afectadas o ya están en versiones seguras.")
+            chalk.blue("\nNo affected dependencies found, or all dependencies are already at secure versions.")
           );
         }
       } catch (error: any) {
-        console.error(chalk.red("\n❌ Error al ejecutar el script de actualización:", error.message));
+        console.error(chalk.red("\nError executing the update script:"), error.message);
         if (error.code === "ENOENT") {
           console.error(
-            chalk.red("Asegúrate de ejecutar este script en la carpeta donde se encuentra el archivo package.json.")
+            chalk.red("Please ensure this script is executed in the directory containing the package.json file.")
           );
         }
       }
