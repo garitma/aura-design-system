@@ -1,6 +1,6 @@
 {
   "name": "@aura-design/react-fixture",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "React Fixture Update Utility",
   "type": "module",
   "main": "./dist/index.js",
