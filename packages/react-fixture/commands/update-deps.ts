@@ -24,19 +24,20 @@ const SECURE_VERSIONS: Record<string, any> = {
   },
   // React Server Components (React, react-dom)
   // Only React 19.x is updated; React 18.x is left unchanged
+  // Fixes were backported to versions 19.0.2, 19.1.3, and 19.2.2
   react: {
-    "19.0.x": "19.0.1",
-    "19.1.x": "19.1.2",
-    "19.2.x": "19.2.1",
+    "19.0.x": "19.0.2",
+    "19.1.x": "19.1.3",
+    "19.2.x": "19.2.2",
     // Fallback for unspecified 19.x versions
-    "19.x": "19.2.1",
+    "19.x": "19.2.2",
   },
   "react-dom": {
-    "19.0.x": "19.0.1",
-    "19.1.x": "19.1.2",
-    "19.2.x": "19.2.1",
+    "19.0.x": "19.0.2",
+    "19.1.x": "19.1.3",
+    "19.2.x": "19.2.2",
     // Fallback for unspecified 19.x versions
-    "19.x": "19.2.1",
+    "19.x": "19.2.2",
   },
 };
 
