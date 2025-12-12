@@ -37,6 +37,7 @@ interface ButtonProps
   asChild?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;
+  isLoadingText?: string | React.ReactNode;
   mode?: VariantProps<typeof buttonVariants>["variant"];
 }
 
@@ -52,6 +53,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       asChild = false,
       isDisabled,
       isLoading,
+      isLoadingText,
       children,
       ...rest
     } = props;
@@ -75,7 +77,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ) : (
           <>
             {isLoading && <ReloadIcon className="mr-0.5 icon animate-spin" />}
-            {children}
+            {isLoading && isLoadingText ? isLoadingText : children}
           </>
         )}
       </Comp>
@@ -87,3 +89,4 @@ Button.displayName = "Button";
 
 export { Button, buttonVariants };
 export type { ButtonProps };
+export default Button;

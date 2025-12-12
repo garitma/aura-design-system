@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { Checkbox } from "../registry/default/components/ui/Checkbox";
+import {
+  Checkbox,
+  CheckboxGroup,
+  CheckboxGroupItem,
+} from "../registry/default/components/ui/Checkbox";
 
 export const Default = () => {
   const [checked, setChecked] = useState(false);
@@ -93,62 +97,45 @@ export const WithDescription = () => {
   );
 };
 
-export const CheckboxGroup = () => {
+export const Group = () => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   const items = [
     {
-      id: "item-1",
+      value: "react",
       label: "React",
       description: "A JavaScript library for building user interfaces",
     },
     {
-      id: "item-2",
+      value: "typescript",
       label: "TypeScript",
       description: "JavaScript with syntax for types",
     },
     {
-      id: "item-3",
+      value: "tailwind",
       label: "Tailwind CSS",
       description: "A utility-first CSS framework",
     },
     {
-      id: "item-4",
+      value: "nextjs",
       label: "Next.js",
       description: "The React Framework for the Web",
     },
   ];
 
-  const handleCheckedChange = (itemId: string, checked: boolean) => {
-    setSelectedItems((prev) =>
-      checked ? [...prev, itemId] : prev.filter((id) => id !== itemId)
-    );
-  };
-
   return (
     <div className="flex flex-col gap-1">
       <div className="text-sm font-semibold">Select your tech stack:</div>
-      {items.map((item) => (
-        <div key={item.id} className="flex items-start gap-1">
-          <Checkbox
-            id={item.id}
-            checked={selectedItems.includes(item.id)}
-            onCheckedChange={(checked) =>
-              handleCheckedChange(item.id, checked as boolean)
-            }
-            className=""
+      <CheckboxGroup value={selectedItems} onValueChange={setSelectedItems}>
+        {items.map((item) => (
+          <CheckboxGroupItem
+            key={item.value}
+            value={item.value}
+            label={item.label}
+            description={item.description}
           />
-          <div className="flex flex-col gap-1">
-            <label
-              htmlFor={item.id}
-              className="text-sm font-medium leading-none cursor-pointer"
-            >
-              {item.label}
-            </label>
-            <p className="text-sm text-gray-a11 m-0">{item.description}</p>
-          </div>
-        </div>
-      ))}
+        ))}
+      </CheckboxGroup>
       {selectedItems.length > 0 && (
         <div className="mt-2 text-sm text-gray-a11">
           Selected: {selectedItems.length} item
