@@ -10,7 +10,7 @@ import { useState } from "react";
 import {
   RadioGroup,
   RadioGroupItem,
-} from "../registry/default/components/ui/RadioGroup";
+} from "@/components/ui/RadioGroup";
 
 export const Default = () => {
   const [value, setValue] = useState("option-1");
@@ -54,3 +54,367 @@ export const Default = () => {
 ```bash
 pnpm dlx shadcn@latest @aura/radio-group
 ```
+## Usage
+
+### Default
+
+```tsx
+import { useState } from "react";
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@/components/ui/RadioGroup";
+
+export const Default = () => {
+  const [value, setValue] = useState("option-1");
+
+  return (
+    <RadioGroup value={value} onValueChange={setValue}>
+      <div className="flex items-center gap-1">
+        <RadioGroupItem value="option-1" id="option-1" />
+        <label
+          htmlFor="option-1"
+          className="text-sm font-medium leading-none cursor-pointer"
+        >
+          Option 1
+        </label>
+      </div>
+      <div className="flex items-center gap-1">
+        <RadioGroupItem value="option-2" id="option-2" />
+        <label
+          htmlFor="option-2"
+          className="text-sm font-medium leading-none cursor-pointer"
+        >
+          Option 2
+        </label>
+      </div>
+      <div className="flex items-center gap-1">
+        <RadioGroupItem value="option-3" id="option-3" />
+        <label
+          htmlFor="option-3"
+          className="text-sm font-medium leading-none cursor-pointer"
+        >
+          Option 3
+        </label>
+      </div>
+    </RadioGroup>
+  );
+};
+```
+
+### WithDefaultValue
+
+```tsx
+import { useState } from "react";
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@/components/ui/RadioGroup";
+
+export const WithDefaultValue = () => {
+  return (
+    <RadioGroup defaultValue="option-2">
+      <div className="flex items-center gap-1">
+        <RadioGroupItem value="option-1" id="default-option-1" />
+        <label
+          htmlFor="default-option-1"
+          className="text-sm font-medium leading-none cursor-pointer"
+        >
+          Option 1
+        </label>
+      </div>
+      <div className="flex items-center gap-1">
+        <RadioGroupItem value="option-2" id="default-option-2" />
+        <label
+          htmlFor="default-option-2"
+          className="text-sm font-medium leading-none cursor-pointer"
+        >
+          Option 2 (default)
+        </label>
+      </div>
+      <div className="flex items-center gap-1">
+        <RadioGroupItem value="option-3" id="default-option-3" />
+        <label
+          htmlFor="default-option-3"
+          className="text-sm font-medium leading-none cursor-pointer"
+        >
+          Option 3
+        </label>
+      </div>
+    </RadioGroup>
+  );
+};
+```
+
+### Disabled
+
+```tsx
+import { useState } from "react";
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@/components/ui/RadioGroup";
+
+export const Disabled = () => {
+  const [value, setValue] = useState("option-1");
+
+  return (
+    <RadioGroup value={value} onValueChange={setValue}>
+      <div className="flex items-center gap-1">
+        <RadioGroupItem value="option-1" id="disabled-option-1" />
+        <label
+          htmlFor="disabled-option-1"
+          className="text-sm font-medium leading-none cursor-pointer"
+        >
+          Option 1
+        </label>
+      </div>
+      <div className="flex items-center gap-1">
+        <RadioGroupItem value="option-2" id="disabled-option-2" disabled />
+        <label
+          htmlFor="disabled-option-2"
+          className="text-sm font-medium leading-none text-gray-a8 cursor-not-allowed"
+        >
+          Option 2 (disabled)
+        </label>
+      </div>
+      <div className="flex items-center gap-1">
+        <RadioGroupItem value="option-3" id="disabled-option-3" disabled />
+        <label
+          htmlFor="disabled-option-3"
+          className="text-sm font-medium leading-none text-gray-a8 cursor-not-allowed"
+        >
+          Option 3 (disabled)
+        </label>
+      </div>
+    </RadioGroup>
+  );
+};
+```
+
+### WithDescription
+
+```tsx
+import { useState } from "react";
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@/components/ui/RadioGroup";
+
+export const WithDescription = () => {
+  const [value, setValue] = useState("email");
+
+  const options = [
+    {
+      value: "email",
+      label: "Email",
+      description: "Receive notifications via email",
+    },
+    {
+      value: "sms",
+      label: "SMS",
+      description: "Receive notifications via text message",
+    },
+    {
+      value: "push",
+      label: "Push",
+      description: "Receive push notifications on your device",
+    },
+  ];
+
+  return (
+    <RadioGroup value={value} onValueChange={setValue}>
+      {options.map((option) => (
+        <div key={option.value} className="flex items-start gap-1">
+          <RadioGroupItem value={option.value} id={option.value} />
+          <div className="flex flex-col gap-1">
+            <label
+              htmlFor={option.value}
+              className="text-sm font-medium leading-none cursor-pointer"
+            >
+              {option.label}
+            </label>
+            <p className="text-sm text-gray-a11 m-0">{option.description}</p>
+          </div>
+        </div>
+      ))}
+    </RadioGroup>
+  );
+};
+```
+
+### PaymentMethod
+
+```tsx
+import { useState } from "react";
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@/components/ui/RadioGroup";
+
+export const PaymentMethod = () => {
+  const [paymentMethod, setPaymentMethod] = useState("credit-card");
+
+  const methods = [
+    {
+      value: "credit-card",
+      label: "Credit Card",
+      description: "Pay with your credit or debit card",
+    },
+    {
+      value: "paypal",
+      label: "PayPal",
+      description: "Pay securely with your PayPal account",
+    },
+    {
+      value: "bank-transfer",
+      label: "Bank Transfer",
+      description: "Direct transfer from your bank account",
+    },
+    {
+      value: "crypto",
+      label: "Cryptocurrency",
+      description: "Pay with Bitcoin, Ethereum, or other cryptocurrencies",
+    },
+  ];
+
+  return (
+    <div className="flex flex-col gap-1">
+      <div className="text-sm font-semibold">Select payment method:</div>
+      <RadioGroup value={paymentMethod} onValueChange={setPaymentMethod}>
+        {methods.map((method) => (
+          <div key={method.value} className="flex items-start gap-1">
+            <RadioGroupItem value={method.value} id={method.value} />
+            <div className="flex flex-col gap-1">
+              <label
+                htmlFor={method.value}
+                className="text-sm font-medium leading-none cursor-pointer"
+              >
+                {method.label}
+              </label>
+              <p className="text-sm text-gray-a11 m-0">{method.description}</p>
+            </div>
+          </div>
+        ))}
+      </RadioGroup>
+      {paymentMethod && (
+        <div className="mt-2 text-sm text-gray-a11">
+          Selected: {methods.find((m) => m.value === paymentMethod)?.label}
+        </div>
+      )}
+    </div>
+  );
+};
+```
+
+### NotificationPreferences
+
+```tsx
+import { useState } from "react";
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@/components/ui/RadioGroup";
+
+export const NotificationPreferences = () => {
+  const [frequency, setFrequency] = useState("daily");
+
+  const frequencies = [
+    {
+      value: "realtime",
+      label: "Real-time",
+      description: "Get notified immediately when something happens",
+    },
+    {
+      value: "daily",
+      label: "Daily digest",
+      description: "Receive a summary once per day",
+    },
+    {
+      value: "weekly",
+      label: "Weekly digest",
+      description: "Receive a summary once per week",
+    },
+    {
+      value: "never",
+      label: "Never",
+      description: "Don't send me any notifications",
+    },
+  ];
+
+  return (
+    <div className="flex flex-col gap-1">
+      <div className="text-sm font-semibold">
+        How often would you like to receive notifications?
+      </div>
+      <RadioGroup value={frequency} onValueChange={setFrequency}>
+        {frequencies.map((freq) => (
+          <div key={freq.value} className="flex items-start gap-1">
+            <RadioGroupItem value={freq.value} id={freq.value} />
+            <div className="flex flex-col gap-1">
+              <label
+                htmlFor={freq.value}
+                className="text-sm font-medium leading-none cursor-pointer"
+              >
+                {freq.label}
+              </label>
+              <p className="text-sm text-gray-a11 m-0">{freq.description}</p>
+            </div>
+          </div>
+        ))}
+      </RadioGroup>
+    </div>
+  );
+};
+```
+
+### Horizontal
+
+```tsx
+import { useState } from "react";
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@/components/ui/RadioGroup";
+
+export const Horizontal = () => {
+  const [value, setValue] = useState("small");
+
+  return (
+    <RadioGroup
+      value={value}
+      onValueChange={setValue}
+      className="flex flex-row gap-2"
+    >
+      <div className="flex items-center gap-1">
+        <RadioGroupItem value="small" id="size-small" />
+        <label
+          htmlFor="size-small"
+          className="text-sm font-medium leading-none cursor-pointer"
+        >
+          Small
+        </label>
+      </div>
+      <div className="flex items-center gap-1">
+        <RadioGroupItem value="medium" id="size-medium" />
+        <label
+          htmlFor="size-medium"
+          className="text-sm font-medium leading-none cursor-pointer"
+        >
+          Medium
+        </label>
+      </div>
+      <div className="flex items-center gap-1">
+        <RadioGroupItem value="large" id="size-large" />
+        <label
+          htmlFor="size-large"
+          className="text-sm font-medium leading-none cursor-pointer"
+        >
+          Large
+        </label>
+      </div>
+    </RadioGroup>
+  );
+};
+```
+

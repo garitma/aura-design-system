@@ -3,4 +3,5 @@ header:
 content:
   - preview: Default
   - installation: @aura
+  - usage: all
 

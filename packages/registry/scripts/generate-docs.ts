@@ -22,6 +22,7 @@ const DEFAULT_DESCRIPTION =
 interface MetadataContent {
   preview?: string;
   installation?: string;
+  usage?: string;
 }
 
 interface Metadata {
@@ -94,6 +95,9 @@ function parseMetadata(componentName: string): Metadata | null {
           } else if (contentItem.startsWith("installation: ")) {
             const installationValue = contentItem.substring("installation: ".length).trim();
             currentItem.installation = installationValue;
+          } else if (contentItem.startsWith("usage: ")) {
+            const usageValue = contentItem.substring("usage: ".length).trim();
+            currentItem.usage = usageValue;
           }
         }
       }
@@ -107,6 +111,150 @@ function parseMetadata(componentName: string): Metadata | null {
     return metadata;
   } catch (error) {
     console.warn(`Failed to parse YAML file: ${yamlFilePath}`, error);
+    return null;
+  }
+}
+
+/**
+ * Replace import paths from ../registry/default/ to @/
+ */
+function replaceImportPaths(code: string): string {
+  return code.replace(/\.\.\/registry\/default\//g, "@/");
+}
+
+/**
+ * Extract imports from stories file
+ */
+function extractImports(storiesContent: string): string {
+  // Extract imports (all import statements at the top, including multi-line)
+  const importSectionMatch = storiesContent.match(/^(import[\s\S]*?from\s+["'][^"']+["'];?\s*\n)+/m);
+  let importSection = "";
+  
+  if (importSectionMatch) {
+    importSection = importSectionMatch[0].trim();
+  } else {
+    // Fallback: try to extract imports line by line
+    const lines = storiesContent.split("\n");
+    const importLines: string[] = [];
+    let inMultiLineImport = false;
+    let currentImport = "";
+    
+    for (const line of lines) {
+      const trimmed = line.trim();
+      
+      if (trimmed.startsWith("import ")) {
+        if (trimmed.includes(" from ")) {
+          // Single line import
+          importLines.push(line);
+        } else {
+          // Start of multi-line import
+          inMultiLineImport = true;
+          currentImport = line;
+        }
+      } else if (inMultiLineImport) {
+        currentImport += "\n" + line;
+        if (trimmed.includes(" from ")) {
+          // End of multi-line import
+          importLines.push(currentImport);
+          currentImport = "";
+          inMultiLineImport = false;
+        }
+      } else if (importLines.length > 0 && trimmed && !trimmed.startsWith("//")) {
+        // Stop at first non-import, non-comment line
+        break;
+      }
+    }
+    
+    if (currentImport) {
+      importLines.push(currentImport);
+    }
+    
+    importSection = importLines.join("\n");
+  }
+  
+  // Replace import paths
+  return replaceImportPaths(importSection);
+}
+
+interface Story {
+  name: string;
+  code: string;
+}
+
+/**
+ * Extract all stories from stories file, returning an array of story objects
+ */
+function extractAllStories(componentName: string): Story[] | null {
+  const storiesFilePath = path.join(STORIES_PATH, `${toKebabCase(componentName)}.stories.tsx`);
+
+  if (!fs.existsSync(storiesFilePath)) {
+    return null;
+  }
+
+  try {
+    const storiesContent = fs.readFileSync(storiesFilePath, "utf-8");
+
+    // Extract imports
+    const importSection = extractImports(storiesContent);
+
+    // Extract all exported const functions (stories)
+    // Use regex to match each story from "export const StoryName" to the closing "};"
+    // We'll match from one export to the next, or to the end of file
+    const storyMatches: Array<{ name: string; start: number }> = [];
+    const storyStartRegex = /export\s+const\s+(\w+)\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)\s*\{/g;
+    let startMatch;
+
+    // Find all story start positions
+    while ((startMatch = storyStartRegex.exec(storiesContent)) !== null) {
+      storyMatches.push({
+        name: startMatch[1],
+        start: startMatch.index,
+      });
+    }
+
+    const stories: Story[] = [];
+
+    // Extract each story by finding the next export or end of file
+    for (let i = 0; i < storyMatches.length; i++) {
+      const currentStory = storyMatches[i];
+      const startIndex = currentStory.start;
+      
+      // Find the end: either the next export or end of file
+      let endIndex = storiesContent.length;
+      if (i < storyMatches.length - 1) {
+        endIndex = storyMatches[i + 1].start;
+      }
+      
+      // Extract the story text and find the actual end (the };)
+      const storySection = storiesContent.substring(startIndex, endIndex);
+      const storyEndMatch = storySection.match(/(export\s+const\s+\w+\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)\s*\{[\s\S]*?\n\});/);
+      
+      if (storyEndMatch) {
+        const storyText = storyEndMatch[0];
+        
+        // Combine imports with the story code
+        let fullStoryCode = storyText;
+        if (importSection) {
+          fullStoryCode = `${importSection}\n\n${storyText}`;
+        }
+        
+        // Replace import paths
+        fullStoryCode = replaceImportPaths(fullStoryCode);
+        
+        stories.push({
+          name: currentStory.name,
+          code: fullStoryCode,
+        });
+      }
+    }
+
+    if (stories.length === 0) {
+      return null;
+    }
+
+    return stories;
+  } catch (error) {
+    console.warn(`Failed to read stories file: ${storiesFilePath}`, error);
     return null;
   }
 }
@@ -136,58 +284,17 @@ function extractDefaultStory(componentName: string): string | null {
 
     const defaultFunction = defaultFunctionMatch[1];
 
-    // Extract imports (all import statements at the top, including multi-line)
-    const importSectionMatch = storiesContent.match(/^(import[\s\S]*?from\s+["'][^"']+["'];?\s*\n)+/m);
-    let importSection = "";
-    
-    if (importSectionMatch) {
-      importSection = importSectionMatch[0].trim();
-    } else {
-      // Fallback: try to extract imports line by line
-      const lines = storiesContent.split("\n");
-      const importLines: string[] = [];
-      let inMultiLineImport = false;
-      let currentImport = "";
-      
-      for (const line of lines) {
-        const trimmed = line.trim();
-        
-        if (trimmed.startsWith("import ")) {
-          if (trimmed.includes(" from ")) {
-            // Single line import
-            importLines.push(line);
-          } else {
-            // Start of multi-line import
-            inMultiLineImport = true;
-            currentImport = line;
-          }
-        } else if (inMultiLineImport) {
-          currentImport += "\n" + line;
-          if (trimmed.includes(" from ")) {
-            // End of multi-line import
-            importLines.push(currentImport);
-            currentImport = "";
-            inMultiLineImport = false;
-          }
-        } else if (importLines.length > 0 && trimmed && !trimmed.startsWith("//")) {
-          // Stop at first non-import, non-comment line
-          break;
-        }
-      }
-      
-      if (currentImport) {
-        importLines.push(currentImport);
-      }
-      
-      importSection = importLines.join("\n");
-    }
+    // Extract imports
+    const importSection = extractImports(storiesContent);
 
     // Combine imports and Default function
+    let result = defaultFunction;
     if (importSection) {
-      return `${importSection}\n\n${defaultFunction}`;
+      result = `${importSection}\n\n${defaultFunction}`;
     }
 
-    return defaultFunction;
+    // Replace import paths
+    return replaceImportPaths(result);
   } catch (error) {
     console.warn(`Failed to read stories file: ${storiesFilePath}`, error);
     return null;
@@ -195,12 +302,14 @@ function extractDefaultStory(componentName: string): string | null {
 }
 
 /**
- * Generate MDX content with frontmatter, preview, and installation
+ * Generate MDX content with frontmatter, preview, usage, and installation
+ * Sections are generated in the same order as they appear in the YAML metadata
  */
 function generateMdxContent(
   componentName: string,
   metadata: Metadata | null,
-  defaultStory: string | null
+  defaultStory: string | null,
+  allStories: Story[] | null
 ): string {
   const title = toTitleCase(componentName);
   const kebabName = toKebabCase(componentName);
@@ -214,29 +323,47 @@ description: ${description}
 
 `;
 
-  // Add preview section if Default story exists
-  if (defaultStory && metadata?.content?.some((item) => item.preview === "Default")) {
-    content += `## Preview
+  // Generate sections in the order they appear in the YAML metadata
+  if (metadata?.content) {
+    for (const item of metadata.content) {
+      // Preview section
+      if (item.preview === "Default" && defaultStory) {
+        content += `## Preview
 
 \`\`\`tsx
 ${defaultStory}
 \`\`\`
 
 `;
-  }
+      }
 
-  // Add installation section
-  const hasInstallation = metadata?.content?.some(
-    (item) => item.installation === "@aura"
-  );
+      // Usage section - each story as a separate code block
+      if (item.usage === "all" && allStories && allStories.length > 0) {
+        content += `## Usage
 
-  if (hasInstallation) {
-    content += `## Installation
+`;
+        
+        for (const story of allStories) {
+          content += `### ${story.name}
+
+\`\`\`tsx
+${story.code}
+\`\`\`
+
+`;
+        }
+      }
+
+      // Installation section
+      if (item.installation === "@aura") {
+        content += `## Installation
 
 \`\`\`bash
 pnpm dlx shadcn@latest @aura/${kebabName}
 \`\`\`
 `;
+      }
+    }
   }
 
   return content;
@@ -274,6 +401,7 @@ function generateDocs() {
   let created = 0;
   let skipped = 0;
   let withPreview = 0;
+  let withUsage = 0;
   let withCustomDescription = 0;
 
   console.log(`\nFound ${components.length} UI components\n`);
@@ -296,16 +424,27 @@ function generateDocs() {
       }
     }
 
+    // Extract all stories if usage: all is requested
+    let allStories: Story[] | null = null;
+    const hasUsageAll = metadata?.content?.some((item) => item.usage === "all");
+    if (hasUsageAll) {
+      allStories = extractAllStories(component.name);
+      if (allStories && allStories.length > 0) {
+        withUsage++;
+      }
+    }
+
     if (metadata?.header?.description) {
       withCustomDescription++;
     }
 
-    const content = generateMdxContent(component.name, metadata, defaultStory);
+    const content = generateMdxContent(component.name, metadata, defaultStory, allStories);
     fs.writeFileSync(mdxFilePath, content);
     
     const previewInfo = defaultStory ? " (with preview)" : "";
+    const usageInfo = allStories ? " (with usage)" : "";
     const descInfo = metadata?.header?.description ? " (with custom description)" : "";
-    console.log(`✅ Created: ${mdxFileName}${previewInfo}${descInfo}`);
+    console.log(`✅ Created: ${mdxFileName}${previewInfo}${usageInfo}${descInfo}`);
     created++;
   }
 
@@ -313,6 +452,7 @@ function generateDocs() {
   console.log(`   Created: ${created}`);
   console.log(`   With custom description: ${withCustomDescription}`);
   console.log(`   With preview: ${withPreview}`);
+  console.log(`   With usage: ${withUsage}`);
   console.log(`   Skipped: ${skipped}`);
   console.log(`   Total:   ${components.length}\n`);
 }

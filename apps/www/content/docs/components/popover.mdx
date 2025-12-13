@@ -8,3 +8,55 @@ description: Displays rich content in a portal triggered by a button.
 ```bash
 pnpm dlx shadcn@latest @aura/popover
 ```
+## Usage
+
+### Controlled
+
+```tsx
+import { useState } from "react";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverClose,
+  PopoverArrow,
+  PopoverAnchor,
+} from "@/components/ui/Popover";
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
+
+export const Controlled = () => {
+  const [open, setOpen] = useState(false);
+
+  return (
+    <div className="space-y-1">
+      <div className="flex items-center gap-0.5">
+        <span className="text-sm text-gray-11">Status:</span>
+        <span className="text-sm font-medium">{open ? "Open" : "Closed"}</span>
+      </div>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <Button variant="menu">Toggle Popover</Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-30 p-1">
+          <div className="space-y-1">
+            <h4 className="font-medium leading-none">Controlled Popover</h4>
+            <p className="text-sm text-gray-11">
+              This popover's open state is controlled by React state.
+            </p>
+            <Button
+              onClick={() => setOpen(false)}
+              variant="link"
+              className="w-full mt-0.5"
+            >
+              Close
+            </Button>
+          </div>
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+};
+```
+

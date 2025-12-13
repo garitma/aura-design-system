@@ -8,3 +8,169 @@ description: Displays a menu to the user triggered by right-click or long-press.
 ```bash
 pnpm dlx shadcn@latest @aura/context-menu
 ```
+## Usage
+
+### WithCheckboxes
+
+```tsx
+import { useState } from "react";
+import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuCheckboxItem,
+  ContextMenuRadioItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  ContextMenuRadioGroup,
+} from "@/components/ui/ContextMenu";
+
+export const WithCheckboxes = () => {
+  const [showBookmarksBar, setShowBookmarksBar] = useState(true);
+  const [showFullUrls, setShowFullUrls] = useState(false);
+
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed border-gray-6 text-sm">
+        Right click here
+      </ContextMenuTrigger>
+      <ContextMenuContent className="w-18">
+        <ContextMenuCheckboxItem
+          checked={showBookmarksBar}
+          onCheckedChange={setShowBookmarksBar}
+        >
+          Show Bookmarks Bar
+          <ContextMenuShortcut>⌘⇧B</ContextMenuShortcut>
+        </ContextMenuCheckboxItem>
+        <ContextMenuCheckboxItem
+          checked={showFullUrls}
+          onCheckedChange={setShowFullUrls}
+        >
+          Show Full URLs
+        </ContextMenuCheckboxItem>
+      </ContextMenuContent>
+    </ContextMenu>
+  );
+};
+```
+
+### WithRadioGroup
+
+```tsx
+import { useState } from "react";
+import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuCheckboxItem,
+  ContextMenuRadioItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  ContextMenuRadioGroup,
+} from "@/components/ui/ContextMenu";
+
+export const WithRadioGroup = () => {
+  const [person, setPerson] = useState("pedro");
+
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed border-gray-6 text-sm">
+        Right click here
+      </ContextMenuTrigger>
+      <ContextMenuContent className="w-18">
+        <ContextMenuRadioGroup value={person} onValueChange={setPerson}>
+          <ContextMenuLabel>People</ContextMenuLabel>
+          <ContextMenuSeparator />
+          <ContextMenuRadioItem value="pedro">
+            Pedro Duarte
+          </ContextMenuRadioItem>
+          <ContextMenuRadioItem value="colm">Colm Tuite</ContextMenuRadioItem>
+        </ContextMenuRadioGroup>
+      </ContextMenuContent>
+    </ContextMenu>
+  );
+};
+```
+
+### ComplexMenu
+
+```tsx
+import { useState } from "react";
+import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuCheckboxItem,
+  ContextMenuRadioItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  ContextMenuRadioGroup,
+} from "@/components/ui/ContextMenu";
+
+export const ComplexMenu = () => {
+  const [showBookmarksBar, setShowBookmarksBar] = useState(true);
+  const [showFullUrls, setShowFullUrls] = useState(false);
+  const [person, setPerson] = useState("pedro");
+
+  return (
+    <ContextMenu>
+      <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed border-gray-6 text-sm">
+        Right click here
+      </ContextMenuTrigger>
+      <ContextMenuContent className="w-20">
+        <ContextMenuItem>
+          Back
+          <ContextMenuShortcut>⌘[</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuItem disabled>
+          Forward
+          <ContextMenuShortcut>⌘]</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuItem>
+          Reload
+          <ContextMenuShortcut>⌘R</ContextMenuShortcut>
+        </ContextMenuItem>
+        <ContextMenuSeparator />
+        <ContextMenuCheckboxItem
+          checked={showBookmarksBar}
+          onCheckedChange={setShowBookmarksBar}
+        >
+          Show Bookmarks Bar
+          <ContextMenuShortcut>⌘⇧B</ContextMenuShortcut>
+        </ContextMenuCheckboxItem>
+        <ContextMenuCheckboxItem
+          checked={showFullUrls}
+          onCheckedChange={setShowFullUrls}
+        >
+          Show Full URLs
+        </ContextMenuCheckboxItem>
+        <ContextMenuSeparator />
+        <ContextMenuRadioGroup value={person} onValueChange={setPerson}>
+          <ContextMenuLabel>People</ContextMenuLabel>
+          <ContextMenuSeparator />
+          <ContextMenuRadioItem value="pedro">
+            Pedro Duarte
+          </ContextMenuRadioItem>
+          <ContextMenuRadioItem value="colm">Colm Tuite</ContextMenuRadioItem>
+        </ContextMenuRadioGroup>
+      </ContextMenuContent>
+    </ContextMenu>
+  );
+};
+```
+
