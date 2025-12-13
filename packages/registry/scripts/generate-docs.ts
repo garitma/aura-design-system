@@ -198,10 +198,10 @@ function extractAllStories(componentName: string): Story[] | null {
     const importSection = extractImports(storiesContent);
 
     // Extract all exported const functions (stories)
-    // Use regex to match each story from "export const StoryName" to the closing "};"
-    // We'll match from one export to the next, or to the end of file
+    // Handle both formats: () => { ... } and () => <JSX />
     const storyMatches: Array<{ name: string; start: number }> = [];
-    const storyStartRegex = /export\s+const\s+(\w+)\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)\s*\{/g;
+    // Match both: export const Name = () => { and export const Name = () =>
+    const storyStartRegex = /export\s+const\s+(\w+)\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)/g;
     let startMatch;
 
     // Find all story start positions
@@ -225,9 +225,17 @@ function extractAllStories(componentName: string): Story[] | null {
         endIndex = storyMatches[i + 1].start;
       }
       
-      // Extract the story text and find the actual end (the };)
+      // Extract the story section
       const storySection = storiesContent.substring(startIndex, endIndex);
-      const storyEndMatch = storySection.match(/(export\s+const\s+\w+\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)\s*\{[\s\S]*?\n\});/);
+      
+      // Try to match story with braces first: () => { ... };
+      let storyEndMatch = storySection.match(/(export\s+const\s+\w+\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)\s*\{[\s\S]*?\n\});/);
+      
+      // If no match, try to match story without braces: () => <JSX />; or () => expression;
+      if (!storyEndMatch) {
+        // Match from export to the semicolon (handles single-line arrow functions)
+        storyEndMatch = storySection.match(/(export\s+const\s+\w+\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)[\s\S]*?;)/);
+      }
       
       if (storyEndMatch) {
         const storyText = storyEndMatch[0];

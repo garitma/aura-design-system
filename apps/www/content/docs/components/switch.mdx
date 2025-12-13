@@ -56,6 +56,74 @@ export const Default = () => {
 };
 ```
 
+### Checked
+
+```tsx
+import { useState } from "react";
+import { Switch } from "@/components/ui/Switch";
+
+export const Checked = () => (
+  <div className="flex items-center gap-2">
+    <Switch id="checked" defaultChecked />
+    <label
+      htmlFor="checked"
+      className="text-sm font-medium leading-none cursor-pointer"
+    >
+      Bluetooth
+    </label>
+  </div>
+);
+```
+
+### Unchecked
+
+```tsx
+import { useState } from "react";
+import { Switch } from "@/components/ui/Switch";
+
+export const Unchecked = () => (
+  <div className="flex items-center gap-2">
+    <Switch id="unchecked" />
+    <label
+      htmlFor="unchecked"
+      className="text-sm font-medium leading-none cursor-pointer"
+    >
+      Wi-Fi
+    </label>
+  </div>
+);
+```
+
+### Disabled
+
+```tsx
+import { useState } from "react";
+import { Switch } from "@/components/ui/Switch";
+
+export const Disabled = () => (
+  <div className="flex flex-col gap-2">
+    <div className="flex items-center gap-2">
+      <Switch id="disabled-unchecked" disabled />
+      <label
+        htmlFor="disabled-unchecked"
+        className="text-sm font-medium leading-none text-gray-a8 cursor-not-allowed"
+      >
+        Disabled unchecked
+      </label>
+    </div>
+    <div className="flex items-center gap-2">
+      <Switch id="disabled-checked" disabled defaultChecked />
+      <label
+        htmlFor="disabled-checked"
+        className="text-sm font-medium leading-none text-gray-a8 cursor-not-allowed"
+      >
+        Disabled checked
+      </label>
+    </div>
+  </div>
+);
+```
+
 ### WithDescription
 
 ```tsx

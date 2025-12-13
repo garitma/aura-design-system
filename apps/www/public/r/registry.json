@@ -4,6 +4,21 @@
   "homepage": "https://auradesignsystem.com",
   "items": [
     {
+      "name": "alert-status",
+      "type": "registry:component",
+      "title": "AlertStatus",
+      "description": "The AlertStatus component.",
+      "files": [
+        {
+          "path": "registry/default/components/AlertStatus.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons"
+      ]
+    },
+    {
       "name": "theme-color-switcher",
       "type": "registry:component",
       "title": "ThemeColorSwitcher",
@@ -236,6 +251,23 @@
       ]
     },
     {
+      "name": "form",
+      "type": "registry:ui",
+      "title": "Form",
+      "description": "The Form component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Form.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "ajv",
+        "radix-ui"
+      ]
+    },
+    {
       "name": "hover-card",
       "type": "registry:ui",
       "title": "HoverCard",
@@ -329,6 +361,21 @@
       "files": [
         {
           "path": "registry/default/components/ui/Progress.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "radix-ui"
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "RadioGroup",
+      "description": "The RadioGroup component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/RadioGroup.tsx",
           "type": "registry:ui"
         }
       ],

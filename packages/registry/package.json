@@ -26,7 +26,7 @@
     "registry:build": "shadcn build -o ../../apps/www/public/r",
     "registry:generate": "npx tsx scripts/build-registry.ts",
     "docs:generate": "npx tsx scripts/generate-docs.ts",
-    "registry:bootstrap": "pnpm registry:generate && pnpm registry:build",
+    "registry:bootstrap": "pnpm registry:generate && pnpm registry:build && pnpm docs:generate",
     "test": "vitest"
   },
   "dependencies": {

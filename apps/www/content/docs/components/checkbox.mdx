@@ -72,6 +72,86 @@ export const Default = () => {
 };
 ```
 
+### Checked
+
+```tsx
+import { useState } from "react";
+import {
+  Checkbox,
+  CheckboxGroup,
+  CheckboxGroupItem,
+} from "@/components/ui/Checkbox";
+
+export const Checked = () => (
+  <div className="flex items-center gap-1">
+    <Checkbox id="checked" defaultChecked />
+    <label
+      htmlFor="checked"
+      className="text-sm font-medium leading-none cursor-pointer"
+    >
+      I agree to the privacy policy
+    </label>
+  </div>
+);
+```
+
+### Unchecked
+
+```tsx
+import { useState } from "react";
+import {
+  Checkbox,
+  CheckboxGroup,
+  CheckboxGroupItem,
+} from "@/components/ui/Checkbox";
+
+export const Unchecked = () => (
+  <div className="flex items-center gap-1">
+    <Checkbox id="unchecked" />
+    <label
+      htmlFor="unchecked"
+      className="text-sm font-medium leading-none cursor-pointer"
+    >
+      Subscribe to newsletter
+    </label>
+  </div>
+);
+```
+
+### Disabled
+
+```tsx
+import { useState } from "react";
+import {
+  Checkbox,
+  CheckboxGroup,
+  CheckboxGroupItem,
+} from "@/components/ui/Checkbox";
+
+export const Disabled = () => (
+  <div className="flex flex-col gap-1">
+    <div className="flex items-center gap-1">
+      <Checkbox id="disabled-unchecked" disabled />
+      <label
+        htmlFor="disabled-unchecked"
+        className="text-sm font-medium leading-none text-gray-a8 cursor-not-allowed"
+      >
+        Disabled unchecked
+      </label>
+    </div>
+    <div className="flex items-center gap-1">
+      <Checkbox id="disabled-checked" disabled defaultChecked />
+      <label
+        htmlFor="disabled-checked"
+        className="text-sm font-medium leading-none text-gray-a8 cursor-not-allowed"
+      >
+        Disabled checked
+      </label>
+    </div>
+  </div>
+);
+```
+
 ### WithDescription
 
 ```tsx

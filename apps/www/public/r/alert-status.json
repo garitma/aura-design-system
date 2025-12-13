@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "alert-status",
+  "type": "registry:component",
+  "title": "AlertStatus",
+  "description": "The AlertStatus component.",
+  "dependencies": [
+    "@radix-ui/react-icons"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/AlertStatus.tsx",
+      "content": "import React from \"react\";\nimport {\n  InfoCircledIcon,\n  CheckCircledIcon,\n  ExclamationTriangleIcon,\n  CrossCircledIcon,\n  QuoteIcon,\n} from \"@radix-ui/react-icons\";\n\nimport {\n  Alert,\n  AlertContent,\n  AlertTitle,\n  AlertDescription,\n  AlertIcon,\n} from \"@/components/ui/Alert\";\n\nexport type AlertProps = {\n  status?: \"info\" | \"success\" | \"warning\" | \"danger\" | \"other\";\n  title?: React.ReactNode;\n  description?: React.ReactNode;\n  icon?: React.ReactNode;\n  showIcon?: boolean;\n};\n\nconst AlertStatus = ({\n  status = \"other\",\n  title,\n  description,\n  icon,\n  showIcon = true,\n  ...props\n}: AlertProps) => {\n  // Map status to Alert variant\n  const variantMap: Record<\n    \"info\" | \"success\" | \"warning\" | \"danger\" | \"other\",\n    \"info\" | \"success\" | \"warning\" | \"danger\" | \"default\"\n  > = {\n    info: \"info\",\n    success: \"success\",\n    warning: \"warning\",\n    danger: \"danger\",\n    other: \"default\",\n  };\n\n  // Map status to default icons\n  const iconMap = {\n    info: InfoCircledIcon,\n    success: CheckCircledIcon,\n    warning: ExclamationTriangleIcon,\n    danger: CrossCircledIcon,\n    other: QuoteIcon,\n  };\n\n  const variant = variantMap[status];\n  const DefaultIcon = iconMap[status];\n\n  return (\n    <Alert variant={variant} {...props}>\n      {showIcon && (\n        <AlertIcon>\n          {icon ? icon : <DefaultIcon />}\n        </AlertIcon>\n      )}\n      <AlertContent>\n        {title && <AlertTitle>{title}</AlertTitle>}\n        {description && <AlertDescription>{description}</AlertDescription>}\n      </AlertContent>\n    </Alert>\n  );\n};\n\nexport default AlertStatus;",
+      "type": "registry:component"
+    }
+  ]
+}

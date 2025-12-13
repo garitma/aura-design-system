@@ -10,6 +10,45 @@ pnpm dlx shadcn@latest @aura/progress
 ```
 ## Usage
 
+### Default
+
+```tsx
+import { useEffect, useState } from "react";
+import { Progress } from "@/components/ui/Progress";
+
+export const Default = () => (
+  <div className="w-[300px]">
+    <Progress value={60} />
+  </div>
+);
+```
+
+### Zero
+
+```tsx
+import { useEffect, useState } from "react";
+import { Progress } from "@/components/ui/Progress";
+
+export const Zero = () => (
+  <div className="w-[300px]">
+    <Progress value={0} />
+  </div>
+);
+```
+
+### Complete
+
+```tsx
+import { useEffect, useState } from "react";
+import { Progress } from "@/components/ui/Progress";
+
+export const Complete = () => (
+  <div className="w-[300px]">
+    <Progress value={100} />
+  </div>
+);
+```
+
 ### Simulated
 
 ```tsx

@@ -10,6 +10,108 @@ pnpm dlx shadcn@latest @aura/context-menu
 ```
 ## Usage
 
+### Default
+
+```tsx
+import { useState } from "react";
+import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuCheckboxItem,
+  ContextMenuRadioItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  ContextMenuRadioGroup,
+} from "@/components/ui/ContextMenu";
+
+export const Default = () => (
+  <ContextMenu>
+    <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed border-gray-6 text-sm">
+      Right click here
+    </ContextMenuTrigger>
+    <ContextMenuContent className="w-18">
+      <ContextMenuItem>
+        Back
+        <ContextMenuShortcut>⌘[</ContextMenuShortcut>
+      </ContextMenuItem>
+      <ContextMenuItem disabled>
+        Forward
+        <ContextMenuShortcut>⌘]</ContextMenuShortcut>
+      </ContextMenuItem>
+      <ContextMenuItem>
+        Reload
+        <ContextMenuShortcut>⌘R</ContextMenuShortcut>
+      </ContextMenuItem>
+      <ContextMenuSeparator />
+      <ContextMenuItem>
+        Save As...
+        <ContextMenuShortcut>⇧⌘S</ContextMenuShortcut>
+      </ContextMenuItem>
+      <ContextMenuItem>Print...</ContextMenuItem>
+    </ContextMenuContent>
+  </ContextMenu>
+);
+```
+
+### WithSubmenu
+
+```tsx
+import { useState } from "react";
+import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuCheckboxItem,
+  ContextMenuRadioItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  ContextMenuRadioGroup,
+} from "@/components/ui/ContextMenu";
+
+export const WithSubmenu = () => (
+  <ContextMenu>
+    <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed border-gray-6 text-sm">
+      Right click here
+    </ContextMenuTrigger>
+    <ContextMenuContent className="w-18">
+      <ContextMenuItem>Back</ContextMenuItem>
+      <ContextMenuItem>Forward</ContextMenuItem>
+      <ContextMenuItem>Reload</ContextMenuItem>
+      <ContextMenuSeparator />
+      <ContextMenuSub>
+        <ContextMenuSubTrigger>More Tools</ContextMenuSubTrigger>
+        <ContextMenuSubContent className="w-18">
+          <ContextMenuItem>
+            Save Page As...
+            <ContextMenuShortcut>⇧⌘S</ContextMenuShortcut>
+          </ContextMenuItem>
+          <ContextMenuItem>Create Shortcut...</ContextMenuItem>
+          <ContextMenuItem>Name Window...</ContextMenuItem>
+          <ContextMenuSeparator />
+          <ContextMenuItem>Developer Tools</ContextMenuItem>
+        </ContextMenuSubContent>
+      </ContextMenuSub>
+      <ContextMenuSeparator />
+      <ContextMenuItem>
+        Inspect
+        <ContextMenuShortcut>⌥⌘I</ContextMenuShortcut>
+      </ContextMenuItem>
+    </ContextMenuContent>
+  </ContextMenu>
+);
+```
+
 ### WithCheckboxes
 
 ```tsx

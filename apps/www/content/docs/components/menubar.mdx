@@ -8,3 +8,113 @@ description: A visually persistent menu common in desktop applications.
 ```bash
 pnpm dlx shadcn@latest @aura/menubar
 ```
+## Usage
+
+### Default
+
+```tsx
+import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarSeparator,
+  MenubarCheckboxItem,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarSubContent,
+  MenubarSubTrigger,
+  MenubarSub,
+  MenubarShortcut,
+} from "@/components/ui/Menubar";
+
+export const Default = () => (
+  <Menubar>
+    <MenubarMenu>
+      <MenubarTrigger>File</MenubarTrigger>
+      <MenubarContent className="w-20">
+        <MenubarItem>
+          New Tab <MenubarShortcut>⌘T</MenubarShortcut>
+        </MenubarItem>
+        <MenubarItem>
+          New Window <MenubarShortcut>⌘N</MenubarShortcut>
+        </MenubarItem>
+        <MenubarItem disabled>New Incognito Window</MenubarItem>
+        <MenubarSeparator />
+        <MenubarSub>
+          <MenubarSubTrigger>Share</MenubarSubTrigger>
+          <MenubarSubContent className="w-20">
+            <MenubarItem>Email link</MenubarItem>
+            <MenubarItem>Messages</MenubarItem>
+            <MenubarItem>Notes</MenubarItem>
+          </MenubarSubContent>
+        </MenubarSub>
+        <MenubarSeparator />
+        <MenubarItem>
+          Print... <MenubarShortcut>⌘P</MenubarShortcut>
+        </MenubarItem>
+      </MenubarContent>
+    </MenubarMenu>
+    <MenubarMenu>
+      <MenubarTrigger>Edit</MenubarTrigger>
+      <MenubarContent className="w-20">
+        <MenubarItem>
+          Undo <MenubarShortcut>⌘Z</MenubarShortcut>
+        </MenubarItem>
+        <MenubarItem>
+          Redo <MenubarShortcut>⇧⌘Z</MenubarShortcut>
+        </MenubarItem>
+        <MenubarSeparator />
+        <MenubarSub>
+          <MenubarSubTrigger>Find</MenubarSubTrigger>
+          <MenubarSubContent className="w-20">
+            <MenubarItem>Search the web</MenubarItem>
+            <MenubarSeparator />
+            <MenubarItem>Find...</MenubarItem>
+            <MenubarItem>Find Next</MenubarItem>
+            <MenubarItem>Find Previous</MenubarItem>
+          </MenubarSubContent>
+        </MenubarSub>
+        <MenubarSeparator />
+        <MenubarItem>Cut</MenubarItem>
+        <MenubarItem>Copy</MenubarItem>
+        <MenubarItem>Paste</MenubarItem>
+      </MenubarContent>
+    </MenubarMenu>
+    <MenubarMenu>
+      <MenubarTrigger>View</MenubarTrigger>
+      <MenubarContent className="w-20">
+        <MenubarCheckboxItem>Always Show Bookmarks Bar</MenubarCheckboxItem>
+        <MenubarCheckboxItem checked>Always Show Full URLs</MenubarCheckboxItem>
+        <MenubarSeparator />
+        <MenubarItem>
+          Reload <MenubarShortcut>⌘R</MenubarShortcut>
+        </MenubarItem>
+        <MenubarItem disabled>
+          Force Reload <MenubarShortcut>⇧⌘R</MenubarShortcut>
+        </MenubarItem>
+        <MenubarSeparator />
+        <MenubarItem>Toggle Fullscreen</MenubarItem>
+        <MenubarSeparator />
+        <MenubarItem>Hide Sidebar</MenubarItem>
+      </MenubarContent>
+    </MenubarMenu>
+    <MenubarMenu>
+      <MenubarTrigger>Profiles</MenubarTrigger>
+      <MenubarContent className="w-20">
+        <MenubarRadioGroup value="benoit">
+          <MenubarRadioItem value="andy">Andy</MenubarRadioItem>
+          <MenubarRadioItem value="benoit">Benoit</MenubarRadioItem>
+          <MenubarRadioItem value="Luis">Luis</MenubarRadioItem>
+        </MenubarRadioGroup>
+        <MenubarSeparator />
+        <MenubarItem>Edit...</MenubarItem>
+        <MenubarSeparator />
+        <MenubarItem>Add Profile...</MenubarItem>
+      </MenubarContent>
+    </MenubarMenu>
+  </Menubar>
+);
+```
+
