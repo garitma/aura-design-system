@@ -1,0 +1,6 @@
+header:
+  description: Displays a callout for user attention with contextual feedback messages.
+content:
+  - preview: Default
+  - installation: @aura
+

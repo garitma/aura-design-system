@@ -1,0 +1,6 @@
+header:
+  description: Displays rich content in a portal triggered by a button.
+content:
+  - preview: Default
+  - installation: @aura
+

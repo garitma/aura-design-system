@@ -1,0 +1,6 @@
+header:
+  description: Displays a menu of actions or options triggered by a button.
+content:
+  - preview: Default
+  - installation: @aura
+

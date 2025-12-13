@@ -1,0 +1,6 @@
+header:
+  description: An image element with a fallback for representing the user.
+content:
+  - preview: Default
+  - installation: @aura
+

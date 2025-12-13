@@ -1,0 +1,6 @@
+header:
+  description: Displays a badge or a component that looks like a badge.
+content:
+  - preview: Default
+  - installation: @aura
+

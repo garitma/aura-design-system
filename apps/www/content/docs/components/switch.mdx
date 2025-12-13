@@ -3,8 +3,31 @@ title: Switch
 description: A control that allows the user to toggle between on and off states.
 ---
 
+## Preview
+
+```tsx
+import { useState } from "react";
+import { Switch } from "../registry/default/components/ui/Switch";
+
+export const Default = () => {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <div className="flex items-center gap-2">
+      <Switch id="default" checked={checked} onCheckedChange={setChecked} />
+      <label
+        htmlFor="default"
+        className="text-sm font-medium leading-none cursor-pointer"
+      >
+        Airplane Mode
+      </label>
+    </div>
+  );
+}
+```
+
 ## Installation
 
 ```bash
-pnpm dlx shadcn@latest add @aura-design/switch
+pnpm dlx shadcn@latest @aura/switch
 ```

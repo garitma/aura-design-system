@@ -1,0 +1,6 @@
+header:
+  description: A control that allows the user to toggle between on and off states.
+content:
+  - preview: Default
+  - installation: @aura
+

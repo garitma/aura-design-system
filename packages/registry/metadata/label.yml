@@ -1,0 +1,6 @@
+header:
+  description: Renders an accessible label associated with form controls.
+content:
+  - preview: Default
+  - installation: @aura
+

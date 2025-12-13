@@ -1,0 +1,6 @@
+header:
+  description: Displays a card with header, content, and footer sections.
+content:
+  - preview: Default
+  - installation: @aura
+

@@ -1,0 +1,6 @@
+header:
+  description: An interactive component which expands and collapses content.
+content:
+  - preview: Default
+  - installation: @aura
+

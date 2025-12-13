@@ -1,0 +1,6 @@
+header:
+  description: Displays content within a desired ratio.
+content:
+  - preview: Default
+  - installation: @aura
+

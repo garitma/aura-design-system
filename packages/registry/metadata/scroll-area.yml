@@ -1,0 +1,6 @@
+header:
+  description: Augments native scroll functionality for custom cross-browser styling.
+content:
+  - preview: Default
+  - installation: @aura
+

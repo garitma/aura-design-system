@@ -1,0 +1,6 @@
+header:
+  description: For sighted users to preview content available behind a link.
+content:
+  - preview: Default
+  - installation: @aura
+

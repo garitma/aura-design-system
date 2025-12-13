@@ -1,0 +1,6 @@
+header:
+  description: An input where the user selects a value from within a given range.
+content:
+  - preview: Default
+  - installation: @aura
+

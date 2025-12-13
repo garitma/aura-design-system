@@ -1,0 +1,6 @@
+header:
+  description: A visually persistent menu common in desktop applications.
+content:
+  - preview: Default
+  - installation: @aura
+

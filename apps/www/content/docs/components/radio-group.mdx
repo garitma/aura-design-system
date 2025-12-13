@@ -1,0 +1,56 @@
+---
+title: Radio Group
+description: Re-usable components built using Radix UI and Tailwind CSS.
+---
+
+## Preview
+
+```tsx
+import { useState } from "react";
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "../registry/default/components/ui/RadioGroup";
+
+export const Default = () => {
+  const [value, setValue] = useState("option-1");
+
+  return (
+    <RadioGroup value={value} onValueChange={setValue}>
+      <div className="flex items-center gap-1">
+        <RadioGroupItem value="option-1" id="option-1" />
+        <label
+          htmlFor="option-1"
+          className="text-sm font-medium leading-none cursor-pointer"
+        >
+          Option 1
+        </label>
+      </div>
+      <div className="flex items-center gap-1">
+        <RadioGroupItem value="option-2" id="option-2" />
+        <label
+          htmlFor="option-2"
+          className="text-sm font-medium leading-none cursor-pointer"
+        >
+          Option 2
+        </label>
+      </div>
+      <div className="flex items-center gap-1">
+        <RadioGroupItem value="option-3" id="option-3" />
+        <label
+          htmlFor="option-3"
+          className="text-sm font-medium leading-none cursor-pointer"
+        >
+          Option 3
+        </label>
+      </div>
+    </RadioGroup>
+  );
+}
+```
+
+## Installation
+
+```bash
+pnpm dlx shadcn@latest @aura/radio-group
+```

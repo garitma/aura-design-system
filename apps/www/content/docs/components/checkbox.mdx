@@ -3,8 +3,39 @@ title: Checkbox
 description: A control that allows the user to toggle between checked and not checked.
 ---
 
+## Preview
+
+```tsx
+import { useState } from "react";
+import {
+  Checkbox,
+  CheckboxGroup,
+  CheckboxGroupItem,
+} from "../registry/default/components/ui/Checkbox";
+
+export const Default = () => {
+  const [checked, setChecked] = useState(false);
+
+  return (
+    <div className="flex items-center gap-1">
+      <Checkbox
+        id="default"
+        checked={checked}
+        onCheckedChange={(checked) => setChecked(checked as boolean)}
+      />
+      <label
+        htmlFor="default"
+        className="text-sm font-medium leading-none cursor-pointer"
+      >
+        Accept terms and conditions
+      </label>
+    </div>
+  );
+}
+```
+
 ## Installation
 
 ```bash
-pnpm dlx shadcn@latest add @aura-design/checkbox
+pnpm dlx shadcn@latest @aura/checkbox
 ```

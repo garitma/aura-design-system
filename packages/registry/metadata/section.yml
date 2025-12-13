@@ -1,0 +1,6 @@
+header:
+  description: A semantic section container with configurable layout variants.
+content:
+  - preview: Default
+  - installation: @aura
+
