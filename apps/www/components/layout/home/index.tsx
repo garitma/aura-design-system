@@ -167,15 +167,16 @@ export function Header({
                     className="sm:hidden"
                   />
                 ))}
-              <div className="-ms-1.5 flex flex-row items-center gap-2 max-sm:mt-0.5">
+                
+              <div className="flex flex-row gap-1 mt-1">
                 {menuItems.filter(isSecondary).map((item, i) => (
                   <MobileNavigationMenuLinkItem
                     key={i}
                     item={item}
-                    className={cn(item.type === "icon" && "-mx-1 first:ms-0")}
+                    className={cn(item.type === "icon" && "first:ms-0")}
                   />
                 ))}
-                <div role="separator" className="flex-1" />
+            
                 {i18n && (
                   <LanguageToggle>
                     <Languages className="size-5" />

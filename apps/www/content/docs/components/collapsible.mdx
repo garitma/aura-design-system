@@ -3,6 +3,39 @@ title: Collapsible
 description: An interactive component which expands and collapses content.
 ---
 
+## Preview
+
+```tsx
+import { useState } from "react";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/Collapsible";
+import { Button } from "@/components/ui/Button";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
+
+export const Default = () => {
+  return (
+    <Collapsible>
+      <div className="flex items-center justify-between gap-1">
+        <h4 className="text-sm font-semibold">Click to toggle</h4>
+        <CollapsibleTrigger asChild>
+          <Button variant="menu" size="sm">
+            Toggle
+          </Button>
+        </CollapsibleTrigger>
+      </div>
+      <CollapsibleContent>
+        <div className="pt-1 text-sm text-gray-11">
+          This is the collapsible content. Click the toggle button to show or hide it.
+        </div>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+};
+```
+
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
 ```bash
@@ -237,7 +270,6 @@ export const Disabled = () => {
 
 ### Collapsible
 
-All props are passed through to the underlying component. See the [Radix UI documentation](https://www.radix-ui.com/primitives) for the full API.
 
 | Prop | Type | Default |
 |------|------|---------|
@@ -245,7 +277,6 @@ All props are passed through to the underlying component. See the [Radix UI docu
 
 ### CollapsibleTrigger
 
-All props are passed through to the underlying component. See the [Radix UI documentation](https://www.radix-ui.com/primitives) for the full API.
 
 | Prop | Type | Default |
 |------|------|---------|
@@ -253,7 +284,6 @@ All props are passed through to the underlying component. See the [Radix UI docu
 
 ### CollapsibleContent
 
-All props are passed through to the underlying component. See the [Radix UI documentation](https://www.radix-ui.com/primitives) for the full API.
 
 | Prop | Type | Default |
 |------|------|---------|

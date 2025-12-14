@@ -246,7 +246,7 @@ export function DocsLayout({
           themeSwitch?.enabled !== false ||
           footer) && (
             <SidebarFooter>
-              <div className="flex text-fd-muted-foreground items-center empty:hidden justify-between">
+              <div className="flex text-fd-muted-foreground items-center empty:hidden justify-start gap-1">
                 {i18n && (
                   <LanguageToggle>
                     <Languages className="size-4.5" />

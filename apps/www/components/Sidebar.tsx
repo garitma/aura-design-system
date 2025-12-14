@@ -73,7 +73,7 @@ const itemVariants = cva(
   {
     variants: {
       active: {
-        true: "bg-accent-3 text-accent-11",
+        true: "text-accent-11",
         false:
           "transition-colors hover:bg-gray-3 hover:text-gray-12 hover:transition-none",
       },

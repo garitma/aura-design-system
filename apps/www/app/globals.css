@@ -287,10 +287,6 @@
     animation: marquee 50s linear infinite;
   }
 
-  /* .animate-marquee:has([data-slot="card"]:hover) {
-    animation-play-state: paused;
-  } */
-
   @keyframes marquee {
     from {
       transform: translateX(25%);

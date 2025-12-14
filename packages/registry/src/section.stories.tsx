@@ -5,6 +5,18 @@ import {
   Section,
 } from "../registry/default/components/ui/Section";
 
+export const Default: Story = () => {
+  return (
+    <Section>
+      <h1>Section Title</h1>
+      <p>
+        This is a default section with some content. Sections help organize and
+        structure your content with consistent spacing and layout.
+      </p>
+    </Section>
+  );
+};
+
 export const SectionDemo: Story = () => {
   return (
     <Section>

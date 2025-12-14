@@ -23,7 +23,7 @@ export const Default = () => {
       </label>
     </div>
   );
-}
+};
 ```
 
 ## Installation
@@ -35,29 +35,6 @@ pnpm dlx shadcn@latest @aura/switch
 
 
 ## Usage
-
-### Default
-
-```tsx
-import { useState } from "react";
-import { Switch } from "@/components/ui/Switch";
-
-export const Default = () => {
-  const [checked, setChecked] = useState(false);
-
-  return (
-    <div className="flex items-center gap-2">
-      <Switch id="default" checked={checked} onCheckedChange={setChecked} />
-      <label
-        htmlFor="default"
-        className="text-sm font-medium leading-none cursor-pointer"
-      >
-        Airplane Mode
-      </label>
-    </div>
-  );
-};
-```
 
 ### Checked
 
@@ -240,7 +217,6 @@ export const SwitchGroup = () => {
 
 ### Switch
 
-All props are passed through to the underlying component. See the [Radix UI documentation](https://www.radix-ui.com/primitives) for the full API.
 
 | Prop | Type | Default |
 |------|------|---------|
@@ -248,7 +224,6 @@ All props are passed through to the underlying component. See the [Radix UI docu
 
 ### SwitchThumb
 
-All props are passed through to the underlying component. See the [Radix UI documentation](https://www.radix-ui.com/primitives) for the full API.
 
 | Prop | Type | Default |
 |------|------|---------|

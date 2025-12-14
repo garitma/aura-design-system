@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
+import ts from "typescript";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -365,49 +366,302 @@ function extractAllStories(componentName: string): Story[] | null {
 }
 
 /**
- * Extract props from Radix UI type definitions
- * This is a simplified approach - for full type extraction, we'd need TypeScript compiler API
+ * Format a TypeScript type to a readable string
  */
-function extractPropsFromRadixType(typeReference: string): ComponentProp[] {
-  // Common Radix UI props based on the component type
-  // This is a mapping of known props for common Radix UI components
-  const radixPropsMap: Record<string, ComponentProp[]> = {
-    "AlertDialogRadix.Root": [
-      { name: "open", type: "boolean", required: false },
-      { name: "defaultOpen", type: "boolean", required: false },
-      { name: "onOpenChange", type: "(open: boolean) => void", required: false },
-      { name: "modal", type: "boolean", required: false, default: "true" },
-    ],
-    "AccordionRadix.Root": [
-      { name: "type", type: "'single' | 'multiple'", required: false },
-      { name: "defaultValue", type: "string | string[]", required: false },
-      { name: "value", type: "string | string[]", required: false },
-      { name: "onValueChange", type: "(value: string | string[]) => void", required: false },
-      { name: "collapsible", type: "boolean", required: false },
-      { name: "disabled", type: "boolean", required: false },
-    ],
-    "AccordionRadix.Item": [
-      { name: "value", type: "string", required: true },
-      { name: "disabled", type: "boolean", required: false },
-    ],
-    "AccordionRadix.Trigger": [
-      { name: "asChild", type: "boolean", required: false },
-    ],
-    "AccordionRadix.Content": [
-      { name: "asChild", type: "boolean", required: false },
-      { name: "forceMount", type: "boolean", required: false },
-    ],
-  };
-  
-  // Clean the type reference - remove typeof if present
-  const cleanType = typeReference.replace(/^typeof\s+/, "").trim();
-  
-  // Check if we have props for this type
-  if (radixPropsMap[cleanType]) {
-    return radixPropsMap[cleanType];
+function formatType(type: ts.Type, checker: ts.TypeChecker): string {
+  if (type.isUnion()) {
+    return type.types.map(t => formatType(t, checker)).join(" | ");
+  }
+  if (type.isIntersection()) {
+    return type.types.map(t => formatType(t, checker)).join(" & ");
   }
   
-  return [];
+  const typeString = checker.typeToString(type, undefined, ts.TypeFormatFlags.NoTruncation);
+  return typeString;
+}
+
+/**
+ * Extract props from a TypeScript type using the compiler API
+ */
+function extractPropsFromType(
+  type: ts.Type,
+  checker: ts.TypeChecker
+): ComponentProp[] {
+  const props: ComponentProp[] = [];
+  
+  // Get all properties from the type
+  const properties = checker.getPropertiesOfType(type);
+  
+  for (const property of properties) {
+    const propertyType = checker.getTypeOfSymbolAtLocation(
+      property,
+      property.valueDeclaration || type.symbol?.valueDeclaration!
+    );
+    const typeString = formatType(propertyType, checker);
+    
+    // Check if the property is optional
+    // In TypeScript, optional properties are marked differently
+    let isOptional = false;
+    const declarations = property.getDeclarations();
+    if (declarations && declarations.length > 0) {
+      for (const declaration of declarations) {
+        if (ts.isPropertySignature(declaration) || ts.isParameter(declaration)) {
+          isOptional = !!declaration.questionToken;
+        }
+      }
+    }
+    
+    // Try to get JSDoc comment for description
+    let description: string | undefined = undefined;
+    if (declarations && declarations.length > 0) {
+      const declaration = declarations[0];
+      const sourceFile = declaration.getSourceFile();
+      const fullText = sourceFile.getFullText();
+      const nodeStart = declaration.getFullStart();
+      
+      // Look for JSDoc comments before the declaration
+      const beforeText = fullText.substring(Math.max(0, nodeStart - 500), nodeStart);
+      const jsdocMatch = beforeText.match(/(?:\/\*\*[\s\S]*?\*\/)\s*$/);
+      if (jsdocMatch) {
+        description = jsdocMatch[0]
+          .replace(/\/\*\*|\*\//g, "")
+          .replace(/^\s*\*/gm, "")
+          .trim();
+      }
+    }
+    
+    props.push({
+      name: property.getName(),
+      type: typeString,
+      required: !isOptional,
+      description: description,
+    });
+  }
+  
+  return props;
+}
+
+/**
+ * Extract props from Radix UI type definitions using TypeScript compiler API
+ * This function creates a temporary TypeScript file to extract React.ComponentProps types
+ */
+function extractPropsFromRadixType(
+  typeReference: string,
+  componentContent: string,
+  componentFilePath: string
+): ComponentProp[] {
+  try {
+    // Load tsconfig.json to get proper compiler options
+    const tsconfigPath = path.join(__dirname, "../tsconfig.json");
+    let compilerOptions: ts.CompilerOptions = {
+      target: ts.ScriptTarget.Latest,
+      module: ts.ModuleKind.ESNext,
+      jsx: ts.JsxEmit.ReactJSX,
+      esModuleInterop: true,
+      skipLibCheck: true,
+      moduleResolution: ts.ModuleResolutionKind.NodeJs,
+      resolveJsonModule: true,
+      allowSyntheticDefaultImports: true,
+      baseUrl: path.join(__dirname, ".."),
+      paths: {
+        "@/*": [path.join(__dirname, "../registry/default/*")]
+      }
+    };
+    
+    if (fs.existsSync(tsconfigPath)) {
+      const configFile = ts.readConfigFile(tsconfigPath, (path) => fs.readFileSync(path, "utf-8"));
+      if (configFile.config) {
+        const parsed = ts.parseJsonConfigFileContent(
+          configFile.config,
+          ts.sys,
+          path.dirname(tsconfigPath)
+        );
+        compilerOptions = { ...compilerOptions, ...parsed.options };
+      }
+    }
+    
+    // Create a program from the actual component file (not a temp file)
+    // This ensures all imports and module resolution work correctly
+    const host = ts.createCompilerHost(compilerOptions);
+    const program = ts.createProgram([componentFilePath], compilerOptions, host);
+    const checker = program.getTypeChecker();
+    const sourceFile = program.getSourceFile(componentFilePath);
+    
+    if (!sourceFile) {
+      return [];
+    }
+    
+    // Parse the type reference (e.g., "AccordionRadix.Root" or "typeof AccordionRadix.Root")
+    const isTypeof = typeReference.startsWith("typeof ");
+    const cleanTypeRef = typeReference.replace(/^typeof\s+/, "").trim();
+    const [namespace, member] = cleanTypeRef.split(".");
+    
+    if (!namespace || !member) {
+      return [];
+    }
+    
+    // Find any usage of React.ComponentProps with this type reference
+    // This works for function declarations, arrow functions, const declarations, etc.
+    let propsTypeNode: ts.TypeNode | null = null;
+    
+    function visit(node: ts.Node): void {
+      // Check function declarations
+      if (ts.isFunctionDeclaration(node)) {
+        if (node.parameters.length > 0) {
+          const firstParam = node.parameters[0];
+          if (firstParam.type && ts.isTypeReferenceNode(firstParam.type)) {
+            const typeName = firstParam.type.typeName;
+            if (ts.isQualifiedName(typeName) && 
+                typeName.left.getText() === "React" &&
+                (typeName.right.getText() === "ComponentProps" || 
+                 typeName.right.getText() === "ComponentPropsWithoutRef")) {
+              const typeArgs = firstParam.type.typeArguments;
+              if (typeArgs && typeArgs.length > 0) {
+                const innerType = typeArgs[0];
+                if (ts.isTypeQuery(innerType) && innerType.exprName) {
+                  const exprName = innerType.exprName;
+                  if (ts.isQualifiedName(exprName) &&
+                      exprName.left.getText() === namespace &&
+                      exprName.right.getText() === member) {
+                    propsTypeNode = firstParam.type;
+                    return; // Found it, stop searching
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      // Check arrow functions in variable declarations (const Component = () => {})
+      if (ts.isVariableStatement(node)) {
+        for (const declaration of node.declarationList.declarations) {
+          if (declaration.initializer && ts.isArrowFunction(declaration.initializer)) {
+            const arrowFunc = declaration.initializer;
+            if (arrowFunc.parameters.length > 0) {
+              const firstParam = arrowFunc.parameters[0];
+              if (firstParam.type && ts.isTypeReferenceNode(firstParam.type)) {
+                const typeName = firstParam.type.typeName;
+                if (ts.isQualifiedName(typeName) && 
+                    typeName.left.getText() === "React" &&
+                    (typeName.right.getText() === "ComponentProps" || 
+                     typeName.right.getText() === "ComponentPropsWithoutRef")) {
+                  const typeArgs = firstParam.type.typeArguments;
+                  if (typeArgs && typeArgs.length > 0) {
+                    const innerType = typeArgs[0];
+                    if (ts.isTypeQuery(innerType) && innerType.exprName) {
+                      const exprName = innerType.exprName;
+                      if (ts.isQualifiedName(exprName) &&
+                          exprName.left.getText() === namespace &&
+                          exprName.right.getText() === member) {
+                        propsTypeNode = firstParam.type;
+                        return; // Found it, stop searching
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      // Check React.forwardRef patterns
+      if (ts.isVariableStatement(node)) {
+        for (const declaration of node.declarationList.declarations) {
+          if (declaration.initializer && ts.isCallExpression(declaration.initializer)) {
+            const callExpr = declaration.initializer;
+            if (callExpr.expression && ts.isPropertyAccessExpression(callExpr.expression) &&
+                callExpr.expression.name.text === "forwardRef") {
+              // This is React.forwardRef<..., PropsType>
+              if (callExpr.typeArguments && callExpr.typeArguments.length > 1) {
+                const propsTypeArg = callExpr.typeArguments[1];
+                if (ts.isTypeReferenceNode(propsTypeArg)) {
+                  const typeName = propsTypeArg.typeName;
+                  if (ts.isQualifiedName(typeName) && 
+                      typeName.left.getText() === "React" &&
+                      (typeName.right.getText() === "ComponentProps" || 
+                       typeName.right.getText() === "ComponentPropsWithoutRef")) {
+                    const typeArgs = propsTypeArg.typeArguments;
+                    if (typeArgs && typeArgs.length > 0) {
+                      const innerType = typeArgs[0];
+                      if (ts.isTypeQuery(innerType) && innerType.exprName) {
+                        const exprName = innerType.exprName;
+                        if (ts.isQualifiedName(exprName) &&
+                            exprName.left.getText() === namespace &&
+                            exprName.right.getText() === member) {
+                          propsTypeNode = propsTypeArg;
+                          return; // Found it, stop searching
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      ts.forEachChild(node, visit);
+    }
+    
+    visit(sourceFile);
+    
+    if (propsTypeNode && ts.isTypeReferenceNode(propsTypeNode)) {
+      // Get the type that React.ComponentProps resolves to
+      const propsType = checker.getTypeAtLocation(propsTypeNode);
+      
+      // Check if the type resolved correctly (not 'any')
+      const typeString = checker.typeToString(propsType);
+      if (typeString !== "any" && !typeString.includes("ComponentProps<any>")) {
+        // Extract properties from the props type
+        const props = extractPropsFromType(propsType, checker);
+        
+        if (props.length > 0) {
+          return props;
+        }
+      }
+      
+      // If no props found or type didn't resolve, try to unwrap React.ComponentProps
+      const typeArgs = propsTypeNode.typeArguments;
+      if (typeArgs && typeArgs.length > 0) {
+        // Get the inner type (the component type)
+        const componentType = checker.getTypeAtLocation(typeArgs[0]);
+        const componentTypeString = checker.typeToString(componentType);
+        
+        // For React components, props are the first parameter of the function signature
+        const callSignatures = componentType.getCallSignatures();
+        if (callSignatures.length > 0) {
+          const firstParam = callSignatures[0].parameters[0];
+          if (firstParam) {
+            const paramType = checker.getTypeOfSymbolAtLocation(firstParam, sourceFile);
+            const paramTypeString = checker.typeToString(paramType);
+            if (paramTypeString !== "any") {
+              const props = extractPropsFromType(paramType, checker);
+              if (props.length > 0) {
+                return props;
+              }
+            }
+          }
+        }
+        
+        // Try to get properties directly from the component type
+        const properties = checker.getPropertiesOfType(componentType);
+        if (properties.length > 0 && componentTypeString !== "any") {
+          const props = extractPropsFromType(componentType, checker);
+          if (props.length > 0) {
+            return props;
+          }
+        }
+      }
+    }
+    
+    return [];
+  } catch (error) {
+    // Silently fail - return empty array so we fall back to showing the type reference
+    return [];
+  }
 }
 
 /**
@@ -476,8 +730,130 @@ interface ExportedComponent {
   name: string;
   propType: string;
   props?: ComponentProp[];
+  isAllProps?: boolean; // Flag to indicate if this is an "All props" case
 }
 
+/**
+ * Helper: Extract React.ComponentProps type from a match result
+ */
+function extractComponentPropsType(match: RegExpMatchArray, index: number = 1): string {
+  const innerType = match[index].trim();
+  // Normalize typeof - add it if missing and it's not a string literal
+  if (!innerType.includes("typeof") && !innerType.match(/^["'].*["']$/)) {
+    return `React.ComponentProps<typeof ${innerType}>`;
+  }
+  return `React.ComponentProps<${innerType}>`;
+}
+
+/**
+ * Helper: Find prop type from React.forwardRef pattern
+ */
+function findForwardRefPropType(componentContent: string, componentName: string): string | null {
+  const forwardRefMatch = componentContent.match(
+    new RegExp(`const\\s+${componentName}\\s*=\\s*React\\.forwardRef<[^,]+,\\s*([^>]+)>`, "m")
+  );
+  
+  if (!forwardRefMatch) {
+    return null;
+  }
+
+  const refType = forwardRefMatch[1].trim();
+  
+  // If it's a Props interface, try to find its definition with extends
+  if (refType.includes("Props")) {
+    const propsInterfaceMatch = componentContent.match(
+      new RegExp(`(?:interface|type)\\s+${refType}[\\s\\S]*?React\\.ComponentProps<([^>]+)>`, "m")
+    );
+    if (propsInterfaceMatch) {
+      const baseType = propsInterfaceMatch[1].trim();
+      const cleanBaseType = baseType.replace(/^["']|["']$/g, "");
+      return `${refType} (extends React.ComponentProps<"${cleanBaseType}">)`;
+    }
+  }
+  
+  return refType;
+}
+
+/**
+ * Helper: Find prop type from Props interface/type definition
+ */
+function findPropsInterfaceType(componentContent: string, componentName: string): string | null {
+  const propsInterfaceMatch = componentContent.match(
+    new RegExp(`(?:interface|type)\\s+${componentName}Props[\\s\\S]{0,500}?extends[\\s\\S]{0,500}?React\\.ComponentProps<([^>]+)>`, "m")
+  );
+  
+  if (!propsInterfaceMatch) {
+    return null;
+  }
+  
+  return `${componentName}Props (extends React.ComponentProps<${propsInterfaceMatch[1].trim()}>)`;
+}
+
+/**
+ * Helper: Find prop type from function definition
+ */
+function findFunctionPropType(componentContent: string, componentName: string): string | null {
+  // Pattern: function ComponentName({ ... }: React.ComponentProps<typeof SomeType.Root>)
+  const functionDefRegex = new RegExp(
+    `function\\s+${componentName}[\\s\\S]{0,500}?:\\s*React\\.ComponentProps<([^>]+)>`,
+    "m"
+  );
+  const functionMatch = componentContent.match(functionDefRegex);
+  
+  if (functionMatch) {
+    return extractComponentPropsType(functionMatch);
+  }
+  
+  // Alternative: function ComponentName({ ... }: Type) on same line
+  const altFunctionMatch = componentContent.match(
+    new RegExp(`function\\s+${componentName}\\s*\\([^)]*\\)\\s*:\\s*([^\\{\\n]+)`, "m")
+  );
+  
+  if (altFunctionMatch) {
+    return altFunctionMatch[1].trim();
+  }
+  
+  return null;
+}
+
+/**
+ * Helper: Find prop type from const arrow function pattern
+ */
+function findConstPropType(componentContent: string, componentName: string): string | null {
+  const constPropsPattern = new RegExp(
+    `const\\s+${componentName}[\\s\\S]{0,2000}?React\\.ComponentProps<([^>]+)>`,
+    "m"
+  );
+  const constMatch = componentContent.match(constPropsPattern);
+  
+  if (!constMatch) {
+    return null;
+  }
+  
+  return extractComponentPropsType(constMatch);
+}
+
+/**
+ * Helper: Determine if we should extract individual props or show "All props"
+ * Returns true if propType is a custom Props interface (e.g., "ButtonProps")
+ * Returns false for direct React.ComponentProps types (e.g., "React.ComponentProps<typeof X>")
+ */
+function shouldExtractIndividualProps(propType: string): boolean {
+  // Extract individual props only if it's a custom Props interface
+  // Direct React.ComponentProps types should show "All props from" message
+  return propType.includes("Props") && !propType.startsWith("React.ComponentProps<");
+}
+
+/**
+ * Helper: Clean and normalize prop type string
+ */
+function normalizePropType(propType: string): string {
+  return propType.replace(/\s+/g, " ").trim();
+}
+
+/**
+ * Extract component props information from component file
+ */
 function extractComponentProps(componentName: string): ExportedComponent[] | null {
   const componentFilePath = path.join(UI_COMPONENTS_PATH, `${componentName}.tsx`);
 
@@ -490,7 +866,6 @@ function extractComponentProps(componentName: string): ExportedComponent[] | nul
     const components: ExportedComponent[] = [];
 
     // Find all exported function components
-    // First, find the export statement at the end: export { Component1, Component2, ... }
     const exportMatch = componentContent.match(/export\s+\{([^}]+)\}/);
     if (!exportMatch) {
       return null;
@@ -503,117 +878,44 @@ function extractComponentProps(componentName: string): ExportedComponent[] | nul
 
     // For each exported component, find its definition and prop type
     for (const exportedName of exportedNames) {
-      let propType: string | null = null;
+      // Try different patterns in order of specificity
+      let propType: string | null = 
+        findForwardRefPropType(componentContent, exportedName) ||
+        findPropsInterfaceType(componentContent, exportedName) ||
+        findFunctionPropType(componentContent, exportedName) ||
+        findConstPropType(componentContent, exportedName);
 
-      // First, try React.forwardRef pattern: const ComponentName = React.forwardRef<..., PropsType>
-      const forwardRefMatch = componentContent.match(
-        new RegExp(`const\\s+${exportedName}\\s*=\\s*React\\.forwardRef<[^,]+,\\s*([^>]+)>`, "m")
-      );
-      
-      if (forwardRefMatch) {
-        const refType = forwardRefMatch[1].trim();
-        // Check if it's a Props interface - if so, find its definition
-        if (refType.includes("Props")) {
-          // Try to find the Props interface definition to get more details
-          // Look for: interface ButtonProps ... React.ComponentProps<"button">
-          // Use a flexible pattern that handles multi-line interfaces
-          const propsInterfaceMatch = componentContent.match(
-            new RegExp(`(?:interface|type)\\s+${refType}[\\s\\S]*?React\\.ComponentProps<([^>]+)>`, "m")
-          );
-          if (propsInterfaceMatch) {
-            const baseType = propsInterfaceMatch[1].trim();
-            // Remove quotes if present (e.g., "button" -> button)
-            const cleanBaseType = baseType.replace(/^["']|["']$/g, "");
-            propType = `${refType} (extends React.ComponentProps<"${cleanBaseType}">)`;
-          } else {
-            propType = refType;
-          }
-        } else {
-          propType = refType;
-        }
-      } else {
-        // Try to find if there's a custom Props interface/type
-        // Pattern: interface ComponentNameProps or type ComponentNameProps
-        const propsInterfaceMatch = componentContent.match(
-          new RegExp(`(?:interface|type)\\s+${exportedName}Props[\\s\\S]{0,500}?extends[\\s\\S]{0,500}?React\\.ComponentProps<([^>]+)>`, "m")
-        );
-        
-        if (propsInterfaceMatch) {
-          propType = `${exportedName}Props (extends React.ComponentProps<${propsInterfaceMatch[1].trim()}>)`;
-        } else {
-          // Find the function definition for this component
-          // Pattern: function ComponentName({ ... }: React.ComponentProps<typeof SomeType.Root>)
-          // The type annotation can be on the same line or next line
-          const functionDefRegex = new RegExp(
-            `function\\s+${exportedName}[\\s\\S]{0,500}?:\\s*React\\.ComponentProps<([^>]+)>`,
-            "m"
-          );
-          const functionMatch = componentContent.match(functionDefRegex);
-
-          if (functionMatch) {
-            // Extract the type reference (e.g., "typeof AccordionRadix.Root")
-            propType = `React.ComponentProps<${functionMatch[1].trim()}>`;
-          } else {
-            // Try alternative pattern: function ComponentName({ ... }: Type) on same line
-            const altFunctionMatch = componentContent.match(
-              new RegExp(`function\\s+${exportedName}\\s*\\([^)]*\\)\\s*:\\s*([^\\{\\n]+)`, "m")
-            );
-            if (altFunctionMatch) {
-              propType = altFunctionMatch[1].trim();
-            } else {
-              // Try const pattern: const ComponentName = ... React.ComponentProps<...>
-              const constPropsPattern = new RegExp(
-                `const\\s+${exportedName}[\\s\\S]{0,2000}?React\\.ComponentProps<([^>]+)>`,
-                "m"
-              );
-              const constMatch = componentContent.match(constPropsPattern);
-              if (constMatch) {
-                propType = `React.ComponentProps<${constMatch[1].trim()}>`;
-              }
-            }
-          }
-        }
-      }
-
+      // Normalize the prop type
       if (propType) {
-        // Clean up the prop type - remove extra whitespace and newlines
-        propType = propType.replace(/\s+/g, " ").trim();
-        
-        // Try to extract individual props
-        let individualProps: ComponentProp[] | undefined = undefined;
-        
-        // If it's a Props interface, extract props from it
-        if (propType.includes("Props")) {
-          const propsInterfaceNameMatch = propType.match(/(\w+Props)/);
-          if (propsInterfaceNameMatch) {
-            const propsInterfaceName = propsInterfaceNameMatch[1];
-            individualProps = extractPropsFromInterface(componentContent, propsInterfaceName);
-          }
-        } else if (propType.includes("React.ComponentProps")) {
-          // For React.ComponentProps types, try to extract props from Radix UI types
-          // Extract the type reference (e.g., "typeof AlertDialogRadix.Root")
-          const componentPropsMatch = propType.match(/React\.ComponentProps<(.+)>/);
-          if (componentPropsMatch) {
-            let innerType = componentPropsMatch[1].trim();
-            // Remove "typeof" prefix if present
-            innerType = innerType.replace(/^typeof\s+/, "").trim();
-            // Try to extract props from Radix UI type definitions
-            individualProps = extractPropsFromRadixType(innerType);
+        propType = normalizePropType(propType);
+      } else {
+        // Fallback: use generic type
+        propType = "React.ComponentProps<any>";
+      }
+
+      // Determine if we should extract individual props
+      let individualProps: ComponentProp[] | undefined = undefined;
+      const isAllProps = !shouldExtractIndividualProps(propType);
+      
+      if (!isAllProps) {
+        // Try to extract props from Props interface
+        const propsInterfaceNameMatch = propType.match(/(\w+Props)/);
+        if (propsInterfaceNameMatch) {
+          const propsInterfaceName = propsInterfaceNameMatch[1];
+          individualProps = extractPropsFromInterface(componentContent, propsInterfaceName);
+          // Only use if we actually found props
+          if (!individualProps || individualProps.length === 0) {
+            individualProps = undefined;
           }
         }
-        
-        components.push({
-          name: exportedName,
-          propType: propType,
-          props: individualProps && individualProps.length > 0 ? individualProps : undefined,
-        });
-      } else {
-        // If we can't find the type, still add the component with a generic type
-        components.push({
-          name: exportedName,
-          propType: "React.ComponentProps<any>",
-        });
       }
+      
+      components.push({
+        name: exportedName,
+        propType: propType,
+        props: individualProps,
+        isAllProps: isAllProps && !individualProps,
+      });
     }
 
     return components.length > 0 ? components : null;
@@ -624,42 +926,41 @@ function extractComponentProps(componentName: string): ExportedComponent[] | nul
 }
 
 /**
+ * Format prop type for display in the table
+ */
+function formatPropTypeForDisplay(propType: string): string {
+  // If it's a custom Props interface with extends, keep as is
+  if (propType.includes("Props") && propType.includes("extends")) {
+    return propType;
+  }
+  
+  // For React.ComponentProps types, ensure proper formatting
+  const componentPropsMatch = propType.match(/React\.ComponentProps<(.+)>/);
+  if (componentPropsMatch) {
+    const innerType = componentPropsMatch[1].trim();
+    // Keep typeof if present, add it if missing (unless it's a string literal)
+    if (innerType.includes("typeof")) {
+      return `React.ComponentProps<${innerType}>`;
+    } else if (innerType.match(/^["'].*["']$/)) {
+      // String literal like "button"
+      return `React.ComponentProps<${innerType}>`;
+    } else {
+      // Add typeof for component references
+      return `React.ComponentProps<typeof ${innerType}>`;
+    }
+  }
+  
+  return propType;
+}
+
+/**
  * Generate props table for a component
  */
 function generatePropsTable(component: ExportedComponent): string {
-  // Format the prop type for better readability
-  let formattedType = component.propType;
+  const formattedType = formatPropTypeForDisplay(component.propType);
   
-  // Check if it's a custom Props interface with extends
-  const isCustomPropsWithExtends = formattedType.includes("Props") && formattedType.includes("extends");
-  
-  if (!isCustomPropsWithExtends) {
-    // If it's a React.ComponentProps type, extract the inner type for cleaner display
-    const componentPropsMatch = formattedType.match(/React\.ComponentProps<(.+)>/);
-    if (componentPropsMatch) {
-      const innerType = componentPropsMatch[1];
-      // Clean up typeof references - keep them if they exist, but don't add to string literals
-      if (innerType.includes("typeof")) {
-        formattedType = `React.ComponentProps<${innerType.trim()}>`;
-      } else if (innerType.match(/^["'].*["']$/)) {
-        // It's a string literal like "button", keep as is
-        formattedType = `React.ComponentProps<${innerType.trim()}>`;
-      } else {
-        formattedType = `React.ComponentProps<typeof ${innerType.trim()}>`;
-      }
-    }
-  }
-
-  // Check if it's a custom Props interface
-  const isCustomProps = formattedType.includes("Props") && !formattedType.includes("React.ComponentProps");
-  
-  const description = isCustomProps || isCustomPropsWithExtends
-    ? "Custom props interface. See the component source for details."
-    : "All props are passed through to the underlying component. See the [Radix UI documentation](https://www.radix-ui.com/primitives) for the full API.";
-
   let tableContent = `### ${component.name}
 
-${description}
 
 | Prop | Type | Default |
 |------|------|---------|
@@ -673,7 +974,7 @@ ${description}
       tableContent += `| \`${prop.name}${required}\` | \`${prop.type}\` | ${defaultValue} |\n`;
     }
   } else {
-    // Fallback: show the type reference
+    // Show "All props from" message with the formatted type
     tableContent += `| *All props from* | \`${formattedType}\` | - |\n`;
   }
 
@@ -684,44 +985,19 @@ ${description}
 
 /**
  * Extract Default story from stories file
+ * Reuses extractAllStories logic for consistency and reliability
  */
 function extractDefaultStory(componentName: string): string | null {
-  const storiesFilePath = path.join(STORIES_PATH, `${toKebabCase(componentName)}.stories.tsx`);
-
-  if (!fs.existsSync(storiesFilePath)) {
+  const allStories = extractAllStories(componentName);
+  
+  if (!allStories) {
     return null;
   }
-
-  try {
-    const storiesContent = fs.readFileSync(storiesFilePath, "utf-8");
-
-    // Use regex to match the complete Default function
-    // Match from "export const Default" to the closing "};"
-    const defaultFunctionMatch = storiesContent.match(
-      /(export\s+const\s+Default\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)\s*\{[\s\S]*?\n\});/m
-    );
-
-    if (!defaultFunctionMatch) {
-      return null;
-    }
-
-    const defaultFunction = defaultFunctionMatch[1];
-
-    // Extract imports
-    const importSection = extractImports(storiesContent);
-
-    // Combine imports and Default function
-    let result = defaultFunction;
-    if (importSection) {
-      result = `${importSection}\n\n${defaultFunction}`;
-    }
-
-    // Replace import paths
-    return replaceImportPaths(result);
-  } catch (error) {
-    console.warn(`Failed to read stories file: ${storiesFilePath}`, error);
-    return null;
-  }
+  
+  // Find the Default story
+  const defaultStory = allStories.find((story) => story.name === "Default");
+  
+  return defaultStory ? defaultStory.code : null;
 }
 
 /**
@@ -747,6 +1023,9 @@ description: ${description}
 `;
 
   // Generate sections in the order they appear in the YAML metadata
+  // Track if preview was already added from metadata
+  let previewAdded = false;
+  
   if (metadata?.content) {
     for (const item of metadata.content) {
       // Preview section
@@ -758,22 +1037,28 @@ ${defaultStory}
 \`\`\`
 
 `;
+        previewAdded = true;
       }
 
-      // Usage section - each story as a separate code block
+      // Usage section - each story as a separate code block (excluding Default)
       if (item.usage === "all" && allStories && allStories.length > 0) {
-        content += `## Usage
+        // Filter out the "Default" story from usage section
+        const usageStories = allStories.filter((story) => story.name !== "Default");
+        
+        if (usageStories.length > 0) {
+          content += `## Usage
 
 `;
-        
-        for (const story of allStories) {
-          content += `### ${story.name}
+          
+          for (const story of usageStories) {
+            content += `### ${story.name}
 
 \`\`\`tsx
 ${story.code}
 \`\`\`
 
 `;
+          }
         }
       }
 
@@ -802,6 +1087,34 @@ pnpm dlx shadcn@latest @aura/${kebabName}
             content += generatePropsTable(component);
           }
         }
+      }
+    }
+  }
+  
+  // Auto-generate preview for components with Default story if not already added
+  // Insert it right after the frontmatter, before other sections
+  if (!previewAdded && defaultStory) {
+    const previewSection = `## Preview
+
+\`\`\`tsx
+${defaultStory}
+\`\`\`
+
+`;
+    // Find the position after frontmatter (after "---\n\n")
+    const frontmatterEnd = content.indexOf("---\n\n");
+    if (frontmatterEnd !== -1) {
+      const insertPosition = frontmatterEnd + 5; // After "---\n\n"
+      content = content.slice(0, insertPosition) + previewSection + content.slice(insertPosition);
+    } else {
+      // Fallback: find first section and insert before it
+      const firstSectionMatch = content.match(/\n## /);
+      if (firstSectionMatch && firstSectionMatch.index !== undefined) {
+        const insertPosition = firstSectionMatch.index + 1; // After the newline before "## "
+        content = content.slice(0, insertPosition) + previewSection + content.slice(insertPosition);
+      } else {
+        // Last resort: prepend
+        content = content.replace("---\n\n", `---\n\n${previewSection}`);
       }
     }
   }
@@ -854,14 +1167,16 @@ function generateDocs() {
     // Parse metadata
     const metadata = parseMetadata(component.name);
     
-    // Extract Default story if preview is requested
+    // Always try to extract Default story (for auto-preview generation)
     let defaultStory: string | null = null;
+    defaultStory = extractDefaultStory(component.name);
+    
+    // Check if preview should be shown (either from metadata or auto-detected)
     const hasPreviewDefault = metadata?.content?.some((item) => item.preview === "Default");
-    if (hasPreviewDefault) {
-      defaultStory = extractDefaultStory(component.name);
-      if (defaultStory) {
-        withPreview++;
-      }
+    const shouldShowPreview = hasPreviewDefault || defaultStory !== null;
+    
+    if (shouldShowPreview && defaultStory) {
+      withPreview++;
     }
 
     // Extract all stories if usage: all is requested

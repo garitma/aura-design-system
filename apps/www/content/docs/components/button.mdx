@@ -3,6 +3,14 @@ title: Button
 description: Displays a button or a component that looks like a button.
 ---
 
+## Preview
+
+```tsx
+import { Button } from "@/components/ui/Button";
+
+export const Default = () => <Button>Default Button</Button>;
+```
+
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
 ```bash
@@ -12,14 +20,6 @@ pnpm dlx shadcn@latest @aura/button
 
 
 ## Usage
-
-### Default
-
-```tsx
-import { Button } from "@/components/ui/Button";
-
-export const Default = () => <Button>Default Button</Button>;
-```
 
 ### Fill
 
@@ -135,7 +135,6 @@ export const ModeProp = () => (
 
 ### Button
 
-Custom props interface. See the component source for details.
 
 | Prop | Type | Default |
 |------|------|---------|
@@ -147,7 +146,6 @@ Custom props interface. See the component source for details.
 
 ### buttonVariants
 
-All props are passed through to the underlying component. See the [Radix UI documentation](https://www.radix-ui.com/primitives) for the full API.
 
 | Prop | Type | Default |
 |------|------|---------|

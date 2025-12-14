@@ -31,7 +31,7 @@ export const Default = () => {
       </label>
     </div>
   );
-}
+};
 ```
 
 ## Installation
@@ -43,37 +43,6 @@ pnpm dlx shadcn@latest @aura/checkbox
 
 
 ## Usage
-
-### Default
-
-```tsx
-import { useState } from "react";
-import {
-  Checkbox,
-  CheckboxGroup,
-  CheckboxGroupItem,
-} from "@/components/ui/Checkbox";
-
-export const Default = () => {
-  const [checked, setChecked] = useState(false);
-
-  return (
-    <div className="flex items-center gap-1">
-      <Checkbox
-        id="default"
-        checked={checked}
-        onCheckedChange={(checked) => setChecked(checked as boolean)}
-      />
-      <label
-        htmlFor="default"
-        className="text-sm font-medium leading-none cursor-pointer"
-      >
-        Accept terms and conditions
-      </label>
-    </div>
-  );
-};
-```
 
 ### Checked
 
@@ -321,7 +290,6 @@ export const Indeterminate = () => {
 
 ### Checkbox
 
-All props are passed through to the underlying component. See the [Radix UI documentation](https://www.radix-ui.com/primitives) for the full API.
 
 | Prop | Type | Default |
 |------|------|---------|
@@ -329,7 +297,6 @@ All props are passed through to the underlying component. See the [Radix UI docu
 
 ### CheckboxIndicator
 
-All props are passed through to the underlying component. See the [Radix UI documentation](https://www.radix-ui.com/primitives) for the full API.
 
 | Prop | Type | Default |
 |------|------|---------|
@@ -337,7 +304,6 @@ All props are passed through to the underlying component. See the [Radix UI docu
 
 ### CheckboxGroup
 
-All props are passed through to the underlying component. See the [Radix UI documentation](https://www.radix-ui.com/primitives) for the full API.
 
 | Prop | Type | Default |
 |------|------|---------|
@@ -345,7 +311,6 @@ All props are passed through to the underlying component. See the [Radix UI docu
 
 ### CheckboxGroupItem
 
-Custom props interface. See the component source for details.
 
 | Prop | Type | Default |
 |------|------|---------|

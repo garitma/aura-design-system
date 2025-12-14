@@ -8,6 +8,22 @@ import {
   AlertStatus,
 } from "../registry/default/components/ui/Alert";
 
+export const Default = () => {
+  return (
+    <Alert>
+      <AlertIcon>
+        <BookmarkIcon className="icon" />
+      </AlertIcon>
+      <AlertContent>
+        <AlertTitle>Alert Title</AlertTitle>
+        <AlertDescription>
+          This is a default alert message to demonstrate the Alert component.
+        </AlertDescription>
+      </AlertContent>
+    </Alert>
+  );
+};
+
 export const AlertDemo = () => {
   return (
     <Alert>

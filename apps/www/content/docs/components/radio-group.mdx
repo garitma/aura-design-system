@@ -46,7 +46,7 @@ export const Default = () => {
       </div>
     </RadioGroup>
   );
-}
+};
 ```
 
 ## Installation
@@ -58,52 +58,6 @@ pnpm dlx shadcn@latest @aura/radio-group
 
 
 ## Usage
-
-### Default
-
-```tsx
-import { useState } from "react";
-import {
-  RadioGroup,
-  RadioGroupItem,
-} from "@/components/ui/RadioGroup";
-
-export const Default = () => {
-  const [value, setValue] = useState("option-1");
-
-  return (
-    <RadioGroup value={value} onValueChange={setValue}>
-      <div className="flex items-center gap-1">
-        <RadioGroupItem value="option-1" id="option-1" />
-        <label
-          htmlFor="option-1"
-          className="text-sm font-medium leading-none cursor-pointer"
-        >
-          Option 1
-        </label>
-      </div>
-      <div className="flex items-center gap-1">
-        <RadioGroupItem value="option-2" id="option-2" />
-        <label
-          htmlFor="option-2"
-          className="text-sm font-medium leading-none cursor-pointer"
-        >
-          Option 2
-        </label>
-      </div>
-      <div className="flex items-center gap-1">
-        <RadioGroupItem value="option-3" id="option-3" />
-        <label
-          htmlFor="option-3"
-          className="text-sm font-medium leading-none cursor-pointer"
-        >
-          Option 3
-        </label>
-      </div>
-    </RadioGroup>
-  );
-};
-```
 
 ### WithDefaultValue
 
@@ -425,7 +379,6 @@ export const Horizontal = () => {
 
 ### RadioGroup
 
-All props are passed through to the underlying component. See the [Radix UI documentation](https://www.radix-ui.com/primitives) for the full API.
 
 | Prop | Type | Default |
 |------|------|---------|
@@ -433,7 +386,6 @@ All props are passed through to the underlying component. See the [Radix UI docu
 
 ### RadioGroupItem
 
-All props are passed through to the underlying component. See the [Radix UI documentation](https://www.radix-ui.com/primitives) for the full API.
 
 | Prop | Type | Default |
 |------|------|---------|
