@@ -1,7 +1,4 @@
 header:
   description: A window overlaid on the primary content, rendering content in a layer above the page.
-content:
-  - preview: Default
-  - installation: @aura
-  - usage: all
+extends: _templates/content.yml
 

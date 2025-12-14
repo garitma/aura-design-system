@@ -1,7 +1,4 @@
 header:
   description: For sighted users to preview content available behind a link.
-content:
-  - preview: Default
-  - installation: @aura
-  - usage: all
+extends: _templates/content.yml
 

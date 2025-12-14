@@ -1,7 +1,4 @@
 header:
   description: Displays a button or a component that looks like a button.
-content:
-  - preview: Default
-  - installation: @aura
-  - usage: all
+extends: _templates/content.yml
 

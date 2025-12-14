@@ -1,7 +1,4 @@
 header:
   description: Displays a menu to the user triggered by right-click or long-press.
-content:
-  - preview: Default
-  - installation: @aura
-  - usage: all
+extends: _templates/content.yml
 

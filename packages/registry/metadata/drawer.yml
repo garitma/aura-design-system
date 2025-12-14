@@ -1,7 +1,4 @@
 header:
   description: A drawer component that slides in from the edge of the screen.
-content:
-  - preview: Default
-  - installation: @aura
-  - usage: all
+extends: _templates/content.yml
 

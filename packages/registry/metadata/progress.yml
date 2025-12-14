@@ -1,7 +1,4 @@
 header:
   description: Displays an indicator showing the completion progress of a task.
-content:
-  - preview: Default
-  - installation: @aura
-  - usage: all
+extends: _templates/content.yml
 

@@ -314,3 +314,40 @@ export const Indeterminate = () => {
 };
 ```
 
+## Props
+
+### Checkbox
+
+All props are passed through to the underlying component. See the [Radix UI documentation](https://www.radix-ui.com/primitives) for the full API.
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `React.ComponentProps<typeof CheckboxRadix.Root>` | - |
+
+### CheckboxIndicator
+
+All props are passed through to the underlying component. See the [Radix UI documentation](https://www.radix-ui.com/primitives) for the full API.
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `React.ComponentProps<typeof CheckboxRadix.Indicator>` | - |
+
+### CheckboxGroup
+
+All props are passed through to the underlying component. See the [Radix UI documentation](https://www.radix-ui.com/primitives) for the full API.
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `React.ComponentProps<typeof any>` | - |
+
+### CheckboxGroupItem
+
+Custom props interface. See the component source for details.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `value` | `string` | - |
+| `label?` | `React.ReactNode` | undefined |
+| `description?` | `React.ReactNode` | undefined |
+| `onCheckedChange?` | `(checked: boolean)` | > void |
+

@@ -128,3 +128,25 @@ export const ModeProp = () => (
 );
 ```
 
+## Props
+
+### Button
+
+Custom props interface. See the component source for details.
+
+| Prop | Type | Default |
+|------|------|---------|
+| `asChild?` | `boolean` | undefined |
+| `isDisabled?` | `boolean` | undefined |
+| `isLoading?` | `boolean` | undefined |
+| `isLoadingText?` | `string | React.ReactNode` | undefined |
+| `mode?` | `VariantProps<typeof buttonVariants>["variant"]` | undefined |
+
+### buttonVariants
+
+All props are passed through to the underlying component. See the [Radix UI documentation](https://www.radix-ui.com/primitives) for the full API.
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `React.ComponentProps<"button">` | - |
+

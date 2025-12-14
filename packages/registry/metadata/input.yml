@@ -1,7 +1,4 @@
 header:
   description: Displays a form input field or a component that looks like an input field.
-content:
-  - preview: Default
-  - installation: @aura
-  - usage: all
+extends: _templates/content.yml
 
