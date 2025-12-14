@@ -197,6 +197,9 @@
   --ladle-color-hover: var(--gray-10);
   --ladle-color-accent: var(--primary);
   --ladle-blueprint: var(--gray-11);
+
+  --padding-left: calc(var(--spacing) * 2);
+  --padding-right: calc(var(--spacing) * 2);
 }
 
 @media (prefers-color-scheme: dark) {

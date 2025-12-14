@@ -128,7 +128,7 @@ export function CodeBlock({
       ) : (
         Actions({
           className:
-            "absolute top-0.5 right-0.5 z-2 rounded-lg text-fd-muted-foreground",
+            "absolute top-1/2 -translate-y-1/2 right-1 z-2 rounded-lg text-fd-muted-foreground",
           children: allowCopy && <CopyButton containerRef={areaRef} />,
         })
       )}
@@ -138,13 +138,11 @@ export function CodeBlock({
         role="region"
         tabIndex={0}
         className={cn(
-          "py-1.5 overflow-auto max-h-[600px] fd-scroll-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-fd-ring",
+          "py-1 px-0.5 md:px-1.5 overflow-auto max-h-[600px] fd-scroll-container focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-fd-ring",
           viewportProps.className
         )}
         style={
           {
-            // space for toolbar
-            "--padding-right": !title ? "calc(var(--spacing) * 8)" : undefined,
             counterSet: props["data-line-numbers"]
               ? `line ${Number(props["data-line-numbers-start"] ?? 1) - 1}`
               : undefined,
@@ -152,7 +150,17 @@ export function CodeBlock({
           } as object
         }
       >
-        <Pre>{children}</Pre>
+        <Pre
+          style={
+            !title
+              ? {
+                  paddingRight: "calc(var(--spacing) * 10)",
+                }
+              : undefined
+          }
+        >
+          {children}
+        </Pre>
       </div>
     </figure>
   );

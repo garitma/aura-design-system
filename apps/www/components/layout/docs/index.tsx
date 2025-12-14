@@ -310,11 +310,9 @@ export function DocsLayout({
                 {nav.title}
               </Link>
               <div className="flex-1">{nav.children}</div>
+              <div className="flex items-center gap-0.5">
               <SearchDialogTriggerIcon />
-              {searchToggle.enabled !== false &&
-                (searchToggle.components?.sm ?? (
-                  <SearchToggle className="p-2" hideIfDisabled />
-                ))}
+             
               {sidebarEnabled && (
                 <SidebarTrigger
                   className={cn(
@@ -328,6 +326,7 @@ export function DocsLayout({
                   <SidebarIcon className="icon" />
                 </SidebarTrigger>
               )}
+              </div>
             </Navbar>
           ))}
         <LayoutBody
