@@ -21,6 +21,7 @@ import {
 } from "@/components/LanguageToggle";
 import { type Option, RootToggle } from "@/components/RootToggle";
 import { LargeSearchToggle, SearchToggle } from "@/components/SearchToggle";
+import { SearchDialogTrigger, SearchDialogTriggerIcon } from "@/components/SearchDialog";
 import {
   Sidebar,
   SidebarCollapseTrigger,
@@ -229,6 +230,7 @@ export function DocsLayout({
               </SidebarCollapseTrigger>
             )}
           </div>
+          <SearchDialogTrigger />
           {searchToggle.enabled !== false &&
             (searchToggle.components?.lg ?? (
               <LargeSearchToggle hideIfDisabled />
@@ -308,6 +310,7 @@ export function DocsLayout({
                 {nav.title}
               </Link>
               <div className="flex-1">{nav.children}</div>
+              <SearchDialogTriggerIcon />
               {searchToggle.enabled !== false &&
                 (searchToggle.components?.sm ?? (
                   <SearchToggle className="p-2" hideIfDisabled />

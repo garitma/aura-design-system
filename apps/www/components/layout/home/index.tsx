@@ -11,6 +11,7 @@ import {
 } from "@/components/LanguageToggle";
 import { LargeSearchToggle, SearchToggle } from "@/components/SearchToggle";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { SearchDialogTrigger, SearchDialogTriggerIcon } from "@/components/SearchDialog";
 import {
   MobileNavigationMenuContent,
   MobileNavigationMenuLinkItem,
@@ -112,6 +113,7 @@ export function Header({
           ))}
       </ul>
       <div className="flex flex-row items-center justify-end gap-0.5 flex-1 max-lg:hidden">
+        <SearchDialogTrigger />
         {searchToggle.enabled !== false &&
           (searchToggle.components?.lg ?? (
             <LargeSearchToggle
@@ -139,6 +141,7 @@ export function Header({
         </ul>
       </div>
       <ul className="flex flex-row items-center ms-auto lg:hidden gap-0.5">
+        <SearchDialogTriggerIcon />
         {searchToggle.enabled !== false &&
           (searchToggle.components?.sm ?? (
             <SearchToggle className="p-2" hideIfDisabled />
