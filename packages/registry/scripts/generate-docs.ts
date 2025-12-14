@@ -780,10 +780,13 @@ ${story.code}
       // Installation section
       if (item.installation === "@aura") {
         content += `## Installation
-
+Make sure that \`namespace\` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
 \`\`\`bash
 pnpm dlx shadcn@latest @aura/${kebabName}
 \`\`\`
+
+
+
 `;
       }
 
