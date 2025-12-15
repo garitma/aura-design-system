@@ -489,6 +489,23 @@
       ]
     },
     {
+      "name": "web-validation",
+      "type": "registry:lib",
+      "title": "web-validation",
+      "description": "Utility: web-validation",
+      "files": [
+        {
+          "path": "registry/default/utils/web-validation.ts",
+          "type": "registry:lib"
+        }
+      ],
+      "dependencies": [
+        "ajv",
+        "ajv-errors",
+        "ajv-formats"
+      ]
+    },
+    {
       "name": "accordion-animation",
       "type": "registry:style",
       "cssVars": {

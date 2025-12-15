@@ -1,4 +1,4 @@
 header:
-  description: Re-usable components built using Radix UI and Tailwind CSS.
+  description: A comprehensive form system with schema-based validation, error handling, and field management. Built with Radix UI primitives and AJV validation, supporting text inputs, textareas, selects, checkboxes, switches, and checkbox groups with automatic error propagation and touch state management.
 extends: _templates/content.yml
 
