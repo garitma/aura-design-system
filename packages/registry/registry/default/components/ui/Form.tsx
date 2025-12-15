@@ -7,12 +7,17 @@ import { ChevronDownIcon, SymbolIcon } from "@radix-ui/react-icons";
 import { FieldProps } from "@/hooks/use-dynamic-form";
 import AlertStatus from "@/components/AlertStatus";
 import Button, { ButtonProps } from "@/components/ui/Button";
+import { cn } from "@/utils/class-names";
 import {
   Checkbox,
   CheckboxGroup,
   CheckboxGroupItem,
 } from "@/components/ui/Checkbox";
 import { Switch } from "@/components/ui/Switch";
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@/components/ui/RadioGroup";
 
 interface FormProps extends FormRadix.FormProps {
   errors?: ErrorObject<string, Record<string, any>, unknown>[];
@@ -261,6 +266,13 @@ export interface CheckboxGroupOption {
   disabled?: boolean;
 }
 
+export interface RadioGroupOption {
+  value: string;
+  label: React.ReactNode;
+  description?: React.ReactNode;
+  disabled?: boolean;
+}
+
 interface FormCheckboxGroupProps extends Partial<FormRadix.FormFieldProps> {
   label?: React.ReactNode;
   labelProps?: FormRadix.FormLabelProps;
@@ -330,6 +342,105 @@ export const FormCheckboxGroup = React.forwardRef<
               />
             ))}
           </CheckboxGroup>
+        </FormRadix.Control>
+        {hasError &&
+          errors?.map((error, index) => (
+            <FormRadix.Message className="text-warning-contrast" key={index}>
+              {error.message}
+            </FormRadix.Message>
+          ))}
+      </FormRadix.Field>
+    );
+  }
+);
+
+interface FormRadioGroupProps extends Partial<FormRadix.FormFieldProps> {
+  label?: React.ReactNode;
+  labelProps?: FormRadix.FormLabelProps;
+  controlProps?: FormRadix.FormControlProps;
+  field?: FieldProps;
+  errors?: ErrorObject<string, Record<string, any>, unknown>[];
+  options: RadioGroupOption[];
+  className?: string;
+}
+
+export const FormRadioGroup = React.forwardRef<
+  HTMLDivElement,
+  FormRadioGroupProps
+>(
+  (
+    {
+      label,
+      labelProps,
+      controlProps,
+      field,
+      errors,
+      options,
+      className,
+      ...props
+    },
+    forwardedRef
+  ) => {
+    const hasError = field?.touch && errors && errors.length > 0;
+    const name = props.name || field?.name || "";
+    const fieldValue = field?.value ? String(field.value) : "";
+
+    const handleValueChange = React.useCallback(
+      (value: string) => {
+        if (field?.setValue) {
+          field.setValue(value);
+        }
+      },
+      [field]
+    );
+
+    return (
+      <FormRadix.Field
+        {...props}
+        ref={forwardedRef}
+        name={name}
+        serverInvalid={hasError}
+        className={className}
+      >
+        {label && <FormRadix.Label {...labelProps}>{label}</FormRadix.Label>}
+        <FormRadix.Control {...controlProps} asChild>
+          <RadioGroup
+            value={fieldValue}
+            onValueChange={handleValueChange}
+            className="flex flex-col gap-0.5"
+          >
+            {options.map((option) => {
+              const optionId = `${name}-${option.value}`;
+              return (
+                <div
+                  key={option.value}
+                  className={cn(
+                    "flex items-start gap-1",
+                    option.disabled && "opacity-50 cursor-not-allowed"
+                  )}
+                >
+                  <RadioGroupItem
+                    value={option.value}
+                    id={optionId}
+                    disabled={option.disabled}
+                  />
+                  <div className="flex flex-col gap-0.5">
+                    <label
+                      htmlFor={optionId}
+                      className="text-sm font-medium leading-none cursor-pointer"
+                    >
+                      {option.label}
+                    </label>
+                    {option.description && (
+                      <p className="text-sm text-gray-11 m-0">
+                        {option.description}
+                      </p>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </RadioGroup>
         </FormRadix.Control>
         {hasError &&
           errors?.map((error, index) => (
