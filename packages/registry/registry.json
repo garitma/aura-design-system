@@ -19,6 +19,23 @@
       ]
     },
     {
+      "name": "form-field-sortable-list",
+      "type": "registry:component",
+      "title": "FormFieldSortableList",
+      "description": "The FormFieldSortableList component.",
+      "files": [
+        {
+          "path": "registry/default/components/FormFieldSortableList.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "ajv",
+        "radix-ui"
+      ]
+    },
+    {
       "name": "theme-color-switcher",
       "type": "registry:component",
       "title": "ThemeColorSwitcher",
@@ -423,6 +440,25 @@
       ],
       "dependencies": [
         "radix-ui"
+      ]
+    },
+    {
+      "name": "sortable",
+      "type": "registry:ui",
+      "title": "Sortable",
+      "description": "The Sortable component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Sortable.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@dnd-kit/core",
+        "@dnd-kit/modifiers",
+        "@dnd-kit/sortable",
+        "@dnd-kit/utilities",
+        "@radix-ui/react-slot"
       ]
     },
     {

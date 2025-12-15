@@ -1,0 +1,372 @@
+import { useState } from "react";
+import { DragHandleDots2Icon } from "@radix-ui/react-icons";
+import {
+  Sortable,
+  SortableContent,
+  SortableItem,
+  SortableItemHandle,
+  SortableOverlay,
+} from "../registry/default/components/ui/Sortable";
+
+export const Default = () => {
+  const [items, setItems] = useState(["Item 1", "Item 2", "Item 3", "Item 4"]);
+
+  return (
+    <Sortable value={items} onValueChange={setItems}>
+      <SortableContent className="flex flex-col gap-1 w-full max-w-sm">
+        {items.map((item) => (
+          <SortableItem
+            key={item}
+            value={item}
+            asHandle
+            className="bg-gray-2 border border-gray-6 rounded-md p-1 text-gray-12"
+          >
+            {item}
+          </SortableItem>
+        ))}
+      </SortableContent>
+    </Sortable>
+  );
+};
+
+export const Horizontal = () => {
+  const [items, setItems] = useState(["1", "2", "3", "4", "5"]);
+
+  return (
+    <Sortable value={items} onValueChange={setItems} orientation="horizontal">
+      <SortableContent className="flex flex-row gap-1">
+        {items.map((item) => (
+          <SortableItem
+            key={item}
+            value={item}
+            className="bg-gray-2 border border-gray-6 rounded-md p-1 min-w-12 h-12 flex items-center justify-center text-gray-12"
+          >
+            {item}
+          </SortableItem>
+        ))}
+      </SortableContent>
+    </Sortable>
+  );
+};
+
+export const WithHandle = () => {
+  const [items, setItems] = useState([
+    "Task 1",
+    "Task 2",
+    "Task 3",
+    "Task 4",
+  ]);
+
+  return (
+    <Sortable value={items} onValueChange={setItems}>
+      <SortableContent className="flex flex-col gap-1 w-full max-w-sm">
+        {items.map((item) => (
+          <SortableItem
+            key={item}
+            value={item}
+            className="bg-gray-2 border border-gray-6 rounded-md flex items-center gap-1 p-1"
+          >
+            <SortableItemHandle className="cursor-grab active:cursor-grabbing p-0.5 text-gray-11 hover:text-gray-12">
+              <DragHandleDots2Icon className="icon" />
+            </SortableItemHandle>
+            <span className="text-gray-12 flex-1">{item}</span>
+          </SortableItem>
+        ))}
+      </SortableContent>
+    </Sortable>
+  );
+};
+
+export const WithOverlay = () => {
+  const [items, setItems] = useState([
+    "Project Alpha",
+    "Project Beta",
+    "Project Gamma",
+    "Project Delta",
+  ]);
+
+  return (
+    <Sortable value={items} onValueChange={setItems}>
+      <SortableContent className="flex flex-col gap-1 w-full max-w-sm">
+        {items.map((item) => (
+          <SortableItem
+            key={item}
+            value={item}
+            asHandle
+            className="bg-gray-2 border border-gray-6 rounded-md p-1 text-gray-12"
+          >
+            {item}
+          </SortableItem>
+        ))}
+      </SortableContent>
+      <SortableOverlay>
+        {({ value }) => (
+          <div className="bg-gray-2 border border-gray-7 rounded-md p-1 text-gray-12 shadow-lg">
+            {items.find((item) => item === value) || value}
+          </div>
+        )}
+      </SortableOverlay>
+    </Sortable>
+  );
+};
+
+export const WithHandleAndOverlay = () => {
+  const [items, setItems] = useState([
+    "Document 1",
+    "Document 2",
+    "Document 3",
+    "Document 4",
+  ]);
+
+  return (
+    <Sortable value={items} onValueChange={setItems}>
+      <SortableContent className="flex flex-col gap-1 w-full max-w-sm">
+        {items.map((item) => (
+          <SortableItem
+            key={item}
+            value={item}
+            className="bg-gray-2 border border-gray-6 rounded-md flex items-center gap-1 p-1"
+          >
+            <SortableItemHandle className="cursor-grab active:cursor-grabbing p-0.5 text-gray-11 hover:text-gray-12">
+              <DragHandleDots2Icon className="icon" />
+            </SortableItemHandle>
+            <span className="text-gray-12 flex-1">{item}</span>
+          </SortableItem>
+        ))}
+      </SortableContent>
+      <SortableOverlay>
+        {({ value }) => (
+          <div className="bg-gray-2 border border-gray-7 rounded-md flex items-center gap-1 p-1 text-gray-12 shadow-lg">
+            <div className="p-0.5 text-gray-11">
+              <DragHandleDots2Icon className="icon" />
+            </div>
+            <span className="flex-1">
+              {items.find((item) => item === value) || value}
+            </span>
+          </div>
+        )}
+      </SortableOverlay>
+    </Sortable>
+  );
+};
+
+export const DisabledItems = () => {
+  const [items, setItems] = useState([
+    "Active Item 1",
+    "Active Item 2",
+    "Disabled Item",
+    "Active Item 3",
+  ]);
+
+  return (
+    <Sortable value={items} onValueChange={setItems}>
+      <SortableContent className="flex flex-col gap-1 w-full max-w-sm">
+        {items.map((item, index) => (
+          <SortableItem
+            key={item}
+            value={item}
+            asHandle
+            disabled={index === 2}
+            className="bg-gray-2 border border-gray-6 rounded-md p-1 text-gray-12"
+          >
+            {item}
+          </SortableItem>
+        ))}
+      </SortableContent>
+    </Sortable>
+  );
+};
+
+export const WithObjects = () => {
+  const [items, setItems] = useState([
+    { id: "1", name: "Apple", category: "Fruit" },
+    { id: "2", name: "Carrot", category: "Vegetable" },
+    { id: "3", name: "Banana", category: "Fruit" },
+    { id: "4", name: "Broccoli", category: "Vegetable" },
+  ]);
+
+  return (
+    <Sortable
+      value={items}
+      onValueChange={setItems}
+      getItemValue={(item) => item.id}
+    >
+      <SortableContent className="flex flex-col gap-1 w-full max-w-sm">
+        {items.map((item) => (
+          <SortableItem
+            key={item.id}
+            value={item.id}
+            asHandle
+            className="bg-gray-2 border border-gray-6 rounded-md p-1"
+          >
+            <div className="flex flex-col gap-0.5">
+              <span className="text-gray-12 font-medium">{item.name}</span>
+              <span className="text-gray-11 text-sm">{item.category}</span>
+            </div>
+          </SortableItem>
+        ))}
+      </SortableContent>
+    </Sortable>
+  );
+};
+
+export const FlatCursor = () => {
+  const [items, setItems] = useState(["Item 1", "Item 2", "Item 3", "Item 4"]);
+
+  return (
+    <Sortable value={items} onValueChange={setItems} flatCursor>
+      <SortableContent className="flex flex-col gap-1 w-full max-w-sm">
+        {items.map((item) => (
+          <SortableItem
+            key={item}
+            value={item}
+            asHandle
+            className="bg-gray-2 border border-gray-6 rounded-md p-1 text-gray-12"
+          >
+            {item}
+          </SortableItem>
+        ))}
+      </SortableContent>
+    </Sortable>
+  );
+};
+
+export const CardList = () => {
+  const [items, setItems] = useState([
+    "Card 1",
+    "Card 2",
+    "Card 3",
+    "Card 4",
+  ]);
+
+  return (
+    <Sortable value={items} onValueChange={setItems}>
+      <SortableContent className="flex flex-col gap-1 w-full max-w-sm">
+        {items.map((item) => (
+          <SortableItem
+            key={item}
+            value={item}
+            className="bg-gray-2 border border-gray-6 rounded-lg p-1"
+          >
+            <div className="flex items-center gap-1">
+              <SortableItemHandle className="cursor-grab active:cursor-grabbing p-0.5 text-gray-11 hover:text-gray-12">
+                <DragHandleDots2Icon className="icon" />
+              </SortableItemHandle>
+              <div className="flex-1">
+                <h3 className="text-gray-12 font-medium">{item}</h3>
+                <p className="text-gray-11 text-sm">
+                  Drag to reorder this card
+                </p>
+              </div>
+            </div>
+          </SortableItem>
+        ))}
+      </SortableContent>
+      <SortableOverlay>
+        {({ value }) => (
+          <div className="bg-gray-2 border border-gray-7 rounded-lg p-2 shadow-lg">
+            <div className="flex items-center gap-1">
+              <div className="p-0.5 text-gray-11">
+                <DragHandleDots2Icon className="icon" />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-gray-12 font-medium">
+                  {items.find((item) => item === value) || value}
+                </h3>
+                <p className="text-gray-11 text-sm">Dragging...</p>
+              </div>
+            </div>
+          </div>
+        )}
+      </SortableOverlay>
+    </Sortable>
+  );
+};
+
+export const NumberedList = () => {
+  const [items, setItems] = useState([
+    "First item",
+    "Second item",
+    "Third item",
+    "Fourth item",
+  ]);
+
+  return (
+    <Sortable value={items} onValueChange={setItems}>
+      <SortableContent className="flex flex-col gap-1 w-full max-w-sm">
+        {items.map((item, index) => (
+          <SortableItem
+            key={item}
+            value={item}
+            className="bg-gray-2 border border-gray-6 rounded-md flex items-center gap-1 p-1"
+          >
+            <div className="flex items-center justify-center w-6 h-6 rounded-sm bg-gray-4 text-gray-12 text-sm font-medium">
+              {index + 1}
+            </div>
+            <span className="text-gray-12 flex-1">{item}</span>
+            <SortableItemHandle className="cursor-grab active:cursor-grabbing p-0.5 text-gray-11 hover:text-gray-12">
+              <DragHandleDots2Icon className="icon" />
+            </SortableItemHandle>
+          </SortableItem>
+        ))}
+      </SortableContent>
+    </Sortable>
+  );
+};
+
+export const MixedOrientation = () => {
+  const [items, setItems] = useState(["1", "2", "3", "4", "5", "6"]);
+
+  return (
+    <Sortable value={items} onValueChange={setItems} orientation="mixed">
+      <SortableContent className="grid grid-cols-3 gap-1 w-full max-w-sm">
+        {items.map((item) => (
+          <SortableItem
+            key={item}
+            value={item}
+            asHandle
+            className="bg-gray-2 border border-gray-6 rounded-md p-1 aspect-square flex items-center justify-center text-gray-12"
+          >
+            {item}
+          </SortableItem>
+        ))}
+      </SortableContent>
+    </Sortable>
+  );
+};
+
+export const WithOnMove = () => {
+  const [items, setItems] = useState(["A", "B", "C", "D"]);
+  const [lastMove, setLastMove] = useState<string>("");
+
+  return (
+    <div className="flex flex-col gap-2 w-full max-w-sm">
+      <Sortable
+        value={items}
+        onValueChange={setItems}
+        onMove={(event) => {
+          setLastMove(
+            `Moved from position ${event.activeIndex + 1} to ${event.overIndex + 1}`,
+          );
+        }}
+      >
+        <SortableContent className="flex flex-col gap-1">
+          {items.map((item) => (
+            <SortableItem
+              key={item}
+              value={item}
+              asHandle
+              className="bg-gray-2 border border-gray-6 rounded-md p-1 text-gray-12"
+            >
+              {item}
+            </SortableItem>
+          ))}
+        </SortableContent>
+      </Sortable>
+      {lastMove && (
+        <p className="text-gray-11 text-sm">Last move: {lastMove}</p>
+      )}
+    </div>
+  );
+};
+

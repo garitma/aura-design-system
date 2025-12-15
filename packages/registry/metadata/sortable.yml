@@ -1,0 +1,4 @@
+header:
+  description: A sortable list of items.
+extends: _templates/content.yml
+
