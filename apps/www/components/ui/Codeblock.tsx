@@ -128,7 +128,7 @@ export function CodeBlock({
       ) : (
         Actions({
           className:
-            "absolute top-1/2 -translate-y-1/2 right-1 z-2 rounded-lg text-fd-muted-foreground",
+            "absolute top-0.25 right-1 z-2 rounded-lg text-fd-muted-foreground",
           children: allowCopy && <CopyButton containerRef={areaRef} />,
         })
       )}
