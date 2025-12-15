@@ -146,3 +146,5 @@ playwright/.cache/
 
 # Turbo
 .turbo
+
+.pnpm-store

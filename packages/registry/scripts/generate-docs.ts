@@ -1147,7 +1147,7 @@ function generateDocs() {
   // Ensure output directory exists
   if (!fs.existsSync(DOCS_OUTPUT_PATH)) {
     fs.mkdirSync(DOCS_OUTPUT_PATH, { recursive: true });
-    console.log(`Created docs directory: ${DOCS_OUTPUT_PATH}`);
+    console.log(`[INFO] Created documentation directory: ${DOCS_OUTPUT_PATH}`);
   }
 
   const components = getUIComponentFiles();
@@ -1157,7 +1157,7 @@ function generateDocs() {
   let withUsage = 0;
   let withCustomDescription = 0;
 
-  console.log(`\nFound ${components.length} UI components\n`);
+  console.log(`\n[INFO] Processing ${components.length} UI component${components.length !== 1 ? 's' : ''}\n`);
 
   for (const component of components) {
     const kebabName = toKebabCase(component.name);
@@ -1196,20 +1196,23 @@ function generateDocs() {
     const content = generateMdxContent(component.name, metadata, defaultStory, allStories);
     fs.writeFileSync(mdxFilePath, content);
     
-    const previewInfo = defaultStory ? " (with preview)" : "";
-    const usageInfo = allStories ? " (with usage)" : "";
-    const descInfo = metadata?.header?.description ? " (with custom description)" : "";
-    console.log(`✅ Created: ${mdxFileName}${previewInfo}${usageInfo}${descInfo}`);
+    const features: string[] = [];
+    if (defaultStory) features.push("preview");
+    if (allStories) features.push("usage");
+    if (metadata?.header?.description) features.push("custom description");
+    
+    const featuresText = features.length > 0 ? ` [${features.join(", ")}]` : "";
+    console.log(`[SUCCESS] Generated ${mdxFileName}${featuresText}`);
     created++;
   }
 
-  console.log(`\n📊 Summary:`);
-  console.log(`   Created: ${created}`);
-  console.log(`   With custom description: ${withCustomDescription}`);
-  console.log(`   With preview: ${withPreview}`);
-  console.log(`   With usage: ${withUsage}`);
-  console.log(`   Skipped: ${skipped}`);
-  console.log(`   Total:   ${components.length}\n`);
+  console.log(`\n[SUMMARY] Documentation Generation Complete`);
+  console.log(`  Total components:     ${components.length}`);
+  console.log(`  Documentation files: ${created}`);
+  console.log(`  With preview:         ${withPreview}`);
+  console.log(`  With usage:           ${withUsage}`);
+  console.log(`  With custom desc:     ${withCustomDescription}`);
+  console.log(`  Skipped:              ${skipped}\n`);
 }
 
 generateDocs();
