@@ -224,6 +224,12 @@ importers:
       ajv:
         specifier: ^8.17.1
         version: 8.17.1
+      ajv-errors:
+        specifier: ^3.0.0
+        version: 3.0.0(ajv@8.17.1)
+      ajv-formats:
+        specifier: ^3.0.1
+        version: 3.0.1(ajv@8.17.1)
       bezier-easing:
         specifier: ^2.1.0
         version: 2.1.0

@@ -8,7 +8,11 @@ export const Default = () => {
   const [value, setValue] = useState("option-1");
 
   return (
-    <RadioGroup value={value} onValueChange={setValue}>
+    <RadioGroup
+      value={value}
+      onValueChange={setValue}
+      className="flex flex-col gap-0.5"
+    >
       <div className="flex items-center gap-1">
         <RadioGroupItem value="option-1" id="option-1" />
         <label
@@ -42,7 +46,7 @@ export const Default = () => {
 
 export const WithDefaultValue = () => {
   return (
-    <RadioGroup defaultValue="option-2">
+    <RadioGroup defaultValue="option-2" className="flex flex-col gap-0.5">
       <div className="flex items-center gap-1">
         <RadioGroupItem value="option-1" id="default-option-1" />
         <label
@@ -78,7 +82,7 @@ export const Disabled = () => {
   const [value, setValue] = useState("option-1");
 
   return (
-    <RadioGroup value={value} onValueChange={setValue}>
+    <RadioGroup value={value} onValueChange={setValue}  className="flex flex-col gap-0.5">
       <div className="flex items-center gap-1">
         <RadioGroupItem value="option-1" id="disabled-option-1" />
         <label
@@ -132,7 +136,7 @@ export const WithDescription = () => {
   ];
 
   return (
-    <RadioGroup value={value} onValueChange={setValue}>
+    <RadioGroup value={value} onValueChange={setValue}  className="flex flex-col gap-0.5">
       {options.map((option) => (
         <div key={option.value} className="flex items-start gap-1">
           <RadioGroupItem value={option.value} id={option.value} />
@@ -263,7 +267,7 @@ export const Horizontal = () => {
     <RadioGroup
       value={value}
       onValueChange={setValue}
-      className="flex flex-row gap-2"
+      className="flex flex-row gap-0.5"
     >
       <div className="flex items-center gap-1">
         <RadioGroupItem value="small" id="size-small" />
@@ -295,7 +299,3 @@ export const Horizontal = () => {
     </RadioGroup>
   );
 };
-
-
-
-
