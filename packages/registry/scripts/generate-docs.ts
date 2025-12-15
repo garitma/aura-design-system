@@ -1067,7 +1067,7 @@ ${story.code}
         content += `## Installation
 Make sure that \`namespace\` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
 \`\`\`bash
-pnpm dlx shadcn@latest @aura/${kebabName}
+pnpm dlx shadcn@latest add @aura/${kebabName}
 \`\`\`
 
 
