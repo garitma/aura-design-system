@@ -191,7 +191,7 @@ export function SearchDialogTrigger({ className }: SearchDialogTriggerProps) {
         type="button"
         onClick={() => setOpen(true)}
         className={cn(
-          "inline-flex items-center gap-1 border border-gray-6 bg-gray-1 p-0.5 ps-1.5 text-sm text-gray-11 transition-colors cursor-pointer rounded",
+          "inline-flex items-center gap-1 border border-gray-6 bg-gray-1 p-0.5 ps-1.5 text-sm text-gray-11 transition-colors cursor-pointer rounded-sm",
           "hover:bg-gray-3 hover:text-gray-12",
           "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-7",
           className
