@@ -670,11 +670,6 @@ body {
   touch-action: manipulation;
 }
 
-*::selection {
-  color: var(--aura-accents-primary);
-  background: var(--aura-selector);
-}
-
 #nprogress {
   pointer-events: none;
 }
