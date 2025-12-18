@@ -1,8 +1,49 @@
+"use client";
+
 import Link from "next/link";
 import { AccessibilityIcon, TokensIcon } from "@radix-ui/react-icons";
+import { Check, Clipboard } from "lucide-react";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/Button";
 import Section from "@/components/Section";
+import { cn } from "@/utils/class-names";
+
+function CopyableCommand({ command }: { command: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(command);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
+
+  return (
+    <div className="mt-1 flex items-center gap-1.5 text-sm font-mono">
+      <code className="flex-1 px-1 text-gray-11"><span className="text-accent-11 animate-pulse">◉</span> ~ {command}</code>
+      <button
+        type="button"
+        onClick={handleCopy}
+        className={cn(
+          "flex items-center justify-center size-2 rounded-md",
+          "text-gray-11 hover:text-gray-12 hover:bg-gray-3",
+          "transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-7"
+        )}
+        aria-label={copied ? "Copied" : "Copy command"}
+      >
+        {copied ? (
+          <Check className="icon text-accent-11" />
+        ) : (
+          <Clipboard className="icon" />
+        )}
+      </button>
+    </div>
+  );
+}
 
 export default function HeroSection() {
   return (
@@ -35,6 +76,8 @@ export default function HeroSection() {
             </Link>
           </Button>
         </div>
+
+        <CopyableCommand command="pnpm dlx @aura-design/cli@latest init" />
 
         <div className="pt-2.5 flex flex-col md:flex-row items-center gap-1 text-sm text-gray-11">
           <div className="flex items-center gap-1">
