@@ -10,6 +10,7 @@ const CUSTOM_ITEMS_PATH = path.join(__dirname, "../registry-items.custom.json");
 const ROOT_COMPONENTS_PATH = path.join(__dirname, "../registry/default/components");
 const UI_COMPONENTS_PATH = path.join(__dirname, "../registry/default/components/ui");
 const UTILS_PATH = path.join(__dirname, "../registry/default/utils");
+const HOOKS_PATH = path.join(__dirname, "../registry/default/hooks");
 const STYLES_PATH = path.join(__dirname, "../registry/default/styles");
 
 type RegistryItemType = 
@@ -174,6 +175,42 @@ function getUtilsItems() {
     });
 }
 
+function getHooksItems() {
+  if (!fs.existsSync(HOOKS_PATH)) return [];
+
+  const files = fs.readdirSync(HOOKS_PATH);
+  return files
+    .filter((file) => file.endsWith(".ts"))
+    .map((file) => {
+      const name = file.replace(".ts", "");
+      const kebabName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+      const filePath = path.join(HOOKS_PATH, file);
+      
+      // Extract external dependencies from the hook file
+      const dependencies = extractDependencies(filePath);
+      
+      const item: RegistryItem = {
+        name: kebabName,
+        type: "registry:hook" as const,
+        title: name,
+        description: `Hook: ${name}`,
+        files: [
+          {
+            path: `registry/default/hooks/${file}`,
+            type: "registry:hook" as const,
+          },
+        ],
+      };
+      
+      // Only add dependencies field if there are external dependencies
+      if (dependencies.length > 0) {
+        item.dependencies = dependencies;
+      }
+      
+      return item;
+    });
+}
+
 /**
  * Load custom registry items from registry-items.custom.json
  */
@@ -308,10 +345,11 @@ function getAnimationStyleItems(): RegistryItem[] {
 function buildRegistry() {
   const components = getComponentItems();
   const utils = getUtilsItems();
+  const hooks = getHooksItems();
   const animationStyles = getAnimationStyleItems();
   const customItems = getCustomItems();
 
-  registry.items = [...components, ...utils, ...animationStyles, ...customItems];
+  registry.items = [...components, ...utils, ...hooks, ...animationStyles, ...customItems];
 
   fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2));
   console.log(`Registry generated at ${REGISTRY_PATH}`);

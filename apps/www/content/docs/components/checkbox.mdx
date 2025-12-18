@@ -293,14 +293,14 @@ export const Indeterminate = () => {
 
 | Prop | Type | Default |
 |------|------|---------|
-| *All props from* | `React.ComponentProps<typeof CheckboxRadix.Root>` | - |
+| *All props from* | `React.ComponentProps&lt;typeof CheckboxRadix.Root&gt;` | - |
 
 ### CheckboxIndicator
 
 
 | Prop | Type | Default |
 |------|------|---------|
-| *All props from* | `React.ComponentProps<typeof CheckboxRadix.Indicator>` | - |
+| *All props from* | `React.ComponentProps&lt;typeof CheckboxRadix.Indicator&gt;` | - |
 
 ### CheckboxGroup
 
@@ -308,7 +308,7 @@ export const Indeterminate = () => {
 | Prop | Type | Default |
 |------|------|---------|
 | `value?` | `string[]` | undefined |
-| `onValueChange?` | `(value: string[])` | > void |
+| `onValueChange?` | `(value: string[]) =&gt; void` | undefined |
 | `defaultValue?` | `string[]` | undefined |
 
 ### CheckboxGroupItem
@@ -319,5 +319,5 @@ export const Indeterminate = () => {
 | `value` | `string` | - |
 | `label?` | `React.ReactNode` | undefined |
 | `description?` | `React.ReactNode` | undefined |
-| `onCheckedChange?` | `(checked: boolean)` | > void |
+| `onCheckedChange?` | `(checked: boolean) =&gt; void` | undefined |
 

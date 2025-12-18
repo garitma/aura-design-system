@@ -559,6 +559,54 @@
       ]
     },
     {
+      "name": "use-as-ref",
+      "type": "registry:hook",
+      "title": "use-as-ref",
+      "description": "Hook: use-as-ref",
+      "files": [
+        {
+          "path": "registry/default/hooks/use-as-ref.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-dynamic-form",
+      "type": "registry:hook",
+      "title": "use-dynamic-form",
+      "description": "Hook: use-dynamic-form",
+      "files": [
+        {
+          "path": "registry/default/hooks/use-dynamic-form.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-isomorphic-layout-effect",
+      "type": "registry:hook",
+      "title": "use-isomorphic-layout-effect",
+      "description": "Hook: use-isomorphic-layout-effect",
+      "files": [
+        {
+          "path": "registry/default/hooks/use-isomorphic-layout-effect.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-lazy-ref",
+      "type": "registry:hook",
+      "title": "use-lazy-ref",
+      "description": "Hook: use-lazy-ref",
+      "files": [
+        {
+          "path": "registry/default/hooks/use-lazy-ref.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
       "name": "accordion-animation",
       "type": "registry:style",
       "cssVars": {

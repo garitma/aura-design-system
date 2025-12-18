@@ -1037,6 +1037,16 @@ function formatPropTypeForDisplay(propType: string): string {
 }
 
 /**
+ * Escape HTML entities in type strings to prevent MDX parsing issues
+ * Escapes < and > which are used in generics like Promise<boolean>
+ */
+function escapeTypeForMDX(type: string): string {
+  return type
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+/**
  * Generate props table for a component
  */
 function generatePropsTable(component: ExportedComponent): string {
@@ -1054,11 +1064,14 @@ function generatePropsTable(component: ExportedComponent): string {
     for (const prop of component.props) {
       const defaultValue = prop.default || "-";
       const required = prop.required ? "" : "?";
-      tableContent += `| \`${prop.name}${required}\` | \`${prop.type}\` | ${defaultValue} |\n`;
+      // Escape angle brackets in type to prevent MDX parsing issues
+      const escapedType = escapeTypeForMDX(prop.type);
+      tableContent += `| \`${prop.name}${required}\` | \`${escapedType}\` | ${defaultValue} |\n`;
     }
   } else {
     // Show "All props from" message with the formatted type
-    tableContent += `| *All props from* | \`${formattedType}\` | - |\n`;
+    const escapedFormattedType = escapeTypeForMDX(formattedType);
+    tableContent += `| *All props from* | \`${escapedFormattedType}\` | - |\n`;
   }
 
   tableContent += "\n";

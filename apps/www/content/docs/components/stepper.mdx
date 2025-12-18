@@ -99,12 +99,11 @@ pnpm dlx shadcn@latest add @aura/stepper
 | `asChild?` | `boolean` | undefined |
 | `value?` | `string` | undefined |
 | `defaultValue?` | `string` | undefined |
-| `onValueChange?` | `(value: string)` | > void |
-| `onValueComplete?` | `(value: string, completed: boolean)` | > void |
-| `onValueAdd?` | `(value: string)` | > void |
-| `onValueRemove?` | `(value: string)` | > void |
-| `onValidate?` | `(` | undefined |
-| `direction` | `NavigationDirection,` | - |
+| `onValueChange?` | `(value: string) =&gt; void` | undefined |
+| `onValueComplete?` | `(value: string, completed: boolean) =&gt; void` | undefined |
+| `onValueAdd?` | `(value: string) =&gt; void` | undefined |
+| `onValueRemove?` | `(value: string) =&gt; void` | undefined |
+| `onValidate?` | `( value: string, direction: NavigationDirection, ) =&gt; boolean | Promise&lt;boolean&gt;` | undefined |
 | `activationMode?` | `ActivationMode` | undefined |
 | `dir?` | `Direction` | undefined |
 | `orientation?` | `Orientation` | undefined |
@@ -141,7 +140,7 @@ pnpm dlx shadcn@latest add @aura/stepper
 
 | Prop | Type | Default |
 |------|------|---------|
-| `children?` | `React.ReactNode | ((dataState: DataState)` | > React.ReactNode) |
+| `children?` | `React.ReactNode | ((dataState: DataState) =&gt; React.ReactNode)` | undefined |
 
 ### StepperSeparator
 
@@ -193,12 +192,12 @@ pnpm dlx shadcn@latest add @aura/stepper
 
 | Prop | Type | Default |
 |------|------|---------|
-| *All props from* | `React.ComponentProps<typeof any>` | - |
+| *All props from* | `React.ComponentProps&lt;typeof any&gt;` | - |
 
 ### type StepperProps
 
 
 | Prop | Type | Default |
 |------|------|---------|
-| *All props from* | `React.ComponentProps<typeof any>` | - |
+| *All props from* | `React.ComponentProps&lt;typeof any&gt;` | - |
 
