@@ -1017,20 +1017,23 @@ function formatPropTypeForDisplay(propType: string): string {
     return propType;
   }
   
-  // For React.ComponentProps types, ensure proper formatting
-  const componentPropsMatch = propType.match(/React\.ComponentProps<(.+)>/);
+  // For React.ComponentProps types, extract just the inner type
+  const componentPropsMatch = propType.match(/React\.ComponentProps(?:WithoutRef)?<(.+)>/);
   if (componentPropsMatch) {
-    const innerType = componentPropsMatch[1].trim();
-    // Keep typeof if present, add it if missing (unless it's a string literal)
-    if (innerType.includes("typeof")) {
-      return `React.ComponentProps<${innerType}>`;
-    } else if (innerType.match(/^["'].*["']$/)) {
-      // String literal like "button"
-      return `React.ComponentProps<${innerType}>`;
-    } else {
-      // Add typeof for component references
-      return `React.ComponentProps<typeof ${innerType}>`;
+    let innerType = componentPropsMatch[1].trim();
+    
+    // Special case: if the inner type is "any" or "typeof any", just return "any"
+    if (innerType === "any" || innerType === "typeof any") {
+      return "any";
     }
+    
+    // If the inner type starts with "typeof ", remove it and keep the rest
+    if (innerType.startsWith("typeof ")) {
+      innerType = innerType.substring(7).trim(); // Remove "typeof " (7 characters)
+    }
+    
+    // Return just the inner type (without React.ComponentProps wrapper)
+    return innerType;
   }
   
   return propType;
