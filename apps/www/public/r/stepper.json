@@ -9,6 +9,13 @@
     "@radix-ui/react-icons",
     "@radix-ui/react-slot"
   ],
+  "registryDependencies": [
+    "@aura/class-names",
+    "@aura/compose-refs",
+    "@aura/use-as-ref",
+    "@aura/use-isomorphic-layout-effect",
+    "@aura/use-lazy-ref"
+  ],
   "files": [
     {
       "path": "registry/default/components/ui/Stepper.tsx",

@@ -9,6 +9,10 @@
     "ajv",
     "radix-ui"
   ],
+  "registryDependencies": [
+    "@aura/class-names",
+    "@aura/use-dynamic-form"
+  ],
   "files": [
     {
       "path": "registry/default/components/FormFieldSortableList.tsx",

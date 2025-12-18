@@ -4,6 +4,9 @@
   "type": "registry:hook",
   "title": "use-as-ref",
   "description": "Hook: use-as-ref",
+  "registryDependencies": [
+    "@aura/use-isomorphic-layout-effect"
+  ],
   "files": [
     {
       "path": "registry/default/hooks/use-as-ref.ts",

@@ -4,6 +4,9 @@
   "type": "registry:ui",
   "title": "Section",
   "description": "The Section component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
   "files": [
     {
       "path": "registry/default/components/ui/Section.tsx",

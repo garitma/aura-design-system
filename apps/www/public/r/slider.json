@@ -7,6 +7,9 @@
   "dependencies": [
     "radix-ui"
   ],
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
   "files": [
     {
       "path": "registry/default/components/ui/Slider.tsx",

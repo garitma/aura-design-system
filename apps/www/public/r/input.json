@@ -4,6 +4,9 @@
   "type": "registry:ui",
   "title": "Input",
   "description": "The Input component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
   "files": [
     {
       "path": "registry/default/components/ui/Input.tsx",

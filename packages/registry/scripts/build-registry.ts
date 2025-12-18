@@ -96,6 +96,48 @@ function extractDependencies(filePath: string): string[] {
   return Array.from(dependencies).sort();
 }
 
+/**
+ * Extract registry dependencies (internal hooks and utils) from a file by parsing import statements
+ * Converts @/hooks/use-as-ref to @aura/use-as-ref
+ * Converts @/utils/class-names to @aura/class-names
+ */
+function extractRegistryDependencies(filePath: string): string[] {
+  const content = fs.readFileSync(filePath, "utf-8");
+  const registryDeps = new Set<string>();
+  
+  // Match import statements: import ... from "package" or import ... from 'package'
+  const importRegex = /import\s+(?:(?:\{[^}]*\}|\*\s+as\s+\w+|\w+)\s+from\s+)?["']([^"']+)["']/g;
+  
+  let match;
+  while ((match = importRegex.exec(content)) !== null) {
+    const importPath = match[1];
+    
+    // Only process internal imports (starting with @/)
+    if (!importPath.startsWith('@/')) {
+      continue;
+    }
+    
+    // Check if it's a hook or util import
+    if (importPath.startsWith('@/hooks/')) {
+      // Extract hook name: @/hooks/use-as-ref -> use-as-ref
+      const hookPath = importPath.replace('@/hooks/', '');
+      const hookName = hookPath.split('/')[0]; // Handle subpaths if any
+      // Convert to kebab-case if needed (most hooks are already kebab-case)
+      const kebabName = hookName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+      registryDeps.add(`@aura/${kebabName}`);
+    } else if (importPath.startsWith('@/utils/')) {
+      // Extract util name: @/utils/class-names -> class-names
+      const utilPath = importPath.replace('@/utils/', '');
+      const utilName = utilPath.split('/')[0]; // Handle subpaths if any
+      // Convert to kebab-case if needed (most utils are already kebab-case)
+      const kebabName = utilName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+      registryDeps.add(`@aura/${kebabName}`);
+    }
+  }
+  
+  return Array.from(registryDeps).sort();
+}
+
 function getComponentItemsFromPath(dirPath: string, registryPrefix: string, itemType: RegistryItemType) {
   if (!fs.existsSync(dirPath)) return [];
   
@@ -109,6 +151,8 @@ function getComponentItemsFromPath(dirPath: string, registryPrefix: string, item
       
       // Extract external dependencies from the component file
       const dependencies = extractDependencies(filePath);
+      // Extract registry dependencies (hooks and utils)
+      const registryDependencies = extractRegistryDependencies(filePath);
       
       const item: RegistryItem = {
         name: kebabName,
@@ -128,6 +172,11 @@ function getComponentItemsFromPath(dirPath: string, registryPrefix: string, item
         item.dependencies = dependencies;
       }
       
+      // Only add registryDependencies field if there are registry dependencies
+      if (registryDependencies.length > 0) {
+        item.registryDependencies = registryDependencies;
+      }
+      
       return item;
     });
 }
@@ -144,14 +193,23 @@ function getUtilsItems() {
 
   const files = fs.readdirSync(UTILS_PATH);
   return files
-    .filter((file) => file.endsWith(".ts"))
+    .filter((file) => {
+      // Include both .ts and .tsx files, exclude invalid files
+      const isValidFile = (file.endsWith(".ts") || file.endsWith(".tsx")) && 
+                          !file.startsWith(".") && 
+                          file !== "Untitled";
+      return isValidFile;
+    })
     .map((file) => {
-      const name = file.replace(".ts", "");
+      // Extract name by removing both .ts and .tsx extensions
+      const name = file.replace(/\.tsx?$/, "");
       const kebabName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
       const filePath = path.join(UTILS_PATH, file);
       
       // Extract external dependencies from the utility file
       const dependencies = extractDependencies(filePath);
+      // Extract registry dependencies (utils might use other utils)
+      const registryDependencies = extractRegistryDependencies(filePath);
       
       const item: RegistryItem = {
         name: kebabName,
@@ -171,6 +229,11 @@ function getUtilsItems() {
         item.dependencies = dependencies;
       }
       
+      // Only add registryDependencies field if there are registry dependencies
+      if (registryDependencies.length > 0) {
+        item.registryDependencies = registryDependencies;
+      }
+      
       return item;
     });
 }
@@ -180,14 +243,23 @@ function getHooksItems() {
 
   const files = fs.readdirSync(HOOKS_PATH);
   return files
-    .filter((file) => file.endsWith(".ts"))
+    .filter((file) => {
+      // Include both .ts and .tsx files, exclude invalid files
+      const isValidFile = (file.endsWith(".ts") || file.endsWith(".tsx")) && 
+                          !file.startsWith(".") && 
+                          file !== "Untitled";
+      return isValidFile;
+    })
     .map((file) => {
-      const name = file.replace(".ts", "");
+      // Extract name by removing both .ts and .tsx extensions
+      const name = file.replace(/\.tsx?$/, "");
       const kebabName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
       const filePath = path.join(HOOKS_PATH, file);
       
       // Extract external dependencies from the hook file
       const dependencies = extractDependencies(filePath);
+      // Extract registry dependencies (hooks might use other hooks or utils)
+      const registryDependencies = extractRegistryDependencies(filePath);
       
       const item: RegistryItem = {
         name: kebabName,
@@ -205,6 +277,11 @@ function getHooksItems() {
       // Only add dependencies field if there are external dependencies
       if (dependencies.length > 0) {
         item.dependencies = dependencies;
+      }
+      
+      // Only add registryDependencies field if there are registry dependencies
+      if (registryDependencies.length > 0) {
+        item.registryDependencies = registryDependencies;
       }
       
       return item;

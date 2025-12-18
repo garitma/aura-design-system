@@ -7,6 +7,9 @@
   "dependencies": [
     "vaul"
   ],
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
   "files": [
     {
       "path": "registry/default/components/ui/Drawer.tsx",

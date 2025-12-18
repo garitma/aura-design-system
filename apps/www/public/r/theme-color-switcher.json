@@ -9,6 +9,10 @@
     "next-themes",
     "tailwindcss"
   ],
+  "registryDependencies": [
+    "@aura/class-names",
+    "@aura/custom-color-functions"
+  ],
   "files": [
     {
       "path": "registry/default/components/ThemeColorSwitcher.tsx",

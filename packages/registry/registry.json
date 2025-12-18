@@ -33,6 +33,10 @@
         "@radix-ui/react-icons",
         "ajv",
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/use-dynamic-form"
       ]
     },
     {
@@ -50,6 +54,10 @@
         "@radix-ui/react-icons",
         "next-themes",
         "tailwindcss"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/custom-color-functions"
       ]
     },
     {
@@ -66,6 +74,9 @@
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -82,6 +93,9 @@
       "dependencies": [
         "@radix-ui/react-icons",
         "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -97,6 +111,9 @@
       ],
       "dependencies": [
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -127,6 +144,9 @@
       ],
       "dependencies": [
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -142,6 +162,9 @@
       ],
       "dependencies": [
         "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -159,6 +182,9 @@
         "@radix-ui/react-icons",
         "@radix-ui/react-slot",
         "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -171,6 +197,9 @@
           "path": "registry/default/components/ui/Card.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -187,6 +216,9 @@
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -202,6 +234,9 @@
       ],
       "dependencies": [
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -218,6 +253,9 @@
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -234,6 +272,9 @@
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -249,6 +290,9 @@
       ],
       "dependencies": [
         "vaul"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -265,6 +309,9 @@
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -282,6 +329,10 @@
         "@radix-ui/react-icons",
         "ajv",
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/use-dynamic-form"
       ]
     },
     {
@@ -297,6 +348,9 @@
       ],
       "dependencies": [
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -309,6 +363,9 @@
           "path": "registry/default/components/ui/Input.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -321,6 +378,9 @@
           "path": "registry/default/components/ui/Label.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -337,6 +397,9 @@
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -352,6 +415,9 @@
       ],
       "dependencies": [
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -368,6 +434,9 @@
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -383,6 +452,9 @@
       ],
       "dependencies": [
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -398,6 +470,9 @@
       ],
       "dependencies": [
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -413,6 +488,9 @@
       ],
       "dependencies": [
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -425,6 +503,9 @@
           "path": "registry/default/components/ui/Section.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -440,6 +521,9 @@
       ],
       "dependencies": [
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -476,6 +560,13 @@
         "@radix-ui/react-direction",
         "@radix-ui/react-icons",
         "@radix-ui/react-slot"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/compose-refs",
+        "@aura/use-as-ref",
+        "@aura/use-isomorphic-layout-effect",
+        "@aura/use-lazy-ref"
       ]
     },
     {
@@ -491,6 +582,9 @@
       ],
       "dependencies": [
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
       ]
     },
     {
@@ -522,6 +616,18 @@
       ],
       "dependencies": [
         "colorjs.io"
+      ]
+    },
+    {
+      "name": "compose-refs",
+      "type": "registry:lib",
+      "title": "compose-refs",
+      "description": "Utility: compose-refs",
+      "files": [
+        {
+          "path": "registry/default/utils/compose-refs.tsx",
+          "type": "registry:lib"
+        }
       ]
     },
     {
@@ -568,6 +674,9 @@
           "path": "registry/default/hooks/use-as-ref.ts",
           "type": "registry:hook"
         }
+      ],
+      "registryDependencies": [
+        "@aura/use-isomorphic-layout-effect"
       ]
     },
     {
