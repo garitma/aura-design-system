@@ -462,6 +462,23 @@
       ]
     },
     {
+      "name": "stepper",
+      "type": "registry:ui",
+      "title": "Stepper",
+      "description": "The Stepper component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Stepper.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-direction",
+        "@radix-ui/react-icons",
+        "@radix-ui/react-slot"
+      ]
+    },
+    {
       "name": "switch",
       "type": "registry:ui",
       "title": "Switch",

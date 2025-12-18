@@ -673,19 +673,32 @@ function extractPropsFromInterface(
 ): ComponentProp[] {
   const props: ComponentProp[] = [];
   
-  // Find the interface definition
-  const interfaceMatch = componentContent.match(
-    new RegExp(`(?:interface|type)\\s+${interfaceName}[\\s\\S]*?\\{([\\s\\S]*?)\\n\\}`, "m")
+  // Find the interface definition - match the entire interface block
+  const interfaceRegex = new RegExp(
+    `(?:interface|type)\\s+${interfaceName}(?:\\s+extends\\s+([^\\{\\n]+))?\\s*\\{([\\s\\S]*?)^\\}`, 
+    "m"
   );
+  const interfaceMatch = componentContent.match(interfaceRegex);
   
   if (!interfaceMatch) {
     return props;
   }
   
-  const interfaceBody = interfaceMatch[1];
+  const extendedType = interfaceMatch[1]?.trim();
+  const interfaceBody = interfaceMatch[2];
   const lines = interfaceBody.split("\n");
   
-  for (const line of lines) {
+  // If this interface extends another interface, extract props from it first
+  // (but skip React.ComponentProps types as those are handled separately)
+  if (extendedType && !extendedType.includes("React.ComponentProps")) {
+    const extendedProps = extractPropsFromInterface(componentContent, extendedType);
+    props.push(...extendedProps);
+  }
+  
+  // Extract props from this interface
+  let i = 0;
+  while (i < lines.length) {
+    const line = lines[i];
     const trimmed = line.trim();
     
     // Skip empty lines, comments, and extends clauses
@@ -695,29 +708,90 @@ function extractPropsFromInterface(
       trimmed.startsWith("extends") ||
       trimmed.startsWith("*")
     ) {
+      i++;
       continue;
     }
     
     // Match prop definitions: propName?: type; or propName: type;
     // Also handle: propName?: type = defaultValue;
-    const propMatch = trimmed.match(/^(\w+)(\??):\s*(.+?)(?:\s*=\s*(.+?))?(;|$)/);
+    // Be careful: function types use => which contains =, so we need to distinguish
+    // Default values appear as "= value" (with space before =), function types use "=>" (no space)
+    // First try to match with default value (has " = " with spaces, not "=>")
+    let propMatch = trimmed.match(/^(\w+)(\??):\s*(.+?)\s+=\s+([^;]+);/);
+    if (!propMatch) {
+      // Match without default value - capture everything up to semicolon
+      // This will correctly capture function types like "(x: string) => void"
+      propMatch = trimmed.match(/^(\w+)(\??):\s*(.+?);/);
+    }
+    if (!propMatch) {
+      // Match without semicolon (for multi-line types)
+      propMatch = trimmed.match(/^(\w+)(\??):\s*(.+)$/);
+    }
     
     if (propMatch) {
       const propName = propMatch[1];
       const isOptional = propMatch[2] === "?";
-      let propType = propMatch[3].trim();
+      let propType = (propMatch[3] || "").trim();
       const defaultValue = propMatch[4]?.trim();
       
-      // Clean up the type - remove trailing semicolons and whitespace
-      propType = propType.replace(/;?\s*$/, "").trim();
+      // Check if the type is incomplete (multi-line type)
+      // This happens when type starts with opening char but doesn't have semicolon on same line
+      const hasSemicolon = trimmed.includes(";");
       
-      props.push({
-        name: propName,
-        type: propType,
-        default: defaultValue || (isOptional ? "undefined" : undefined),
-        required: !isOptional,
-      });
+      // If type starts with opening char but doesn't have semicolon, it's multi-line
+      // Also check if the type looks incomplete (e.g., just "(" without closing)
+      const looksIncomplete = (propType.startsWith("(") || propType.startsWith("<") || propType.startsWith("{")) && 
+                               !hasSemicolon &&
+                               !propType.includes("=>") && // Single-line function types should have =>
+                               (propType.match(/[\(\[\{<]/g) || []).length > (propType.match(/[\)\]\}>]/g) || []).length;
+      
+      if (looksIncomplete) {
+        // Collect additional lines until we find the closing semicolon
+        let fullType = propType;
+        i++;
+        
+        while (i < lines.length) {
+          const nextLine = lines[i];
+          const nextTrimmed = nextLine.trim();
+          
+          // Skip empty lines and comments
+          if (!nextTrimmed || nextTrimmed.startsWith("//")) {
+            i++;
+            continue;
+          }
+          
+          fullType += " " + nextTrimmed;
+          
+          // Check if this line completes the type (has semicolon)
+          if (nextTrimmed.includes(";")) {
+            // Extract just the type part (before semicolon)
+            const semicolonIndex = fullType.indexOf(";");
+            if (semicolonIndex !== -1) {
+              fullType = fullType.substring(0, semicolonIndex).trim();
+            }
+            break;
+          }
+          i++;
+        }
+        
+        propType = fullType;
+      } else {
+        // Clean up the type - remove trailing semicolons and whitespace
+        propType = propType.replace(/;?\s*$/, "").trim();
+      }
+      
+      // Avoid duplicates (in case extended interface has same prop)
+      if (!props.some(p => p.name === propName)) {
+        props.push({
+          name: propName,
+          type: propType,
+          default: defaultValue || (isOptional ? "undefined" : undefined),
+          required: !isOptional,
+        });
+      }
     }
+    
+    i++;
   }
   
   return props;
@@ -811,6 +885,15 @@ function findFunctionPropType(componentContent: string, componentName: string): 
   
   if (altFunctionMatch) {
     return altFunctionMatch[1].trim();
+  }
+  
+  // Pattern: function ComponentName(props: PropsType) - extract parameter type
+  const paramTypeMatch = componentContent.match(
+    new RegExp(`function\\s+${componentName}\\s*\\([^:]*:\\s*([^)]+)\\)`, "m")
+  );
+  
+  if (paramTypeMatch) {
+    return paramTypeMatch[1].trim();
   }
   
   return null;

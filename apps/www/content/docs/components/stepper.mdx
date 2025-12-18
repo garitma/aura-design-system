@@ -1,0 +1,204 @@
+---
+title: Stepper
+description: A sequential progress indicator with navigation controls.
+---
+
+## Preview
+
+```tsx
+import {
+  Stepper,
+  StepperList,
+  StepperItem,
+  StepperTrigger,
+  StepperIndicator,
+  StepperSeparator,
+  StepperTitle,
+  StepperDescription,
+  StepperContent,
+  StepperPrev,
+  StepperNext,
+} from "@/components/ui/Stepper";
+
+export const Default = () => {
+  return (
+    <Stepper defaultValue="step-1" className="w-full">
+      <StepperList>
+        <StepperItem value="step-1">
+          <StepperTrigger>
+            <StepperIndicator />
+            <div className="flex flex-col">
+              <StepperTitle>Step 1</StepperTitle>
+              <StepperDescription>Complete your profile</StepperDescription>
+            </div>
+          </StepperTrigger>
+          <StepperSeparator />
+        </StepperItem>
+        <StepperItem value="step-2">
+          <StepperTrigger>
+            <StepperIndicator />
+            <div className="flex flex-col">
+              <StepperTitle>Step 2</StepperTitle>
+              <StepperDescription>Verify your email</StepperDescription>
+            </div>
+          </StepperTrigger>
+          <StepperSeparator />
+        </StepperItem>
+        <StepperItem value="step-3">
+          <StepperTrigger>
+            <StepperIndicator />
+            <div className="flex flex-col">
+              <StepperTitle>Step 3</StepperTitle>
+              <StepperDescription>Set up your preferences</StepperDescription>
+            </div>
+          </StepperTrigger>
+          <StepperSeparator />
+        </StepperItem>
+        <StepperItem value="step-4">
+          <StepperTrigger>
+            <StepperIndicator />
+            <div className="flex flex-col">
+              <StepperTitle>Step 4</StepperTitle>
+              <StepperDescription>Review and confirm</StepperDescription>
+            </div>
+          </StepperTrigger>
+        </StepperItem>
+      </StepperList>
+      <StepperContent value="step-1">
+        <div className="p-4">Content for step 1</div>
+      </StepperContent>
+      <StepperContent value="step-2">
+        <div className="p-4">Content for step 2</div>
+      </StepperContent>
+      <StepperContent value="step-3">
+        <div className="p-4">Content for step 3</div>
+      </StepperContent>
+      <StepperContent value="step-4">
+        <div className="p-4">Content for step 4</div>
+      </StepperContent>
+    </Stepper>
+  );
+};
+```
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/stepper
+```
+
+
+
+## Props
+
+### Stepper
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| `asChild?` | `boolean` | undefined |
+| `value?` | `string` | undefined |
+| `defaultValue?` | `string` | undefined |
+| `onValueChange?` | `(value: string)` | > void |
+| `onValueComplete?` | `(value: string, completed: boolean)` | > void |
+| `onValueAdd?` | `(value: string)` | > void |
+| `onValueRemove?` | `(value: string)` | > void |
+| `onValidate?` | `(` | undefined |
+| `direction` | `NavigationDirection,` | - |
+| `activationMode?` | `ActivationMode` | undefined |
+| `dir?` | `Direction` | undefined |
+| `orientation?` | `Orientation` | undefined |
+| `disabled?` | `boolean` | undefined |
+| `loop?` | `boolean` | undefined |
+| `nonInteractive?` | `boolean` | undefined |
+
+### StepperList
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| `asChild?` | `boolean` | undefined |
+
+### StepperItem
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| `asChild?` | `boolean` | undefined |
+| `value` | `string` | - |
+| `completed?` | `boolean` | undefined |
+| `disabled?` | `boolean` | undefined |
+
+### StepperTrigger
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| `asChild?` | `boolean` | undefined |
+
+### StepperIndicator
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| `children?` | `React.ReactNode | ((dataState: DataState)` | > React.ReactNode) |
+
+### StepperSeparator
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| `asChild?` | `boolean` | undefined |
+| `forceMount?` | `boolean` | undefined |
+
+### StepperTitle
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| `asChild?` | `boolean` | undefined |
+
+### StepperDescription
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| `asChild?` | `boolean` | undefined |
+
+### StepperContent
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| `asChild?` | `boolean` | undefined |
+| `value` | `string` | - |
+| `forceMount?` | `boolean` | undefined |
+
+### StepperPrev
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| `asChild?` | `boolean` | undefined |
+
+### StepperNext
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| `asChild?` | `boolean` | undefined |
+
+### useStore as useStepper
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `React.ComponentProps<typeof any>` | - |
+
+### type StepperProps
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `React.ComponentProps<typeof any>` | - |
+

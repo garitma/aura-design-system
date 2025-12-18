@@ -1,0 +1,4 @@
+header:
+  description: A sequential progress indicator with navigation controls.
+extends: _templates/content.yml
+
