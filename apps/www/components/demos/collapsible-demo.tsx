@@ -1,12 +1,13 @@
----
-title: Collapsible
-description: An interactive component which expands and collapses content.
----
+import { useState } from "react";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/Collapsible";
+import { Button } from "@/components/ui/Button";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
 
-## Preview
-
-```tsx
-export const Default = () => {
+export const CollapsibleDemo = () => {
   return (
     <Collapsible>
       <div className="flex items-center justify-between gap-1">
@@ -25,22 +26,8 @@ export const Default = () => {
     </Collapsible>
   );
 };
-```
 
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/collapsible
-```
-
-
-
-## Usage
-
-### DefaultOpen
-
-```tsx
-export const DefaultOpen = () => {
+export const CollapsibleDemoDefaultOpen = () => {
   return (
     <Collapsible defaultOpen>
       <div className="flex items-center justify-between gap-1">
@@ -60,12 +47,8 @@ export const DefaultOpen = () => {
     </Collapsible>
   );
 };
-```
 
-### WithRichContent
-
-```tsx
-export const WithRichContent = () => {
+export const CollapsibleDemoWithRichContent = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -117,12 +100,8 @@ export const WithRichContent = () => {
     </Collapsible>
   );
 };
-```
 
-### CustomTrigger
-
-```tsx
-export const CustomTrigger = () => {
+export const CollapsibleDemoCustomTrigger = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -146,12 +125,8 @@ export const CustomTrigger = () => {
     </Collapsible>
   );
 };
-```
 
-### WithList
-
-```tsx
-export const WithList = () => {
+export const CollapsibleDemoWithList = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const items = [
@@ -186,12 +161,8 @@ export const WithList = () => {
     </Collapsible>
   );
 };
-```
 
-### Disabled
-
-```tsx
-export const Disabled = () => {
+export const CollapsibleDemoDisabled = () => {
   return (
     <Collapsible disabled>
       <div className="flex items-center justify-between gap-1 opacity-50">
@@ -210,28 +181,3 @@ export const Disabled = () => {
     </Collapsible>
   );
 };
-```
-
-## Props
-
-### Collapsible
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `CollapsibleRadix.Root` | - |
-
-### CollapsibleTrigger
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `CollapsibleRadix.CollapsibleTrigger` | - |
-
-### CollapsibleContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `CollapsibleRadix.CollapsibleContent` | - |
-

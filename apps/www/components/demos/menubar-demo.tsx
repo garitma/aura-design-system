@@ -1,12 +1,20 @@
----
-title: Menubar
-description: A visually persistent menu common in desktop applications.
----
+import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarSeparator,
+  MenubarCheckboxItem,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarSubContent,
+  MenubarSubTrigger,
+  MenubarSub,
+  MenubarShortcut,
+} from "@/components/ui/Menubar";
 
-## Preview
-
-```tsx
-export const Default = () => (
+export const MenubarDemo = () => (
   <Menubar>
     <MenubarMenu>
       <MenubarTrigger>File</MenubarTrigger>
@@ -93,127 +101,3 @@ export const Default = () => (
     </MenubarMenu>
   </Menubar>
 );
-```
-
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/menubar
-```
-
-
-
-## Props
-
-### Menubar
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `MenubarRadix.Root` | - |
-
-### MenubarPortal
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `MenubarRadix.Portal` | - |
-
-### MenubarMenu
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `MenubarRadix.Menu` | - |
-
-### MenubarTrigger
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `MenubarRadix.Trigger` | - |
-
-### MenubarContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `MenubarRadix.Content` | - |
-
-### MenubarGroup
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `MenubarRadix.Group` | - |
-
-### MenubarSeparator
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `MenubarRadix.Separator` | - |
-
-### MenubarLabel
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `MenubarRadix.Label` | - |
-
-### MenubarItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `MenubarRadix.Item` | - |
-
-### MenubarShortcut
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"span"` | - |
-
-### MenubarCheckboxItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `MenubarRadix.CheckboxItem` | - |
-
-### MenubarRadioGroup
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `MenubarRadix.RadioGroup` | - |
-
-### MenubarRadioItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `MenubarRadix.RadioItem` | - |
-
-### MenubarSub
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `MenubarRadix.Sub` | - |
-
-### MenubarSubTrigger
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `MenubarRadix.SubTrigger` | - |
-
-### MenubarSubContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `MenubarRadix.SubContent` | - |
-

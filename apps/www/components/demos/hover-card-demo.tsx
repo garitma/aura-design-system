@@ -1,12 +1,16 @@
----
-title: Hover Card
-description: For sighted users to preview content available behind a link.
----
+import {
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent,
+} from "@/components/ui/HoverCard";
+import { Button } from "@/components/ui/Button";
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/Avatar";
+import { CalendarIcon } from "@radix-ui/react-icons";
 
-## Preview
-
-```tsx
-export const Default = () => (
+export const HoverCardDemo = () => (
   <HoverCard>
     <HoverCardTrigger asChild>
       <Button variant="link">Hover me</Button>
@@ -21,22 +25,8 @@ export const Default = () => (
     </HoverCardContent>
   </HoverCard>
 );
-```
 
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/hover-card
-```
-
-
-
-## Usage
-
-### ProfilePreview
-
-```tsx
-export const ProfilePreview = () => (
+export const HoverCardDemoProfilePreview = () => (
   <HoverCard>
     <HoverCardTrigger asChild>
       <Button variant="link">Hover me</Button>
@@ -63,28 +53,3 @@ export const ProfilePreview = () => (
     </HoverCardContent>
   </HoverCard>
 );
-```
-
-## Props
-
-### HoverCard
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `HoverCardRadix.Root` | - |
-
-### HoverCardTrigger
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `HoverCardRadix.Trigger` | - |
-
-### HoverCardContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `HoverCardRadix.Content` | - |
-

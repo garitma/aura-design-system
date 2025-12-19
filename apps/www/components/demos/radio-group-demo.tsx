@@ -1,12 +1,10 @@
----
-title: Radio Group
-description: Re-usable components built using Radix UI and Tailwind CSS.
----
+import { useState } from "react";
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@/components/ui/RadioGroup";
 
-## Preview
-
-```tsx
-export const Default = () => {
+export const RadioGroupDemo = () => {
   const [value, setValue] = useState("option-1");
 
   return (
@@ -45,22 +43,8 @@ export const Default = () => {
     </RadioGroup>
   );
 };
-```
 
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/radio-group
-```
-
-
-
-## Usage
-
-### WithDefaultValue
-
-```tsx
-export const WithDefaultValue = () => {
+export const RadioGroupDemoWithDefaultValue = () => {
   return (
     <RadioGroup defaultValue="option-2" className="flex flex-col gap-0.5">
       <div className="flex items-center gap-1">
@@ -93,12 +77,8 @@ export const WithDefaultValue = () => {
     </RadioGroup>
   );
 };
-```
 
-### Disabled
-
-```tsx
-export const Disabled = () => {
+export const RadioGroupDemoDisabled = () => {
   const [value, setValue] = useState("option-1");
 
   return (
@@ -133,12 +113,8 @@ export const Disabled = () => {
     </RadioGroup>
   );
 };
-```
 
-### WithDescription
-
-```tsx
-export const WithDescription = () => {
+export const RadioGroupDemoWithDescription = () => {
   const [value, setValue] = useState("email");
 
   const options = [
@@ -178,12 +154,8 @@ export const WithDescription = () => {
     </RadioGroup>
   );
 };
-```
 
-### PaymentMethod
-
-```tsx
-export const PaymentMethod = () => {
+export const RadioGroupDemoPaymentMethod = () => {
   const [paymentMethod, setPaymentMethod] = useState("credit-card");
 
   const methods = [
@@ -236,12 +208,8 @@ export const PaymentMethod = () => {
     </div>
   );
 };
-```
 
-### NotificationPreferences
-
-```tsx
-export const NotificationPreferences = () => {
+export const RadioGroupDemoNotificationPreferences = () => {
   const [frequency, setFrequency] = useState("daily");
 
   const frequencies = [
@@ -291,12 +259,8 @@ export const NotificationPreferences = () => {
     </div>
   );
 };
-```
 
-### Horizontal
-
-```tsx
-export const Horizontal = () => {
+export const RadioGroupDemoHorizontal = () => {
   const [value, setValue] = useState("small");
 
   return (
@@ -335,21 +299,3 @@ export const Horizontal = () => {
     </RadioGroup>
   );
 };
-```
-
-## Props
-
-### RadioGroup
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `RadioGroupPrimitive.Root` | - |
-
-### RadioGroupItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `RadioGroupPrimitive.Item` | - |
-

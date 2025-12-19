@@ -1,12 +1,11 @@
----
-title: Accordion
-description: A vertically stacked set of interactive headings that each reveal a section of content.
----
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/Accordion";
 
-## Preview
-
-```tsx
-export const Default = () => {
+export const AccordionDemo = () => {
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">
@@ -32,22 +31,8 @@ export const Default = () => {
     </Accordion>
   );
 };
-```
 
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/accordion
-```
-
-
-
-## Usage
-
-### Multiple
-
-```tsx
-export const Multiple = () => {
+export const AccordionDemoMultiple = () => {
   return (
     <Accordion type="multiple" className="w-full">
       <AccordionItem value="item-1">
@@ -73,12 +58,8 @@ export const Multiple = () => {
     </Accordion>
   );
 };
-```
 
-### DefaultValue
-
-```tsx
-export const DefaultValue = () => {
+export const AccordionDemoDefaultValue = () => {
   return (
     <Accordion
       type="single"
@@ -109,12 +90,8 @@ export const DefaultValue = () => {
     </Accordion>
   );
 };
-```
 
-### Disabled
-
-```tsx
-export const Disabled = () => {
+export const AccordionDemoDisabled = () => {
   return (
     <Accordion type="single" collapsible disabled className="w-full">
       <AccordionItem value="item-1">
@@ -140,12 +117,8 @@ export const Disabled = () => {
     </Accordion>
   );
 };
-```
 
-### DisabledItem
-
-```tsx
-export const DisabledItem = () => {
+export const AccordionDemoDisabledItem = () => {
   return (
     <Accordion type="single" collapsible className="w-full">
       <AccordionItem value="item-1">
@@ -171,35 +144,3 @@ export const DisabledItem = () => {
     </Accordion>
   );
 };
-```
-
-## Props
-
-### Accordion
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AccordionRadix.Root` | - |
-
-### AccordionItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AccordionRadix.Item` | - |
-
-### AccordionTrigger
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AccordionRadix.Trigger` | - |
-
-### AccordionContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AccordionRadix.Content` | - |
-

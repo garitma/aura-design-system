@@ -1,12 +1,18 @@
----
-title: Form
-description: A comprehensive form system with schema-based validation, error handling, and field management. Built with Radix UI primitives and AJV validation, supporting text inputs, textareas, selects, checkboxes, switches, and checkbox groups with automatic error propagation and touch state management.
----
+import { useRef, useState } from "react";
+import {
+  Form,
+  FormField,
+  FormSubmit,
+  FormSwitch,
+  FormCheckbox,
+  FormCheckboxGroup,
+  FormAlert,
+} from "@/components/ui/Form";
+import { Input } from "@/components/ui/Input";
+import { useFormDynamic } from "@/hooks/use-dynamic-form";
+import { validateFormData } from "@/utils/web-validation";
 
-## Preview
-
-```tsx
-export const Default = () => {
+export const FormDemo = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [fetchStatus, setFetchStatus] = useState<
     "idle" | "loading" | "success" | "error"
@@ -70,22 +76,8 @@ export const Default = () => {
     </Form>
   );
 };
-```
 
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/form
-```
-
-
-
-## Usage
-
-### MultipleFields
-
-```tsx
-export const MultipleFields = () => {
+export const FormDemoMultipleFields = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [fetchStatus, setFetchStatus] = useState<
     "idle" | "loading" | "success" | "error"
@@ -163,12 +155,8 @@ export const MultipleFields = () => {
     </Form>
   );
 };
-```
 
-### WithErrors
-
-```tsx
-export const WithErrors = () => {
+export const FormDemoWithErrors = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [fetchStatus, setFetchStatus] = useState<
     "idle" | "loading" | "success" | "error"
@@ -229,12 +217,8 @@ export const WithErrors = () => {
     </Form>
   );
 };
-```
 
-### WithSwitch
-
-```tsx
-export const WithSwitch = () => {
+export const FormDemoWithSwitch = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [fetchStatus, setFetchStatus] = useState<
     "idle" | "loading" | "success" | "error"
@@ -293,12 +277,8 @@ export const WithSwitch = () => {
     </Form>
   );
 };
-```
 
-### WithCheckbox
-
-```tsx
-export const WithCheckbox = () => {
+export const FormDemoWithCheckbox = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [fetchStatus, setFetchStatus] = useState<
     "idle" | "loading" | "success" | "error"
@@ -361,12 +341,8 @@ export const WithCheckbox = () => {
     </Form>
   );
 };
-```
 
-### WithCheckboxGroup
-
-```tsx
-export const WithCheckboxGroup = () => {
+export const FormDemoWithCheckboxGroup = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [fetchStatus, setFetchStatus] = useState<
     "idle" | "loading" | "success" | "error"
@@ -451,12 +427,8 @@ export const WithCheckboxGroup = () => {
     </Form>
   );
 };
-```
 
-### WithSelect
-
-```tsx
-export const WithSelect = () => {
+export const FormDemoWithSelect = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [fetchStatus, setFetchStatus] = useState<
     "idle" | "loading" | "success" | "error"
@@ -532,12 +504,8 @@ export const WithSelect = () => {
     </Form>
   );
 };
-```
 
-### WithLoading
-
-```tsx
-export const WithLoading = () => {
+export const FormDemoWithLoading = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [fetchStatus, setFetchStatus] = useState<
     "idle" | "loading" | "success" | "error"
@@ -601,12 +569,8 @@ export const WithLoading = () => {
     </Form>
   );
 };
-```
 
-### CompleteForm
-
-```tsx
-export const CompleteForm = () => {
+export const FormDemoCompleteForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [fetchStatus, setFetchStatus] = useState<
     "idle" | "loading" | "success" | "error"
@@ -730,5 +694,3 @@ export const CompleteForm = () => {
     </Form>
   );
 };
-```
-

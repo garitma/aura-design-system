@@ -1,12 +1,14 @@
----
-title: Alert
-description: Displays a callout for user attention with contextual feedback messages.
----
+import { BookmarkIcon } from "@radix-ui/react-icons";
+import {
+  Alert,
+  AlertContent,
+  AlertTitle,
+  AlertDescription,
+  AlertIcon,
+  AlertStatus,
+} from "@/components/ui/Alert";
 
-## Preview
-
-```tsx
-export const Default = () => {
+export const AlertDemoDefault = () => {
   return (
     <Alert>
       <AlertIcon>
@@ -21,21 +23,7 @@ export const Default = () => {
     </Alert>
   );
 };
-```
 
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/alert
-```
-
-
-
-## Usage
-
-### AlertDemo
-
-```tsx
 export const AlertDemo = () => {
   return (
     <Alert>
@@ -51,11 +39,7 @@ export const AlertDemo = () => {
     </Alert>
   );
 };
-```
 
-### AlertStatusStatusesDemo
-
-```tsx
 export const AlertStatusStatusesDemo = () => {
   return (
     <div className="space-y-0.5">
@@ -82,49 +66,3 @@ export const AlertStatusStatusesDemo = () => {
     </div>
   );
 };
-```
-
-## Props
-
-### Alert
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AlertProps (extends React.ComponentProps&lt;"div"&gt;)` | - |
-
-### AlertTitle
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"div"` | - |
-
-### AlertDescription
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"div"` | - |
-
-### AlertIcon
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"div"` | - |
-
-### AlertContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"div"` | - |
-
-### AlertStatus
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `any` | - |
-

@@ -1,12 +1,14 @@
----
-title: Sortable
-description: A sortable list of items.
----
+import { useState } from "react";
+import { DragHandleDots2Icon } from "@radix-ui/react-icons";
+import {
+  Sortable,
+  SortableContent,
+  SortableItem,
+  SortableItemHandle,
+  SortableOverlay,
+} from "@/components/ui/Sortable";
 
-## Preview
-
-```tsx
-export const Default = () => {
+export const SortableDemo = () => {
   const [items, setItems] = useState(["Item 1", "Item 2", "Item 3", "Item 4"]);
 
   return (
@@ -26,22 +28,8 @@ export const Default = () => {
     </Sortable>
   );
 };
-```
 
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/sortable
-```
-
-
-
-## Usage
-
-### Horizontal
-
-```tsx
-export const Horizontal = () => {
+export const SortableDemoHorizontal = () => {
   const [items, setItems] = useState(["1", "2", "3", "4", "5"]);
 
   return (
@@ -60,12 +48,8 @@ export const Horizontal = () => {
     </Sortable>
   );
 };
-```
 
-### WithHandle
-
-```tsx
-export const WithHandle = () => {
+export const SortableDemoWithHandle = () => {
   const [items, setItems] = useState([
     "Task 1",
     "Task 2",
@@ -92,12 +76,8 @@ export const WithHandle = () => {
     </Sortable>
   );
 };
-```
 
-### WithOverlay
-
-```tsx
-export const WithOverlay = () => {
+export const SortableDemoWithOverlay = () => {
   const [items, setItems] = useState([
     "Project Alpha",
     "Project Beta",
@@ -129,12 +109,8 @@ export const WithOverlay = () => {
     </Sortable>
   );
 };
-```
 
-### WithHandleAndOverlay
-
-```tsx
-export const WithHandleAndOverlay = () => {
+export const SortableDemoWithHandleAndOverlay = () => {
   const [items, setItems] = useState([
     "Document 1",
     "Document 2",
@@ -173,12 +149,8 @@ export const WithHandleAndOverlay = () => {
     </Sortable>
   );
 };
-```
 
-### DisabledItems
-
-```tsx
-export const DisabledItems = () => {
+export const SortableDemoDisabledItems = () => {
   const [items, setItems] = useState([
     "Active Item 1",
     "Active Item 2",
@@ -204,12 +176,8 @@ export const DisabledItems = () => {
     </Sortable>
   );
 };
-```
 
-### WithObjects
-
-```tsx
-export const WithObjects = () => {
+export const SortableDemoWithObjects = () => {
   const [items, setItems] = useState([
     { id: "1", name: "Apple", category: "Fruit" },
     { id: "2", name: "Carrot", category: "Vegetable" },
@@ -241,12 +209,8 @@ export const WithObjects = () => {
     </Sortable>
   );
 };
-```
 
-### FlatCursor
-
-```tsx
-export const FlatCursor = () => {
+export const SortableDemoFlatCursor = () => {
   const [items, setItems] = useState(["Item 1", "Item 2", "Item 3", "Item 4"]);
 
   return (
@@ -266,12 +230,8 @@ export const FlatCursor = () => {
     </Sortable>
   );
 };
-```
 
-### CardList
-
-```tsx
-export const CardList = () => {
+export const SortableDemoCardList = () => {
   const [items, setItems] = useState([
     "Card 1",
     "Card 2",
@@ -322,12 +282,8 @@ export const CardList = () => {
     </Sortable>
   );
 };
-```
 
-### NumberedList
-
-```tsx
-export const NumberedList = () => {
+export const SortableDemoNumberedList = () => {
   const [items, setItems] = useState([
     "First item",
     "Second item",
@@ -357,12 +313,8 @@ export const NumberedList = () => {
     </Sortable>
   );
 };
-```
 
-### MixedOrientation
-
-```tsx
-export const MixedOrientation = () => {
+export const SortableDemoMixedOrientation = () => {
   const [items, setItems] = useState(["1", "2", "3", "4", "5", "6"]);
 
   return (
@@ -382,12 +334,8 @@ export const MixedOrientation = () => {
     </Sortable>
   );
 };
-```
 
-### WithOnMove
-
-```tsx
-export const WithOnMove = () => {
+export const SortableDemoWithOnMove = () => {
   const [items, setItems] = useState(["A", "B", "C", "D"]);
   const [lastMove, setLastMove] = useState<string>("");
 
@@ -421,55 +369,3 @@ export const WithOnMove = () => {
     </div>
   );
 };
-```
-
-## Props
-
-### Sortable
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"div"` | - |
-
-### SortableContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `strategy?` | `SortableContextProps["strategy"]` | undefined |
-| `children` | `React.ReactNode` | - |
-| `asChild?` | `boolean` | undefined |
-| `withoutSlot?` | `boolean` | undefined |
-
-### SortableItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `value` | `UniqueIdentifier` | - |
-| `asHandle?` | `boolean` | undefined |
-| `asChild?` | `boolean` | undefined |
-| `disabled?` | `boolean` | undefined |
-
-### SortableItemHandle
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `asChild?` | `boolean` | undefined |
-
-### SortableOverlay
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `container?` | `Element | DocumentFragment | null` | undefined |
-
-### type SortableProps
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `any` | - |
-

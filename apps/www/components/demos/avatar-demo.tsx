@@ -1,12 +1,10 @@
----
-title: Avatar
-description: An image element with a fallback for representing the user.
----
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "@/components/ui/Avatar";
 
-## Preview
-
-```tsx
-export const Default = () => (
+export const AvatarDemo = () => (
   <Avatar>
     <AvatarImage
       src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?w=128&h=128&fit=crop"
@@ -15,43 +13,21 @@ export const Default = () => (
     <AvatarFallback>JD</AvatarFallback>
   </Avatar>
 );
-```
 
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/avatar
-```
-
-
-
-## Usage
-
-### WithFallback
-
-```tsx
-export const WithFallback = () => (
+export const AvatarDemoWithFallback = () => (
   <Avatar>
     <AvatarImage src="invalid-url.jpg" alt="User avatar" />
     <AvatarFallback>AB</AvatarFallback>
   </Avatar>
 );
-```
 
-### FallbackOnly
-
-```tsx
-export const FallbackOnly = () => (
+export const AvatarDemoFallbackOnly = () => (
   <Avatar>
     <AvatarFallback>CD</AvatarFallback>
   </Avatar>
 );
-```
 
-### CustomSize
-
-```tsx
-export const CustomSize = () => (
+export const AvatarDemoCustomSize = () => (
   <div className="flex gap-4 items-center">
     <Avatar className="size-8">
       <AvatarImage
@@ -76,12 +52,8 @@ export const CustomSize = () => (
     </Avatar>
   </div>
 );
-```
 
-### AvatarGroup
-
-```tsx
-export const AvatarGroup = () => (
+export const AvatarGroupDemo = () => (
   <div className="flex -space-x-2">
     <Avatar className="border-2 border-white">
       <AvatarImage
@@ -109,12 +81,8 @@ export const AvatarGroup = () => (
     </Avatar>
   </div>
 );
-```
 
-### WithStatus
-
-```tsx
-export const WithStatus = () => (
+export const AvatarDemoWithStatus = () => (
   <div className="flex gap-4 items-center">
     <div className="relative">
       <Avatar>
@@ -148,12 +116,8 @@ export const WithStatus = () => (
     </div>
   </div>
 );
-```
 
-### DifferentShapes
-
-```tsx
-export const DifferentShapes = () => (
+export const AvatarDemoDifferentShapes = () => (
   <div className="flex gap-4 items-center">
     <Avatar>
       <AvatarImage
@@ -178,12 +142,8 @@ export const DifferentShapes = () => (
     </Avatar>
   </div>
 );
-```
 
-### CustomFallbackStyles
-
-```tsx
-export const CustomFallbackStyles = () => (
+export const AvatarDemoCustomFallbackStyles = () => (
   <div className="flex gap-4 items-center">
     <Avatar>
       <AvatarFallback className="bg-accent-9 text-white">AC</AvatarFallback>
@@ -200,28 +160,3 @@ export const CustomFallbackStyles = () => (
     </Avatar>
   </div>
 );
-```
-
-## Props
-
-### Avatar
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AvatarRadix.Root` | - |
-
-### AvatarImage
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AvatarRadix.Image` | - |
-
-### AvatarFallback
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AvatarRadix.Fallback` | - |
-

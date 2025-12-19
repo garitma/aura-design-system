@@ -1,21 +1,17 @@
----
-title: Navigation Menu
-description: A collection of links for navigating websites.
----
+import React from "react";
+import type { Story } from "@ladle/react";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
+import {
+  NavigationMenu,
+  NavigationMenuList,
+  NavigationMenuItem,
+  NavigationMenuContent,
+  NavigationMenuTrigger,
+  NavigationMenuLink,
+  NavigationMenuIndicator,
+  NavigationMenuViewport,
+} from "@/components/ui/NavigationMenu";
 
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/navigation-menu
-```
-
-
-
-## Usage
-
-### NavigationMenuDemo
-
-```tsx
 export function NavigationMenuDemo() {
   return (
     <NavigationMenu>
@@ -110,63 +106,3 @@ export function NavigationMenuDemo() {
     </NavigationMenu>
   );
 }
-```
-
-## Props
-
-### NavigationMenu
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `NavigationMenuRadix.Root` | - |
-
-### NavigationMenuList
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `NavigationMenuRadix.List` | - |
-
-### NavigationMenuItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `NavigationMenuRadix.Item` | - |
-
-### NavigationMenuContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `NavigationMenuRadix.Content` | - |
-
-### NavigationMenuTrigger
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `NavigationMenuRadix.Trigger` | - |
-
-### NavigationMenuLink
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `NavigationMenuRadix.Link` | - |
-
-### NavigationMenuIndicator
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `NavigationMenuRadix.Indicator` | - |
-
-### NavigationMenuViewport
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `NavigationMenuRadix.Viewport` | - |
-

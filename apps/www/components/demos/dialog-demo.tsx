@@ -1,12 +1,17 @@
----
-title: Dialog
-description: A window overlaid on the primary content, rendering content in a layer above the page.
----
+import { Button } from "@/components/ui/Button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/Dialog";
+import { Input } from "@/components/ui/Input";
 
-## Preview
-
-```tsx
-export const Default = () => (
+export const DialogDemo = () => (
   <Dialog>
     <DialogTrigger asChild>
       <Button variant="outline">Edit Profile</Button>
@@ -42,22 +47,8 @@ export const Default = () => (
     </DialogContent>
   </Dialog>
 );
-```
 
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/dialog
-```
-
-
-
-## Usage
-
-### CustomContent
-
-```tsx
-export const CustomContent = () => (
+export const DialogDemoCustomContent = () => (
   <Dialog>
     <DialogTrigger asChild>
       <Button variant="pill">Open Dialog</Button>
@@ -79,77 +70,3 @@ export const CustomContent = () => (
     </DialogContent>
   </Dialog>
 );
-```
-
-## Props
-
-### Dialog
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DialogPrimitive.Root` | - |
-
-### DialogClose
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DialogPrimitive.Close` | - |
-
-### DialogContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DialogPrimitive.Content` | - |
-
-### DialogDescription
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DialogPrimitive.Description` | - |
-
-### DialogFooter
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"div"` | - |
-
-### DialogHeader
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"div"` | - |
-
-### DialogOverlay
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DialogPrimitive.Overlay` | - |
-
-### DialogPortal
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DialogPrimitive.Portal` | - |
-
-### DialogTitle
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DialogPrimitive.Title` | - |
-
-### DialogTrigger
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DialogPrimitive.Trigger` | - |
-

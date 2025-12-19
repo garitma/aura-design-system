@@ -1,12 +1,16 @@
----
-title: Card
-description: Displays a card with header, content, and footer sections.
----
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+  CardAction,
+} from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
+import { AspectRatio } from "@/components/ui/AspectRatio";
 
-## Preview
-
-```tsx
-export const Default = () => (
+export const CardDemo = () => (
   <Card>
     <CardHeader>
       <CardTitle>Card Title</CardTitle>
@@ -17,22 +21,8 @@ export const Default = () => (
     </CardContent>
   </Card>
 );
-```
 
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/card
-```
-
-
-
-## Usage
-
-### WithFooter
-
-```tsx
-export const WithFooter = () => (
+export const CardDemoWithFooter = () => (
   <Card>
     <CardHeader>
       <CardTitle>Project Setup</CardTitle>
@@ -48,12 +38,8 @@ export const WithFooter = () => (
     </CardFooter>
   </Card>
 );
-```
 
-### WithActions
-
-```tsx
-export const WithActions = () => (
+export const CardDemoWithActions = () => (
   <Card>
     <CardHeader>
       <div className="flex items-start justify-between">
@@ -74,24 +60,16 @@ export const WithActions = () => (
     </CardContent>
   </Card>
 );
-```
 
-### SimpleCard
-
-```tsx
-export const SimpleCard = () => (
+export const CardDemoSimpleCard = () => (
   <Card>
     <CardContent>
       <p className="text-gray-12">A simple card with just content.</p>
     </CardContent>
   </Card>
 );
-```
 
-### MultipleCards
-
-```tsx
-export const MultipleCards = () => (
+export const CardDemoMultipleCards = () => (
   <div className="flex flex-col gap-1">
     <Card>
       <CardHeader>
@@ -122,12 +100,8 @@ export const MultipleCards = () => (
     </Card>
   </div>
 );
-```
 
-### NestedCards
-
-```tsx
-export const NestedCards = () => (
+export const CardDemoNestedCards = () => (
   <Card>
     <CardHeader>
       <CardTitle>Parent Card</CardTitle>
@@ -149,12 +123,8 @@ export const NestedCards = () => (
     </CardContent>
   </Card>
 );
-```
 
-### InteractiveCard
-
-```tsx
-export const InteractiveCard = () => (
+export const CardDemoInteractiveCard = () => (
   <Card className="cursor-pointer hover:border-gray-8 transition-colors">
     <CardHeader>
       <CardTitle>Clickable Card</CardTitle>
@@ -167,12 +137,8 @@ export const InteractiveCard = () => (
     </CardContent>
   </Card>
 );
-```
 
-### CardGrid
-
-```tsx
-export const CardGrid = () => (
+export const CardGridDemo = () => (
   <div className="grid grid-cols-3 gap-1">
     {Array.from({ length: 6 }).map((_, i) => (
       <Card key={i}>
@@ -186,12 +152,8 @@ export const CardGrid = () => (
     ))}
   </div>
 );
-```
 
-### WithImage
-
-```tsx
-export const WithImage = () => (
+export const CardDemoWithImage = () => (
   <Card className="max-w-sm">
     <AspectRatio ratio={16 / 9}>
       <img
@@ -214,12 +176,8 @@ export const WithImage = () => (
     </CardFooter>
   </Card>
 );
-```
 
-### ImageGrid
-
-```tsx
-export const ImageGrid = () => (
+export const CardDemoImageGrid = () => (
   <div className="grid grid-cols-3 gap-1">
     {[
       {
@@ -254,56 +212,3 @@ export const ImageGrid = () => (
     ))}
   </div>
 );
-```
-
-## Props
-
-### Card
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"div"` | - |
-
-### CardHeader
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"div"` | - |
-
-### CardFooter
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"div"` | - |
-
-### CardTitle
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"h3"` | - |
-
-### CardAction
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"div"` | - |
-
-### CardDescription
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"p"` | - |
-
-### CardContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"div"` | - |
-

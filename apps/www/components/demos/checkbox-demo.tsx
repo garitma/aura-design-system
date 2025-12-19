@@ -1,12 +1,11 @@
----
-title: Checkbox
-description: A control that allows the user to toggle between checked and not checked.
----
+import { useState } from "react";
+import {
+  Checkbox,
+  CheckboxGroup,
+  CheckboxGroupItem,
+} from "@/components/ui/Checkbox";
 
-## Preview
-
-```tsx
-export const Default = () => {
+export const CheckboxDemo = () => {
   const [checked, setChecked] = useState(false);
 
   return (
@@ -25,22 +24,8 @@ export const Default = () => {
     </div>
   );
 };
-```
 
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/checkbox
-```
-
-
-
-## Usage
-
-### Checked
-
-```tsx
-export const Checked = () => (
+export const CheckboxDemoChecked = () => (
   <div className="flex items-center gap-1">
     <Checkbox id="checked" defaultChecked />
     <label
@@ -51,12 +36,8 @@ export const Checked = () => (
     </label>
   </div>
 );
-```
 
-### Unchecked
-
-```tsx
-export const Unchecked = () => (
+export const CheckboxDemoUnchecked = () => (
   <div className="flex items-center gap-1">
     <Checkbox id="unchecked" />
     <label
@@ -67,12 +48,8 @@ export const Unchecked = () => (
     </label>
   </div>
 );
-```
 
-### Disabled
-
-```tsx
-export const Disabled = () => (
+export const CheckboxDemoDisabled = () => (
   <div className="flex flex-col gap-1">
     <div className="flex items-center gap-1">
       <Checkbox id="disabled-unchecked" disabled />
@@ -94,12 +71,8 @@ export const Disabled = () => (
     </div>
   </div>
 );
-```
 
-### WithDescription
-
-```tsx
-export const WithDescription = () => {
+export const CheckboxDemoWithDescription = () => {
   const [checked, setChecked] = useState(false);
 
   return (
@@ -123,12 +96,8 @@ export const WithDescription = () => {
     </div>
   );
 };
-```
 
-### Group
-
-```tsx
-export const Group = () => {
+export const CheckboxDemoGroup = () => {
   const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   const items = [
@@ -176,12 +145,8 @@ export const Group = () => {
     </div>
   );
 };
-```
 
-### Indeterminate
-
-```tsx
-export const Indeterminate = () => {
+export const CheckboxDemoIndeterminate = () => {
   const [selectedItems, setSelectedItems] = useState<string[]>(["sub-1"]);
 
   const allItems = ["sub-1", "sub-2", "sub-3"];
@@ -235,40 +200,3 @@ export const Indeterminate = () => {
     </div>
   );
 };
-```
-
-## Props
-
-### Checkbox
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `CheckboxRadix.Root` | - |
-
-### CheckboxIndicator
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `CheckboxRadix.Indicator` | - |
-
-### CheckboxGroup
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `value?` | `string[]` | undefined |
-| `onValueChange?` | `(value: string[]) =&gt; void` | undefined |
-| `defaultValue?` | `string[]` | undefined |
-
-### CheckboxGroupItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `value` | `string` | - |
-| `label?` | `React.ReactNode` | undefined |
-| `description?` | `React.ReactNode` | undefined |
-| `onCheckedChange?` | `(checked: boolean) =&gt; void` | undefined |
-

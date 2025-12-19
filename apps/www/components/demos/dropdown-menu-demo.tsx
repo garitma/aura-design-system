@@ -1,12 +1,23 @@
----
-title: Dropdown Menu
-description: Displays a menu of actions or options triggered by a button.
----
+import { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuGroup,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuRadioGroup,
+} from "@/components/ui/DropdownMenu";
+import { Button } from "@/components/ui/Button";
 
-## Preview
-
-```tsx
-export const Default = () => (
+export const DropdownMenuDemo = () => (
   <DropdownMenu>
     <DropdownMenuTrigger asChild>
       <Button variant="menu">Open Menu</Button>
@@ -54,22 +65,8 @@ export const Default = () => (
     </DropdownMenuContent>
   </DropdownMenu>
 );
-```
 
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/dropdown-menu
-```
-
-
-
-## Usage
-
-### WithCheckboxes
-
-```tsx
-export const WithCheckboxes = () => {
+export const DropdownMenuDemoWithCheckboxes = () => {
   const [showStatusBar, setShowStatusBar] = useState(true);
   const [showActivityBar, setShowActivityBar] = useState(false);
   const [showPanel, setShowPanel] = useState(false);
@@ -104,12 +101,8 @@ export const WithCheckboxes = () => {
     </DropdownMenu>
   );
 };
-```
 
-### WithRadioGroup
-
-```tsx
-export const WithRadioGroup = () => {
+export const DropdownMenuDemoWithRadioGroup = () => {
   const [position, setPosition] = useState("bottom");
 
   return (
@@ -129,12 +122,8 @@ export const WithRadioGroup = () => {
     </DropdownMenu>
   );
 };
-```
 
-### Complex
-
-```tsx
-export const Complex = () => {
+export const DropdownMenuDemoComplex = () => {
   const [showStatusBar, setShowStatusBar] = useState(true);
   const [showPanel, setShowPanel] = useState(false);
   const [position, setPosition] = useState("bottom");
@@ -193,112 +182,3 @@ export const Complex = () => {
     </DropdownMenu>
   );
 };
-```
-
-## Props
-
-### DropdownMenu
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DropdownMenuRadix.Root` | - |
-
-### DropdownMenuPortal
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DropdownMenuRadix.Portal` | - |
-
-### DropdownMenuTrigger
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DropdownMenuRadix.Trigger` | - |
-
-### DropdownMenuContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DropdownMenuRadix.Content` | - |
-
-### DropdownMenuGroup
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DropdownMenuRadix.Group` | - |
-
-### DropdownMenuLabel
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DropdownMenuRadix.Label` | - |
-
-### DropdownMenuItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DropdownMenuRadix.Item` | - |
-
-### DropdownMenuCheckboxItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DropdownMenuRadix.CheckboxItem` | - |
-
-### DropdownMenuRadioGroup
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DropdownMenuRadix.RadioGroup` | - |
-
-### DropdownMenuRadioItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DropdownMenuRadix.RadioItem` | - |
-
-### DropdownMenuSeparator
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DropdownMenuRadix.Separator` | - |
-
-### DropdownMenuShortcut
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"span"` | - |
-
-### DropdownMenuSub
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DropdownMenuRadix.Sub` | - |
-
-### DropdownMenuSubTrigger
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DropdownMenuRadix.SubTrigger` | - |
-
-### DropdownMenuSubContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `DropdownMenuRadix.SubContent` | - |
-

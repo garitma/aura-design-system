@@ -6,9 +6,6 @@ description: Displays an indicator showing the completion progress of a task.
 ## Preview
 
 ```tsx
-import { useEffect, useState } from "react";
-import { Progress } from "@/components/ui/Progress";
-
 export const Default = () => (
   <div className="w-[300px]">
     <Progress value={60} />
@@ -29,9 +26,6 @@ pnpm dlx shadcn@latest add @aura/progress
 ### Zero
 
 ```tsx
-import { useEffect, useState } from "react";
-import { Progress } from "@/components/ui/Progress";
-
 export const Zero = () => (
   <div className="w-[300px]">
     <Progress value={0} />
@@ -42,9 +36,6 @@ export const Zero = () => (
 ### Complete
 
 ```tsx
-import { useEffect, useState } from "react";
-import { Progress } from "@/components/ui/Progress";
-
 export const Complete = () => (
   <div className="w-[300px]">
     <Progress value={100} />
@@ -55,9 +46,6 @@ export const Complete = () => (
 ### Simulated
 
 ```tsx
-import { useEffect, useState } from "react";
-import { Progress } from "@/components/ui/Progress";
-
 export const Simulated = () => {
   const [progress, setProgress] = useState(13);
 

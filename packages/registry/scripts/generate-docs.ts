@@ -16,6 +16,14 @@ const DOCS_OUTPUT_PATH = path.join(
 );
 const METADATA_PATH = path.join(__dirname, "../metadata");
 const STORIES_PATH = path.join(__dirname, "../src");
+const DEMOS_OUTPUT_PATH = path.join(
+  __dirname,
+  "../../../apps/www/components/demos"
+);
+const REGISTRY_OUTPUT_PATH = path.join(
+  __dirname,
+  "../../../apps/www/components"
+);
 
 const DEFAULT_DESCRIPTION =
   "Re-usable components built using Radix UI and Tailwind CSS.";
@@ -292,23 +300,34 @@ function extractAllStories(componentName: string): Story[] | null {
   try {
     const storiesContent = fs.readFileSync(storiesFilePath, "utf-8");
 
-    // Extract imports
-    const importSection = extractImports(storiesContent);
-
-    // Extract all exported const functions (stories)
-    // Handle both formats: () => { ... } and () => <JSX />
-    const storyMatches: Array<{ name: string; start: number }> = [];
+    // Extract all exported const functions and function declarations (stories)
+    // Handle both formats: () => { ... } and () => <JSX /> and function declarations
+    const storyMatches: Array<{ name: string; start: number; type: "const" | "function" }> = [];
     // Match both: export const Name = () => { and export const Name = () =>
-    const storyStartRegex = /export\s+const\s+(\w+)\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)/g;
+    const constStoryRegex = /export\s+const\s+(\w+)\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)/g;
+    // Match: export function Name() {
+    const functionStoryRegex = /export\s+function\s+(\w+)\s*\(/g;
+    
     let startMatch;
-
-    // Find all story start positions
-    while ((startMatch = storyStartRegex.exec(storiesContent)) !== null) {
+    // Find all const story exports
+    while ((startMatch = constStoryRegex.exec(storiesContent)) !== null) {
       storyMatches.push({
         name: startMatch[1],
         start: startMatch.index,
+        type: "const",
       });
     }
+    // Find all function story exports
+    while ((startMatch = functionStoryRegex.exec(storiesContent)) !== null) {
+      storyMatches.push({
+        name: startMatch[1],
+        start: startMatch.index,
+        type: "function",
+      });
+    }
+    
+    // Sort by position in file
+    storyMatches.sort((a, b) => a.start - b.start);
 
     const stories: Story[] = [];
 
@@ -326,26 +345,56 @@ function extractAllStories(componentName: string): Story[] | null {
       // Extract the story section
       const storySection = storiesContent.substring(startIndex, endIndex);
       
-      // Try to match story with braces first: () => { ... };
-      let storyEndMatch = storySection.match(/(export\s+const\s+\w+\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)\s*\{[\s\S]*?\n\});/);
+      let storyEndMatch: RegExpMatchArray | null = null;
       
-      // If no match, try to match story without braces: () => <JSX />; or () => expression;
-      if (!storyEndMatch) {
-        // Match from export to the semicolon (handles single-line arrow functions)
-        storyEndMatch = storySection.match(/(export\s+const\s+\w+\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)[\s\S]*?;)/);
+      if (currentStory.type === "const") {
+        // Try to match story with braces first: () => { ... };
+        storyEndMatch = storySection.match(/(export\s+const\s+\w+\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)\s*\{[\s\S]*?\n\});/);
+        
+        // If no match, try to match story without braces: () => <JSX />; or () => expression;
+        if (!storyEndMatch) {
+          // Match from export to the semicolon (handles single-line arrow functions)
+          storyEndMatch = storySection.match(/(export\s+const\s+\w+\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)[\s\S]*?;)/);
+        }
+      } else if (currentStory.type === "function") {
+        // Match function declaration: export function Name() { ... }
+        // Try to find the matching closing brace
+        const functionStart = storySection.indexOf("export function");
+        if (functionStart !== -1) {
+          let braceCount = 0;
+          let inFunction = false;
+          let endPos = functionStart;
+          
+          for (let i = functionStart; i < storySection.length; i++) {
+            const char = storySection[i];
+            if (char === '{') {
+              braceCount++;
+              inFunction = true;
+            } else if (char === '}') {
+              braceCount--;
+              if (inFunction && braceCount === 0) {
+                endPos = i + 1;
+                break;
+              }
+            }
+          }
+          
+          if (endPos > functionStart) {
+            storyEndMatch = [storySection.substring(functionStart, endPos)];
+          }
+        }
+        
+        // Fallback to regex if brace matching didn't work
+        if (!storyEndMatch) {
+          storyEndMatch = storySection.match(/(export\s+function\s+\w+\s*\([^)]*\)\s*\{[\s\S]*?\n\})/);
+        }
       }
       
       if (storyEndMatch) {
         const storyText = storyEndMatch[0];
         
-        // Combine imports with the story code
-        let fullStoryCode = storyText;
-        if (importSection) {
-          fullStoryCode = `${importSection}\n\n${storyText}`;
-        }
-        
-        // Replace import paths
-        fullStoryCode = replaceImportPaths(fullStoryCode);
+        // Replace import paths in story code
+        let fullStoryCode = replaceImportPaths(storyText);
         
         stories.push({
           name: currentStory.name,
@@ -1222,6 +1271,377 @@ ${defaultStory}
 }
 
 /**
+ * Convert story name to PascalCase demo name
+ * e.g., "Default" -> "ButtonDemo", "Fill" -> "ButtonDemoFill"
+ * Handles cases where story name already includes component name or "Demo"
+ */
+function toDemoName(componentName: string, storyName: string): string {
+  const componentPascal = componentName.replace(/(?:^|[-_])(\w)/g, (_, c) => c.toUpperCase());
+  const storyPascal = storyName.replace(/(?:^|[-_])(\w)/g, (_, c) => c.toUpperCase());
+  
+  // If story name is "Default", just use ComponentDemo
+  if (storyName === "Default") {
+    return `${componentPascal}Demo`;
+  }
+  
+  // If story name already ends with "Demo", don't add it again
+  if (storyName.endsWith("Demo") || storyPascal.endsWith("Demo")) {
+    // Check if it already starts with component name
+    const componentLower = componentPascal.toLowerCase();
+    const storyLower = storyPascal.toLowerCase();
+    if (storyLower.startsWith(componentLower)) {
+      // Already has component prefix, just return as is
+      return storyPascal;
+    }
+    // Has "Demo" but not component prefix, add component prefix
+    return `${componentPascal}${storyPascal}`;
+  }
+  
+  // Check if story name already starts with component name (case-insensitive)
+  const componentLower = componentPascal.toLowerCase();
+  const storyLower = storyPascal.toLowerCase();
+  if (storyLower.startsWith(componentLower)) {
+    // Already has component prefix, just add "Demo" if not present
+    return storyPascal.endsWith("Demo") ? storyPascal : `${storyPascal}Demo`;
+  }
+  
+  // Normal case: add component prefix and "Demo"
+  return `${componentPascal}Demo${storyPascal}`;
+}
+
+/**
+ * Convert story name to kebab-case registry key
+ * e.g., "button", "Default" -> "button-demo", "button", "Fill" -> "button-demo-fill"
+ * Handles cases where story name already includes "Demo"
+ */
+function toRegistryKey(componentName: string, storyName: string, demoName: string): string {
+  const kebabComponent = toKebabCase(componentName);
+  
+  // "Default" story always gets the simple key
+  if (storyName === "Default") {
+    return `${kebabComponent}-demo`;
+  }
+  
+  // Convert story name to kebab-case (always use story name, not demo name)
+  const storyKebab = storyName.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+  
+  // Always use component-demo-story-name format for non-Default stories
+  // This ensures uniqueness even if story name already includes "demo"
+  return `${kebabComponent}-demo-${storyKebab}`;
+}
+
+/**
+ * Generate demo file from stories with specific demo names
+ */
+function generateDemoFileWithNames(componentName: string, stories: Story[], demoNames: string[]): string {
+  const kebabName = toKebabCase(componentName);
+  const storiesContent = fs.readFileSync(
+    path.join(STORIES_PATH, `${kebabName}.stories.tsx`),
+    "utf-8"
+  );
+  const importSection = extractImports(storiesContent);
+  const replacedImports = replaceImportPaths(importSection);
+  
+  // Collect unique imports (avoid duplicates)
+  const importLines = replacedImports ? replacedImports.split("\n").filter(line => line.trim()) : [];
+  const seenImports = new Set<string>();
+  const uniqueImports: string[] = [];
+  
+  for (const line of importLines) {
+    if (!seenImports.has(line)) {
+      seenImports.add(line);
+      uniqueImports.push(line);
+    }
+  }
+  
+  let demoContent = uniqueImports.length > 0 ? `${uniqueImports.join("\n")}\n\n` : "";
+  
+  // Export all stories with specified demo names
+  for (let i = 0; i < stories.length; i++) {
+    const story = stories[i];
+    const demoName = demoNames[i];
+    let storyCode = story.code;
+    
+    // Remove the import section from story code if it exists (we already have it at the top)
+    if (replacedImports) {
+      // Remove imports from story code to avoid duplication
+      const lines = storyCode.split("\n");
+      const codeWithoutImports = lines.filter(line => {
+        const trimmed = line.trim();
+        return !trimmed.startsWith("import ") || !trimmed.includes(" from ");
+      });
+      storyCode = codeWithoutImports.join("\n");
+    }
+    
+    // Rename the export
+    if (storyCode.includes(`export const ${story.name}`)) {
+      storyCode = storyCode.replace(
+        new RegExp(`export\\s+const\\s+${story.name}\\s*=`),
+        `export const ${demoName} =`
+      );
+    } else if (storyCode.includes(`export function ${story.name}`)) {
+      storyCode = storyCode.replace(
+        new RegExp(`export\\s+function\\s+${story.name}\\s*\\(`),
+        `export function ${demoName}(`
+      );
+    }
+    
+    demoContent += `${storyCode}\n\n`;
+  }
+  
+  return demoContent.trim();
+}
+
+/**
+ * Generate demo file from stories
+ */
+function generateDemoFile(componentName: string, stories: Story[]): string {
+  const kebabName = toKebabCase(componentName);
+  const storiesContent = fs.readFileSync(
+    path.join(STORIES_PATH, `${kebabName}.stories.tsx`),
+    "utf-8"
+  );
+  const importSection = extractImports(storiesContent);
+  const replacedImports = replaceImportPaths(importSection);
+  
+  // Collect unique imports (avoid duplicates)
+  const importLines = replacedImports ? replacedImports.split("\n").filter(line => line.trim()) : [];
+  const seenImports = new Set<string>();
+  const uniqueImports: string[] = [];
+  
+  for (const line of importLines) {
+    if (!seenImports.has(line)) {
+      seenImports.add(line);
+      uniqueImports.push(line);
+    }
+  }
+  
+  let demoContent = uniqueImports.length > 0 ? `${uniqueImports.join("\n")}\n\n` : "";
+  
+  // Export all stories with demo names
+  for (const story of stories) {
+    const demoName = toDemoName(componentName, story.name);
+    // Extract just the component code without the export keyword
+    let storyCode = story.code;
+    
+    // Remove the import section from story code if it exists (we already have it at the top)
+    if (replacedImports) {
+      // Remove imports from story code to avoid duplication
+      const lines = storyCode.split("\n");
+      const codeWithoutImports = lines.filter(line => {
+        const trimmed = line.trim();
+        return !trimmed.startsWith("import ") || !trimmed.includes(" from ");
+      });
+      storyCode = codeWithoutImports.join("\n");
+    }
+    
+    // Rename the export
+    if (storyCode.includes(`export const ${story.name}`)) {
+      storyCode = storyCode.replace(
+        new RegExp(`export\\s+const\\s+${story.name}\\s*=`),
+        `export const ${demoName} =`
+      );
+    } else if (storyCode.includes(`export function ${story.name}`)) {
+      storyCode = storyCode.replace(
+        new RegExp(`export\\s+function\\s+${story.name}\\s*\\(`),
+        `export function ${demoName}(`
+      );
+    }
+    
+    demoContent += `${storyCode}\n\n`;
+  }
+  
+  return demoContent.trim();
+}
+
+/**
+ * Convert kebab-case to PascalCase
+ * e.g., "button" -> "Button", "navigation-menu" -> "NavigationMenu"
+ */
+function kebabToPascal(kebab: string): string {
+  return kebab
+    .split("-")
+    .map(part => part.charAt(0).toUpperCase() + part.slice(1))
+    .join("");
+}
+
+/**
+ * Generate preview component registry
+ */
+function generatePreviewRegistry() {
+  // Ensure output directories exist
+  if (!fs.existsSync(DEMOS_OUTPUT_PATH)) {
+    fs.mkdirSync(DEMOS_OUTPUT_PATH, { recursive: true });
+    console.log(`[INFO] Created demos directory: ${DEMOS_OUTPUT_PATH}`);
+  }
+
+  const components = getUIComponentFiles();
+  const registryEntries: Array<{ key: string; demoName: string; componentName: string }> = [];
+  const imports: Array<{ path: string; names: string[] }> = [];
+  
+  console.log(`\n[INFO] Generating preview component registry...\n`);
+
+  // Process each component
+  for (const component of components) {
+    const allStories = extractAllStories(component.name);
+    
+    if (!allStories || allStories.length === 0) {
+      continue;
+    }
+
+    const kebabName = toKebabCase(component.name);
+    const demoFileName = `${kebabName}-demo.tsx`;
+    const demoFilePath = path.join(DEMOS_OUTPUT_PATH, demoFileName);
+    
+    // Check for naming conflicts and resolve them
+    const componentPascal = component.name.replace(/(?:^|[-_])(\w)/g, (_, c) => c.toUpperCase());
+    const defaultDemoName = `${componentPascal}Demo`;
+    
+    // Check if any story already uses the default demo name
+    const hasDefaultDemoName = allStories.some(story => {
+      const storyPascal = story.name.replace(/(?:^|[-_])(\w)/g, (_, c) => c.toUpperCase());
+      return storyPascal === defaultDemoName || 
+             (story.name.endsWith("Demo") && storyPascal.toLowerCase().startsWith(componentPascal.toLowerCase()));
+    });
+    
+    // Generate demo names with conflict resolution
+    const demoNames: string[] = [];
+    const usedNames = new Set<string>();
+    const usedKeys = new Set<string>();
+    
+    // First pass: assign demo names
+    for (const story of allStories) {
+      let demoName = toDemoName(component.name, story.name);
+      
+      // Handle conflict: if "Default" story conflicts with existing "Demo" story
+      if (story.name === "Default" && hasDefaultDemoName && demoName === defaultDemoName) {
+        // Rename Default to ComponentDemoDefault
+        demoName = `${defaultDemoName}Default`;
+      }
+      
+      // Ensure uniqueness
+      let finalDemoName = demoName;
+      let counter = 1;
+      while (usedNames.has(finalDemoName)) {
+        finalDemoName = `${demoName}${counter}`;
+        counter++;
+      }
+      usedNames.add(finalDemoName);
+      demoNames.push(finalDemoName);
+    }
+    
+    // Second pass: assign registry keys (ensuring uniqueness)
+    for (let i = 0; i < allStories.length; i++) {
+      const story = allStories[i];
+      const demoName = demoNames[i];
+      
+      let registryKey = toRegistryKey(component.name, story.name, demoName);
+      
+      // Ensure key uniqueness
+      let finalKey = registryKey;
+      let counter = 1;
+      while (usedKeys.has(finalKey)) {
+        // If it's the Default story and key is taken, use a different approach
+        if (story.name === "Default") {
+          finalKey = `${toKebabCase(component.name)}-demo-default`;
+        } else {
+          finalKey = `${registryKey}-${counter}`;
+        }
+        counter++;
+      }
+      usedKeys.add(finalKey);
+      
+      registryEntries.push({
+        key: finalKey,
+        demoName: demoName,
+        componentName: component.name,
+      });
+    }
+    
+    // Generate demo file with correct names
+    const demoContent = generateDemoFileWithNames(component.name, allStories, demoNames);
+    fs.writeFileSync(demoFilePath, demoContent);
+    
+    imports.push({
+      path: `@/components/demos/${kebabName}-demo`,
+      names: demoNames,
+    });
+    
+    console.log(`[SUCCESS] Generated ${demoFileName} with ${allStories.length} demo${allStories.length !== 1 ? 's' : ''}`);
+  }
+
+  // Generate registry file
+  const registryFilePath = path.join(REGISTRY_OUTPUT_PATH, "registry.tsx");
+  
+  let registryContent = `import * as React from "react"\n\n`;
+  registryContent += `// Component demos\n`;
+  
+  // Add imports
+  for (const imp of imports) {
+    if (imp.names.length > 0) {
+      registryContent += `import { \n`;
+      registryContent += imp.names.map(name => `  ${name}`).join(",\n");
+      registryContent += `\n} from "${imp.path}"\n`;
+    }
+  }
+  
+  registryContent += `\n`;
+  registryContent += `export const Registry = {\n`;
+  
+  // Add registry entries
+  for (const entry of registryEntries) {
+    registryContent += `  "${entry.key}": {\n`;
+    registryContent += `    component: ${entry.demoName},\n`;
+    registryContent += `  },\n`;
+  }
+  
+  registryContent += `} as const\n\n`;
+  registryContent += `export type RegistryItem = {\n`;
+  registryContent += `  component: React.ComponentType<any>\n`;
+  registryContent += `}\n\n`;
+  registryContent += `export type RegistryName = keyof typeof Registry\n`;
+  
+  fs.writeFileSync(registryFilePath, registryContent);
+  console.log(`\n[SUCCESS] Generated registry.tsx with ${registryEntries.length} entries\n`);
+  
+  // Generate demos index file
+  const demosIndexFilePath = path.join(DEMOS_OUTPUT_PATH, "index.tsx");
+  
+  let demosIndexContent = `import * as React from "react"\n\n`;
+  demosIndexContent += `// Component demos\n`;
+  
+  // Add imports with relative paths
+  for (const imp of imports) {
+    if (imp.names.length > 0) {
+      // Extract filename from path (e.g., "@/components/demos/button-demo" -> "button-demo")
+      const fileName = imp.path.replace("@/components/demos/", "");
+      demosIndexContent += `import { \n`;
+      demosIndexContent += imp.names.map(name => `  ${name}`).join(",\n");
+      demosIndexContent += `\n} from "./${fileName}"\n`;
+    }
+  }
+  
+  demosIndexContent += `\n`;
+  demosIndexContent += `export const Registry = {\n`;
+  
+  // Add registry entries
+  for (const entry of registryEntries) {
+    demosIndexContent += `  "${entry.key}": {\n`;
+    demosIndexContent += `    component: ${entry.demoName},\n`;
+    demosIndexContent += `  },\n`;
+  }
+  
+  demosIndexContent += `} as const\n\n`;
+  demosIndexContent += `export type RegistryItem = {\n`;
+  demosIndexContent += `  component: React.ComponentType<any>\n`;
+  demosIndexContent += `}\n\n`;
+  demosIndexContent += `export type RegistryName = keyof typeof Registry\n`;
+  
+  fs.writeFileSync(demosIndexFilePath, demosIndexContent);
+  console.log(`[SUCCESS] Generated demos/index.tsx with ${registryEntries.length} entries\n`);
+}
+
+/**
  * Get all UI component files from the registry
  */
 function getUIComponentFiles(): { name: string; path: string }[] {
@@ -1314,4 +1734,8 @@ function generateDocs() {
   console.log(`  Skipped:              ${skipped}\n`);
 }
 
+// Generate preview component registry
+generatePreviewRegistry();
+
+// Generate documentation files
 generateDocs();

@@ -1,12 +1,21 @@
----
-title: Context Menu
-description: Displays a menu to the user triggered by right-click or long-press.
----
+import { useState } from "react";
+import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuCheckboxItem,
+  ContextMenuRadioItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  ContextMenuRadioGroup,
+} from "@/components/ui/ContextMenu";
 
-## Preview
-
-```tsx
-export const Default = () => (
+export const ContextMenuDemo = () => (
   <ContextMenu>
     <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed border-gray-6 text-sm">
       Right click here
@@ -33,22 +42,8 @@ export const Default = () => (
     </ContextMenuContent>
   </ContextMenu>
 );
-```
 
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/context-menu
-```
-
-
-
-## Usage
-
-### WithSubmenu
-
-```tsx
-export const WithSubmenu = () => (
+export const ContextMenuDemoWithSubmenu = () => (
   <ContextMenu>
     <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed border-gray-6 text-sm">
       Right click here
@@ -79,12 +74,8 @@ export const WithSubmenu = () => (
     </ContextMenuContent>
   </ContextMenu>
 );
-```
 
-### WithCheckboxes
-
-```tsx
-export const WithCheckboxes = () => {
+export const ContextMenuDemoWithCheckboxes = () => {
   const [showBookmarksBar, setShowBookmarksBar] = useState(true);
   const [showFullUrls, setShowFullUrls] = useState(false);
 
@@ -111,12 +102,8 @@ export const WithCheckboxes = () => {
     </ContextMenu>
   );
 };
-```
 
-### WithRadioGroup
-
-```tsx
-export const WithRadioGroup = () => {
+export const ContextMenuDemoWithRadioGroup = () => {
   const [person, setPerson] = useState("pedro");
 
   return (
@@ -137,12 +124,8 @@ export const WithRadioGroup = () => {
     </ContextMenu>
   );
 };
-```
 
-### ComplexMenu
-
-```tsx
-export const ComplexMenu = () => {
+export const ContextMenuDemoComplexMenu = () => {
   const [showBookmarksBar, setShowBookmarksBar] = useState(true);
   const [showFullUrls, setShowFullUrls] = useState(false);
   const [person, setPerson] = useState("pedro");
@@ -192,112 +175,3 @@ export const ComplexMenu = () => {
     </ContextMenu>
   );
 };
-```
-
-## Props
-
-### ContextMenu
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `ContextMenuRadix.Root` | - |
-
-### ContextMenuTrigger
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `ContextMenuRadix.Trigger` | - |
-
-### ContextMenuContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `ContextMenuRadix.Content` | - |
-
-### ContextMenuItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `ContextMenuRadix.Item` | - |
-
-### ContextMenuCheckboxItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `ContextMenuRadix.CheckboxItem` | - |
-
-### ContextMenuRadioItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `ContextMenuRadix.RadioItem` | - |
-
-### ContextMenuLabel
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `ContextMenuRadix.Label` | - |
-
-### ContextMenuSeparator
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `ContextMenuRadix.Separator` | - |
-
-### ContextMenuShortcut
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"span"` | - |
-
-### ContextMenuGroup
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `ContextMenuRadix.Group` | - |
-
-### ContextMenuPortal
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `ContextMenuRadix.Portal` | - |
-
-### ContextMenuSub
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `ContextMenuRadix.Sub` | - |
-
-### ContextMenuSubContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `ContextMenuRadix.SubContent` | - |
-
-### ContextMenuSubTrigger
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `ContextMenuRadix.SubTrigger` | - |
-
-### ContextMenuRadioGroup
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `ContextMenuRadix.RadioGroup` | - |
-

@@ -6,15 +6,15 @@ import { ArrowRightIcon } from "@radix-ui/react-icons";
 
 import { Button } from "@/components/ui/Button";
 
-import { AlarmWidget } from "./demos/AlarmWidget";
-import { ControlCenter } from "./demos/ControlCenter";
-import { EventInvite } from "./demos/EventInvite";
-import { GroupChat } from "./demos/GroupChat";
-import { MusicList } from "./demos/MusicList";
-import { MusicPlayer } from "./demos/MusicPlayer";
-import { PhotoEditor } from "./demos/PhotoEditor";
-import { ShoppingTag } from "./demos/ShoppingTag";
-import { VoiceAssistant } from "./demos/VoiceAssistant";
+import { AlarmWidget } from "@/components/AlarmWidget";
+import { ControlCenter } from "@/components/ControlCenter";
+import { EventInvite } from "@/components/EventInvite";
+import { GroupChat } from "@/components/GroupChat";
+import { MusicList } from "@/components/MusicList";
+import { MusicPlayer } from "@/components/MusicPlayer";
+import { PhotoEditor } from "@/components/PhotoEditor";
+import { ShoppingTag } from "@/components/ShoppingTag";
+import { VoiceAssistant } from "@/components/VoiceAssistant";
 import { cn } from "@/utils/class-names";
 
 export default function AuraAesthetic() {

@@ -1,12 +1,17 @@
----
-title: Popover
-description: Displays rich content in a portal triggered by a button.
----
+import { useState } from "react";
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverClose,
+  PopoverArrow,
+  PopoverAnchor,
+} from "@/components/ui/Popover";
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
 
-## Preview
-
-```tsx
-export const Default = () => (
+export const PopoverDemo = () => (
   <Popover>
     <PopoverTrigger asChild>
       <Button variant="menu">Open Popover</Button>
@@ -21,22 +26,8 @@ export const Default = () => (
     </PopoverContent>
   </Popover>
 );
-```
 
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/popover
-```
-
-
-
-## Usage
-
-### WithCloseButton
-
-```tsx
-export const WithCloseButton = () => (
+export const PopoverDemoWithCloseButton = () => (
   <Popover>
     <PopoverTrigger asChild>
       <Button variant="menu">Open Popover</Button>
@@ -52,12 +43,8 @@ export const WithCloseButton = () => (
     </PopoverContent>
   </Popover>
 );
-```
 
-### WithArrow
-
-```tsx
-export const WithArrow = () => (
+export const PopoverDemoWithArrow = () => (
   <Popover>
     <PopoverTrigger asChild>
       <Button variant="menu">Open Popover</Button>
@@ -73,12 +60,8 @@ export const WithArrow = () => (
     </PopoverContent>
   </Popover>
 );
-```
 
-### Controlled
-
-```tsx
-export const Controlled = () => {
+export const PopoverDemoControlled = () => {
   const [open, setOpen] = useState(false);
 
   return (
@@ -110,12 +93,8 @@ export const Controlled = () => {
     </div>
   );
 };
-```
 
-### WithAnchor
-
-```tsx
-export const WithAnchor = () => (
+export const PopoverDemoWithAnchor = () => (
   <div className="space-y-1">
     <p className="text-sm text-gray-11">
       The popover can be anchored to a different element than the trigger.
@@ -143,12 +122,8 @@ export const WithAnchor = () => (
     </Popover>
   </div>
 );
-```
 
-### Positioning
-
-```tsx
-export const Positioning = () => (
+export const PopoverDemoPositioning = () => (
   <div className="grid grid-cols-2 gap-1">
     {(["top", "right", "bottom", "left"] as const).map((side) => (
       <Popover key={side}>
@@ -166,56 +141,3 @@ export const Positioning = () => (
     ))}
   </div>
 );
-```
-
-## Props
-
-### Popover
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `PopoverRadix.Root` | - |
-
-### PopoverTrigger
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `PopoverRadix.Trigger` | - |
-
-### PopoverAnchor
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `PopoverRadix.Anchor` | - |
-
-### PopoverPortal
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `PopoverRadix.Portal` | - |
-
-### PopoverContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `PopoverRadix.Content` | - |
-
-### PopoverArrow
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `PopoverRadix.Arrow` | - |
-
-### PopoverClose
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `PopoverRadix.Close` | - |
-

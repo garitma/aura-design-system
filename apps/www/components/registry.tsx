@@ -1,0 +1,504 @@
+import * as React from "react"
+
+// Component demos
+import { 
+  AccordionDemo,
+  AccordionDemoMultiple,
+  AccordionDemoDefaultValue,
+  AccordionDemoDisabled,
+  AccordionDemoDisabledItem
+} from "@/components/demos/accordion-demo"
+import { 
+  AlertDemoDefault,
+  AlertDemo,
+  AlertStatusStatusesDemo
+} from "@/components/demos/alert-demo"
+import { 
+  AlertDialogDemo
+} from "@/components/demos/alert-dialog-demo"
+import { 
+  AvatarDemo,
+  AvatarDemoWithFallback,
+  AvatarDemoFallbackOnly,
+  AvatarDemoCustomSize,
+  AvatarGroupDemo,
+  AvatarDemoWithStatus,
+  AvatarDemoDifferentShapes,
+  AvatarDemoCustomFallbackStyles
+} from "@/components/demos/avatar-demo"
+import { 
+  ButtonDemo,
+  ButtonDemoFill,
+  ButtonDemoPill,
+  ButtonDemoLink,
+  ButtonDemoMenu,
+  ButtonDemoSizes,
+  ButtonDemoVariants,
+  ButtonDemoDisabled,
+  ButtonDemoLoading,
+  ButtonDemoStates,
+  ButtonDemoModeProp
+} from "@/components/demos/button-demo"
+import { 
+  CardDemo,
+  CardDemoWithFooter,
+  CardDemoWithActions,
+  CardDemoSimpleCard,
+  CardDemoMultipleCards,
+  CardDemoNestedCards,
+  CardDemoInteractiveCard,
+  CardGridDemo,
+  CardDemoWithImage,
+  CardDemoImageGrid
+} from "@/components/demos/card-demo"
+import { 
+  CheckboxDemo,
+  CheckboxDemoChecked,
+  CheckboxDemoUnchecked,
+  CheckboxDemoDisabled,
+  CheckboxDemoWithDescription,
+  CheckboxDemoGroup,
+  CheckboxDemoIndeterminate
+} from "@/components/demos/checkbox-demo"
+import { 
+  CollapsibleDemo,
+  CollapsibleDemoDefaultOpen,
+  CollapsibleDemoWithRichContent,
+  CollapsibleDemoCustomTrigger,
+  CollapsibleDemoWithList,
+  CollapsibleDemoDisabled
+} from "@/components/demos/collapsible-demo"
+import { 
+  ContextMenuDemo,
+  ContextMenuDemoWithSubmenu,
+  ContextMenuDemoWithCheckboxes,
+  ContextMenuDemoWithRadioGroup,
+  ContextMenuDemoComplexMenu
+} from "@/components/demos/context-menu-demo"
+import { 
+  DialogDemo,
+  DialogDemoCustomContent
+} from "@/components/demos/dialog-demo"
+import { 
+  DrawerDemo
+} from "@/components/demos/drawer-demo"
+import { 
+  DropdownMenuDemo,
+  DropdownMenuDemoWithCheckboxes,
+  DropdownMenuDemoWithRadioGroup,
+  DropdownMenuDemoComplex
+} from "@/components/demos/dropdown-menu-demo"
+import { 
+  FormDemo,
+  FormDemoMultipleFields,
+  FormDemoWithErrors,
+  FormDemoWithSwitch,
+  FormDemoWithCheckbox,
+  FormDemoWithCheckboxGroup,
+  FormDemoWithSelect,
+  FormDemoWithLoading,
+  FormDemoCompleteForm
+} from "@/components/demos/form-demo"
+import { 
+  HoverCardDemo,
+  HoverCardDemoProfilePreview
+} from "@/components/demos/hover-card-demo"
+import { 
+  MenubarDemo
+} from "@/components/demos/menubar-demo"
+import { 
+  NavigationMenuDemo
+} from "@/components/demos/navigation-menu-demo"
+import { 
+  PopoverDemo,
+  PopoverDemoWithCloseButton,
+  PopoverDemoWithArrow,
+  PopoverDemoControlled,
+  PopoverDemoWithAnchor,
+  PopoverDemoPositioning
+} from "@/components/demos/popover-demo"
+import { 
+  ProgressDemo,
+  ProgressDemoZero,
+  ProgressDemoComplete,
+  ProgressDemoSimulated
+} from "@/components/demos/progress-demo"
+import { 
+  RadioGroupDemo,
+  RadioGroupDemoWithDefaultValue,
+  RadioGroupDemoDisabled,
+  RadioGroupDemoWithDescription,
+  RadioGroupDemoPaymentMethod,
+  RadioGroupDemoNotificationPreferences,
+  RadioGroupDemoHorizontal
+} from "@/components/demos/radio-group-demo"
+import { 
+  SortableDemo,
+  SortableDemoHorizontal,
+  SortableDemoWithHandle,
+  SortableDemoWithOverlay,
+  SortableDemoWithHandleAndOverlay,
+  SortableDemoDisabledItems,
+  SortableDemoWithObjects,
+  SortableDemoFlatCursor,
+  SortableDemoCardList,
+  SortableDemoNumberedList,
+  SortableDemoMixedOrientation,
+  SortableDemoWithOnMove
+} from "@/components/demos/sortable-demo"
+import { 
+  StepperDemo
+} from "@/components/demos/stepper-demo"
+import { 
+  SwitchDemo,
+  SwitchDemoChecked,
+  SwitchDemoUnchecked,
+  SwitchDemoDisabled,
+  SwitchDemoWithDescription,
+  SwitchGroupDemo
+} from "@/components/demos/switch-demo"
+
+export const Registry = {
+  "accordion-demo": {
+    component: AccordionDemo,
+  },
+  "accordion-demo-multiple": {
+    component: AccordionDemoMultiple,
+  },
+  "accordion-demo-default-value": {
+    component: AccordionDemoDefaultValue,
+  },
+  "accordion-demo-disabled": {
+    component: AccordionDemoDisabled,
+  },
+  "accordion-demo-disabled-item": {
+    component: AccordionDemoDisabledItem,
+  },
+  "alert-demo": {
+    component: AlertDemoDefault,
+  },
+  "alert-demo-alert-demo": {
+    component: AlertDemo,
+  },
+  "alert-demo-alert-status-statuses-demo": {
+    component: AlertStatusStatusesDemo,
+  },
+  "alert-dialog-demo": {
+    component: AlertDialogDemo,
+  },
+  "avatar-demo": {
+    component: AvatarDemo,
+  },
+  "avatar-demo-with-fallback": {
+    component: AvatarDemoWithFallback,
+  },
+  "avatar-demo-fallback-only": {
+    component: AvatarDemoFallbackOnly,
+  },
+  "avatar-demo-custom-size": {
+    component: AvatarDemoCustomSize,
+  },
+  "avatar-demo-avatar-group": {
+    component: AvatarGroupDemo,
+  },
+  "avatar-demo-with-status": {
+    component: AvatarDemoWithStatus,
+  },
+  "avatar-demo-different-shapes": {
+    component: AvatarDemoDifferentShapes,
+  },
+  "avatar-demo-custom-fallback-styles": {
+    component: AvatarDemoCustomFallbackStyles,
+  },
+  "button-demo": {
+    component: ButtonDemo,
+  },
+  "button-demo-fill": {
+    component: ButtonDemoFill,
+  },
+  "button-demo-pill": {
+    component: ButtonDemoPill,
+  },
+  "button-demo-link": {
+    component: ButtonDemoLink,
+  },
+  "button-demo-menu": {
+    component: ButtonDemoMenu,
+  },
+  "button-demo-sizes": {
+    component: ButtonDemoSizes,
+  },
+  "button-demo-variants": {
+    component: ButtonDemoVariants,
+  },
+  "button-demo-disabled": {
+    component: ButtonDemoDisabled,
+  },
+  "button-demo-loading": {
+    component: ButtonDemoLoading,
+  },
+  "button-demo-states": {
+    component: ButtonDemoStates,
+  },
+  "button-demo-mode-prop": {
+    component: ButtonDemoModeProp,
+  },
+  "card-demo": {
+    component: CardDemo,
+  },
+  "card-demo-with-footer": {
+    component: CardDemoWithFooter,
+  },
+  "card-demo-with-actions": {
+    component: CardDemoWithActions,
+  },
+  "card-demo-simple-card": {
+    component: CardDemoSimpleCard,
+  },
+  "card-demo-multiple-cards": {
+    component: CardDemoMultipleCards,
+  },
+  "card-demo-nested-cards": {
+    component: CardDemoNestedCards,
+  },
+  "card-demo-interactive-card": {
+    component: CardDemoInteractiveCard,
+  },
+  "card-demo-card-grid": {
+    component: CardGridDemo,
+  },
+  "card-demo-with-image": {
+    component: CardDemoWithImage,
+  },
+  "card-demo-image-grid": {
+    component: CardDemoImageGrid,
+  },
+  "checkbox-demo": {
+    component: CheckboxDemo,
+  },
+  "checkbox-demo-checked": {
+    component: CheckboxDemoChecked,
+  },
+  "checkbox-demo-unchecked": {
+    component: CheckboxDemoUnchecked,
+  },
+  "checkbox-demo-disabled": {
+    component: CheckboxDemoDisabled,
+  },
+  "checkbox-demo-with-description": {
+    component: CheckboxDemoWithDescription,
+  },
+  "checkbox-demo-group": {
+    component: CheckboxDemoGroup,
+  },
+  "checkbox-demo-indeterminate": {
+    component: CheckboxDemoIndeterminate,
+  },
+  "collapsible-demo": {
+    component: CollapsibleDemo,
+  },
+  "collapsible-demo-default-open": {
+    component: CollapsibleDemoDefaultOpen,
+  },
+  "collapsible-demo-with-rich-content": {
+    component: CollapsibleDemoWithRichContent,
+  },
+  "collapsible-demo-custom-trigger": {
+    component: CollapsibleDemoCustomTrigger,
+  },
+  "collapsible-demo-with-list": {
+    component: CollapsibleDemoWithList,
+  },
+  "collapsible-demo-disabled": {
+    component: CollapsibleDemoDisabled,
+  },
+  "context-menu-demo": {
+    component: ContextMenuDemo,
+  },
+  "context-menu-demo-with-submenu": {
+    component: ContextMenuDemoWithSubmenu,
+  },
+  "context-menu-demo-with-checkboxes": {
+    component: ContextMenuDemoWithCheckboxes,
+  },
+  "context-menu-demo-with-radio-group": {
+    component: ContextMenuDemoWithRadioGroup,
+  },
+  "context-menu-demo-complex-menu": {
+    component: ContextMenuDemoComplexMenu,
+  },
+  "dialog-demo": {
+    component: DialogDemo,
+  },
+  "dialog-demo-custom-content": {
+    component: DialogDemoCustomContent,
+  },
+  "drawer-demo": {
+    component: DrawerDemo,
+  },
+  "dropdown-menu-demo": {
+    component: DropdownMenuDemo,
+  },
+  "dropdown-menu-demo-with-checkboxes": {
+    component: DropdownMenuDemoWithCheckboxes,
+  },
+  "dropdown-menu-demo-with-radio-group": {
+    component: DropdownMenuDemoWithRadioGroup,
+  },
+  "dropdown-menu-demo-complex": {
+    component: DropdownMenuDemoComplex,
+  },
+  "form-demo": {
+    component: FormDemo,
+  },
+  "form-demo-multiple-fields": {
+    component: FormDemoMultipleFields,
+  },
+  "form-demo-with-errors": {
+    component: FormDemoWithErrors,
+  },
+  "form-demo-with-switch": {
+    component: FormDemoWithSwitch,
+  },
+  "form-demo-with-checkbox": {
+    component: FormDemoWithCheckbox,
+  },
+  "form-demo-with-checkbox-group": {
+    component: FormDemoWithCheckboxGroup,
+  },
+  "form-demo-with-select": {
+    component: FormDemoWithSelect,
+  },
+  "form-demo-with-loading": {
+    component: FormDemoWithLoading,
+  },
+  "form-demo-complete-form": {
+    component: FormDemoCompleteForm,
+  },
+  "hover-card-demo": {
+    component: HoverCardDemo,
+  },
+  "hover-card-demo-profile-preview": {
+    component: HoverCardDemoProfilePreview,
+  },
+  "menubar-demo": {
+    component: MenubarDemo,
+  },
+  "navigation-menu-demo-navigation-menu-demo": {
+    component: NavigationMenuDemo,
+  },
+  "popover-demo": {
+    component: PopoverDemo,
+  },
+  "popover-demo-with-close-button": {
+    component: PopoverDemoWithCloseButton,
+  },
+  "popover-demo-with-arrow": {
+    component: PopoverDemoWithArrow,
+  },
+  "popover-demo-controlled": {
+    component: PopoverDemoControlled,
+  },
+  "popover-demo-with-anchor": {
+    component: PopoverDemoWithAnchor,
+  },
+  "popover-demo-positioning": {
+    component: PopoverDemoPositioning,
+  },
+  "progress-demo": {
+    component: ProgressDemo,
+  },
+  "progress-demo-zero": {
+    component: ProgressDemoZero,
+  },
+  "progress-demo-complete": {
+    component: ProgressDemoComplete,
+  },
+  "progress-demo-simulated": {
+    component: ProgressDemoSimulated,
+  },
+  "radio-group-demo": {
+    component: RadioGroupDemo,
+  },
+  "radio-group-demo-with-default-value": {
+    component: RadioGroupDemoWithDefaultValue,
+  },
+  "radio-group-demo-disabled": {
+    component: RadioGroupDemoDisabled,
+  },
+  "radio-group-demo-with-description": {
+    component: RadioGroupDemoWithDescription,
+  },
+  "radio-group-demo-payment-method": {
+    component: RadioGroupDemoPaymentMethod,
+  },
+  "radio-group-demo-notification-preferences": {
+    component: RadioGroupDemoNotificationPreferences,
+  },
+  "radio-group-demo-horizontal": {
+    component: RadioGroupDemoHorizontal,
+  },
+  "sortable-demo": {
+    component: SortableDemo,
+  },
+  "sortable-demo-horizontal": {
+    component: SortableDemoHorizontal,
+  },
+  "sortable-demo-with-handle": {
+    component: SortableDemoWithHandle,
+  },
+  "sortable-demo-with-overlay": {
+    component: SortableDemoWithOverlay,
+  },
+  "sortable-demo-with-handle-and-overlay": {
+    component: SortableDemoWithHandleAndOverlay,
+  },
+  "sortable-demo-disabled-items": {
+    component: SortableDemoDisabledItems,
+  },
+  "sortable-demo-with-objects": {
+    component: SortableDemoWithObjects,
+  },
+  "sortable-demo-flat-cursor": {
+    component: SortableDemoFlatCursor,
+  },
+  "sortable-demo-card-list": {
+    component: SortableDemoCardList,
+  },
+  "sortable-demo-numbered-list": {
+    component: SortableDemoNumberedList,
+  },
+  "sortable-demo-mixed-orientation": {
+    component: SortableDemoMixedOrientation,
+  },
+  "sortable-demo-with-on-move": {
+    component: SortableDemoWithOnMove,
+  },
+  "stepper-demo": {
+    component: StepperDemo,
+  },
+  "switch-demo": {
+    component: SwitchDemo,
+  },
+  "switch-demo-checked": {
+    component: SwitchDemoChecked,
+  },
+  "switch-demo-unchecked": {
+    component: SwitchDemoUnchecked,
+  },
+  "switch-demo-disabled": {
+    component: SwitchDemoDisabled,
+  },
+  "switch-demo-with-description": {
+    component: SwitchDemoWithDescription,
+  },
+  "switch-demo-switch-group": {
+    component: SwitchGroupDemo,
+  },
+} as const
+
+export type RegistryItem = {
+  component: React.ComponentType<any>
+}
+
+export type RegistryName = keyof typeof Registry
