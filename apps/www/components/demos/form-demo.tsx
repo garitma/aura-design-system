@@ -12,6 +12,175 @@ import { Input } from "@/components/ui/Input";
 import { useFormDynamic } from "@/hooks/use-dynamic-form";
 import { validateFormData } from "@/utils/web-validation";
 
+const defaultSchema = {
+  type: "object",
+  properties: {
+    name: {
+      type: "string",
+      minLength: 1,
+      errorMessage: {
+        minLength: "Name is required",
+      },
+    },
+    email: {
+      type: "string",
+      format: "email",
+      errorMessage: {
+        format: "Please enter a valid email address",
+      },
+    },
+  },
+  required: ["name", "email"],
+};
+
+const multipleFieldsSchema = {
+  type: "object",
+  properties: {
+    name: {
+      type: "string",
+      minLength: 1,
+      errorMessage: {
+        minLength: "Name is required",
+      },
+    },
+    email: {
+      type: "string",
+      format: "email",
+      errorMessage: {
+        format: "Please enter a valid email address",
+      },
+    },
+    message: {
+      type: "string",
+    },
+    country: {
+      type: "string",
+    },
+  },
+  required: ["name", "email"],
+};
+
+const switchSchema = {
+  type: "object",
+  properties: {
+    notifications: {
+      type: "boolean",
+    },
+    marketing: {
+      type: "boolean",
+    },
+  },
+};
+
+const checkboxSchema = {
+  type: "object",
+  properties: {
+    terms: {
+      type: "boolean",
+      const: true,
+      errorMessage: {
+        const: "You must agree to the terms and conditions",
+      },
+    },
+    privacy: {
+      type: "boolean",
+      const: true,
+      errorMessage: {
+        const: "You must agree to the privacy policy",
+      },
+    },
+  },
+  required: ["terms", "privacy"],
+};
+
+const checkboxGroupSchema = {
+  type: "object",
+  properties: {
+    interests: {
+      type: "array",
+      minItems: 1,
+      errorMessage: {
+        minItems: "Please select at least one interest",
+      },
+    },
+  },
+  required: ["interests"],
+};
+
+const selectSchema = {
+  type: "object",
+  properties: {
+    country: {
+      type: "string",
+      minLength: 1,
+      errorMessage: {
+        minLength: "Please select a country",
+      },
+    },
+    city: {
+      type: "string",
+      minLength: 1,
+      errorMessage: {
+        minLength: "Please select a city",
+      },
+    },
+  },
+  required: ["country", "city"],
+};
+
+const completeFormSchema = {
+  type: "object",
+  properties: {
+    name: {
+      type: "string",
+      minLength: 1,
+      errorMessage: {
+        minLength: "Full name is required",
+      },
+    },
+    email: {
+      type: "string",
+      format: "email",
+      errorMessage: {
+        format: "Please enter a valid email address",
+      },
+    },
+    phone: {
+      type: "string",
+      pattern:
+        "^[+]?[(]?[0-9]{1,4}[)]?[-\\s.]?[(]?[0-9]{1,4}[)]?[-\\s.]?[0-9]{1,9}$",
+      errorMessage: {
+        pattern: "Please enter a valid phone number",
+      },
+    },
+    country: {
+      type: "string",
+    },
+    message: {
+      type: "string",
+    },
+    notifications: {
+      type: "boolean",
+    },
+    terms: {
+      type: "boolean",
+      const: true,
+      errorMessage: {
+        const: "You must agree to the terms and conditions",
+      },
+    },
+    interests: {
+      type: "array",
+      minItems: 1,
+      errorMessage: {
+        minItems: "Please select at least one interest",
+      },
+    },
+  },
+  required: ["name", "email", "terms", "interests"],
+};
+
+
 export const FormDemo = () => {
   const formRef = useRef<HTMLFormElement>(null);
   const [fetchStatus, setFetchStatus] = useState<

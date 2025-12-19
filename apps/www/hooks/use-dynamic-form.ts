@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 
 // Define the possible field types for the form.
 type FieldType = "text" | "textarea" | "select" | "checkbox";
@@ -29,13 +29,13 @@ const useInputValueFields = (initialValues: useFormDynamicProps = {}) => {
       acc[key] = initialValueResolver[type];
       return acc;
     },
-    {} as Record<string, any>
+    {} as Record<string, string | boolean>
   );
 
   // State to hold the current values of the form fields.
-  const [value, setValue] = useState(resolvedInitialValues);
+  const [value, setValue] = useState<Record<string, string | boolean>>(resolvedInitialValues);
   // State to hold any errors related to the form fields.
-  const [error, setError] = useState<string>(null);
+  const [error, setError] = useState<string | null>(null);
   // State to track if a field has been touched (focused and blurred).
   const [touch, setTouch] = useState<Record<string, boolean>>({});
 
@@ -92,7 +92,7 @@ export const useFormDynamic = (initialValues: useFormDynamicProps) => {
    */
   const updateField = (
     name: string,
-    updates: Partial<Record<keyof typeof fields, any>>
+    updates: { value?: string | boolean; touch?: boolean }
   ) => {
     // Update the field's value.
     fields.setValue((prev) => {
@@ -110,7 +110,7 @@ export const useFormDynamic = (initialValues: useFormDynamicProps) => {
    * @returns An object containing the field's props.
    */
   const field = (name: string): FieldProps => {
-    const fieldType = fields.value[name];
+    const fieldType = fields.types[name];
     const defaultValue = initialValueResolver[fieldType];
 
     // Handles changes in the field's value.
@@ -128,7 +128,7 @@ export const useFormDynamic = (initialValues: useFormDynamicProps) => {
     };
 
     // Handles changes in checkbox fields.
-    const handleOnCheckedChange = (event: boolean): any => {
+    const handleOnCheckedChange = (event: boolean): void => {
       updateField(name, {
         value: event,
         touch: true,
@@ -136,10 +136,19 @@ export const useFormDynamic = (initialValues: useFormDynamicProps) => {
     };
 
     // Sets the field's value in the DOM and updates the state.
-    const setFormFieldValue = (formRef, value) => {
-      const input = formRef?.current?.querySelector(`[name="${name}"]`);
+    const setFormFieldValue = (
+      formRef: React.RefObject<HTMLFormElement>,
+      value: string | boolean
+    ): void => {
+      const input = formRef?.current?.querySelector(
+        `[name="${name}"]`
+      ) as HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement | null;
       if (input) {
-        input.value = value;
+        if (input instanceof HTMLInputElement && input.type === "checkbox") {
+          (input as HTMLInputElement).checked = value as boolean;
+        } else {
+          input.value = String(value);
+        }
       }
       updateField(name, {
         value: value,
@@ -157,7 +166,7 @@ export const useFormDynamic = (initialValues: useFormDynamicProps) => {
       onCheckedChange:
         handleOnCheckedChange as React.ChangeEventHandler<HTMLInputElement> &
           ((checked: boolean) => void),
-      touch: fields.touch[name],
+      touch: fields.touch[name] ?? false,
       setTouch: (value: boolean) => updateField(name, { touch: value }),
       reset: () =>
         updateField(name, {
@@ -186,7 +195,10 @@ export const useFormDynamic = (initialValues: useFormDynamicProps) => {
    * @param formRef - A ref to the form element.
    * @param initialValues - The initial values for the form fields.
    */
-  const resetForm = (formRef, initialValues) => {
+  const resetForm = (
+    formRef: React.RefObject<HTMLFormElement>,
+    initialValues?: Record<string, string | boolean>
+  ): void => {
     const fields = getFields();
 
     for (const field in fields) {

@@ -3,10 +3,21 @@ title: Radio Group
 description: Re-usable components built using Radix UI and Tailwind CSS.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="radio-group-demo" description="Re-usable components built using Radix UI and Tailwind CSS.">
+
 ```tsx
-export const Default = () => {
+import { useState } from "react";
+import {
+  RadioGroup,
+  RadioGroupItem,
+} from "@/components/ui/RadioGroup";
+
+export function RadioGroupDemo() {
+  return {
   const [value, setValue] = useState("option-1");
 
   return (
@@ -46,6 +57,8 @@ export const Default = () => {
   );
 };
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

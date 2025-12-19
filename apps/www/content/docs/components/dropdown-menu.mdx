@@ -3,10 +3,34 @@ title: Dropdown Menu
 description: Displays a menu of actions or options triggered by a button.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="dropdown-menu-demo" description="Displays a menu of actions or options triggered by a button.">
+
 ```tsx
-export const Default = () => (
+import { useState } from "react";
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuCheckboxItem,
+  DropdownMenuRadioItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenuGroup,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuRadioGroup,
+} from "@/components/ui/DropdownMenu";
+import { Button } from "@/components/ui/Button";
+
+export function DropdownMenuDemo() {
+  return (
   <DropdownMenu>
     <DropdownMenuTrigger asChild>
       <Button variant="menu">Open Menu</Button>
@@ -54,7 +78,10 @@ export const Default = () => (
     </DropdownMenuContent>
   </DropdownMenu>
 );
+}
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

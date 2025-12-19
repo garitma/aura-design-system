@@ -3,10 +3,27 @@ title: Drawer
 description: A drawer component that slides in from the edge of the screen.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="drawer-demo" description="A drawer component that slides in from the edge of the screen.">
+
 ```tsx
-export const Default = () => (
+import { Button } from "@/components/ui/Button";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/Drawer";
+
+export function DrawerDemo() {
+  return (
   <Drawer>
     <DrawerTrigger asChild>
       <Button variant="outline">Open Drawer</Button>
@@ -37,7 +54,10 @@ export const Default = () => (
     </DrawerContent>
   </Drawer>
 );
+}
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

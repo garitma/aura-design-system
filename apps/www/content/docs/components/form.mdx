@@ -3,10 +3,29 @@ title: Form
 description: A comprehensive form system with schema-based validation, error handling, and field management. Built with Radix UI primitives and AJV validation, supporting text inputs, textareas, selects, checkboxes, switches, and checkbox groups with automatic error propagation and touch state management.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="form-demo" description="A comprehensive form system with schema-based validation, error handling, and field management. Built with Radix UI primitives and AJV validation, supporting text inputs, textareas, selects, checkboxes, switches, and checkbox groups with automatic error propagation and touch state management.">
+
 ```tsx
-export const Default = () => {
+import { useRef, useState } from "react";
+import {
+  Form,
+  FormField,
+  FormSubmit,
+  FormSwitch,
+  FormCheckbox,
+  FormCheckboxGroup,
+  FormAlert,
+} from "@/components/ui/Form";
+import { Input } from "@/components/ui/Input";
+import { useFormDynamic } from "@/hooks/use-dynamic-form";
+import { validateFormData } from "@/utils/web-validation";
+
+export function FormDemo() {
+  return {
   const formRef = useRef<HTMLFormElement>(null);
   const [fetchStatus, setFetchStatus] = useState<
     "idle" | "loading" | "success" | "error"
@@ -71,6 +90,8 @@ export const Default = () => {
   );
 };
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

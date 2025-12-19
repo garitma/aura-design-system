@@ -3,10 +3,28 @@ title: Hover Card
 description: For sighted users to preview content available behind a link.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="hover-card-demo" description="For sighted users to preview content available behind a link.">
+
 ```tsx
-export const Default = () => (
+import {
+  HoverCard,
+  HoverCardTrigger,
+  HoverCardContent,
+} from "@/components/ui/HoverCard";
+import { Button } from "@/components/ui/Button";
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/Avatar";
+import { CalendarIcon } from "@radix-ui/react-icons";
+
+export function HoverCardDemo() {
+  return (
   <HoverCard>
     <HoverCardTrigger asChild>
       <Button variant="link">Hover me</Button>
@@ -21,7 +39,10 @@ export const Default = () => (
     </HoverCardContent>
   </HoverCard>
 );
+}
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

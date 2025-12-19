@@ -22,6 +22,7 @@
   --aura-button-radius: 6.5px;
   --aura-input-bg: #f0f0f7;
   --aura-input-placeholder-color: rgba(51, 51, 51, 0.5);
+  --aura-input-border-color: rgba(51, 51, 51, 0.5);
   --aura-radius: 13px;
   --aura-opacity: 0.5;
   --aura-outline: #0927ec solid 2px;
@@ -490,7 +491,6 @@ textarea:not(.default) {
   -webkit-border-radius: var(--aura-input-radius);
   -moz-border-radius: var(--aura-input-radius);
   width: 100%;
-  border: 0;
   background-color: var(--aura-input-bg);
   box-sizing: border-box;
   box-shadow: none;
@@ -528,7 +528,6 @@ input:not(.default) {
   -moz-border-radius: var(--aura-input-radius);
   width: 100%;
   background-color: var(--aura-input-bg);
-  border: 0;
   box-sizing: border-box;
   box-shadow: none;
   color: var(--aura-accents-10);
@@ -578,7 +577,6 @@ select:not(.default) {
   padding: 0 calc(var(--aura) * 2);
   line-height: calc(var(--aura) * 4) px;
   box-sizing: border-box;
-  border: 0;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -588,6 +586,10 @@ select:not(.default) {
 }
 select:not(.default):focus {
   outline: var(--aura-outline);
+}
+
+input, select, textarea {
+  border: 1px solid var(--aura-input-border-color);
 }
 
 .icon {
@@ -669,6 +671,7 @@ body {
   box-sizing: border-box;
   touch-action: manipulation;
 }
+
 
 #nprogress {
   pointer-events: none;

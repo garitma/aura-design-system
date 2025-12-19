@@ -3,10 +3,22 @@ title: Checkbox
 description: A control that allows the user to toggle between checked and not checked.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="checkbox-demo" description="A control that allows the user to toggle between checked and not checked.">
+
 ```tsx
-export const Default = () => {
+import { useState } from "react";
+import {
+  Checkbox,
+  CheckboxGroup,
+  CheckboxGroupItem,
+} from "@/components/ui/Checkbox";
+
+export function CheckboxDemo() {
+  return {
   const [checked, setChecked] = useState(false);
 
   return (
@@ -26,6 +38,8 @@ export const Default = () => {
   );
 };
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

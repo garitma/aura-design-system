@@ -3,10 +3,31 @@ title: Menubar
 description: A visually persistent menu common in desktop applications.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="menubar-demo" description="A visually persistent menu common in desktop applications.">
+
 ```tsx
-export const Default = () => (
+import {
+  Menubar,
+  MenubarMenu,
+  MenubarTrigger,
+  MenubarContent,
+  MenubarItem,
+  MenubarSeparator,
+  MenubarCheckboxItem,
+  MenubarRadioGroup,
+  MenubarRadioItem,
+  MenubarSubContent,
+  MenubarSubTrigger,
+  MenubarSub,
+  MenubarShortcut,
+} from "@/components/ui/Menubar";
+
+export function MenubarDemo() {
+  return (
   <Menubar>
     <MenubarMenu>
       <MenubarTrigger>File</MenubarTrigger>
@@ -93,7 +114,10 @@ export const Default = () => (
     </MenubarMenu>
   </Menubar>
 );
+}
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

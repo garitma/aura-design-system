@@ -3,10 +3,25 @@ title: Alert
 description: Displays a callout for user attention with contextual feedback messages.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="alert-demo" description="Displays a callout for user attention with contextual feedback messages.">
+
 ```tsx
-export const Default = () => {
+import { BookmarkIcon } from "@radix-ui/react-icons";
+import {
+  Alert,
+  AlertContent,
+  AlertTitle,
+  AlertDescription,
+  AlertIcon,
+  AlertStatus,
+} from "@/components/ui/Alert";
+
+export function AlertDemo() {
+  return {
   return (
     <Alert>
       <AlertIcon>
@@ -22,6 +37,8 @@ export const Default = () => {
   );
 };
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

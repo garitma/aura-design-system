@@ -1,3 +1,6 @@
+/**
+ * @description Displays a badge or a component that looks like a badge.
+ */
 import * as React from "react"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/utils/class-names"

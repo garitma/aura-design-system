@@ -3,10 +3,27 @@ title: Card
 description: Displays a card with header, content, and footer sections.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="card-demo" description="Displays a card with header, content, and footer sections.">
+
 ```tsx
-export const Default = () => (
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+  CardAction,
+} from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
+import { AspectRatio } from "@/components/ui/AspectRatio";
+
+export function CardDemo() {
+  return (
   <Card>
     <CardHeader>
       <CardTitle>Card Title</CardTitle>
@@ -17,7 +34,10 @@ export const Default = () => (
     </CardContent>
   </Card>
 );
+}
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

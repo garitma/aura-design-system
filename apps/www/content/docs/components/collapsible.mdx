@@ -3,10 +3,24 @@ title: Collapsible
 description: An interactive component which expands and collapses content.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="collapsible-demo" description="An interactive component which expands and collapses content.">
+
 ```tsx
-export const Default = () => {
+import { useState } from "react";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/Collapsible";
+import { Button } from "@/components/ui/Button";
+import { ChevronDownIcon } from "@radix-ui/react-icons";
+
+export function CollapsibleDemo() {
+  return {
   return (
     <Collapsible>
       <div className="flex items-center justify-between gap-1">
@@ -26,6 +40,8 @@ export const Default = () => {
   );
 };
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

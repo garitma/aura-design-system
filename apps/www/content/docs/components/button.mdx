@@ -3,11 +3,21 @@ title: Button
 description: Displays a button or a component that looks like a button.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="button-demo" description="Displays a button or a component that looks like a button.">
+
 ```tsx
-export const Default = () => <Button>Default Button</Button>;
+import { Button } from "@/components/ui/Button";
+
+export function ButtonDemo() {
+  return <Button>Default Button</Button>;
+}
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

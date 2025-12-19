@@ -118,6 +118,7 @@
   --aura-loader: var(--primary);
   --aura-skeleton-start: var(--gray-8);
   --aura-skeleton-end: var(--gray-5);
+  --aura-input-border-color: var(--gray-a6);
   --radius: 0.5rem;
 
   /* Existing color scale */
@@ -189,17 +190,6 @@
   --secundary: var(--accent-8);
   --secundary-foreground: var(--accent-contrast);
 
-  /* Ladle tokens */
-  --ladle-bg-color-primary: var(--gray-1);
-  --ladle-bg-color-secondary: var(--gray-2);
-  --ladle-color-primary: var(--gray-12);
-  --ladle-color-secondary: var(--gray-11);
-  --ladle-color-hover: var(--gray-10);
-  --ladle-color-accent: var(--primary);
-  --ladle-blueprint: var(--gray-11);
-
-  --padding-left: calc(var(--spacing) * 2);
-  --padding-right: calc(var(--spacing) * 2);
 }
 
 @media (prefers-color-scheme: dark) {

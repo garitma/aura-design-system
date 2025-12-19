@@ -3,10 +3,29 @@ title: Stepper
 description: A sequential progress indicator with navigation controls.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="stepper-demo" description="A sequential progress indicator with navigation controls.">
+
 ```tsx
-export const Default = () => {
+import {
+  Stepper,
+  StepperList,
+  StepperItem,
+  StepperTrigger,
+  StepperIndicator,
+  StepperSeparator,
+  StepperTitle,
+  StepperDescription,
+  StepperContent,
+  StepperPrev,
+  StepperNext,
+} from "@/components/ui/Stepper";
+
+export function StepperDemo() {
+  return {
   return (
     <Stepper defaultValue="step-1" className="w-full">
       <StepperList>
@@ -66,6 +85,8 @@ export const Default = () => {
   );
 };
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

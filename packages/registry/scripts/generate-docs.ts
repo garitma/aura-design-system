@@ -230,6 +230,7 @@ function replaceImportPaths(code: string): string {
 
 /**
  * Extract imports from stories file
+ * Filters out type-only imports from @ladle/react
  */
 function extractImports(storiesContent: string): string {
   // Extract imports (all import statements at the top, including multi-line)
@@ -278,8 +279,26 @@ function extractImports(storiesContent: string): string {
     importSection = importLines.join("\n");
   }
   
-  // Replace import paths
-  return replaceImportPaths(importSection);
+  // Parse import statements first (to handle multi-line imports correctly)
+  const importStatements = parseImportStatements(importSection);
+  
+  // Filter out type-only imports from @ladle/react
+  const filteredStatements = importStatements.filter(stmt => {
+    const trimmed = stmt.trim();
+    // Remove type-only imports from @ladle/react
+    if (trimmed.startsWith("import type") && trimmed.includes("@ladle/react")) {
+      return false;
+    }
+    // Also remove if it contains Story type from @ladle
+    if (trimmed.includes("import type") && trimmed.includes("Story") && trimmed.includes("@ladle")) {
+      return false;
+    }
+    return true;
+  });
+  
+  // Replace import paths and join
+  const filteredText = filteredStatements.join("\n");
+  return replaceImportPaths(filteredText.trim());
 }
 
 interface Story {
@@ -1149,6 +1168,97 @@ function extractDefaultStory(componentName: string): string | null {
 }
 
 /**
+ * Format story code for ComponentPreview display
+ * Converts export const Default to export function ComponentNameDemo
+ */
+function formatStoryCodeForPreview(storyCode: string, componentName: string): string {
+  const componentPascal = componentName.replace(/(?:^|[-_])(\w)/g, (_, c) => c.toUpperCase());
+  const demoName = `${componentPascal}Demo`;
+  
+  // Read the stories file to get imports
+  const kebabName = toKebabCase(componentName);
+  const storiesFilePath = path.join(STORIES_PATH, `${kebabName}.stories.tsx`);
+  let importLines: string[] = [];
+  
+  if (fs.existsSync(storiesFilePath)) {
+    try {
+      const storiesContent = fs.readFileSync(storiesFilePath, "utf-8");
+      const extractedImports = extractImports(storiesContent);
+      const replacedImports = replaceImportPaths(extractedImports);
+      
+      if (replacedImports) {
+        importLines = replacedImports.split("\n").filter(line => line.trim());
+      }
+    } catch (error) {
+      // If we can't read the file, continue without imports
+    }
+  }
+  
+  // Extract code from story (remove any existing imports)
+  const lines = storyCode.split("\n");
+  const codeLines: string[] = [];
+  let foundExport = false;
+  
+  for (const line of lines) {
+    const trimmed = line.trim();
+    if (trimmed.startsWith("export ")) {
+      foundExport = true;
+      codeLines.push(line);
+    } else if (foundExport || (trimmed && !trimmed.startsWith("import "))) {
+      codeLines.push(line);
+    }
+  }
+  
+  const codeSection = codeLines.join("\n");
+  
+  // Replace export const Default with export function ComponentNameDemo
+  let formattedCode = codeSection;
+  
+  // Handle: export const Default = () => <JSX />
+  if (formattedCode.includes("export const Default = () =>")) {
+    formattedCode = formattedCode.replace(
+      /export\s+const\s+Default\s*=\s*\(\)\s*=>\s*/g,
+      `export function ${demoName}() {\n  return `
+    );
+    // If it's a single-line arrow function, add closing brace
+    if (!formattedCode.includes("}")) {
+      formattedCode = formattedCode.trim() + "\n}";
+    }
+  }
+  // Handle: export const Default = () => { ... }
+  else if (formattedCode.includes("export const Default = () => {")) {
+    formattedCode = formattedCode.replace(
+      /export\s+const\s+Default\s*=\s*\(\)\s*=>\s*\{/g,
+      `export function ${demoName}() {`
+    );
+  }
+  // Handle: export const Default: Story = () => { ... }
+  else if (formattedCode.includes("export const Default:")) {
+    formattedCode = formattedCode.replace(
+      /export\s+const\s+Default\s*:\s*Story\s*=\s*\(\)\s*=>\s*\{/g,
+      `export function ${demoName}() {`
+    );
+  }
+  // Handle: export function Default() { ... }
+  else if (formattedCode.includes("export function Default")) {
+    formattedCode = formattedCode.replace(
+      /export\s+function\s+Default\s*\(/g,
+      `export function ${demoName}(`
+    );
+  }
+  
+  // Combine imports and formatted code
+  const imports = importLines.join("\n").trim();
+  const formatted = formattedCode.trim();
+  
+  if (imports) {
+    return `${imports}\n\n${formatted}`;
+  }
+  
+  return formatted;
+}
+
+/**
  * Generate MDX content with frontmatter, preview, usage, and installation
  * Sections are generated in the same order as they appear in the YAML metadata
  */
@@ -1168,6 +1278,8 @@ title: ${title}
 description: ${description}
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 `;
 
   // Generate sections in the order they appear in the YAML metadata
@@ -1178,11 +1290,18 @@ description: ${description}
     for (const item of metadata.content) {
       // Preview section
       if (item.preview === "Default" && defaultStory) {
+        const registryKey = `${toKebabCase(componentName)}-demo`;
+        const componentCode = formatStoryCodeForPreview(defaultStory, componentName);
+        
         content += `## Preview
 
+<ComponentPreview name="${registryKey}" description="${description}">
+
 \`\`\`tsx
-${defaultStory}
+${componentCode}
 \`\`\`
+
+</ComponentPreview>
 
 `;
         previewAdded = true;
@@ -1242,11 +1361,18 @@ pnpm dlx shadcn@latest add @aura/${kebabName}
   // Auto-generate preview for components with Default story if not already added
   // Insert it right after the frontmatter, before other sections
   if (!previewAdded && defaultStory) {
+    const registryKey = `${toKebabCase(componentName)}-demo`;
+    const componentCode = formatStoryCodeForPreview(defaultStory, componentName);
+    
     const previewSection = `## Preview
 
+<ComponentPreview name="${registryKey}" description="${description}">
+
 \`\`\`tsx
-${defaultStory}
+${componentCode}
 \`\`\`
+
+</ComponentPreview>
 
 `;
     // Find the position after frontmatter (after "---\n\n")
@@ -1331,6 +1457,160 @@ function toRegistryKey(componentName: string, storyName: string, demoName: strin
 }
 
 /**
+ * Extract top-level constants and variables defined before stories
+ * These are typically schema definitions, helper functions, etc.
+ */
+function extractTopLevelConstants(storiesContent: string): string {
+  const lines = storiesContent.split("\n");
+  const constants: string[] = [];
+  let inImports = true;
+  let foundFirstExport = false;
+  let currentConstant: string[] = [];
+  let braceCount = 0;
+  let parenCount = 0;
+  let inConstant = false;
+  
+  for (let i = 0; i < lines.length; i++) {
+    const line = lines[i];
+    const trimmed = line.trim();
+    
+    // Skip imports
+    if (trimmed.startsWith("import ")) {
+      if (trimmed.includes(" from ")) {
+        inImports = false;
+        continue;
+      } else {
+        // Multi-line import - continue until we find " from "
+        continue;
+      }
+    }
+    
+    if (trimmed.includes(" from ")) {
+      inImports = false;
+      continue;
+    }
+    
+    // Stop at first export statement
+    if (trimmed.startsWith("export ")) {
+      foundFirstExport = true;
+      break;
+    }
+    
+    // Check for const/let/var declarations (but not inside functions)
+    if (!inImports && !foundFirstExport) {
+      // Match: const name = ... or const name: Type = ...
+      const constMatch = trimmed.match(/^(const|let|var|function|type|interface)\s+(\w+)/);
+      if (constMatch) {
+        // If we have a pending constant, save it
+        if (currentConstant.length > 0) {
+          constants.push(currentConstant.join("\n"));
+          currentConstant = [];
+        }
+        
+        inConstant = true;
+        currentConstant = [line];
+        braceCount = 0;
+        parenCount = 0;
+        
+        // Count braces and parentheses to handle multi-line constants
+        for (const char of line) {
+          if (char === '{') braceCount++;
+          if (char === '}') braceCount--;
+          if (char === '(') parenCount++;
+          if (char === ')') parenCount--;
+        }
+        
+        // If it's a single-line constant (ends with ; and all braces/parens balanced)
+        if (trimmed.endsWith(";") && braceCount === 0 && parenCount === 0) {
+          constants.push(line);
+          currentConstant = [];
+          inConstant = false;
+        }
+        continue;
+      }
+      
+      // If we're in a constant, continue collecting
+      if (inConstant) {
+        currentConstant.push(line);
+        
+        // Count braces and parentheses
+        for (const char of line) {
+          if (char === '{') braceCount++;
+          if (char === '}') braceCount--;
+          if (char === '(') parenCount++;
+          if (char === ')') parenCount--;
+        }
+        
+        // If we've closed all braces/parens and found a semicolon, the constant is complete
+        if (braceCount === 0 && parenCount === 0 && trimmed.endsWith(";")) {
+          constants.push(currentConstant.join("\n"));
+          currentConstant = [];
+          inConstant = false;
+        }
+      }
+    }
+  }
+  
+  // Don't forget the last constant if it's still pending
+  if (currentConstant.length > 0) {
+    constants.push(currentConstant.join("\n"));
+  }
+  
+  const result = constants.join("\n\n");
+  return result ? result + "\n" : "";
+}
+
+/**
+ * Parse complete import statements from import text (handles multi-line imports)
+ */
+function parseImportStatements(importText: string): string[] {
+  if (!importText || !importText.trim()) {
+    return [];
+  }
+  
+  const statements: string[] = [];
+  const lines = importText.split("\n");
+  let currentStatement: string[] = [];
+  let inMultiLineImport = false;
+  
+  for (const line of lines) {
+    const trimmed = line.trim();
+    
+    if (trimmed.startsWith("import ")) {
+      // If we have a pending statement, save it
+      if (currentStatement.length > 0) {
+        statements.push(currentStatement.join("\n"));
+        currentStatement = [];
+      }
+      
+      if (trimmed.includes(" from ")) {
+        // Single-line import
+        statements.push(line);
+      } else {
+        // Start of multi-line import
+        inMultiLineImport = true;
+        currentStatement = [line];
+      }
+    } else if (inMultiLineImport) {
+      currentStatement.push(line);
+      if (trimmed.includes(" from ")) {
+        // End of multi-line import
+        statements.push(currentStatement.join("\n"));
+        currentStatement = [];
+        inMultiLineImport = false;
+      }
+    }
+  }
+  
+  // Don't forget the last statement if it's still pending
+  if (currentStatement.length > 0) {
+    statements.push(currentStatement.join("\n"));
+  }
+  
+  return statements;
+}
+
+/**
  * Generate demo file from stories with specific demo names
  */
 function generateDemoFileWithNames(componentName: string, stories: Story[], demoNames: string[]): string {
@@ -1342,19 +1622,25 @@ function generateDemoFileWithNames(componentName: string, stories: Story[], demo
   const importSection = extractImports(storiesContent);
   const replacedImports = replaceImportPaths(importSection);
   
-  // Collect unique imports (avoid duplicates)
-  const importLines = replacedImports ? replacedImports.split("\n").filter(line => line.trim()) : [];
+  // Collect unique imports (avoid duplicates) while preserving multi-line imports
+  const importStatements = parseImportStatements(replacedImports);
   const seenImports = new Set<string>();
   const uniqueImports: string[] = [];
   
-  for (const line of importLines) {
-    if (!seenImports.has(line)) {
-      seenImports.add(line);
-      uniqueImports.push(line);
+  for (const stmt of importStatements) {
+    if (!seenImports.has(stmt)) {
+      seenImports.add(stmt);
+      uniqueImports.push(stmt);
     }
   }
   
   let demoContent = uniqueImports.length > 0 ? `${uniqueImports.join("\n")}\n\n` : "";
+  
+  // Extract and include top-level constants (schemas, helpers, etc.)
+  const topLevelConstants = extractTopLevelConstants(storiesContent);
+  if (topLevelConstants) {
+    demoContent += `${topLevelConstants}\n\n`;
+  }
   
   // Export all stories with specified demo names
   for (let i = 0; i < stories.length; i++) {
@@ -1365,11 +1651,42 @@ function generateDemoFileWithNames(componentName: string, stories: Story[], demo
     // Remove the import section from story code if it exists (we already have it at the top)
     if (replacedImports) {
       // Remove imports from story code to avoid duplication
+      // Handle both single-line and multi-line imports
       const lines = storyCode.split("\n");
-      const codeWithoutImports = lines.filter(line => {
+      const codeWithoutImports: string[] = [];
+      let inMultiLineImport = false;
+      
+      for (const line of lines) {
         const trimmed = line.trim();
-        return !trimmed.startsWith("import ") || !trimmed.includes(" from ");
-      });
+        
+        // Check if this line starts an import
+        if (trimmed.startsWith("import ")) {
+          if (trimmed.includes(" from ")) {
+            // Single-line import - skip it
+            continue;
+          } else {
+            // Start of multi-line import
+            inMultiLineImport = true;
+            continue;
+          }
+        }
+        
+        // If we're in a multi-line import, continue until we find " from "
+        if (inMultiLineImport) {
+          if (trimmed.includes(" from ")) {
+            // End of multi-line import
+            inMultiLineImport = false;
+            continue;
+          } else {
+            // Still in multi-line import
+            continue;
+          }
+        }
+        
+        // Not an import line, keep it
+        codeWithoutImports.push(line);
+      }
+      
       storyCode = codeWithoutImports.join("\n");
     }
     
@@ -1404,15 +1721,15 @@ function generateDemoFile(componentName: string, stories: Story[]): string {
   const importSection = extractImports(storiesContent);
   const replacedImports = replaceImportPaths(importSection);
   
-  // Collect unique imports (avoid duplicates)
-  const importLines = replacedImports ? replacedImports.split("\n").filter(line => line.trim()) : [];
+  // Collect unique imports (avoid duplicates) while preserving multi-line imports
+  const importStatements = parseImportStatements(replacedImports);
   const seenImports = new Set<string>();
   const uniqueImports: string[] = [];
   
-  for (const line of importLines) {
-    if (!seenImports.has(line)) {
-      seenImports.add(line);
-      uniqueImports.push(line);
+  for (const stmt of importStatements) {
+    if (!seenImports.has(stmt)) {
+      seenImports.add(stmt);
+      uniqueImports.push(stmt);
     }
   }
   
@@ -1427,11 +1744,42 @@ function generateDemoFile(componentName: string, stories: Story[]): string {
     // Remove the import section from story code if it exists (we already have it at the top)
     if (replacedImports) {
       // Remove imports from story code to avoid duplication
+      // Handle both single-line and multi-line imports
       const lines = storyCode.split("\n");
-      const codeWithoutImports = lines.filter(line => {
+      const codeWithoutImports: string[] = [];
+      let inMultiLineImport = false;
+      
+      for (const line of lines) {
         const trimmed = line.trim();
-        return !trimmed.startsWith("import ") || !trimmed.includes(" from ");
-      });
+        
+        // Check if this line starts an import
+        if (trimmed.startsWith("import ")) {
+          if (trimmed.includes(" from ")) {
+            // Single-line import - skip it
+            continue;
+          } else {
+            // Start of multi-line import
+            inMultiLineImport = true;
+            continue;
+          }
+        }
+        
+        // If we're in a multi-line import, continue until we find " from "
+        if (inMultiLineImport) {
+          if (trimmed.includes(" from ")) {
+            // End of multi-line import
+            inMultiLineImport = false;
+            continue;
+          } else {
+            // Still in multi-line import
+            continue;
+          }
+        }
+        
+        // Not an import line, keep it
+        codeWithoutImports.push(line);
+      }
+      
       storyCode = codeWithoutImports.join("\n");
     }
     

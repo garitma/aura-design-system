@@ -3,10 +3,28 @@ title: Alert Dialog
 description: A modal dialog that interrupts the user with important content and expects a response.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="alert-dialog-demo" description="A modal dialog that interrupts the user with important content and expects a response.">
+
 ```tsx
-export const Default = () => (
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/AlertDialog";
+import { Button } from "@/components/ui/Button";
+
+export function AlertDialogDemo() {
+  return (
   <AlertDialog>
     <AlertDialogTrigger asChild>
       <Button variant="outline">Show Dialog</Button>
@@ -30,7 +48,10 @@ export const Default = () => (
     </AlertDialogContent>
   </AlertDialog>
 );
+}
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

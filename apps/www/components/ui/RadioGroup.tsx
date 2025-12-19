@@ -27,7 +27,7 @@ function RadioGroupItem({
       data-slot="radio-group-item"
       className={cn(
         className,
-        "size-0 cursor-pointer rounded-full border border-gray-a6 hover:bg-accent-2"
+        "size-1.5 cursor-pointer rounded-full border border-gray-a6 hover:bg-accent-2"
       )}
       {...props}
     >

@@ -1,5 +1,4 @@
 import React from "react";
-import type { Story } from "@ladle/react";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 import {
   NavigationMenu,

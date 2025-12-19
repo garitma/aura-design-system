@@ -1,3 +1,6 @@
+/**
+ * @description Displays a button or a component that looks like a button.
+ */
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 
@@ -8,8 +11,8 @@ const buttonVariants = cva("button", {
   variants: {
     variant: {
       default: "button-fill",
-      fill: "button-fill transition-colors",
-      pill: "button-pill border border-gray-6 text-gray-11 hover:bg-gray-3 bg-gray-1",
+      fill: "button-fill",
+      pill: "button-pill border border-gray-6 text-gray-11 hover:bg-gray-2",
       link: "button-link",
       menu: "button-menu",
     },
@@ -34,6 +37,7 @@ interface ButtonProps
   asChild?: boolean;
   isDisabled?: boolean;
   isLoading?: boolean;
+  isLoadingText?: string | React.ReactNode;
   mode?: VariantProps<typeof buttonVariants>["variant"];
 }
 
@@ -49,6 +53,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       asChild = false,
       isDisabled,
       isLoading,
+      isLoadingText,
       children,
       ...rest
     } = props;
@@ -72,7 +77,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ) : (
           <>
             {isLoading && <ReloadIcon className="mr-0.5 icon animate-spin" />}
-            {children}
+            {isLoading && isLoadingText ? isLoadingText : children}
           </>
         )}
       </Comp>
@@ -84,3 +89,4 @@ Button.displayName = "Button";
 
 export { Button, buttonVariants };
 export type { ButtonProps };
+export default Button;

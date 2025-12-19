@@ -3,10 +3,21 @@ title: Avatar
 description: An image element with a fallback for representing the user.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="avatar-demo" description="An image element with a fallback for representing the user.">
+
 ```tsx
-export const Default = () => (
+import {
+  Avatar,
+  AvatarImage,
+  AvatarFallback,
+} from "@/components/ui/Avatar";
+
+export function AvatarDemo() {
+  return (
   <Avatar>
     <AvatarImage
       src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?w=128&h=128&fit=crop"
@@ -15,7 +26,10 @@ export const Default = () => (
     <AvatarFallback>JD</AvatarFallback>
   </Avatar>
 );
+}
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

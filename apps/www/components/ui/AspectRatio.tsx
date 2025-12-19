@@ -1,4 +1,7 @@
-import { AspectRatio as AspectRatioPrimitive } from "radix-ui";
+/**
+ * @description Displays content within a desired ratio.
+ */
+import * as AspectRatioPrimitive from "@radix-ui/react-aspect-ratio";
 
 function AspectRatio({
   ...props

@@ -1,5 +1,7 @@
 "use client";
-
+/**
+ * @description A drawer component that slides in from the edge of the screen.
+ */
 import * as React from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
 

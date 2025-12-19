@@ -3,10 +3,18 @@ title: Switch
 description: A control that allows the user to toggle between on and off states.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="switch-demo" description="A control that allows the user to toggle between on and off states.">
+
 ```tsx
-export const Default = () => {
+import { useState } from "react";
+import { Switch } from "@/components/ui/Switch";
+
+export function SwitchDemo() {
+  return {
   const [checked, setChecked] = useState(false);
 
   return (
@@ -22,6 +30,8 @@ export const Default = () => {
   );
 };
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

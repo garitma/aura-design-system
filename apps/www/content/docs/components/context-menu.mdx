@@ -3,10 +3,32 @@ title: Context Menu
 description: Displays a menu to the user triggered by right-click or long-press.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="context-menu-demo" description="Displays a menu to the user triggered by right-click or long-press.">
+
 ```tsx
-export const Default = () => (
+import { useState } from "react";
+import {
+  ContextMenu,
+  ContextMenuTrigger,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuCheckboxItem,
+  ContextMenuRadioItem,
+  ContextMenuLabel,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuSub,
+  ContextMenuSubContent,
+  ContextMenuSubTrigger,
+  ContextMenuRadioGroup,
+} from "@/components/ui/ContextMenu";
+
+export function ContextMenuDemo() {
+  return (
   <ContextMenu>
     <ContextMenuTrigger className="flex h-[150px] w-[300px] items-center justify-center rounded-md border border-dashed border-gray-6 text-sm">
       Right click here
@@ -33,7 +55,10 @@ export const Default = () => (
     </ContextMenuContent>
   </ContextMenu>
 );
+}
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

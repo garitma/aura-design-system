@@ -3,15 +3,25 @@ title: Progress
 description: Displays an indicator showing the completion progress of a task.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="progress-demo" description="Displays an indicator showing the completion progress of a task.">
+
 ```tsx
-export const Default = () => (
+import { useEffect, useState } from "react";
+import { Progress } from "@/components/ui/Progress";
+
+export function ProgressDemo() {
+  return (
   <div className="w-[300px]">
     <Progress value={60} />
   </div>
 );
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

@@ -3,10 +3,25 @@ title: Sortable
 description: A sortable list of items.
 ---
 
+import { ComponentPreview } from "@/components/ComponentPreview"
+
 ## Preview
 
+<ComponentPreview name="sortable-demo" description="A sortable list of items.">
+
 ```tsx
-export const Default = () => {
+import { useState } from "react";
+import { DragHandleDots2Icon } from "@radix-ui/react-icons";
+import {
+  Sortable,
+  SortableContent,
+  SortableItem,
+  SortableItemHandle,
+  SortableOverlay,
+} from "@/components/ui/Sortable";
+
+export function SortableDemo() {
+  return {
   const [items, setItems] = useState(["Item 1", "Item 2", "Item 3", "Item 4"]);
 
   return (
@@ -27,6 +42,8 @@ export const Default = () => {
   );
 };
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
