@@ -189,7 +189,8 @@
   --primary-foreground: var(--accent-contrast);
   --secundary: var(--accent-8);
   --secundary-foreground: var(--accent-contrast);
-
+  --padding-left: calc(var(--spacing) * 1);
+  --padding-right: calc(var(--spacing) * 1);
 }
 
 @media (prefers-color-scheme: dark) {
