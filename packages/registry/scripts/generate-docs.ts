@@ -24,6 +24,10 @@ const REGISTRY_OUTPUT_PATH = path.join(
   __dirname,
   "../../../apps/www/components"
 );
+const ALL_TXT_OUTPUT_PATH = path.join(
+  __dirname,
+  "../../../apps/www/public"
+);
 
 const DEFAULT_DESCRIPTION =
   "Re-usable components built using Radix UI and Tailwind CSS.";
@@ -2082,8 +2086,33 @@ function generateDocs() {
   console.log(`  Skipped:              ${skipped}\n`);
 }
 
+/**
+ * Generate all.txt file with command to install all UI primitives
+ */
+function generateAllTxt() {
+  // Ensure output directory exists
+  if (!fs.existsSync(ALL_TXT_OUTPUT_PATH)) {
+    fs.mkdirSync(ALL_TXT_OUTPUT_PATH, { recursive: true });
+    console.log(`[INFO] Created public directory: ${ALL_TXT_OUTPUT_PATH}`);
+  }
+
+  const components = getUIComponentFiles();
+  const kebabNames = components
+    .map((component) => toKebabCase(component.name))
+    .sort();
+
+  const command = `pnpm dlx shadcn@latest add ${kebabNames.map((name) => `@aura/${name}`).join(" ")}`;
+
+  const allTxtPath = path.join(ALL_TXT_OUTPUT_PATH, "all.txt");
+  fs.writeFileSync(allTxtPath, command);
+  console.log(`[SUCCESS] Generated all.txt with ${kebabNames.length} primitives\n`);
+}
+
 // Generate preview component registry
 generatePreviewRegistry();
 
 // Generate documentation files
 generateDocs();
+
+// Generate all.txt file
+generateAllTxt();

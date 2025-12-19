@@ -23,25 +23,29 @@ function CopyableCommand({ command }: { command: string }) {
   };
 
   return (
-    <div className="mt-1 flex items-center gap-0.5 text-sm font-mono">
-      <code className="flex-1 text-gray-11"><span className="text-accent-11 animate-pulse">◉</span> ~ {command}</code>
-      <button
-        type="button"
-        onClick={handleCopy}
+    <button
+      type="button"
+      className="mt-1 flex items-center gap-0.5 text-sm font-mono cursor-pointer"
+      onClick={handleCopy}
+      aria-label={copied ? "Copied" : "Copy command"}
+    >
+      <code className="flex-1 text-gray-11">
+        <span className="text-accent-11 animate-pulse">◉</span> ~ {command}
+      </code>
+      <div
         className={cn(
           "flex items-center justify-center size-2 rounded-md",
           "text-gray-11 hover:text-gray-12 hover:bg-gray-3",
           "transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-7"
         )}
-        aria-label={copied ? "Copied" : "Copy command"}
       >
         {copied ? (
           <Check className="icon text-accent-11" />
         ) : (
           <Clipboard className="icon" />
         )}
-      </button>
-    </div>
+      </div>
+    </button>
   );
 }
 
