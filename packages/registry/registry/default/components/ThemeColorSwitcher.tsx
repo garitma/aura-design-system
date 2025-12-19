@@ -299,6 +299,15 @@ ${generateExtraVars("accent", darkColors)}
     /* Gray color scale */
 ${generateScaleVars("gray", darkColors.grayScale, darkColors.grayScaleAlpha)}
 ${generateExtraVars("gray", darkColors)}
+    /* Status colors - Dark mode */
+    --info: #0D2157;
+    --info-contrast: #8CB4FF;
+    --success: #0B2E1E;
+    --success-contrast: #67CF9D;
+    --danger: #3C1405;
+    --danger-contrast: #FF9469;
+    --warning: #2A2402;
+    --warning-contrast: #EFE08E;
   }
 }
 
