@@ -23,8 +23,8 @@ function CopyableCommand({ command }: { command: string }) {
   };
 
   return (
-    <div className="mt-1 flex items-center gap-1.5 text-sm font-mono">
-      <code className="flex-1 px-1 text-gray-11"><span className="text-accent-11 animate-pulse">◉</span> ~ {command}</code>
+    <div className="mt-1 flex items-center gap-0.5 text-sm font-mono">
+      <code className="flex-1 text-gray-11"><span className="text-accent-11 animate-pulse">◉</span> ~ {command}</code>
       <button
         type="button"
         onClick={handleCopy}
