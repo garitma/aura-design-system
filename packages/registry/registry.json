@@ -259,6 +259,24 @@
       ]
     },
     {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "description": "The Combobox component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Combobox.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
       "name": "context-menu",
       "type": "registry:ui",
       "title": "ContextMenu",

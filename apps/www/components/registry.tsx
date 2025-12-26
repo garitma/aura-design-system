@@ -69,6 +69,17 @@ import {
   CollapsibleDemoDisabled
 } from "@/components/demos/collapsible-demo"
 import { 
+  ComboboxDemo,
+  ComboboxDemoWithClearButton,
+  ComboboxDemoWithTriggerButton,
+  ComboboxDemoWithChips,
+  ComboboxDemoWithGroups,
+  ComboboxDemoWithSeparator,
+  ComboboxDemoControlled,
+  ComboboxDemoDisabled,
+  ComboboxDemoPositioning
+} from "@/components/demos/combobox-demo"
+import { 
   ContextMenuDemo,
   ContextMenuDemoWithSubmenu,
   ContextMenuDemoWithCheckboxes,
@@ -324,6 +335,33 @@ export const Registry = {
   },
   "collapsible-demo-disabled": {
     component: CollapsibleDemoDisabled,
+  },
+  "combobox-demo": {
+    component: ComboboxDemo,
+  },
+  "combobox-demo-with-clear-button": {
+    component: ComboboxDemoWithClearButton,
+  },
+  "combobox-demo-with-trigger-button": {
+    component: ComboboxDemoWithTriggerButton,
+  },
+  "combobox-demo-with-chips": {
+    component: ComboboxDemoWithChips,
+  },
+  "combobox-demo-with-groups": {
+    component: ComboboxDemoWithGroups,
+  },
+  "combobox-demo-with-separator": {
+    component: ComboboxDemoWithSeparator,
+  },
+  "combobox-demo-controlled": {
+    component: ComboboxDemoControlled,
+  },
+  "combobox-demo-disabled": {
+    component: ComboboxDemoDisabled,
+  },
+  "combobox-demo-positioning": {
+    component: ComboboxDemoPositioning,
   },
   "context-menu-demo": {
     component: ContextMenuDemo,
