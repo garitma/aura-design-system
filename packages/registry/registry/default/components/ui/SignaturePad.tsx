@@ -66,7 +66,7 @@ interface SignaturePadRef {
 const SignaturePad = React.forwardRef<SignaturePadRef, SignaturePadProps>(
     (
         {
-            penColor = "#121b48",
+            penColor = "var(--accent-9)",
             lineWidth = 4,
             showButtons = true,
             saveButtonIcon,
@@ -86,6 +86,28 @@ const SignaturePad = React.forwardRef<SignaturePadRef, SignaturePadProps>(
         const pointsRef = useRef<{ x: number; y: number }[]>([]);
         const canvasRef = useRef<HTMLCanvasElement>(null);
         const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
+
+        // Helper function to resolve CSS variables to actual color values
+        const resolveColor = (color: string): string => {
+            if (!color.startsWith("var(")) {
+                return color;
+            }
+
+            // Extract the variable name from var(--variable-name)
+            const match = color.match(/var\((--[^)]+)\)/);
+            if (!match) return color;
+
+            const variableName = match[1];
+            const canvas = canvasRef.current;
+            if (!canvas) return color;
+
+            // Get the computed style from the canvas element
+            const computedStyle = getComputedStyle(canvas);
+            const resolvedColor = computedStyle.getPropertyValue(variableName).trim();
+            
+            // If the variable is not found or empty, return the original
+            return resolvedColor || color;
+        };
 
         // Expose the clear, save, toDataURL, isEmpty, and getCanvas methods to the parent component
         useImperativeHandle(ref, () => ({
@@ -119,7 +141,7 @@ const SignaturePad = React.forwardRef<SignaturePadRef, SignaturePadProps>(
                     ctx.scale(ratio, ratio);
                     ctx.lineCap = "round";
                     ctx.lineJoin = "round";
-                    ctx.strokeStyle = penColor;
+                    ctx.strokeStyle = resolveColor(penColor);
                     ctx.lineWidth = lineWidth;
 
                     ctx.imageSmoothingEnabled = true;
@@ -179,6 +201,11 @@ const SignaturePad = React.forwardRef<SignaturePadRef, SignaturePadProps>(
 
             if (!ctx)
                 ctx = canvas?.getContext("2d") as CanvasRenderingContext2D;
+
+            // Ensure strokeStyle is set with resolved color
+            if (ctx) {
+                ctx.strokeStyle = resolveColor(penColor);
+            }
 
             const newPoint = getPointerPosition(e);
 

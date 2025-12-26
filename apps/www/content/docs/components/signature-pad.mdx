@@ -91,21 +91,14 @@ export const Sizes = () => (
 export const CustomPenColor = () => (
   <div className="flex flex-col gap-4">
     <div>
-      <p className="text-sm font-medium mb-2">Black</p>
-      <SignaturePad penColor="hsl(0, 0%, 0%)" />
+      <p className="text-sm font-medium mb-2">Gray 9</p>
+      <SignaturePad penColor="var(--gray-9)" />
     </div>
     <div>
-      <p className="text-sm font-medium mb-2">Blue</p>
-      <SignaturePad penColor="hsl(217, 91%, 60%)" />
+      <p className="text-sm font-medium mb-2">Accent 9</p>
+      <SignaturePad penColor="var(--accent-9)" />
     </div>
-    <div>
-      <p className="text-sm font-medium mb-2">Red</p>
-      <SignaturePad penColor="hsl(0, 84%, 60%)" />
-    </div>
-    <div>
-      <p className="text-sm font-medium mb-2">Green</p>
-      <SignaturePad penColor="hsl(142, 76%, 36%)" />
-    </div>
+
   </div>
 );
 ```
