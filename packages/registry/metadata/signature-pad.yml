@@ -1,0 +1,4 @@
+header:
+  description: A component that allows the user to sign a document using a pen.
+extends: _templates/content.yml
+

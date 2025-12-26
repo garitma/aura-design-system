@@ -19,6 +19,25 @@
       ]
     },
     {
+      "name": "form-field-signature-pad",
+      "type": "registry:component",
+      "title": "FormFieldSignaturePad",
+      "description": "The FormFieldSignaturePad component.",
+      "files": [
+        {
+          "path": "registry/default/components/FormFieldSignaturePad.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "ajv",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/use-dynamic-form"
+      ]
+    },
+    {
       "name": "form-field-sortable-list",
       "type": "registry:component",
       "title": "FormFieldSortableList",
@@ -503,6 +522,26 @@
           "path": "registry/default/components/ui/Section.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
+      "name": "signature-pad",
+      "type": "registry:ui",
+      "title": "SignaturePad",
+      "description": "The SignaturePad component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/SignaturePad.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "@styles/signature-pad.css",
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "@aura/class-names"

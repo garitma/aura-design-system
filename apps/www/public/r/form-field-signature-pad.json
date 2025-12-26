@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-field-signature-pad",
+  "type": "registry:component",
+  "title": "FormFieldSignaturePad",
+  "description": "The FormFieldSignaturePad component.",
+  "dependencies": [
+    "ajv",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@aura/use-dynamic-form"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/FormFieldSignaturePad.tsx",
+      "content": "import * as React from \"react\";\nimport { ErrorObject } from \"ajv\";\nimport { Form as FormRadix } from \"radix-ui\";\nimport type { ComponentRef } from \"react\";\n\nimport { FieldProps } from \"@/hooks/use-dynamic-form\";\nimport SignaturePad, {\n  SignaturePadProps,\n} from \"@/components/ui/SignaturePad\";\n\ninterface FormFieldSignaturePadProps\n  extends Partial<FormRadix.FormFieldProps>,\n    Omit<SignaturePadProps, \"onChange\" | \"onSave\"> {\n  label: React.ReactNode;\n  labelProps?: FormRadix.FormLabelProps;\n  controlProps?: FormRadix.FormControlProps;\n  field?: FieldProps;\n  errors?: ErrorObject<string, Record<string, any>, unknown>[];\n  /**\n   * Callback function to be called when the signature is saved\n   * This is in addition to the form field value being updated\n   */\n  onSave?: (signature: Base64URLString) => void;\n}\n\nexport const FormFieldSignaturePad = React.forwardRef<\n  HTMLDivElement,\n  FormFieldSignaturePadProps\n>(\n  (\n    {\n      label,\n      labelProps,\n      controlProps,\n      field,\n      errors,\n      onSave,\n      penColor,\n      lineWidth,\n      showButtons,\n      saveButtonIcon,\n      clearButtonIcon,\n      variant,\n      size,\n      className,\n      ...props\n    },\n    forwardedRef\n  ) => {\n    const hasError = field?.touch && errors && errors.length > 0;\n    const name = props.name || field?.name || \"\";\n    const signaturePadRef = React.useRef<ComponentRef<typeof SignaturePad>>(null);\n\n    // Clear signature pad when form field value is cleared externally\n    React.useEffect(() => {\n      if (!field?.value && signaturePadRef.current) {\n        signaturePadRef.current.clear();\n      }\n    }, [field?.value]);\n\n    // Handle signature changes - update form field value\n    const handleChange = React.useCallback(\n      (signature: Base64URLString | null) => {\n        if (field?.setValue) {\n          field.setValue(signature || \"\");\n        }\n      },\n      [field]\n    );\n\n    // Handle signature save - update form field and call optional onSave callback\n    const handleSave = React.useCallback(\n      (signature: Base64URLString) => {\n        if (field?.setValue) {\n          field.setValue(signature);\n        }\n        onSave?.(signature);\n      },\n      [field, onSave]\n    );\n\n    return (\n      <FormRadix.Field\n        {...props}\n        ref={forwardedRef}\n        name={name}\n        serverInvalid={hasError}\n        className={className}\n      >\n        {label && <FormRadix.Label {...labelProps}>{label}</FormRadix.Label>}\n        <FormRadix.Control {...controlProps} asChild>\n          <SignaturePad\n            ref={signaturePadRef}\n            onChange={handleChange}\n            onSave={handleSave}\n            penColor={penColor}\n            lineWidth={lineWidth}\n            showButtons={showButtons}\n            saveButtonIcon={saveButtonIcon}\n            clearButtonIcon={clearButtonIcon}\n            variant={variant}\n            size={size}\n          />\n        </FormRadix.Control>\n        {hasError &&\n          errors?.map((error, index) => (\n            <FormRadix.Message className=\"text-warning-contrast\" key={index}>\n              {error.message}\n            </FormRadix.Message>\n          ))}\n      </FormRadix.Field>\n    );\n  }\n);\n\nFormFieldSignaturePad.displayName = \"FormFieldSignaturePad\";\n\n",
+      "type": "registry:component"
+    }
+  ]
+}

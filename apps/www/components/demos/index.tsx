@@ -133,6 +133,19 @@ import {
   RadioGroupDemoHorizontal
 } from "./radio-group-demo"
 import { 
+  SignaturePadDemo,
+  SignaturePadDemoWithoutButtons,
+  SignaturePadDemoVariants,
+  SignaturePadDemoSizes,
+  SignaturePadDemoCustomPenColor,
+  SignaturePadDemoCustomLineWidth,
+  SignaturePadDemoWithCustomIcons,
+  SignaturePadDemoWithOnSave,
+  SignaturePadDemoWithOnChange,
+  SignaturePadDemoWithRefMethods,
+  SignaturePadDemoCombinedExample
+} from "./signature-pad-demo"
+import { 
   SortableDemo,
   SortableDemoHorizontal,
   SortableDemoWithHandle,
@@ -437,6 +450,39 @@ export const Registry = {
   },
   "radio-group-demo-horizontal": {
     component: RadioGroupDemoHorizontal,
+  },
+  "signature-pad-demo": {
+    component: SignaturePadDemo,
+  },
+  "signature-pad-demo-without-buttons": {
+    component: SignaturePadDemoWithoutButtons,
+  },
+  "signature-pad-demo-variants": {
+    component: SignaturePadDemoVariants,
+  },
+  "signature-pad-demo-sizes": {
+    component: SignaturePadDemoSizes,
+  },
+  "signature-pad-demo-custom-pen-color": {
+    component: SignaturePadDemoCustomPenColor,
+  },
+  "signature-pad-demo-custom-line-width": {
+    component: SignaturePadDemoCustomLineWidth,
+  },
+  "signature-pad-demo-with-custom-icons": {
+    component: SignaturePadDemoWithCustomIcons,
+  },
+  "signature-pad-demo-with-on-save": {
+    component: SignaturePadDemoWithOnSave,
+  },
+  "signature-pad-demo-with-on-change": {
+    component: SignaturePadDemoWithOnChange,
+  },
+  "signature-pad-demo-with-ref-methods": {
+    component: SignaturePadDemoWithRefMethods,
+  },
+  "signature-pad-demo-combined-example": {
+    component: SignaturePadDemoCombinedExample,
   },
   "sortable-demo": {
     component: SortableDemo,
