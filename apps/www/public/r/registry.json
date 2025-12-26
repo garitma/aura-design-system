@@ -540,7 +540,6 @@
       ],
       "dependencies": [
         "@radix-ui/react-icons",
-        "@styles/signature-pad.css",
         "class-variance-authority"
       ],
       "registryDependencies": [

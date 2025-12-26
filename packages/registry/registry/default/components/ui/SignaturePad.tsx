@@ -62,33 +62,6 @@ interface SignaturePadRef {
     getCanvas: () => HTMLCanvasElement | null;
 }
 
-/**
- * Signature Pad component
- * @param {SignaturePadProps} props - The props for the SignaturePad component
- * @param {React.Ref<SignaturePadRef>} ref - The ref for the SignaturePad component
- * @returns {React.ReactNode} The SignaturePad component
- *
- * @requires Add this import to your global CSS:
- * @import '@styles/signature-pad.css'; // or relative path to the styles file based on your components.json file
- *
- * Or add this to your tailwind.config.ts:
- * theme: {
- *   extend: {
- *     cursor: {
- *       pencil: 'url("data:image/svg+xml...") 0 24, pointer'
- *     }
- *   }
- * }
- *
- * @example
- * <SignaturePad
- *     penColor="#121b48"
- *     lineWidth={4}
- *     showButtons={true}
- *     saveButtonIcon={<Save />}
- *     clearButtonIcon={<BrushCleaning />}
- * />
- */
 
 const SignaturePad = React.forwardRef<SignaturePadRef, SignaturePadProps>(
     (
