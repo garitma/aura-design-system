@@ -1,11 +1,13 @@
 ---
 title: Command
-description: Re-usable components built using Radix UI and Tailwind CSS.
+description: A command palette that allows users to search and execute commands.
 ---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
 
 ## Preview
 
-<ComponentPreview name="command-demo" description="Re-usable components built using Radix UI and Tailwind CSS.">
+<ComponentPreview name="command-demo" description="A command palette that allows users to search and execute commands.">
 
 ```tsx
 import * as React from "react";
@@ -55,7 +57,7 @@ export function CommandDemo() {
     <CommandDialog onOpenChange={setOpen} open={open}>
       <CommandDialogTrigger render={<Button variant="pill" />}>
         Open Command Palette
-        <Kbd>⌘J</Kbd>
+        <Kbd className="ml-0.5">⌘J</Kbd>
       </CommandDialogTrigger>
       <CommandDialogPopup>
         <Command items={groupedItems}>
@@ -124,5 +126,118 @@ export function CommandDemo() {
 
 </ComponentPreview>
 
-import { ComponentPreview } from "@/components/ComponentPreview"
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/command
+```
+
+
+
+## Props
+
+### Command
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `Autocomplete` | - |
+
+### CommandCollection
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `AutocompleteCollection` | - |
+
+### CommandDialog
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `any` | - |
+
+### CommandDialogPopup
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `CommandDialogPrimitive.Popup.Props` | - |
+
+### CommandDialogTrigger
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `CommandDialogPrimitive.Trigger.Props` | - |
+
+### CommandEmpty
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `AutocompleteEmpty` | - |
+
+### CommandFooter
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `"div"` | - |
+
+### CommandGroup
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `AutocompleteGroup` | - |
+
+### CommandGroupLabel
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `AutocompleteGroupLabel` | - |
+
+### CommandInput
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `AutocompleteInput` | - |
+
+### CommandItem
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `AutocompleteItem` | - |
+
+### CommandList
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `AutocompleteList` | - |
+
+### CommandPanel
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `"div"` | - |
+
+### CommandSeparator
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `AutocompleteSeparator` | - |
+
+### CommandShortcut
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `"kbd"` | - |
 

@@ -77,7 +77,7 @@ export const CommandDemo = () => {
     <CommandDialog onOpenChange={setOpen} open={open}>
       <CommandDialogTrigger render={<Button variant="pill" />}>
         Open Command Palette
-        <Kbd>⌘J</Kbd>
+        <Kbd className="ml-0.5">⌘J</Kbd>
       </CommandDialogTrigger>
       <CommandDialogPopup>
         <Command items={groupedItems}>

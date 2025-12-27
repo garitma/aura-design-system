@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "registry/default/components/ui/Kbd.tsx",
-      "content": "import type * as React from \"react\";\n\nimport { cn } from \"@/utils/class-names\";\n\nfunction Kbd({ className, ...props }: React.ComponentProps<\"kbd\">) {\n  return (\n    <kbd\n      className={cn(\n        \"pointer-events-none inline-flex h-1.5 min-w-2 select-none items-center justify-center gap-0.5 rounded bg-gray-2 px-0.5 font-medium font-sans text-gray-11 text-xs [&_svg:not([class*='size-'])]:size-1\",\n        className,\n      )}\n      data-slot=\"kbd\"\n      {...props}\n    />\n  );\n}\n\nfunction KbdGroup({ className, ...props }: React.ComponentProps<\"kbd\">) {\n  return (\n    <kbd\n      className={cn(\"inline-flex items-center gap-0.5\", className)}\n      data-slot=\"kbd-group\"\n      {...props}\n    />\n  );\n}\n\nexport { Kbd, KbdGroup };\n",
+      "content": "import type * as React from \"react\";\n\nimport { cn } from \"@/utils/class-names\";\n\nfunction Kbd({ className, ...props }: React.ComponentProps<\"kbd\">) {\n  return (\n    <kbd\n      className={cn(\n        \"pointer-events-none inline-flex h-1.5 min-w-2 select-none items-center justify-center gap-0.5 rounded bg-gray-2 px-0.5 font-medium font-sans text-gray-11 text-xs [&_svg:not([class*='size-'])]:size-1 border border-gray-a6\",\n        className,\n      )}\n      data-slot=\"kbd\"\n      {...props}\n    />\n  );\n}\n\nfunction KbdGroup({ className, ...props }: React.ComponentProps<\"kbd\">) {\n  return (\n    <kbd\n      className={cn(\"inline-flex items-center gap-0.5\", className)}\n      data-slot=\"kbd-group\"\n      {...props}\n    />\n  );\n}\n\nexport { Kbd, KbdGroup };\n",
       "type": "registry:ui"
     }
   ]

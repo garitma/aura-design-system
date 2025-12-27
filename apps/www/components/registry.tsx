@@ -121,6 +121,15 @@ import {
   HoverCardDemoProfilePreview
 } from "@/components/demos/hover-card-demo"
 import { 
+  KbdDemo,
+  KbdDemoSingleKey,
+  KbdDemoModifierKeys,
+  KbdDemoKeyboardShortcuts,
+  KbdDemoWithIcons,
+  KbdDemoComplexShortcuts,
+  KbdDemoGroup
+} from "@/components/demos/kbd-demo"
+import { 
   MenubarDemo
 } from "@/components/demos/menubar-demo"
 import { 
@@ -458,6 +467,27 @@ export const Registry = {
   },
   "hover-card-demo-profile-preview": {
     component: HoverCardDemoProfilePreview,
+  },
+  "kbd-demo": {
+    component: KbdDemo,
+  },
+  "kbd-demo-single-key": {
+    component: KbdDemoSingleKey,
+  },
+  "kbd-demo-modifier-keys": {
+    component: KbdDemoModifierKeys,
+  },
+  "kbd-demo-keyboard-shortcuts": {
+    component: KbdDemoKeyboardShortcuts,
+  },
+  "kbd-demo-with-icons": {
+    component: KbdDemoWithIcons,
+  },
+  "kbd-demo-complex-shortcuts": {
+    component: KbdDemoComplexShortcuts,
+  },
+  "kbd-demo-group": {
+    component: KbdDemoGroup,
   },
   "menubar-demo": {
     component: MenubarDemo,

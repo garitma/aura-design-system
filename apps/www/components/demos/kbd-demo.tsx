@@ -1,39 +1,9 @@
----
-title: Kbd
-description: A keyboard shortcut component that allows users to display keyboard shortcuts.
----
-
-import { ComponentPreview } from "@/components/ComponentPreview"
-
-## Preview
-
-<ComponentPreview name="kbd-demo" description="A keyboard shortcut component that allows users to display keyboard shortcuts.">
-
-```tsx
 import { Kbd, KbdGroup } from "@/components/ui/Kbd";
 import { ArrowUpIcon, ArrowDownIcon } from "@radix-ui/react-icons";
 
-export function KbdDemo() {
-  return <Kbd>⌘</Kbd>;
-}
-```
+export const KbdDemo = () => <Kbd>⌘</Kbd>;
 
-</ComponentPreview>
-
-## Installation
-Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
-```bash
-pnpm dlx shadcn@latest add @aura/kbd
-```
-
-
-
-## Usage
-
-### SingleKey
-
-```tsx
-export const SingleKey = () => (
+export const KbdDemoSingleKey = () => (
   <div className="flex gap-2 items-center">
     <Kbd>A</Kbd>
     <Kbd>B</Kbd>
@@ -42,12 +12,8 @@ export const SingleKey = () => (
     <Kbd>Esc</Kbd>
   </div>
 );
-```
 
-### ModifierKeys
-
-```tsx
-export const ModifierKeys = () => (
+export const KbdDemoModifierKeys = () => (
   <div className="flex gap-2 items-center">
     <Kbd>⌘</Kbd>
     <Kbd>⌥</Kbd>
@@ -55,12 +21,8 @@ export const ModifierKeys = () => (
     <Kbd>⇧</Kbd>
   </div>
 );
-```
 
-### KeyboardShortcuts
-
-```tsx
-export const KeyboardShortcuts = () => (
+export const KbdDemoKeyboardShortcuts = () => (
   <div className="flex flex-col gap-4">
     <div className="flex items-center gap-2">
       <span>Copy:</span>
@@ -92,12 +54,8 @@ export const KeyboardShortcuts = () => (
     </div>
   </div>
 );
-```
 
-### WithIcons
-
-```tsx
-export const WithIcons = () => (
+export const KbdDemoWithIcons = () => (
   <div className="flex flex-col gap-4">
     <div className="flex items-center gap-2">
       <span>Navigate up:</span>
@@ -124,12 +82,8 @@ export const WithIcons = () => (
     </div>
   </div>
 );
-```
 
-### ComplexShortcuts
-
-```tsx
-export const ComplexShortcuts = () => (
+export const KbdDemoComplexShortcuts = () => (
   <div className="flex flex-col gap-4">
     <div className="flex items-center gap-2">
       <span>Command Palette:</span>
@@ -155,32 +109,10 @@ export const ComplexShortcuts = () => (
     </div>
   </div>
 );
-```
 
-### Group
-
-```tsx
-export const Group = () => (
+export const KbdDemoGroup = () => (
   <KbdGroup>
     <Kbd>⌘</Kbd>
     <Kbd>K</Kbd>
   </KbdGroup>
 );
-```
-
-## Props
-
-### Kbd
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"kbd"` | - |
-
-### KbdGroup
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"kbd"` | - |
-

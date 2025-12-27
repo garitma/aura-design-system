@@ -1113,12 +1113,14 @@ function formatPropTypeForDisplay(propType: string): string {
 
 /**
  * Escape HTML entities in type strings to prevent MDX parsing issues
- * Escapes < and > which are used in generics like Promise<boolean>
+ * Escapes <, >, {, and } which are used in generics and object types
  */
 function escapeTypeForMDX(type: string): string {
   return type
     .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;");
+    .replace(/>/g, "&gt;")
+    .replace(/{/g, "&#123;")
+    .replace(/}/g, "&#125;");
 }
 
 /**
