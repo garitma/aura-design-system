@@ -92,7 +92,7 @@ export function CommandDemo() {
             </CommandList>
           </CommandPanel>
           <CommandFooter>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1">
               <div className="flex items-center gap-0.5">
                 <KbdGroup>
                   <Kbd>
@@ -105,9 +105,7 @@ export function CommandDemo() {
                 <span>Navigate</span>
               </div>
               <div className="flex items-center gap-0.5">
-                <Kbd>
-                  <ArrowTopRightIcon />
-                </Kbd>
+                <Kbd>↵</Kbd>
                 <span>Open</span>
               </div>
             </div>
@@ -277,7 +275,7 @@ function AutocompleteItem({
       data-slot="autocomplete-item"
       className={cn(
         className,
-        "p-0.5 px-2 hover:bg-accent-3 flex relative cursor-pointer justify-between data-disabled:pointer-events-none data-disabled:opacity-64"
+        "p-0.5 px-2 hover:bg-accent-3 data-[highlighted]:bg-accent-3 flex relative cursor-pointer justify-between data-disabled:pointer-events-none data-disabled:opacity-64"
       )}
       {...props}
     >

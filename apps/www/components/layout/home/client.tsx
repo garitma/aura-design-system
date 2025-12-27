@@ -21,7 +21,7 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/NavigationMenu";
 
-export const navItemVariants = cva("[&_svg]:size-1", {
+export const navItemVariants = cva("", {
   variants: {
     variant: {
       main: "inline-flex items-center gap-0.5 p-0.5 text-gray-11 transition-colors hover:text-gray-12 data-[active=true]:text-accent-11",
@@ -31,7 +31,7 @@ export const navItemVariants = cva("[&_svg]:size-1", {
       }),
       icon: buttonVariants({
         variant: "pill",
-        className: "p-0.5 size-3",
+        size: "icon",
       }),
     },
   },
@@ -199,7 +199,7 @@ export function MobileNavigationMenuLinkItem({
             main: "inline-flex items-center gap-2 py-0.5 transition-colors hover:text-fd-popover-foreground/50 data-[active=true]:font-medium data-[active=true]:text-fd-primary [&_svg]:size-4",
             icon: buttonVariants({
               variant: "pill",
-              className: "p-0.5 size-3",
+              size: "icon",
             }),
             button: buttonVariants({
               className: "gap-1.5 [&_svg]:size-4",

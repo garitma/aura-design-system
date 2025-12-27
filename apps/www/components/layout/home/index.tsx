@@ -2,6 +2,8 @@ import { type HTMLAttributes, useMemo } from "react";
 import { ChevronDown, Languages } from "lucide-react";
 import Link from "fumadocs-core/link";
 import { NavProvider } from "fumadocs-ui/contexts/layout";
+import type * as PageTree from "fumadocs-core/page-tree";
+import { TreeContextProvider } from "fumadocs-ui/contexts/tree";
 
 import { cn } from "@/utils/class-names";
 
@@ -15,6 +17,10 @@ import {
   SearchDialogTrigger,
   SearchDialogTriggerIcon,
 } from "@/components/SearchDialog";
+import {
+  Sidebar,
+  SidebarPageTree,
+} from "@/components/Sidebar";
 import {
   MobileNavigationMenuContent,
   MobileNavigationMenuLinkItem,
@@ -40,6 +46,10 @@ export interface HomeLayoutProps extends BaseLayoutProps {
       enableHoverToOpen?: boolean;
     }
   >;
+  /**
+   * Page tree for sidebar navigation (used in mobile menu)
+   */
+  tree?: PageTree.Root;
 }
 
 export function HomeLayout(
@@ -52,10 +62,11 @@ export function HomeLayout(
     i18n,
     themeSwitch = {},
     searchToggle,
+    tree,
     ...rest
   } = props;
 
-  return (
+  const content = (
     <NavProvider transparentMode={nav?.transparentMode}>
       <main
         id="nd-home-layout"
@@ -71,12 +82,23 @@ export function HomeLayout(
               searchToggle={searchToggle}
               i18n={i18n}
               githubUrl={githubUrl}
+              tree={tree}
             />
           ))}
         {props.children}
       </main>
     </NavProvider>
   );
+
+  if (tree) {
+    return (
+      <TreeContextProvider tree={tree}>
+        {content}
+      </TreeContextProvider>
+    );
+  }
+
+  return content;
 }
 
 export function Header({
@@ -86,6 +108,7 @@ export function Header({
   githubUrl,
   themeSwitch = {},
   searchToggle = {},
+  tree,
 }: HomeLayoutProps) {
   const finalLinks = useMemo(
     () => getLinks(links, githubUrl),
@@ -140,7 +163,7 @@ export function Header({
       <ul className="flex flex-row items-center ms-auto lg:hidden gap-0.5">
         <SearchDialogTriggerIcon />
 
-        {menuItems.length > 0 && (
+        {(tree || menuItems.length > 0) && (
           <NavigationMenuItem>
             <MobileNavigationMenuTrigger
               aria-label="Toggle Menu"
@@ -155,25 +178,40 @@ export function Header({
             >
               <ChevronDown className="icon transition-transform duration-300 group-data-[state=open]:rotate-180" />
             </MobileNavigationMenuTrigger>
-            <MobileNavigationMenuContent className="sm:flex-row sm:items-center sm:justify-end">
-              {menuItems
-                .filter((item) => !isSecondary(item))
-                .map((item, i) => (
-                  <MobileNavigationMenuLinkItem
-                    key={i}
-                    item={item}
-                    className="sm:hidden"
-                  />
-                ))}
+            <MobileNavigationMenuContent className="flex flex-col gap-1">
+              {tree ? (
+                <Sidebar
+                  defaultOpenLevel={1}
+                  prefetch={true}
+                  Content={
+                    <div className="flex flex-col gap-1 max-h-[60vh] overflow-y-auto">
+                      <SidebarPageTree />
+                    </div>
+                  }
+                />
+              ) : (
+                <>
+                  {menuItems
+                    .filter((item) => !isSecondary(item))
+                    .map((item, i) => (
+                      <MobileNavigationMenuLinkItem
+                        key={i}
+                        item={item}
+                        className="sm:hidden"
+                      />
+                    ))}
+                </>
+              )}
 
               <div className="flex flex-row gap-1 mt-1">
-                {menuItems.filter(isSecondary).map((item, i) => (
-                  <MobileNavigationMenuLinkItem
-                    key={i}
-                    item={item}
-                    className={cn(item.type === "icon" && "first:ms-0")}
-                  />
-                ))}
+                {!tree &&
+                  menuItems.filter(isSecondary).map((item, i) => (
+                    <MobileNavigationMenuLinkItem
+                      key={i}
+                      item={item}
+                      className={cn(item.type === "icon" && "first:ms-0")}
+                    />
+                  ))}
 
                 {i18n && (
                   <LanguageToggle>

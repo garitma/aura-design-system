@@ -19,7 +19,7 @@ function HeadingBase({
   return (
     <Component
       id={id}
-      className="flex scroll-m-2 flex-row items-center gap-2"
+      className="flex scroll-m-2 flex-row items-center gap-0.5"
       {...props}
     >
       <a data-card="" href={`#${id}`} className="peer">

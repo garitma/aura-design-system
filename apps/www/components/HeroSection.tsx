@@ -58,15 +58,12 @@ export default function HeroSection() {
             Another design system. <br className="hidden md:block" />
             <span className="text-gray-11">With Aura, The Soul is Yours</span>
           </h1>
-          <p className="p text-gray-11 max-w-2xl mx-auto text-lg">
-            Provide the robust architecture and modern conventions you need for
-            flexibility, but we deliberately leave room for your signature
-            style. It is engineered to adapt to any scenario, ensuring that
-            while the foundation is solid, the final identity is yours.
+          <p className="p text-gray-11 max-w-2xl mx-auto">
+          We think the best systems empower you to build something diferent. Do you?
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-1 items-center">
+        <div className="flex flex-row gap-1 items-center">
           <Button size="lg" asChild>
             <Link href="/docs">Get Started</Link>
           </Button>

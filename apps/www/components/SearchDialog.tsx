@@ -302,7 +302,7 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
             </ScrollArea>
           </CommandPanel>
           <CommandFooter>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1">
               <div className="flex items-center gap-0.5">
                 <KbdGroup>
                   <Kbd>
@@ -315,9 +315,7 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
                 <span>Navigate</span>
               </div>
               <div className="flex items-center gap-0.5">
-                <Kbd>
-                  <ArrowTopRightIcon />
-                </Kbd>
+                <Kbd>↵</Kbd>
                 <span>Open</span>
               </div>
             </div>
@@ -378,9 +376,7 @@ export function SearchDialogTriggerIcon({
         onClick={() => setOpen(true)}
         variant="pill"
         size="icon"
-        className={cn(
-          className
-        )}
+        className={cn(className)}
         aria-label="Open search"
       >
         <Search className="w-1 h-1 text-gray-11" />

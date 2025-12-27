@@ -161,7 +161,7 @@ export function getLinks(
         url: githubUrl,
         text: 'Github',
         label: 'GitHub',
-        icon: <GitHubLogoIcon />,
+        icon: <GitHubLogoIcon className="icon" />,
         external: true,
       },
     ];

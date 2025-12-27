@@ -164,9 +164,9 @@ export function DocsLayout({
                   item={item}
                   className={cn(
                     buttonVariants({
-                      size: "sm",
+                      size: "icon",
                       variant: "pill",
-                      className: "p-0.5 size-3",
+                      className: "p-0.5",
                     })
                   )}
                   aria-label={item.label}
@@ -255,9 +255,9 @@ export function DocsLayout({
                   item={item}
                   className={cn(
                     buttonVariants({
-                      size: "sm",
+                      size: "icon",
                       variant: "pill",
-                      className: "p-0.5 size-3",
+                      className: "p-0.5",
                     })
                   )}
                   aria-label={item.label}

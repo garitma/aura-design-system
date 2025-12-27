@@ -51,9 +51,8 @@ export default function AuraAesthetic() {
           </h2>
           <p className="text-gray-11">
             We've compiled the high-quality basic ingredients for your product;
-            by adding just a few of taste—your final signature touch—we believe
-            you can achieve something truly great. We think the best systems
-            empower you to build something diferent. <b>Do you?</b>
+            by adding just a few of taste, your final signature touch. We believe
+            you can achieve something truly great.
           </p>
         </div>
         {/* Demo Blocks */}

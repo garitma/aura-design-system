@@ -106,7 +106,7 @@ export const Default = () => {
             </CommandList>
           </CommandPanel>
           <CommandFooter>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1">
               <div className="flex items-center gap-0.5">
                 <KbdGroup>
                   <Kbd>
@@ -119,9 +119,7 @@ export const Default = () => {
                 <span>Navigate</span>
               </div>
               <div className="flex items-center gap-0.5">
-                <Kbd>
-                  <ArrowTopRightIcon />
-                </Kbd>
+                <Kbd>↵</Kbd>
                 <span>Open</span>
               </div>
             </div>
