@@ -35,6 +35,7 @@ interface RegistryItem {
   files?: Array<{
     path: string;
     type: RegistryItemType;
+    target?: string;
   }>;
   dependencies?: string[];
   registryDependencies?: string[];
@@ -189,6 +190,22 @@ function getComponentItemsFromPath(dirPath: string, registryPrefix: string, item
           },
         ],
       };
+
+      // Check for corresponding CSS file in styles directory
+      const cssFileName = `${kebabName}.css`;
+      const cssFilePath = path.join(STYLES_PATH, cssFileName);
+      if (fs.existsSync(cssFilePath)) {
+        item.files?.push({
+          path: `registry/default/styles/${cssFileName}`,
+          type: "registry:component",
+          target: `./styles/${cssFileName}`,
+        });
+
+        // Use @import for the CSS file instead of parsing variables and keyframes
+        item.css = {
+          [`@import "./styles/${cssFileName}"`]: {}
+        };
+      }
       
       // Only add dependencies field if there are external dependencies
       if (dependencies.length > 0) {

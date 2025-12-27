@@ -176,8 +176,16 @@
         {
           "path": "registry/default/components/ui/Accordion.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/accordion.css",
+          "type": "registry:component",
+          "target": "./styles/accordion.css"
         }
       ],
+      "css": {
+        "@import \"./styles/accordion.css\"": {}
+      },
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"
@@ -882,20 +890,6 @@
           "type": "registry:hook"
         }
       ]
-    },
-    {
-      "name": "accordion-animation",
-      "type": "registry:style",
-      "cssVars": {
-        "theme": {
-          "--animate-accordion-open": "slideDownAccordion 250ms ease-in-out",
-          "--animate-accordion-closed": "slideUpAccordion 250ms ease-in-out"
-        }
-      },
-      "css": {
-        "@keyframes slideDownAccordion": {},
-        "@keyframes slideUpAccordion": {}
-      }
     },
     {
       "name": "page-get-starter",
