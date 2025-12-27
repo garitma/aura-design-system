@@ -246,7 +246,7 @@ function CommandFooter({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       className={cn(
-        "flex items-center justify-between gap-1 rounded-b-[calc(var(--radius-2xl)-1px)] px-2 py-1 text-gray-11 text-xs",
+        "flex items-center justify-between gap-1 rounded-b-[calc(var(--radius-2xl)-1px)] border-t border-gray-a6 bg-gray-2 px-2 py-1 text-gray-11 text-xs z-10",
         className,
       )}
       data-slot="command-footer"
