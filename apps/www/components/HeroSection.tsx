@@ -25,7 +25,7 @@ function CopyableCommand({ command }: { command: string }) {
   return (
     <button
       type="button"
-      className="mt-1 flex items-center gap-0.5 text-sm font-mono cursor-pointer"
+      className="mt-1 flex items-center gap-0 text-xs font-mono cursor-pointer"
       onClick={handleCopy}
       aria-label={copied ? "Copied" : "Copy command"}
     >
@@ -34,7 +34,7 @@ function CopyableCommand({ command }: { command: string }) {
       </code>
       <div
         className={cn(
-          "flex items-center justify-center size-2 rounded-md",
+          "items-center justify-center size-2 rounded-md hidden sm:flex",
           "text-gray-11 hover:text-gray-12 hover:bg-gray-3",
           "transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-7"
         )}
