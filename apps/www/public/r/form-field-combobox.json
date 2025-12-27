@@ -1,0 +1,24 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-field-combobox",
+  "type": "registry:component",
+  "title": "FormFieldCombobox",
+  "description": "The FormFieldCombobox component.",
+  "dependencies": [
+    "ajv",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@aura/class-names",
+    "@aura/combobox-multiple",
+    "@aura/combobox-single",
+    "@aura/use-dynamic-form"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/FormFieldCombobox.tsx",
+      "content": "import * as React from \"react\";\nimport { ErrorObject } from \"ajv\";\nimport { Form as FormRadix } from \"radix-ui\";\n\nimport { FieldProps } from \"@/hooks/use-dynamic-form\";\nimport { ComboboxSingle, ComboboxOption } from \"@/components/ComboboxSingle\";\nimport { ComboboxMultiple } from \"@/components/ComboboxMultiple\";\nimport { cn } from \"@/utils/class-names\";\n\ninterface FormFieldComboboxProps extends Partial<FormRadix.FormFieldProps> {\n  label?: React.ReactNode;\n  labelProps?: FormRadix.FormLabelProps;\n  controlProps?: FormRadix.FormControlProps;\n  field?: FieldProps;\n  errors?: ErrorObject<string, Record<string, any>, unknown>[];\n  options: ComboboxOption[];\n  /**\n   * Whether to allow multiple selection\n   * @default false\n   */\n  multiple?: boolean;\n  /**\n   * Placeholder text for the combobox\n   */\n  placeholder?: string;\n  /**\n   * Whether the combobox is disabled\n   */\n  disabled?: boolean;\n  /**\n   * Custom className for the combobox\n   */\n  className?: string;\n}\n\nexport const FormFieldCombobox = React.forwardRef<\n  HTMLDivElement,\n  FormFieldComboboxProps\n>(\n  (\n    {\n      label,\n      labelProps,\n      controlProps,\n      field,\n      errors,\n      options,\n      multiple = false,\n      placeholder,\n      disabled = false,\n      className,\n      ...props\n    },\n    forwardedRef\n  ) => {\n    const hasError = field?.touch && errors && errors.length > 0;\n    const name = props.name || field?.name || \"\";\n\n    const handleChange = (value) => {\n      if (field?.setValue) {\n        field.setValue(value);\n      }\n    };\n\n    return (\n      <FormRadix.Field\n        {...props}\n        ref={forwardedRef}\n        name={name}\n        serverInvalid={hasError}\n        className={cn(\"flex flex-col gap-0.5\", className)}\n      >\n        {label && <FormRadix.Label {...labelProps}>{label}</FormRadix.Label>}\n        <FormRadix.Control {...controlProps} asChild>\n          {multiple ? (\n            <ComboboxMultiple options={options} onChange={handleChange} />\n          ) : (\n            <ComboboxSingle options={options} onChange={handleChange} />\n          )}\n        </FormRadix.Control>\n        {hasError &&\n          errors?.map((error, index) => (\n            <FormRadix.Message className=\"text-warning-contrast\" key={index}>\n              {error.message}\n            </FormRadix.Message>\n          ))}\n      </FormRadix.Field>\n    );\n  }\n);\n\nFormFieldCombobox.displayName = \"FormFieldCombobox\";\n",
+      "type": "registry:component"
+    }
+  ]
+}

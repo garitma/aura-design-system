@@ -11,7 +11,10 @@
   ],
   "registryDependencies": [
     "@aura/class-names",
-    "@aura/custom-color-functions"
+    "@aura/custom-color-functions",
+    "@aura/input",
+    "@aura/label",
+    "@aura/popover"
   ],
   "files": [
     {

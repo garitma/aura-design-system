@@ -7,6 +7,9 @@
   "dependencies": [
     "@radix-ui/react-icons"
   ],
+  "registryDependencies": [
+    "@aura/alert"
+  ],
   "files": [
     {
       "path": "registry/default/components/AlertStatus.tsx",

@@ -16,6 +16,69 @@
       ],
       "dependencies": [
         "@radix-ui/react-icons"
+      ],
+      "registryDependencies": [
+        "@aura/alert"
+      ]
+    },
+    {
+      "name": "combobox-multiple",
+      "type": "registry:component",
+      "title": "ComboboxMultiple",
+      "description": "The ComboboxMultiple component.",
+      "files": [
+        {
+          "path": "registry/default/components/ComboboxMultiple.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/combobox"
+      ]
+    },
+    {
+      "name": "combobox-single",
+      "type": "registry:component",
+      "title": "ComboboxSingle",
+      "description": "The ComboboxSingle component.",
+      "files": [
+        {
+          "path": "registry/default/components/ComboboxSingle.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/combobox"
+      ]
+    },
+    {
+      "name": "form-field-combobox",
+      "type": "registry:component",
+      "title": "FormFieldCombobox",
+      "description": "The FormFieldCombobox component.",
+      "files": [
+        {
+          "path": "registry/default/components/FormFieldCombobox.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "ajv",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/combobox-multiple",
+        "@aura/combobox-single",
+        "@aura/use-dynamic-form"
       ]
     },
     {
@@ -55,6 +118,7 @@
       ],
       "registryDependencies": [
         "@aura/class-names",
+        "@aura/sortable",
         "@aura/use-dynamic-form"
       ]
     },
@@ -76,7 +140,10 @@
       ],
       "registryDependencies": [
         "@aura/class-names",
-        "@aura/custom-color-functions"
+        "@aura/custom-color-functions",
+        "@aura/input",
+        "@aura/label",
+        "@aura/popover"
       ]
     },
     {
@@ -311,6 +378,7 @@
         "radix-ui"
       ],
       "registryDependencies": [
+        "@aura/button",
         "@aura/class-names"
       ]
     },
@@ -368,7 +436,11 @@
         "radix-ui"
       ],
       "registryDependencies": [
+        "@aura/alert-status",
+        "@aura/checkbox",
         "@aura/class-names",
+        "@aura/radio-group",
+        "@aura/switch",
         "@aura/use-dynamic-form"
       ]
     },
@@ -561,6 +633,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
+        "@aura/button",
         "@aura/class-names"
       ]
     },

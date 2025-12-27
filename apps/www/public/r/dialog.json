@@ -9,6 +9,7 @@
     "radix-ui"
   ],
   "registryDependencies": [
+    "@aura/button",
     "@aura/class-names"
   ],
   "files": [

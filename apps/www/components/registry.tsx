@@ -108,7 +108,10 @@ import {
   FormDemoWithCheckboxGroup,
   FormDemoWithSelect,
   FormDemoWithLoading,
-  FormDemoCompleteForm
+  FormDemoCompleteForm,
+  FormDemoWithComboboxSingle,
+  FormDemoWithComboboxMultiple,
+  FormDemoWithSignaturePad
 } from "@/components/demos/form-demo"
 import { 
   HoverCardDemo,
@@ -425,6 +428,15 @@ export const Registry = {
   },
   "form-demo-complete-form": {
     component: FormDemoCompleteForm,
+  },
+  "form-demo-with-combobox-single": {
+    component: FormDemoWithComboboxSingle,
+  },
+  "form-demo-with-combobox-multiple": {
+    component: FormDemoWithComboboxMultiple,
+  },
+  "form-demo-with-signature-pad": {
+    component: FormDemoWithSignaturePad,
   },
   "hover-card-demo": {
     component: HoverCardDemo,

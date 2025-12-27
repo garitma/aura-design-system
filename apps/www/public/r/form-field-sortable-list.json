@@ -11,6 +11,7 @@
   ],
   "registryDependencies": [
     "@aura/class-names",
+    "@aura/sortable",
     "@aura/use-dynamic-form"
   ],
   "files": [

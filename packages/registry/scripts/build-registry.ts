@@ -97,9 +97,10 @@ function extractDependencies(filePath: string): string[] {
 }
 
 /**
- * Extract registry dependencies (internal hooks and utils) from a file by parsing import statements
+ * Extract registry dependencies (internal hooks, utils, and components) from a file by parsing import statements
  * Converts @/hooks/use-as-ref to @aura/use-as-ref
  * Converts @/utils/class-names to @aura/class-names
+ * Converts @/components/ComboboxSingle to @aura/combobox-single
  */
 function extractRegistryDependencies(filePath: string): string[] {
   const content = fs.readFileSync(filePath, "utf-8");
@@ -117,7 +118,7 @@ function extractRegistryDependencies(filePath: string): string[] {
       continue;
     }
     
-    // Check if it's a hook or util import
+    // Check if it's a hook import
     if (importPath.startsWith('@/hooks/')) {
       // Extract hook name: @/hooks/use-as-ref -> use-as-ref
       const hookPath = importPath.replace('@/hooks/', '');
@@ -125,12 +126,32 @@ function extractRegistryDependencies(filePath: string): string[] {
       // Convert to kebab-case if needed (most hooks are already kebab-case)
       const kebabName = hookName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
       registryDeps.add(`@aura/${kebabName}`);
-    } else if (importPath.startsWith('@/utils/')) {
+    } 
+    // Check if it's a util import
+    else if (importPath.startsWith('@/utils/')) {
       // Extract util name: @/utils/class-names -> class-names
       const utilPath = importPath.replace('@/utils/', '');
       const utilName = utilPath.split('/')[0]; // Handle subpaths if any
       // Convert to kebab-case if needed (most utils are already kebab-case)
       const kebabName = utilName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+      registryDeps.add(`@aura/${kebabName}`);
+    }
+    // Check if it's a component import
+    else if (importPath.startsWith('@/components/')) {
+      // Extract component name: 
+      // @/components/ComboboxSingle -> combobox-single
+      // @/components/ui/Combobox -> combobox
+      const componentPath = importPath.replace('@/components/', '');
+      const pathParts = componentPath.split('/');
+      
+      // If it's @/components/ui/ComponentName, extract ComponentName
+      // Otherwise extract the first part (which is the component name)
+      const componentName = pathParts[0] === 'ui' && pathParts.length > 1 
+        ? pathParts[1] 
+        : pathParts[0];
+      
+      // Convert PascalCase to kebab-case: ComboboxSingle -> combobox-single
+      const kebabName = componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
       registryDeps.add(`@aura/${kebabName}`);
     }
   }

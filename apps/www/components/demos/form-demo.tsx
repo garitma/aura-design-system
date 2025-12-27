@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import {
   Form,
   FormField,
@@ -9,6 +9,8 @@ import {
   FormAlert,
 } from "@/components/ui/Form";
 import { Input } from "@/components/ui/Input";
+import { FormFieldCombobox } from "@/components/FormFieldCombobox";
+import { FormFieldSignaturePad } from "@/components/FormFieldSignaturePad";
 import { useFormDynamic } from "@/hooks/use-dynamic-form";
 import { validateFormData } from "@/utils/web-validation";
 
@@ -183,9 +185,6 @@ const completeFormSchema = {
 
 export const FormDemo = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const [fetchStatus, setFetchStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
 
   const formData = useFormDynamic({
     name: "text",
@@ -202,10 +201,10 @@ export const FormDemo = () => {
 
   const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setFetchStatus("loading");
+    formData.setFetchStatus("loading");
 
     if (!isValid) {
-      setFetchStatus("error");
+      formData.setFetchStatus("error");
       formData.touchForm();
       formData.setError("Please complete all required fields");
       return;
@@ -213,12 +212,12 @@ export const FormDemo = () => {
 
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    setFetchStatus("success");
+    formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
   };
 
   const formDataForAlert = {
-    fetchStatus,
+    fetchStatus: formData.fetchStatus,
     error: formData.error,
   };
 
@@ -238,7 +237,7 @@ export const FormDemo = () => {
         <Input type="email" placeholder="Enter your email" />
       </FormField>
       <FormSubmit
-        fetchStatus={fetchStatus}
+        fetchStatus={formData.fetchStatus}
         buttonProps={{ children: "Submit" }}
         form="form-default"
       />
@@ -248,9 +247,6 @@ export const FormDemo = () => {
 
 export const FormDemoMultipleFields = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const [fetchStatus, setFetchStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
 
   const formData = useFormDynamic({
     name: "text",
@@ -269,10 +265,10 @@ export const FormDemoMultipleFields = () => {
 
   const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setFetchStatus("loading");
+    formData.setFetchStatus("loading");
 
     if (!isValid) {
-      setFetchStatus("error");
+      formData.setFetchStatus("error");
       formData.touchForm();
       formData.setError("Please complete all required fields");
       return;
@@ -280,12 +276,12 @@ export const FormDemoMultipleFields = () => {
 
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    setFetchStatus("success");
+    formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
   };
 
   const formDataForAlert = {
-    fetchStatus,
+    fetchStatus: formData.fetchStatus,
     error: formData.error,
   };
 
@@ -317,7 +313,7 @@ export const FormDemoMultipleFields = () => {
         </select>
       </FormField>
       <FormSubmit
-        fetchStatus={fetchStatus}
+        fetchStatus={formData.fetchStatus}
         buttonProps={{ children: "Submit" }}
         form="form-multiple"
       />
@@ -327,9 +323,6 @@ export const FormDemoMultipleFields = () => {
 
 export const FormDemoWithErrors = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const [fetchStatus, setFetchStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
 
   const formData = useFormDynamic({
     name: "text",
@@ -346,20 +339,20 @@ export const FormDemoWithErrors = () => {
 
   const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setFetchStatus("loading");
+    formData.setFetchStatus("loading");
 
     if (!isValid) {
-      setFetchStatus("error");
+      formData.setFetchStatus("error");
       formData.touchForm();
       formData.setError("Please fix the validation errors");
       return;
     }
 
-    setFetchStatus("success");
+    formData.setFetchStatus("success");
   };
 
   const formDataForAlert = {
-    fetchStatus,
+    fetchStatus: formData.fetchStatus,
     error: formData.error,
   };
 
@@ -379,7 +372,7 @@ export const FormDemoWithErrors = () => {
         <Input type="email" placeholder="Enter your email" />
       </FormField>
       <FormSubmit
-        fetchStatus={fetchStatus}
+        fetchStatus={formData.fetchStatus}
         buttonProps={{ children: "Submit" }}
         form="form-errors"
       />
@@ -389,9 +382,6 @@ export const FormDemoWithErrors = () => {
 
 export const FormDemoWithSwitch = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const [fetchStatus, setFetchStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
 
   const formData = useFormDynamic({
     notifications: "checkbox",
@@ -408,22 +398,22 @@ export const FormDemoWithSwitch = () => {
 
   const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setFetchStatus("loading");
+    formData.setFetchStatus("loading");
 
     if (!isValid) {
-      setFetchStatus("error");
+      formData.setFetchStatus("error");
       formData.touchForm();
       return;
     }
 
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    setFetchStatus("success");
+    formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
   };
 
   const formDataForAlert = {
-    fetchStatus,
+    fetchStatus: formData.fetchStatus,
     error: formData.error,
   };
 
@@ -439,7 +429,7 @@ export const FormDemoWithSwitch = () => {
       <FormSwitch field={notifications} label="Enable notifications" />
       <FormSwitch field={marketing} label="Receive marketing emails" />
       <FormSubmit
-        fetchStatus={fetchStatus}
+        fetchStatus={formData.fetchStatus}
         buttonProps={{ children: "Submit" }}
         form="form-switch"
       />
@@ -449,9 +439,6 @@ export const FormDemoWithSwitch = () => {
 
 export const FormDemoWithCheckbox = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const [fetchStatus, setFetchStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
 
   const formData = useFormDynamic({
     terms: "checkbox",
@@ -468,10 +455,10 @@ export const FormDemoWithCheckbox = () => {
 
   const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setFetchStatus("loading");
+    formData.setFetchStatus("loading");
 
     if (!isValid) {
-      setFetchStatus("error");
+      formData.setFetchStatus("error");
       formData.touchForm();
       formData.setError("Please accept all required agreements");
       return;
@@ -479,12 +466,12 @@ export const FormDemoWithCheckbox = () => {
 
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    setFetchStatus("success");
+    formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
   };
 
   const formDataForAlert = {
-    fetchStatus,
+    fetchStatus: formData.fetchStatus,
     error: formData.error,
   };
 
@@ -503,7 +490,7 @@ export const FormDemoWithCheckbox = () => {
       />
       <FormCheckbox field={privacy} label="I agree to the privacy policy *" />
       <FormSubmit
-        fetchStatus={fetchStatus}
+        fetchStatus={formData.fetchStatus}
         buttonProps={{ children: "Submit" }}
         form="form-checkbox"
       />
@@ -513,9 +500,6 @@ export const FormDemoWithCheckbox = () => {
 
 export const FormDemoWithCheckboxGroup = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const [fetchStatus, setFetchStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
 
   const formData = useFormDynamic({
     interests: "checkbox",
@@ -554,10 +538,10 @@ export const FormDemoWithCheckboxGroup = () => {
 
   const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setFetchStatus("loading");
+    formData.setFetchStatus("loading");
 
     if (!isValid) {
-      setFetchStatus("error");
+      formData.setFetchStatus("error");
       formData.touchForm();
       formData.setError("Please select at least one interest");
       return;
@@ -565,12 +549,12 @@ export const FormDemoWithCheckboxGroup = () => {
 
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    setFetchStatus("success");
+    formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
   };
 
   const formDataForAlert = {
-    fetchStatus,
+    fetchStatus: formData.fetchStatus,
     error: formData.error,
   };
 
@@ -589,7 +573,7 @@ export const FormDemoWithCheckboxGroup = () => {
         options={interestsOptions}
       />
       <FormSubmit
-        fetchStatus={fetchStatus}
+        fetchStatus={formData.fetchStatus}
         buttonProps={{ children: "Submit" }}
         form="form-checkbox-group"
       />
@@ -599,9 +583,6 @@ export const FormDemoWithCheckboxGroup = () => {
 
 export const FormDemoWithSelect = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const [fetchStatus, setFetchStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
 
   const formData = useFormDynamic({
     country: "select",
@@ -618,10 +599,10 @@ export const FormDemoWithSelect = () => {
 
   const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setFetchStatus("loading");
+    formData.setFetchStatus("loading");
 
     if (!isValid) {
-      setFetchStatus("error");
+      formData.setFetchStatus("error");
       formData.touchForm();
       formData.setError("Please select both country and city");
       return;
@@ -629,12 +610,12 @@ export const FormDemoWithSelect = () => {
 
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    setFetchStatus("success");
+    formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
   };
 
   const formDataForAlert = {
-    fetchStatus,
+    fetchStatus: formData.fetchStatus,
     error: formData.error,
   };
 
@@ -666,7 +647,7 @@ export const FormDemoWithSelect = () => {
         </select>
       </FormField>
       <FormSubmit
-        fetchStatus={fetchStatus}
+        fetchStatus={formData.fetchStatus}
         buttonProps={{ children: "Submit" }}
         form="form-select"
       />
@@ -676,9 +657,6 @@ export const FormDemoWithSelect = () => {
 
 export const FormDemoWithLoading = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const [fetchStatus, setFetchStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
 
   const formData = useFormDynamic({
     name: "text",
@@ -695,10 +673,10 @@ export const FormDemoWithLoading = () => {
 
   const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setFetchStatus("loading");
+    formData.setFetchStatus("loading");
 
     if (!isValid) {
-      setFetchStatus("error");
+      formData.setFetchStatus("error");
       formData.touchForm();
       formData.setError("Please complete all required fields");
       return;
@@ -706,12 +684,12 @@ export const FormDemoWithLoading = () => {
 
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 2000));
-    setFetchStatus("success");
+    formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
   };
 
   const formDataForAlert = {
-    fetchStatus,
+    fetchStatus: formData.fetchStatus,
     error: formData.error,
   };
 
@@ -731,7 +709,7 @@ export const FormDemoWithLoading = () => {
         <Input type="email" placeholder="Enter your email" />
       </FormField>
       <FormSubmit
-        fetchStatus={fetchStatus}
+        fetchStatus={formData.fetchStatus}
         buttonProps={{ children: "Submit" }}
         form="form-loading"
       />
@@ -741,9 +719,6 @@ export const FormDemoWithLoading = () => {
 
 export const FormDemoCompleteForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
-  const [fetchStatus, setFetchStatus] = useState<
-    "idle" | "loading" | "success" | "error"
-  >("idle");
 
   const formData = useFormDynamic({
     name: "text",
@@ -793,10 +768,10 @@ export const FormDemoCompleteForm = () => {
 
   const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setFetchStatus("loading");
+    formData.setFetchStatus("loading");
 
     if (!isValid) {
-      setFetchStatus("error");
+      formData.setFetchStatus("error");
       formData.touchForm();
       formData.setError("Please complete all required fields");
       return;
@@ -804,12 +779,12 @@ export const FormDemoCompleteForm = () => {
 
     // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
-    setFetchStatus("success");
+    formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
   };
 
   const formDataForAlert = {
-    fetchStatus,
+    fetchStatus: formData.fetchStatus,
     error: formData.error,
   };
 
@@ -856,9 +831,194 @@ export const FormDemoCompleteForm = () => {
       />
       
       <FormSubmit
-        fetchStatus={fetchStatus}
+        fetchStatus={formData.fetchStatus}
         buttonProps={{ children: "Submit Form" }}
         form="form-complete"
+      />
+    </Form>
+  );
+};
+
+export const FormDemoWithComboboxSingle = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const formData = useFormDynamic({
+    country: "text",
+  });
+
+  const { country } = formData.getFields();
+
+  const { isValid, errors } = validateFormData(
+    comboboxSingleSchema,
+    formData.getValues()
+  );
+  const formErrors = errors || undefined;
+
+  const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    formData.setFetchStatus("loading");
+
+    if (!isValid) {
+      formData.setFetchStatus("error");
+      formData.touchForm();
+      formData.setError("Please select a country");
+      return;
+    }
+
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    formData.setFetchStatus("success");
+    console.log("Form submitted:", formData.getValues());
+  };
+
+  const formDataForAlert = {
+    fetchStatus: formData.fetchStatus,
+    error: formData.error,
+  };
+
+  return (
+    <Form
+      ref={formRef}
+      onSubmit={handleOnSubmit}
+      errors={formErrors}
+      id="form-combobox-single"
+      className="flex flex-col gap-1"
+    >
+      <FormAlert formData={formDataForAlert} />
+      <FormFieldCombobox
+        field={country}
+        label="Country *"
+        options={comboboxOptions}
+        placeholder="Select a country"
+      />
+      <FormSubmit
+        fetchStatus={formData.fetchStatus}
+        buttonProps={{ children: "Submit" }}
+        form="form-combobox-single"
+      />
+    </Form>
+  );
+};
+
+export const FormDemoWithComboboxMultiple = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const formData = useFormDynamic({
+    interests: "text",
+  }, formRef);
+
+  const { interests } = formData.getFields();
+
+  const { isValid, errors } = validateFormData(
+    comboboxMultipleSchema,
+    formData.getValues()
+  );
+  const formErrors = errors || undefined;
+
+  const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    formData.setFetchStatus("loading");
+
+    if (!isValid) {
+      formData.setFetchStatus("error");
+      formData.touchForm();
+      formData.setError("Please select at least one interest");
+      return;
+    }
+
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    formData.setFetchStatus("success");
+    console.log("Form submitted:", formData.getValues());
+  };
+
+  const formDataForAlert = {
+    fetchStatus: formData.fetchStatus,
+    error: formData.error,
+  };
+
+
+  return (
+    <Form
+      ref={formRef}
+      onSubmit={handleOnSubmit}
+      errors={formErrors}
+      id="form-combobox-multiple"
+      className="flex flex-col gap-1"
+    >
+      <FormAlert formData={formDataForAlert} />
+      <FormFieldCombobox
+        field={interests}
+        label="Select your interests *"
+        options={comboboxInterestsOptions}
+        multiple
+        placeholder="Select one or more interests"
+      />
+      <FormSubmit
+        fetchStatus={formData.fetchStatus}
+        buttonProps={{ children: "Submit" }}
+        form="form-combobox-multiple"
+      />
+    </Form>
+  );
+};
+
+export const FormDemoWithSignaturePad = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const formData = useFormDynamic({
+    signature: "text",
+  });
+
+  const { signature } = formData.getFields();
+
+  const { isValid, errors } = validateFormData(
+    signaturePadSchema,
+    formData.getValues()
+  );
+  const formErrors = errors || undefined;
+
+  const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    formData.setFetchStatus("loading");
+
+    if (!isValid) {
+      formData.setFetchStatus("error");
+      formData.touchForm();
+      formData.setError("Please provide your signature");
+      return;
+    }
+
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    formData.setFetchStatus("success");
+    console.log("Form submitted:", formData.getValues());
+  };
+
+  const formDataForAlert = {
+    fetchStatus: formData.fetchStatus,
+    error: formData.error,
+  };
+
+  return (
+    <Form
+      ref={formRef}
+      onSubmit={handleOnSubmit}
+      errors={formErrors}
+      id="form-signature-pad"
+      className="flex flex-col gap-1"
+    >
+      <FormAlert formData={formDataForAlert} />
+      <FormFieldSignaturePad
+        field={signature}
+        label="Signature *"
+        variant="default"
+        size="md"
+      />
+      <FormSubmit
+        fetchStatus={formData.fetchStatus}
+        buttonProps={{ children: "Submit" }}
+        form="form-signature-pad"
       />
     </Form>
   );
