@@ -12,20 +12,20 @@ export const AvatarDemo = () => (
     />
     <AvatarFallback>JD</AvatarFallback>
   </Avatar>
-);
+)
 
 export const AvatarDemoWithFallback = () => (
   <Avatar>
     <AvatarImage src="invalid-url.jpg" alt="User avatar" />
     <AvatarFallback>AB</AvatarFallback>
   </Avatar>
-);
+)
 
 export const AvatarDemoFallbackOnly = () => (
   <Avatar>
     <AvatarFallback>CD</AvatarFallback>
   </Avatar>
-);
+)
 
 export const AvatarDemoCustomSize = () => (
   <div className="flex gap-4 items-center">
@@ -51,7 +51,7 @@ export const AvatarDemoCustomSize = () => (
       <AvatarFallback>LG</AvatarFallback>
     </Avatar>
   </div>
-);
+)
 
 export const AvatarGroupDemo = () => (
   <div className="flex -space-x-2">
@@ -80,7 +80,7 @@ export const AvatarGroupDemo = () => (
       <AvatarFallback>+5</AvatarFallback>
     </Avatar>
   </div>
-);
+)
 
 export const AvatarDemoWithStatus = () => (
   <div className="flex gap-4 items-center">
@@ -115,7 +115,7 @@ export const AvatarDemoWithStatus = () => (
       <span className="absolute bottom-0 right-0 block size-1 rounded-full bg-gray-400 ring-2 ring-white" />
     </div>
   </div>
-);
+)
 
 export const AvatarDemoDifferentShapes = () => (
   <div className="flex gap-4 items-center">
@@ -141,7 +141,7 @@ export const AvatarDemoDifferentShapes = () => (
       <AvatarFallback>BX</AvatarFallback>
     </Avatar>
   </div>
-);
+)
 
 export const AvatarDemoCustomFallbackStyles = () => (
   <div className="flex gap-4 items-center">
@@ -159,4 +159,4 @@ export const AvatarDemoCustomFallbackStyles = () => (
       </AvatarFallback>
     </Avatar>
   </div>
-);
+)

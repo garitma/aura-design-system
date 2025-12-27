@@ -276,13 +276,18 @@
     --spacing: 4px;
   }
 
-@import "../styles/accordion.css" ;
+  @import "../styles/accordion.css" ;
+  @import "../styles/alert-dialog.css" ;
+  @import "../styles/collapsible.css" ;
+  @import "../styles/dialog.css" ;
 
-@import "../styles/alert-dialog.css" ;
+  .fd-step:before {
+    width: 52.5px!important;
+    height: 52.5px!important;
+    inset-inline-start: -26.25px!important;
+    transform: translateY(-13px);
 
-@import "../styles/collapsible.css" ;
-
-@import "../styles/dialog.css" ;
+  }
 }
 
 @layer utilities {

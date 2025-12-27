@@ -64,7 +64,7 @@ export const DropdownMenuDemo = () => (
       </DropdownMenuItem>
     </DropdownMenuContent>
   </DropdownMenu>
-);
+)
 
 export const DropdownMenuDemoWithCheckboxes = () => {
   const [showStatusBar, setShowStatusBar] = useState(true);

@@ -5,19 +5,19 @@ export const ProgressDemo = () => (
   <div className="w-[300px]">
     <Progress value={60} />
   </div>
-);
+)
 
 export const ProgressDemoZero = () => (
   <div className="w-[300px]">
     <Progress value={0} />
   </div>
-);
+)
 
 export const ProgressDemoComplete = () => (
   <div className="w-[300px]">
     <Progress value={100} />
   </div>
-);
+)
 
 export const ProgressDemoSimulated = () => {
   const [progress, setProgress] = useState(13);

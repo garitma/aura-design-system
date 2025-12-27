@@ -4,6 +4,31 @@ description: Displays content within a desired ratio.
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="aspect-ratio-demo" description="Displays content within a desired ratio.">
+
+```tsx
+import { AspectRatio } from "@/components/ui/AspectRatio";
+
+export function AspectRatioDemo() {
+  return (
+  <div className="w-[300px] overflow-hidden rounded-md">
+    <AspectRatio ratio={16 / 9}>
+      <img
+        className="size-full object-cover"
+        src="https://images.unsplash.com/photo-1535025183041-0991a977e25b?w=300&dpr=2&q=80"
+        alt="Landscape photograph by Tobias Tullius"
+      />
+    </AspectRatio>
+  </div>
+)
+```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
@@ -12,6 +37,55 @@ pnpm dlx shadcn@latest add @aura/aspect-ratio
 ```
 
 
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```package-install
+@radix-ui/react-aspect-ratio
+    ```
+  </Step>
+  <Step>
+    Copy and paste the AspectRatio component into your `components/ui/AspectRatio.tsx` file.
+
+```tsx
+/**
+ * @description Displays content within a desired ratio.
+ */
+import * as AspectRatioPrimitive from "@radix-ui/react-aspect-ratio";
+
+function AspectRatio({
+  ...props
+}: React.ComponentProps<typeof AspectRatioPrimitive.Root>) {
+  return <AspectRatioPrimitive.Root data-slot="aspect-ratio" {...props} />;
+}
+
+export { AspectRatio };
+
+```
+  </Step>
+</Steps>
+
+## Usage
+
+### AspectRatioDemo
+
+```tsx
+export const AspectRatioDemo = () => (
+  <div className="w-[300px] overflow-hidden rounded-md">
+    <AspectRatio ratio={16 / 9}>
+      <img
+        className="size-full object-cover"
+        src="https://images.unsplash.com/photo-1535025183041-0991a977e25b?w=300&dpr=2&q=80"
+        alt="Landscape photograph by Tobias Tullius"
+      />
+    </AspectRatio>
+  </div>
+)
+```
 
 ## Props
 

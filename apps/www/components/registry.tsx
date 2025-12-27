@@ -17,6 +17,10 @@ import {
   AlertDialogDemo
 } from "@/components/demos/alert-dialog-demo"
 import { 
+  AspectRatioDemoDefault,
+  AspectRatioDemo
+} from "@/components/demos/aspect-ratio-demo"
+import { 
   AvatarDemo,
   AvatarDemoWithFallback,
   AvatarDemoFallbackOnly,
@@ -231,6 +235,12 @@ export const Registry = {
   },
   "alert-dialog-demo": {
     component: AlertDialogDemo,
+  },
+  "aspect-ratio-demo": {
+    component: AspectRatioDemoDefault,
+  },
+  "aspect-ratio-demo-aspect-ratio-demo": {
+    component: AspectRatioDemo,
   },
   "avatar-demo": {
     component: AvatarDemo,

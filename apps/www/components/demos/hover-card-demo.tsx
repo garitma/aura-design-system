@@ -25,7 +25,7 @@ export const HoverCardDemo = () => (
       </div>
     </HoverCardContent>
   </HoverCard>
-);
+)
 
 export const HoverCardDemoProfilePreview = () => (
   <HoverCard>
@@ -53,4 +53,4 @@ export const HoverCardDemoProfilePreview = () => (
       </div>
     </HoverCardContent>
   </HoverCard>
-);
+)

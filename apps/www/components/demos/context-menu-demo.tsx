@@ -41,7 +41,7 @@ export const ContextMenuDemo = () => (
       <ContextMenuItem>Print...</ContextMenuItem>
     </ContextMenuContent>
   </ContextMenu>
-);
+)
 
 export const ContextMenuDemoWithSubmenu = () => (
   <ContextMenu>
@@ -73,7 +73,7 @@ export const ContextMenuDemoWithSubmenu = () => (
       </ContextMenuItem>
     </ContextMenuContent>
   </ContextMenu>
-);
+)
 
 export const ContextMenuDemoWithCheckboxes = () => {
   const [showBookmarksBar, setShowBookmarksBar] = useState(true);

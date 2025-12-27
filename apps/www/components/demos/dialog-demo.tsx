@@ -46,7 +46,7 @@ export const DialogDemo = () => (
       </DialogFooter>
     </DialogContent>
   </Dialog>
-);
+)
 
 export const DialogDemoCustomContent = () => (
   <Dialog>
@@ -69,4 +69,4 @@ export const DialogDemoCustomContent = () => (
       </DialogFooter>
     </DialogContent>
   </Dialog>
-);
+)

@@ -28,6 +28,7 @@ const ALL_TXT_OUTPUT_PATH = path.join(
   __dirname,
   "../../../apps/www/public"
 );
+const REGISTRY_JSON_PATH = path.join(__dirname, "../registry.json");
 
 const DEFAULT_DESCRIPTION =
   "Re-usable components built using Radix UI and Tailwind CSS.";
@@ -35,8 +36,23 @@ const DEFAULT_DESCRIPTION =
 interface MetadataContent {
   preview?: string;
   installation?: string;
+  source?: string;
   usage?: string;
   props?: string[];
+}
+
+interface RegistryFile {
+  path: string;
+  type: string;
+  target?: string;
+}
+
+interface RegistryItem {
+  name: string;
+  type: string;
+  files?: RegistryFile[];
+  dependencies?: string[];
+  registryDependencies?: string[];
 }
 
 interface ComponentProp {
@@ -103,6 +119,9 @@ function parseContentArray(contentString: string): MetadataContent[] {
         } else if (contentItem.startsWith("installation: ")) {
           const installationValue = contentItem.substring("installation: ".length).trim();
           currentItem.installation = installationValue;
+        } else if (contentItem.startsWith("source: ")) {
+          const sourceValue = contentItem.substring("source: ".length).trim();
+          currentItem.source = sourceValue;
         } else if (contentItem.startsWith("usage: ")) {
           const usageValue = contentItem.substring("usage: ".length).trim();
           currentItem.usage = usageValue;
@@ -374,7 +393,45 @@ function extractAllStories(componentName: string): Story[] | null {
         // Try to match story with braces first: () => { ... };
         storyEndMatch = storySection.match(/(export\s+const\s+\w+\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)\s*\{[\s\S]*?\n\});/);
         
-        // If no match, try to match story without braces: () => <JSX />; or () => expression;
+        // If no match, try to match story with parentheses: () => ( ... );
+        // Need to handle balanced parentheses for JSX expressions
+        if (!storyEndMatch) {
+          const arrowStart = storySection.indexOf("=>");
+          if (arrowStart !== -1) {
+            const afterArrow = storySection.substring(arrowStart + 2).trimStart();
+            if (afterArrow.startsWith("(")) {
+              // Find matching closing parenthesis
+              let parenCount = 0;
+              let foundStart = false;
+              let endPos = -1;
+              
+              for (let i = 0; i < afterArrow.length; i++) {
+                const char = afterArrow[i];
+                if (char === '(') {
+                  parenCount++;
+                  foundStart = true;
+                } else if (char === ')') {
+                  parenCount--;
+                  if (foundStart && parenCount === 0) {
+                    // Check if next non-whitespace is semicolon
+                    const remaining = afterArrow.substring(i + 1).trim();
+                    if (remaining.startsWith(";")) {
+                      endPos = arrowStart + 2 + i + 1 + remaining.indexOf(";") + 1;
+                      break;
+                    }
+                  }
+                }
+              }
+              
+              if (endPos > arrowStart) {
+                const storyStart = storySection.indexOf("export");
+                storyEndMatch = [storySection.substring(storyStart, endPos)];
+              }
+            }
+          }
+        }
+        
+        // If still no match, try to match story without braces: () => <JSX />; or () => expression;
         if (!storyEndMatch) {
           // Match from export to the semicolon (handles single-line arrow functions)
           storyEndMatch = storySection.match(/(export\s+const\s+\w+\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)[\s\S]*?;)/);
@@ -1265,6 +1322,23 @@ function formatStoryCodeForPreview(storyCode: string, componentName: string): st
 }
 
 /**
+ * Load registry data from registry.json
+ */
+function loadRegistryData(): { items: RegistryItem[] } | null {
+  if (!fs.existsSync(REGISTRY_JSON_PATH)) {
+    return null;
+  }
+
+  try {
+    const registryContent = fs.readFileSync(REGISTRY_JSON_PATH, "utf-8");
+    return JSON.parse(registryContent);
+  } catch (error) {
+    console.warn(`Failed to load registry.json: ${REGISTRY_JSON_PATH}`, error);
+    return null;
+  }
+}
+
+/**
  * Generate MDX content with frontmatter, preview, usage, and installation
  * Sections are generated in the same order as they appear in the YAML metadata
  */
@@ -1285,6 +1359,8 @@ description: ${description}
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
 
 `;
 
@@ -1346,6 +1422,195 @@ pnpm dlx shadcn@latest add @aura/${kebabName}
 
 
 `;
+      }
+
+      // Manual installation section (source: all)
+      if (item.source === "all") {
+        const registryData = loadRegistryData();
+        const componentData = registryData?.items?.find(
+          (item: RegistryItem) => item.name === kebabName
+        );
+        
+        if (componentData) {
+          const dependencies = componentData.dependencies || [];
+          const registryDependencies = componentData.registryDependencies || [];
+          const componentFiles = componentData.files || [];
+          
+          // Show manual section if there are dependencies, registry dependencies, or files
+          if (dependencies.length > 0 || registryDependencies.length > 0 || componentFiles.length > 0) {
+            content += `### Manual
+
+<Steps>
+`;
+            
+            // Step 1: Install dependencies
+            if (dependencies.length > 0) {
+              const depsList = dependencies.join(" ");
+              content += `  <Step>
+    Install the following dependencies:
+
+    \`\`\`package-install
+${depsList}
+    \`\`\`
+  </Step>
+`;
+            }
+            
+            // Steps for registry dependencies (utils, hooks, and components)
+            for (const regDep of registryDependencies) {
+              // Extract the name from @aura/name format
+              const depName = regDep.replace("@aura/", "");
+              
+              // First, check if it's a component by looking it up in the registry
+              const depComponentData = registryData?.items?.find(
+                (item: RegistryItem) => item.name === depName && (item.type === "registry:ui" || item.type === "registry:component")
+              );
+              
+              if (depComponentData && depComponentData.files && depComponentData.files.length > 0) {
+                // It's a component - include all its files
+                for (const depFile of depComponentData.files) {
+                  // Skip CSS files
+                  if (depFile.path.endsWith(".css")) {
+                    continue;
+                  }
+                  
+                  const depFilePath = path.join(__dirname, "..", depFile.path);
+                  if (fs.existsSync(depFilePath)) {
+                    const depFileName = path.basename(depFile.path);
+                    // Determine target path
+                    let depTargetPath = depFile.target;
+                    if (!depTargetPath) {
+                      if (depFile.path.includes("/components/ui/")) {
+                        depTargetPath = `components/ui/${depFileName}`;
+                      } else if (depFile.path.includes("/components/")) {
+                        depTargetPath = `components/${depFileName}`;
+                      } else {
+                        depTargetPath = depFileName;
+                      }
+                    }
+                    
+                    const depNameFormatted = depName.replace(/-/g, " ");
+                    const description = `Copy and paste the ${depNameFormatted} component into your \`${depTargetPath}\` file.`;
+                    
+                    // Read the file content
+                    const depFileContent = fs.readFileSync(depFilePath, "utf-8");
+                    const depLang = depFilePath.endsWith(".tsx") ? "tsx" : depFilePath.endsWith(".ts") ? "ts" : "tsx";
+                    
+                    content += `  <Step>
+    ${description}
+
+\`\`\`${depLang}
+${depFileContent}
+\`\`\`
+  </Step>
+`;
+                  }
+                }
+              } else {
+                // Check if it's a util or hook
+                const utilPath = path.join(__dirname, "../registry/default/utils", `${depName}.ts`);
+                const utilPathTsx = path.join(__dirname, "../registry/default/utils", `${depName}.tsx`);
+                const hookPath = path.join(__dirname, "../registry/default/hooks", `${depName}.ts`);
+                const hookPathTsx = path.join(__dirname, "../registry/default/hooks", `${depName}.tsx`);
+                
+                let filePath: string | null = null;
+                let fileType = "util";
+                
+                if (fs.existsSync(utilPath)) {
+                  filePath = utilPath;
+                } else if (fs.existsSync(utilPathTsx)) {
+                  filePath = utilPathTsx;
+                } else if (fs.existsSync(hookPath)) {
+                  filePath = hookPath;
+                  fileType = "hook";
+                } else if (fs.existsSync(hookPathTsx)) {
+                  filePath = hookPathTsx;
+                  fileType = "hook";
+                }
+                
+                if (filePath) {
+                  const fileName = path.basename(filePath);
+                  // Use a more descriptive format matching the user's example
+                  // For compose-refs, it says "refs composition utilities"
+                  const depNameFormatted = depName.replace(/-/g, " ");
+                  const description = fileType === "hook" 
+                    ? `Copy and paste the ${depNameFormatted} hook into your \`${fileType === "hook" ? "hooks" : "utils"}/${fileName}\` file.`
+                    : `Copy and paste the ${depNameFormatted} utility into your \`${fileType === "hook" ? "hooks" : "utils"}/${fileName}\` file.`;
+                  
+                  // Read the file content
+                  const fileContent = fs.readFileSync(filePath, "utf-8");
+                  // Determine language from file extension
+                  const lang = filePath.endsWith(".tsx") ? "tsx" : filePath.endsWith(".ts") ? "ts" : "tsx";
+                  
+                  content += `  <Step>
+    ${description}
+
+\`\`\`${lang}
+${fileContent}
+\`\`\`
+  </Step>
+`;
+                }
+              }
+            }
+            
+            // Steps for component files
+            for (const file of componentFiles) {
+              // Skip CSS files as they're handled separately
+              if (file.path.endsWith(".css")) {
+                continue;
+              }
+              
+              // Extract component name from file path
+              const fileName = path.basename(file.path);
+              const filePath = path.join(__dirname, "..", file.path);
+              
+              // Determine target path (use target if specified, otherwise infer from file path)
+              let targetPath = file.target;
+              if (!targetPath) {
+                // Infer target path from file path
+                if (file.path.includes("/components/ui/")) {
+                  targetPath = `components/ui/${fileName}`;
+                } else if (file.path.includes("/components/")) {
+                  targetPath = `components/${fileName}`;
+                } else {
+                  targetPath = fileName;
+                }
+              }
+              
+              // Extract PascalCase name for description
+              const componentPascalName = fileName.replace(/\.(tsx?|jsx?)$/, "");
+              
+              // Determine description based on file type
+              let description = `Copy and paste the following code into your \`${targetPath}\` file.`;
+              if (file.path.includes("/components/ui/")) {
+                description = `Copy and paste the ${componentPascalName} component into your \`${targetPath}\` file.`;
+              } else if (file.path.includes("/components/")) {
+                description = `Copy and paste the ${componentPascalName} component into your \`${targetPath}\` file.`;
+              }
+              
+              if (fs.existsSync(filePath)) {
+                // Read the file content
+                const fileContent = fs.readFileSync(filePath, "utf-8");
+                // Determine language from file extension
+                const lang = filePath.endsWith(".tsx") ? "tsx" : filePath.endsWith(".ts") ? "ts" : "tsx";
+                
+                content += `  <Step>
+    ${description}
+
+\`\`\`${lang}
+${fileContent}
+\`\`\`
+  </Step>
+`;
+              }
+            }
+            
+            content += `</Steps>
+
+`;
+          }
+        }
       }
 
       // Props section - check if props key exists (even if empty array)
@@ -1840,6 +2105,12 @@ function generatePreviewRegistry() {
     const allStories = extractAllStories(component.name);
     
     if (!allStories || allStories.length === 0) {
+      // Log which components are being skipped for debugging
+      const kebabName = toKebabCase(component.name);
+      const storiesFilePath = path.join(STORIES_PATH, `${kebabName}.stories.tsx`);
+      if (fs.existsSync(storiesFilePath)) {
+        console.warn(`[WARN] Found story file for ${component.name} but couldn't extract stories: ${storiesFilePath}`);
+      }
       continue;
     }
 

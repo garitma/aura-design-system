@@ -40,4 +40,4 @@ export const DrawerDemo = () => (
       </div>
     </DrawerContent>
   </Drawer>
-);
+)

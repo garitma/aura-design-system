@@ -35,7 +35,7 @@ export const CheckboxDemoChecked = () => (
       I agree to the privacy policy
     </label>
   </div>
-);
+)
 
 export const CheckboxDemoUnchecked = () => (
   <div className="flex items-center gap-1">
@@ -47,7 +47,7 @@ export const CheckboxDemoUnchecked = () => (
       Subscribe to newsletter
     </label>
   </div>
-);
+)
 
 export const CheckboxDemoDisabled = () => (
   <div className="flex flex-col gap-1">
@@ -70,7 +70,7 @@ export const CheckboxDemoDisabled = () => (
       </label>
     </div>
   </div>
-);
+)
 
 export const CheckboxDemoWithDescription = () => {
   const [checked, setChecked] = useState(false);

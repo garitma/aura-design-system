@@ -23,7 +23,7 @@ export const SignaturePadDemoVariants = () => (
       <SignaturePad variant="outline" />
     </div>
   </div>
-);
+)
 
 export const SignaturePadDemoSizes = () => (
   <div className="flex flex-col gap-4">
@@ -44,7 +44,7 @@ export const SignaturePadDemoSizes = () => (
       <SignaturePad size="lg" />
     </div>
   </div>
-);
+)
 
 export const SignaturePadDemoCustomPenColor = () => (
   <div className="flex flex-col gap-4">
@@ -58,7 +58,7 @@ export const SignaturePadDemoCustomPenColor = () => (
     </div>
 
   </div>
-);
+)
 
 export const SignaturePadDemoCustomLineWidth = () => (
   <div className="flex flex-col gap-4">
@@ -79,14 +79,14 @@ export const SignaturePadDemoCustomLineWidth = () => (
       <SignaturePad lineWidth={8} />
     </div>
   </div>
-);
+)
 
 export const SignaturePadDemoWithCustomIcons = () => (
   <SignaturePad
     saveButtonIcon={<CheckIcon />}
     clearButtonIcon={<SymbolIcon />}
   />
-);
+)
 
 export const SignaturePadDemoWithOnSave = () => {
   const [savedSignature, setSavedSignature] = useState<string | null>(null);

@@ -25,7 +25,7 @@ export const PopoverDemo = () => (
       </div>
     </PopoverContent>
   </Popover>
-);
+)
 
 export const PopoverDemoWithCloseButton = () => (
   <Popover>
@@ -42,7 +42,7 @@ export const PopoverDemoWithCloseButton = () => (
       </div>
     </PopoverContent>
   </Popover>
-);
+)
 
 export const PopoverDemoWithArrow = () => (
   <Popover>
@@ -59,7 +59,7 @@ export const PopoverDemoWithArrow = () => (
       </div>
     </PopoverContent>
   </Popover>
-);
+)
 
 export const PopoverDemoControlled = () => {
   const [open, setOpen] = useState(false);
@@ -121,7 +121,7 @@ export const PopoverDemoWithAnchor = () => (
       </PopoverContent>
     </Popover>
   </div>
-);
+)
 
 export const PopoverDemoPositioning = () => (
   <div className="grid grid-cols-2 gap-1">
@@ -140,4 +140,4 @@ export const PopoverDemoPositioning = () => (
       </Popover>
     ))}
   </div>
-);
+)

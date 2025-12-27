@@ -18,7 +18,7 @@ export const ButtonDemoSizes = () => (
     <Button size="lg">Large</Button>
     <Button size="xl">Extra Large</Button>
   </div>
-);
+)
 
 export const ButtonDemoVariants = () => (
   <div className="flex flex-col gap-4 items-start">
@@ -28,7 +28,7 @@ export const ButtonDemoVariants = () => (
     <Button variant="link">Link</Button>
     <Button variant="menu">Menu</Button>
   </div>
-);
+)
 
 export const ButtonDemoDisabled = () => <Button isDisabled>Disabled Button</Button>;
 
@@ -40,7 +40,7 @@ export const ButtonDemoStates = () => (
     <Button isDisabled>Disabled</Button>
     <Button isLoading>Loading</Button>
   </div>
-);
+)
 
 export const ButtonDemoModeProp = () => (
   <div className="flex flex-col gap-4 items-start">
@@ -50,4 +50,4 @@ export const ButtonDemoModeProp = () => (
     <Button mode="link">Link (mode)</Button>
     <Button mode="menu">Menu (mode)</Button>
   </div>
-);
+)

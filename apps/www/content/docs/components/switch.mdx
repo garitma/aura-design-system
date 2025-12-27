@@ -4,6 +4,8 @@ description: A control that allows the user to toggle between on and off states.
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
 
 ## Preview
 
@@ -41,6 +43,83 @@ pnpm dlx shadcn@latest add @aura/switch
 
 
 
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```package-install
+radix-ui
+    ```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Switch component into your `components/ui/Switch.tsx` file.
+
+```tsx
+"use client";
+/**
+ * @description A control that allows the user to toggle between on and off states.
+ */
+import * as React from "react";
+import { Switch as SwitchPrimitive } from "radix-ui";
+
+import { cn } from "@/utils/class-names";
+
+function Switch({
+  className,
+  ...props
+}: React.ComponentProps<typeof SwitchPrimitive.Root>) {
+  return (
+    <SwitchPrimitive.Root
+      data-slot="switch"
+      className={cn(
+        "relative h-1.5 w-2.5 cursor-pointer rounded-full outline-none bg-accent-4 data-[state=checked]:bg-accent-10 border border-gray-a6 hover:bg-accent-5",
+        className
+      )}
+      {...props}
+    >
+      <SwitchThumb />
+    </SwitchPrimitive.Root>
+  );
+}
+
+function SwitchThumb({
+  className,
+  ...props
+}: React.ComponentProps<typeof SwitchPrimitive.Thumb>) {
+  return (
+    <SwitchPrimitive.Thumb
+      data-slot="switch-thumb"
+      className={cn(
+        "block size-1 translate-x-[3.5px] rounded-full bg-gray-1 shadow-md transition-transform duration-100 will-change-transform data-[state=checked]:translate-x-[15.5px]",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+export { Switch, SwitchThumb };
+
+```
+  </Step>
+</Steps>
+
 ## Usage
 
 ### Checked
@@ -56,7 +135,7 @@ export const Checked = () => (
       Bluetooth
     </label>
   </div>
-);
+)
 ```
 
 ### Unchecked
@@ -72,7 +151,7 @@ export const Unchecked = () => (
       Wi-Fi
     </label>
   </div>
-);
+)
 ```
 
 ### Disabled
@@ -99,7 +178,7 @@ export const Disabled = () => (
       </label>
     </div>
   </div>
-);
+)
 ```
 
 ### WithDescription

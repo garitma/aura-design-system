@@ -4,6 +4,8 @@ description: Displays an indicator showing the completion progress of a task.
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
 
 ## Preview
 
@@ -18,7 +20,7 @@ export function ProgressDemo() {
   <div className="w-[300px]">
     <Progress value={60} />
   </div>
-);
+)
 ```
 
 </ComponentPreview>
@@ -31,6 +33,72 @@ pnpm dlx shadcn@latest add @aura/progress
 
 
 
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```package-install
+radix-ui
+    ```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Progress component into your `components/ui/Progress.tsx` file.
+
+```tsx
+"use client";
+/**
+ * @description Displays an indicator showing the completion progress of a task.
+ */
+import * as React from "react";
+import { Progress as ProgressRadix } from "radix-ui";
+
+import { cn } from "@/utils/class-names";
+
+function Progress({
+  className,
+  value,
+  ...props
+}: React.ComponentProps<typeof ProgressRadix.Root>) {
+  return (
+    <ProgressRadix.Root
+      data-slot="progress"
+      className={cn(
+        "relative h-0.5 w-full overflow-hidden rounded-full bg-gray-3",
+        className
+      )}
+      {...props}
+    >
+      <ProgressRadix.Indicator
+        data-slot="progress-indicator"
+        className="bg-accent-9 h-full w-full flex-1 transition-all"
+        style={{ transform: `translateX(-${100 - (value || 0)}%)` }}
+      />
+    </ProgressRadix.Root>
+  );
+}
+
+export { Progress };
+
+```
+  </Step>
+</Steps>
+
 ## Usage
 
 ### Zero
@@ -40,7 +108,7 @@ export const Zero = () => (
   <div className="w-[300px]">
     <Progress value={0} />
   </div>
-);
+)
 ```
 
 ### Complete
@@ -50,7 +118,7 @@ export const Complete = () => (
   <div className="w-[300px]">
     <Progress value={100} />
   </div>
-);
+)
 ```
 
 ### Simulated

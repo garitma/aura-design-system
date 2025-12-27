@@ -4,6 +4,8 @@ description: A window overlaid on the primary content, rendering content in a la
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
 
 ## Preview
 
@@ -59,7 +61,7 @@ export function DialogDemo() {
       </DialogFooter>
     </DialogContent>
   </Dialog>
-);
+)
 }
 ```
 
@@ -72,6 +74,255 @@ pnpm dlx shadcn@latest add @aura/dialog
 ```
 
 
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```package-install
+@radix-ui/react-icons radix-ui
+    ```
+  </Step>
+  <Step>
+    Copy and paste the button component into your `components/ui/Button.tsx` file.
+
+```tsx
+/**
+ * @description Displays a button or a component that looks like a button.
+ */
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/utils/class-names";
+
+const buttonVariants = cva("button", {
+  variants: {
+    variant: {
+      default: "button-fill",
+      fill: "button-fill",
+      pill: "button-pill border border-gray-6 text-gray-11 hover:bg-gray-2",
+      link: "button-link",
+      menu: "button-menu",
+    },
+    size: {
+      default: "h-4 px-2.5",
+      xs: "h-2.5 px-1.5",
+      sm: "h-3 px-2",
+      md: "h-4 px-2.5",
+      lg: "h-5 px-3",
+      xl: "h-6 px-3.5",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+  },
+});
+
+interface ButtonProps
+  extends React.ComponentProps<"button">,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  isLoadingText?: string | React.ReactNode;
+  mode?: VariantProps<typeof buttonVariants>["variant"];
+  label?: string | React.ReactNode;
+}
+
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (props: ButtonProps, ref) => {
+    const {
+      className,
+      variant,
+      mode,
+      size,
+      asChild = false,
+      isDisabled,
+      isLoading,
+      isLoadingText,
+      children,
+      label,
+      ...rest
+    } = props;
+    const Comp = asChild ? Slot : "button";
+    const disabled = isDisabled || isLoading || props.disabled;
+    const effectiveVariant = variant ?? mode;
+
+    return (
+      <Comp
+        data-slot="button"
+        className={cn(
+          buttonVariants({ variant: effectiveVariant, size, className }),
+          disabled && "opacity-50 cursor-not-allowed"
+        )}
+        ref={ref}
+        disabled={disabled}
+        {...rest}
+      >
+        {asChild ? (
+          children
+        ) : (
+          <>
+      
+            {isLoading && isLoadingText ? isLoadingText : <>{label}{children}</>}
+          </>
+        )}
+      </Comp>
+    );
+  }
+);
+
+Button.displayName = "Button";
+
+export { Button, buttonVariants };
+export type { ButtonProps };
+export default Button;
+
+```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Dialog component into your `components/ui/Dialog.tsx` file.
+
+```tsx
+/**
+ * @description A window overlaid on the primary content, rendering content in a layer above the page.
+ */
+import { Dialog as DialogPrimitive } from "radix-ui";
+import { Cross2Icon } from "@radix-ui/react-icons";
+
+import { cn } from "@/utils/class-names";
+import { Button } from "@/components/ui/Button";
+
+function Dialog({
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Root>) {
+  return <DialogPrimitive.Root data-slot="dialog" {...props} />;
+}
+
+function DialogTrigger({
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Trigger>) {
+  return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />;
+}
+
+function DialogPortal({
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Portal>) {
+  return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />;
+}
+
+function DialogClose({
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Close>) {
+  return <DialogPrimitive.Close data-slot="dialog-close" {...props} />;
+}
+
+function DialogOverlay({
+  className,
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Overlay>) {
+  return (
+    <DialogPrimitive.Overlay
+      data-slot="dialog-overlay"
+      className={cn(
+        "fixed inset-0 bg-gray-9a backdrop-blur-xs z-50 data-[state=open]:animate-overlay-show",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function DialogContent({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Content>) {
+  return (
+    <DialogPortal data-slot="dialog-portal">
+      <DialogOverlay />
+      <DialogPrimitive.Content
+        data-slot="dialog-content"
+        className={cn(
+          "smash fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] -translate-x-1/2 -translate-y-1/2 bg-gray-1 p-2 rounded-md z-50 data-[state=open]:animate-content-show border border-gray-a6",
+          className
+        )}
+        {...props}
+      >
+        {children}
+        <DialogPrimitive.Close asChild>
+          <Button mode="link" className="absolute top-0.5 right-0.5">
+            <Cross2Icon />
+          </Button>
+        </DialogPrimitive.Close>
+      </DialogPrimitive.Content>
+    </DialogPortal>
+  );
+}
+
+function DialogHeader({ ...props }: React.ComponentProps<"div">) {
+  return <div data-slot="dialog-header" {...props} />;
+}
+
+function DialogFooter({ ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="dialog-footer"
+      className="flex justify-end gap-1"
+      {...props}
+    />
+  );
+}
+
+function DialogTitle({
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Title>) {
+  return <DialogPrimitive.Title data-slot="dialog-title" {...props} />;
+}
+
+function DialogDescription({
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Description>) {
+  return (
+    <DialogPrimitive.Description data-slot="dialog-description" {...props} />
+  );
+}
+
+export {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
+};
+
+```
+  </Step>
+</Steps>
 
 ## Usage
 
@@ -99,7 +350,7 @@ export const CustomContent = () => (
       </DialogFooter>
     </DialogContent>
   </Dialog>
-);
+)
 ```
 
 ## Props

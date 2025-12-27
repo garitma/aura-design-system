@@ -11,7 +11,7 @@ export const KbdDemoSingleKey = () => (
     <Kbd>Enter</Kbd>
     <Kbd>Esc</Kbd>
   </div>
-);
+)
 
 export const KbdDemoModifierKeys = () => (
   <div className="flex gap-2 items-center">
@@ -20,7 +20,7 @@ export const KbdDemoModifierKeys = () => (
     <Kbd>⌃</Kbd>
     <Kbd>⇧</Kbd>
   </div>
-);
+)
 
 export const KbdDemoKeyboardShortcuts = () => (
   <div className="flex flex-col gap-4">
@@ -53,7 +53,7 @@ export const KbdDemoKeyboardShortcuts = () => (
       </KbdGroup>
     </div>
   </div>
-);
+)
 
 export const KbdDemoWithIcons = () => (
   <div className="flex flex-col gap-4">
@@ -81,7 +81,7 @@ export const KbdDemoWithIcons = () => (
       </KbdGroup>
     </div>
   </div>
-);
+)
 
 export const KbdDemoComplexShortcuts = () => (
   <div className="flex flex-col gap-4">
@@ -108,11 +108,11 @@ export const KbdDemoComplexShortcuts = () => (
       </KbdGroup>
     </div>
   </div>
-);
+)
 
 export const KbdDemoGroup = () => (
   <KbdGroup>
     <Kbd>⌘</Kbd>
     <Kbd>K</Kbd>
   </KbdGroup>
-);
+)

@@ -4,6 +4,8 @@ description: Displays a card with header, content, and footer sections.
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
 
 ## Preview
 
@@ -45,7 +47,7 @@ export function CardDemo() {
       <Button>View Details</Button>
     </CardFooter>
   </Card>
-);
+)
 ```
 
 </ComponentPreview>
@@ -57,6 +59,120 @@ pnpm dlx shadcn@latest add @aura/card
 ```
 
 
+
+### Manual
+
+<Steps>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Card component into your `components/ui/Card.tsx` file.
+
+```tsx
+/**
+ * @description Displays a card with header, content, and footer sections.
+ */
+import * as React from "react";
+
+import { cn } from "@/utils/class-names";
+
+function Card({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card"
+      className={cn(
+        "bg-gray-2 border border-gray-6 rounded-md overflow-hidden",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-header"
+      className={cn("flex flex-col gap-0.5 p-1 pb-0", className)}
+      {...props}
+    />
+  );
+}
+
+function CardTitle({ className, ...props }: React.ComponentProps<"h3">) {
+  return (
+    <h3
+      data-slot="card-title"
+      className={cn("text-gray-12 font-semibold leading-none", className)}
+      {...props}
+    />
+  );
+}
+
+function CardDescription({ className, ...props }: React.ComponentProps<"p">) {
+  return (
+    <p
+      data-slot="card-description"
+      className={cn("text-gray-11", className)}
+      {...props}
+    />
+  );
+}
+
+function CardAction({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-action"
+      className={cn("flex items-center gap-0.5", className)}
+      {...props}
+    />
+  );
+}
+
+function CardContent({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div data-slot="card-content" className={cn("p-1 pt-0", className)} {...props} />
+  );
+}
+
+function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="card-footer"
+      className={cn(
+        "flex items-center gap-0.5 p-1 border-t border-gray-6",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+export {
+  Card,
+  CardHeader,
+  CardFooter,
+  CardTitle,
+  CardAction,
+  CardDescription,
+  CardContent,
+};
+
+```
+  </Step>
+</Steps>
 
 ## Usage
 
@@ -78,7 +194,7 @@ export const WithFooter = () => (
       <Button>Continue</Button>
     </CardFooter>
   </Card>
-);
+)
 ```
 
 ### WithActions
@@ -104,7 +220,7 @@ export const WithActions = () => (
       </div>
     </CardContent>
   </Card>
-);
+)
 ```
 
 ### SimpleCard
@@ -116,7 +232,7 @@ export const SimpleCard = () => (
       <p className="text-gray-12">A simple card with just content.</p>
     </CardContent>
   </Card>
-);
+)
 ```
 
 ### MultipleCards
@@ -152,7 +268,7 @@ export const MultipleCards = () => (
       </CardContent>
     </Card>
   </div>
-);
+)
 ```
 
 ### NestedCards
@@ -179,7 +295,7 @@ export const NestedCards = () => (
       </div>
     </CardContent>
   </Card>
-);
+)
 ```
 
 ### InteractiveCard
@@ -197,7 +313,7 @@ export const InteractiveCard = () => (
       </p>
     </CardContent>
   </Card>
-);
+)
 ```
 
 ### CardGrid
@@ -216,7 +332,7 @@ export const CardGrid = () => (
       </Card>
     ))}
   </div>
-);
+)
 ```
 
 ### ImageGrid
@@ -256,7 +372,7 @@ export const ImageGrid = () => (
       </Card>
     ))}
   </div>
-);
+)
 ```
 
 ## Props

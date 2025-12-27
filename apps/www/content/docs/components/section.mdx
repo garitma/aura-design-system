@@ -4,6 +4,8 @@ description: A semantic section container with configurable layout variants.
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
@@ -12,6 +14,86 @@ pnpm dlx shadcn@latest add @aura/section
 ```
 
 
+
+### Manual
+
+<Steps>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Section component into your `components/ui/Section.tsx` file.
+
+```tsx
+/**
+ * @description A semantic section container with configurable layout variants.
+ */
+import * as React from "react";
+
+import { cn } from "@/utils/class-names";
+
+export type AuraContainer = "smash" | "smesh" | "smish" | "smosh" | "smush";
+
+function Wrapper({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <section className={cn("pad", className)} data-slot="wrapper" {...props} />
+  );
+}
+
+function WrapperContainer({
+  container = "smush",
+  className,
+  ...props
+}: React.ComponentProps<"div"> & {
+  container?: AuraContainer;
+  className?: string;
+}) {
+  return (
+    <div
+      data-slot="wrapper-container"
+      className={cn(container, className)}
+      {...props}
+    />
+  );
+}
+
+type SectionProps = {
+  children: React.ReactNode;
+  container?: React.ComponentProps<typeof WrapperContainer>["container"];
+  subClassName?: string;
+} & React.ComponentProps<typeof Wrapper>;
+
+const Section = ({
+  children,
+  container,
+  subClassName,
+  ...props
+}: SectionProps) => {
+  return (
+    <Wrapper {...props}>
+      <WrapperContainer container={container} className={subClassName}>
+        {children}
+      </WrapperContainer>
+    </Wrapper>
+  );
+};
+
+export { Wrapper, WrapperContainer, Section };
+
+```
+  </Step>
+</Steps>
 
 ## Props
 

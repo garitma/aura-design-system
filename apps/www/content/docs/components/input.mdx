@@ -4,6 +4,8 @@ description: Displays a form input field or a component that looks like an input
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
@@ -12,6 +14,44 @@ pnpm dlx shadcn@latest add @aura/input
 ```
 
 
+
+### Manual
+
+<Steps>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Input component into your `components/ui/Input.tsx` file.
+
+```tsx
+/**
+ * @description Displays a form input field or a component that looks like an input field.
+ */
+import * as React from "react";
+
+import { cn } from "@/utils/class-names";
+
+function Input({ className, ...props }: React.ComponentProps<"input">) {
+  return <input data-slot="input" className={cn(className)} {...props} />;
+}
+
+export { Input };
+
+```
+  </Step>
+</Steps>
 
 ## Props
 

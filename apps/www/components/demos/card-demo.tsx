@@ -25,7 +25,7 @@ export const CardDemoWithFooter = () => (
       <Button>Continue</Button>
     </CardFooter>
   </Card>
-);
+)
 
 export const CardDemoWithActions = () => (
   <Card>
@@ -47,7 +47,7 @@ export const CardDemoWithActions = () => (
       </div>
     </CardContent>
   </Card>
-);
+)
 
 export const CardDemoSimpleCard = () => (
   <Card>
@@ -55,7 +55,7 @@ export const CardDemoSimpleCard = () => (
       <p className="text-gray-12">A simple card with just content.</p>
     </CardContent>
   </Card>
-);
+)
 
 export const CardDemoMultipleCards = () => (
   <div className="flex flex-col gap-1">
@@ -87,7 +87,7 @@ export const CardDemoMultipleCards = () => (
       </CardContent>
     </Card>
   </div>
-);
+)
 
 export const CardDemoNestedCards = () => (
   <Card>
@@ -110,7 +110,7 @@ export const CardDemoNestedCards = () => (
       </div>
     </CardContent>
   </Card>
-);
+)
 
 export const CardDemoInteractiveCard = () => (
   <Card className="cursor-pointer hover:border-gray-8 transition-colors">
@@ -124,7 +124,7 @@ export const CardDemoInteractiveCard = () => (
       </p>
     </CardContent>
   </Card>
-);
+)
 
 export const CardGridDemo = () => (
   <div className="grid grid-cols-3 gap-1">
@@ -139,7 +139,7 @@ export const CardGridDemo = () => (
       </Card>
     ))}
   </div>
-);
+)
 
 export const CardDemo = () => (
   <Card className="max-w-sm">
@@ -163,7 +163,7 @@ export const CardDemo = () => (
       <Button>View Details</Button>
     </CardFooter>
   </Card>
-);
+)
 
 export const CardDemoImageGrid = () => (
   <div className="grid grid-cols-3 gap-1">
@@ -199,4 +199,4 @@ export const CardDemoImageGrid = () => (
       </Card>
     ))}
   </div>
-);
+)

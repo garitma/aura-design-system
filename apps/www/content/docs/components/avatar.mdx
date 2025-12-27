@@ -4,6 +4,8 @@ description: An image element with a fallback for representing the user.
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
 
 ## Preview
 
@@ -25,7 +27,7 @@ export function AvatarDemo() {
     />
     <AvatarFallback>JD</AvatarFallback>
   </Avatar>
-);
+)
 }
 ```
 
@@ -39,6 +41,93 @@ pnpm dlx shadcn@latest add @aura/avatar
 
 
 
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```package-install
+radix-ui
+    ```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Avatar component into your `components/ui/Avatar.tsx` file.
+
+```tsx
+"use client";
+/**
+ * @description An image element with a fallback for representing the user.
+ */
+import * as React from "react";
+import { Avatar as AvatarRadix } from "radix-ui";
+import { cn } from "@/utils/class-names";
+
+function Avatar({
+  className,
+  ...props
+}: React.ComponentProps<typeof AvatarRadix.Root>) {
+  return (
+    <AvatarRadix.Root
+      data-slot="avatar"
+      className={cn(
+        "inline-flex size-3 items-center justify-center overflow-hidden rounded-full",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function AvatarImage({
+  className,
+  ...props
+}: React.ComponentProps<typeof AvatarRadix.Image>) {
+  return (
+    <AvatarRadix.Image
+      data-slot="avatar-image"
+      className={cn("size-full rounded-[inherit] object-cover", className)}
+      {...props}
+    />
+  );
+}
+
+function AvatarFallback({
+  className,
+  ...props
+}: React.ComponentProps<typeof AvatarRadix.Fallback>) {
+  return (
+    <AvatarRadix.Fallback
+      data-slot="avatar-fallback"
+      className={cn(
+        "flex size-full items-center justify-center bg-gray-3",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+export { Avatar, AvatarImage, AvatarFallback };
+
+```
+  </Step>
+</Steps>
+
 ## Usage
 
 ### WithFallback
@@ -49,7 +138,7 @@ export const WithFallback = () => (
     <AvatarImage src="invalid-url.jpg" alt="User avatar" />
     <AvatarFallback>AB</AvatarFallback>
   </Avatar>
-);
+)
 ```
 
 ### FallbackOnly
@@ -59,7 +148,7 @@ export const FallbackOnly = () => (
   <Avatar>
     <AvatarFallback>CD</AvatarFallback>
   </Avatar>
-);
+)
 ```
 
 ### CustomSize
@@ -89,7 +178,7 @@ export const CustomSize = () => (
       <AvatarFallback>LG</AvatarFallback>
     </Avatar>
   </div>
-);
+)
 ```
 
 ### AvatarGroup
@@ -122,7 +211,7 @@ export const AvatarGroup = () => (
       <AvatarFallback>+5</AvatarFallback>
     </Avatar>
   </div>
-);
+)
 ```
 
 ### WithStatus
@@ -161,7 +250,7 @@ export const WithStatus = () => (
       <span className="absolute bottom-0 right-0 block size-1 rounded-full bg-gray-400 ring-2 ring-white" />
     </div>
   </div>
-);
+)
 ```
 
 ### DifferentShapes
@@ -191,7 +280,7 @@ export const DifferentShapes = () => (
       <AvatarFallback>BX</AvatarFallback>
     </Avatar>
   </div>
-);
+)
 ```
 
 ### CustomFallbackStyles
@@ -213,7 +302,7 @@ export const CustomFallbackStyles = () => (
       </AvatarFallback>
     </Avatar>
   </div>
-);
+)
 ```
 
 ## Props

@@ -4,6 +4,8 @@ description: For sighted users to preview content available behind a link.
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
 
 ## Preview
 
@@ -38,7 +40,7 @@ export function HoverCardDemo() {
       </div>
     </HoverCardContent>
   </HoverCard>
-);
+)
 }
 ```
 
@@ -51,6 +53,90 @@ pnpm dlx shadcn@latest add @aura/hover-card
 ```
 
 
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```package-install
+radix-ui
+    ```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the HoverCard component into your `components/ui/HoverCard.tsx` file.
+
+```tsx
+"use client";
+/**
+ * @description For sighted users to preview content available behind a link.
+ */
+import * as React from "react";
+import { HoverCard as HoverCardRadix } from "radix-ui";
+
+import { cn } from "@/utils/class-names";
+
+function HoverCard({
+  ...props
+}: React.ComponentProps<typeof HoverCardRadix.Root>) {
+  return <HoverCardRadix.Root data-slot="hover-card" {...props} />;
+}
+
+function HoverCardTrigger({
+  className,
+  ...props
+}: React.ComponentProps<typeof HoverCardRadix.Trigger>) {
+  return (
+    <HoverCardRadix.Trigger
+      data-slot="hover-card-trigger"
+      className={cn(className)}
+      {...props}
+    />
+  );
+}
+
+function HoverCardContent({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof HoverCardRadix.Content>) {
+  return (
+    <HoverCardRadix.Portal data-slot="hover-card-portal">
+      <HoverCardRadix.Content
+        data-slot="hover-card-content"
+        collisionPadding={8}
+        className={cn(
+          className,
+          "bg-gray-1 border border-gray-a6 rounded-sm p-1 shadow-md"
+        )}
+        {...props}
+      >
+        {children}
+      </HoverCardRadix.Content>
+    </HoverCardRadix.Portal>
+  );
+}
+
+export { HoverCard, HoverCardTrigger, HoverCardContent };
+
+```
+  </Step>
+</Steps>
 
 ## Usage
 
@@ -83,7 +169,7 @@ export const ProfilePreview = () => (
       </div>
     </HoverCardContent>
   </HoverCard>
-);
+)
 ```
 
 ## Props

@@ -34,4 +34,4 @@ export const AlertDialogDemo = () => (
       </AlertDialogFooter>
     </AlertDialogContent>
   </AlertDialog>
-);
+)

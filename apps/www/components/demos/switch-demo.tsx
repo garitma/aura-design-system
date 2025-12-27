@@ -27,7 +27,7 @@ export const SwitchDemoChecked = () => (
       Bluetooth
     </label>
   </div>
-);
+)
 
 export const SwitchDemoUnchecked = () => (
   <div className="flex items-center gap-2">
@@ -39,7 +39,7 @@ export const SwitchDemoUnchecked = () => (
       Wi-Fi
     </label>
   </div>
-);
+)
 
 export const SwitchDemoDisabled = () => (
   <div className="flex flex-col gap-2">
@@ -62,7 +62,7 @@ export const SwitchDemoDisabled = () => (
       </label>
     </div>
   </div>
-);
+)
 
 export const SwitchDemoWithDescription = () => {
   const [checked, setChecked] = useState(false);

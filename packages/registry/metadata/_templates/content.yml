@@ -1,6 +1,7 @@
 content:
   - preview: Default
   - installation: @aura
+  - source: all
   - usage: all
   - props: 
      - Prop

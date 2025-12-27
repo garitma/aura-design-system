@@ -4,6 +4,8 @@ description: Renders an accessible label associated with form controls.
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
@@ -12,6 +14,44 @@ pnpm dlx shadcn@latest add @aura/label
 ```
 
 
+
+### Manual
+
+<Steps>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Label component into your `components/ui/Label.tsx` file.
+
+```tsx
+/**
+ * @description Renders an accessible label associated with form controls.
+ */
+import * as React from "react";
+
+import { cn } from "@/utils/class-names";
+
+function Label({ className, ...props }: React.ComponentProps<"label">) {
+  return <label data-slot="input" className={cn(className)} {...props} />;
+}
+
+export { Label };
+
+```
+  </Step>
+</Steps>
 
 ## Props
 

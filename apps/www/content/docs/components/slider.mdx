@@ -4,6 +4,8 @@ description: An input where the user selects a value from within a given range.
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
@@ -12,6 +14,69 @@ pnpm dlx shadcn@latest add @aura/slider
 ```
 
 
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```package-install
+radix-ui
+    ```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Slider component into your `components/ui/Slider.tsx` file.
+
+```tsx
+"use client"
+/**
+ * @description An input where the user selects a value from within a given range.
+ */
+import * as React from "react"
+import { Slider as SliderPrimitive } from "radix-ui"
+
+import { cn } from "@/utils/class-names"
+
+const Slider = React.forwardRef<
+    React.ElementRef<typeof SliderPrimitive.Root>,
+    React.ComponentPropsWithoutRef<typeof SliderPrimitive.Root>
+>(({ className, ...props }, ref) => (
+    <SliderPrimitive.Root
+        ref={ref}
+        className={cn(
+            "relative flex w-full touch-none select-none items-center",
+            className
+        )}
+        {...props}
+    >
+        <SliderPrimitive.Track className="relative h-0.5 w-full grow overflow-hidden rounded-full bg-gray-3">
+            <SliderPrimitive.Range className="absolute h-full bg-gray-12" />
+        </SliderPrimitive.Track>
+        <SliderPrimitive.Thumb className="block size-1.5 rounded-full border border-gray-12 bg-gray-1 ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50" />
+    </SliderPrimitive.Root>
+))
+Slider.displayName = SliderPrimitive.Root.displayName
+
+export { Slider }
+
+```
+  </Step>
+</Steps>
 
 ## Props
 

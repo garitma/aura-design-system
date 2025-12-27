@@ -18,9 +18,9 @@ import { cn } from "@/utils/class-names";
 const signaturePadVariants = cva("touch-none cursor-pencil", {
   variants: {
     variant: {
-      default: "border border-gray-6 bg-gray-a3",
+      default: "border border-gray-6 bg-gray-a2",
       ghost: "border-none bg-gray-a2",
-      outline: "border border-gray-7 bg-gray-1",
+      outline: "border border-gray-a6 bg-gray-1",
     },
     size: {
       default: "w-full h-[195px]",

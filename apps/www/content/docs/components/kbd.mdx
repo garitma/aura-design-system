@@ -4,6 +4,8 @@ description: A keyboard shortcut component that allows users to display keyboard
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
 
 ## Preview
 
@@ -28,6 +30,60 @@ pnpm dlx shadcn@latest add @aura/kbd
 
 
 
+### Manual
+
+<Steps>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Kbd component into your `components/ui/Kbd.tsx` file.
+
+```tsx
+import type * as React from "react";
+
+import { cn } from "@/utils/class-names";
+
+function Kbd({ className, ...props }: React.ComponentProps<"kbd">) {
+  return (
+    <kbd
+      className={cn(
+        "pointer-events-none inline-flex h-1.5 min-w-2 select-none items-center justify-center gap-0.5 rounded bg-gray-2 px-0.5 font-medium font-sans text-gray-11 text-xs [&_svg:not([class*='size-'])]:size-1 border border-gray-a6",
+        className,
+      )}
+      data-slot="kbd"
+      {...props}
+    />
+  );
+}
+
+function KbdGroup({ className, ...props }: React.ComponentProps<"kbd">) {
+  return (
+    <kbd
+      className={cn("inline-flex items-center gap-0.5", className)}
+      data-slot="kbd-group"
+      {...props}
+    />
+  );
+}
+
+export { Kbd, KbdGroup };
+
+```
+  </Step>
+</Steps>
+
 ## Usage
 
 ### SingleKey
@@ -41,7 +97,7 @@ export const SingleKey = () => (
     <Kbd>Enter</Kbd>
     <Kbd>Esc</Kbd>
   </div>
-);
+)
 ```
 
 ### ModifierKeys
@@ -54,7 +110,7 @@ export const ModifierKeys = () => (
     <Kbd>⌃</Kbd>
     <Kbd>⇧</Kbd>
   </div>
-);
+)
 ```
 
 ### KeyboardShortcuts
@@ -91,7 +147,7 @@ export const KeyboardShortcuts = () => (
       </KbdGroup>
     </div>
   </div>
-);
+)
 ```
 
 ### WithIcons
@@ -123,7 +179,7 @@ export const WithIcons = () => (
       </KbdGroup>
     </div>
   </div>
-);
+)
 ```
 
 ### ComplexShortcuts
@@ -154,7 +210,7 @@ export const ComplexShortcuts = () => (
       </KbdGroup>
     </div>
   </div>
-);
+)
 ```
 
 ### Group
@@ -165,7 +221,7 @@ export const Group = () => (
     <Kbd>⌘</Kbd>
     <Kbd>K</Kbd>
   </KbdGroup>
-);
+)
 ```
 
 ## Props

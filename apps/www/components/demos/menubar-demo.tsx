@@ -100,4 +100,4 @@ export const MenubarDemo = () => (
       </MenubarContent>
     </MenubarMenu>
   </Menubar>
-);
+)
