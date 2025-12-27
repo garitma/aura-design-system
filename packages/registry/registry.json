@@ -160,6 +160,7 @@
         "tailwindcss"
       ],
       "registryDependencies": [
+        "@aura/button",
         "@aura/class-names",
         "@aura/custom-color-functions",
         "@aura/input",

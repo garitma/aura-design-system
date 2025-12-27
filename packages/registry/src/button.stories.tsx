@@ -1,6 +1,6 @@
 import { Button } from "../registry/default/components/ui/Button";
+import { MixerHorizontalIcon } from "@radix-ui/react-icons";
 
-export const Default = () => <Button>Default Button</Button>;
 
 export const Fill = () => <Button variant="fill">Fill Button</Button>;
 
@@ -17,10 +17,11 @@ export const Sizes = () => (
     <Button size="md">Medium</Button>
     <Button size="lg">Large</Button>
     <Button size="xl">Extra Large</Button>
+    <Button size="icon"><MixerHorizontalIcon className="icon" /></Button>
   </div>
 );
 
-export const Variants = () => (
+export const Default = () => (
   <div className="flex flex-col gap-4 items-start">
     <Button variant="default">Default</Button>
     <Button variant="fill">Fill</Button>

@@ -18,7 +18,7 @@ import {
 } from "react";
 import { cn } from "@/utils/class-names";
 import { useCopyButton } from "fumadocs-ui/utils/use-copy-button";
-import { buttonVariants } from "@/components/ui/Button";
+import Button, { buttonVariants } from "@/components/ui/Button";
 
 import { mergeRefs } from "@/utils/merge-refs";
 
@@ -186,14 +186,13 @@ function CopyButton({
   });
 
   return (
-    <button
+    <Button
       type="button"
       data-checked={checked || undefined}
       className={cn(
         buttonVariants({
-          size: "xs",
+          size: "icon",
           variant: "pill",
-          className: "size-3 px-0.5"
         }),
         className
       )}
@@ -202,7 +201,7 @@ function CopyButton({
       {...props}
     >
       {checked ? <Check className="icon"/> : <Clipboard className="icon"/>}
-    </button>
+    </Button>
   );
 }
 

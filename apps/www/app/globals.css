@@ -282,11 +282,24 @@
   @import "../styles/dialog.css" ;
 
   .fd-step:before {
-    width: 52.5px!important;
-    height: 52.5px!important;
-    inset-inline-start: -26.25px!important;
-    transform: translateY(-13px);
-
+    width: 39px!important;
+    height: 39px!important;
+    inset-inline-start: -19.5px!important;
+  }
+  .fd-steps {
+    padding-left: 39px!important;
+    margin-left: 19.5px!important;
+  }
+  @media screen and (max-width: 768px) {
+    .fd-step:before {
+      width: 26px!important;
+      height: 26px!important;
+      inset-inline-start: -13px!important;
+    }
+    .fd-steps {
+      padding-left: 26px!important;
+      margin-left: 6.5px!important;
+    }
   }
 }
 

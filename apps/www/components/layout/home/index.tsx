@@ -147,12 +147,13 @@ export function Header({
               className={cn(
                 buttonVariants({
                   variant: "pill",
-                  className: "group p-0.5 size-3 [&_svg]:size-1.5",
+                  className: "group",
+                  size: "icon",
                 })
               )}
               enableHover={nav.enableHoverToOpen}
             >
-              <ChevronDown className="transition-transform duration-300 group-data-[state=open]:rotate-180" />
+              <ChevronDown className="icon transition-transform duration-300 group-data-[state=open]:rotate-180" />
             </MobileNavigationMenuTrigger>
             <MobileNavigationMenuContent className="sm:flex-row sm:items-center sm:justify-end">
               {menuItems

@@ -31,13 +31,12 @@ import {
   AvatarDemoCustomFallbackStyles
 } from "./avatar-demo"
 import { 
-  ButtonDemo,
   ButtonDemoFill,
   ButtonDemoPill,
   ButtonDemoLink,
   ButtonDemoMenu,
   ButtonDemoSizes,
-  ButtonDemoVariants,
+  ButtonDemo,
   ButtonDemoDisabled,
   ButtonDemoLoading,
   ButtonDemoStates,
@@ -266,9 +265,6 @@ export const Registry = {
   "avatar-demo-custom-fallback-styles": {
     component: AvatarDemoCustomFallbackStyles,
   },
-  "button-demo": {
-    component: ButtonDemo,
-  },
   "button-demo-fill": {
     component: ButtonDemoFill,
   },
@@ -284,8 +280,8 @@ export const Registry = {
   "button-demo-sizes": {
     component: ButtonDemoSizes,
   },
-  "button-demo-variants": {
-    component: ButtonDemoVariants,
+  "button-demo": {
+    component: ButtonDemo,
   },
   "button-demo-disabled": {
     component: ButtonDemoDisabled,

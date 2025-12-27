@@ -24,6 +24,7 @@ import {
 import { Kbd, KbdGroup } from "@/components/ui/Kbd";
 import { ScrollArea } from "@/components/ui/ScrollArea";
 import { cn } from "@/utils/class-names";
+import { Button } from "@/components/ui/Button";
 
 interface SearchResult {
   id: string;
@@ -342,13 +343,13 @@ export function SearchDialogTrigger({ className }: SearchDialogTriggerProps) {
 
   return (
     <>
-      <button
+      <Button
         type="button"
+        variant="pill"
+        size="sm"
         onClick={() => setOpen(true)}
         className={cn(
-          "inline-flex items-center gap-1 border border-gray-6 bg-gray-1 p-0.5 ps-1.5 text-sm text-gray-11 transition-colors cursor-pointer rounded-sm",
-          "hover:bg-gray-3 hover:text-gray-12",
-          "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-7",
+          "inline-flex items-center gap-1 p-0.5 ps-1.5 text-sm",
           className
         )}
         aria-label="Open search"
@@ -359,7 +360,7 @@ export function SearchDialogTrigger({ className }: SearchDialogTriggerProps) {
           <Kbd>⌘</Kbd>
           <Kbd>K</Kbd>
         </div>
-      </button>
+      </Button>
       <SearchDialog open={open} onOpenChange={setOpen} />
     </>
   );
@@ -372,17 +373,18 @@ export function SearchDialogTriggerIcon({
 
   return (
     <>
-      <button
+      <Button
         type="button"
         onClick={() => setOpen(true)}
+        variant="pill"
+        size="icon"
         className={cn(
-          "flex items-center justify-center w-3 h-3 rounded-sm border border-gray-6 bg-gray-1 cursor-pointer transition-colors hover:bg-gray-3",
           className
         )}
         aria-label="Open search"
       >
         <Search className="w-1 h-1 text-gray-11" />
-      </button>
+      </Button>
       <SearchDialog open={open} onOpenChange={setOpen} />
     </>
   );

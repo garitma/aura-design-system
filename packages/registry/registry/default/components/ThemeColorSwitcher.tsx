@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/Popover";
 import { Input } from "@/components/ui/Input";
 import { Label } from "@/components/ui/Label";
+import { Button } from "@/components/ui/Button";
 
 export function ThemeColorSwitcher() {
   const { setTheme, resolvedTheme } = useTheme();
@@ -413,13 +414,9 @@ ${generateExtraVars("gray", darkColors)}
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <button
-          aria-label="Customize colors"
-          type="button"
-          className="flex items-center justify-center w-3 h-3 rounded-sm border border-gray-6 bg-gray-1 cursor-pointer transition-colors hover:bg-gray-3"
-        >
-          <MixerHorizontalIcon className="w-1 h-1 text-gray-11" />
-        </button>
+        <Button aria-label="Customize colors" type="button" size="icon" variant="pill">
+          <MixerHorizontalIcon className="icon" />
+        </Button>
       </PopoverTrigger>
       <PopoverContent className="min-w-[320px] p-1 z-50" align="end">
         <div className="flex flex-col gap-1">
