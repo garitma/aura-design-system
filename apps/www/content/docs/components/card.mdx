@@ -24,17 +24,28 @@ import { AspectRatio } from "@/components/ui/AspectRatio";
 
 export function CardDemo() {
   return (
-  <Card>
+  <Card className="max-w-sm">
+    <AspectRatio ratio={16 / 9}>
+      <img
+        src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
+        alt="Photo by Drew Beamer"
+        className="size-full object-cover"
+      />
+    </AspectRatio>
     <CardHeader>
-      <CardTitle>Card Title</CardTitle>
-      <CardDescription>Card description goes here</CardDescription>
+      <CardTitle>Beautiful Landscape</CardTitle>
+      <CardDescription>Captured in the mountains</CardDescription>
     </CardHeader>
     <CardContent>
-      <p className="text-gray-12">This is the main content area of the card.</p>
+      <p className="text-gray-12">
+        A stunning view of nature's beauty captured at golden hour.
+      </p>
     </CardContent>
+    <CardFooter>
+      <Button>View Details</Button>
+    </CardFooter>
   </Card>
 );
-}
 ```
 
 </ComponentPreview>
@@ -205,34 +216,6 @@ export const CardGrid = () => (
       </Card>
     ))}
   </div>
-);
-```
-
-### WithImage
-
-```tsx
-export const WithImage = () => (
-  <Card className="max-w-sm">
-    <AspectRatio ratio={16 / 9}>
-      <img
-        src="https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80"
-        alt="Photo by Drew Beamer"
-        className="size-full object-cover"
-      />
-    </AspectRatio>
-    <CardHeader>
-      <CardTitle>Beautiful Landscape</CardTitle>
-      <CardDescription>Captured in the mountains</CardDescription>
-    </CardHeader>
-    <CardContent>
-      <p className="text-gray-12">
-        A stunning view of nature's beauty captured at golden hour.
-      </p>
-    </CardContent>
-    <CardFooter>
-      <Button>View Details</Button>
-    </CardFooter>
-  </Card>
 );
 ```
 

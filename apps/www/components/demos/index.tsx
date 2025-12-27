@@ -40,7 +40,6 @@ import {
   ButtonDemoModeProp
 } from "./button-demo"
 import { 
-  CardDemo,
   CardDemoWithFooter,
   CardDemoWithActions,
   CardDemoSimpleCard,
@@ -48,7 +47,7 @@ import {
   CardDemoNestedCards,
   CardDemoInteractiveCard,
   CardGridDemo,
-  CardDemoWithImage,
+  CardDemo,
   CardDemoImageGrid
 } from "./card-demo"
 import { 
@@ -61,11 +60,10 @@ import {
   CheckboxDemoIndeterminate
 } from "./checkbox-demo"
 import { 
-  CollapsibleDemo,
   CollapsibleDemoDefaultOpen,
   CollapsibleDemoWithRichContent,
   CollapsibleDemoCustomTrigger,
-  CollapsibleDemoWithList,
+  CollapsibleDemo,
   CollapsibleDemoDisabled
 } from "./collapsible-demo"
 import { 
@@ -291,9 +289,6 @@ export const Registry = {
   "button-demo-mode-prop": {
     component: ButtonDemoModeProp,
   },
-  "card-demo": {
-    component: CardDemo,
-  },
   "card-demo-with-footer": {
     component: CardDemoWithFooter,
   },
@@ -315,8 +310,8 @@ export const Registry = {
   "card-demo-card-grid": {
     component: CardGridDemo,
   },
-  "card-demo-with-image": {
-    component: CardDemoWithImage,
+  "card-demo": {
+    component: CardDemo,
   },
   "card-demo-image-grid": {
     component: CardDemoImageGrid,
@@ -342,9 +337,6 @@ export const Registry = {
   "checkbox-demo-indeterminate": {
     component: CheckboxDemoIndeterminate,
   },
-  "collapsible-demo": {
-    component: CollapsibleDemo,
-  },
   "collapsible-demo-default-open": {
     component: CollapsibleDemoDefaultOpen,
   },
@@ -354,8 +346,8 @@ export const Registry = {
   "collapsible-demo-custom-trigger": {
     component: CollapsibleDemoCustomTrigger,
   },
-  "collapsible-demo-with-list": {
-    component: CollapsibleDemoWithList,
+  "collapsible-demo": {
+    component: CollapsibleDemo,
   },
   "collapsible-demo-disabled": {
     component: CollapsibleDemoDisabled,

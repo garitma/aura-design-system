@@ -7,26 +7,6 @@ import {
 import { Button } from "@/components/ui/Button";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 
-export const CollapsibleDemo = () => {
-  return (
-    <Collapsible>
-      <div className="flex items-center justify-between gap-1">
-        <h4 className="text-sm font-semibold">Click to toggle</h4>
-        <CollapsibleTrigger asChild>
-          <Button variant="menu" size="sm">
-            Toggle
-          </Button>
-        </CollapsibleTrigger>
-      </div>
-      <CollapsibleContent>
-        <div className="pt-1 text-sm text-gray-11">
-          This is the collapsible content. Click the toggle button to show or hide it.
-        </div>
-      </CollapsibleContent>
-    </Collapsible>
-  );
-};
-
 export const CollapsibleDemoDefaultOpen = () => {
   return (
     <Collapsible defaultOpen>
@@ -126,7 +106,7 @@ export const CollapsibleDemoCustomTrigger = () => {
   );
 };
 
-export const CollapsibleDemoWithList = () => {
+export const CollapsibleDemo = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const items = [

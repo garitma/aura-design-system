@@ -10,17 +10,6 @@ import {
 import { Button } from "../registry/default/components/ui/Button";
 import { AspectRatio } from "../registry/default/components/ui/AspectRatio";
 
-export const Default = () => (
-  <Card>
-    <CardHeader>
-      <CardTitle>Card Title</CardTitle>
-      <CardDescription>Card description goes here</CardDescription>
-    </CardHeader>
-    <CardContent>
-      <p className="text-gray-12">This is the main content area of the card.</p>
-    </CardContent>
-  </Card>
-);
 
 export const WithFooter = () => (
   <Card>
@@ -153,7 +142,7 @@ export const CardGrid = () => (
   </div>
 );
 
-export const WithImage = () => (
+export const Default = () => (
   <Card className="max-w-sm">
     <AspectRatio ratio={16 / 9}>
       <img

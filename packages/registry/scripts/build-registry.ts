@@ -462,7 +462,8 @@ function getAnimationStyleItems(): RegistryItem[] {
 }
 
 /**
- * Copy components from registry to www app if they don't exist
+ * Copy components from registry to www app, always overwriting existing files
+ * This ensures registry components are the source of truth
  */
 function copyComponentsToWww() {
   // Ensure www components directories exist
@@ -477,6 +478,7 @@ function copyComponentsToWww() {
   }
 
   let copiedCount = 0;
+  let overwrittenCount = 0;
 
   // Copy root components (excluding ui subdirectory)
   if (fs.existsSync(ROOT_COMPONENTS_PATH)) {
@@ -489,9 +491,14 @@ function copyComponentsToWww() {
       const sourcePath = path.join(ROOT_COMPONENTS_PATH, file);
       const destPath = path.join(WWW_COMPONENTS_PATH, file);
 
-      // Only copy if destination doesn't exist
-      if (!fs.existsSync(destPath)) {
-        fs.copyFileSync(sourcePath, destPath);
+      // Always copy/overwrite to ensure registry is source of truth
+      const exists = fs.existsSync(destPath);
+      fs.copyFileSync(sourcePath, destPath);
+      
+      if (exists) {
+        console.log(`[INFO] Overwritten component: ${file} -> ${destPath}`);
+        overwrittenCount++;
+      } else {
         console.log(`[INFO] Copied component: ${file} -> ${destPath}`);
         copiedCount++;
       }
@@ -509,19 +516,29 @@ function copyComponentsToWww() {
       const sourcePath = path.join(UI_COMPONENTS_PATH, file);
       const destPath = path.join(WWW_UI_COMPONENTS_PATH, file);
 
-      // Only copy if destination doesn't exist
-      if (!fs.existsSync(destPath)) {
-        fs.copyFileSync(sourcePath, destPath);
+      // Always copy/overwrite to ensure registry is source of truth
+      const exists = fs.existsSync(destPath);
+      fs.copyFileSync(sourcePath, destPath);
+      
+      if (exists) {
+        console.log(`[INFO] Overwritten UI component: ${file} -> ${destPath}`);
+        overwrittenCount++;
+      } else {
         console.log(`[INFO] Copied UI component: ${file} -> ${destPath}`);
         copiedCount++;
       }
     }
   }
 
-  if (copiedCount > 0) {
-    console.log(`[INFO] Copied ${copiedCount} component(s) to www app`);
+  const totalCount = copiedCount + overwrittenCount;
+  if (totalCount > 0) {
+    if (overwrittenCount > 0) {
+      console.log(`[INFO] Synced ${totalCount} component(s) to www app (${copiedCount} copied, ${overwrittenCount} overwritten)`);
+    } else {
+      console.log(`[INFO] Copied ${copiedCount} component(s) to www app`);
+    }
   } else {
-    console.log(`[INFO] All components are already synced with www app`);
+    console.log(`[INFO] No components found to sync`);
   }
 }
 

@@ -1,3 +1,6 @@
+/**
+ * @description Displays a button or a component that looks like a button.
+ */
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 

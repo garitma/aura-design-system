@@ -21,20 +21,36 @@ import { ChevronDownIcon } from "@radix-ui/react-icons";
 
 export function CollapsibleDemo() {
   return {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const items = [
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Radix UI",
+    "Vite",
+    "Vitest",
+  ];
+
   return (
-    <Collapsible>
+    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
       <div className="flex items-center justify-between gap-1">
-        <h4 className="text-sm font-semibold">Click to toggle</h4>
+        <h4 className="text-sm font-semibold">Technologies ({items.length})</h4>
         <CollapsibleTrigger asChild>
           <Button variant="menu" size="sm">
-            Toggle
+            {isOpen ? "Hide" : "Show"} All
           </Button>
         </CollapsibleTrigger>
       </div>
       <CollapsibleContent>
-        <div className="pt-1 text-sm text-gray-11">
-          This is the collapsible content. Click the toggle button to show or hide it.
-        </div>
+        <ul className="pt-1 space-y-0.5 text-sm text-gray-11">
+          {items.map((item, index) => (
+            <li key={index} className="flex items-center gap-0.5">
+              <span className="size-0.5 rounded-full bg-accent-9" />
+              {item}
+            </li>
+          ))}
+        </ul>
       </CollapsibleContent>
     </Collapsible>
   );
@@ -158,46 +174,6 @@ export const CustomTrigger = () => {
         <div className="p-1 text-sm text-gray-11 border-x border-b border-gray-6 rounded-b-md">
           The entire header area is clickable, not just the button.
         </div>
-      </CollapsibleContent>
-    </Collapsible>
-  );
-};
-```
-
-### WithList
-
-```tsx
-export const WithList = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const items = [
-    "React",
-    "TypeScript",
-    "Tailwind CSS",
-    "Radix UI",
-    "Vite",
-    "Vitest",
-  ];
-
-  return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <div className="flex items-center justify-between gap-1">
-        <h4 className="text-sm font-semibold">Technologies ({items.length})</h4>
-        <CollapsibleTrigger asChild>
-          <Button variant="menu" size="sm">
-            {isOpen ? "Hide" : "Show"} All
-          </Button>
-        </CollapsibleTrigger>
-      </div>
-      <CollapsibleContent>
-        <ul className="pt-1 space-y-0.5 text-sm text-gray-11">
-          {items.map((item, index) => (
-            <li key={index} className="flex items-center gap-0.5">
-              <span className="size-0.5 rounded-full bg-accent-9" />
-              {item}
-            </li>
-          ))}
-        </ul>
       </CollapsibleContent>
     </Collapsible>
   );

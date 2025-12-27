@@ -46,15 +46,7 @@ export const Default = () => {
           </StepperTrigger>
           <StepperSeparator />
         </StepperItem>
-        <StepperItem value="step-4">
-          <StepperTrigger>
-            <StepperIndicator />
-            <div className="flex flex-col">
-              <StepperTitle>Step 4</StepperTitle>
-              <StepperDescription>Review and confirm</StepperDescription>
-            </div>
-          </StepperTrigger>
-        </StepperItem>
+  
       </StepperList>
       <StepperContent value="step-1">
         <div className="p-4">Content for step 1</div>
@@ -65,9 +57,7 @@ export const Default = () => {
       <StepperContent value="step-3">
         <div className="p-4">Content for step 3</div>
       </StepperContent>
-      <StepperContent value="step-4">
-        <div className="p-4">Content for step 4</div>
-      </StepperContent>
+
     </Stepper>
   );
 };

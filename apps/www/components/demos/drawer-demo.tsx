@@ -13,7 +13,7 @@ import {
 export const DrawerDemo = () => (
   <Drawer>
     <DrawerTrigger asChild>
-      <Button variant="outline">Open Drawer</Button>
+      <Button variant="pill">Open Drawer</Button>
     </DrawerTrigger>
     <DrawerContent>
       <div className="mx-auto w-full max-w-sm">
