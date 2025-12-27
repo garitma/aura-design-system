@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "form-field-select",
+  "type": "registry:component",
+  "title": "FormFieldSelect",
+  "description": "The FormFieldSelect component.",
+  "dependencies": [
+    "ajv",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@aura/class-names",
+    "@aura/select",
+    "@aura/use-dynamic-form"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/FormFieldSelect.tsx",
+      "content": "import * as React from \"react\";\nimport { ErrorObject } from \"ajv\";\nimport { Form as FormRadix } from \"radix-ui\";\n\nimport { FieldProps } from \"@/hooks/use-dynamic-form\";\nimport {\n  Select,\n  SelectTrigger,\n  SelectValue,\n  SelectIcon,\n  SelectPortal,\n  SelectContent,\n  SelectViewport,\n  SelectItem,\n  SelectItemText,\n  SelectItemIndicator,\n} from \"@/components/ui/Select\";\nimport { cn } from \"@/utils/class-names\";\n\nexport interface SelectOption {\n  label: string;\n  value: string;\n}\n\ninterface FormFieldSelectProps extends Partial<FormRadix.FormFieldProps> {\n  label?: React.ReactNode;\n  labelProps?: FormRadix.FormLabelProps;\n  controlProps?: FormRadix.FormControlProps;\n  field?: FieldProps;\n  errors?: ErrorObject<string, Record<string, any>, unknown>[];\n  options: SelectOption[];\n  /**\n   * Placeholder text for the select\n   */\n  placeholder?: string;\n  /**\n   * Whether the select is disabled\n   */\n  disabled?: boolean;\n  /**\n   * Default value for the select\n   */\n  defaultValue?: string;\n  /**\n   * Controlled value for the select\n   */\n  value?: string;\n  /**\n   * Custom className for the select\n   */\n  className?: string;\n}\n\nexport const FormFieldSelect = React.forwardRef<\n  HTMLDivElement,\n  FormFieldSelectProps\n>(\n  (\n    {\n      label,\n      labelProps,\n      controlProps,\n      field,\n      errors,\n      options,\n      placeholder,\n      disabled = false,\n      defaultValue,\n      value,\n      className,\n      ...props\n    },\n    forwardedRef\n  ) => {\n    const hasError = field?.touch && errors && errors.length > 0;\n    const name = props.name || field?.name || \"\";\n\n    const handleValueChange = (newValue: string) => {\n      if (field?.setValue) {\n        field.setValue(newValue);\n      }\n    };\n\n    return (\n      <FormRadix.Field\n        {...props}\n        ref={forwardedRef}\n        name={name}\n        serverInvalid={hasError}\n        className={cn(className)}\n      >\n        {label && (\n          <div className=\"mb-1\">\n            <FormRadix.Label {...labelProps}>{label}</FormRadix.Label>\n          </div>\n        )}\n        <FormRadix.Control {...controlProps} asChild>\n          <Select\n            defaultValue={defaultValue}\n            onValueChange={handleValueChange}\n            disabled={disabled}\n          >\n            <SelectTrigger>\n              <SelectValue placeholder={placeholder} />\n              <SelectIcon />\n            </SelectTrigger>\n            <SelectPortal>\n              <SelectContent>\n                <SelectViewport>\n                  {options.map((option) => (\n                    <SelectItem key={option.value} value={option.value}>\n                      <SelectItemText>{option.label}</SelectItemText>\n                      <SelectItemIndicator />\n                    </SelectItem>\n                  ))}\n                </SelectViewport>\n              </SelectContent>\n            </SelectPortal>\n          </Select>\n        </FormRadix.Control>\n        {hasError &&\n          errors?.map((error, index) => (\n            <FormRadix.Message className=\"text-warning-contrast\" key={index}>\n              {error.message}\n            </FormRadix.Message>\n          ))}\n      </FormRadix.Field>\n    );\n  }\n);\n\nFormFieldSelect.displayName = \"FormFieldSelect\";\n\n",
+      "type": "registry:component"
+    }
+  ]
+}

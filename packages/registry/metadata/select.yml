@@ -1,0 +1,4 @@
+header:
+  description: A select component that allows users to select a value from a list of options.
+extends: _templates/content.yml
+

@@ -147,6 +147,15 @@ import {
   RadioGroupDemoHorizontal
 } from "./radio-group-demo"
 import { 
+  SelectDemo,
+  SelectDemoWithDefaultValue,
+  SelectDemoWithGroups,
+  SelectDemoWithDisabledItems,
+  SelectDemoDisabled,
+  SelectDemoWithLongList,
+  SelectDemoComplex
+} from "./select-demo"
+import { 
   SignaturePadDemo,
   SignaturePadDemoWithoutButtons,
   SignaturePadDemoVariants,
@@ -500,6 +509,27 @@ export const Registry = {
   },
   "radio-group-demo-horizontal": {
     component: RadioGroupDemoHorizontal,
+  },
+  "select-demo": {
+    component: SelectDemo,
+  },
+  "select-demo-with-default-value": {
+    component: SelectDemoWithDefaultValue,
+  },
+  "select-demo-with-groups": {
+    component: SelectDemoWithGroups,
+  },
+  "select-demo-with-disabled-items": {
+    component: SelectDemoWithDisabledItems,
+  },
+  "select-demo-disabled": {
+    component: SelectDemoDisabled,
+  },
+  "select-demo-with-long-list": {
+    component: SelectDemoWithLongList,
+  },
+  "select-demo-complex": {
+    component: SelectDemoComplex,
   },
   "signature-pad-demo": {
     component: SignaturePadDemo,

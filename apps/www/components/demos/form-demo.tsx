@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/Form";
 import { Input } from "@/components/ui/Input";
 import { FormFieldCombobox } from "@/components/FormFieldCombobox";
+import { FormFieldSelect } from "@/components/FormFieldSelect";
 import { FormFieldSignaturePad } from "@/components/FormFieldSignaturePad";
 import { useFormDynamic } from "@/hooks/use-dynamic-form";
 import { validateFormData } from "@/utils/web-validation";
@@ -585,8 +586,8 @@ export const FormDemoWithSelect = () => {
   const formRef = useRef<HTMLFormElement>(null);
 
   const formData = useFormDynamic({
-    country: "select",
-    city: "select",
+    country: "text",
+    city: "text",
   });
 
   const { country, city } = formData.getFields();
@@ -596,6 +597,20 @@ export const FormDemoWithSelect = () => {
     formData.getValues()
   );
   const formErrors = errors || undefined;
+
+  const countryOptions = [
+    { label: "United States", value: "us" },
+    { label: "United Kingdom", value: "uk" },
+    { label: "Canada", value: "ca" },
+    { label: "Australia", value: "au" },
+  ];
+
+  const cityOptions = [
+    { label: "New York", value: "ny" },
+    { label: "Los Angeles", value: "la" },
+    { label: "Chicago", value: "ch" },
+    { label: "San Francisco", value: "sf" },
+  ];
 
   const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -628,24 +643,18 @@ export const FormDemoWithSelect = () => {
       className="flex flex-col gap-1"
     >
       <FormAlert formData={formDataForAlert} />
-      <FormField field={country} label="Country *">
-        <select>
-          <option value="">Select a country</option>
-          <option value="us">United States</option>
-          <option value="uk">United Kingdom</option>
-          <option value="ca">Canada</option>
-          <option value="au">Australia</option>
-        </select>
-      </FormField>
-      <FormField field={city} label="City *">
-        <select>
-          <option value="">Select a city</option>
-          <option value="ny">New York</option>
-          <option value="la">Los Angeles</option>
-          <option value="ch">Chicago</option>
-          <option value="sf">San Francisco</option>
-        </select>
-      </FormField>
+      <FormFieldSelect
+        field={country}
+        label="Country *"
+        options={countryOptions}
+        placeholder="Select a country"
+      />
+      <FormFieldSelect
+        field={city}
+        label="City *"
+        options={cityOptions}
+        placeholder="Select a city"
+      />
       <FormSubmit
         fetchStatus={formData.fetchStatus}
         buttonProps={{ children: "Submit" }}

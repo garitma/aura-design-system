@@ -82,6 +82,27 @@
       ]
     },
     {
+      "name": "form-field-select",
+      "type": "registry:component",
+      "title": "FormFieldSelect",
+      "description": "The FormFieldSelect component.",
+      "files": [
+        {
+          "path": "registry/default/components/FormFieldSelect.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "ajv",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/select",
+        "@aura/use-dynamic-form"
+      ]
+    },
+    {
       "name": "form-field-signature-pad",
       "type": "registry:component",
       "title": "FormFieldSignaturePad",
@@ -611,6 +632,25 @@
           "path": "registry/default/components/ui/Section.tsx",
           "type": "registry:ui"
         }
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "description": "The Select component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Select.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "radix-ui"
       ],
       "registryDependencies": [
         "@aura/class-names"
