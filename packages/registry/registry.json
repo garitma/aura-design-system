@@ -224,8 +224,18 @@
         {
           "path": "registry/default/components/ui/AlertDialog.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/alert-dialog.css",
+          "type": "registry:component",
+          "target": "./styles/alert-dialog.css"
         }
       ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/alert-dialog.css\"": {}
+        }
+      },
       "dependencies": [
         "radix-ui"
       ],
@@ -346,8 +356,18 @@
         {
           "path": "registry/default/components/ui/Collapsible.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/collapsible.css",
+          "type": "registry:component",
+          "target": "./styles/collapsible.css"
         }
       ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/collapsible.css\"": {}
+        }
+      },
       "dependencies": [
         "radix-ui"
       ],
@@ -401,8 +421,18 @@
         {
           "path": "registry/default/components/ui/Dialog.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/dialog.css",
+          "type": "registry:component",
+          "target": "./styles/dialog.css"
         }
       ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/dialog.css\"": {}
+        }
+      },
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"

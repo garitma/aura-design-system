@@ -15,6 +15,17 @@
       "path": "registry/default/components/ui/Collapsible.tsx",
       "content": "\"use client\";\n/**\n * @description An interactive component which expands and collapses content.\n */\nimport { Collapsible as CollapsibleRadix } from \"radix-ui\";\n\nimport { cn } from \"@/utils/class-names\";\n\nfunction Collapsible({\n  ...props\n}: React.ComponentProps<typeof CollapsibleRadix.Root>) {\n  return <CollapsibleRadix.Root data-slot=\"collapsible\" {...props} />;\n}\n\nfunction CollapsibleTrigger({\n  ...props\n}: React.ComponentProps<typeof CollapsibleRadix.CollapsibleTrigger>) {\n  return (\n    <CollapsibleRadix.CollapsibleTrigger\n      data-slot=\"collapsible-trigger\"\n      {...props}\n    />\n  );\n}\n\nfunction CollapsibleContent({\n  className,\n  ...props\n}: React.ComponentProps<typeof CollapsibleRadix.CollapsibleContent>) {\n  return (\n    <CollapsibleRadix.CollapsibleContent\n      className={cn(\n        className,\n        \"overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down\"\n      )}\n      data-slot=\"collapsible-content\"\n      {...props}\n    />\n  );\n}\n\nexport { Collapsible, CollapsibleTrigger, CollapsibleContent };\n",
       "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/styles/collapsible.css",
+      "content": "@theme animatons {\n    --animate-collapsible-down: slideDownCollapsible 500ms ease;\n    --animate-collapsible-up: slideUpCollapsible 500ms ease;\n  }\n  @layer components {\n    @keyframes slideDownCollapsible {\n      from {\n        height: 0;\n      }\n      to {\n        height: var(--radix-collapsible-content-height);\n      }\n    }\n  \n    @keyframes slideUpCollapsible {\n      from {\n        height: var(--radix-collapsible-content-height);\n      }\n      to {\n        height: 0;\n      }\n    }\n  }\n  ",
+      "type": "registry:component",
+      "target": "./styles/collapsible.css"
     }
-  ]
+  ],
+  "css": {
+    "@layer components": {
+      "@import \"../styles/collapsible.css\"": {}
+    }
+  }
 }

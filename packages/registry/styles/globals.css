@@ -268,7 +268,10 @@
 
 @layer base {
   @import "./main.css";
-  @import "../registry/default/styles/accordion.animation.css";
+  @import "../registry/default/styles/accordion.css";
+  @import "../registry/default/styles/alert-dialog.css";
+  @import "../registry/default/styles/collapsible.css";
+  @import "../registry/default/styles/dialog.css";
 
   html {
     font-size: 17px;
