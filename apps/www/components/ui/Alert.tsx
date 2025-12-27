@@ -1,6 +1,3 @@
-/**
- * @description Displays a callout for user attention with contextual feedback messages.
- */
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import {

@@ -1,0 +1,4 @@
+header:
+  description: A command palette that allows users to search and execute commands.
+extends: _templates/content.yml
+

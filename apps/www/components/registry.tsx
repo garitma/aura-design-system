@@ -80,6 +80,9 @@ import {
   ComboboxDemoPositioning
 } from "@/components/demos/combobox-demo"
 import { 
+  CommandDemo
+} from "@/components/demos/command-demo"
+import { 
   ContextMenuDemo,
   ContextMenuDemoWithSubmenu,
   ContextMenuDemoWithCheckboxes,
@@ -374,6 +377,9 @@ export const Registry = {
   },
   "combobox-demo-positioning": {
     component: ComboboxDemoPositioning,
+  },
+  "command-demo": {
+    component: CommandDemo,
   },
   "context-menu-demo": {
     component: ContextMenuDemo,

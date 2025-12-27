@@ -1,0 +1,4 @@
+header:
+  description: A input component that allows users to search and select from a list of options.
+extends: _templates/content.yml
+

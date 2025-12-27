@@ -1,6 +1,3 @@
-/**
- * @description Displays a button or a component that looks like a button.
- */
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 
@@ -39,9 +36,9 @@ interface ButtonProps
   isLoading?: boolean;
   isLoadingText?: string | React.ReactNode;
   mode?: VariantProps<typeof buttonVariants>["variant"];
+  label?: string | React.ReactNode;
 }
 
-import { ReloadIcon } from "@radix-ui/react-icons";
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props: ButtonProps, ref) => {
@@ -55,6 +52,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       isLoading,
       isLoadingText,
       children,
+      label,
       ...rest
     } = props;
     const Comp = asChild ? Slot : "button";
@@ -76,8 +74,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           children
         ) : (
           <>
-            {isLoading && <ReloadIcon className="mr-0.5 icon animate-spin" />}
-            {isLoading && isLoadingText ? isLoadingText : children}
+      
+            {isLoading && isLoadingText ? isLoadingText : <>{label}{children}</>}
           </>
         )}
       </Comp>

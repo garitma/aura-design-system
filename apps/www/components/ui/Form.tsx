@@ -1,4 +1,3 @@
-
 import * as React from "react";
 import { ErrorObject } from "ajv";
 import { Form as FormRadix } from "radix-ui";
@@ -14,10 +13,7 @@ import {
   CheckboxGroupItem,
 } from "@/components/ui/Checkbox";
 import { Switch } from "@/components/ui/Switch";
-import {
-  RadioGroup,
-  RadioGroupItem,
-} from "@/components/ui/RadioGroup";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/RadioGroup";
 
 interface FormProps extends FormRadix.FormProps {
   errors?: ErrorObject<string, Record<string, any>, unknown>[];
@@ -325,7 +321,11 @@ export const FormCheckboxGroup = React.forwardRef<
         serverInvalid={hasError}
         className={className}
       >
-        {label && <FormRadix.Label {...labelProps}>{label}</FormRadix.Label>}
+        {label && (
+          <div className="mb-1">
+            <FormRadix.Label {...labelProps}>{label}</FormRadix.Label>
+          </div>
+        )}
         <FormRadix.Control {...controlProps} asChild>
           <CheckboxGroup
             value={fieldValue}
@@ -402,7 +402,11 @@ export const FormRadioGroup = React.forwardRef<
         serverInvalid={hasError}
         className={className}
       >
-        {label && <FormRadix.Label {...labelProps}>{label}</FormRadix.Label>}
+        {label && (
+          <div className="mb-1">
+            <FormRadix.Label {...labelProps}>{label}</FormRadix.Label>
+          </div>
+        )}
         <FormRadix.Control {...controlProps} asChild>
           <RadioGroup
             value={fieldValue}

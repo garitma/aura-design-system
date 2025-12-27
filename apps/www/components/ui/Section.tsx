@@ -1,6 +1,3 @@
-/**
- * @description A semantic section container with configurable layout variants.
- */
 import * as React from "react";
 
 import { cn } from "@/utils/class-names";

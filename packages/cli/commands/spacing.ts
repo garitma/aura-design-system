@@ -33,7 +33,7 @@ function mapToCustomSpacing(defaultPxValue: number) {
 
 function updateSpacingInContent(content: string) {
     let hasChanges = false;
-    const spacingClassRegex = /(^|[\s"'])((?:[^"'\s]*:)?)(m|p|mt|mb|mr|ml|mx|my|pt|pb|pr|pl|px|py|gap|space-x|space-y|h|w|size)-((?:\d+\.)?\d+|auto)(?=$|[\s"'])/g;
+    const spacingClassRegex = /(^|[\s"'])((?:[^"'\s]*:)?)(m|p|mt|mb|mr|ml|mx|my|pt|pb|pr|pl|px|py|gap|space-x|space-y|h|min-h|max-h|w|min-w|max-w|size)-((?:\d+\.)?\d+|auto)(?=$|[\s"'])/g;
 
     const updatedContent = content.replace(spacingClassRegex, (match, delimiter, variants, prefix, value) => {
         if (value === "auto") {

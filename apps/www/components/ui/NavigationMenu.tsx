@@ -1,6 +1,3 @@
-/**
- * @description A collection of links for navigating websites.
- */
 import * as React from "react";
 import { NavigationMenu as NavigationMenuRadix } from "radix-ui";
 

@@ -1,6 +1,3 @@
-/**
- * @description Displays content within a desired ratio.
- */
 import * as AspectRatioPrimitive from "@radix-ui/react-aspect-ratio";
 
 function AspectRatio({

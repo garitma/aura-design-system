@@ -275,6 +275,14 @@
   article {
     --spacing: 4px;
   }
+
+@import "../styles/accordion.css" ;
+
+@import "../styles/alert-dialog.css" ;
+
+@import "../styles/collapsible.css" ;
+
+@import "../styles/dialog.css" ;
 }
 
 @layer utilities {

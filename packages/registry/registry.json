@@ -259,6 +259,27 @@
       ]
     },
     {
+      "name": "autocomplete",
+      "type": "registry:ui",
+      "title": "Autocomplete",
+      "description": "The Autocomplete component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Autocomplete.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "@radix-ui/react-icons"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/input",
+        "@aura/scroll-area"
+      ]
+    },
+    {
       "name": "avatar",
       "type": "registry:ui",
       "title": "Avatar",
@@ -390,6 +411,26 @@
         "@base-ui/react"
       ],
       "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "description": "The Command component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Command.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "@radix-ui/react-icons"
+      ],
+      "registryDependencies": [
+        "@aura/autocomplete",
         "@aura/class-names"
       ]
     },
@@ -530,6 +571,21 @@
       "files": [
         {
           "path": "registry/default/components/ui/Input.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "description": "The Kbd component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Kbd.tsx",
           "type": "registry:ui"
         }
       ],
