@@ -265,7 +265,6 @@
         }
       ],
       "dependencies": [
-        "@radix-ui/react-icons",
         "@radix-ui/react-slot",
         "class-variance-authority"
       ],

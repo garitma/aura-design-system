@@ -4,9 +4,7 @@ import { Form as FormRadix } from "radix-ui";
 import type { ComponentRef } from "react";
 
 import { FieldProps } from "@/hooks/use-dynamic-form";
-import SignaturePad, {
-  SignaturePadProps,
-} from "@/components/ui/SignaturePad";
+import SignaturePad, { SignaturePadProps } from "@/components/ui/SignaturePad";
 
 interface FormFieldSignaturePadProps
   extends Partial<FormRadix.FormFieldProps>,
@@ -49,35 +47,14 @@ export const FormFieldSignaturePad = React.forwardRef<
   ) => {
     const hasError = field?.touch && errors && errors.length > 0;
     const name = props.name || field?.name || "";
-    const signaturePadRef = React.useRef<ComponentRef<typeof SignaturePad>>(null);
+    const signaturePadRef =
+      React.useRef<ComponentRef<typeof SignaturePad>>(null);
 
-    // Clear signature pad when form field value is cleared externally
-    React.useEffect(() => {
-      if (!field?.value && signaturePadRef.current) {
-        signaturePadRef.current.clear();
+    const handleChange = (signature: Base64URLString | null) => {
+      if (field?.setValue) {
+        field.setValue(signature || "");
       }
-    }, [field?.value]);
-
-    // Handle signature changes - update form field value
-    const handleChange = React.useCallback(
-      (signature: Base64URLString | null) => {
-        if (field?.setValue) {
-          field.setValue(signature || "");
-        }
-      },
-      [field]
-    );
-
-    // Handle signature save - update form field and call optional onSave callback
-    const handleSave = React.useCallback(
-      (signature: Base64URLString) => {
-        if (field?.setValue) {
-          field.setValue(signature);
-        }
-        onSave?.(signature);
-      },
-      [field, onSave]
-    );
+    };
 
     return (
       <FormRadix.Field
@@ -87,21 +64,28 @@ export const FormFieldSignaturePad = React.forwardRef<
         serverInvalid={hasError}
         className={className}
       >
-        {label && <FormRadix.Label {...labelProps}>{label}</FormRadix.Label>}
-        <FormRadix.Control {...controlProps} asChild>
-          <SignaturePad
-            ref={signaturePadRef}
-            onChange={handleChange}
-            onSave={handleSave}
-            penColor={penColor}
-            lineWidth={lineWidth}
-            showButtons={showButtons}
-            saveButtonIcon={saveButtonIcon}
-            clearButtonIcon={clearButtonIcon}
-            variant={variant}
-            size={size}
-          />
-        </FormRadix.Control>
+        {label && (
+          <div className="mb-1">
+            <FormRadix.Label {...labelProps}>{label}</FormRadix.Label>
+          </div>
+        )}
+
+        <SignaturePad
+          ref={signaturePadRef}
+          penColor={penColor}
+          lineWidth={lineWidth}
+          showButtons={showButtons}
+          saveButtonIcon={saveButtonIcon}
+          clearButtonIcon={clearButtonIcon}
+          variant={variant}
+          size={size}
+          onSave={onSave}
+          onChange={handleChange}
+        />
+        <FormRadix.Control
+          {...controlProps}
+          className="border-0 absolute w-px h-px p-0 -m-px overflow-hidden whitespace-nowrap break-normal clip-rect hidden"
+        />
         {hasError &&
           errors?.map((error, index) => (
             <FormRadix.Message className="text-warning-contrast" key={index}>
@@ -114,4 +98,3 @@ export const FormFieldSignaturePad = React.forwardRef<
 );
 
 FormFieldSignaturePad.displayName = "FormFieldSignaturePad";
-
