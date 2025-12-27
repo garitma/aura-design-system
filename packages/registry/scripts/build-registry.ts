@@ -203,7 +203,9 @@ function getComponentItemsFromPath(dirPath: string, registryPrefix: string, item
 
         // Use @import for the CSS file instead of parsing variables and keyframes
         item.css = {
-          [`@import "./styles/${cssFileName}"`]: {}
+          "@layer components": {
+            [`@import "../styles/${cssFileName}"`]: {}
+          }
         };
       }
       

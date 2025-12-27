@@ -25,6 +25,8 @@
     }
   ],
   "css": {
-    "@import \"./styles/accordion.css\"": {}
+    "@layer components": {
+      "@import \"../styles/accordion.css\"": {}
+    }
   }
 }

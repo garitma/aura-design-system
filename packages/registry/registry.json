@@ -184,7 +184,9 @@
         }
       ],
       "css": {
-        "@import \"./styles/accordion.css\"": {}
+        "@layer components": {
+          "@import \"../styles/accordion.css\"": {}
+        }
       },
       "dependencies": [
         "@radix-ui/react-icons",
