@@ -12,6 +12,8 @@ const UI_COMPONENTS_PATH = path.join(__dirname, "../registry/default/components/
 const UTILS_PATH = path.join(__dirname, "../registry/default/utils");
 const HOOKS_PATH = path.join(__dirname, "../registry/default/hooks");
 const STYLES_PATH = path.join(__dirname, "../registry/default/styles");
+const WWW_COMPONENTS_PATH = path.join(__dirname, "../../../apps/www/components");
+const WWW_UI_COMPONENTS_PATH = path.join(__dirname, "../../../apps/www/components/ui");
 
 type RegistryItemType = 
   | "registry:lib"
@@ -440,7 +442,74 @@ function getAnimationStyleItems(): RegistryItem[] {
     });
 }
 
+/**
+ * Copy components from registry to www app if they don't exist
+ */
+function copyComponentsToWww() {
+  // Ensure www components directories exist
+  if (!fs.existsSync(WWW_COMPONENTS_PATH)) {
+    fs.mkdirSync(WWW_COMPONENTS_PATH, { recursive: true });
+    console.log(`[INFO] Created www components directory: ${WWW_COMPONENTS_PATH}`);
+  }
+  
+  if (!fs.existsSync(WWW_UI_COMPONENTS_PATH)) {
+    fs.mkdirSync(WWW_UI_COMPONENTS_PATH, { recursive: true });
+    console.log(`[INFO] Created www ui components directory: ${WWW_UI_COMPONENTS_PATH}`);
+  }
+
+  let copiedCount = 0;
+
+  // Copy root components (excluding ui subdirectory)
+  if (fs.existsSync(ROOT_COMPONENTS_PATH)) {
+    const entries = fs.readdirSync(ROOT_COMPONENTS_PATH, { withFileTypes: true });
+    const componentFiles = entries
+      .filter((entry) => entry.isFile() && entry.name.endsWith(".tsx") && entry.name !== ".DS_Store")
+      .map((entry) => entry.name);
+
+    for (const file of componentFiles) {
+      const sourcePath = path.join(ROOT_COMPONENTS_PATH, file);
+      const destPath = path.join(WWW_COMPONENTS_PATH, file);
+
+      // Only copy if destination doesn't exist
+      if (!fs.existsSync(destPath)) {
+        fs.copyFileSync(sourcePath, destPath);
+        console.log(`[INFO] Copied component: ${file} -> ${destPath}`);
+        copiedCount++;
+      }
+    }
+  }
+
+  // Copy UI components
+  if (fs.existsSync(UI_COMPONENTS_PATH)) {
+    const entries = fs.readdirSync(UI_COMPONENTS_PATH, { withFileTypes: true });
+    const componentFiles = entries
+      .filter((entry) => entry.isFile() && entry.name.endsWith(".tsx") && entry.name !== ".DS_Store")
+      .map((entry) => entry.name);
+
+    for (const file of componentFiles) {
+      const sourcePath = path.join(UI_COMPONENTS_PATH, file);
+      const destPath = path.join(WWW_UI_COMPONENTS_PATH, file);
+
+      // Only copy if destination doesn't exist
+      if (!fs.existsSync(destPath)) {
+        fs.copyFileSync(sourcePath, destPath);
+        console.log(`[INFO] Copied UI component: ${file} -> ${destPath}`);
+        copiedCount++;
+      }
+    }
+  }
+
+  if (copiedCount > 0) {
+    console.log(`[INFO] Copied ${copiedCount} component(s) to www app`);
+  } else {
+    console.log(`[INFO] All components are already synced with www app`);
+  }
+}
+
 function buildRegistry() {
+  // Copy components to www app first
+  copyComponentsToWww();
+
   const components = getComponentItems();
   const utils = getUtilsItems();
   const hooks = getHooksItems();
