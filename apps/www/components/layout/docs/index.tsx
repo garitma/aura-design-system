@@ -20,7 +20,7 @@ import {
   LanguageToggleText,
 } from "@/components/LanguageToggle";
 import { type Option, RootToggle } from "@/components/RootToggle";
-import { LargeSearchToggle, SearchToggle } from "@/components/SearchToggle";
+
 import { SearchDialogTrigger, SearchDialogTriggerIcon } from "@/components/SearchDialog";
 import {
   Sidebar,
@@ -231,10 +231,7 @@ export function DocsLayout({
             )}
           </div>
           <SearchDialogTrigger />
-          {searchToggle.enabled !== false &&
-            (searchToggle.components?.lg ?? (
-              <LargeSearchToggle hideIfDisabled />
-            ))}
+  
           {tabs.length > 0 && tabMode === "auto" && (
             <RootToggle options={tabs} />
           )}

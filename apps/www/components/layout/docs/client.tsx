@@ -80,7 +80,6 @@ export function CollapsibleControl() {
       >
         <SidebarIcon className="icon" />
       </SidebarCollapseTrigger>
-      <SearchToggle hideIfDisabled />
     </div>
   );
 }

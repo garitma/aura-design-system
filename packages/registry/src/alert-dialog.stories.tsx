@@ -14,7 +14,7 @@ import { Button } from "../registry/default/components/ui/Button";
 export const Default = () => (
   <AlertDialog>
     <AlertDialogTrigger asChild>
-      <Button variant="outline">Show Dialog</Button>
+      <Button variant="pill">Show Dialog</Button>
     </AlertDialogTrigger>
     <AlertDialogContent>
       <AlertDialogHeader>

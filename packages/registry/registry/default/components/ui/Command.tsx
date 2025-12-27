@@ -42,7 +42,7 @@ function CommandDialogBackdrop({
   return (
     <CommandDialogPrimitive.Backdrop
       className={cn(
-        "fixed inset-0 z-50 bg-gray-surface backdrop-blur-sm transition-all duration-200 data-ending-style:opacity-0 data-starting-style:opacity-0",
+        "fixed inset-0 z-50 bg-gray-9a backdrop-blur-xs transition-all",
         className,
       )}
       data-slot="command-dialog-backdrop"

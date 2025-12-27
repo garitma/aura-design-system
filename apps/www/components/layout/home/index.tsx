@@ -9,9 +9,12 @@ import {
   LanguageToggle,
   LanguageToggleText,
 } from "@/components/LanguageToggle";
-import { LargeSearchToggle, SearchToggle } from "@/components/SearchToggle";
+
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { SearchDialogTrigger, SearchDialogTriggerIcon } from "@/components/SearchDialog";
+import {
+  SearchDialogTrigger,
+  SearchDialogTriggerIcon,
+} from "@/components/SearchDialog";
 import {
   MobileNavigationMenuContent,
   MobileNavigationMenuLinkItem,
@@ -114,13 +117,7 @@ export function Header({
       </ul>
       <div className="flex flex-row items-center justify-end gap-0.5 flex-1 max-lg:hidden">
         <SearchDialogTrigger />
-        {searchToggle.enabled !== false &&
-          (searchToggle.components?.lg ?? (
-            <LargeSearchToggle
-              className="w-full rounded-full ps-2.5 max-w-[240px]"
-              hideIfDisabled
-            />
-          ))}
+
         {themeSwitch.enabled !== false &&
           (themeSwitch.component ?? <ThemeToggle mode={themeSwitch?.mode} />)}
         {i18n && (
@@ -142,10 +139,7 @@ export function Header({
       </div>
       <ul className="flex flex-row items-center ms-auto lg:hidden gap-0.5">
         <SearchDialogTriggerIcon />
-        {searchToggle.enabled !== false &&
-          (searchToggle.components?.sm ?? (
-            <SearchToggle className="p-2" hideIfDisabled />
-          ))}
+
         {menuItems.length > 0 && (
           <NavigationMenuItem>
             <MobileNavigationMenuTrigger
@@ -170,7 +164,7 @@ export function Header({
                     className="sm:hidden"
                   />
                 ))}
-                
+
               <div className="flex flex-row gap-1 mt-1">
                 {menuItems.filter(isSecondary).map((item, i) => (
                   <MobileNavigationMenuLinkItem
@@ -179,7 +173,7 @@ export function Header({
                     className={cn(item.type === "icon" && "first:ms-0")}
                   />
                 ))}
-            
+
                 {i18n && (
                   <LanguageToggle>
                     <Languages className="size-5" />
