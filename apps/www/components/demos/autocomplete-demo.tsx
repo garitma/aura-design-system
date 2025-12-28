@@ -40,3 +40,4 @@ export const AutocompleteDemo = () => {
       </AutocompletePopup>
     </Autocomplete>
   );
+}

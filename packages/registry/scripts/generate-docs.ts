@@ -415,10 +415,45 @@ function extractAllStories(componentName: string): Story[] | null {
       let storyEndMatch: RegExpMatchArray | null = null;
       
       if (currentStory.type === "const") {
-        // Try to match story with braces first: () => { ... };
-        storyEndMatch = storySection.match(/(export\s+const\s+\w+\s*=\s*(?:\(\)\s*=>|\([^)]*\)\s*=>)\s*\{[\s\S]*?\n\});/);
+        // Try to match story with braces first: () => { ... } or () => { ... }; or () => { ... }\n}
+        // Use brace counting to handle cases where closing brace is on separate line
+        const constStart = storySection.indexOf("export const");
+        if (constStart !== -1) {
+          const arrowMatch = storySection.substring(constStart).match(/(?:\(\)\s*=>|\([^)]*\)\s*=>)\s*\{/);
+          if (arrowMatch) {
+            const arrowIndex = constStart + arrowMatch.index! + arrowMatch[0].length;
+            let braceCount = 1; // We've already seen the opening brace
+            let endPos = -1;
+            
+            for (let i = arrowIndex; i < storySection.length; i++) {
+              const char = storySection[i];
+              if (char === '{') {
+                braceCount++;
+              } else if (char === '}') {
+                braceCount--;
+                if (braceCount === 0) {
+                  // Found the matching closing brace
+                  // Check if there's a semicolon after (on same line or next line)
+                  const remaining = storySection.substring(i + 1).trim();
+                  if (remaining.startsWith(";")) {
+                    endPos = i + 1 + remaining.indexOf(";") + 1;
+                  } else {
+                    // Closing brace is on its own line, include it
+                    // Include the closing brace and stop (don't include trailing whitespace)
+                    endPos = i + 1;
+                  }
+                  break;
+                }
+              }
+            }
+            
+            if (endPos > constStart) {
+              storyEndMatch = [storySection.substring(constStart, endPos)];
+            }
+          }
+        }
         
-        // If no match, try to match story with parentheses: () => ( ... );
+        // If no match with braces, try to match story with parentheses: () => ( ... );
         // Need to handle balanced parentheses for JSX expressions
         if (!storyEndMatch) {
           const arrowStart = storySection.indexOf("=>");
