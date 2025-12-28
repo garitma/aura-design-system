@@ -1,0 +1,42 @@
+---
+alwaysApply: true
+---
+
+# Typography Rules
+
+## Fluid Foundation
+
+* **MUST**: Use `clamp()` for all primary typography to ensure responsiveness.
+* **MUST**: Use the formula: `font-size: clamp(var(--min), var(--val), var(--max))`.
+* **MUST**: Define specific sizes using CSS custom properties (`--min`, `--val`, `--max`) scoped to the element or class.
+
+## Typography Scale
+
+| Element/Class | --min | --val | --max |
+| --- | --- | --- | --- |
+| `h1`, `.h1` | 1.9838rem | 4.03vw | 3.052rem |
+| `h2`, `.h2` | 1.58665rem | 4.03vw | 2.441rem |
+| `h3`, `.h3` | 1.482rem | 4.03vw | 2.28rem |
+| `h4`, `.h4`, `blockquote` | 1.26945rem | 4.03vw | 1.953rem |
+| `h5`, `.h5` | 1.17225rem | 4.03vw | 1.563rem |
+| `h6`, `.h6` | 1.0625rem | 4.03vw | 1.25rem |
+| `p`, `.p` | 1rem | 4.03vw | 1rem |
+
+## Styling & Tailwind Usage
+
+* **NEVER**: Use Tailwind utility classes for primary font sizes (e.g., **NEVER** use `text-xl`, `text-2xl`, `text-4xl`, etc.).
+* **MUST**: Use semantic classes (`.h1`, `.h2`, etc.) when a heading style is needed on a non-heading element.
+* **EXCEPTION**: Use Tailwind `text-sm` (0.875rem) and `text-xs` (0.75rem) for small, fixed-size utility text. The fluid scale only applies from `p` (16px) and up.
+* **SHOULD**: Apply the fluid `clamp` logic globally in CSS to ensure consistency:
+```css
+body h1, body h2, body h3, body h4, body h5, body h6, body p,
+body .h1, body .h2, body .h3, body .h4, body .h5, body .h6 {
+  font-size: clamp(var(--min), var(--val), var(--max));
+}
+```
+
+## Implementation Standards
+
+* **MUST**: Ensure `line-height` is adjusted for large headings to prevent excessive leading (SHOULD be between `1.1` and `1.3`).
+* **MUST**: Use `rem` for `--min` and `--max` values to respect user browser font size settings.
+* **MUST**: Ensure `blockquote` inherits the same fluid scale as `h4` for editorial emphasis.

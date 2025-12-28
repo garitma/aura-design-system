@@ -1,0 +1,54 @@
+---
+alwaysApply: true
+---
+
+# Layout & Spacing Rules
+
+## Spacing System
+
+* **MUST**: Use 13px as the base spacing unit (NOT 4px like Tailwind default).
+* **MUST**: Define spacing in increments of 0.5 units (1, 1.5, 2, 2.5, 3, 3.5, etc.).
+* **NEVER**: Use partial increments (0.2, 0.4, 0.6, etc.).
+* **MUST**: Calculate spacing as `unit * 13px` (e.g., `1 = 13px`, `2 = 26px`, `2.5 = 32.5px`).
+
+## Spacing Scale
+
+| Token | Value |
+|-------|-------|
+| 1 | 13px |
+| 1.5 | 19.5px |
+| 2 | 26px |
+| 2.5 | 32.5px |
+| 3 | 39px |
+| 3.5 | 45.5px |
+| 4 | 52px |
+
+## Tailwind Spacing Warning
+
+* **CRITICAL**: Tailwind defaults to 4px spacing units. Aura uses 13px.
+* **MUST**: When using Tailwind size classes, understand that values are multiplied by 13px, NOT 4px.
+* **AFFECTED CLASSES**: All size-related Tailwind utilities use 13px base:
+  - Margin: `m`, `mt`, `mb`, `mr`, `ml`, `mx`, `my`
+  - Padding: `p`, `pt`, `pb`, `pr`, `pl`, `px`, `py`
+  - Gap: `gap`, `space-x`, `space-y`
+  - Dimensions: `h`, `min-h`, `max-h`, `w`, `min-w`, `max-w`, `size`
+* **EXAMPLE**: `p-4` in Aura = `52px` (4 × 13px), NOT `16px` (4 × 4px).
+* **SHOULD**: Use the spacing CLI command to convert Tailwind classes: `pnpm spacing [target]`.
+
+## Containers
+
+* **MUST**: All sections must use containers (no sections without containers allowed).
+* **MUST**: Each container has padding, margins, and max-width defined.
+* **MUST**: Maximum of 5 container types per project.
+* **SHOULD**: Avoid varying container configurations unless there's valid justification.
+* **MUST**: Containers follow CSS box model principles.
+
+## Implementation
+
+```css
+@theme inline {
+  --spacing: 13px;
+}
+```
+
+Use spacing tokens for margin, padding, gaps, and all layout spacing to maintain consistency.

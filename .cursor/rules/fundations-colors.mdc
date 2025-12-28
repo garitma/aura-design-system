@@ -1,0 +1,43 @@
+---
+alwaysApply: true
+---
+
+# Color Rules
+
+## 12-Step Scale System
+
+Aura uses a 12-step color scale for both `accent` and `gray` scales. Each step has specific use cases.
+
+## Scale Use Cases
+
+| Step | Use Case | Examples |
+|------|----------|----------|
+| **1-2** | App backgrounds | Main app background, card background, sidebar, canvas area |
+| **3** | UI element background (normal) | Component default state |
+| **4** | UI element background (hover) | Component hover state |
+| **5** | UI element background (active/selected) | Pressed or selected components |
+| **6** | Subtle borders | Non-interactive borders, separators, sidebars, headers |
+| **7** | UI element borders | Interactive component borders |
+| **8** | Strong borders & focus rings | Interactive component borders, focus rings |
+| **9** | Solid backgrounds | Primary brand color, headers, overlays, accent borders |
+| **10** | Hovered solid backgrounds | Hover state for step 9 backgrounds |
+| **11** | Low-contrast text | Secondary text, muted content |
+| **12** | High-contrast text | Primary text, headings |
+
+## Color Naming
+
+* **MUST**: Use `--accent-{step}` for accent colors (e.g., `--accent-9` for primary brand color).
+* **MUST**: Use `--gray-{step}` for neutral colors (e.g., `--gray-1` for app background).
+* **MUST**: Use `--accent-a{step}` or `--gray-a{step}` for alpha variants.
+* **MUST**: Use semantic tokens when available: `--primary`, `--primary-foreground`, `--accent-surface`, `--accent-contrast`, etc.
+
+## Implementation Rules
+
+* **MUST**: Steps 1-2 for app and subtle component backgrounds.
+* **MUST**: Steps 3-5 for interactive component backgrounds (normal, hover, active).
+* **MUST**: Steps 6-8 for borders (subtle, interactive, focus rings).
+* **MUST**: Steps 9-10 for solid backgrounds (normal, hover).
+* **MUST**: Steps 11-12 for text (low-contrast, high-contrast).
+* **MUST**: Steps 11-12 guarantee Lc 60 and Lc 90 APCA contrast on step 2 backgrounds.
+* **SHOULD**: Use step 3 for hover state if component has transparent default background.
+* **SHOULD**: Map `--primary` to `--accent-9` for primary brand color.

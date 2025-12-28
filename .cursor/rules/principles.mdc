@@ -1,0 +1,33 @@
+---
+alwaysApply: true
+---
+
+They are the fundamental basis of the paradigms and methodologies that will be applied throughout our system.
+
+### Accessibility
+
+Our products should be usable for any user. We must build products that are perceivable and operable.
+
+### Consistency
+
+All teams must have the same objective and must speak to the user in the same way, whether visually or in writing.
+
+### Reusable
+
+Every hour we invest in a component should serve to build and prevent you or someone else from having to rebuild our work.
+
+### Shareable
+
+We must build and work with tools that allow us to share all our work.
+
+### User Control
+
+The user must have a sense of control over the product.
+
+### Forgiveness
+
+We must allow the user to change their mind or repeat a process.
+
+### Perception of Stability
+
+Even with robust and complex platforms, the user must perceive processes as simple and familiar as possible.
