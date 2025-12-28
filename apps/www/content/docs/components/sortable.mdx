@@ -61,8 +61,8 @@ pnpm dlx shadcn@latest add @aura/sortable
   <Step>
     Install the following dependencies:
 
-    ```package-install
-@dnd-kit/core @dnd-kit/modifiers @dnd-kit/sortable @dnd-kit/utilities @radix-ui/react-slot
+    ```bash
+pnpm install @dnd-kit/core @dnd-kit/modifiers @dnd-kit/sortable @dnd-kit/utilities @radix-ui/react-slot
     ```
   </Step>
   <Step>
@@ -1035,54 +1035,4 @@ export const WithOnMove = () => {
   );
 };
 ```
-
-## Props
-
-### Sortable
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `"div"` | - |
-
-### SortableContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `strategy?` | `SortableContextProps["strategy"]` | undefined |
-| `children` | `React.ReactNode` | - |
-| `asChild?` | `boolean` | undefined |
-| `withoutSlot?` | `boolean` | undefined |
-
-### SortableItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `value` | `UniqueIdentifier` | - |
-| `asHandle?` | `boolean` | undefined |
-| `asChild?` | `boolean` | undefined |
-| `disabled?` | `boolean` | undefined |
-
-### SortableItemHandle
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `asChild?` | `boolean` | undefined |
-
-### SortableOverlay
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `container?` | `Element | DocumentFragment | null` | undefined |
-
-### type SortableProps
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `any` | - |
 

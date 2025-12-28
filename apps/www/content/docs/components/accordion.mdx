@@ -1,6 +1,9 @@
 ---
 title: Accordion
 description: A vertically stacked set of interactive headings that each reveal a section of content.
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/accordion
+  api: https://www.radix-ui.com/docs/primitives/components/accordion#api-reference
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
@@ -64,8 +67,8 @@ pnpm dlx shadcn@latest add @aura/accordion
   <Step>
     Install the following dependencies:
 
-    ```package-install
-@radix-ui/react-icons radix-ui
+    ```bash
+pnpm install @radix-ui/react-icons radix-ui
     ```
   </Step>
   <Step>
@@ -291,34 +294,4 @@ export const DisabledItem = () => {
   );
 };
 ```
-
-## Props
-
-### Accordion
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AccordionRadix.Root` | - |
-
-### AccordionItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AccordionRadix.Item` | - |
-
-### AccordionTrigger
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AccordionRadix.Trigger` | - |
-
-### AccordionContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AccordionRadix.Content` | - |
 

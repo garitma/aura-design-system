@@ -1,5 +1,3 @@
-"use client";
-
 import {
   Autocomplete,
   AutocompleteEmpty,
@@ -22,7 +20,8 @@ const items = [
   { label: "Pear", value: "pear" },
 ];
 
-export const Default = () => {
+
+export const AutocompleteDemo = () => {
   return (
     <Autocomplete items={items}>
       <AutocompleteInput
@@ -41,4 +40,3 @@ export const Default = () => {
       </AutocompletePopup>
     </Autocomplete>
   );
-}

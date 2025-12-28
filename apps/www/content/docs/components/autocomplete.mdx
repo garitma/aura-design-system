@@ -7,6 +7,44 @@ import { ComponentPreview } from "@/components/ComponentPreview"
 import { ComponentSource } from "@/components/ComponentSource"
 import { Steps, Step } from "fumadocs-ui/components/steps"
 
+## Preview
+
+<ComponentPreview name="autocomplete-demo" description="A input component that allows users to search and select from a list of options.">
+
+```tsx
+import {
+  Autocomplete,
+  AutocompleteEmpty,
+  AutocompleteInput,
+  AutocompleteItem,
+  AutocompleteList,
+  AutocompletePopup,
+} from "@/components/ui/Autocomplete";
+
+export function AutocompleteDemo() {
+  return {
+  return (
+    <Autocomplete items={items}>
+      <AutocompleteInput
+        aria-label="Search items"
+        placeholder="Search items…"
+      />
+      <AutocompletePopup>
+        <AutocompleteEmpty>No items found.</AutocompleteEmpty>
+        <AutocompleteList>
+          {(item) => (
+            <AutocompleteItem key={item.value} value={item}>
+              {item.label}
+            </AutocompleteItem>
+          )}
+        </AutocompleteList>
+      </AutocompletePopup>
+    </Autocomplete>
+  );
+```
+
+</ComponentPreview>
+
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
 ```bash
@@ -21,8 +59,8 @@ pnpm dlx shadcn@latest add @aura/autocomplete
   <Step>
     Install the following dependencies:
 
-    ```package-install
-@base-ui/react @radix-ui/react-icons
+    ```bash
+pnpm install @base-ui/react @radix-ui/react-icons
     ```
   </Step>
   <Step>
@@ -412,111 +450,4 @@ export {
 ```
   </Step>
 </Steps>
-
-## Props
-
-### Autocomplete
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AutocompletePrimitive.Root` | - |
-
-### AutocompleteInput
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `Omit&lt;AutocompletePrimitive.Input.Props, "size"&gt; & &#123; showTrigger?: boolean; showClear?: boolean; startAddon?: React.ReactNode; size?: "sm" | "default" | "lg" | number; ref?: React.Ref&lt;HTMLInputElement&gt;; &#125;` | - |
-
-### AutocompleteTrigger
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AutocompletePrimitive.Trigger.Props` | - |
-
-### AutocompletePopup
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AutocompletePrimitive.Popup.Props & &#123; sideOffset?: number; &#125;` | - |
-
-### AutocompleteItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AutocompletePrimitive.Item.Props` | - |
-
-### AutocompleteSeparator
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AutocompletePrimitive.Separator.Props` | - |
-
-### AutocompleteGroup
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AutocompletePrimitive.Group.Props` | - |
-
-### AutocompleteGroupLabel
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AutocompletePrimitive.GroupLabel.Props` | - |
-
-### AutocompleteEmpty
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AutocompletePrimitive.Empty.Props` | - |
-
-### AutocompleteValue
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AutocompletePrimitive.Value.Props` | - |
-
-### AutocompleteList
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AutocompletePrimitive.List.Props` | - |
-
-### AutocompleteClear
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AutocompletePrimitive.Clear.Props` | - |
-
-### AutocompleteStatus
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AutocompletePrimitive.Status.Props` | - |
-
-### AutocompleteRow
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AutocompletePrimitive.Row.Props` | - |
-
-### AutocompleteCollection
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `AutocompletePrimitive.Collection.Props` | - |
 

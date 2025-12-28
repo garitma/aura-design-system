@@ -94,8 +94,8 @@ pnpm dlx shadcn@latest add @aura/stepper
   <Step>
     Install the following dependencies:
 
-    ```package-install
-@radix-ui/react-direction @radix-ui/react-icons @radix-ui/react-slot
+    ```bash
+pnpm install @radix-ui/react-direction @radix-ui/react-icons @radix-ui/react-slot
     ```
   </Step>
   <Step>
@@ -1531,116 +1531,4 @@ export {
 ```
   </Step>
 </Steps>
-
-## Props
-
-### Stepper
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `asChild?` | `boolean` | undefined |
-| `value?` | `string` | undefined |
-| `defaultValue?` | `string` | undefined |
-| `onValueChange?` | `(value: string) =&gt; void` | undefined |
-| `onValueComplete?` | `(value: string, completed: boolean) =&gt; void` | undefined |
-| `onValueAdd?` | `(value: string) =&gt; void` | undefined |
-| `onValueRemove?` | `(value: string) =&gt; void` | undefined |
-| `onValidate?` | `( value: string, direction: NavigationDirection, ) =&gt; boolean | Promise&lt;boolean&gt;` | undefined |
-| `activationMode?` | `ActivationMode` | undefined |
-| `dir?` | `Direction` | undefined |
-| `orientation?` | `Orientation` | undefined |
-| `disabled?` | `boolean` | undefined |
-| `loop?` | `boolean` | undefined |
-| `nonInteractive?` | `boolean` | undefined |
-
-### StepperList
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `asChild?` | `boolean` | undefined |
-
-### StepperItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `asChild?` | `boolean` | undefined |
-| `value` | `string` | - |
-| `completed?` | `boolean` | undefined |
-| `disabled?` | `boolean` | undefined |
-
-### StepperTrigger
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `asChild?` | `boolean` | undefined |
-
-### StepperIndicator
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `children?` | `React.ReactNode | ((dataState: DataState) =&gt; React.ReactNode)` | undefined |
-
-### StepperSeparator
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `asChild?` | `boolean` | undefined |
-| `forceMount?` | `boolean` | undefined |
-
-### StepperTitle
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `asChild?` | `boolean` | undefined |
-
-### StepperDescription
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `asChild?` | `boolean` | undefined |
-
-### StepperContent
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `asChild?` | `boolean` | undefined |
-| `value` | `string` | - |
-| `forceMount?` | `boolean` | undefined |
-
-### StepperPrev
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `asChild?` | `boolean` | undefined |
-
-### StepperNext
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `asChild?` | `boolean` | undefined |
-
-### useStore as useStepper
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `any` | - |
-
-### type StepperProps
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `any` | - |
 

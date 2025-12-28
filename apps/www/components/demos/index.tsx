@@ -21,6 +21,9 @@ import {
   AspectRatioDemo
 } from "./aspect-ratio-demo"
 import { 
+  AutocompleteDemo
+} from "./autocomplete-demo"
+import { 
   AvatarDemo,
   AvatarDemoWithFallback,
   AvatarDemoFallbackOnly,
@@ -119,8 +122,7 @@ import {
   FormDemoWithSortableList
 } from "./form-demo"
 import { 
-  HoverCardDemo,
-  HoverCardDemoProfilePreview
+  HoverCardDemo
 } from "./hover-card-demo"
 import { 
   KbdDemo,
@@ -213,6 +215,13 @@ import {
 import { 
   TabsDemo
 } from "./tabs-demo"
+import { 
+  ToggleDemo,
+  ToggleIconsDemo
+} from "./toggle-demo"
+import { 
+  ToggleGroupDemo
+} from "./toggle-group-demo"
 
 export const Registry = {
   "accordion-demo": {
@@ -247,6 +256,9 @@ export const Registry = {
   },
   "aspect-ratio-demo-aspect-ratio-demo": {
     component: AspectRatioDemo,
+  },
+  "autocomplete-demo": {
+    component: AutocompleteDemo,
   },
   "avatar-demo": {
     component: AvatarDemo,
@@ -473,9 +485,6 @@ export const Registry = {
   "hover-card-demo": {
     component: HoverCardDemo,
   },
-  "hover-card-demo-profile-preview": {
-    component: HoverCardDemoProfilePreview,
-  },
   "kbd-demo": {
     component: KbdDemo,
   },
@@ -670,6 +679,15 @@ export const Registry = {
   },
   "tabs-demo": {
     component: TabsDemo,
+  },
+  "toggle-demo": {
+    component: ToggleDemo,
+  },
+  "toggle-demo-toggle-icons": {
+    component: ToggleIconsDemo,
+  },
+  "toggle-group-demo": {
+    component: ToggleGroupDemo,
   },
 } as const
 

@@ -3,7 +3,3 @@ content:
   - installation: @aura
   - source: all
   - usage: all
-  - props: 
-     - Prop
-     - Type
-     - Default

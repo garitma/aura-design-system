@@ -16,22 +16,6 @@ export const HoverCardDemo = () => (
     <HoverCardTrigger asChild>
       <Button variant="link">Hover me</Button>
     </HoverCardTrigger>
-    <HoverCardContent>
-      <div className="space-y-1">
-        <h4 className="text-sm font-semibold">Hover Card</h4>
-        <p className="text-sm text-gray-11">
-          This is a simple hover card example.
-        </p>
-      </div>
-    </HoverCardContent>
-  </HoverCard>
-)
-
-export const HoverCardDemoProfilePreview = () => (
-  <HoverCard>
-    <HoverCardTrigger asChild>
-      <Button variant="link">Hover me</Button>
-    </HoverCardTrigger>
     <HoverCardContent className="w-20">
       <div className="flex justify-between space-x-0.5 items-start">
         <div>

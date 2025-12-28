@@ -310,6 +310,7 @@
         }
       ],
       "dependencies": [
+        "@radix-ui/react-slot",
         "class-variance-authority"
       ],
       "registryDependencies": [
@@ -882,6 +883,44 @@
         }
       ],
       "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "description": "The Toggle component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Toggle.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "ToggleGroup",
+      "description": "The ToggleGroup component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/ToggleGroup.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
         "radix-ui"
       ],
       "registryDependencies": [

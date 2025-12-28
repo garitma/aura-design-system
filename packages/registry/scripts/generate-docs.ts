@@ -67,6 +67,10 @@ interface Metadata {
   header?: {
     description?: string;
   };
+  links?: {
+    doc?: string;
+    api?: string;
+  };
   content?: MetadataContent[];
 }
 
@@ -198,6 +202,27 @@ function parseMetadata(componentName: string): Metadata | null {
       metadata.header = {
         description: headerMatch[1].trim(),
       };
+    }
+
+    // Parse links section
+    const linksMatch = yamlContent.match(/^links:\s*\n((?:\s+[a-z]+:\s*.+\n?)+)/m);
+    if (linksMatch) {
+      const linksContent = linksMatch[1];
+      const links: { doc?: string; api?: string } = {};
+      
+      const docMatch = linksContent.match(/^\s+doc:\s*(.+)$/m);
+      if (docMatch) {
+        links.doc = docMatch[1].trim();
+      }
+      
+      const apiMatch = linksContent.match(/^\s+api:\s*(.+)$/m);
+      if (apiMatch) {
+        links.api = apiMatch[1].trim();
+      }
+      
+      if (Object.keys(links).length > 0) {
+        metadata.links = links;
+      }
     }
 
     // Check for extends/template reference
@@ -1353,12 +1378,25 @@ function generateMdxContent(
   const description =
     metadata?.header?.description || DEFAULT_DESCRIPTION;
 
-  let content = `---
+  // Build frontmatter
+  let frontmatter = `---
 title: ${title}
-description: ${description}
----
+description: ${description}`;
 
-import { ComponentPreview } from "@/components/ComponentPreview"
+  // Add links if they exist
+  if (metadata?.links) {
+    frontmatter += `\nlinks:`;
+    if (metadata.links.doc) {
+      frontmatter += `\n  doc: ${metadata.links.doc}`;
+    }
+    if (metadata.links.api) {
+      frontmatter += `\n  api: ${metadata.links.api}`;
+    }
+  }
+
+  frontmatter += `\n---\n\n`;
+
+  let content = frontmatter + `import { ComponentPreview } from "@/components/ComponentPreview"
 import { ComponentSource } from "@/components/ComponentSource"
 import { Steps, Step } from "fumadocs-ui/components/steps"
 
@@ -1449,8 +1487,8 @@ pnpm dlx shadcn@latest add @aura/${kebabName}
               content += `  <Step>
     Install the following dependencies:
 
-    \`\`\`package-install
-${depsList}
+    \`\`\`bash
+pnpm install ${depsList}
     \`\`\`
   </Step>
 `;

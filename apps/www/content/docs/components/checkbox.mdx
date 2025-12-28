@@ -57,8 +57,8 @@ pnpm dlx shadcn@latest add @aura/checkbox
   <Step>
     Install the following dependencies:
 
-    ```package-install
-@radix-ui/react-icons radix-ui
+    ```bash
+pnpm install @radix-ui/react-icons radix-ui
     ```
   </Step>
   <Step>
@@ -427,39 +427,4 @@ export const Indeterminate = () => {
   );
 };
 ```
-
-## Props
-
-### Checkbox
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `CheckboxRadix.Root` | - |
-
-### CheckboxIndicator
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| *All props from* | `CheckboxRadix.Indicator` | - |
-
-### CheckboxGroup
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `value?` | `string[]` | undefined |
-| `onValueChange?` | `(value: string[]) =&gt; void` | undefined |
-| `defaultValue?` | `string[]` | undefined |
-
-### CheckboxGroupItem
-
-
-| Prop | Type | Default |
-|------|------|---------|
-| `value` | `string` | - |
-| `label?` | `React.ReactNode` | undefined |
-| `description?` | `React.ReactNode` | undefined |
-| `onCheckedChange?` | `(checked: boolean) =&gt; void` | undefined |
 

@@ -1,0 +1,53 @@
+---
+title: Toggle Group
+description: Re-usable components built using Radix UI and Tailwind CSS.
+---
+
+## Preview
+
+<ComponentPreview name="toggle-group-demo" description="Re-usable components built using Radix UI and Tailwind CSS.">
+
+```tsx
+import { ToggleGroup, ToggleGroupItem } from "@/components/ui/ToggleGroup";
+import {
+  TextAlignLeftIcon,
+  TextAlignCenterIcon,
+  TextAlignRightIcon,
+} from "@radix-ui/react-icons";
+
+export function ToggleGroupDemo() {
+  return (
+  <ToggleGroup
+    type="single"
+    defaultValue="center"
+    aria-label="Text alignment"
+  >
+    <ToggleGroupItem
+      value="left"
+      aria-label="Left aligned"
+    >
+      <TextAlignLeftIcon />
+    </ToggleGroupItem>
+    <ToggleGroupItem
+      value="center"
+      aria-label="Center aligned"
+    >
+      <TextAlignCenterIcon />
+    </ToggleGroupItem>
+    <ToggleGroupItem
+      value="right"
+      aria-label="Right aligned"
+    >
+      <TextAlignRightIcon />
+    </ToggleGroupItem>
+  </ToggleGroup>
+)
+}
+```
+
+</ComponentPreview>
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+

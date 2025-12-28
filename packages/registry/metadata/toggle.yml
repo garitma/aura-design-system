@@ -1,0 +1,4 @@
+header:
+  description: A toggle component that allows the user to toggle between on and off states.
+extends: _templates/content.yml
+

@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "toggle-group",
+  "type": "registry:ui",
+  "title": "ToggleGroup",
+  "description": "The ToggleGroup component.",
+  "dependencies": [
+    "class-variance-authority",
+    "radix-ui"
+  ],
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/ToggleGroup.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { ToggleGroup as ToggleGroupPrimitive } from \"radix-ui\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/utils/class-names\";\n\nconst toggleGroupVariants = cva(\n  \"inline-flex items-center justify-center border border-gray-6 rounded-sm bg-gray-2\",\n  {\n    variants: {\n      variant: {\n        default: \"\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n    },\n  }\n);\n\nconst toggleGroupItemVariants = cva(\n  \"inline-flex items-center justify-center gap-2 data-[state=on]:bg-gray-4 data-[state=on]:hover:bg-gray-3\",\n  {\n    variants: {\n      variant: {\n        default:\n          \"button-pill border border-transparent text-gray-11 bg-gray-2 hover:bg-gray-3 rounded-sm\",\n      },\n      size: {\n        default: \"w-3 h-3 p-0\",\n        xs: \"h-2.5\",\n        sm: \"h-3\",\n        md: \"h-4\",\n        lg: \"h-5\",\n        xl: \"h-6\",\n        icon: \"w-3 h-3 p-0\",\n      },\n    },\n    defaultVariants: {\n      variant: \"default\",\n      size: \"default\",\n    },\n  }\n);\n\nfunction ToggleGroup({\n  className,\n  variant,\n  ...props\n}: React.ComponentProps<typeof ToggleGroupPrimitive.Root> &\n  VariantProps<typeof toggleGroupVariants>) {\n  return (\n    <ToggleGroupPrimitive.Root\n      data-slot=\"toggle-group\"\n      className={cn(toggleGroupVariants({ variant, className }))}\n      {...props}\n    />\n  );\n}\n\nfunction ToggleGroupItem({\n  className,\n  variant,\n  size,\n  ...props\n}: React.ComponentProps<typeof ToggleGroupPrimitive.Item> &\n  VariantProps<typeof toggleGroupItemVariants>) {\n  return (\n    <ToggleGroupPrimitive.Item\n      data-slot=\"toggle-group-item\"\n      className={cn(toggleGroupItemVariants({ variant, size, className }))}\n      {...props}\n    />\n  );\n}\n\nexport { ToggleGroup, ToggleGroupItem, toggleGroupVariants, toggleGroupItemVariants };\n",
+      "type": "registry:ui"
+    }
+  ]
+}
