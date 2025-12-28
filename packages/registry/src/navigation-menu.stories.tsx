@@ -13,7 +13,7 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/NavigationMenu";
 
-export const Default: Story = () => {
+export const Default = () => {
   return (
     <NavigationMenu className="relative z-10 w-full justify-end flex">
       <NavigationMenuList className="center m-0 flex p-1">

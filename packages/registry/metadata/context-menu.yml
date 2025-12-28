@@ -1,4 +1,7 @@
 header:
   description: Displays a menu to the user triggered by right-click or long-press.
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/context-menu
+  api: https://www.radix-ui.com/docs/primitives/components/context-menu#api-reference
 extends: _templates/content.yml
 

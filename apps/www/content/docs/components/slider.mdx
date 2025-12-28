@@ -1,11 +1,31 @@
 ---
 title: Slider
 description: An input where the user selects a value from within a given range.
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/slider
+  api: https://www.radix-ui.com/docs/primitives/components/slider#api-reference
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
 import { ComponentSource } from "@/components/ComponentSource"
 import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="slider-demo" description="An input where the user selects a value from within a given range.">
+
+```tsx
+import { Slider } from "@/components/ui/Slider";
+
+export function SliderDemo() {
+  return (
+  <div className="w-64 p-4">
+    <Slider defaultValue={[50]} max={100} step={1} />
+  </div>
+)
+```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
@@ -77,4 +97,26 @@ export { Slider }
 ```
   </Step>
 </Steps>
+
+## Usage
+
+### Disabled
+
+```tsx
+export const Disabled = () => (
+  <div className="w-64 p-4">
+    <Slider defaultValue={[25]} max={100} step={1} disabled />
+  </div>
+)
+```
+
+### WithSteps
+
+```tsx
+export const WithSteps = () => (
+  <div className="w-64 p-4">
+    <Slider defaultValue={[33]} max={100} step={33} />
+  </div>
+)
+```
 

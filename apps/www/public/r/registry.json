@@ -928,6 +928,34 @@
       ]
     },
     {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "description": "The Tooltip component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Tooltip.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/tooltip.css",
+          "type": "registry:component",
+          "target": "./styles/tooltip.css"
+        }
+      ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/tooltip.css\"": {}
+        }
+      },
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
       "name": "class-names",
       "type": "registry:lib",
       "title": "class-names",

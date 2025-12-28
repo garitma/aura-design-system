@@ -97,7 +97,7 @@ export default async function Page(props: PageProps) {
         {page.data.description}
       </DocsDescription>
       {links ? (
-        <div className="flex items-center gap-2 mb-1">
+        <div className="flex items-center gap-1 mb-1">
           {links?.doc && (
             <Badge variant="secondary" className="rounded-full" asChild>
               <a href={links.doc} target="_blank" rel="noreferrer">

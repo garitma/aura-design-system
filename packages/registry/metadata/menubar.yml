@@ -1,4 +1,7 @@
 header:
   description: A visually persistent menu common in desktop applications.
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/menubar
+  api: https://www.radix-ui.com/docs/primitives/components/menubar#api-reference
 extends: _templates/content.yml
 

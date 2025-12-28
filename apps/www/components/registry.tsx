@@ -137,6 +137,7 @@ import {
   MenubarDemo
 } from "@/components/demos/menubar-demo"
 import { 
+  NavigationMenuDemoDefault,
   NavigationMenuDemo
 } from "@/components/demos/navigation-menu-demo"
 import { 
@@ -163,6 +164,12 @@ import {
   RadioGroupDemoHorizontal
 } from "@/components/demos/radio-group-demo"
 import { 
+  ScrollAreaDemo
+} from "@/components/demos/scroll-area-demo"
+import { 
+  SectionDemo
+} from "@/components/demos/section-demo"
+import { 
   SelectDemo,
   SelectDemoWithDefaultValue,
   SelectDemoWithGroups,
@@ -187,6 +194,11 @@ import {
   SignaturePadDemoWithRefMethods,
   SignaturePadDemoCombinedExample
 } from "@/components/demos/signature-pad-demo"
+import { 
+  SliderDemo,
+  SliderDemoDisabled,
+  SliderDemoWithSteps
+} from "@/components/demos/slider-demo"
 import { 
   SortableDemo,
   SortableDemoHorizontal,
@@ -222,6 +234,9 @@ import {
 import { 
   ToggleGroupDemo
 } from "@/components/demos/toggle-group-demo"
+import { 
+  TooltipDemo
+} from "@/components/demos/tooltip-demo"
 
 export const Registry = {
   "accordion-demo": {
@@ -509,6 +524,9 @@ export const Registry = {
   "menubar-demo": {
     component: MenubarDemo,
   },
+  "navigation-menu-demo": {
+    component: NavigationMenuDemoDefault,
+  },
   "navigation-menu-demo-navigation-menu-demo": {
     component: NavigationMenuDemo,
   },
@@ -562,6 +580,12 @@ export const Registry = {
   },
   "radio-group-demo-horizontal": {
     component: RadioGroupDemoHorizontal,
+  },
+  "scroll-area-demo": {
+    component: ScrollAreaDemo,
+  },
+  "section-demo": {
+    component: SectionDemo,
   },
   "select-demo": {
     component: SelectDemo,
@@ -619,6 +643,15 @@ export const Registry = {
   },
   "signature-pad-demo-combined-example": {
     component: SignaturePadDemoCombinedExample,
+  },
+  "slider-demo": {
+    component: SliderDemo,
+  },
+  "slider-demo-disabled": {
+    component: SliderDemoDisabled,
+  },
+  "slider-demo-with-steps": {
+    component: SliderDemoWithSteps,
   },
   "sortable-demo": {
     component: SortableDemo,
@@ -688,6 +721,9 @@ export const Registry = {
   },
   "toggle-group-demo": {
     component: ToggleGroupDemo,
+  },
+  "tooltip-demo": {
+    component: TooltipDemo,
   },
 } as const
 

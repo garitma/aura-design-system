@@ -1,0 +1,7 @@
+header:
+  description: A tooltip component that displays informative text when hovering over an element.
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/tooltip
+  api: https://www.radix-ui.com/docs/primitives/components/tooltip#api-reference
+extends: _templates/content.yml
+

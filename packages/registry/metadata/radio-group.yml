@@ -1,4 +1,7 @@
 header:
   description: Re-usable components built using Radix UI and Tailwind CSS.
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/radio-group
+  api: https://www.radix-ui.com/docs/primitives/components/radio-group#api-reference
 extends: _templates/content.yml
 

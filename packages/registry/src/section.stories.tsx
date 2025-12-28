@@ -5,7 +5,7 @@ import {
   Section,
 } from "../registry/default/components/ui/Section";
 
-export const Default: Story = () => {
+export const Default = () => {
   return (
     <Section>
       <h1>Section Title</h1>

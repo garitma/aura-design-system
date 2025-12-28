@@ -7,6 +7,32 @@ import { ComponentPreview } from "@/components/ComponentPreview"
 import { ComponentSource } from "@/components/ComponentSource"
 import { Steps, Step } from "fumadocs-ui/components/steps"
 
+## Preview
+
+<ComponentPreview name="section-demo" description="A semantic section container with configurable layout variants.">
+
+```tsx
+import {
+  AuraContainer,
+  Section,
+} from "@/components/ui/Section";
+
+export function SectionDemo() {
+  return {
+  return (
+    <Section>
+      <h1>Section Title</h1>
+      <p>
+        This is a default section with some content. Sections help organize and
+        structure your content with consistent spacing and layout.
+      </p>
+    </Section>
+  );
+};
+```
+
+</ComponentPreview>
+
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
 ```bash

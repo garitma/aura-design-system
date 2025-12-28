@@ -1,4 +1,7 @@
 header:
   description: A window overlaid on the primary content, rendering content in a layer above the page.
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/dialog
+  api: https://www.radix-ui.com/docs/primitives/components/dialog#api-reference
 extends: _templates/content.yml
 

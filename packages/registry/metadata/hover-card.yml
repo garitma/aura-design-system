@@ -1,4 +1,7 @@
 header:
   description: For sighted users to preview content available behind a link.
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/hover-card
+  api: https://www.radix-ui.com/docs/primitives/components/hover-card#api-reference
 extends: _templates/content.yml
 

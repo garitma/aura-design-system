@@ -1,19 +1,19 @@
-import { Slider } from "../registry/default/components/ui/Slider";
+import { Slider } from "@/components/ui/Slider";
 
-export const Default = () => (
+export const SliderDemo = () => (
   <div className="w-64 p-4">
     <Slider defaultValue={[50]} max={100} step={1} />
   </div>
-);
+)
 
-export const Disabled = () => (
+export const SliderDemoDisabled = () => (
   <div className="w-64 p-4">
     <Slider defaultValue={[25]} max={100} step={1} disabled />
   </div>
-);
+)
 
-export const WithSteps = () => (
+export const SliderDemoWithSteps = () => (
   <div className="w-64 p-4">
     <Slider defaultValue={[33]} max={100} step={33} />
   </div>
-);
+)

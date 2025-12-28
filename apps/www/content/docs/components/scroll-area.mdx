@@ -1,11 +1,40 @@
 ---
 title: Scroll Area
 description: Augments native scroll functionality for custom cross-browser styling.
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/scroll-area
+  api: https://www.radix-ui.com/docs/primitives/components/scroll-area#api-reference
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
 import { ComponentSource } from "@/components/ComponentSource"
 import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="scroll-area-demo" description="Augments native scroll functionality for custom cross-browser styling.">
+
+```tsx
+import * as React from "react";
+import { ScrollArea } from "@/components/ui/ScrollArea";
+
+export function ScrollAreaDemo() {
+  return (
+  <ScrollArea className="h-[70dvh] w-48 rounded-md border border-gray-6">
+    <div className="p-2">
+      <h4 className="mb-2 text-sm font-medium leading-none">Tags</h4>
+      {tags.map((tag) => (
+        <React.Fragment key={tag}>
+          <div className="text-sm">{tag}</div>
+          <div className="my-1 h-px bg-gray-6" />
+        </React.Fragment>
+      ))}
+    </div>
+  </ScrollArea>
+)
+```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)

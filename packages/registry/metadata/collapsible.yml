@@ -1,4 +1,7 @@
 header:
   description: An interactive component which expands and collapses content.
+links:
+  doc: https://www.radix-ui.com/docs/primitives/components/collapsible
+  api: https://www.radix-ui.com/docs/primitives/components/collapsible#api-reference
 extends: _templates/content.yml
 
