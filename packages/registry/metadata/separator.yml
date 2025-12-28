@@ -1,0 +1,4 @@
+header:
+  description: A separator component that allows users to separate content.
+extends: _templates/content.yml
+

@@ -1,0 +1,178 @@
+---
+title: Tabs
+description: A tabs component that allows the user to switch between different views.
+---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="tabs-demo" description="A tabs component that allows the user to switch between different views.">
+
+```tsx
+import {
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+} from "@/components/ui/Tabs";
+
+export function TabsDemo() {
+  return {
+  return (
+    <Tabs defaultValue="account" className="w-full">
+      <TabsList>
+        <TabsTrigger value="account">Account</TabsTrigger>
+        <TabsTrigger value="password">Password</TabsTrigger>
+      </TabsList>
+      <TabsContent value="account">
+        Make changes to your account here.
+      </TabsContent>
+      <TabsContent value="password">
+        Change your password here.
+      </TabsContent>
+    </Tabs>
+  );
+};
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/tabs
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```package-install
+radix-ui
+    ```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Tabs component into your `components/ui/Tabs.tsx` file.
+
+```tsx
+"use client"
+
+import * as React from "react"
+import  {Tabs as TabsPrimitive} from "radix-ui"
+
+import { cn } from "@/utils/class-names"
+
+function Tabs({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Root>) {
+  return (
+    <TabsPrimitive.Root
+      data-slot="tabs"
+      className={cn("flex flex-col gap-0.5", className)}
+      {...props}
+    />
+  )
+}
+
+function TabsList({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.List>) {
+  return (
+    <TabsPrimitive.List
+      data-slot="tabs-list"
+      className={cn(
+        "bg-gray-3 text-gray-11 inline-flex h-3 w-fit items-center justify-center p-0.5",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function TabsTrigger({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Trigger>) {
+  return (
+    <TabsPrimitive.Trigger
+      data-slot="tabs-trigger"
+      className={cn(
+        "text-gray-11 data-[state=active]:bg-gray-5 data-[state=active]:text-gray-12 data-[state=active]:border-gray-6 focus-visible:border-gray-7 focus-visible:ring-gray-a7 focus-visible:outline-gray-a7 inline-flex h-[calc(100%-1px)] flex-1 items-center justify-center gap-0.5 border border-transparent px-1 py-1 text-sm font-medium whitespace-nowrap transition-[color,box-shadow] focus-visible:ring-[3px] focus-visible:outline-1 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:shadow-sm",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function TabsContent({
+  className,
+  ...props
+}: React.ComponentProps<typeof TabsPrimitive.Content>) {
+  return (
+    <TabsPrimitive.Content
+      data-slot="tabs-content"
+      className={cn("flex-1 outline-none", className)}
+      {...props}
+    />
+  )
+}
+
+export { Tabs, TabsList, TabsTrigger, TabsContent }
+```
+  </Step>
+</Steps>
+
+## Props
+
+### Tabs
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `TabsPrimitive.Root` | - |
+
+### TabsList
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `TabsPrimitive.List` | - |
+
+### TabsTrigger
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `TabsPrimitive.Trigger` | - |
+
+### TabsContent
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `TabsPrimitive.Content` | - |
+

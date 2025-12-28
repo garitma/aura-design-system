@@ -754,6 +754,24 @@
       ]
     },
     {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "description": "The Separator component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Separator.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
       "name": "signature-pad",
       "type": "registry:ui",
       "title": "SignaturePad",
@@ -842,6 +860,24 @@
       "files": [
         {
           "path": "registry/default/components/ui/Switch.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "description": "The Tabs component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Tabs.tsx",
           "type": "registry:ui"
         }
       ],

@@ -117,7 +117,11 @@ export const FormFieldSortableList = React.forwardRef<
         serverInvalid={hasError}
         className={className}
       >
-        {label && <FormRadix.Label {...labelProps}>{label}</FormRadix.Label>}
+        {label && (
+          <div className="mb-1">
+            <FormRadix.Label {...labelProps}>{label}</FormRadix.Label>
+          </div>
+        )}
         <FormRadix.Control {...controlProps} asChild>
           <Sortable
             value={fieldValue}
@@ -197,4 +201,3 @@ export const FormFieldSortableList = React.forwardRef<
 );
 
 FormFieldSortableList.displayName = "FormFieldSortableList";
-

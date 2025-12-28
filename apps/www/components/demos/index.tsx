@@ -115,7 +115,8 @@ import {
   FormDemoCompleteForm,
   FormDemoWithComboboxSingle,
   FormDemoWithComboboxMultiple,
-  FormDemoWithSignaturePad
+  FormDemoWithSignaturePad,
+  FormDemoWithSortableList
 } from "./form-demo"
 import { 
   HoverCardDemo,
@@ -169,6 +170,9 @@ import {
   SelectDemoComplex
 } from "./select-demo"
 import { 
+  SeparatorDemo
+} from "./separator-demo"
+import { 
   SignaturePadDemo,
   SignaturePadDemoWithoutButtons,
   SignaturePadDemoVariants,
@@ -206,6 +210,9 @@ import {
   SwitchDemoWithDescription,
   SwitchGroupDemo
 } from "./switch-demo"
+import { 
+  TabsDemo
+} from "./tabs-demo"
 
 export const Registry = {
   "accordion-demo": {
@@ -460,6 +467,9 @@ export const Registry = {
   "form-demo-with-signature-pad": {
     component: FormDemoWithSignaturePad,
   },
+  "form-demo-with-sortable-list": {
+    component: FormDemoWithSortableList,
+  },
   "hover-card-demo": {
     component: HoverCardDemo,
   },
@@ -565,6 +575,9 @@ export const Registry = {
   "select-demo-complex": {
     component: SelectDemoComplex,
   },
+  "separator-demo": {
+    component: SeparatorDemo,
+  },
   "signature-pad-demo": {
     component: SignaturePadDemo,
   },
@@ -654,6 +667,9 @@ export const Registry = {
   },
   "switch-demo-switch-group": {
     component: SwitchGroupDemo,
+  },
+  "tabs-demo": {
+    component: TabsDemo,
   },
 } as const
 

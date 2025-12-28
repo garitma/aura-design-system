@@ -1,0 +1,118 @@
+---
+title: Separator
+description: A separator component that allows users to separate content.
+---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="separator-demo" description="A separator component that allows users to separate content.">
+
+```tsx
+import { Separator } from "@/components/ui/Separator";
+
+export function SeparatorDemo() {
+  return {
+  return (
+    <div>
+      <div className="space-y-1">
+        <h4 className="text-sm leading-none font-medium">Radix Primitives</h4>
+        <p className="text-gray-a11 text-sm">
+          An open-source UI component library.
+        </p>
+      </div>
+      <Separator className="my-1" />
+      <div className="flex h-1 items-center space-x-1 text-sm">
+        <div>Blog</div>
+        <Separator orientation="vertical" />
+        <div>Docs</div>
+        <Separator orientation="vertical" />
+        <div>Source</div>
+      </div>
+    </div>
+  );
+};
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/separator
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```package-install
+radix-ui
+    ```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Separator component into your `components/ui/Separator.tsx` file.
+
+```tsx
+"use client"
+
+import * as React from "react"
+import {Separator as SeparatorPrimitive} from "radix-ui"
+
+import { cn } from "@/utils/class-names"
+
+function Separator({
+  className,
+  orientation = "horizontal",
+  decorative = true,
+  ...props
+}: React.ComponentProps<typeof SeparatorPrimitive.Root>) {
+  return (
+    <SeparatorPrimitive.Root
+      data-slot="separator"
+      decorative={decorative}
+      orientation={orientation}
+      className={cn(
+        "bg-gray-a6 shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+export { Separator }
+```
+  </Step>
+</Steps>
+
+## Props
+
+### Separator
+
+
+| Prop | Type | Default |
+|------|------|---------|
+| *All props from* | `SeparatorPrimitive.Root` | - |
+

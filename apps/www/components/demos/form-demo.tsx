@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import * as React from "react";
 import {
   Form,
   FormField,
@@ -12,6 +13,7 @@ import { Input } from "@/components/ui/Input";
 import { FormFieldCombobox } from "@/components/FormFieldCombobox";
 import { FormFieldSelect } from "@/components/FormFieldSelect";
 import { FormFieldSignaturePad } from "@/components/FormFieldSignaturePad";
+import { FormFieldSortableList } from "@/components/FormFieldSortableList";
 import { useFormDynamic } from "@/hooks/use-dynamic-form";
 import { validateFormData } from "@/utils/web-validation";
 
@@ -1028,6 +1030,84 @@ export const FormDemoWithSignaturePad = () => {
         fetchStatus={formData.fetchStatus}
         buttonProps={{ children: "Submit" }}
         form="form-signature-pad"
+      />
+    </Form>
+  );
+};
+
+export const FormDemoWithSortableList = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const formData = useFormDynamic({
+    priorities: "text",
+  });
+
+  const { priorities } = formData.getFields();
+
+  // Initialize with array value for sortable list
+  React.useEffect(() => {
+    if (!Array.isArray(priorities.value)) {
+      priorities.setValue(["High Priority", "Medium Priority", "Low Priority"] as any);
+    }
+  }, []);
+
+  const { isValid, errors } = validateFormData(
+    sortableListSchema,
+    formData.getValues()
+  );
+  const formErrors = errors || undefined;
+
+  // Filter errors for the priorities field
+  const prioritiesErrors = React.useMemo(() => {
+    if (!formErrors) return undefined;
+    return formErrors.filter(
+      (error) => error.instancePath === `/${priorities.name}`
+    );
+  }, [formErrors, priorities.name]);
+
+  const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    formData.setFetchStatus("loading");
+
+    if (!isValid) {
+      formData.setFetchStatus("error");
+      formData.touchForm();
+      formData.setError("Please ensure at least one priority is added");
+      return;
+    }
+
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    formData.setFetchStatus("success");
+    console.log("Form submitted:", formData.getValues());
+  };
+
+  const formDataForAlert = {
+    fetchStatus: formData.fetchStatus,
+    error: formData.error,
+  };
+
+  return (
+    <Form
+      ref={formRef}
+      onSubmit={handleOnSubmit}
+      errors={formErrors}
+      id="form-sortable-list"
+      className="flex flex-col gap-1"
+    >
+      <FormAlert formData={formDataForAlert} />
+      <FormFieldSortableList
+        field={priorities}
+        label="Priorities *"
+        errors={prioritiesErrors}
+        renderItem={(item) => (
+          <span className="text-gray-12 flex-1">{String(item)}</span>
+        )}
+      />
+      <FormSubmit
+        fetchStatus={formData.fetchStatus}
+        buttonProps={{ children: "Submit" }}
+        form="form-sortable-list"
       />
     </Form>
   );
