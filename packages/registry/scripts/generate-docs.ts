@@ -2398,6 +2398,56 @@ function generateDocs() {
 }
 
 /**
+ * Generate components index page listing all components
+ */
+function generateComponentsIndex() {
+  const components = getUIComponentFiles();
+  
+  // Get metadata for each component and create index entries
+  const indexEntries: Array<{ name: string; title: string; description: string; kebabName: string }> = [];
+  
+  for (const component of components) {
+    const kebabName = toKebabCase(component.name);
+    const metadata = parseMetadata(component.name);
+    const title = toTitleCase(component.name);
+    const description = metadata?.header?.description || DEFAULT_DESCRIPTION;
+    
+    indexEntries.push({
+      name: component.name,
+      title: title,
+      description: description,
+      kebabName: kebabName,
+    });
+  }
+  
+  // Sort alphabetically by title
+  indexEntries.sort((a, b) => a.title.localeCompare(b.title));
+  
+  // Generate MDX content
+  let indexContent = `---
+title: All Components
+description: A comprehensive list of all available components in the Aura Design System.
+---
+
+## All Components
+
+Here is a complete list of all available components in the Aura Design System:
+
+`;
+
+  // Generate list of components with links
+  for (const entry of indexEntries) {
+    indexContent += `### [${entry.title}](./components/${entry.kebabName})\n\n`;
+    indexContent += `${entry.description}\n\n`;
+  }
+  
+  // Write to index.mdx
+  const indexFilePath = path.join(DOCS_OUTPUT_PATH, "index.mdx");
+  fs.writeFileSync(indexFilePath, indexContent);
+  console.log(`[SUCCESS] Generated components index.mdx with ${indexEntries.length} components\n`);
+}
+
+/**
  * Generate all.txt file with command to install all UI primitives
  */
 function generateAllTxt() {
@@ -2424,6 +2474,9 @@ generatePreviewRegistry();
 
 // Generate documentation files
 generateDocs();
+
+// Generate components index page
+generateComponentsIndex();
 
 // Generate all.txt file
 generateAllTxt();

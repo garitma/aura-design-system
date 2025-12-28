@@ -10,6 +10,10 @@
       "taste",
       "installation",
       "---Components---",
-      "...components"
+      "components/index",
+      "...components",
+      "---Forms---",
+      "forms/index",
+      "...forms"
     ]
   }
