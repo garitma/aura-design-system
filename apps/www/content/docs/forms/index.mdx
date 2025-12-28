@@ -6,3 +6,58 @@ description: Just another way to handle forms
 # Why?
 
 The DX has taste too. This is just one approach to handling forms. The Aura Design System way. Explore these form and patterns, all designed with an opinionated flavor and thoughtful developer experience that matches the rest of Aura.
+
+## How It Works
+
+The Aura Form system is built on two core pieces that work together seamlessly: the `useFormDynamic` hook for state management and the `Form` components for UI rendering.
+
+### The Hook: `useFormDynamic`
+
+The `useFormDynamic` hook provides a declarative way to manage form state. Instead of manually creating state for each field, you define your form structure upfront:
+
+```tsx
+const formData = useFormDynamic({
+  name: "text",
+  email: "text",
+  notifications: "checkbox",
+});
+```
+
+The hook automatically:
+- **Initializes values** based on field types (`text` → `""`, `checkbox` → `false`)
+- **Manages touch state** to track which fields have been interacted with
+- **Provides field props** through `getFields()` that include value, onChange handlers, and validation state
+- **Tracks form-level state** like fetch status (idle, loading, success, error)
+- **Offers utilities** like `touchForm()`, `getValues()`, and `resetForm()`
+
+### The Components: Form System
+
+The Form components are built on Radix UI Form primitives and handle the UI layer:
+
+- **`Form`**: The root wrapper that processes children and distributes validation errors to the appropriate fields
+- **`FormField`**: Generic wrapper for standard inputs (text, textarea, select) with automatic error display
+- **`FormSwitch`**: Specialized component for toggle/switch inputs
+- **`FormCheckbox`**: Single checkbox field with label
+- **`FormCheckboxGroup`**: Group of checkboxes with options array
+- **`FormRadioGroup`**: Radio button group with options
+- **`FormSubmit`**: Submit button with built-in loading state integration
+- **`FormAlert`**: Alert component that displays form-level errors
+
+### The Pattern
+
+Here's the typical flow:
+
+1. **Define your form structure** with `useFormDynamic`
+2. **Get field props** using `getFields()`
+3. **Validate** using your preferred validation library (JSON Schema from [AJV]("https://ajv.js.org/") with `validateFormData`)
+4. **Pass errors to Form** component
+5. **Use field props** with Form components (`FormField`, `FormSwitch`, etc.)
+6. **Handle submission** with `FormSubmit` and manage fetch status
+
+### Key Features
+
+- **Type-safe field definitions**: Field types are defined upfront, reducing errors
+- **Automatic error propagation**: The Form component automatically passes errors to the correct fields
+- **Touch state management**: Fields only show errors after being touched
+- **Built-in loading states**: `FormSubmit` integrates with fetch status for loading indicators
+- **Composable**: Mix and match different field types in the same form
