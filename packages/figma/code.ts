@@ -7,13 +7,26 @@
 // Do not edit manually. Run the script to regenerate.
 
 // Color helpers
-function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
+// Supports both 6-digit (#RRGGBB) and 8-digit (#RRGGBBAA) hex colors
+function hexToRgb(hex: string): { r: number; g: number; b: number; opacity?: number } | null {
+  // Try 8-digit hex first (with alpha)
+  const result8 = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  if (result8) {
+    return {
+      r: parseInt(result8[1], 16) / 255,
+      g: parseInt(result8[2], 16) / 255,
+      b: parseInt(result8[3], 16) / 255,
+      opacity: parseInt(result8[4], 16) / 255,
+    };
+  }
+  
+  // Try 6-digit hex (no alpha)
+  const result6 = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result6
     ? {
-        r: parseInt(result[1], 16) / 255,
-        g: parseInt(result[2], 16) / 255,
-        b: parseInt(result[3], 16) / 255,
+        r: parseInt(result6[1], 16) / 255,
+        g: parseInt(result6[2], 16) / 255,
+        b: parseInt(result6[3], 16) / 255,
       }
     : null;
 }
@@ -21,29 +34,29 @@ function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
 // Button style configurations
 const buttonStyles: Record<string, any> = {
   default: {
-    bg: hexToRgb("#bf91ec"),
+    bg: hexToRgb("#964ce1"),
     text: hexToRgb("#ffffff"),
-    hover: hexToRgb("#cea0fc"),
+    hover: hexToRgb("#7d35c2"),
   },
   fill: {
-    bg: hexToRgb("#bf91ec"),
+    bg: hexToRgb("#964ce1"),
     text: hexToRgb("#ffffff"),
-    hover: hexToRgb("#cea0fc"),
+    hover: hexToRgb("#7d35c2"),
   },
   pill: {
-    bg: null, // transparent
+    bg: hexToRgb("#f0f6ff"), // background color
     text: hexToRgb("#121b48"),
-    border: hexToRgb("#121b48"),
-    hover: hexToRgb("#1c1524"),
+    border: hexToRgb("#c2d4ff"),
+    hover: hexToRgb("#f7f4fc"),
   },
   link: {
     bg: null, // transparent
     text: hexToRgb("#121b48"),
-    hover: hexToRgb("#1c1524"),
+    hover: hexToRgb("#f7f4fc"),
   },
   menu: {
     bg: null, // transparent
-    text: hexToRgb("#e9dbf9"),
+    text: hexToRgb("#421a68"),
   },
 };
 
@@ -135,7 +148,12 @@ async function generateButtons() {
 
         // Apply border
         if (variant === 'pill' && style.border) {
-          button.strokes = [{ type: 'SOLID', color: style.border }];
+          const borderColor = style.border;
+          const stroke: any = { type: 'SOLID', color: { r: borderColor.r, g: borderColor.g, b: borderColor.b } };
+          if (borderColor.opacity !== undefined) {
+            stroke.opacity = borderColor.opacity;
+          }
+          button.strokes = [stroke];
           button.strokeWeight = 2;
         } else if (variant === 'fill' && style.bg) {
           button.strokes = [{ type: 'SOLID', color: style.bg }];

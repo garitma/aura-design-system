@@ -1,48 +1,29 @@
 import * as fs from "fs";
 import * as path from "path";
 
-// Color resolution map from CSS variables to actual hex values
-const colorMap: Record<string, string> = {
-  "--accent-1": "#17121c",
-  "--accent-2": "#1c1524",
-  "--accent-3": "#2e1d3d",
-  "--accent-4": "#3b2351",
-  "--accent-5": "#462b5e",
-  "--accent-6": "#52356b",
-  "--accent-7": "#634381",
-  "--accent-8": "#7d55a2",
-  "--accent-9": "#bf91ec",
-  "--accent-10": "#b486e0",
-  "--accent-11": "#cea0fc",
-  "--accent-12": "#e9dbf9",
-  "--gray-1": "#f6f9ff",
-  "--gray-2": "#f0f6ff",
-  "--gray-3": "#e3ecff",
-  "--gray-4": "#d7e4ff",
-  "--gray-5": "#ccdcff",
-  "--gray-6": "#c2d4ff",
-  "--gray-7": "#b4c8ff",
-  "--gray-8": "#99b3ff",
-  "--gray-9": "#6d84d5",
-  "--gray-10": "#647ac5",
-  "--gray-11": "#4b5c9a",
-  "--gray-12": "#121b48",
-  "--aura-accents-primary": "#bf91ec", // maps to accent-9
-  "--aura-text-primary": "#e9dbf9", // maps to accent-12
-  "--aura-text-primary-inverse": "#ffffff",
-  "--aura-link": "#121b48", // maps to gray-12
-  "--aura-link-hover": "#1c1524", // maps to accent-2
-  "--aura-button-hover": "#cea0fc", // maps to accent-11
-};
+import { colorMap } from "../utils/constants";
 
 // Helper to convert hex to RGB (0-1 range for Figma)
-function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
-  const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-  return result
+// Supports both 6-digit (#RRGGBB) and 8-digit (#RRGGBBAA) hex colors
+function hexToRgb(hex: string): { r: number; g: number; b: number; opacity?: number } | null {
+  // Try 8-digit hex first (with alpha)
+  const result8 = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  if (result8) {
+    return {
+      r: parseInt(result8[1], 16) / 255,
+      g: parseInt(result8[2], 16) / 255,
+      b: parseInt(result8[3], 16) / 255,
+      opacity: parseInt(result8[4], 16) / 255,
+    };
+  }
+  
+  // Try 6-digit hex (no alpha)
+  const result6 = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  return result6
     ? {
-        r: parseInt(result[1], 16) / 255,
-        g: parseInt(result[2], 16) / 255,
-        b: parseInt(result[3], 16) / 255,
+        r: parseInt(result6[1], 16) / 255,
+        g: parseInt(result6[2], 16) / 255,
+        b: parseInt(result6[3], 16) / 255,
       }
     : null;
 }
@@ -124,9 +105,9 @@ function parseButtonStyles(mainCssPath: string, globalsCssPath: string): {
   // Extract button-pill styles
   const pillMatch = mainCss.match(/\.button-pill\s*\{([\s\S]+?)\}/);
   let buttonPill = {
-    bg: "transparent",
+    bg:  resolveColor("--gray-2"),
     text: resolveColor("--aura-link"),
-    border: resolveColor("--aura-link"),
+    border: resolveColor("--gray-a6"),
   };
 
   // Extract button-link styles
@@ -160,6 +141,11 @@ function generateFigmaCode(
 ): string {
   const states = ["Default", "Hover", "Pressed"];
   const spacing = 100;
+  
+  // Determine pill background - use hexToRgb if not transparent, otherwise null
+  const pillBg = styles.buttonPill.bg === "transparent" 
+    ? "null" 
+    : `hexToRgb("${styles.buttonPill.bg}")`;
 
   let code = `// This file holds the main code for plugins. Code in this file has access to
 // the *figma document* via the figma global object.
@@ -170,13 +156,26 @@ function generateFigmaCode(
 // Do not edit manually. Run the script to regenerate.
 
 // Color helpers
-function hexToRgb(hex: string): { r: number; g: number; b: number } | null {
-  const result = /^#?([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2})$/i.exec(hex);
-  return result
+// Supports both 6-digit (#RRGGBB) and 8-digit (#RRGGBBAA) hex colors
+function hexToRgb(hex: string): { r: number; g: number; b: number; opacity?: number } | null {
+  // Try 8-digit hex first (with alpha)
+  const result8 = /^#?([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2})$/i.exec(hex);
+  if (result8) {
+    return {
+      r: parseInt(result8[1], 16) / 255,
+      g: parseInt(result8[2], 16) / 255,
+      b: parseInt(result8[3], 16) / 255,
+      opacity: parseInt(result8[4], 16) / 255,
+    };
+  }
+  
+  // Try 6-digit hex (no alpha)
+  const result6 = /^#?([a-f\\d]{2})([a-f\\d]{2})([a-f\\d]{2})$/i.exec(hex);
+  return result6
     ? {
-        r: parseInt(result[1], 16) / 255,
-        g: parseInt(result[2], 16) / 255,
-        b: parseInt(result[3], 16) / 255,
+        r: parseInt(result6[1], 16) / 255,
+        g: parseInt(result6[2], 16) / 255,
+        b: parseInt(result6[3], 16) / 255,
       }
     : null;
 }
@@ -194,7 +193,7 @@ const buttonStyles: Record<string, any> = {
     hover: hexToRgb("${resolveColor("--aura-button-hover")}"),
   },
   pill: {
-    bg: null, // transparent
+    bg: ${pillBg}, // ${styles.buttonPill.bg === "transparent" ? "transparent" : "background color"}
     text: hexToRgb("${styles.buttonPill.text}"),
     border: hexToRgb("${styles.buttonPill.border}"),
     hover: hexToRgb("${resolveColor("--aura-link-hover")}"),
@@ -298,7 +297,12 @@ async function generateButtons() {
 
         // Apply border
         if (variant === 'pill' && style.border) {
-          button.strokes = [{ type: 'SOLID', color: style.border }];
+          const borderColor = style.border;
+          const stroke: any = { type: 'SOLID', color: { r: borderColor.r, g: borderColor.g, b: borderColor.b } };
+          if (borderColor.opacity !== undefined) {
+            stroke.opacity = borderColor.opacity;
+          }
+          button.strokes = [stroke];
           button.strokeWeight = 2;
         } else if (variant === 'fill' && style.bg) {
           button.strokes = [{ type: 'SOLID', color: style.bg }];

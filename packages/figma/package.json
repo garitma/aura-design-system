@@ -8,8 +8,9 @@
     "lint": "eslint --ext .ts,.tsx --ignore-pattern node_modules .",
     "lint:fix": "eslint --ext .ts,.tsx --ignore-pattern node_modules --fix .",
     "watch": "npm run build -- --watch",
-    "generate": "pnpm generate:buttons && pnpm build",
-    "generate:buttons": "tsx scripts/generate-button-code.ts"
+    "generate": "pnpm generate:constants && pnpm generate:buttons && pnpm build",
+    "generate:buttons": "tsx scripts/generate-button-code.ts",
+    "generate:constants": "tsx scripts/generate-constants.ts"
   },
   "author": "",
   "license": "",
