@@ -90,7 +90,9 @@ async function generateButtons() {
         // Set height based on size
         const height = sizeConfig[size] || sizeConfig.default;
         // Set a default width that will accommodate the text (auto layout will adjust)
-        button.resize(200, height);
+        button.resize(300, height);
+        button.primaryAxisAlignItems = "CENTER";
+        button.counterAxisAlignItems = "CENTER";
 
         // Apply background color
         if (style.bg) {
