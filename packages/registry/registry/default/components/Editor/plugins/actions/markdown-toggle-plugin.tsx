@@ -9,7 +9,7 @@ import {
 } from "@lexical/markdown"
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext"
 import { $createTextNode, $getRoot } from "lexical"
-import { PlayIcon } from "lucide-react"
+import { PlayIcon } from "@radix-ui/react-icons"
 
 import Button from "@/components/ui/Button"
 
@@ -66,12 +66,12 @@ export function MarkdownTogglePlugin({
   return (
     <Button
       mode="pill"
-      size="small"
+      size="icon"
       onClick={handleMarkdownToggle}
-      className={`bg-gray-2 border border-gray-6 ${isMarkdownActive ? "text-gray-8" : "text-gray-12"}`}
+      className={`bg-gray-2 border border-gray-6 ${isMarkdownActive ? "text-gray-11" : "text-gray-12"}`}
       aria-label="Convert from markdown"
     >
-      <PlayIcon className="size-1.5" />
+      <PlayIcon className="icon" />
     </Button>
   )
 }

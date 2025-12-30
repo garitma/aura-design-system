@@ -50,8 +50,7 @@ export function FontFormatToolbarPlugin({
   return (
     <Toggle
       aria-label="Toggle bold"
-      variant="default"
-      size="sm"
+
       defaultPressed={isSelected}
       pressed={isSelected}
       onPressedChange={setIsSelected}
@@ -62,7 +61,7 @@ export function FontFormatToolbarPlugin({
         )
       }}
     >
-      <Icon className="h-0.5 w-0.5" />
+      <Icon className="icon" />
     </Toggle>
   )
 }

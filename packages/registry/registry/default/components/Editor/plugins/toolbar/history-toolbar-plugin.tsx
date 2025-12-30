@@ -62,8 +62,7 @@ export function HistoryToolbarPlugin() {
         type="button"
         aria-label="Undo"
         size="icon"
-        className="h-4 w-4"
-        mode="link"
+        mode="pill"
       >
         <ResetIcon className="icon" />
       </Button>
@@ -75,9 +74,9 @@ export function HistoryToolbarPlugin() {
         type="button"
         aria-label="Redo"
         size="icon"
-        mode="link"
+        mode="pill"
       >
-        <ResetIcon className="icon" />
+        <ResetIcon className="icon -scale-x-100"  />
       </Button>
     </ButtonGroup>
   )

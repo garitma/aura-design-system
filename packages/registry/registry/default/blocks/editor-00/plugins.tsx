@@ -37,7 +37,6 @@ import { MarkdownTogglePlugin } from "@/components/Editor/plugins/actions/markdo
 import { ConverToMarkdownChangePlugin } from "@/components/Editor/plugins/converto-to-markdown-change";
 import { HistoryToolbarPlugin } from "@/components/Editor/plugins/toolbar/history-toolbar-plugin";
 
-
 export function Plugins({ onChange }: { onChange?: (state: any) => void }) {
   const [floatingAnchorElem, setFloatingAnchorElem] =
     useState<HTMLDivElement | null>(null);
@@ -54,32 +53,38 @@ export function Plugins({ onChange }: { onChange?: (state: any) => void }) {
     <>
       <ToolbarPlugin>
         {({ blockType }) => (
-          <div className="flex items-center gap-0.5 overflow-auto px-1 sticky top-0 z-5 bg-gray-1 p-0.5 border-b border-gray-a6">
-            <div className="vertical-align-middle sticky top-0 z-10 flex gap-1">
-            <HistoryToolbarPlugin />
-          </div>
-            <BlockFormatDropDown>
-              <FormatParagraph />
-              <FormatHeading levels={["h1", "h2", "h3"]} />
-              <FormatNumberedList />
-              <FormatBulletedList />
-              <FormatQuote />
-            </BlockFormatDropDown>
-            <FontFormatToolbarPlugin format="bold" />
-            <FontFormatToolbarPlugin format="italic" />
-            <FontFormatToolbarPlugin format="underline" />
-            <FontFormatToolbarPlugin format="strikethrough" />
-            <LinkToolbarPlugin setIsLinkEditMode={setIsLinkEditMode} />
-            <InsertImage />
-            <MarkdownTogglePlugin transformers={[
-              HR,
-              IMAGE,
-              CHECK_LIST,
-              ...ELEMENT_TRANSFORMERS,
-              ...MULTILINE_ELEMENT_TRANSFORMERS,
-              ...TEXT_FORMAT_TRANSFORMERS,
-              ...TEXT_MATCH_TRANSFORMERS,
-            ]} shouldPreserveNewLinesInMarkdown={true} />
+          <div className="flex items-center gap-0.5 overflow-auto px-1 top-0 z-5 bg-gray-1 rounded-t-md p-0.5 border-b border-gray-a6 justify-between">
+            <div>
+              <HistoryToolbarPlugin />
+            </div>
+
+            <div className="flex items-center gap-0.5">
+              <BlockFormatDropDown>
+                <FormatParagraph />
+                <FormatHeading levels={["h1", "h2", "h3"]} />
+                <FormatNumberedList />
+                <FormatBulletedList />
+                <FormatQuote />
+              </BlockFormatDropDown>
+              <FontFormatToolbarPlugin format="bold" />
+              <FontFormatToolbarPlugin format="italic" />
+              <FontFormatToolbarPlugin format="underline" />
+              <FontFormatToolbarPlugin format="strikethrough" />
+              <LinkToolbarPlugin setIsLinkEditMode={setIsLinkEditMode} />
+              <InsertImage />
+            </div>
+            <MarkdownTogglePlugin
+              transformers={[
+                HR,
+                IMAGE,
+                CHECK_LIST,
+                ...ELEMENT_TRANSFORMERS,
+                ...MULTILINE_ELEMENT_TRANSFORMERS,
+                ...TEXT_FORMAT_TRANSFORMERS,
+                ...TEXT_MATCH_TRANSFORMERS,
+              ]}
+              shouldPreserveNewLinesInMarkdown={true}
+            />
           </div>
         )}
       </ToolbarPlugin>

@@ -40,7 +40,7 @@ export function Viewer({ content, height }: { content: string, height?: string }
           <Button
             mode="pill"
             onClick={() => setIsMarkdownView(false)}
-            className={`bg-gray-2 border border-gray-6 text-gray-8 size-3`}
+            className={`bg-gray-2 border border-gray-6 text-gray-12 size-3`}
 
           >
             <PlayIcon className="icon" />

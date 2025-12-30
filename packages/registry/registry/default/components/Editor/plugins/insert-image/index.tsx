@@ -11,15 +11,17 @@ export function InsertImage() {
   const { activeEditor, showModal } = useToolbarContext();
 
   return (
-    <button
+    <Button
+      mode="pill"
       onClick={(e) => {
         showModal("Insertar imagen", (onClose) => (
           <InsertImageDialog activeEditor={activeEditor} onClose={onClose} />
         ));
       }}
-      className="h-2 px-1.5 min-w-2"
+      size="icon"
+      aria-label="Insert image"
     >
-      <ImageIcon className="size-1.5" />
-    </button>
+      <ImageIcon className="icon" />
+    </Button>
   );
 }

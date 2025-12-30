@@ -12,9 +12,7 @@ import {
 
 import { cn } from "@/utils/class-names";
 
-function Select({
-  ...props
-}: React.ComponentProps<typeof SelectRadix.Root>) {
+function Select({ ...props }: React.ComponentProps<typeof SelectRadix.Root>) {
   return <SelectRadix.Root data-slot="select" {...props} />;
 }
 
@@ -26,8 +24,8 @@ function SelectTrigger({
     <SelectRadix.Trigger
       data-slot="select-trigger"
       className={cn(
-        className,
-        "flex h-4 w-full items-center justify-between rounded-sm border border-gray-a6 bg-gray-2 px-2 text-gray-12 cursor-pointer focus:outline-2 focus:outline-accent-9 focus:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-50"
+        "flex h-4 w-full items-center justify-between rounded-sm border border-gray-a6 bg-gray-2 px-2 text-gray-12 cursor-pointer focus:outline-2 focus:outline-accent-9 focus:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-50",
+        className
       )}
       {...props}
     />
@@ -247,4 +245,3 @@ export {
   SelectScrollDownButton,
   SelectArrow,
 };
-

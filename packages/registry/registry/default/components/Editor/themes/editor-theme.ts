@@ -15,7 +15,7 @@ export const editorTheme: EditorThemeClasses = {
   },
   paragraph: "leading-normal [&:not(:first-child)]:mt-1",
   quote: "mt-2 border-l-2 pl-2 italic",
-  link: "text-accent-9 hover:underline hover:cursor-pointer",
+  link: "text-gray-12 underline hover:cursor-pointer",
   list: {
     checklist: "relative",
     listitem: "mx-2",
