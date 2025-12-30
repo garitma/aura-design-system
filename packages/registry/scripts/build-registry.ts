@@ -9,6 +9,7 @@ const REGISTRY_PATH = path.join(__dirname, "../registry.json");
 const CUSTOM_ITEMS_PATH = path.join(__dirname, "../registry-items.custom.json");
 const ROOT_COMPONENTS_PATH = path.join(__dirname, "../registry/default/components");
 const UI_COMPONENTS_PATH = path.join(__dirname, "../registry/default/components/ui");
+const BLOCKS_PATH = path.join(__dirname, "../registry/default/blocks");
 const UTILS_PATH = path.join(__dirname, "../registry/default/utils");
 const HOOKS_PATH = path.join(__dirname, "../registry/default/hooks");
 const STYLES_PATH = path.join(__dirname, "../registry/default/styles");
@@ -162,16 +163,61 @@ function extractRegistryDependencies(filePath: string): string[] {
   return Array.from(registryDeps).sort();
 }
 
-function getComponentItemsFromPath(dirPath: string, registryPrefix: string, itemType: RegistryItemType) {
+/**
+ * Recursively collect all files from a directory, excluding specified directories
+ */
+function collectFilesRecursively(
+  dirPath: string,
+  excludeDirs: string[] = [],
+  basePath: string = dirPath
+): Array<{ filePath: string; relativePath: string }> {
+  const files: Array<{ filePath: string; relativePath: string }> = [];
+  
+  if (!fs.existsSync(dirPath)) return files;
+  
+  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+  
+  for (const entry of entries) {
+    const fullPath = path.join(dirPath, entry.name);
+    const relativePath = path.relative(basePath, fullPath);
+    
+    // Skip excluded directories
+    if (entry.isDirectory() && excludeDirs.includes(entry.name)) {
+      continue;
+    }
+    
+    if (entry.isFile() && (entry.name.endsWith(".tsx") || entry.name.endsWith(".ts"))) {
+      files.push({
+        filePath: fullPath,
+        relativePath: relativePath,
+      });
+    } else if (entry.isDirectory()) {
+      // Recursively collect files from subdirectories
+      const subFiles = collectFilesRecursively(fullPath, excludeDirs, basePath);
+      files.push(...subFiles);
+    }
+  }
+  
+  return files;
+}
+
+function getComponentItemsFromPath(dirPath: string, registryPrefix: string, itemType: RegistryItemType, excludeDirs: string[] = []) {
   if (!fs.existsSync(dirPath)) return [];
   
-  const files = fs.readdirSync(dirPath);
-  return files
-    .filter((file) => file.endsWith(".tsx"))
-    .map((file) => {
-      const name = file.replace(".tsx", "");
+  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+  const items: RegistryItem[] = [];
+  
+  for (const entry of entries) {
+    // Skip excluded directories
+    if (entry.isDirectory() && excludeDirs.includes(entry.name)) {
+      continue;
+    }
+    
+    // Process files directly in the directory
+    if (entry.isFile() && entry.name.endsWith(".tsx")) {
+      const name = entry.name.replace(".tsx", "");
       const kebabName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
-      const filePath = path.join(dirPath, file);
+      const filePath = path.join(dirPath, entry.name);
       
       // Extract external dependencies from the component file
       const dependencies = extractDependencies(filePath);
@@ -185,7 +231,7 @@ function getComponentItemsFromPath(dirPath: string, registryPrefix: string, item
         description: `The ${name} component.`,
         files: [
           {
-            path: `${registryPrefix}/${file}`,
+            path: `${registryPrefix}/${entry.name}`,
             type: itemType,
           },
         ],
@@ -219,12 +265,140 @@ function getComponentItemsFromPath(dirPath: string, registryPrefix: string, item
         item.registryDependencies = registryDependencies;
       }
       
-      return item;
-    });
+      items.push(item);
+    }
+    // Process component subdirectories (like Editor)
+    else if (entry.isDirectory() && !excludeDirs.includes(entry.name)) {
+      const subDirPath = path.join(dirPath, entry.name);
+      const subRegistryPrefix = `${registryPrefix}/${entry.name}`;
+      const name = entry.name;
+      const kebabName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+      
+      // Collect all files recursively from the subdirectory
+      const allFiles = collectFilesRecursively(subDirPath, excludeDirs, subDirPath);
+      
+      if (allFiles.length > 0) {
+        // Collect all dependencies from all files
+        const allDependencies = new Set<string>();
+        const allRegistryDependencies = new Set<string>();
+        
+        const fileEntries = allFiles.map((file) => {
+          const fileDeps = extractDependencies(file.filePath);
+          const fileRegDeps = extractRegistryDependencies(file.filePath);
+          
+          fileDeps.forEach(dep => allDependencies.add(dep));
+          fileRegDeps.forEach(dep => allRegistryDependencies.add(dep));
+          
+          return {
+            path: `${subRegistryPrefix}/${file.relativePath}`,
+            type: itemType,
+            target: file.relativePath.includes("/") 
+              ? `components/${entry.name}/${file.relativePath}`
+              : `components/${entry.name}/${file.relativePath}`,
+          };
+        });
+        
+        const item: RegistryItem = {
+          name: kebabName,
+          type: itemType,
+          title: name,
+          description: `The ${name} component.`,
+          files: fileEntries,
+        };
+        
+        // Only add dependencies field if there are external dependencies
+        if (allDependencies.size > 0) {
+          item.dependencies = Array.from(allDependencies).sort();
+        }
+        
+        // Only add registryDependencies field if there are registry dependencies
+        if (allRegistryDependencies.size > 0) {
+          item.registryDependencies = Array.from(allRegistryDependencies).sort();
+        }
+        
+        items.push(item);
+      }
+    }
+  }
+  
+  return items;
+}
+
+/**
+ * Get block items from blocks directory
+ * Each subdirectory in blocks is treated as a separate block
+ */
+function getBlockItems(): RegistryItem[] {
+  if (!fs.existsSync(BLOCKS_PATH)) return [];
+  
+  const entries = fs.readdirSync(BLOCKS_PATH, { withFileTypes: true });
+  const items: RegistryItem[] = [];
+  
+  for (const entry of entries) {
+    if (!entry.isDirectory()) continue;
+    
+    const blockDirPath = path.join(BLOCKS_PATH, entry.name);
+    const blockRegistryPrefix = `registry/default/blocks/${entry.name}`;
+    const blockName = entry.name;
+    const kebabName = blockName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+    
+    // Collect all files from the block directory recursively
+    const allFiles = collectFilesRecursively(blockDirPath, [], blockDirPath);
+    
+    if (allFiles.length > 0) {
+      // Collect all dependencies from all files
+      const allDependencies = new Set<string>();
+      const allRegistryDependencies = new Set<string>();
+      
+      const fileEntries = allFiles.map((file) => {
+        const fileDeps = extractDependencies(file.filePath);
+        const fileRegDeps = extractRegistryDependencies(file.filePath);
+        
+        fileDeps.forEach(dep => allDependencies.add(dep));
+        fileRegDeps.forEach(dep => allRegistryDependencies.add(dep));
+        
+        return {
+          path: `${blockRegistryPrefix}/${file.relativePath}`,
+          type: "registry:block" as const,
+          target: file.relativePath.includes("/")
+            ? `blocks/${blockName}/${file.relativePath}`
+            : `blocks/${blockName}/${file.relativePath}`,
+        };
+      });
+      
+      const item: RegistryItem = {
+        name: kebabName,
+        type: "registry:block" as const,
+        title: blockName,
+        description: `The ${blockName} block.`,
+        files: fileEntries,
+      };
+      
+      // Only add dependencies field if there are external dependencies
+      if (allDependencies.size > 0) {
+        item.dependencies = Array.from(allDependencies).sort();
+      }
+      
+      // Only add registryDependencies field if there are registry dependencies
+      if (allRegistryDependencies.size > 0) {
+        item.registryDependencies = Array.from(allRegistryDependencies).sort();
+      }
+      
+      items.push(item);
+    }
+  }
+  
+  return items;
 }
 
 function getComponentItems() {
-  const rootItems = getComponentItemsFromPath(ROOT_COMPONENTS_PATH, "registry/default/components", "registry:component");
+  // Get root components, excluding 'ui' directory to prevent it from being included as an item
+  const rootItems = getComponentItemsFromPath(
+    ROOT_COMPONENTS_PATH, 
+    "registry/default/components", 
+    "registry:component",
+    ["ui"] // Exclude ui folder
+  );
   const uiItems = getComponentItemsFromPath(UI_COMPONENTS_PATH, "registry/default/components/ui", "registry:ui");
   
   return [...rootItems, ...uiItems];
@@ -547,15 +721,23 @@ function buildRegistry() {
   copyComponentsToWww();
 
   const components = getComponentItems();
+  const blocks = getBlockItems();
   const utils = getUtilsItems();
   const hooks = getHooksItems();
   const animationStyles = getAnimationStyleItems();
   const customItems = getCustomItems();
 
-  registry.items = [...components, ...utils, ...hooks, ...animationStyles, ...customItems];
+  registry.items = [...components, ...blocks, ...utils, ...hooks, ...animationStyles, ...customItems];
 
   fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2));
   console.log(`Registry generated at ${REGISTRY_PATH}`);
+  console.log(`  Components: ${components.length}`);
+  console.log(`  Blocks: ${blocks.length}`);
+  console.log(`  Utils: ${utils.length}`);
+  console.log(`  Hooks: ${hooks.length}`);
+  console.log(`  Animation Styles: ${animationStyles.length}`);
+  console.log(`  Custom Items: ${customItems.length}`);
+  console.log(`  Total: ${registry.items.length}`);
 }
 
 buildRegistry();

@@ -60,6 +60,220 @@
       ]
     },
     {
+      "name": "editor",
+      "type": "registry:component",
+      "title": "Editor",
+      "description": "The Editor component.",
+      "files": [
+        {
+          "path": "registry/default/components/Editor/context/toolbar-context.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/context/toolbar-context.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/editor-hooks/use-modal.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/editor-hooks/use-modal.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/editor-hooks/use-update-toolbar.ts",
+          "type": "registry:component",
+          "target": "components/Editor/editor-hooks/use-update-toolbar.ts"
+        },
+        {
+          "path": "registry/default/components/Editor/editor-ui/auto-link-plugin.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/editor-ui/auto-link-plugin.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/editor-ui/content-editable.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/editor-ui/content-editable.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/editor-ui/image-component.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/editor-ui/image-component.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/editor-ui/image-resizer.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/editor-ui/image-resizer.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/nodes/image-node.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/nodes/image-node.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/actions/actions-plugin.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/actions/actions-plugin.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/actions/markdown-toggle-plugin.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/actions/markdown-toggle-plugin.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/converto-to-markdown-change.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/converto-to-markdown-change.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/floating-link-editor-plugin/get-selected-node.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/floating-link-editor-plugin/get-selected-node.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/floating-link-editor-plugin/index.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/floating-link-editor-plugin/index.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/floating-link-editor-plugin/set-floating-elem-position-for-link-editor.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/floating-link-editor-plugin/set-floating-elem-position-for-link-editor.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/floating-link-editor-plugin/url.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/floating-link-editor-plugin/url.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/images-plugin.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/images-plugin.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/insert-image/index.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/insert-image/index.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-format/block-format-data.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/toolbar/block-format/block-format-data.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-format/format-bulleted-list.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/toolbar/block-format/format-bulleted-list.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-format/format-check-list.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/toolbar/block-format/format-check-list.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-format/format-heading.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/toolbar/block-format/format-heading.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-format/format-numbered-list.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/toolbar/block-format/format-numbered-list.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-format/format-paragraph.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/toolbar/block-format/format-paragraph.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-format/format-quote.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/toolbar/block-format/format-quote.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-format-toolbar-plugin.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/toolbar/block-format-toolbar-plugin.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-insert/insert-image.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/toolbar/block-insert/insert-image.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/font-format-toolbar-plugin.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/toolbar/font-format-toolbar-plugin.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/history-toolbar-plugin.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/toolbar/history-toolbar-plugin.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/link-toolbar-plugin.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/toolbar/link-toolbar-plugin.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/toolbar-plugin.tsx",
+          "type": "registry:component",
+          "target": "components/Editor/plugins/toolbar/toolbar-plugin.tsx"
+        },
+        {
+          "path": "registry/default/components/Editor/shared/can-use-dom.ts",
+          "type": "registry:component",
+          "target": "components/Editor/shared/can-use-dom.ts"
+        },
+        {
+          "path": "registry/default/components/Editor/themes/editor-theme.ts",
+          "type": "registry:component",
+          "target": "components/Editor/themes/editor-theme.ts"
+        },
+        {
+          "path": "registry/default/components/Editor/transformers/markdown-hr-transformer.ts",
+          "type": "registry:component",
+          "target": "components/Editor/transformers/markdown-hr-transformer.ts"
+        },
+        {
+          "path": "registry/default/components/Editor/transformers/markdown-image-transformer.ts",
+          "type": "registry:component",
+          "target": "components/Editor/transformers/markdown-image-transformer.ts"
+        },
+        {
+          "path": "registry/default/components/Editor/utils/get-selected-node.ts",
+          "type": "registry:component",
+          "target": "components/Editor/utils/get-selected-node.ts"
+        },
+        {
+          "path": "registry/default/components/Editor/utils/url.ts",
+          "type": "registry:component",
+          "target": "components/Editor/utils/url.ts"
+        }
+      ],
+      "dependencies": [
+        "@lexical/code",
+        "@lexical/link",
+        "@lexical/list",
+        "@lexical/markdown",
+        "@lexical/react",
+        "@lexical/rich-text",
+        "@lexical/selection",
+        "@lexical/table",
+        "@lexical/utils",
+        "@radix-ui/react-icons",
+        "lexical",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@aura/button",
+        "@aura/button-group",
+        "@aura/class-names",
+        "@aura/dialog",
+        "@aura/editor",
+        "@aura/input",
+        "@aura/label",
+        "@aura/select",
+        "@aura/tabs",
+        "@aura/toggle"
+      ]
+    },
+    {
       "name": "form-field-combobox",
       "type": "registry:component",
       "title": "FormFieldCombobox",
@@ -994,6 +1208,50 @@
       ],
       "registryDependencies": [
         "@aura/class-names"
+      ]
+    },
+    {
+      "name": "editor-00",
+      "type": "registry:block",
+      "title": "editor-00",
+      "description": "The editor-00 block.",
+      "files": [
+        {
+          "path": "registry/default/blocks/editor-00/editor.tsx",
+          "type": "registry:block",
+          "target": "blocks/editor-00/editor.tsx"
+        },
+        {
+          "path": "registry/default/blocks/editor-00/nodes.ts",
+          "type": "registry:block",
+          "target": "blocks/editor-00/nodes.ts"
+        },
+        {
+          "path": "registry/default/blocks/editor-00/plugins.tsx",
+          "type": "registry:block",
+          "target": "blocks/editor-00/plugins.tsx"
+        },
+        {
+          "path": "registry/default/blocks/editor-00/viewer.tsx",
+          "type": "registry:block",
+          "target": "blocks/editor-00/viewer.tsx"
+        }
+      ],
+      "dependencies": [
+        "@lexical/code",
+        "@lexical/link",
+        "@lexical/list",
+        "@lexical/markdown",
+        "@lexical/react",
+        "@lexical/rich-text",
+        "@radix-ui/react-icons",
+        "lexical"
+      ],
+      "registryDependencies": [
+        "@aura/button",
+        "@aura/editor",
+        "@aura/scroll-area",
+        "@aura/tooltip"
       ]
     },
     {

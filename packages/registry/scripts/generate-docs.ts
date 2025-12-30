@@ -2384,6 +2384,13 @@ function generateDocs() {
     // Parse metadata
     const metadata = parseMetadata(component.name);
     
+    // Skip components without metadata
+    if (!metadata) {
+      console.log(`[SKIP] Skipping ${mdxFileName} - no metadata file found`);
+      skipped++;
+      continue;
+    }
+    
     // Always try to extract Default story (for auto-preview generation)
     let defaultStory: string | null = null;
     defaultStory = extractDefaultStory(component.name);
