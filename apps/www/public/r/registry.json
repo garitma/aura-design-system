@@ -311,8 +311,8 @@
         "radix-ui"
       ],
       "registryDependencies": [
-        "@aura/blocks",
         "@aura/class-names",
+        "@aura/editor-00",
         "@aura/use-dynamic-form"
       ]
     },
@@ -1217,24 +1217,24 @@
       "description": "The editor-00 block.",
       "files": [
         {
-          "path": "registry/default/blocks/editor-00/editor.tsx",
+          "path": "registry/default/components/blocks/editor-00/editor.tsx",
           "type": "registry:block",
-          "target": "blocks/editor-00/editor.tsx"
+          "target": "components/blocks/editor-00/editor.tsx"
         },
         {
-          "path": "registry/default/blocks/editor-00/nodes.ts",
+          "path": "registry/default/components/blocks/editor-00/nodes.ts",
           "type": "registry:block",
-          "target": "blocks/editor-00/nodes.ts"
+          "target": "components/blocks/editor-00/nodes.ts"
         },
         {
-          "path": "registry/default/blocks/editor-00/plugins.tsx",
+          "path": "registry/default/components/blocks/editor-00/plugins.tsx",
           "type": "registry:block",
-          "target": "blocks/editor-00/plugins.tsx"
+          "target": "components/blocks/editor-00/plugins.tsx"
         },
         {
-          "path": "registry/default/blocks/editor-00/viewer.tsx",
+          "path": "registry/default/components/blocks/editor-00/viewer.tsx",
           "type": "registry:block",
-          "target": "blocks/editor-00/viewer.tsx"
+          "target": "components/blocks/editor-00/viewer.tsx"
         }
       ],
       "dependencies": [

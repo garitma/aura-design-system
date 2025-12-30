@@ -9,12 +9,13 @@ const REGISTRY_PATH = path.join(__dirname, "../registry.json");
 const CUSTOM_ITEMS_PATH = path.join(__dirname, "../registry-items.custom.json");
 const ROOT_COMPONENTS_PATH = path.join(__dirname, "../registry/default/components");
 const UI_COMPONENTS_PATH = path.join(__dirname, "../registry/default/components/ui");
-const BLOCKS_PATH = path.join(__dirname, "../registry/default/blocks");
+const BLOCKS_PATH = path.join(__dirname, "../registry/default/components/blocks");
 const UTILS_PATH = path.join(__dirname, "../registry/default/utils");
 const HOOKS_PATH = path.join(__dirname, "../registry/default/hooks");
 const STYLES_PATH = path.join(__dirname, "../registry/default/styles");
 const WWW_COMPONENTS_PATH = path.join(__dirname, "../../../apps/www/components");
 const WWW_UI_COMPONENTS_PATH = path.join(__dirname, "../../../apps/www/components/ui");
+const WWW_BLOCKS_PATH = path.join(__dirname, "../../../apps/www/components/blocks");
 
 type RegistryItemType = 
   | "registry:lib"
@@ -145,18 +146,28 @@ function extractRegistryDependencies(filePath: string): string[] {
       // Extract component name: 
       // @/components/ComboboxSingle -> combobox-single
       // @/components/ui/Combobox -> combobox
+      // @/components/blocks/editor-00/editor -> editor-00 (block)
       const componentPath = importPath.replace('@/components/', '');
       const pathParts = componentPath.split('/');
       
+      // If it's @/components/blocks/block-name/..., extract block name
+      if (pathParts[0] === 'blocks' && pathParts.length > 1) {
+        const blockName = pathParts[1];
+        const kebabName = blockName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+        registryDeps.add(`@aura/${kebabName}`);
+      }
       // If it's @/components/ui/ComponentName, extract ComponentName
+      else if (pathParts[0] === 'ui' && pathParts.length > 1) {
+        const componentName = pathParts[1];
+        const kebabName = componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+        registryDeps.add(`@aura/${kebabName}`);
+      }
       // Otherwise extract the first part (which is the component name)
-      const componentName = pathParts[0] === 'ui' && pathParts.length > 1 
-        ? pathParts[1] 
-        : pathParts[0];
-      
-      // Convert PascalCase to kebab-case: ComboboxSingle -> combobox-single
-      const kebabName = componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
-      registryDeps.add(`@aura/${kebabName}`);
+      else {
+        const componentName = pathParts[0];
+        const kebabName = componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+        registryDeps.add(`@aura/${kebabName}`);
+      }
     }
   }
   
@@ -325,7 +336,7 @@ function getComponentItemsFromPath(dirPath: string, registryPrefix: string, item
 }
 
 /**
- * Get block items from blocks directory
+ * Get block items from blocks directory (under components/blocks)
  * Each subdirectory in blocks is treated as a separate block
  */
 function getBlockItems(): RegistryItem[] {
@@ -338,7 +349,7 @@ function getBlockItems(): RegistryItem[] {
     if (!entry.isDirectory()) continue;
     
     const blockDirPath = path.join(BLOCKS_PATH, entry.name);
-    const blockRegistryPrefix = `registry/default/blocks/${entry.name}`;
+    const blockRegistryPrefix = `registry/default/components/blocks/${entry.name}`;
     const blockName = entry.name;
     const kebabName = blockName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
     
@@ -360,9 +371,7 @@ function getBlockItems(): RegistryItem[] {
         return {
           path: `${blockRegistryPrefix}/${file.relativePath}`,
           type: "registry:block" as const,
-          target: file.relativePath.includes("/")
-            ? `blocks/${blockName}/${file.relativePath}`
-            : `blocks/${blockName}/${file.relativePath}`,
+          target: `components/blocks/${blockName}/${file.relativePath}`,
         };
       });
       
@@ -392,12 +401,12 @@ function getBlockItems(): RegistryItem[] {
 }
 
 function getComponentItems() {
-  // Get root components, excluding 'ui' directory to prevent it from being included as an item
+  // Get root components, excluding 'ui' and 'blocks' directories to prevent them from being included as items
   const rootItems = getComponentItemsFromPath(
     ROOT_COMPONENTS_PATH, 
     "registry/default/components", 
     "registry:component",
-    ["ui"] // Exclude ui folder
+    ["ui", "blocks"] // Exclude ui and blocks folders
   );
   const uiItems = getComponentItemsFromPath(UI_COMPONENTS_PATH, "registry/default/components/ui", "registry:ui");
   
@@ -636,6 +645,54 @@ function getAnimationStyleItems(): RegistryItem[] {
 }
 
 /**
+ * Recursively copy directory structure from source to destination
+ */
+function copyDirectoryRecursively(sourceDir: string, destDir: string, excludeDirs: string[] = []): { copied: number; overwritten: number } {
+  let copied = 0;
+  let overwritten = 0;
+  
+  if (!fs.existsSync(sourceDir)) {
+    return { copied, overwritten };
+  }
+  
+  // Ensure destination directory exists
+  if (!fs.existsSync(destDir)) {
+    fs.mkdirSync(destDir, { recursive: true });
+  }
+  
+  const entries = fs.readdirSync(sourceDir, { withFileTypes: true });
+  
+  for (const entry of entries) {
+    // Skip excluded directories
+    if (entry.isDirectory() && excludeDirs.includes(entry.name)) {
+      continue;
+    }
+    
+    const sourcePath = path.join(sourceDir, entry.name);
+    const destPath = path.join(destDir, entry.name);
+    
+    if (entry.isDirectory()) {
+      // Recursively copy subdirectories
+      const result = copyDirectoryRecursively(sourcePath, destPath, excludeDirs);
+      copied += result.copied;
+      overwritten += result.overwritten;
+    } else if (entry.isFile() && (entry.name.endsWith(".tsx") || entry.name.endsWith(".ts"))) {
+      // Copy files
+      const exists = fs.existsSync(destPath);
+      fs.copyFileSync(sourcePath, destPath);
+      
+      if (exists) {
+        overwritten++;
+      } else {
+        copied++;
+      }
+    }
+  }
+  
+  return { copied, overwritten };
+}
+
+/**
  * Copy components from registry to www app, always overwriting existing files
  * This ensures registry components are the source of truth
  */
@@ -650,11 +707,16 @@ function copyComponentsToWww() {
     fs.mkdirSync(WWW_UI_COMPONENTS_PATH, { recursive: true });
     console.log(`[INFO] Created www ui components directory: ${WWW_UI_COMPONENTS_PATH}`);
   }
+  
+  if (!fs.existsSync(WWW_BLOCKS_PATH)) {
+    fs.mkdirSync(WWW_BLOCKS_PATH, { recursive: true });
+    console.log(`[INFO] Created www blocks directory: ${WWW_BLOCKS_PATH}`);
+  }
 
-  let copiedCount = 0;
-  let overwrittenCount = 0;
+  let totalCopied = 0;
+  let totalOverwritten = 0;
 
-  // Copy root components (excluding ui subdirectory)
+  // Copy root components (excluding ui and blocks subdirectories)
   if (fs.existsSync(ROOT_COMPONENTS_PATH)) {
     const entries = fs.readdirSync(ROOT_COMPONENTS_PATH, { withFileTypes: true });
     const componentFiles = entries
@@ -670,11 +732,9 @@ function copyComponentsToWww() {
       fs.copyFileSync(sourcePath, destPath);
       
       if (exists) {
-        console.log(`[INFO] Overwritten component: ${file} -> ${destPath}`);
-        overwrittenCount++;
+        totalOverwritten++;
       } else {
-        console.log(`[INFO] Copied component: ${file} -> ${destPath}`);
-        copiedCount++;
+        totalCopied++;
       }
     }
   }
@@ -695,21 +755,30 @@ function copyComponentsToWww() {
       fs.copyFileSync(sourcePath, destPath);
       
       if (exists) {
-        console.log(`[INFO] Overwritten UI component: ${file} -> ${destPath}`);
-        overwrittenCount++;
+        totalOverwritten++;
       } else {
-        console.log(`[INFO] Copied UI component: ${file} -> ${destPath}`);
-        copiedCount++;
+        totalCopied++;
       }
     }
   }
 
-  const totalCount = copiedCount + overwrittenCount;
+  // Copy blocks directory recursively
+  if (fs.existsSync(BLOCKS_PATH)) {
+    const result = copyDirectoryRecursively(BLOCKS_PATH, WWW_BLOCKS_PATH);
+    totalCopied += result.copied;
+    totalOverwritten += result.overwritten;
+    
+    if (result.copied > 0 || result.overwritten > 0) {
+      console.log(`[INFO] Copied blocks: ${result.copied} copied, ${result.overwritten} overwritten`);
+    }
+  }
+
+  const totalCount = totalCopied + totalOverwritten;
   if (totalCount > 0) {
-    if (overwrittenCount > 0) {
-      console.log(`[INFO] Synced ${totalCount} component(s) to www app (${copiedCount} copied, ${overwrittenCount} overwritten)`);
+    if (totalOverwritten > 0) {
+      console.log(`[INFO] Synced ${totalCount} component(s) to www app (${totalCopied} copied, ${totalOverwritten} overwritten)`);
     } else {
-      console.log(`[INFO] Copied ${copiedCount} component(s) to www app`);
+      console.log(`[INFO] Copied ${totalCopied} component(s) to www app`);
     }
   } else {
     console.log(`[INFO] No components found to sync`);
@@ -740,4 +809,5 @@ function buildRegistry() {
   console.log(`  Total: ${registry.items.length}`);
 }
 
+buildRegistry();
 buildRegistry();

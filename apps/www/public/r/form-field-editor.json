@@ -9,8 +9,8 @@
     "radix-ui"
   ],
   "registryDependencies": [
-    "@aura/blocks",
     "@aura/class-names",
+    "@aura/editor-00",
     "@aura/use-dynamic-form"
   ],
   "files": [

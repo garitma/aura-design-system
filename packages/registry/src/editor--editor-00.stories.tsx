@@ -1,6 +1,6 @@
 
 import type { Story } from "@ladle/react";
-import { Editor } from "../registry/default/blocks/editor-00/editor";
+import { Editor } from "../registry/default/components/blocks/editor-00/editor";
 
 
 export const EditorWithInitialContent: Story = () => {
