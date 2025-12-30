@@ -12,6 +12,7 @@ const UI_COMPONENTS_PATH = path.join(__dirname, "../registry/default/components/
 const UTILS_PATH = path.join(__dirname, "../registry/default/utils");
 const HOOKS_PATH = path.join(__dirname, "../registry/default/hooks");
 const STYLES_PATH = path.join(__dirname, "../registry/default/styles");
+const BLOCKS_PATH = path.join(__dirname, "../registry/default/blocks");
 const WWW_COMPONENTS_PATH = path.join(__dirname, "../../../apps/www/components");
 const WWW_UI_COMPONENTS_PATH = path.join(__dirname, "../../../apps/www/components/ui");
 
@@ -162,16 +163,107 @@ function extractRegistryDependencies(filePath: string): string[] {
   return Array.from(registryDeps).sort();
 }
 
+/**
+ * Recursively collect all TypeScript/TSX files from a directory
+ */
+function collectFilesRecursively(dirPath: string, basePath: string, relativePath: string = ""): string[] {
+  const files: string[] = [];
+  const fullPath = path.join(dirPath, relativePath);
+  
+  if (!fs.existsSync(fullPath)) return files;
+  
+  const entries = fs.readdirSync(fullPath, { withFileTypes: true });
+  
+  for (const entry of entries) {
+    const entryPath = path.join(relativePath, entry.name);
+    const fullEntryPath = path.join(fullPath, entry.name);
+    
+    if (entry.isDirectory()) {
+      // Recursively collect files from subdirectories
+      files.push(...collectFilesRecursively(dirPath, basePath, entryPath));
+    } else if (entry.isFile() && (entry.name.endsWith(".ts") || entry.name.endsWith(".tsx"))) {
+      files.push(entryPath);
+    }
+  }
+  
+  return files;
+}
+
 function getComponentItemsFromPath(dirPath: string, registryPrefix: string, itemType: RegistryItemType) {
   if (!fs.existsSync(dirPath)) return [];
   
-  const files = fs.readdirSync(dirPath);
-  return files
-    .filter((file) => file.endsWith(".tsx"))
-    .map((file) => {
-      const name = file.replace(".tsx", "");
+  const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+  const items: RegistryItem[] = [];
+  
+  for (const entry of entries) {
+    const entryPath = path.join(dirPath, entry.name);
+    
+    if (entry.isDirectory()) {
+      // Handle component directories (like Editor)
+      const componentName = entry.name;
+      const kebabName = componentName.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
+      
+      // Recursively collect all files from the component directory
+      const allFiles = collectFilesRecursively(entryPath, entryPath);
+      const tsFiles = allFiles.filter((file) => 
+        file.endsWith(".ts") || file.endsWith(".tsx")
+      );
+      
+      if (tsFiles.length === 0) continue;
+      
+      // Collect all dependencies from all files in the component directory
+      const allDependencies = new Set<string>();
+      const allRegistryDependencies = new Set<string>();
+      
+      tsFiles.forEach((file) => {
+        const filePath = path.join(entryPath, file);
+        if (fs.existsSync(filePath)) {
+          const dependencies = extractDependencies(filePath);
+          const registryDependencies = extractRegistryDependencies(filePath);
+          
+          dependencies.forEach((dep) => allDependencies.add(dep));
+          registryDependencies.forEach((dep) => allRegistryDependencies.add(dep));
+        }
+      });
+      
+      const item: RegistryItem = {
+        name: kebabName,
+        type: itemType,
+        title: componentName,
+        description: `The ${componentName} component.`,
+        files: tsFiles.map((file) => ({
+          path: `${registryPrefix}/${componentName}/${file}`,
+          type: itemType,
+        })),
+      };
+      
+      // Check for CSS files in the component directory
+      const cssFiles = allFiles.filter((file) => file.endsWith(".css"));
+      cssFiles.forEach((cssFile) => {
+        const cssRelativePath = `${registryPrefix}/${componentName}/${cssFile}`;
+        item.files?.push({
+          path: cssRelativePath,
+          type: "registry:component",
+          target: `./${componentName}/${cssFile}`,
+        });
+      });
+      
+      // Only add dependencies field if there are external dependencies
+      if (allDependencies.size > 0) {
+        item.dependencies = Array.from(allDependencies).sort();
+      }
+      
+      // Only add registryDependencies field if there are registry dependencies
+      if (allRegistryDependencies.size > 0) {
+        item.registryDependencies = Array.from(allRegistryDependencies).sort();
+      }
+      
+      items.push(item);
+    } else if (entry.isFile() && entry.name.endsWith(".tsx")) {
+      // Handle single file components
+      const name = entry.name.replace(".tsx", "");
       const kebabName = name.replace(/([a-z0-9])([A-Z])/g, '$1-$2').toLowerCase();
-      const filePath = path.join(dirPath, file);
+      const filePath = path.join(dirPath, entry.name);
       
       // Extract external dependencies from the component file
       const dependencies = extractDependencies(filePath);
@@ -185,7 +277,7 @@ function getComponentItemsFromPath(dirPath: string, registryPrefix: string, item
         description: `The ${name} component.`,
         files: [
           {
-            path: `${registryPrefix}/${file}`,
+            path: `${registryPrefix}/${entry.name}`,
             type: itemType,
           },
         ],
@@ -219,8 +311,11 @@ function getComponentItemsFromPath(dirPath: string, registryPrefix: string, item
         item.registryDependencies = registryDependencies;
       }
       
-      return item;
-    });
+      items.push(item);
+    }
+  }
+  
+  return items;
 }
 
 function getComponentItems() {
@@ -462,6 +557,107 @@ function getAnimationStyleItems(): RegistryItem[] {
 }
 
 /**
+ * Get block items from the blocks directory
+ * Each block is a directory containing multiple files
+ */
+function getBlockItems(): RegistryItem[] {
+  if (!fs.existsSync(BLOCKS_PATH)) return [];
+
+  const entries = fs.readdirSync(BLOCKS_PATH, { withFileTypes: true });
+  const blockDirs = entries.filter((entry) => entry.isDirectory());
+
+  return blockDirs.map((entry) => {
+    const blockDirName = entry.name;
+    const blockDirPath = path.join(BLOCKS_PATH, blockDirName);
+    const blockFiles = fs.readdirSync(blockDirPath);
+    
+    // Filter for TypeScript/TSX files
+    const tsFiles = blockFiles.filter((file) => 
+      file.endsWith(".ts") || file.endsWith(".tsx")
+    );
+
+    // Collect all dependencies from all files in the block
+    const allDependencies = new Set<string>();
+    const allRegistryDependencies = new Set<string>();
+
+    tsFiles.forEach((file) => {
+      const filePath = path.join(blockDirPath, file);
+      const dependencies = extractDependencies(filePath);
+      const registryDependencies = extractRegistryDependencies(filePath);
+      
+      dependencies.forEach((dep) => allDependencies.add(dep));
+      registryDependencies.forEach((dep) => allRegistryDependencies.add(dep));
+    });
+
+    const item: RegistryItem = {
+      name: blockDirName,
+      type: "registry:block" as const,
+      title: blockDirName,
+      description: `Block: ${blockDirName}`,
+      files: tsFiles.map((file) => ({
+        path: `registry/default/blocks/${blockDirName}/${file}`,
+        type: "registry:block" as const,
+      })),
+    };
+
+    // Only add dependencies field if there are external dependencies
+    if (allDependencies.size > 0) {
+      item.dependencies = Array.from(allDependencies).sort();
+    }
+
+    // Only add registryDependencies field if there are registry dependencies
+    if (allRegistryDependencies.size > 0) {
+      item.registryDependencies = Array.from(allRegistryDependencies).sort();
+    }
+
+    return item;
+  });
+}
+
+/**
+ * Recursively copy a directory and all its contents
+ */
+function copyDirectoryRecursively(sourceDir: string, destDir: string): { copied: number; overwritten: number } {
+  let copied = 0;
+  let overwritten = 0;
+  
+  if (!fs.existsSync(sourceDir)) {
+    return { copied, overwritten };
+  }
+  
+  // Ensure destination directory exists
+  if (!fs.existsSync(destDir)) {
+    fs.mkdirSync(destDir, { recursive: true });
+  }
+  
+  const entries = fs.readdirSync(sourceDir, { withFileTypes: true });
+  
+  for (const entry of entries) {
+    const sourcePath = path.join(sourceDir, entry.name);
+    const destPath = path.join(destDir, entry.name);
+    
+    if (entry.isDirectory()) {
+      // Recursively copy subdirectories
+      const result = copyDirectoryRecursively(sourcePath, destPath);
+      copied += result.copied;
+      overwritten += result.overwritten;
+    } else if (entry.isFile() && entry.name !== ".DS_Store") {
+      // Copy files
+      const exists = fs.existsSync(destPath);
+      fs.copyFileSync(sourcePath, destPath);
+      
+      if (exists) {
+        overwritten++;
+      } else {
+        copied++;
+      }
+    }
+  }
+  
+  return { copied, overwritten };
+}
+
+/**
  * Copy components from registry to www app, always overwriting existing files
  * This ensures registry components are the source of truth
  */
@@ -480,27 +676,30 @@ function copyComponentsToWww() {
   let copiedCount = 0;
   let overwrittenCount = 0;
 
-  // Copy root components (excluding ui subdirectory)
+  // Copy root components (including directories like Editor)
   if (fs.existsSync(ROOT_COMPONENTS_PATH)) {
     const entries = fs.readdirSync(ROOT_COMPONENTS_PATH, { withFileTypes: true });
-    const componentFiles = entries
-      .filter((entry) => entry.isFile() && entry.name.endsWith(".tsx") && entry.name !== ".DS_Store")
-      .map((entry) => entry.name);
-
-    for (const file of componentFiles) {
-      const sourcePath = path.join(ROOT_COMPONENTS_PATH, file);
-      const destPath = path.join(WWW_COMPONENTS_PATH, file);
-
-      // Always copy/overwrite to ensure registry is source of truth
-      const exists = fs.existsSync(destPath);
-      fs.copyFileSync(sourcePath, destPath);
+    
+    for (const entry of entries) {
+      const sourcePath = path.join(ROOT_COMPONENTS_PATH, entry.name);
       
-      if (exists) {
-        console.log(`[INFO] Overwritten component: ${file} -> ${destPath}`);
-        overwrittenCount++;
-      } else {
-        console.log(`[INFO] Copied component: ${file} -> ${destPath}`);
-        copiedCount++;
+      if (entry.isDirectory()) {
+        // Copy component directory recursively
+        const destPath = path.join(WWW_COMPONENTS_PATH, entry.name);
+        const result = copyDirectoryRecursively(sourcePath, destPath);
+        copiedCount += result.copied;
+        overwrittenCount += result.overwritten;
+      } else if (entry.isFile() && entry.name.endsWith(".tsx") && entry.name !== ".DS_Store") {
+        // Copy single file component
+        const destPath = path.join(WWW_COMPONENTS_PATH, entry.name);
+        const exists = fs.existsSync(destPath);
+        fs.copyFileSync(sourcePath, destPath);
+        
+        if (exists) {
+          overwrittenCount++;
+        } else {
+          copiedCount++;
+        }
       }
     }
   }
@@ -508,24 +707,27 @@ function copyComponentsToWww() {
   // Copy UI components
   if (fs.existsSync(UI_COMPONENTS_PATH)) {
     const entries = fs.readdirSync(UI_COMPONENTS_PATH, { withFileTypes: true });
-    const componentFiles = entries
-      .filter((entry) => entry.isFile() && entry.name.endsWith(".tsx") && entry.name !== ".DS_Store")
-      .map((entry) => entry.name);
-
-    for (const file of componentFiles) {
-      const sourcePath = path.join(UI_COMPONENTS_PATH, file);
-      const destPath = path.join(WWW_UI_COMPONENTS_PATH, file);
-
-      // Always copy/overwrite to ensure registry is source of truth
-      const exists = fs.existsSync(destPath);
-      fs.copyFileSync(sourcePath, destPath);
+    
+    for (const entry of entries) {
+      const sourcePath = path.join(UI_COMPONENTS_PATH, entry.name);
       
-      if (exists) {
-        console.log(`[INFO] Overwritten UI component: ${file} -> ${destPath}`);
-        overwrittenCount++;
-      } else {
-        console.log(`[INFO] Copied UI component: ${file} -> ${destPath}`);
-        copiedCount++;
+      if (entry.isDirectory()) {
+        // Copy component directory recursively
+        const destPath = path.join(WWW_UI_COMPONENTS_PATH, entry.name);
+        const result = copyDirectoryRecursively(sourcePath, destPath);
+        copiedCount += result.copied;
+        overwrittenCount += result.overwritten;
+      } else if (entry.isFile() && entry.name.endsWith(".tsx") && entry.name !== ".DS_Store") {
+        // Copy single file component
+        const destPath = path.join(WWW_UI_COMPONENTS_PATH, entry.name);
+        const exists = fs.existsSync(destPath);
+        fs.copyFileSync(sourcePath, destPath);
+        
+        if (exists) {
+          overwrittenCount++;
+        } else {
+          copiedCount++;
+        }
       }
     }
   }
@@ -533,9 +735,9 @@ function copyComponentsToWww() {
   const totalCount = copiedCount + overwrittenCount;
   if (totalCount > 0) {
     if (overwrittenCount > 0) {
-      console.log(`[INFO] Synced ${totalCount} component(s) to www app (${copiedCount} copied, ${overwrittenCount} overwritten)`);
+      console.log(`[INFO] Synced ${totalCount} component file(s) to www app (${copiedCount} copied, ${overwrittenCount} overwritten)`);
     } else {
-      console.log(`[INFO] Copied ${copiedCount} component(s) to www app`);
+      console.log(`[INFO] Copied ${copiedCount} component file(s) to www app`);
     }
   } else {
     console.log(`[INFO] No components found to sync`);
@@ -550,9 +752,10 @@ function buildRegistry() {
   const utils = getUtilsItems();
   const hooks = getHooksItems();
   const animationStyles = getAnimationStyleItems();
+  const blocks = getBlockItems();
   const customItems = getCustomItems();
 
-  registry.items = [...components, ...utils, ...hooks, ...animationStyles, ...customItems];
+  registry.items = [...components, ...utils, ...hooks, ...animationStyles, ...blocks, ...customItems];
 
   fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2));
   console.log(`Registry generated at ${REGISTRY_PATH}`);

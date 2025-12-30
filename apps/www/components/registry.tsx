@@ -119,7 +119,8 @@ import {
   FormDemoWithComboboxSingle,
   FormDemoWithComboboxMultiple,
   FormDemoWithSignaturePad,
-  FormDemoWithSortableList
+  FormDemoWithSortableList,
+  FormDemoWithEditor
 } from "@/components/demos/form-demo"
 import { 
   HoverCardDemo
@@ -496,6 +497,9 @@ export const Registry = {
   },
   "form-demo-with-sortable-list": {
     component: FormDemoWithSortableList,
+  },
+  "form-demo-with-editor": {
+    component: FormDemoWithEditor,
   },
   "hover-card-demo": {
     component: HoverCardDemo,

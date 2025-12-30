@@ -60,6 +60,184 @@
       ]
     },
     {
+      "name": "editor",
+      "type": "registry:component",
+      "title": "Editor",
+      "description": "The Editor component.",
+      "files": [
+        {
+          "path": "registry/default/components/Editor/context/toolbar-context.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/editor-hooks/use-modal.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/editor-hooks/use-update-toolbar.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/editor-ui/auto-link-plugin.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/editor-ui/content-editable.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/editor-ui/image-component.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/editor-ui/image-resizer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/nodes/image-node.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/actions/actions-plugin.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/actions/markdown-toggle-plugin.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/converto-to-markdown-change.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/floating-link-editor-plugin/get-selected-node.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/floating-link-editor-plugin/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/floating-link-editor-plugin/set-floating-elem-position-for-link-editor.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/floating-link-editor-plugin/url.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/images-plugin.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/insert-image/index.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-format/block-format-data.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-format/format-bulleted-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-format/format-check-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-format/format-heading.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-format/format-numbered-list.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-format/format-paragraph.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-format/format-quote.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-format-toolbar-plugin.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/block-insert/insert-image.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/font-format-toolbar-plugin.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/history-toolbar-plugin.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/link-toolbar-plugin.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/plugins/toolbar/toolbar-plugin.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/shared/can-use-dom.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/themes/editor-theme.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/transformers/markdown-hr-transformer.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/transformers/markdown-image-transformer.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/utils/get-selected-node.ts",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/Editor/utils/url.ts",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@lexical/code",
+        "@lexical/link",
+        "@lexical/list",
+        "@lexical/markdown",
+        "@lexical/react",
+        "@lexical/rich-text",
+        "@lexical/selection",
+        "@lexical/table",
+        "@lexical/utils",
+        "@radix-ui/react-icons",
+        "lexical",
+        "lucide-react"
+      ],
+      "registryDependencies": [
+        "@aura/button",
+        "@aura/button-group",
+        "@aura/class-names",
+        "@aura/dialog",
+        "@aura/editor",
+        "@aura/input",
+        "@aura/label",
+        "@aura/select",
+        "@aura/tabs",
+        "@aura/toggle"
+      ]
+    },
+    {
       "name": "form-field-combobox",
       "type": "registry:component",
       "title": "FormFieldCombobox",
@@ -78,6 +256,26 @@
         "@aura/class-names",
         "@aura/combobox-multiple",
         "@aura/combobox-single",
+        "@aura/use-dynamic-form"
+      ]
+    },
+    {
+      "name": "form-field-editor",
+      "type": "registry:component",
+      "title": "FormFieldEditor",
+      "description": "The FormFieldEditor component.",
+      "files": [
+        {
+          "path": "registry/default/components/FormFieldEditor.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "ajv",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
         "@aura/use-dynamic-form"
       ]
     },
@@ -166,6 +364,210 @@
         "@aura/input",
         "@aura/label",
         "@aura/popover"
+      ]
+    },
+    {
+      "name": "ui",
+      "type": "registry:component",
+      "title": "ui",
+      "description": "The ui component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Accordion.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Alert.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/AlertDialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/AspectRatio.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Autocomplete.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Avatar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Badge.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Button.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/ButtonGroup.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Card.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Checkbox.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Collapsible.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Combobox.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Command.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/ContextMenu.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Dialog.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Drawer.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/DropdownMenu.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Form.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/HoverCard.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Input.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Kbd.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Label.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Menubar.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/NavigationMenu.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Popover.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Progress.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/RadioGroup.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/ScrollArea.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Section.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Select.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Separator.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/SignaturePad.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Slider.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Sortable.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Stepper.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Switch.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Tabs.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Toggle.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/ToggleGroup.tsx",
+          "type": "registry:component"
+        },
+        {
+          "path": "registry/default/components/ui/Tooltip.tsx",
+          "type": "registry:component"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react",
+        "@dnd-kit/core",
+        "@dnd-kit/modifiers",
+        "@dnd-kit/sortable",
+        "@dnd-kit/utilities",
+        "@radix-ui/react-aspect-ratio",
+        "@radix-ui/react-direction",
+        "@radix-ui/react-icons",
+        "@radix-ui/react-slot",
+        "ajv",
+        "class-variance-authority",
+        "radix-ui",
+        "vaul"
+      ],
+      "registryDependencies": [
+        "@aura/alert-status",
+        "@aura/autocomplete",
+        "@aura/button",
+        "@aura/checkbox",
+        "@aura/class-names",
+        "@aura/compose-refs",
+        "@aura/input",
+        "@aura/radio-group",
+        "@aura/scroll-area",
+        "@aura/separator",
+        "@aura/switch",
+        "@aura/use-as-ref",
+        "@aura/use-dynamic-form",
+        "@aura/use-isomorphic-layout-effect",
+        "@aura/use-lazy-ref"
       ]
     },
     {
@@ -334,6 +736,26 @@
       ],
       "registryDependencies": [
         "@aura/class-names"
+      ]
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "title": "ButtonGroup",
+      "description": "The ButtonGroup component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/ButtonGroup.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/separator"
       ]
     },
     {
@@ -1081,6 +1503,46 @@
           "path": "registry/default/hooks/use-lazy-ref.ts",
           "type": "registry:hook"
         }
+      ]
+    },
+    {
+      "name": "editor-00",
+      "type": "registry:block",
+      "title": "editor-00",
+      "description": "Block: editor-00",
+      "files": [
+        {
+          "path": "registry/default/blocks/editor-00/editor.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/default/blocks/editor-00/nodes.ts",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/default/blocks/editor-00/plugins.tsx",
+          "type": "registry:block"
+        },
+        {
+          "path": "registry/default/blocks/editor-00/viewer.tsx",
+          "type": "registry:block"
+        }
+      ],
+      "dependencies": [
+        "@lexical/code",
+        "@lexical/link",
+        "@lexical/list",
+        "@lexical/markdown",
+        "@lexical/react",
+        "@lexical/rich-text",
+        "@radix-ui/react-icons",
+        "lexical"
+      ],
+      "registryDependencies": [
+        "@aura/button",
+        "@aura/editor",
+        "@aura/scroll-area",
+        "@aura/tooltip"
       ]
     },
     {
