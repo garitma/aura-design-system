@@ -14,6 +14,7 @@ import { FormFieldCombobox } from "../registry/default/components/FormFieldCombo
 import { FormFieldSelect } from "../registry/default/components/FormFieldSelect";
 import { FormFieldSignaturePad } from "../registry/default/components/FormFieldSignaturePad";
 import { FormFieldSortableList } from "../registry/default/components/FormFieldSortableList";
+import { FormFieldEditor } from "../registry/default/components/FormFieldEditor";
 import { useFormDynamic } from "../registry/default/hooks/use-dynamic-form";
 import { validateFormData } from "../registry/default/utils/web-validation";
 
@@ -1184,6 +1185,81 @@ export const WithSortableList = () => {
         fetchStatus={formData.fetchStatus}
         buttonProps={{ children: "Submit" }}
         form="form-sortable-list"
+      />
+    </Form>
+  );
+};
+
+const editorSchema = {
+  type: "object",
+  properties: {
+    content: {
+      type: "string",
+      minLength: 1,
+      errorMessage: {
+        minLength: "Please enter some content",
+      },
+    },
+  },
+  required: ["content"],
+};
+
+export const WithEditor = () => {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const formData = useFormDynamic({
+    content: "text",
+  });
+
+  const { content } = formData.getFields();
+
+  console.log(content.value);
+
+  const { isValid, errors } = validateFormData(
+    editorSchema,
+    formData.getValues()
+  );
+  const formErrors = errors || undefined;
+
+  const handleOnSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    formData.setFetchStatus("loading");
+
+    if (!isValid) {
+      formData.setFetchStatus("error");
+      formData.touchForm();
+      formData.setError("Please enter some content");
+      return;
+    }
+
+    // Simulate API call
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+    formData.setFetchStatus("success");
+    console.log("Form submitted:", formData.getValues());
+  };
+
+  const formDataForAlert = {
+    fetchStatus: formData.fetchStatus,
+    error: formData.error,
+  };
+
+  return (
+    <Form
+      ref={formRef}
+      onSubmit={handleOnSubmit}
+      errors={formErrors}
+      id="form-editor"
+      className="flex flex-col gap-1"
+    >
+      <FormAlert formData={formDataForAlert} />
+      <FormFieldEditor
+        field={content}
+        label="Content *"
+      />
+      <FormSubmit
+        fetchStatus={formData.fetchStatus}
+        buttonProps={{ children: "Submit" }}
+        form="form-editor"
       />
     </Form>
   );
