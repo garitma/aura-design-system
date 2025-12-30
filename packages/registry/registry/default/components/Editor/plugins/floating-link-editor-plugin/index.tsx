@@ -230,7 +230,8 @@ function FloatingLinkEditor({
             className="flex-grow"
           />
           <Button
-            size="small"
+            size="icon"
+            variant="pill"
             onClick={() => {
               setIsLinkEditMode(false)
               setIsLink(false)
@@ -240,7 +241,8 @@ function FloatingLinkEditor({
             <X className="h-1 w-1" />
           </Button>
           <Button
-            size="small"
+            size="icon"
+            variant="pill"
             onClick={handleLinkSubmission}
             className="shrink-0"
           >
@@ -248,7 +250,7 @@ function FloatingLinkEditor({
           </Button>
         </div>
       ) : (
-        <div className="flex items-center space-x-1 justify-between rounded-md border p-1 pl-2">
+        <div className="flex items-center space-x-1 justify-between rounded-md border border-gray-a6 p-1 pl-2">
           <a
             href={sanitizeUrl(linkUrl)}
             target="_blank"
@@ -258,7 +260,8 @@ function FloatingLinkEditor({
             {linkUrl}
           </a>
           <Button
-            size="small"
+            size="icon"
+            variant="pill"
             onClick={() => {
               setEditedLinkUrl(linkUrl)
               setIsLinkEditMode(true)
@@ -267,7 +270,8 @@ function FloatingLinkEditor({
             <Pencil className="h-1.5 w-1.5" />
           </Button>
           <Button
-            size="small"
+            size="icon"
+            variant="pill"
             onClick={() => {
               editor.dispatchCommand(TOGGLE_LINK_COMMAND, null)
             }}

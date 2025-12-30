@@ -58,7 +58,7 @@ export function Plugins({ onChange }: { onChange?: (state: any) => void }) {
               <HistoryToolbarPlugin />
             </div>
 
-            <div className="flex items-center gap-0.5">
+            <div className=" items-center gap-0.5 flex">
               <BlockFormatDropDown>
                 <FormatParagraph />
                 <FormatHeading levels={["h1", "h2", "h3"]} />
@@ -73,18 +73,20 @@ export function Plugins({ onChange }: { onChange?: (state: any) => void }) {
               <LinkToolbarPlugin setIsLinkEditMode={setIsLinkEditMode} />
               <InsertImage />
             </div>
-            <MarkdownTogglePlugin
-              transformers={[
-                HR,
-                IMAGE,
-                CHECK_LIST,
-                ...ELEMENT_TRANSFORMERS,
-                ...MULTILINE_ELEMENT_TRANSFORMERS,
-                ...TEXT_FORMAT_TRANSFORMERS,
-                ...TEXT_MATCH_TRANSFORMERS,
-              ]}
-              shouldPreserveNewLinesInMarkdown={true}
-            />
+            <div>
+              <MarkdownTogglePlugin
+                transformers={[
+                  HR,
+                  IMAGE,
+                  CHECK_LIST,
+                  ...ELEMENT_TRANSFORMERS,
+                  ...MULTILINE_ELEMENT_TRANSFORMERS,
+                  ...TEXT_FORMAT_TRANSFORMERS,
+                  ...TEXT_MATCH_TRANSFORMERS,
+                ]}
+                shouldPreserveNewLinesInMarkdown={true}
+              />
+            </div>
           </div>
         )}
       </ToolbarPlugin>
