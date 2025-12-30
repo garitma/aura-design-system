@@ -5,7 +5,7 @@ import type { LexicalEditor } from "lexical"
 import { $getNodeByKey } from "lexical"
 
 import Button from "@/components/ui/Button"
-import { Trash2 } from "lucide-react"
+import { TrashIcon } from "@radix-ui/react-icons"
 import { $isImageNode } from "@/components/Editor/nodes/image-node"
 
 function clamp(value: number, min: number, max: number) {
@@ -311,7 +311,7 @@ export function ImageResizer({
         size="small"
         onClick={handleDeleteImage}
       >
-        <Trash2 className="h-1.5 w-1.5" />
+        <TrashIcon className="icon" />
       </Button>
       <div
         className="image-resizer image-resizer-n bg-primary absolute -top-2.5 left-1/2 h-2 w-2 -translate-x-1/2 cursor-ns-resize"

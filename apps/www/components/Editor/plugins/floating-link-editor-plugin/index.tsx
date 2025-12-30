@@ -30,7 +30,7 @@ import {
   LexicalEditor,
   SELECTION_CHANGE_COMMAND,
 } from "lexical"
-import { Check, Pencil, Trash, X } from "lucide-react"
+import { CheckIcon, Pencil1Icon, TrashIcon, Cross2Icon } from "@radix-ui/react-icons"
 import { createPortal } from "react-dom"
 
 import { getSelectedNode } from "./get-selected-node"
@@ -238,7 +238,7 @@ function FloatingLinkEditor({
             }}
             className="shrink-0"
           >
-            <X className="h-1 w-1" />
+            <Cross2Icon className="icon" />
           </Button>
           <Button
             size="icon"
@@ -246,7 +246,7 @@ function FloatingLinkEditor({
             onClick={handleLinkSubmission}
             className="shrink-0"
           >
-            <Check className="h-1 w-1" />
+            <CheckIcon className="icon" />
           </Button>
         </div>
       ) : (
@@ -267,7 +267,7 @@ function FloatingLinkEditor({
               setIsLinkEditMode(true)
             }}
           >
-            <Pencil className="h-1.5 w-1.5" />
+            <Pencil1Icon className="icon" />
           </Button>
           <Button
             size="icon"
@@ -276,7 +276,7 @@ function FloatingLinkEditor({
               editor.dispatchCommand(TOGGLE_LINK_COMMAND, null)
             }}
           >
-            <Trash className="h-1.5 w-1.5" />
+            <TrashIcon className="icon" />
           </Button>
         </div>
       )}

@@ -1,6 +1,6 @@
 "use client"
 
-import { ImageIcon } from "lucide-react"
+import { ImageIcon } from "@radix-ui/react-icons"
 
 import { useToolbarContext } from "@/components/Editor/context/toolbar-context"
 import { InsertImageDialog } from "@/components/Editor/plugins/images-plugin"
@@ -20,7 +20,7 @@ export function InsertImage() {
       className=""
     >
       <div className="flex items-center gap-1">
-        <ImageIcon className="size-4" />
+        <ImageIcon className="icon" />
         <span>Image</span>
       </div>
     </SelectItem>

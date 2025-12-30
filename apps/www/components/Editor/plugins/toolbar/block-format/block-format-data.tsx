@@ -1,14 +1,10 @@
 import {
   CodeIcon,
-  Heading1Icon,
-  Heading2Icon,
-  Heading3Icon,
-  ListIcon,
-  ListOrderedIcon,
-  ListTodoIcon,
-  QuoteIcon,
   TextIcon,
-} from "lucide-react"
+  QuoteIcon,
+  ListBulletIcon,
+  CheckboxIcon,
+} from "@radix-ui/react-icons"
 
 export const blockTypeToBlockName: Record<
   string,
@@ -20,27 +16,27 @@ export const blockTypeToBlockName: Record<
   },
   h1: {
     label: "Título 1",
-    icon: <Heading1Icon className="icon" />,
+    icon: <TextIcon className="icon h1" />,
   },
   h2: {
     label: "Título 2",
-    icon: <Heading2Icon className="icon" />,
+    icon: <TextIcon className="icon h2" />,
   },
   h3: {
     label: "Título 3",
-    icon: <Heading3Icon className="icon" />,
+    icon: <TextIcon className="icon h3" />,
   },
   number: {
     label: "Lista numerada",
-    icon: <ListOrderedIcon className="icon" />,
+    icon: <ListBulletIcon className="icon" />,
   },
   bullet: {
     label: "Lista con viñetas",
-    icon: <ListIcon className="icon" />,
+    icon: <ListBulletIcon className="icon" />,
   },
   check: {
     label: "Lista de tareas",
-    icon: <ListTodoIcon className="icon" />,
+    icon: <CheckboxIcon className="icon" />,
   },
   code: {
     label: "Bloque de código",

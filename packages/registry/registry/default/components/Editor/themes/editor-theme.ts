@@ -1,6 +1,5 @@
 import { EditorThemeClasses } from "lexical"
 
-
 export const editorTheme: EditorThemeClasses = {
   ltr: "text-left",
   rtl: "text-right",

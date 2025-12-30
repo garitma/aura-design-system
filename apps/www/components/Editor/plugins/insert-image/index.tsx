@@ -1,6 +1,6 @@
 "use client";
 
-import { ImageIcon } from "lucide-react";
+import { ImageIcon } from "@radix-ui/react-icons";
 
 import { useToolbarContext } from "../../context/toolbar-context";
 import { InsertImageDialog } from "../images-plugin";

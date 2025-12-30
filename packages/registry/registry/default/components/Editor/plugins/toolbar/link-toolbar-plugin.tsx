@@ -8,7 +8,7 @@ import {
   COMMAND_PRIORITY_NORMAL,
   KEY_MODIFIER_COMMAND,
 } from "lexical";
-import { LinkIcon } from "lucide-react";
+import { Link1Icon } from "@radix-ui/react-icons";
 
 import { useToolbarContext } from "@/components/Editor/context/toolbar-context";
 import { useUpdateToolbarHandler } from "@/components/Editor/editor-hooks/use-update-toolbar";
@@ -78,7 +78,7 @@ export function LinkToolbarPlugin({
 
   return (
     <Toggle  aria-label="Toggle link" onClick={insertLink}>
-      <LinkIcon className="icon" />
+      <Link1Icon className="icon" />
     </Toggle>
   );
 }
