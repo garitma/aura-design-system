@@ -3,7 +3,7 @@ import { ErrorObject } from "ajv";
 import { Form as FormRadix } from "radix-ui";
 
 import { FieldProps } from "@/hooks/use-dynamic-form";
-import { Editor } from "@/blocks/editor-00/editor";
+import { Editor } from "@/components/blocks/editor-00/editor";
 import { cn } from "@/utils/class-names";
 
 interface FormFieldEditorProps extends Partial<FormRadix.FormFieldProps> {

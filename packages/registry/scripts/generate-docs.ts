@@ -10,10 +10,6 @@ const UI_COMPONENTS_PATH = path.join(
   __dirname,
   "../registry/default/components/ui"
 );
-const ROOT_COMPONENTS_PATH = path.join(
-  __dirname,
-  "../registry/default/components"
-);
 const DOCS_OUTPUT_PATH = path.join(
   __dirname,
   "../../../apps/www/content/docs/components"
@@ -27,14 +23,6 @@ const DEMOS_OUTPUT_PATH = path.join(
 const REGISTRY_OUTPUT_PATH = path.join(
   __dirname,
   "../../../apps/www/components"
-);
-const BLOCKS_PATH = path.join(
-  __dirname,
-  "../registry/default/blocks"
-);
-const WWW_BLOCKS_PATH = path.join(
-  __dirname,
-  "../../../apps/www/components/blocks"
 );
 const ALL_TXT_OUTPUT_PATH = path.join(
   __dirname,
@@ -2353,36 +2341,20 @@ function generatePreviewRegistry() {
 
 /**
  * Get all UI component files from the registry
- * Also includes component directories from root components (like Editor)
  */
 function getUIComponentFiles(): { name: string; path: string }[] {
-  const components: { name: string; path: string }[] = [];
-  
-  // Get UI component files
-  if (fs.existsSync(UI_COMPONENTS_PATH)) {
-    const files = fs.readdirSync(UI_COMPONENTS_PATH);
-    const uiComponents = files
-      .filter((file) => file.endsWith(".tsx"))
-      .map((file) => ({
-        name: file.replace(".tsx", ""),
-        path: path.join(UI_COMPONENTS_PATH, file),
-      }));
-    components.push(...uiComponents);
+  if (!fs.existsSync(UI_COMPONENTS_PATH)) {
+    console.error(`UI components path not found: ${UI_COMPONENTS_PATH}`);
+    return [];
   }
-  
-  // Get component directories from root components (like Editor)
-  if (fs.existsSync(ROOT_COMPONENTS_PATH)) {
-    const entries = fs.readdirSync(ROOT_COMPONENTS_PATH, { withFileTypes: true });
-    const componentDirs = entries
-      .filter((entry) => entry.isDirectory() && entry.name !== "ui")
-      .map((entry) => ({
-        name: entry.name,
-        path: path.join(ROOT_COMPONENTS_PATH, entry.name),
-      }));
-    components.push(...componentDirs);
-  }
-  
-  return components;
+
+  const files = fs.readdirSync(UI_COMPONENTS_PATH);
+  return files
+    .filter((file) => file.endsWith(".tsx"))
+    .map((file) => ({
+      name: file.replace(".tsx", ""),
+      path: path.join(UI_COMPONENTS_PATH, file),
+    }));
 }
 
 /**
@@ -2531,79 +2503,6 @@ function generateAllTxt() {
   fs.writeFileSync(allTxtPath, command);
   console.log(`[SUCCESS] Generated all.txt with ${kebabNames.length} primitives\n`);
 }
-
-/**
- * Copy blocks from registry to www app, always overwriting existing files
- * This ensures registry blocks are the source of truth
- */
-function copyBlocksToWww() {
-  if (!fs.existsSync(BLOCKS_PATH)) {
-    console.log(`[INFO] No blocks directory found at ${BLOCKS_PATH}`);
-    return;
-  }
-
-  // Ensure www blocks directory exists
-  if (!fs.existsSync(WWW_BLOCKS_PATH)) {
-    fs.mkdirSync(WWW_BLOCKS_PATH, { recursive: true });
-    console.log(`[INFO] Created www blocks directory: ${WWW_BLOCKS_PATH}`);
-  }
-
-  let copiedCount = 0;
-  let overwrittenCount = 0;
-
-  // Get all block directories
-  const entries = fs.readdirSync(BLOCKS_PATH, { withFileTypes: true });
-  const blockDirs = entries.filter((entry) => entry.isDirectory());
-
-  for (const blockDir of blockDirs) {
-    const blockDirName = blockDir.name;
-    const sourceBlockPath = path.join(BLOCKS_PATH, blockDirName);
-    const destBlockPath = path.join(WWW_BLOCKS_PATH, blockDirName);
-
-    // Create destination block directory if it doesn't exist
-    if (!fs.existsSync(destBlockPath)) {
-      fs.mkdirSync(destBlockPath, { recursive: true });
-    }
-
-    // Get all files in the block directory
-    const blockFiles = fs.readdirSync(sourceBlockPath);
-    const tsFiles = blockFiles.filter(
-      (file) => (file.endsWith(".ts") || file.endsWith(".tsx")) && file !== ".DS_Store"
-    );
-
-    // Copy each file
-    for (const file of tsFiles) {
-      const sourcePath = path.join(sourceBlockPath, file);
-      const destPath = path.join(destBlockPath, file);
-
-      // Always copy/overwrite to ensure registry is source of truth
-      const exists = fs.existsSync(destPath);
-      fs.copyFileSync(sourcePath, destPath);
-
-      if (exists) {
-        overwrittenCount++;
-      } else {
-        copiedCount++;
-      }
-    }
-  }
-
-  const totalCount = copiedCount + overwrittenCount;
-  if (totalCount > 0) {
-    if (overwrittenCount > 0) {
-      console.log(
-        `[INFO] Synced ${totalCount} block file(s) to www app (${copiedCount} copied, ${overwrittenCount} overwritten)`
-      );
-    } else {
-      console.log(`[INFO] Copied ${copiedCount} block file(s) to www app`);
-    }
-  } else {
-    console.log(`[INFO] No block files found to sync`);
-  }
-}
-
-// Copy blocks to www app first
-copyBlocksToWww();
 
 // Generate preview component registry
 generatePreviewRegistry();
