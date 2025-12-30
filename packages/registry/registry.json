@@ -257,8 +257,7 @@
         "@lexical/table",
         "@lexical/utils",
         "@radix-ui/react-icons",
-        "lexical",
-        "lucide-react"
+        "lexical"
       ],
       "registryDependencies": [
         "@aura/button",
