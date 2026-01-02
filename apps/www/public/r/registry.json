@@ -802,6 +802,21 @@
       ]
     },
     {
+      "name": "grid",
+      "type": "registry:ui",
+      "title": "Grid",
+      "description": "The Grid component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Grid.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
       "name": "hover-card",
       "type": "registry:ui",
       "title": "HoverCard",
@@ -1292,6 +1307,18 @@
       "files": [
         {
           "path": "registry/default/utils/compose-refs.tsx",
+          "type": "registry:lib"
+        }
+      ]
+    },
+    {
+      "name": "create-icon",
+      "type": "registry:lib",
+      "title": "create-icon",
+      "description": "Utility: create-icon",
+      "files": [
+        {
+          "path": "registry/default/utils/create-icon.tsx",
           "type": "registry:lib"
         }
       ]

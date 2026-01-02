@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "grid",
+  "type": "registry:ui",
+  "title": "Grid",
+  "description": "The Grid component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Grid.tsx",
+      "content": "/**\n * @description Displays a grid container with configurable column layout.\n */\nimport * as React from \"react\";\n\nimport { cn } from \"@/utils/class-names\";\n\ntype AuraGrid = \"one\" | \"two\" | \"three\" | \"four\" | \"five\" | \"six\" | \"seven\" | \"eight\" | \"nine\" | \"ten\" | \"eleven\" | \"twelve\";\n\ninterface GridProps extends React.ComponentProps<\"div\"> {\n  col: AuraGrid;\n  isFixed?: boolean;\n}\n\nconst Grid = React.forwardRef<HTMLDivElement, GridProps>(\n  ({ col, isFixed, className, ...props }, ref) => {\n    return (\n      <div\n        data-slot=\"grid\"\n        className={cn(\"aureole\", col, isFixed && \"fixed\", className)}\n        ref={ref}\n        {...props}\n      />\n    );\n  }\n);\n\nGrid.displayName = \"Grid\";\n\nexport { Grid };\nexport type { GridProps };\nexport default Grid;",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "create-icon",
+  "type": "registry:lib",
+  "title": "create-icon",
+  "description": "Utility: create-icon",
+  "files": [
+    {
+      "path": "registry/default/utils/create-icon.tsx",
+      "content": "",
+      "type": "registry:lib"
+    }
+  ]
+}

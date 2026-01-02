@@ -123,6 +123,9 @@ import {
   FormDemoWithEditor
 } from "./form-demo"
 import { 
+  GridDemo
+} from "./grid-demo"
+import { 
   HoverCardDemo
 } from "./hover-card-demo"
 import { 
@@ -500,6 +503,9 @@ export const Registry = {
   },
   "form-demo-with-editor": {
     component: FormDemoWithEditor,
+  },
+  "grid-demo": {
+    component: GridDemo,
   },
   "hover-card-demo": {
     component: HoverCardDemo,

@@ -1,0 +1,94 @@
+---
+title: Grid
+description: Displays a grid container with configurable column layout.
+---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="grid-demo" description="Displays a grid container with configurable column layout.">
+
+```tsx
+import { Grid } from "@/components/ui/Grid";
+
+export function GridDemo() {
+  return (
+  <Grid col="three">
+    <div className="bg-gray-3 p-4 border border-gray-6">Grid Item 1</div>
+    <div className="bg-gray-3 p-4 border border-gray-6">Grid Item 2</div>
+    <div className="bg-gray-3 p-4 border border-gray-6">Grid Item 3</div>
+  </Grid>
+)
+}
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/grid
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Grid component into your `components/ui/Grid.tsx` file.
+
+```tsx
+/**
+ * @description Displays a grid container with configurable column layout.
+ */
+import * as React from "react";
+
+import { cn } from "@/utils/class-names";
+
+type AuraGrid = "one" | "two" | "three" | "four" | "five" | "six" | "seven" | "eight" | "nine" | "ten" | "eleven" | "twelve";
+
+interface GridProps extends React.ComponentProps<"div"> {
+  col: AuraGrid;
+  isFixed?: boolean;
+}
+
+const Grid = React.forwardRef<HTMLDivElement, GridProps>(
+  ({ col, isFixed, className, ...props }, ref) => {
+    return (
+      <div
+        data-slot="grid"
+        className={cn("aureole", col, isFixed && "fixed", className)}
+        ref={ref}
+        {...props}
+      />
+    );
+  }
+);
+
+Grid.displayName = "Grid";
+
+export { Grid };
+export type { GridProps };
+export default Grid;
+```
+  </Step>
+</Steps>
+
