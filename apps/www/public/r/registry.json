@@ -606,6 +606,25 @@
       ]
     },
     {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "description": "The Carousel component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Carousel.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons"
+      ],
+      "registryDependencies": [
+        "@aura/button",
+        "@aura/class-names"
+      ]
+    },
+    {
       "name": "checkbox",
       "type": "registry:ui",
       "title": "Checkbox",
@@ -771,6 +790,24 @@
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "description": "The Empty component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Empty.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
       ],
       "registryDependencies": [
         "@aura/class-names"
@@ -1042,6 +1079,52 @@
       ]
     },
     {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "description": "The Sheet component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Sheet.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/button",
+        "@aura/class-names"
+      ]
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "description": "The Sidebar component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Sidebar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/button",
+        "@aura/class-names",
+        "@aura/input",
+        "@aura/separator",
+        "@aura/sheet",
+        "@aura/skeleton",
+        "@aura/tooltip",
+        "@aura/use-mobile"
+      ]
+    },
+    {
       "name": "signature-pad",
       "type": "registry:ui",
       "title": "SignaturePad",
@@ -1058,6 +1141,21 @@
       ],
       "registryDependencies": [
         "@aura/button",
+        "@aura/class-names"
+      ]
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "description": "The Skeleton component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Skeleton.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
         "@aura/class-names"
       ]
     },
@@ -1404,6 +1502,18 @@
       "files": [
         {
           "path": "registry/default/hooks/use-lazy-ref.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-mobile",
+      "type": "registry:hook",
+      "title": "use-mobile",
+      "description": "Hook: use-mobile",
+      "files": [
+        {
+          "path": "registry/default/hooks/use-mobile.ts",
           "type": "registry:hook"
         }
       ]

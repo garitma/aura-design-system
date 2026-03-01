@@ -1,11 +1,15 @@
 ---
 title: Toggle Group
-description: Re-usable components built using Radix UI and Tailwind CSS.
+description: A group of toggle buttons where one or more options can be selected, with single or multiple selection modes.
 ---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
 
 ## Preview
 
-<ComponentPreview name="toggle-group-demo" description="Re-usable components built using Radix UI and Tailwind CSS.">
+<ComponentPreview name="toggle-group-demo" description="A group of toggle buttons where one or more options can be selected, with single or multiple selection modes.">
 
 ```tsx
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/ToggleGroup";
@@ -47,7 +51,123 @@ export function ToggleGroupDemo() {
 
 </ComponentPreview>
 
-import { ComponentPreview } from "@/components/ComponentPreview"
-import { ComponentSource } from "@/components/ComponentSource"
-import { Steps, Step } from "fumadocs-ui/components/steps"
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/toggle-group
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```bash
+pnpm install class-variance-authority radix-ui
+    ```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the ToggleGroup component into your `components/ui/ToggleGroup.tsx` file.
+
+```tsx
+"use client";
+
+import * as React from "react";
+import { ToggleGroup as ToggleGroupPrimitive } from "radix-ui";
+import { cva, type VariantProps } from "class-variance-authority";
+
+import { cn } from "@/utils/class-names";
+
+const toggleGroupVariants = cva(
+  "inline-flex items-center justify-center border border-gray-6 rounded-sm bg-gray-2",
+  {
+    variants: {
+      variant: {
+        default: "",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+);
+
+const toggleGroupItemVariants = cva(
+  "inline-flex items-center justify-center gap-2 data-[state=on]:bg-gray-4 data-[state=on]:hover:bg-gray-3",
+  {
+    variants: {
+      variant: {
+        default:
+          "button-pill border border-transparent text-gray-11 bg-gray-2 hover:bg-gray-3 rounded-sm",
+      },
+      size: {
+        default: "w-3 h-3 p-0",
+        xs: "h-2.5",
+        sm: "h-3",
+        md: "h-4",
+        lg: "h-5",
+        xl: "h-6",
+        icon: "w-3 h-3 p-0",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+      size: "default",
+    },
+  }
+);
+
+function ToggleGroup({
+  className,
+  variant,
+  ...props
+}: React.ComponentProps<typeof ToggleGroupPrimitive.Root> &
+  VariantProps<typeof toggleGroupVariants>) {
+  return (
+    <ToggleGroupPrimitive.Root
+      data-slot="toggle-group"
+      className={cn(toggleGroupVariants({ variant, className }))}
+      {...props}
+    />
+  );
+}
+
+function ToggleGroupItem({
+  className,
+  variant,
+  size,
+  ...props
+}: React.ComponentProps<typeof ToggleGroupPrimitive.Item> &
+  VariantProps<typeof toggleGroupItemVariants>) {
+  return (
+    <ToggleGroupPrimitive.Item
+      data-slot="toggle-group-item"
+      className={cn(toggleGroupItemVariants({ variant, size, className }))}
+      {...props}
+    />
+  );
+}
+
+export { ToggleGroup, ToggleGroupItem, toggleGroupVariants, toggleGroupItemVariants };
+
+```
+  </Step>
+</Steps>
 

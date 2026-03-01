@@ -1,0 +1,3 @@
+header:
+  description: A carousel component built with Embla, with optional previous/next controls and configurable orientation.
+extends: _templates/content.yml

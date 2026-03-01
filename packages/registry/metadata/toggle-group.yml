@@ -1,0 +1,3 @@
+header:
+  description: A group of toggle buttons where one or more options can be selected, with single or multiple selection modes.
+extends: _templates/content.yml

@@ -1,9 +1,300 @@
 ---
 title: Button Group
-description: Re-usable components built using Radix UI and Tailwind CSS.
+description: A container that groups buttons (and optional text or separators) with shared styling and orientation.
 ---
 
 import { ComponentPreview } from "@/components/ComponentPreview"
 import { ComponentSource } from "@/components/ComponentSource"
 import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="button-group-demo" description="A container that groups buttons (and optional text or separators) with shared styling and orientation.">
+
+```tsx
+import { useState } from "react";
+import {
+  ChevronLeftIcon,
+  DotsHorizontalIcon,
+  MinusIcon,
+  PlusIcon,
+} from "@radix-ui/react-icons";
+import {
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+} from "@/components/ui/ButtonGroup";
+import { Button } from "@/components/ui/Button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuSub,
+  DropdownMenuSubContent,
+  DropdownMenuSubTrigger,
+  DropdownMenuTrigger,
+} from "@/components/ui/DropdownMenu";
+import { Input } from "@/components/ui/Input";
+import { Label } from "@/components/ui/Label";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectIcon,
+  SelectPortal,
+  SelectContent,
+  SelectViewport,
+  SelectItem,
+  SelectItemText,
+  SelectItemIndicator,
+} from "@/components/ui/Select";
+
+export function ButtonGroupDemo() {
+  return {
+  const [label, setLabel] = useState("personal");
+
+  return (
+    <div className="flex gap-2">
+      <ButtonGroup aria-label="Go back">
+        <Button variant="pill" size="icon-md" aria-label="Go Back">
+          <ChevronLeftIcon className="icon" />
+        </Button>
+      </ButtonGroup>
+      <ButtonGroup aria-label="Archive and report">
+        <Button variant="pill">Archive</Button>
+        <Button variant="pill">Report</Button>
+      </ButtonGroup>
+      <ButtonGroup aria-label="Snooze and more">
+        <Button variant="pill">Snooze</Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              variant="pill"
+              size="icon-md"
+              aria-label="More options"
+            >
+              <DotsHorizontalIcon className="icon" />
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            <DropdownMenuGroup>
+              <DropdownMenuItem>Mark as Read</DropdownMenuItem>
+              <DropdownMenuItem>Archive</DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem>Snooze</DropdownMenuItem>
+              <DropdownMenuItem>Add to Calendar</DropdownMenuItem>
+              <DropdownMenuItem>Add to List</DropdownMenuItem>
+              <DropdownMenuSub>
+                <DropdownMenuSubTrigger>Label As...</DropdownMenuSubTrigger>
+                <DropdownMenuSubContent>
+                  <DropdownMenuRadioGroup
+                    value={label}
+                    onValueChange={setLabel}
+                  >
+                    <DropdownMenuRadioItem value="personal">
+                      Personal
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="work">
+                      Work
+                    </DropdownMenuRadioItem>
+                    <DropdownMenuRadioItem value="other">
+                      Other
+                    </DropdownMenuRadioItem>
+                  </DropdownMenuRadioGroup>
+                </DropdownMenuSubContent>
+              </DropdownMenuSub>
+            </DropdownMenuGroup>
+            <DropdownMenuSeparator />
+            <DropdownMenuGroup>
+              <DropdownMenuItem >
+                Trash
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </ButtonGroup>
+    </div>
+  );
+};
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/button-group
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```bash
+pnpm install @radix-ui/react-slot class-variance-authority
+    ```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the separator component into your `components/ui/Separator.tsx` file.
+
+```tsx
+"use client"
+
+import * as React from "react"
+import {Separator as SeparatorPrimitive} from "radix-ui"
+
+import { cn } from "@/utils/class-names"
+
+function Separator({
+  className,
+  orientation = "horizontal",
+  decorative = true,
+  ...props
+}: React.ComponentProps<typeof SeparatorPrimitive.Root>) {
+  return (
+    <SeparatorPrimitive.Root
+      data-slot="separator"
+      decorative={decorative}
+      orientation={orientation}
+      className={cn(
+        "bg-gray-a6 shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+export { Separator }
+```
+  </Step>
+  <Step>
+    Copy and paste the ButtonGroup component into your `components/ui/ButtonGroup.tsx` file.
+
+```tsx
+import { Slot } from "@radix-ui/react-slot"
+import { cva, type VariantProps } from "class-variance-authority"
+
+import { cn } from "@/utils/class-names"
+import { Separator } from "@/components/ui/Separator"
+
+const buttonGroupVariants = cva(
+  "flex w-fit items-stretch [&>*]:focus-visible:z-10 [&>*]:focus-visible:relative [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md has-[>[data-slot=button-group]]:gap-2",
+  {
+    variants: {
+      orientation: {
+        horizontal:
+          "[&>*:not(:first-child)]:rounded-l-none [&>*:not(:first-child)]:border-l-0 [&>*:not(:last-child)]:rounded-r-none",
+        vertical:
+          "flex-col [&>*:not(:first-child)]:rounded-t-none [&>*:not(:first-child)]:border-t-0 [&>*:not(:last-child)]:rounded-b-none",
+      },
+    },
+    defaultVariants: {
+      orientation: "horizontal",
+    },
+  }
+)
+
+function ButtonGroup({
+  className,
+  orientation,
+  ...props
+}: React.ComponentProps<"div"> & VariantProps<typeof buttonGroupVariants>) {
+  return (
+    <div
+      role="group"
+      data-slot="button-group"
+      data-orientation={orientation}
+      className={cn(buttonGroupVariants({ orientation }), className)}
+      {...props}
+    />
+  )
+}
+
+function ButtonGroupText({
+  className,
+  asChild = false,
+  ...props
+}: React.ComponentProps<"div"> & {
+  asChild?: boolean
+}) {
+  const Comp = asChild ? Slot : "div"
+
+  return (
+    <Comp
+      className={cn(
+        "bg-muted flex items-center gap-2 rounded-md border px-4 text-sm font-medium shadow-xs [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+function ButtonGroupSeparator({
+  className,
+  orientation = "vertical",
+  ...props
+}: React.ComponentProps<typeof Separator>) {
+  return (
+    <Separator
+      data-slot="button-group-separator"
+      orientation={orientation}
+      className={cn(
+        "bg-input relative !m-0 self-stretch data-[orientation=vertical]:h-auto",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+export {
+  ButtonGroup,
+  ButtonGroupSeparator,
+  ButtonGroupText,
+  buttonGroupVariants,
+}
+
+```
+  </Step>
+</Steps>
+
+## Usage
+
+### Vertical
+
+```tsx
+export const Vertical = () => (
+  <ButtonGroup orientation="vertical" aria-label="Vertical button group">
+    <Button variant="default">One</Button>
+    <Button variant="default">Two</Button>
+    <Button variant="default">Three</Button>
+  </ButtonGroup>
+)
+```
 

@@ -1,0 +1,77 @@
+---
+title: Skeleton
+description: A loading placeholder with pulse animation, typically used for content that is being fetched.
+---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="skeleton-demo" description="A loading placeholder with pulse animation, typically used for content that is being fetched.">
+
+```tsx
+import { Skeleton } from "@/components/ui/Skeleton";
+
+export function SkeletonDemo() {
+  return {
+  return (
+    <div className="flex flex-col gap-2 w-full max-w-md">
+      <Skeleton className="h-4 w-full" />
+      <Skeleton className="h-4 w-3/4" />
+      <Skeleton className="h-4 w-1/2" />
+    </div>
+  );
+};
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/skeleton
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Skeleton component into your `components/ui/Skeleton.tsx` file.
+
+```tsx
+import { cn } from "@/utils/class-names"
+
+function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="skeleton"
+      className={cn("bg-gray-a6 animate-pulse rounded-md", className)}
+      {...props}
+    />
+  )
+}
+
+export { Skeleton }
+
+```
+  </Step>
+</Steps>
+

@@ -1,0 +1,3 @@
+header:
+  description: A container that groups buttons (and optional text or separators) with shared styling and orientation.
+extends: _templates/content.yml

@@ -1,0 +1,3 @@
+header:
+  description: A slide-out panel that overlays the page, with optional header, footer, title, and description. Opens from a trigger (e.g. button).
+extends: _templates/content.yml

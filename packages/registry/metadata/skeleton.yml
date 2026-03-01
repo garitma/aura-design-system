@@ -1,0 +1,3 @@
+header:
+  description: A loading placeholder with pulse animation, typically used for content that is being fetched.
+extends: _templates/content.yml

@@ -1,0 +1,3 @@
+header:
+  description: A collapsible side panel for app navigation and layout, with optional mobile sheet, icons, and persistent state.
+extends: _templates/content.yml

@@ -46,6 +46,10 @@ import {
   ButtonDemoModeProp
 } from "@/components/demos/button-demo"
 import { 
+  ButtonGroupDemo,
+  ButtonGroupDemoVertical
+} from "@/components/demos/button-group-demo"
+import { 
   CardDemoWithFooter,
   CardDemoWithActions,
   CardDemoSimpleCard,
@@ -56,6 +60,9 @@ import {
   CardDemo,
   CardDemoImageGrid
 } from "@/components/demos/card-demo"
+import { 
+  CarouselDemo
+} from "@/components/demos/carousel-demo"
 import { 
   CheckboxDemo,
   CheckboxDemoChecked,
@@ -106,6 +113,9 @@ import {
   DropdownMenuDemoWithRadioGroup,
   DropdownMenuDemoComplex
 } from "@/components/demos/dropdown-menu-demo"
+import { 
+  EmptyDemo
+} from "@/components/demos/empty-demo"
 import { 
   FormDemo,
   FormDemoMultipleFields,
@@ -186,6 +196,9 @@ import {
   SeparatorDemo
 } from "@/components/demos/separator-demo"
 import { 
+  SheetDemo
+} from "@/components/demos/sheet-demo"
+import { 
   SignaturePadDemo,
   SignaturePadDemoWithoutButtons,
   SignaturePadDemoVariants,
@@ -198,6 +211,9 @@ import {
   SignaturePadDemoWithRefMethods,
   SignaturePadDemoCombinedExample
 } from "@/components/demos/signature-pad-demo"
+import { 
+  SkeletonDemo
+} from "@/components/demos/skeleton-demo"
 import { 
   SliderDemo,
   SliderDemoDisabled,
@@ -333,6 +349,12 @@ export const Registry = {
   "button-demo-mode-prop": {
     component: ButtonDemoModeProp,
   },
+  "button-group-demo": {
+    component: ButtonGroupDemo,
+  },
+  "button-group-demo-vertical": {
+    component: ButtonGroupDemoVertical,
+  },
   "card-demo-with-footer": {
     component: CardDemoWithFooter,
   },
@@ -359,6 +381,9 @@ export const Registry = {
   },
   "card-demo-image-grid": {
     component: CardDemoImageGrid,
+  },
+  "carousel-demo": {
+    component: CarouselDemo,
   },
   "checkbox-demo": {
     component: CheckboxDemo,
@@ -461,6 +486,9 @@ export const Registry = {
   },
   "dropdown-menu-demo-complex": {
     component: DropdownMenuDemoComplex,
+  },
+  "empty-demo": {
+    component: EmptyDemo,
   },
   "form-demo": {
     component: FormDemo,
@@ -621,6 +649,9 @@ export const Registry = {
   "separator-demo": {
     component: SeparatorDemo,
   },
+  "sheet-demo": {
+    component: SheetDemo,
+  },
   "signature-pad-demo": {
     component: SignaturePadDemo,
   },
@@ -653,6 +684,9 @@ export const Registry = {
   },
   "signature-pad-demo-combined-example": {
     component: SignaturePadDemoCombinedExample,
+  },
+  "skeleton-demo": {
+    component: SkeletonDemo,
   },
   "slider-demo": {
     component: SliderDemo,

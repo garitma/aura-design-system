@@ -1,0 +1,3 @@
+header:
+  description: A placeholder component for empty states, with optional icon, title, description, and content slots.
+extends: _templates/content.yml
