@@ -1,0 +1,36 @@
+---
+alwaysApply: true
+---
+
+# Icon Rules
+
+## Icon Library
+
+* **MUST**: Icons should be from a library, not custom SVGs or inline graphics.
+* **MUST**: By default, use Radix icons (`@radix-ui/react-icons`).
+* **MUST**: Project must have only one icon library.
+* **EXCEPTION**: If the project has two icon libraries, it should be Radix icons (default) and one other library (e.g., `lucide-react`).
+* **MUST**: Import icons from the designated library: `import { IconName } from "@radix-ui/react-icons"`.
+
+## Icon Sizing
+
+* **MUST**: Use `className="icon"` for all icons, never use `size` prop or `width`/`height` attributes.
+* **MUST**: Icons are handled as typography, meaning they inherit font-size from typography classes.
+* **MUST**: To make icons larger, combine `icon` class with typography classes (e.g., `className="icon h1"` for large icons).
+* **EXAMPLES**:
+  - Small icon: `className="icon"`
+  - Medium icon: `className="icon h4"`
+  - Large icon: `className="icon h1"`
+
+## Implementation
+
+```tsx
+// Correct
+import { CheckIcon } from "@radix-ui/react-icons";
+<CheckIcon className="icon" />
+<CheckIcon className="icon h1" />
+
+// Incorrect
+<CheckIcon size={24} />
+<CheckIcon width={24} height={24} />
+```

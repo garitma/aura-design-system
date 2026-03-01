@@ -13,6 +13,7 @@ const BLOCKS_PATH = path.join(__dirname, "../registry/default/components/blocks"
 const UTILS_PATH = path.join(__dirname, "../registry/default/utils");
 const HOOKS_PATH = path.join(__dirname, "../registry/default/hooks");
 const STYLES_PATH = path.join(__dirname, "../registry/default/styles");
+const RULES_PATH = path.join(__dirname, "../registry/default/rules");
 const WWW_COMPONENTS_PATH = path.join(__dirname, "../../../apps/www/components");
 const WWW_UI_COMPONENTS_PATH = path.join(__dirname, "../../../apps/www/components/ui");
 const WWW_BLOCKS_PATH = path.join(__dirname, "../../../apps/www/components/blocks");
@@ -514,6 +515,39 @@ function getHooksItems() {
 }
 
 /**
+ * Get rule items from registry/default/rules (Cursor / AI rules for distribution).
+ * Each .mdc file is exposed as a registry:file so consumers can add via shadcn to .cursor/rules/.
+ */
+function getRulesItems(): RegistryItem[] {
+  if (!fs.existsSync(RULES_PATH)) return [];
+
+  const files = fs.readdirSync(RULES_PATH);
+  return files
+    .filter((file) => file.endsWith(".mdc"))
+    .map((file) => {
+      const name = file.replace(".mdc", "");
+      const kebabName = name;
+      const title = name
+        .split("-")
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(" ");
+      return {
+        name: `rule-${kebabName}`,
+        type: "registry:file" as const,
+        title: `Rule: ${title}`,
+        description: `Aura rule: ${title}. Install to .cursor/rules/ for Cursor AI guidance.`,
+        files: [
+          {
+            path: `registry/default/rules/${file}`,
+            type: "registry:file" as const,
+            target: `.cursor/rules/${file}`,
+          },
+        ],
+      };
+    });
+}
+
+/**
  * Load custom registry items from registry-items.custom.json
  */
 function getCustomItems(): RegistryItem[] {
@@ -794,9 +828,10 @@ function buildRegistry() {
   const utils = getUtilsItems();
   const hooks = getHooksItems();
   const animationStyles = getAnimationStyleItems();
+  const rulesItems = getRulesItems();
   const customItems = getCustomItems();
 
-  registry.items = [...components, ...blocks, ...utils, ...hooks, ...animationStyles, ...customItems];
+  registry.items = [...components, ...blocks, ...utils, ...hooks, ...animationStyles, ...rulesItems, ...customItems];
 
   fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2));
   console.log(`Registry generated at ${REGISTRY_PATH}`);
@@ -805,9 +840,9 @@ function buildRegistry() {
   console.log(`  Utils: ${utils.length}`);
   console.log(`  Hooks: ${hooks.length}`);
   console.log(`  Animation Styles: ${animationStyles.length}`);
+  console.log(`  Rules: ${rulesItems.length}`);
   console.log(`  Custom Items: ${customItems.length}`);
   console.log(`  Total: ${registry.items.length}`);
 }
 
-buildRegistry();
 buildRegistry();

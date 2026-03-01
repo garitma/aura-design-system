@@ -1409,6 +1409,84 @@
       ]
     },
     {
+      "name": "rule-fundation-animations",
+      "type": "registry:file",
+      "title": "Rule: Fundation Animations",
+      "description": "Aura rule: Fundation Animations. Install to .cursor/rules/ for Cursor AI guidance.",
+      "files": [
+        {
+          "path": "registry/default/rules/fundation-animations.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/fundation-animations.mdc"
+        }
+      ]
+    },
+    {
+      "name": "rule-fundation-icons",
+      "type": "registry:file",
+      "title": "Rule: Fundation Icons",
+      "description": "Aura rule: Fundation Icons. Install to .cursor/rules/ for Cursor AI guidance.",
+      "files": [
+        {
+          "path": "registry/default/rules/fundation-icons.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/fundation-icons.mdc"
+        }
+      ]
+    },
+    {
+      "name": "rule-fundations-colors",
+      "type": "registry:file",
+      "title": "Rule: Fundations Colors",
+      "description": "Aura rule: Fundations Colors. Install to .cursor/rules/ for Cursor AI guidance.",
+      "files": [
+        {
+          "path": "registry/default/rules/fundations-colors.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/fundations-colors.mdc"
+        }
+      ]
+    },
+    {
+      "name": "rule-fundations-layout-spacing",
+      "type": "registry:file",
+      "title": "Rule: Fundations Layout Spacing",
+      "description": "Aura rule: Fundations Layout Spacing. Install to .cursor/rules/ for Cursor AI guidance.",
+      "files": [
+        {
+          "path": "registry/default/rules/fundations-layout-spacing.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/fundations-layout-spacing.mdc"
+        }
+      ]
+    },
+    {
+      "name": "rule-fundations-typography",
+      "type": "registry:file",
+      "title": "Rule: Fundations Typography",
+      "description": "Aura rule: Fundations Typography. Install to .cursor/rules/ for Cursor AI guidance.",
+      "files": [
+        {
+          "path": "registry/default/rules/fundations-typography.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/fundations-typography.mdc"
+        }
+      ]
+    },
+    {
+      "name": "rule-principles",
+      "type": "registry:file",
+      "title": "Rule: Principles",
+      "description": "Aura rule: Principles. Install to .cursor/rules/ for Cursor AI guidance.",
+      "files": [
+        {
+          "path": "registry/default/rules/principles.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/principles.mdc"
+        }
+      ]
+    },
+    {
       "name": "page-get-starter",
       "type": "registry:page",
       "title": "PageGetStarter",

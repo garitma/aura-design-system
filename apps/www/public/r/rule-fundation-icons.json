@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rule-fundation-icons",
+  "type": "registry:file",
+  "title": "Rule: Fundation Icons",
+  "description": "Aura rule: Fundation Icons. Install to .cursor/rules/ for Cursor AI guidance.",
+  "files": [
+    {
+      "path": "registry/default/rules/fundation-icons.mdc",
+      "content": "---\nalwaysApply: true\n---\n\n# Icon Rules\n\n## Icon Library\n\n* **MUST**: Icons should be from a library, not custom SVGs or inline graphics.\n* **MUST**: By default, use Radix icons (`@radix-ui/react-icons`).\n* **MUST**: Project must have only one icon library.\n* **EXCEPTION**: If the project has two icon libraries, it should be Radix icons (default) and one other library (e.g., `lucide-react`).\n* **MUST**: Import icons from the designated library: `import { IconName } from \"@radix-ui/react-icons\"`.\n\n## Icon Sizing\n\n* **MUST**: Use `className=\"icon\"` for all icons, never use `size` prop or `width`/`height` attributes.\n* **MUST**: Icons are handled as typography, meaning they inherit font-size from typography classes.\n* **MUST**: To make icons larger, combine `icon` class with typography classes (e.g., `className=\"icon h1\"` for large icons).\n* **EXAMPLES**:\n  - Small icon: `className=\"icon\"`\n  - Medium icon: `className=\"icon h4\"`\n  - Large icon: `className=\"icon h1\"`\n\n## Implementation\n\n```tsx\n// Correct\nimport { CheckIcon } from \"@radix-ui/react-icons\";\n<CheckIcon className=\"icon\" />\n<CheckIcon className=\"icon h1\" />\n\n// Incorrect\n<CheckIcon size={24} />\n<CheckIcon width={24} height={24} />\n```\n",
+      "type": "registry:file",
+      "target": ".cursor/rules/fundation-icons.mdc"
+    }
+  ]
+}

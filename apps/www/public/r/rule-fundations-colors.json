@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rule-fundations-colors",
+  "type": "registry:file",
+  "title": "Rule: Fundations Colors",
+  "description": "Aura rule: Fundations Colors. Install to .cursor/rules/ for Cursor AI guidance.",
+  "files": [
+    {
+      "path": "registry/default/rules/fundations-colors.mdc",
+      "content": "---\nalwaysApply: true\n---\n\n# Color Rules\n\n## 12-Step Scale System\n\nAura uses a 12-step color scale for both `accent` and `gray` scales. Each step has specific use cases.\n\n## Scale Use Cases\n\n| Step | Use Case | Examples |\n|------|----------|----------|\n| **1-2** | App backgrounds | Main app background, card background, sidebar, canvas area |\n| **3** | UI element background (normal) | Component default state |\n| **4** | UI element background (hover) | Component hover state |\n| **5** | UI element background (active/selected) | Pressed or selected components |\n| **6** | Subtle borders | Non-interactive borders, separators, sidebars, headers |\n| **7** | UI element borders | Interactive component borders |\n| **8** | Strong borders & focus rings | Interactive component borders, focus rings |\n| **9** | Solid backgrounds | Primary brand color, headers, overlays, accent borders |\n| **10** | Hovered solid backgrounds | Hover state for step 9 backgrounds |\n| **11** | Low-contrast text | Secondary text, muted content |\n| **12** | High-contrast text | Primary text, headings |\n\n## Color Naming\n\n* **MUST**: Use `--accent-{step}` for accent colors (e.g., `--accent-9` for primary brand color).\n* **MUST**: Use `--gray-{step}` for neutral colors (e.g., `--gray-1` for app background).\n* **MUST**: Use `--accent-a{step}` or `--gray-a{step}` for alpha variants.\n* **MUST**: Use semantic tokens when available: `--primary`, `--primary-foreground`, `--accent-surface`, `--accent-contrast`, etc.\n\n## Implementation Rules\n\n* **MUST**: Steps 1-2 for app and subtle component backgrounds.\n* **MUST**: Steps 3-5 for interactive component backgrounds (normal, hover, active).\n* **MUST**: Steps 6-8 for borders (subtle, interactive, focus rings).\n* **MUST**: Steps 9-10 for solid backgrounds (normal, hover).\n* **MUST**: Steps 11-12 for text (low-contrast, high-contrast).\n* **MUST**: Steps 11-12 guarantee Lc 60 and Lc 90 APCA contrast on step 2 backgrounds.\n* **SHOULD**: Use step 3 for hover state if component has transparent default background.\n* **SHOULD**: Map `--primary` to `--accent-9` for primary brand color.\n",
+      "type": "registry:file",
+      "target": ".cursor/rules/fundations-colors.mdc"
+    }
+  ]
+}

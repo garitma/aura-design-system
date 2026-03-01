@@ -1,0 +1,43 @@
+---
+alwaysApply: true
+---
+
+# Animation Rules
+
+## Animation Foundation
+
+* **MUST**: Honor `prefers-reduced-motion` (provide reduced variant).
+* **MUST**: Use CSS animations via `@theme animatons` and `@keyframes` in `@layer components`.
+* **SHOULD**: Prefer CSS > Web Animations API > JS libraries.
+* **MUST**: Define animation tokens in `@theme animatons` block: `--animate-{name}: {keyframeName} {duration} {easing}`.
+
+## Animation Properties
+
+* **MUST**: Animate compositor-friendly props (`transform`, `opacity`); avoid layout/repaint props (`top/left/width/height`).
+* **EXCEPTION**: Height animations are allowed for collapsible/accordion components using `height: 0` to `height: var(--radix-*-content-height)`.
+* **MUST**: Use `transform-origin` correctly (motion starts where it "physically" should).
+
+## Common Animation Patterns
+
+### Enter/Exit Animations
+* **MUST**: Use `opacity` + `transform: scale()` for content show/hide.
+* **SHOULD**: Use `opacity` only for overlay animations.
+
+### Interactive States
+* **SHOULD**: Use `transform: scale()` for hover/active states (e.g., `scale(1.03)` hover, `scale(0.97)` active).
+* **MUST**: Use transitions for interactive elements: `transition: transform {duration} {easing}`.
+
+## Duration & Easing
+
+* **SHOULD**: Use step of 250ms duration.
+* **SHOULD**: Choose easing to match the change:
+  - `ease-in-out` for tooltips
+  - `cubic-bezier(0.16, 1, 0.3, 1)` for dialogs/modals
+  - `ease` for collapsible/accordion
+  - `cubic-bezier(0.4, 0, 0.6, 1)` for button transitions
+
+## Implementation Standards
+
+* **MUST**: Animations are interruptible and input-driven (avoid autoplay).
+* **SHOULD**: Animate only to clarify cause/effect or add deliberate delight.
+* **MUST**: Define keyframes in `@layer components` block.

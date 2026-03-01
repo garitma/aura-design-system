@@ -10,7 +10,8 @@ export function getRegistryItems() {
   let hooks = [];
   let utils = [];
   let css = [];
-  
+  let rules = [];
+
   try {
     const registryData = JSON.parse(fs.readFileSync(registryPath, "utf-8"));
 
@@ -28,13 +29,19 @@ export function getRegistryItems() {
       .filter((item) => ["registry:lib"].includes(item.type))
       .map((item) => item.name)
       .sort();
+
     css = registryData.items
       .filter((item) => ["registry:file"].includes(item.type) && item.meta?.css)
+      .map((item) => item.name)
+      .sort();
+
+    rules = registryData.items
+      .filter((item) => ["registry:file"].includes(item.type) && item.name?.startsWith("rule-"))
       .map((item) => item.name)
       .sort();
   } catch (error) {
     console.error(chalk.red("Error reading registry file:"), error);
   }
 
-  return { components, hooks, utils, css };
+  return { components, hooks, utils, css, rules };
 }

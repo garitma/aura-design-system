@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rule-principles",
+  "type": "registry:file",
+  "title": "Rule: Principles",
+  "description": "Aura rule: Principles. Install to .cursor/rules/ for Cursor AI guidance.",
+  "files": [
+    {
+      "path": "registry/default/rules/principles.mdc",
+      "content": "---\nalwaysApply: true\n---\n\nThey are the fundamental basis of the paradigms and methodologies that will be applied throughout our system.\n\n### Accessibility\n\nOur products should be usable for any user. We must build products that are perceivable and operable.\n\n### Consistency\n\nAll teams must have the same objective and must speak to the user in the same way, whether visually or in writing.\n\n### Reusable\n\nEvery hour we invest in a component should serve to build and prevent you or someone else from having to rebuild our work.\n\n### Shareable\n\nWe must build and work with tools that allow us to share all our work.\n\n### User Control\n\nThe user must have a sense of control over the product.\n\n### Forgiveness\n\nWe must allow the user to change their mind or repeat a process.\n\n### Perception of Stability\n\nEven with robust and complex platforms, the user must perceive processes as simple and familiar as possible.\n",
+      "type": "registry:file",
+      "target": ".cursor/rules/principles.mdc"
+    }
+  ]
+}
