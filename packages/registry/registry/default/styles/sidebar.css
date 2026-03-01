@@ -1,0 +1,27 @@
+/* Active menu item indicator */
+.border-b-gradient {
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: var(--gray-8);
+}
+
+/* Sidebar transitions: 250ms, ease (fundation-animations) */
+@media (prefers-reduced-motion: no-preference) {
+  [data-slot="sidebar-gap"],
+  [data-slot="sidebar-container"] {
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+  [data-slot="sidebar-rail"] {
+    transition-duration: 250ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="sidebar-gap"],
+  [data-slot="sidebar-container"],
+  [data-slot="sidebar-rail"] {
+    transition-duration: 0.01ms;
+  }
+}
