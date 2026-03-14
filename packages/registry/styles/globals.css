@@ -292,4 +292,7 @@
 }
 
 @layer components {
+  body:has([data-sidebar="sidebar"]) .ladle-main{
+    padding: 0!important;
+  }
 }
