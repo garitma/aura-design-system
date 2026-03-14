@@ -247,7 +247,7 @@ function Sidebar({
           className={cn(
             "bg-gray-2 flex h-full w-full flex-col",
             "group-data-[variant=floating]:rounded-lg group-data-[variant=floating]:border group-data-[variant=floating]:border-gray-6 group-data-[variant=floating]:shadow-sm",
-            "group-data-[collapsible=icon]:p-1"
+            "group-data-[collapsible=icon]:p-0.5"
           )}
         >
           {children}
@@ -297,12 +297,12 @@ function SidebarRail({ className, ...props }: React.ComponentProps<"button">) {
       onClick={toggleSidebar}
       title="Toggle Sidebar"
       className={cn(
-        "hover:after:bg-gray-6 absolute inset-y-0 z-20 hidden w-1.5 -translate-x-1/2 transition-all ease-linear group-data-[side=left]:-right-2.5 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:left-1/2 after:w-px sm:flex",
+        "hover:after:bg-gray-a2 absolute inset-y-0 z-20 hidden w-1.5 -translate-x-1/2 transition-all ease-linear group-data-[side=left]:-right-1.5 group-data-[side=right]:left-0 after:absolute after:inset-y-0 after:left-1/2 after:w-px sm:flex",
         "in-data-[side=left]:cursor-w-resize in-data-[side=right]:cursor-e-resize",
         "[[data-side=left][data-state=collapsed]_&]:cursor-e-resize [[data-side=right][data-state=collapsed]_&]:cursor-w-resize",
         "hover:group-data-[collapsible=offcanvas]:bg-gray-2 group-data-[collapsible=offcanvas]:translate-x-0 group-data-[collapsible=offcanvas]:after:left-full",
-        "[[data-side=left][data-collapsible=offcanvas]_&]:-right-2",
-        "[[data-side=right][data-collapsible=offcanvas]_&]:-left-2",
+        "[[data-side=left][data-collapsible=offcanvas]_&]:-right-1",
+        "[[data-side=right][data-collapsible=offcanvas]_&]:-left-1",
         className
       )}
       {...props}
@@ -345,7 +345,7 @@ function SidebarHeader({ className, ...props }: React.ComponentProps<"div">) {
       data-sidebar="header"
       className={cn(
         "flex flex-col gap-2 p-0.5",
-        "group-data-[collapsible=icon]:gap-1 group-data-[collapsible=icon]:p-1",
+        "group-data-[collapsible=icon]:gap-1 group-data-[collapsible=icon]:p-0",
         className
       )}
       {...props}
@@ -402,7 +402,7 @@ function SidebarGroup({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="sidebar-group"
       data-sidebar="group"
       className={cn(
-        "relative flex w-full min-w-0 flex-col px-2 py-1",
+        "relative flex w-full min-w-0 flex-col px-2 py-1 group-data-[collapsible=icon]:p-0",
         className
       )}
       {...props}
@@ -422,7 +422,7 @@ function SidebarGroupLabel({
       data-slot="sidebar-group-label"
       data-sidebar="group-label"
       className={cn(
-        "text-gray-a11 ring-gray-8 flex h-2.5 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2",
+        "text-gray-a11 ring-gray-8 flex h-2.5 shrink-0 items-center rounded-md px-2 text-xs font-medium outline-hidden transition-[margin,opacity] duration-200 ease-linear focus-visible:ring-2 pl-0",
         "group-data-[collapsible=icon]:-mt-2.5 group-data-[collapsible=icon]:opacity-0",
         "[&>svg]:size-1.5 [&>svg]:shrink-0",
         className
@@ -575,12 +575,9 @@ function SidebarMenuAction({
       data-slot="sidebar-menu-action"
       data-sidebar="menu-action"
       className={cn(
-        "text-gray-12 ring-gray-8 hover:bg-gray-4 hover:text-gray-12 peer-hover/menu-button:text-gray-12 absolute top-1.5 right-1 flex aspect-square w-2 items-center justify-center rounded-md p-0 outline-hidden transition-transform focus-visible:ring-2 [&>svg]:shrink-0",
+        "text-gray-12 ring-gray-8 hover:bg-gray-4 hover:text-gray-12 peer-hover/menu-button:text-gray-12 absolute right-1 top-1/2 flex aspect-square w-2 -translate-y-1/2 items-center justify-center rounded-md p-0 outline-hidden transition-transform focus-visible:ring-2 [&>svg]:shrink-0",
         // Increases the hit area of the button on mobile.
         "after:absolute after:-inset-2 md:after:hidden",
-        "peer-data-[size=sm]/menu-button:top-1",
-        "peer-data-[size=default]/menu-button:top-1.5",
-        "peer-data-[size=lg]/menu-button:top-2.5",
         "group-data-[collapsible=icon]:hidden",
         showOnHover &&
           "peer-data-[active=true]/menu-button:text-gray-12 group-focus-within/menu-item:opacity-100 group-hover/menu-item:opacity-100 data-[state=open]:opacity-100 md:opacity-0",

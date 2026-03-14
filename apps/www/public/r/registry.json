@@ -1121,7 +1121,7 @@
       },
       "dependencies": [
         "@radix-ui/react-icons",
-        "radix-ui"
+        "@radix-ui/react-slot"
       ],
       "registryDependencies": [
         "@aura/button",
