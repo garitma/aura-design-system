@@ -1107,8 +1107,18 @@
         {
           "path": "registry/default/components/ui/Sidebar.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/sidebar.css",
+          "type": "registry:component",
+          "target": "./styles/sidebar.css"
         }
       ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/sidebar.css\"": {}
+        }
+      },
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"
@@ -1589,6 +1599,44 @@
       "title": "Rule: Principles",
       "description": "Aura rule: Principles. Install to .cursor/rules/ for Cursor AI guidance.",
       "files": [
+        {
+          "path": "registry/default/rules/principles.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/principles.mdc"
+        }
+      ]
+    },
+    {
+      "name": "rules",
+      "type": "registry:file",
+      "title": "Aura Rules",
+      "description": "All Aura Design System Cursor rules. Installs to .cursor/rules/ for AI guidance.",
+      "files": [
+        {
+          "path": "registry/default/rules/fundation-animations.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/fundation-animations.mdc"
+        },
+        {
+          "path": "registry/default/rules/fundation-icons.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/fundation-icons.mdc"
+        },
+        {
+          "path": "registry/default/rules/fundations-colors.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/fundations-colors.mdc"
+        },
+        {
+          "path": "registry/default/rules/fundations-layout-spacing.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/fundations-layout-spacing.mdc"
+        },
+        {
+          "path": "registry/default/rules/fundations-typography.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/fundations-typography.mdc"
+        },
         {
           "path": "registry/default/rules/principles.mdc",
           "type": "registry:file",

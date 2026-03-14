@@ -1,11 +1,14 @@
 ---
+title: Layout & Spacing Rules (STRICT)
 description: Enforce Aura Design System 13px spacing for Tailwind v4
-globs: "**/*.{tsx,ts,jsx,js,html,css}"
-alwaysApply: true
 ---
 
 # Layout & Spacing Rules (STRICT)
 
+## Installation
+```bash
+pnpm dlx shadcn@latest add @aura/rule-fundations-layout-spacing
+```
 ## The Golden Rule
 You are working in a **Tailwind v4** environment where `--spacing` is globally set to `13px`. 
 **STOP AND CALCULATE:** Before writing any utility class ((^|[\s"'])((?:[^"'\s]*:)?)(m|p|mt|mb|mr|ml|mx|my|pt|pb|pr|pl|px|py|gap|space-x|space-y|h|min-h|max-h|w|min-w|max-w|size)-((?:\d+\.)?\d+|auto)(?=$|[\s"'])/g), perform this mental check:

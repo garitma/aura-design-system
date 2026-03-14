@@ -14,6 +14,7 @@ const UTILS_PATH = path.join(__dirname, "../registry/default/utils");
 const HOOKS_PATH = path.join(__dirname, "../registry/default/hooks");
 const STYLES_PATH = path.join(__dirname, "../registry/default/styles");
 const RULES_PATH = path.join(__dirname, "../registry/default/rules");
+const METADATA_PATH = path.join(__dirname, "../metadata");
 const WWW_COMPONENTS_PATH = path.join(__dirname, "../../../apps/www/components");
 const WWW_UI_COMPONENTS_PATH = path.join(__dirname, "../../../apps/www/components/ui");
 const WWW_BLOCKS_PATH = path.join(__dirname, "../../../apps/www/components/blocks");
@@ -515,8 +516,28 @@ function getHooksItems() {
 }
 
 /**
+ * Load optional title/description from metadata/<name>.rule.yml.
+ */
+function loadRuleMetadata(name: string): { title?: string; description?: string } {
+  const ymlPath = path.join(METADATA_PATH, `${name}.rule.yml`);
+  if (!fs.existsSync(ymlPath)) return {};
+  try {
+    const content = fs.readFileSync(ymlPath, "utf-8");
+    const titleMatch = content.match(/^header:\s*\n\s+title:\s*(.+)$/m);
+    const descMatch = content.match(/^header:\s*\n(?:\s+title:.*\n)?\s+description:\s*(.+)$/m);
+    const out: { title?: string; description?: string } = {};
+    if (titleMatch) out.title = titleMatch[1].trim().replace(/^["']|["']$/g, "");
+    if (descMatch) out.description = descMatch[1].trim().replace(/^["']|["']$/g, "");
+    return out;
+  } catch {
+    return {};
+  }
+}
+
+/**
  * Get rule items from registry/default/rules (Cursor / AI rules for distribution).
  * Each .mdc file is exposed as a registry:file so consumers can add via shadcn to .cursor/rules/.
+ * Optional metadata from metadata/<name>.rule.yml overrides title/description.
  */
 function getRulesItems(): RegistryItem[] {
   if (!fs.existsSync(RULES_PATH)) return [];
@@ -527,15 +548,19 @@ function getRulesItems(): RegistryItem[] {
     .map((file) => {
       const name = file.replace(".mdc", "");
       const kebabName = name;
-      const title = name
+      const defaultTitle = name
         .split("-")
         .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
         .join(" ");
+      const meta = loadRuleMetadata(name);
+      const title = meta.title ?? defaultTitle;
+      const description =
+        meta.description ?? `Aura rule: ${title}. Install to .cursor/rules/ for Cursor AI guidance.`;
       return {
         name: `rule-${kebabName}`,
         type: "registry:file" as const,
         title: `Rule: ${title}`,
-        description: `Aura rule: ${title}. Install to .cursor/rules/ for Cursor AI guidance.`,
+        description,
         files: [
           {
             path: `registry/default/rules/${file}`,
@@ -829,9 +854,16 @@ function buildRegistry() {
   const hooks = getHooksItems();
   const animationStyles = getAnimationStyleItems();
   const rulesItems = getRulesItems();
+  const rulesBundle: RegistryItem = {
+    name: "rules",
+    type: "registry:file",
+    title: "Aura Rules",
+    description: "All Aura Design System Cursor rules. Installs to .cursor/rules/ for AI guidance.",
+    files: rulesItems.flatMap((item) => item.files ?? []),
+  };
   const customItems = getCustomItems();
 
-  registry.items = [...components, ...blocks, ...utils, ...hooks, ...animationStyles, ...rulesItems, ...customItems];
+  registry.items = [...components, ...blocks, ...utils, ...hooks, ...animationStyles, ...rulesItems, rulesBundle, ...customItems];
 
   fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2));
   console.log(`Registry generated at ${REGISTRY_PATH}`);

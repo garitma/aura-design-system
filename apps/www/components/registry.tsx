@@ -199,6 +199,9 @@ import {
   SheetDemo
 } from "@/components/demos/sheet-demo"
 import { 
+  SidebarDemo
+} from "@/components/demos/sidebar-demo"
+import { 
   SignaturePadDemo,
   SignaturePadDemoWithoutButtons,
   SignaturePadDemoVariants,
@@ -651,6 +654,9 @@ export const Registry = {
   },
   "sheet-demo": {
     component: SheetDemo,
+  },
+  "sidebar-demo": {
+    component: SidebarDemo,
   },
   "signature-pad-demo": {
     component: SignaturePadDemo,

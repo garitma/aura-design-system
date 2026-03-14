@@ -24,8 +24,11 @@
     "dev": "pnpm ladle serve",
     "registry:serve": "pnpm dlx serve public -p 6000",
     "registry:build": "shadcn build -o ../../apps/www/public/r",
-    "registry:generate": "npx tsx scripts/build-registry.ts",
-    "docs:generate": "npx tsx scripts/generate-docs.ts",
+    "sync:rules": "npx tsx scripts/sync-rules.ts",
+    "registry:generate": "pnpm sync:rules && npx tsx scripts/build-registry.ts",
+    "docs:generate": "pnpm sync:rules && npx tsx scripts/generate-docs.ts && npx tsx scripts/generate-rules-docs.ts",
+    "docs:rules": "npx tsx scripts/generate-rules-docs.ts",
+    "new:rule": "npx tsx scripts/new-rule.ts",
     "registry:bootstrap": "pnpm registry:generate && pnpm registry:build && pnpm docs:generate",
     "test": "vitest"
   },

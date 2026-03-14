@@ -171,17 +171,17 @@ async function initializeAura() {
     writeFileSync(globalsPath, globalsCSS.trim() + "\n", "utf-8");
     console.log(`\n✓ globals.css has been updated with Aura Design System styles`);
 
-    // Add class-names utility from the registry
-    console.log("\nAdding class-names utility...");
+    // Add class-names utility and Aura rules from the registry
+    console.log("\nAdding class-names utility and Aura rules...");
     await execa(
       "pnpm",
-      ["dlx", "shadcn@latest", "add", "@aura/class-names", "@aura/page-get-starter", "@aura/css-main"],
+      ["dlx", "shadcn@latest", "add", "@aura/class-names", "@aura/page-get-starter", "@aura/css-main", "@aura/rules"],
       {
         stdio: "inherit",
         cwd: appDir,
       }
     );
-    console.log(`\n✓ class-names utility has been added`);
+    console.log(`\n✓ class-names utility and Aura rules have been added`);
     
   } catch (error) {
     console.error("Error initializing Aura:", error);

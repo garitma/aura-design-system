@@ -1,0 +1,5 @@
+# Rule metadata. Used by build-registry and generate-rules-docs.
+# Optional overrides for registry title and doc description.
+header:
+  title: null
+  description: null
