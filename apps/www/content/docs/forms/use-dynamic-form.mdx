@@ -1,0 +1,103 @@
+---
+title: useFormDynamic
+description: API reference for the form state hook — parameters, return value, and FieldProps.
+---
+
+# useFormDynamic
+
+`useFormDynamic` manages form state: field values, touch state, form-level error, and submit status. It also acts as a factory for **field props** that you pass into Form components (`FormField`, `FormFieldSelect`, etc.).
+
+## Parameters
+
+| Parameter         | Type                                                                 | Required | Description                                                                                                                                 |
+| ----------------- | -------------------------------------------------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `initialValues`   | `Record<string, FieldType>`                                          | Yes      | Object whose keys are field names and values are field types. Used to initialize values and to know which fields exist.                     |
+| `formGeneralRef`  | `React.RefObject<HTMLFormElement \| null>`                            | No       | Optional ref to the form element. When provided, each field’s `setValue` can sync the value to a DOM input with a matching `name` attribute. |
+
+**Field types:** `"text" | "textarea" | "select" | "checkbox"`
+
+Example:
+
+```tsx
+const formRef = useRef<HTMLFormElement>(null);
+const formData = useFormDynamic(
+  {
+    name: "text",
+    email: "text",
+    country: "select",
+    acceptTerms: "checkbox",
+  },
+  formRef
+);
+```
+
+## Return value
+
+The hook returns the following.
+
+### Form state (from internal field state)
+
+| Property   | Type                                      | Description                                  |
+| ---------- | ----------------------------------------- | -------------------------------------------- |
+| `value`    | `Record<string, string \| boolean>`        | Current values keyed by field name.          |
+| `setValue` | `React.Dispatch<SetStateAction<...>>`     | Setter for the whole value object.          |
+| `error`    | `string \| null`                           | Form-level error message (e.g. from submit). |
+| `setError` | `(error: string \| null) => void`        | Set form-level error.                        |
+| `touch`    | `Record<string, boolean>`                 | Touch state per field.                       |
+| `setTouch` | `React.Dispatch<SetStateAction<...>>`     | Setter for touch state.                     |
+| `types`    | `Record<string, FieldType>`              | Field types (same as `initialValues`).      |
+
+### Field factory and bulk getters
+
+| Property    | Type                                                                 | Description                                                                 |
+| ----------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `field(name)` | `(name: string) => FieldProps`                                     | Returns the props for a single field. Use with any Form field component.   |
+| `getFields()`  | `() => Record<string, FieldProps>`                                | Returns an object of all field names to their `FieldProps`. Typical: `const { name, email } = formData.getFields()`. |
+| `getValues()`  | `() => Record<string, string \| boolean>`                        | Returns current values keyed by field name. Use for validation or submit.  |
+
+### Form actions
+
+| Property     | Type                                                                 | Description                                                                 |
+| ------------ | -------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `resetForm(formRef, initialValues?)` | `(formRef, initialValues?) => void`                             | Resets all fields to defaults (or optional `initialValues`) and syncs DOM when ref is provided. |
+| `touchForm()` | `() => void`                                                       | Marks every field as touched. Call after failed validation so all errors show. |
+| `fetchStatus` | `"idle" \| "loading" \| "success" \| "error"`                     | Submit/fetch status.                                                        |
+| `setFetchStatus(status)` | `(status) => void`                                          | Set submit status; `FormSubmit` uses `fetchStatus === "loading"` for loading UI. |
+
+## FieldProps
+
+`field(name)` and `getFields()` return objects that implement this shape. Pass them as the `field` prop to Form components.
+
+| Property          | Type                                                                 | Description                                                                 |
+| ----------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `name`            | `string`                                                             | Field name (matches key in `initialValues`).                               |
+| `type`            | `FieldType`                                                          | `"text" \| "textarea" \| "select" \| "checkbox"`.                           |
+| `value`           | `string \| boolean`                                                   | Current value. Use for controlled inputs or for display.                   |
+| `setValue(value)` | `(value: string \| boolean) => void`                                 | Updates state and, when `formGeneralRef` is set, syncs to DOM `[name="..."]` if present. |
+| `onChange`        | `(event: ChangeEvent<...>) => void`                                   | For native inputs (input, textarea, select). Use on the control.            |
+| `onCheckedChange` | `(checked: boolean) => void` (and change handler type)                | For checkboxes and switches.                                                |
+| `touch`           | `boolean`                                                             | Whether this field has been touched.                                        |
+| `setTouch`        | `(value: boolean) => void`                                             | Set touch state for this field.                                             |
+| `reset`           | `() => void`                                                          | Resets this field to its type default and clears touch.                     |
+
+**Note:** Composed components (e.g. `FormFieldSelect`, `FormFieldCombobox`, `FormFieldEditor`) don’t use native inputs; they call `field.setValue(value)` when the user changes the value. The hook’s `FieldProps.value` is typed as `string | boolean`, but some of these components use arrays (e.g. multi select, sortable list) and cast as needed.
+
+## Initial value resolution
+
+Values are initialized from the field type:
+
+| Field type  | Initial value |
+| ----------- | ------------- |
+| `text`      | `""`          |
+| `textarea`  | `""`          |
+| `select`    | `""`          |
+| `checkbox`  | `false`       |
+
+## setValue and DOM sync
+
+When you pass `formGeneralRef` to `useFormDynamic`, each field’s `setValue` does two things:
+
+1. Updates the hook’s state (so `getValues()` and `field.value` reflect the new value).
+2. If the form ref is set and there is an element with `[name="<fieldName>"]` (input, textarea, or select), it updates that element’s value or checked state so the DOM stays in sync.
+
+If you don’t pass `formGeneralRef`, or the form doesn’t contain a matching native control, `setValue` only updates state. That’s the normal case when using composed components (Select, Combobox, Editor, etc.), which are controlled via `field.value` and `field.setValue` and don’t rely on a hidden native input with the same name.

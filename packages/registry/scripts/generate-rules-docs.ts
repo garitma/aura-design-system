@@ -153,7 +153,7 @@ These rules define foundations and principles for the Aura Design System. You ca
 `;
 
   for (const rule of rules) {
-    content += `### [${rule.title}](./${rule.name})\n\n`;
+    content += `### [${rule.title}](/docs/rules/${rule.name})\n\n`;
     content += `${rule.description}\n\n`;
   }
 

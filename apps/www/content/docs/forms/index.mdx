@@ -1,63 +1,143 @@
 ---
-title: Aura Design System Forms
-description: Just another way to handle forms
+title: Forms Overview
+description: Declarative form state, validation, and UI with useFormDynamic and Form components.
 ---
 
-# Why?
+# Overview
 
-The DX has taste too. This is just one approach to handling forms. The Aura Design System way. Explore these form and patterns, all designed with an opinionated flavor and thoughtful developer experience that matches the rest of Aura.
+The Aura Form system gives you a declarative way to handle forms: define field types once, get bound state and handlers, and let the Form component wire validation errors to the right fields. Built on Radix UI Form primitives and designed to work with JSON Schema validation (e.g. [AJV](https://ajv.js.org/)).
 
-## How It Works
+## Motivation
 
-The Aura Form system is built on two core pieces that work together seamlessly: the `useFormDynamic` hook for state management and the `Form` components for UI rendering.
+Most form libraries either lock you into a specific validation or UI pattern, or leave you wiring state and errors by hand. Aura Forms aims for:
 
-### The Hook: `useFormDynamic`
+- **Declarative structure** – Define your form with field names and types; the hook provides values, touch state, and field props.
+- **Shared state** – One place for values, errors, touch, and submit status so validation and UI stay in sync.
+- **Automatic error distribution** – Pass an array of validation errors to `Form`; it matches errors to fields by name and injects them into the right components.
+- **Composable fields** – Use `FormField` for native inputs, or composed components like `FormFieldSelect`, `FormFieldCombobox`, `FormFieldEditor`, `FormFieldSignaturePad`, and `FormFieldSortableList` that all consume the same `field` prop.
 
-The `useFormDynamic` hook provides a declarative way to manage form state. Instead of manually creating state for each field, you define your form structure upfront:
+## Architecture
 
-```tsx
-const formData = useFormDynamic({
-  name: "text",
-  email: "text",
-  notifications: "checkbox",
-});
+The system has three parts that work together:
+
+```mermaid
+flowchart LR
+  subgraph hook [useFormDynamic]
+    types[Field types]
+    value[value state]
+    touch[touch state]
+    field[field name to FieldProps]
+    getFields[getFields]
+    getValues[getValues]
+  end
+  subgraph form [Form]
+    errors[errors prop]
+    processChildren[processChildren]
+    match[instancePath equals field.name]
+  end
+  subgraph fields [FormField and FormField components]
+    fieldProp[field prop]
+    errorsInjected[errors injected by Form]
+  end
+  hook --> getFields
+  getFields --> fieldProp
+  errors --> processChildren
+  processChildren --> match
+  match --> errorsInjected
+  fieldProp --> fields
 ```
 
-The hook automatically:
-- **Initializes values** based on field types (`text` → `""`, `checkbox` → `false`)
-- **Manages touch state** to track which fields have been interacted with
-- **Provides field props** through `getFields()` that include value, onChange handlers, and validation state
-- **Tracks form-level state** like fetch status (idle, loading, success, error)
-- **Offers utilities** like `touchForm()`, `getValues()`, and `resetForm()`
+- **`useFormDynamic`** – Defines field types, holds values/touch/error/fetchStatus, and exposes `field(name)`, `getFields()`, `getValues()`, `resetForm()`, and `touchForm()`.
+- **`Form`** – Receives `errors` (e.g. AJV `ErrorObject[]`), walks its children, and injects `errors` into any descendant that has a `field` prop by matching `error.instancePath.slice(1)` to `field.name`.
+- **Form field components** – Accept `field` (from `getFields()` or `field(name)`) and optional `errors` (injected by Form). They use `field.value`, `field.setValue`, and for native inputs `field.onChange` / `field.onCheckedChange`, and show messages when `field.touch && errors?.length > 0`.
 
-### The Components: Form System
+## Quick example
 
-The Form components are built on Radix UI Form primitives and handle the UI layer:
+Minimal form with validation and submit handling:
 
-- **`Form`**: The root wrapper that processes children and distributes validation errors to the appropriate fields
-- **`FormField`**: Generic wrapper for standard inputs (text, textarea, select) with automatic error display
-- **`FormSwitch`**: Specialized component for toggle/switch inputs
-- **`FormCheckbox`**: Single checkbox field with label
-- **`FormCheckboxGroup`**: Group of checkboxes with options array
-- **`FormRadioGroup`**: Radio button group with options
-- **`FormSubmit`**: Submit button with built-in loading state integration
-- **`FormAlert`**: Alert component that displays form-level errors
+```tsx
+import { useRef } from "react";
+import {
+  Form,
+  FormField,
+  FormSubmit,
+  FormAlert,
+} from "@/components/ui/Form";
+import { Input } from "@/components/ui/Input";
+import { useFormDynamic } from "@/hooks/use-dynamic-form";
+import { validateFormData } from "@/utils/web-validation";
 
-### The Pattern
+const schema = {
+  type: "object",
+  properties: {
+    name: { type: "string" },
+    email: { type: "string", format: "email" },
+  },
+  required: ["name", "email"],
+};
 
-Here's the typical flow:
+export function QuickForm() {
+  const formRef = useRef<HTMLFormElement>(null);
+  const formData = useFormDynamic({
+    name: "text",
+    email: "text",
+  });
 
-1. **Define your form structure** with `useFormDynamic`
-2. **Get field props** using `getFields()`
-3. **Validate** using your preferred validation library (JSON Schema from [AJV]("https://ajv.js.org/") with `validateFormData`)
-4. **Pass errors to Form** component
-5. **Use field props** with Form components (`FormField`, `FormSwitch`, etc.)
-6. **Handle submission** with `FormSubmit` and manage fetch status
+  const { name, email } = formData.getFields();
+  const { isValid, errors } = validateFormData(schema, formData.getValues());
+  const formErrors = errors ?? undefined;
 
-### Key Features
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    formData.setFetchStatus("loading");
 
-- **Type-safe field definitions**: Field types are defined upfront, reducing errors
-- **Automatic error propagation**: The Form component automatically passes errors to the correct fields
-- **Touch state management**: Fields only show errors after being touched
-- **Built-in loading states**: `FormSubmit` integrates with fetch status for loading indicators
-- **Composable**: Mix and match different field types in the same form
+    if (!isValid) {
+      formData.setFetchStatus("error");
+      formData.touchForm();
+      formData.setError("Please complete all required fields");
+      return;
+    }
+
+    // Simulate or call your API
+    await new Promise((r) => setTimeout(r, 500));
+    formData.setFetchStatus("success");
+  };
+
+  return (
+    <Form
+      ref={formRef}
+      onSubmit={handleSubmit}
+      errors={formErrors}
+      id="quick-form"
+      className="flex flex-col gap-1"
+    >
+      <FormAlert
+        formData={{
+          fetchStatus: formData.fetchStatus,
+          error: formData.error,
+        }}
+      />
+      <FormField field={name} label="Name *">
+        <Input type="text" placeholder="Your name" />
+      </FormField>
+      <FormField field={email} label="Email *">
+        <Input type="email" placeholder="your@email.com" />
+      </FormField>
+      <FormSubmit
+        fetchStatus={formData.fetchStatus}
+        buttonProps={{ children: "Submit" }}
+        form="quick-form"
+      />
+    </Form>
+  );
+}
+```
+
+## Next steps
+
+- **[useFormDynamic](/docs/forms/use-dynamic-form)** – Hook API, parameters, return value, and `FieldProps`.
+- **[Form components](/docs/forms/form-components)** – `Form`, `FormSubmit`, `FormAlert`, `FormField`, `FormSwitch`, `FormCheckbox`, and groups.
+- **[Form field composition](/docs/forms/form-field-composition)** – `FormFieldSelect`, `FormFieldCombobox`, `FormFieldEditor`, `FormFieldSignaturePad`, `FormFieldSortableList`.
+- **[Validation](/docs/forms/validation)** – `validateFormData`, error shape, touch behavior, and form-level errors.
+
+For installation and more demos, see [Form (component)](/docs/components/form).

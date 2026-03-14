@@ -1,0 +1,193 @@
+---
+title: Form Field Composition
+description: FormFieldSelect, FormFieldCombobox, FormFieldEditor, FormFieldSignaturePad, FormFieldSortableList — composed form fields that use field.setValue.
+---
+
+# Form Field Composition
+
+These components wrap non-native controls (Select, Combobox, Editor, SignaturePad, Sortable) and connect them to [useFormDynamic](/docs/forms/use-dynamic-form) via the same `field` prop used by [FormField](/docs/forms/form-components). They all accept `field?: FieldProps` and `errors?: ErrorObject[]` (typically injected by `Form`), and they update state with `field.setValue`.
+
+## Overview
+
+| Component               | Purpose                   | Value type              | How it uses `field`                                                                 |
+| ----------------------- | ------------------------- | ----------------------- | ----------------------------------------------------------------------------------- |
+| **FormFieldSelect**     | Dropdown select           | `string`                | Does not pass `field.value` to Select (uncontrolled); `onValueChange` → `field.setValue(newValue)`. |
+| **FormFieldCombobox**   | Searchable single/multi    | `string` or `string[]`   | `field.setValue(value)` in handler.                                                 |
+| **FormFieldEditor**     | Rich/text block editor     | `string`                | `field.value` → editor state; `onChange(editorState)` → `field.setValue(editorState)`. |
+| **FormFieldSignaturePad**| Signature capture          | `string` (e.g. base64)  | `onChange(signature)` → `field.setValue(signature \|\| "")`.                         |
+| **FormFieldSortableList** | Drag-and-drop ordered list | `array`                | `field.value` normalized to array; `onValueChange` → `field.setValue`.              |
+
+## FormFieldSelect
+
+Dropdown select built on the Select UI component.
+
+| Prop           | Type                | Description                          |
+| -------------- | ------------------- | ------------------------------------ |
+| `field`        | `FieldProps`        | From hook.                            |
+| `label`        | `React.ReactNode`   | Optional.                             |
+| `options`      | `SelectOption[]`    | `{ label: string; value: string }`.  |
+| `placeholder`  | `string`            | Placeholder when empty.               |
+| `disabled`     | `boolean`           | Default `false`.                     |
+| `defaultValue` | `string`            | Optional.                             |
+| `value`        | `string`            | Optional controlled value.           |
+| `errors`       | `ErrorObject[]`     | Usually from Form.                    |
+| `className`    | `string`            | Optional.                             |
+
+The Select is used without passing `field.value` as its controlled value; it updates the form via `onValueChange` → `field.setValue(newValue)`.
+
+```tsx
+<FormFieldSelect
+  field={country}
+  label="Country *"
+  options={[
+    { label: "United States", value: "us" },
+    { label: "United Kingdom", value: "uk" },
+  ]}
+  placeholder="Select a country"
+/>
+```
+
+## FormFieldCombobox
+
+Searchable single- or multi-select (Combobox).
+
+| Prop          | Type                | Description                                    |
+| ------------- | ------------------- | ---------------------------------------------- |
+| `field`       | `FieldProps`        | From hook; multi mode uses array value (cast). |
+| `label`       | `React.ReactNode`   | Optional.                                      |
+| `options`     | `ComboboxOption[]`  | Options for the combobox.                      |
+| `multiple`    | `boolean`           | Default `false`; when true, value is `string[]`. |
+| `placeholder` | `string`            | Optional.                                      |
+| `disabled`    | `boolean`           | Default `false`.                              |
+| `errors`      | `ErrorObject[]`     | Usually from Form.                             |
+| `className`   | `string`            | Optional.                                     |
+
+Single: `field.setValue(value: string)`. Multiple: `field.setValue(value: string[])` (typed as `string | boolean` on `FieldProps`, cast in the component).
+
+```tsx
+<FormFieldCombobox
+  field={country}
+  label="Country *"
+  options={comboboxOptions}
+  placeholder="Select a country"
+/>
+<FormFieldCombobox
+  field={interests}
+  label="Interests"
+  options={interestsOptions}
+  multiple
+  placeholder="Select one or more"
+/>
+```
+
+## FormFieldEditor
+
+Rich or block text editor. Value is a string (e.g. HTML or editor-specific JSON).
+
+| Prop     | Type              | Description        |
+| -------- | ------------------ | ------------------ |
+| `field`  | `FieldProps`       | From hook.          |
+| `label`  | `React.ReactNode`  | Optional.           |
+| `errors` | `ErrorObject[]`    | Usually from Form.  |
+| `className` | `string`        | Optional.           |
+
+Uses `field.value` as the editor state and `field.setValue(editorState)` on change.
+
+```tsx
+<FormFieldEditor field={content} label="Content *" />
+```
+
+## FormFieldSignaturePad
+
+Signature capture; value is a string (e.g. base64 image).
+
+| Prop       | Type              | Description                                                                 |
+| ---------- | ------------------ | --------------------------------------------------------------------------- |
+| `field`    | `FieldProps`       | From hook.                                                                  |
+| `label`    | `React.ReactNode`  | Required.                                                                   |
+| `errors`   | `ErrorObject[]`    | Usually from Form.                                                          |
+| `onSave`   | `(signature: Base64URLString) => void` | Optional; called when signature is saved in addition to updating the field. |
+| (others)  | SignaturePad props | e.g. `variant`, `size`, `penColor`, `lineWidth`, `showButtons`.             |
+
+Calls `field.setValue(signature || "")` when the signature changes.
+
+```tsx
+<FormFieldSignaturePad
+  field={signature}
+  label="Signature *"
+  variant="default"
+  size="md"
+/>
+```
+
+## FormFieldSortableList
+
+Drag-and-drop ordered list. Value is an array (stored via `field.setValue`; `FieldProps.value` is typed as `string | boolean`, so the component casts to array).
+
+| Prop             | Type                              | Description                                                                 |
+| ---------------- | --------------------------------- | --------------------------------------------------------------------------- |
+| `field`          | `FieldProps`                      | From hook; value treated as array.                                          |
+| `label`          | `React.ReactNode`                 | Optional.                                                                   |
+| `errors`         | `ErrorObject[]`                   | Usually from Form.                                                          |
+| `renderItem`     | `(item: T, index: number) => ReactNode` | Render each item. Default shows `String(item)`.                    |
+| `getItemValue`   | `(item: T) => UniqueIdentifier`   | Required when items are objects; used for keys and drag id.                |
+| `orientation`    | `"vertical" \| "horizontal" \| "mixed"` | Default `"vertical"`.                                    |
+| `showOverlay`    | `boolean`                         | Default `true`.                                                             |
+| `showHandle`     | `boolean`                         | Default `true`.                                                             |
+| `itemClassName`  | `string`                          | Optional.                                                                   |
+| `contentClassName` | `string`                        | Optional.                                                                   |
+
+Initial value should be an array. You can set it once in an effect if the hook type is `"text"`:
+
+```tsx
+React.useEffect(() => {
+  if (!Array.isArray(priorities.value)) {
+    priorities.setValue(["High", "Medium", "Low"] as any);
+  }
+}, []);
+```
+
+```tsx
+<FormFieldSortableList
+  field={priorities}
+  label="Priorities *"
+  renderItem={(item) => <span className="text-gray-12 flex-1">{String(item)}</span>}
+/>
+```
+
+## Composition pattern
+
+Each of these components:
+
+1. **Reads `field.name`** – Used for `FormRadix.Field` name and for error matching when Form injects `errors`.
+2. **Uses `field.touch` and `errors`** – Sets `serverInvalid` and renders `FormRadix.Message` when `field.touch && errors?.length > 0`.
+3. **Updates state via `field.setValue`** – Non-native controls don’t use `field.onChange`; they call `field.setValue(value)` in their own change handlers.
+
+For multi-value components (FormFieldCombobox with `multiple`, FormFieldSortableList), the hook’s `FieldProps.value` is typed as `string | boolean`, but the component treats or casts it to the correct type (e.g. `string[]` or `any[]`).
+
+## Example: mixed composed fields
+
+```tsx
+const formRef = useRef<HTMLFormElement>(null);
+const formData = useFormDynamic({
+  country: "text",
+  signature: "text",
+});
+
+const { country, signature } = formData.getFields();
+const { isValid, errors } = validateFormData(schema, formData.getValues());
+
+return (
+  <Form ref={formRef} onSubmit={handleSubmit} errors={errors ?? undefined} id="demo">
+    <FormAlert formData={{ fetchStatus: formData.fetchStatus, error: formData.error }} />
+    <FormFieldSelect
+      field={country}
+      label="Country *"
+      options={countryOptions}
+      placeholder="Select country"
+    />
+    <FormFieldSignaturePad field={signature} label="Signature *" variant="default" size="md" />
+    <FormSubmit fetchStatus={formData.fetchStatus} buttonProps={{ children: "Submit" }} form="demo" />
+  </Form>
+);
+```

@@ -1,0 +1,185 @@
+---
+title: Form Components
+description: Form root, FormSubmit, FormAlert, and field wrappers — FormField, FormSwitch, FormCheckbox, and groups.
+---
+
+# Form Components
+
+The form UI is built on Radix UI Form primitives. These components consume `field` props from [useFormDynamic](/docs/forms/use-dynamic-form) and, when used inside `Form`, receive `errors` automatically so validation messages show on the right fields.
+
+## Form
+
+The root wrapper. It forwards all props to Radix Form and adds error distribution.
+
+**Props:** Extends Radix `Form.Root` (e.g. `onSubmit`, `id`, `className`, `ref`). In addition:
+
+| Prop     | Type                                                                 | Description                                                                 |
+| -------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `errors` | `ErrorObject<string, Record<string, any>, unknown>[]` (from AJV)     | Validation errors. Form matches each error to a child by `error.instancePath.slice(1) === child.props.field?.name` and injects that slice of errors into the child. |
+
+**Behavior:** Form walks its children (recursively). For any descendant that has a `field` prop, it filters `errors` to those whose `instancePath` (after removing the leading `/`) equals `field.name`, then clones that descendant with an `errors` prop. So you don’t pass `errors` to each field component yourself — Form does it.
+
+```tsx
+<Form
+  ref={formRef}
+  onSubmit={handleSubmit}
+  errors={formErrors}
+  id="my-form"
+  className="flex flex-col gap-1"
+>
+  {/* FormField and other components receive errors automatically */}
+</Form>
+```
+
+## FormSubmit
+
+Submit button wired to the form, with optional loading state.
+
+| Prop           | Type                                                                 | Description                                                                 |
+| -------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `buttonProps`  | `ButtonProps`                                                         | Props passed to the underlying Button (e.g. `children`, `className`).     |
+| `fetchStatus`  | `"idle" \| "loading" \| "success" \| "error"`                        | When `"loading"`, the button shows a loading indicator (e.g. spinner).     |
+| `form`         | `string`                                                             | Must match the `id` of the form (for native `form` attribute).              |
+| (others)       | Radix `Form.Submit` props                                            | e.g. `disabled`.                                                           |
+
+```tsx
+<FormSubmit
+  fetchStatus={formData.fetchStatus}
+  buttonProps={{ children: "Submit" }}
+  form="my-form"
+/>
+```
+
+## FormAlert
+
+Shows a form-level error when submit fails or validation fails and you set a message.
+
+| Prop       | Type                                              | Description                                                                 |
+| ---------- | ------------------------------------------------- | --------------------------------------------------------------------------- |
+| `formData` | `{ fetchStatus: string; error: string \| null }`  | Renders only when `fetchStatus === "error"` and `formData.error` is set.    |
+
+Use it with the hook’s `fetchStatus` and `error`:
+
+```tsx
+<FormAlert
+  formData={{
+    fetchStatus: formData.fetchStatus,
+    error: formData.error,
+  }}
+/>
+```
+
+## FormField
+
+Generic wrapper for a single native control (input, textarea, or select). Renders a label, the control, and per-field validation messages.
+
+| Prop          | Type                    | Description                                                                 |
+| ------------- | ----------------------- | --------------------------------------------------------------------------- |
+| `field`       | `FieldProps`            | From `formData.getFields()` or `formData.field(name)`.                     |
+| `label`       | `React.ReactNode`       | Label text or node.                                                         |
+| `labelProps`  | Radix Form.Label props  | Optional.                                                                   |
+| `controlProps`| Radix Form.Control props| Optional.                                                                   |
+| `errors`      | `ErrorObject[]`        | Usually injected by Form; only set manually if the field is not under Form. |
+
+The control receives `field.onChange` from Form.Control. Use for `<Input>`, `<textarea>`, or native `<select>`.
+
+```tsx
+<FormField field={name} label="Name *">
+  <Input type="text" placeholder="Your name" />
+</FormField>
+<FormField field={message} label="Message">
+  <textarea rows={4} />
+</FormField>
+```
+
+Errors are shown when `field.touch && errors?.length > 0`; each error’s `message` is rendered in a `FormRadix.Message`.
+
+## FormSwitch
+
+Toggle (switch) field. Uses `field.value` (boolean) and `field.onCheckedChange`.
+
+| Prop     | Type           | Description        |
+| -------- | -------------- | ------------------ |
+| `field`  | `FieldProps`   | From hook.         |
+| `label`  | `React.ReactNode` | Label.          |
+| `errors` | `ErrorObject[]`| Usually from Form. |
+| `id`     | `string`       | Optional; default from `useId()`. |
+
+```tsx
+<FormSwitch field={notifications} label="Enable notifications" />
+```
+
+## FormCheckbox
+
+Single checkbox field. Uses `field.value` (boolean) and `field.onCheckedChange`.
+
+| Prop     | Type           | Description        |
+| -------- | -------------- | ------------------ |
+| `field`  | `FieldProps`   | From hook.         |
+| `label`  | `React.ReactNode` | Label.          |
+| `errors` | `ErrorObject[]`| Usually from Form. |
+| `id`     | `string`       | Optional.          |
+
+```tsx
+<FormCheckbox field={terms} label="I agree to the terms *" />
+```
+
+## FormCheckboxGroup
+
+Group of checkboxes with a shared `field`; value is an array of selected option values.
+
+| Prop     | Type                   | Description        |
+| -------- | ---------------------- | ------------------ |
+| `field`  | `FieldProps`           | From hook; value is cast to `string[]` for the group. |
+| `label`  | `React.ReactNode`      | Optional.          |
+| `options`| `CheckboxGroupOption[]`| `{ value, label, description?, disabled? }`. |
+| `errors` | `ErrorObject[]`        | Usually from Form. |
+
+The component calls `field.setValue(value)` with the new array when the user checks/unchecks.
+
+```tsx
+<FormCheckboxGroup
+  field={interests}
+  label="Interests"
+  options={[
+    { value: "a", label: "Option A" },
+    { value: "b", label: "Option B" },
+  ]}
+/>
+```
+
+## FormRadioGroup
+
+Radio group with a shared `field`; value is a single string.
+
+| Prop     | Type                | Description        |
+| -------- | ------------------- | ------------------ |
+| `field`  | `FieldProps`        | From hook.         |
+| `label`  | `React.ReactNode`   | Optional.          |
+| `options`| `RadioGroupOption[]`| `{ value, label, description?, disabled? }`. |
+| `errors` | `ErrorObject[]`     | Usually from Form. |
+
+The component calls `field.setValue(value)` when the user selects an option.
+
+```tsx
+<FormRadioGroup
+  field={country}
+  label="Country"
+  options={[
+    { value: "us", label: "United States" },
+    { value: "uk", label: "United Kingdom" },
+  ]}
+/>
+```
+
+## Summary
+
+- **Form** – Pass `errors`; it injects the right slice into children that have a `field` prop.
+- **FormSubmit** – Submit button; pass `fetchStatus` for loading UI.
+- **FormAlert** – Form-level error when `fetchStatus === "error"` and `error` is set.
+- **FormField** – Native inputs; uses `field.onChange`.
+- **FormSwitch** / **FormCheckbox** – Boolean fields; use `field.value` and `field.onCheckedChange`.
+- **FormCheckboxGroup** / **FormRadioGroup** – Multi/single choice; use `field.setValue` with array or string.
+
+For installation and full demos, see [Form (component)](/docs/components/form).
+

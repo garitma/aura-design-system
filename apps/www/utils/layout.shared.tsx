@@ -38,8 +38,24 @@ export function baseOptions(): BaseLayoutProps {
         active: "nested-url",
       },
       {
+        text: "Handbook",
+        url: "/docs/handbook",
+        active: "nested-url",
+      },
+      {
+        text: "Rules",
+        url: "/docs/rules",
+        active: "nested-url",
+      },
+      {
         text: "Components",
         url: "/docs/components/accordion",
+        active: "nested-url",
+      },
+     
+      {
+        text: "Forms",
+        url: "/docs/forms",
         active: "nested-url",
       },
     ],

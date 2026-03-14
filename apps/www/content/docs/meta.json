@@ -23,7 +23,6 @@
       "components/index",
       "...components",
       "---Forms---",
-      "forms/index",
       "...forms"
     ]
   }
