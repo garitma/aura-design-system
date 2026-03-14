@@ -1,0 +1,72 @@
+---
+title: Composition
+description: Composing Radix primitives with your own elements and components using asChild, and similar patterns from other libraries.
+---
+
+Aura components are built on [Radix UI](https://www.radix-ui.com/primitives/docs/guides/composition). Use the `asChild` prop to compose a primitive's behavior onto your own element or React component instead of the default DOM element.
+
+## asChild (Radix UI)
+
+All Radix primitive parts that render a DOM element accept `asChild`. When `asChild` is `true`, Radix does not render its default element; it clones the single child and merges the props and behavior needed for that part (e.g. trigger click, focus, aria attributes).
+
+Reference: [Radix UI — Composition](https://www.radix-ui.com/primitives/docs/guides/composition).
+
+### Changing the element type
+
+You can change the underlying element. For example, `Tooltip.Trigger` defaults to a `button`; with `asChild` you can use a link:
+
+```tsx
+<Tooltip.Root>
+  <Tooltip.Trigger asChild>
+    <a href="https://www.radix-ui.com/">Radix UI</a>
+  </Tooltip.Trigger>
+  <Tooltip.Portal>…</Tooltip.Portal>
+</Tooltip.Root>
+```
+
+If you change the element type, you are responsible for keeping it accessible and functional (e.g. the trigger must remain focusable and respond to pointer and keyboard).
+
+### Composing with your own React components
+
+Pass your component as the single child and set `asChild` on the Radix part. Two requirements:
+
+1. **Spread props** — Radix passes props and event handlers to the child. Your component must forward them to the underlying DOM node (e.g. `<button {...props} />`).
+2. **Forward ref** — Radix may attach a ref (e.g. for measurement). Use `React.forwardRef` and pass the ref to the DOM node.
+
+```tsx
+const MyButton = React.forwardRef((props, forwardedRef) => (
+  <button {...props} ref={forwardedRef} />
+));
+
+<Dialog.Trigger asChild>
+  <MyButton>Open dialog</MyButton>
+</Dialog.Trigger>
+```
+
+This is the usual way to use Aura (or your own) buttons and links as Dialog, AlertDialog, Tooltip, or Dropdown triggers.
+
+### Composing multiple primitives
+
+You can nest `asChild` so one element receives behavior from several primitives. Order matters: the outermost Radix part wraps the next, and the innermost child is your element.
+
+Example: a custom button that opens a dialog and shows a tooltip:
+
+```tsx
+<Dialog.Root>
+  <Tooltip.Root>
+    <Tooltip.Trigger asChild>
+      <Dialog.Trigger asChild>
+        <MyButton>Open dialog</MyButton>
+      </Dialog.Trigger>
+    </Tooltip.Trigger>
+    <Tooltip.Portal>…</Tooltip.Portal>
+  </Tooltip.Root>
+  <Dialog.Portal>…</Dialog.Portal>
+</Dialog.Root>
+```
+
+Same idea applies for other trigger-based primitives (e.g. Menu, Popover). Keep the underlying element focusable and interactive.
+
+## Similar ideas in other libraries
+
+Libraries like [Base UI](https://base-ui.com/react/handbook/composition) use a `render` prop instead of `asChild` to achieve the same goal: the part renders your custom component and passes props/ref to it. The mental model is the same — one child, ref and props forwarded, and the primitive controls behavior. Aura uses Radix, so follow the Radix composition guide above; the Base UI composition docs are useful for comparison if you switch or integrate with another system.

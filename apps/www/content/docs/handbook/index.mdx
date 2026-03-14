@@ -1,0 +1,34 @@
+---
+title: Handbook
+description: Reference for styling, animations, composition, and customization when building with Aura.
+---
+
+The Handbook is the reference for how Aura handles styling, animations, composition, and customization. Use it when you need to align with the design system's foundations or extend components.
+
+## Styling
+
+Where design tokens and shared styles live: registry `main.css` (layout, typography, utilities) and `globals.css` (`@theme`, color scales, base layer). Use these for consistent spacing, colors, and layout across apps.
+
+[Styling reference →](/docs/handbook/styling)
+
+## Animations
+
+Component enter/exit and overlay animations are defined as CSS tokens and keyframes. The accordion, alert-dialog, collapsible, and dialog styles are imported in the app globals and referenced by components via `data-[state=open]:animate-*`.
+
+[Animations reference →](/docs/handbook/animations)
+
+## Composition
+
+Use Radix's `asChild` to compose primitives with your own elements or components (e.g. a custom button as a dialog trigger). Components must spread props and forward refs; you can nest multiple primitives (e.g. tooltip + dialog on the same trigger).
+
+[Composition guide →](/docs/handbook/composition)
+
+## Customization
+
+Control open/close state with `open` and `onOpenChange`, handle change events for escape or outside click, and use controlled state when you need to open dialogs or popovers without a trigger or from external logic.
+
+[Customization guide →](/docs/handbook/customization)
+
+## Full documentation for LLMs
+
+A single plain-text dump of the site documentation for crawlers and LLMs is available at [https://auradesignsystem.com/llms-full.txt](https://auradesignsystem.com/llms-full.txt).

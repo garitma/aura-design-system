@@ -19,16 +19,26 @@ function HeadingBase({
   return (
     <Component
       id={id}
-      className="flex scroll-m-2 flex-row items-center gap-0.5"
+      className="flex scroll-m-2 flex-row items-center gap-0.5 group/heading"
       {...props}
     >
-      <a data-card="" href={`#${id}`} className="peer">
+      <span data-card="">
         {children}
-      </a>
-      <Link
-        className="icon shrink-0 text-fd-muted-foreground opacity-0 transition-opacity peer-hover:opacity-100"
-        aria-label="Link to section"
-      />
+      </span>
+      {id ? (
+        <a
+          href={`#${id}`}
+          className="icon shrink-0 text-fd-muted-foreground opacity-0 transition-opacity group-hover/heading:opacity-100 focus:opacity-100 focus:outline-none"
+          aria-label="Link to section"
+        >
+          <Link />
+        </a>
+      ) : (
+        <Link
+          className="icon shrink-0 text-fd-muted-foreground opacity-0 transition-opacity group-hover/heading:opacity-100"
+          aria-label="Link to section"
+        />
+      )}
     </Component>
   );
 }

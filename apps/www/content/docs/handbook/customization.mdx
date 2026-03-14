@@ -1,0 +1,64 @@
+---
+title: Customization
+description: Controlling components with state, handling change events, and escape hatches for dialogs and overlays.
+---
+
+Aura components built on Radix UI can be used uncontrolled (default) or controlled. You can drive open/close state from your own state and react to change events. This page summarizes the patterns; for full API details see [Radix UI](https://www.radix-ui.com/primitives) and, for comparison, [Base UI — Customization](https://base-ui.com/react/handbook/customization).
+
+## Controlling with state
+
+By default, components like Dialog, AlertDialog, Tooltip, and Collapsible are **uncontrolled**: they manage open state internally and open/close in response to the trigger and built-in behavior (e.g. Escape, outside click).
+
+To **control** them, pass your own state into the root component:
+
+- **`open`** — boolean, whether the overlay or content is open.
+- **`onOpenChange`** — callback that receives the next open value (and in some primitives, event details). Update your state here so the component stays in sync.
+
+Example: open a dialog after a timeout, without a user clicking a trigger:
+
+```tsx
+const [open, setOpen] = React.useState(false);
+
+React.useEffect(() => {
+  const t = setTimeout(() => setOpen(true), 1000);
+  return () => clearTimeout(t);
+}, []);
+
+return (
+  <Dialog.Root open={open} onOpenChange={setOpen}>
+    <Dialog.Portal>
+      <Dialog.Overlay />
+      <Dialog.Content>Opened programmatically.</Dialog.Content>
+    </Dialog.Portal>
+  </Dialog.Root>
+);
+```
+
+Controlled state also lets you read or influence open state from outside (e.g. close from a parent, or sync with URL or analytics).
+
+## Change events
+
+Handlers such as `onOpenChange` are called when the component would change state (e.g. user presses Escape, clicks outside, or clicks the trigger). In Radix, the signature is typically `onOpenChange(open: boolean)`. Some primitives or wrappers may pass a second argument with event details (e.g. reason, native event). Use that when available to branch behavior (e.g. only run logic when the reason is `escape-key` or `pointer-down-outside`). Check the Radix docs for each primitive’s callback shape.
+
+## Preventing or customizing a change
+
+- **Radix:** There is no built-in `cancel()` on the event. To “prevent” a change, use the component in **controlled** mode: keep `open` and in `onOpenChange` decide whether to call your state setter. If you don’t update state (or set it to the same value), the component effectively doesn’t change.
+- **Base UI** documents `eventDetails.cancel()` to stop the internal state update; that pattern is library-specific. In Aura (Radix), controlling state and not updating it is the equivalent.
+
+## Propagation (e.g. Escape key)
+
+In overlays like Dialog or Tooltip, Escape often closes the topmost overlay and may stop propagation so parent overlays don’t all close. In Radix, this behavior is built in; customization options depend on the primitive. Base UI documents `eventDetails.allowPropagation()` to let the DOM event propagate so a parent can also close. If you need similar behavior with Radix, check the specific primitive’s docs and props for escape or focus behavior.
+
+## Escape hatches
+
+When you need to prevent the default behavior of a React event (e.g. `onClick`, `onKeyDown`) that the primitive also handles, you can call `event.preventDefault()` or `event.stopPropagation()` in your handler. Use sparingly and only when the primitive doesn’t expose a prop for the behavior you want. For Radix, see the relevant primitive’s API for supported props and events.
+
+## Summary
+
+| Need | Approach in Aura (Radix) |
+|------|---------------------------|
+| Open/close from code or external state | Use **controlled** `open` and `onOpenChange`. |
+| Run logic when open state changes | Implement it inside `onOpenChange` (and use `open` if you need to read current state). |
+| “Cancel” a close or open | Use controlled state and in `onOpenChange` don’t update state when you want to keep the current state. |
+| Customize Escape or propagation | Check the Radix primitive’s docs for escape/focus props. |
+| Override a specific event | Use React event handlers and `preventDefault`/`stopPropagation` as needed; prefer primitive props when available. |

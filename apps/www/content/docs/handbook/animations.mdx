@@ -1,0 +1,69 @@
+---
+title: Animations
+description: Component animation tokens and keyframes — accordion, alert-dialog, collapsible, dialog — and where they are imported.
+---
+
+Component enter/exit and overlay animations are defined as CSS custom properties and keyframes. The app imports the animation styles in `@layer components` and components reference them via `data-[state=open]:animate-*` (or equivalent state).
+
+## Where animations live
+
+In the www app, these four files are imported inside `@layer components` in [apps/www/app/globals.css](apps/www/app/globals.css) (lines 278–281):
+
+- `../styles/accordion.css`
+- `../styles/alert-dialog.css`
+- `../styles/collapsible.css`
+- `../styles/dialog.css`
+
+The animation theme block in each file uses `@theme animatons` (the token names below are as defined in the codebase). Keyframes are defined in `@layer components`.
+
+## Accordion
+
+**File:** `apps/www/styles/accordion.css`
+
+| Token | Keyframes | Duration | Easing |
+|-------|-----------|----------|--------|
+| `--animate-accordion-open` | `slideDownAccordion` | 250ms | ease-in-out |
+| `--animate-accordion-closed` | `slideUpAccordion` | 250ms | ease-in-out |
+
+- **slideDownAccordion:** `height: 0` → `height: var(--radix-accordion-content-height)`
+- **slideUpAccordion:** `height: var(--radix-accordion-content-height)` → `height: 0`
+
+Uses Radix's content-height variable for smooth height animation (allowed for collapsible/accordion in the animation foundation).
+
+## Alert dialog and Dialog
+
+**Files:** `apps/www/styles/alert-dialog.css`, `apps/www/styles/dialog.css`
+
+Both define the same overlay and content tokens:
+
+| Token | Keyframes | Duration | Easing |
+|-------|-----------|----------|--------|
+| `--animate-overlay-show` | `overlayShow` | 150ms | cubic-bezier(0.16, 1, 0.3, 1) |
+| `--animate-content-show` | `contentShow` | 150ms | cubic-bezier(0.16, 1, 0.3, 1) |
+
+- **overlayShow:** `opacity: 0` → `opacity: 1`
+- **contentShow:** `opacity: 0` and `transform: scale(0.96)` → `opacity: 1` and `transform: scale(1)`
+
+Components use these via state data attributes. For example, in the registry Dialog: `DialogOverlay` uses `data-[state=open]:animate-overlay-show` and `DialogContent` uses `data-[state=open]:animate-content-show`.
+
+## Collapsible
+
+**File:** `apps/www/styles/collapsible.css`
+
+| Token | Keyframes | Duration | Easing |
+|-------|-----------|----------|--------|
+| `--animate-collapsible-down` | `slideDownCollapsible` | 500ms | ease |
+| `--animate-collapsible-up` | `slideUpCollapsible` | 500ms | ease |
+
+- **slideDownCollapsible:** `height: 0` → `height: var(--radix-collapsible-content-height)`
+- **slideUpCollapsible:** `height: var(--radix-collapsible-content-height)` → `height: 0`
+
+## Usage in components
+
+Apply the animation tokens with Tailwind (or equivalent) using the state that Radix exposes, e.g.:
+
+- Overlay: `data-[state=open]:animate-overlay-show`
+- Content: `data-[state=open]:animate-content-show`
+- Accordion/Collapsible content: use the corresponding open/closed or down/up tokens on the content wrapper that has the height transition.
+
+Animations follow the Aura animation foundation: compositor-friendly properties (`transform`, `opacity`; height only for collapsible/accordion), and you should respect `prefers-reduced-motion` where applicable (e.g. reduced or no animation for users who request it).

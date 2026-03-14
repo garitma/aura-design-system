@@ -1,0 +1,38 @@
+---
+title: Styling
+description: Where design tokens and shared styles live — main.css and globals.css — and how to use them.
+---
+
+Aura's styling is split between the registry's shared layer and the app's themed entry. Use the registry styles for design tokens, layout, and typography; use globals for Tailwind theme and color scales.
+
+## Registry styles
+
+### main.css
+
+**Path:** `packages/registry/styles/main.css`
+
+This file holds the shared design-token and layout layer used across Aura.
+
+- **Root tokens (`:root`):** `--aura` (13px base), `--aura-font-stack`, `--aura-font-quotes`, `--aura-grey`, `--aura-bg`, `--aura-text-primary`, `--aura-text-primary-inverse`, accent tokens (`--aura-accents-primary`, `--aura-accents-success`, `--aura-accents-info`, `--aura-accents-warning`, `--aura-accents-danger` and `-bg` variants), `--aura-input-radius`, `--aura-button-radius`, `--aura-input-bg`, `--aura-input-placeholder-color`, `--aura-input-border-color`, `--aura-radius`, `--aura-opacity`, `--aura-outline`, `--aura-button-hover`, `--aura-link`, `--aura-link-hover`, `--aura-selector`, `--aura-loader`, `--aura-skeleton-start`, `--aura-skeleton-end`.
+- **Layout:** `.valign` (flex center column), `.fluid` (width 100%), `.halo` (flex row wrap), `.reverse`, `.aureole` (grid with `.one` … `.twelve` columns), `.span-1` … `.span-12`, responsive behavior for small viewports; `.aura-container`, `.smish`, `.smosh`, `.smash`, `.smush`, `.smesh` (max-width containers).
+- **Typography:** Fluid `clamp(var(--min), var(--val), var(--max))` on `body h1`–`h6`, `p`, and `.h1`–`.h6`, `.p`; each heading sets `--min`, `--val`, `--max`; `blockquote` shares the h4 scale; `p` margin and `blockquote` styling.
+- **Utilities:** `.truncate`, `.disabled` and input/button disabled opacity, `.typeahead`, `.action`, `.unset`, `.hide-small` / `.hide-medium` / `.hide-large` (media queries), `.warning` / `.info` / `.danger` / `.success` and `-text` variants.
+- **Other:** `.pad`, `.aura`, `.inputer`, `.skeleton` (loading animation).
+
+### globals.css
+
+**Path:** `packages/registry/styles/globals.css`
+
+This is the Tailwind/themed entry. It imports Tailwind and defines what the theme and base layer use.
+
+- **`@theme inline`:** `--spacing: 13px`, `--font-sans`, semantic colors (`--info`, `--success`, `--danger`, `--warning` and `-contrast`), radius scale (`--radius-sm` … `--radius-xl`), and Tailwind color mappings for `gray-*`, `accent-*`, and semantic tokens (`--primary`, `--primary-foreground`, etc.).
+- **`:root`:** 12-step scales `--accent-1`–`--accent-12`, `--accent-a1`–`--accent-a12`, `--accent-contrast`, `--accent-surface`, `--accent-indicator`, `--accent-track`; same for `--gray-*`; `--primary`, `--primary-foreground`, `--secundary`, `--secundary-foreground`; Aura tokens (`--aura`, `--aura-font-stack`, `--aura-bg`, `--aura-text-primary`, input/button/loader/skeleton mappings).
+- **Dark mode:** `@media (prefers-color-scheme: dark)` overrides for accent and gray scales.
+- **`@layer base`:** Imports `main.css` and default component styles (accordion, alert-dialog, collapsible, dialog, sidebar); `html` font-size, `main` background, `.dark` semantic overrides.
+
+## How to use them
+
+- **In an app:** Import or layer the registry `globals.css` so the theme and base layer (including main.css) apply. Your app's own `globals.css` can then add or override (e.g. import component animation CSS in `@layer components` as in the www app).
+- **Tokens:** Use `--spacing` and the radius/color tokens from `@theme` and `:root` for margins, padding, borders, and backgrounds so Tailwind and custom CSS stay consistent. See [Taste](/docs/taste) for the spacing scale and color workflow.
+- **Layout:** Use `.aureole` and `.span-*` for grids, and `.smish`–`.smesh` for section containers, per the layout and spacing rules.
+- **Typography:** Prefer semantic classes `.h1`–`.h6`, `.p` (or the elements themselves) so fluid sizing and line-height apply; avoid Tailwind text-size utilities for primary copy.
