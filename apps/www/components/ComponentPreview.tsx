@@ -78,22 +78,34 @@ export function ComponentPreview({
       {...props}
     >
       <div
-        className={cn("preview flex min-h-[450px] w-full justify-center p-2 border border-gray-a6 rounded-lg", {
-          "items-center": align === "center",
-          "items-start": align === "start",
-          "items-end": align === "end",
-        })}
+        className={cn(
+          "preview flex min-h-[450px] w-full p-2 border border-gray-a6 rounded-lg",
+          name === "sidebar-demo"
+            ? "items-stretch"
+            : {
+                "justify-center items-center": align === "center",
+                "justify-center items-start": align === "start",
+                "justify-center items-end": align === "end",
+              }
+        )}
       >
-        <React.Suspense
-          fallback={
-            <div className="flex w-full items-center justify-center text-sm text-muted-foreground">
-              <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-              Loading...
-            </div>
-          }
+        <div
+          className={cn(
+            "w-full min-h-[420px]",
+            name === "sidebar-demo" && "translate-z-0 overflow-hidden rounded-md"
+          )}
         >
-          {Preview}
-        </React.Suspense>
+          <React.Suspense
+            fallback={
+              <div className="flex w-full items-center justify-center text-sm text-muted-foreground">
+                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                Loading...
+              </div>
+            }
+          >
+            {Preview}
+          </React.Suspense>
+        </div>
       </div>
       <div className="flex flex-col space-y-4 -mt-2">
         <div className="w-full rounded-md [&_pre]:my-0 [&_pre]:max-h-[350px] [&_pre]:overflow-auto ">
