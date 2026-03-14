@@ -34,7 +34,7 @@ export const DrawerDemo = () => (
         <DrawerFooter>
           <Button>Submit</Button>
           <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="pill" >Cancel</Button>
           </DrawerClose>
         </DrawerFooter>
       </div>

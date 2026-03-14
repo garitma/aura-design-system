@@ -20,7 +20,7 @@ export const SignaturePadDemoVariants = () => (
     </div>
     <div>
       <p className="text-sm font-medium mb-2">Outline</p>
-      <SignaturePad variant="outline" />
+      <SignaturePad variant="pill"  />
     </div>
   </div>
 )
@@ -159,13 +159,13 @@ export const SignaturePadDemoWithRefMethods = () => {
     <div className="flex flex-col gap-4">
       <SignaturePad ref={signaturePadRef} showButtons={false} />
       <div className="flex gap-2">
-        <Button onClick={handleClear} variant="outline" size="sm">
+        <Button onClick={handleClear} variant="pill"  size="sm">
           Clear (via ref)
         </Button>
-        <Button onClick={handleSave} variant="outline" size="sm">
+        <Button onClick={handleSave} variant="pill"  size="sm">
           Save (via ref)
         </Button>
-        <Button onClick={handleCheckEmpty} variant="outline" size="sm">
+        <Button onClick={handleCheckEmpty} variant="pill"  size="sm">
           Check Empty
         </Button>
       </div>
@@ -194,7 +194,7 @@ export const SignaturePadDemoCombinedExample = () => {
       <div>
         <p className="text-sm font-medium mb-2">Sign below:</p>
         <SignaturePad
-          variant="outline"
+          variant="pill" 
           size="md"
           penColor="hsl(var(--foreground))"
           lineWidth={3}

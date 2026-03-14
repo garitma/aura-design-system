@@ -6,7 +6,7 @@ export const Secondary = () => <Badge variant="secondary">Secondary</Badge>
 
 export const Destructive = () => <Badge variant="destructive">Destructive</Badge>
 
-export const Outline = () => <Badge variant="outline">Outline</Badge>
+export const Outline = () => <Badge variant="pill" >Outline</Badge>
 
 export const Status = () => (
     <div className="flex gap-2">

@@ -34,7 +34,7 @@ export default function HomeDocSection({
             <p className="p text-gray-11 mt-0.5">{description}</p>
           </div>
         </div>
-        <Button variant="outline" size="default" asChild className="shrink-0">
+        <Button variant="pill" size="default" asChild className="shrink-0">
           <Link href={href} className="inline-flex items-center gap-1">
             View
             <ArrowRightIcon className="icon" />

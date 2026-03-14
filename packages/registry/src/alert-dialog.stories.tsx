@@ -26,7 +26,7 @@ export const Default = () => (
       </AlertDialogHeader>
       <AlertDialogFooter>
         <AlertDialogCancel asChild>
-          <Button variant="outline">Cancel</Button>
+          <Button variant="pill" >Cancel</Button>
         </AlertDialogCancel>
         <AlertDialogAction asChild>
           <Button>Continue</Button>
