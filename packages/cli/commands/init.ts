@@ -26,11 +26,7 @@ async function initializeAura() {
       "pnpm",
       [
         "dlx",
-        "shadcn@latest",
-        "init",
-        "--base-color",
-        "neutral",
-        "--no-base-style",
+        "create-next-app@latest",
       ],
       {
         stdio: "inherit",
