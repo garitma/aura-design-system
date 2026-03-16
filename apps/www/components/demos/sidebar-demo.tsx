@@ -289,7 +289,7 @@ export const SidebarDemo = () => {
                       <ChevronRightIcon className="icon ml-auto group-data-[collapsible=icon]:hidden" />
                     </SidebarMenuButton>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="start" className="w-48">
+                  <DropdownMenuContent align="start" >
                     <DropdownMenuLabel>Projects</DropdownMenuLabel>
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>New project</DropdownMenuItem>

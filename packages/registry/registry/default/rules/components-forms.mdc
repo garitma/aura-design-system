@@ -1,0 +1,66 @@
+---
+description: Form system — useFormDynamic, Form components, validation (validateFormData), and field composition.
+globs: "**/*form*,**/web-validation*"
+alwaysApply: false
+---
+
+# Aura Form System
+
+Forms use **useFormDynamic** for state, **Form** for error distribution, and **validateFormData** (from `@/utils/web-validation`) for JSON Schema validation. Schema property names must match field names so errors match by `instancePath`.
+
+## Hook & state
+
+* **MUST**: Define forms with `useFormDynamic(initialValues, formRef?)` where `initialValues` is `Record<string, FieldType>` and `FieldType` is `"text" | "textarea" | "select" | "checkbox"`.
+* **MUST**: Get field props via `formData.getFields()` (e.g. `const { name, email } = formData.getFields()`) or `formData.field(name)` and pass them as the `field` prop to Form field components.
+* **MUST**: Use `formData.getValues()` for validation and submit payloads.
+
+## Form root & errors
+
+* **MUST**: Wrap fields in `<Form ref={formRef} onSubmit={...} errors={formErrors} id="form-id">`. Do not pass `errors` to each field; Form injects them by matching `error.instancePath.slice(1)` to `field.name`.
+* **MUST**: On failed validation call `formData.touchForm()` so field-level errors show, then pass `errors ?? undefined` to `Form`.
+* **SHOULD**: Use `FormAlert formData={{ fetchStatus: formData.fetchStatus, error: formData.error }}` for form-level errors when `fetchStatus === "error"`.
+
+## Validation
+
+* **MUST**: Validate with `validateFormData(schema, formData.getValues())` from `@/utils/web-validation`. Use the returned `errors` (AJV `ErrorObject[]`) as the `errors` prop on Form.
+* **MUST**: Show field errors only when `field.touch && errors?.length > 0`; Form field components do this via `serverInvalid` and `FormRadix.Message`.
+
+## Field components
+
+* **MUST**: Use **FormField** for native controls (input, textarea, select) with `field.onChange`; use **FormSwitch** / **FormCheckbox** with `field.value` and `field.onCheckedChange`.
+* **MUST**: Use **FormCheckboxGroup** / **FormRadioGroup** with `field.setValue` (array or string). For composed controls (Select, Combobox, Editor, SignaturePad, SortableList), use `field.setValue(value)` in the control’s change handler; do not pass `field.value` as controlled value for Select (uncontrolled + `onValueChange` → `field.setValue`).
+* **MUST**: Use **FormSubmit** with `form={id}` matching Form’s `id` and `fetchStatus={formData.fetchStatus}` for loading UI.
+
+## Submit flow
+
+```tsx
+const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
+  formData.setFetchStatus("loading");
+  const { isValid, errors } = validateFormData(schema, formData.getValues());
+  if (!isValid) {
+    formData.setFetchStatus("error");
+    formData.touchForm();
+    formData.setError("Please fix the errors below.");
+    return;
+  }
+  // submit...
+  formData.setFetchStatus("success");
+};
+```
+
+## Implementation
+
+```tsx
+// Correct: field from hook, errors from Form, validate with getValues()
+const formData = useFormDynamic({ name: "text", email: "text" }, formRef);
+const { name, email } = formData.getFields();
+const { isValid, errors } = validateFormData(schema, formData.getValues());
+
+<Form ref={formRef} onSubmit={handleSubmit} errors={errors ?? undefined} id="my-form">
+  <FormAlert formData={{ fetchStatus: formData.fetchStatus, error: formData.error }} />
+  <FormField field={name} label="Name *"><Input type="text" /></FormField>
+  <FormField field={email} label="Email *"><Input type="email" /></FormField>
+  <FormSubmit fetchStatus={formData.fetchStatus} buttonProps={{ children: "Submit" }} form="my-form" />
+</Form>
+```

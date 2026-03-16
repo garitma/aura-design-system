@@ -1529,6 +1529,19 @@
       ]
     },
     {
+      "name": "rule-components-forms",
+      "type": "registry:file",
+      "title": "Rule: Components Forms",
+      "description": "Aura rule: Components Forms. Install to .cursor/rules/ for Cursor AI guidance.",
+      "files": [
+        {
+          "path": "registry/default/rules/components-forms.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/components-forms.mdc"
+        }
+      ]
+    },
+    {
       "name": "rule-fundation-animations",
       "type": "registry:file",
       "title": "Rule: Fundation Animations",
@@ -1612,6 +1625,11 @@
       "title": "Aura Rules",
       "description": "All Aura Design System Cursor rules. Installs to .cursor/rules/ for AI guidance.",
       "files": [
+        {
+          "path": "registry/default/rules/components-forms.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/components-forms.mdc"
+        },
         {
           "path": "registry/default/rules/fundation-animations.mdc",
           "type": "registry:file",
