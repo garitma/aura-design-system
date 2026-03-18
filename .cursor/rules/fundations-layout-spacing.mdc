@@ -36,7 +36,7 @@ You are working in a **Tailwind v4** environment where `--spacing` is globally s
   - Gap: `gap`, `space-x`, `space-y`
   - Dimensions: `h`, `min-h`, `max-h`, `w`, `min-w`, `max-w`, `size`
 * **EXAMPLE**: `p-4` in Aura = `52px` (4 × 13px), NOT `16px` (4 × 4px).
-* **SHOULD**: Use the spacing CLI command to convert Tailwind classes: `dlx @aura-design/cli@latest [target]`.
+
 
 ## Containers
 
@@ -46,11 +46,6 @@ You are working in a **Tailwind v4** environment where `--spacing` is globally s
 * **SHOULD**: Avoid varying container configurations unless there's valid justification.
 * **MUST**: Containers follow CSS box model principles.
 
-## Integration with `pnpm dlx @aura-design/cli@latest `
-We have a custom CLI tool to handle this translation.
-- **NEVER** use standard Tailwind numeric increments (1, 2, 3, 4) if you are aiming for their default pixel values.
-- **ALWAYS** check if your generated code aligns with the `pnpm dlx @aura-design/cli@latest` logic.
-- **IF UNSURE**: Use the spacing you think is correct, then **self-correct** by running: `pnpm dlx @aura-design/cli@latest spacing [filename]`.
 
 ## Critical Instructions
 * **NO ARBITRARY VALUES:** Never use `p-[16px]` or `m-[20px]` unless explicitly asked. Use the 13px scale.
