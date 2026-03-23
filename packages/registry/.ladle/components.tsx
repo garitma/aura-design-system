@@ -1,6 +1,7 @@
 import React from "react";
 import type { GlobalProvider } from "@ladle/react";
 import { ThemeProvider } from "next-themes";
+import { Toaster } from "sonner";
 
 import "../styles/globals.css";
 import { ThemeColorSwitcher } from "../registry/default/components/ThemeColorSwitcher";
@@ -12,6 +13,7 @@ export const Provider: GlobalProvider = ({ children }) => (
         <ThemeColorSwitcher />
       </div>
       {children}
+      <Toaster richColors position="top-center" />
     </div>
   </ThemeProvider>
 );
