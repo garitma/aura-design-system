@@ -123,14 +123,14 @@ export function DataGridColumnHeader<TData, TValue>({
       <DropdownMenu modal={false}>
         <DropdownMenuTrigger
           className={cn(
-            "flex size-full items-center justify-between gap-2 p-2 text-xs text-gray-12 hover:bg-accent-3 data-[state=open]:bg-accent-3",
+            "flex size-full items-center justify-between gap-2 p-1 text-xs text-gray-12 hover:bg-accent-3 data-[state=open]:bg-accent-3",
             isAnyColumnResizing && "pointer-events-none",
             className,
           )}
           onPointerDown={onTriggerPointerDown}
           {...props}
         >
-          <div className="flex min-w-0 flex-1 items-center gap-1.5">
+          <div className="flex min-w-0 flex-1 items-center gap-1">
             {columnVariant && (
               <Tooltip delayDuration={100}>
                 <TooltipTrigger asChild>
@@ -147,7 +147,7 @@ export function DataGridColumnHeader<TData, TValue>({
           </div>
           <ChevronDownIcon className="icon shrink-0 text-gray-11" aria-hidden />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="start" sideOffset={0} className="w-60">
+        <DropdownMenuContent align="start" sideOffset={0} className="w-25">
           {column.getCanSort() && (
             <>
               <DropdownMenuCheckboxItem
