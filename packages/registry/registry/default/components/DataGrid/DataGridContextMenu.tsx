@@ -216,7 +216,7 @@ function ContextMenuImpl<TData>({
       <DropdownMenuContent
         data-grid-popover=""
         align="start"
-        className="w-48"
+        className="w-15"
         onCloseAutoFocus={onCloseAutoFocus}
       >
         <DropdownMenuItem onSelect={onCopy} className="gap-1">
