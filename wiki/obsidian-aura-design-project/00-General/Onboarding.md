@@ -33,6 +33,6 @@ Default dev URL for this workspace is **`http://localhost:4000`** (`apps/www` sc
 
 ## Where to read next
 
+- [[Packages and docs app]] — index linking each package note ([[CLI]], [[Registry]], [[Design md]], …) and [[Site and docs app]].
 - [[Local development]] — Sonar, env vars, troubleshooting.
-- [[Site and docs app]] — routes and content.
-- [[Bootstrap]] — rules for maintaining this vault with AI assistance.
+- [[Site and docs app]] — routes and content pipeline (Fumadocs, search, LLM exports).

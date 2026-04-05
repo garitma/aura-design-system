@@ -1,69 +1,31 @@
 # Aura Design System
 
-An open-source UI component library for building high-quality, accessible design systems and web apps.
+An open-source UI kit for accessible, consistent interfaces. Components are distributed in **shadcn-style**: you own the code—copy, adapt, and style it in your project.
 
-Aura Design System is a space-oriented design system where each object has a halo of light that surrounds it—its aura. You can use these components to build consistent and beautiful interfaces.
+## Official website
 
-## What is Aura Design System?
+Documentation, philosophy, installation, the component registry, and design tokens live at **[auradesignsystem.com](https://auradesignsystem.com/)**.
 
-This is not a component library in the traditional sense. It's a collection of components built from our team's experience, and we are distributing them using the 'shadcn mode'. It was built for our team, but you can use it too.
+Quick links: [Docs](https://auradesignsystem.com/docs) · [Installation](https://auradesignsystem.com/docs/installation) · [Components](https://auradesignsystem.com/docs/components) · [Component list (all.txt)](https://auradesignsystem.com/all.txt)
 
-**What do you mean by not a component library?**
-
-You own the code. You can decide how the components are built and styled. You can copy and paste the code into your project and customize it to your needs. This registry-based approach provides several key advantages:
-
-- **Full Ownership & Control:** Component code lives in your codebase, giving you complete control to modify, adapt, and restyle any component
-- **No "Black Box":** You can see exactly what the code is doing, making it easier to debug, customize, and understand
-- **Pick What You Need:** Only add the components you are actively using, preventing bloat
-- **Framework Agnostic:** Components are designed to be copied and pasted, not tied to specific library versions
-- **Easy Updates:** The CLI tool makes it easy to check for updates and decide whether to incorporate them
-
-## Quick Start
-
-To install, simply run the Aura Design CLI:
+## Quick start
 
 ```bash
 pnpm dlx @aura-design/cli@latest init
-```
-
-This command will automatically execute the original shadcn/ui CLI under the hood, and then apply all necessary tokens and configuration fixtures specific to the Aura Design System. You don't need to manually configure anything — just run the command and your project will be set up with Aura's tokens and settings seamlessly.
-
-To add individual components:
-
-```bash
 pnpm dlx shadcn@latest add @aura/button
 ```
 
-If you want to install all available Aura components in one shot, you can use the list at [https://auradesignsystem.com/all.txt](https://auradesignsystem.com/all.txt).
+For details, follow the guides on [auradesignsystem.com](https://auradesignsystem.com/).
 
-## Design Tokens
+## More in this repo
 
-Aura uses a unique design token system:
+Internal notes, onboarding, identity, and how the docs site fits together are in **[wiki/obsidian-aura-design-project](wiki/obsidian-aura-design-project)** (Obsidian vault).
 
-- **Spacing:** A unit of space is 13px, with tokens defined in increments of 1 or 0.5 units (1 = 13px, 1.5 = 19.5px, 2 = 26px, etc.)
-- **Colors:** Custom color palette system with accent and gray scales, supporting both light and dark modes
-- **Typography:** Responsive typography using CSS `clamp()` for fluid scaling across all devices
+## Releases & community
 
-## Documentation
-
-For full documentation, visit [auradesignsystem.com](https://auradesignsystem.com/).
-
-Key topics:
-- [Introduction](https://auradesignsystem.com/docs) - Philosophy and approach
-- [Installation](https://auradesignsystem.com/docs/installation) - Get started guide
-- [Registry](https://auradesignsystem.com/docs/registry) - Understanding the registry-based approach
-- [Taste](https://auradesignsystem.com/docs/taste) - Design tokens for spacing, colors, and typography
-- [Namespace](https://auradesignsystem.com/docs/namespace) - Managing components from multiple registries
-- [Components](https://auradesignsystem.com/docs/components) - Component documentation
-
-## Releases
-
-For changelog, visit [github.com/garitma/aura-design-system/releases](https://github.com/garitma/aura-design-system/releases).
-
-## Community
-
-- [GitHub Issues](https://github.com/garitma/aura-design-system/issues) - To report bugs or request features.
+- [Releases](https://github.com/garitma/aura-design-system/releases)
+- [Issues](https://github.com/garitma/aura-design-system/issues)
 
 ## License
 
-Licensed under the [MIT License](LICENSE), Copyright © 2025-present Garitma.
+[MIT](LICENSE) · Copyright © 2020-present Garitma.

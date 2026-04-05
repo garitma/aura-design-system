@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "03-Configuración/Local development.md",
+                "file": "02-Documentation/React fixture.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Local development"
+              "title": "React fixture"
             }
           }
         ]
@@ -183,17 +183,26 @@
       "bases:Create new base": false
     }
   },
-  "active": "235afcc0f734a1cc",
+  "active": "43b9bd1e51a97dc7",
   "lastOpenFiles": [
+    "02-Documentation/CLI.md",
+    "00-General/Onboarding.md",
+    "02-Documentation/System.md",
+    "02-Documentation/Styled system.md",
+    "02-Documentation/React fixture.md",
+    "02-Documentation/Design md.md",
+    "02-Documentation/Registry.md",
+    "Bootstrap.md",
     "~assets/logo.svg",
+    "00-General/Glossary.md",
+    "00-General/Vision.md",
+    "01-Identity/Product principles.md",
+    "01-Identity/Foundations.md",
+    "02-Documentation/Packages and docs app.md",
+    "03-Configuración/Local development.md",
     "~assets/a",
     "~assets",
     "03-Configuración/API routes.md",
-    "02-Documentation/Site and docs app.md",
-    "01-Identity/Product principles.md",
-    "01-Identity/Foundations.md",
-    "00-General/Vision.md",
-    "00-General/Onboarding.md",
-    "00-General/Glossary.md"
+    "02-Documentation/Site and docs app.md"
   ]
 }
