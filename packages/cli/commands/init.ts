@@ -171,13 +171,22 @@ async function initializeAura() {
     console.log("\nAdding class-names utility and Aura rules...");
     await execa(
       "pnpm",
-      ["dlx", "shadcn@latest", "add", "@aura/class-names", "@aura/page-get-starter", "@aura/css-main", "@aura/rules"],
+      [
+        "dlx",
+        "shadcn@latest",
+        "add",
+        "@aura/class-names",
+        "@aura/page-get-starter",
+        "@aura/css-main",
+        "@aura/design-md",
+        "@aura/rules",
+      ],
       {
         stdio: "inherit",
         cwd: appDir,
       }
     );
-    console.log(`\n✓ class-names utility and Aura rules have been added`);
+    console.log(`\n✓ class-names utility, DESIGN.md, and Aura rules have been added`);
     
   } catch (error) {
     console.error("Error initializing Aura:", error);

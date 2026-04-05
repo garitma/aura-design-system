@@ -10,6 +10,7 @@ const CURSOR_RULES_PATH = path.join(WORKSPACE_ROOT, ".cursor/rules");
 const REGISTRY_RULES_PATH = path.join(__dirname, "../registry/default/rules");
 
 const RULE_FILES = [
+  "design-md.mdc",
   "fundation-animations.mdc",
   "fundation-icons.mdc",
   "fundations-colors.mdc",

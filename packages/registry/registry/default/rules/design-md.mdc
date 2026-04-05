@@ -1,0 +1,10 @@
+---
+alwaysApply: true
+---
+
+# Aura DESIGN.md
+
+This project includes **DESIGN.md** at the **repository root** (install via `@aura/design-md`). It is the **narrative design specification** for Aura: visual theme, color roles, typography, the **13px spacing grid**, motion, and product principles.
+
+* **MUST**: When implementing UI, aligning with brand, or reasoning about Aura tokens, read and follow **`DESIGN.md`** at the project root together with `.cursor/rules/*` foundation rules.
+* **SHOULD**: Prefer tokens and patterns described in **DESIGN.md** over ad-hoc styling or one-off hex values.

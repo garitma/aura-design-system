@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rule-design-md",
+  "type": "registry:file",
+  "title": "Rule: DESIGN.md (narrative spec)",
+  "description": "Points agents to the project root DESIGN.md for Aura visual language, tokens, spacing, and editorial guidance.",
+  "files": [
+    {
+      "path": "registry/default/rules/design-md.mdc",
+      "content": "---\nalwaysApply: true\n---\n\n# Aura DESIGN.md\n\nThis project includes **DESIGN.md** at the **repository root** (install via `@aura/design-md`). It is the **narrative design specification** for Aura: visual theme, color roles, typography, the **13px spacing grid**, motion, and product principles.\n\n* **MUST**: When implementing UI, aligning with brand, or reasoning about Aura tokens, read and follow **`DESIGN.md`** at the project root together with `.cursor/rules/*` foundation rules.\n* **SHOULD**: Prefer tokens and patterns described in **DESIGN.md** over ad-hoc styling or one-off hex values.\n",
+      "type": "registry:file",
+      "target": ".cursor/rules/design-md.mdc"
+    }
+  ]
+}

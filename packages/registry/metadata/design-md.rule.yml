@@ -1,0 +1,4 @@
+# Rule metadata. Used by build-registry and generate-rules-docs.
+header:
+  title: DESIGN.md (narrative spec)
+  description: Points agents to the project root DESIGN.md for Aura visual language, tokens, spacing, and editorial guidance.

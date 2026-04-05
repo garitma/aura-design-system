@@ -60,6 +60,109 @@
       ]
     },
     {
+      "name": "data-grid",
+      "type": "registry:component",
+      "title": "DataGrid",
+      "description": "The DataGrid component.",
+      "files": [
+        {
+          "path": "registry/default/components/DataGrid/DataGrid.tsx",
+          "type": "registry:component",
+          "target": "components/DataGrid/DataGrid.tsx"
+        },
+        {
+          "path": "registry/default/components/DataGrid/DataGridCell.tsx",
+          "type": "registry:component",
+          "target": "components/DataGrid/DataGridCell.tsx"
+        },
+        {
+          "path": "registry/default/components/DataGrid/DataGridCellVariants.tsx",
+          "type": "registry:component",
+          "target": "components/DataGrid/DataGridCellVariants.tsx"
+        },
+        {
+          "path": "registry/default/components/DataGrid/DataGridCellWrapper.tsx",
+          "type": "registry:component",
+          "target": "components/DataGrid/DataGridCellWrapper.tsx"
+        },
+        {
+          "path": "registry/default/components/DataGrid/DataGridColumnHeader.tsx",
+          "type": "registry:component",
+          "target": "components/DataGrid/DataGridColumnHeader.tsx"
+        },
+        {
+          "path": "registry/default/components/DataGrid/DataGridContextMenu.tsx",
+          "type": "registry:component",
+          "target": "components/DataGrid/DataGridContextMenu.tsx"
+        },
+        {
+          "path": "registry/default/components/DataGrid/DataGridKeyboardShortcuts.tsx",
+          "type": "registry:component",
+          "target": "components/DataGrid/DataGridKeyboardShortcuts.tsx"
+        },
+        {
+          "path": "registry/default/components/DataGrid/DataGridPasteDialog.tsx",
+          "type": "registry:component",
+          "target": "components/DataGrid/DataGridPasteDialog.tsx"
+        },
+        {
+          "path": "registry/default/components/DataGrid/DataGridRow.tsx",
+          "type": "registry:component",
+          "target": "components/DataGrid/DataGridRow.tsx"
+        },
+        {
+          "path": "registry/default/components/DataGrid/DataGridSearch.tsx",
+          "type": "registry:component",
+          "target": "components/DataGrid/DataGridSearch.tsx"
+        },
+        {
+          "path": "registry/default/components/DataGrid/data-grid-utils.ts",
+          "type": "registry:component",
+          "target": "components/DataGrid/data-grid-utils.ts"
+        },
+        {
+          "path": "registry/default/components/DataGrid/types.ts",
+          "type": "registry:component",
+          "target": "components/DataGrid/types.ts"
+        },
+        {
+          "path": "registry/default/components/DataGrid/use-data-grid.ts",
+          "type": "registry:component",
+          "target": "components/DataGrid/use-data-grid.ts"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-direction",
+        "@radix-ui/react-icons",
+        "@tanstack/react-table",
+        "@tanstack/react-virtual",
+        "sonner"
+      ],
+      "registryDependencies": [
+        "@aura/badge",
+        "@aura/button",
+        "@aura/calendar",
+        "@aura/checkbox",
+        "@aura/class-names",
+        "@aura/compose-refs",
+        "@aura/dialog",
+        "@aura/dropdown-menu",
+        "@aura/form",
+        "@aura/input",
+        "@aura/popover",
+        "@aura/select",
+        "@aura/skeleton",
+        "@aura/textarea",
+        "@aura/tooltip",
+        "@aura/use-as-ref",
+        "@aura/use-badge-overflow",
+        "@aura/use-debounced-callback",
+        "@aura/use-dynamic-form",
+        "@aura/use-isomorphic-layout-effect",
+        "@aura/use-lazy-ref"
+      ]
+    },
+    {
       "name": "editor",
       "type": "registry:component",
       "title": "Editor",
@@ -588,6 +691,26 @@
       "registryDependencies": [
         "@aura/class-names",
         "@aura/separator"
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "description": "The Calendar component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Calendar.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "react-day-picker"
+      ],
+      "registryDependencies": [
+        "@aura/button",
+        "@aura/class-names"
       ]
     },
     {
@@ -1267,6 +1390,21 @@
       ]
     },
     {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "description": "The Textarea component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Textarea.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
       "name": "toggle",
       "type": "registry:ui",
       "title": "Toggle",
@@ -1481,6 +1619,45 @@
       ]
     },
     {
+      "name": "use-badge-overflow",
+      "type": "registry:hook",
+      "title": "use-badge-overflow",
+      "description": "Hook: use-badge-overflow",
+      "files": [
+        {
+          "path": "registry/default/hooks/use-badge-overflow.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-callback-ref",
+      "type": "registry:hook",
+      "title": "use-callback-ref",
+      "description": "Hook: use-callback-ref",
+      "files": [
+        {
+          "path": "registry/default/hooks/use-callback-ref.ts",
+          "type": "registry:hook"
+        }
+      ]
+    },
+    {
+      "name": "use-debounced-callback",
+      "type": "registry:hook",
+      "title": "use-debounced-callback",
+      "description": "Hook: use-debounced-callback",
+      "files": [
+        {
+          "path": "registry/default/hooks/use-debounced-callback.ts",
+          "type": "registry:hook"
+        }
+      ],
+      "registryDependencies": [
+        "@aura/use-callback-ref"
+      ]
+    },
+    {
       "name": "use-dynamic-form",
       "type": "registry:hook",
       "title": "use-dynamic-form",
@@ -1538,6 +1715,19 @@
           "path": "registry/default/rules/components-forms.mdc",
           "type": "registry:file",
           "target": ".cursor/rules/components-forms.mdc"
+        }
+      ]
+    },
+    {
+      "name": "rule-design-md",
+      "type": "registry:file",
+      "title": "Rule: DESIGN.md (narrative spec)",
+      "description": "Points agents to the project root DESIGN.md for Aura visual language, tokens, spacing, and editorial guidance.",
+      "files": [
+        {
+          "path": "registry/default/rules/design-md.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/design-md.mdc"
         }
       ]
     },
@@ -1631,6 +1821,11 @@
           "target": ".cursor/rules/components-forms.mdc"
         },
         {
+          "path": "registry/default/rules/design-md.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/design-md.mdc"
+        },
+        {
           "path": "registry/default/rules/fundation-animations.mdc",
           "type": "registry:file",
           "target": ".cursor/rules/fundation-animations.mdc"
@@ -1690,6 +1885,19 @@
           "path": "registry/default/styles/main.css",
           "type": "registry:file",
           "target": "styles/main.css"
+        }
+      ]
+    },
+    {
+      "name": "design-md",
+      "type": "registry:file",
+      "title": "DESIGN.md",
+      "description": "Aura narrative design specification (visual language, tokens, spacing, motion). Installs to the project root for AI and team reference.",
+      "files": [
+        {
+          "path": "registry/default/design-md/DESIGN.md",
+          "type": "registry:file",
+          "target": "DESIGN.md"
         }
       ]
     }

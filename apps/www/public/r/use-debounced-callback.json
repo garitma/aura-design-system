@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "use-debounced-callback",
+  "type": "registry:hook",
+  "title": "use-debounced-callback",
+  "description": "Hook: use-debounced-callback",
+  "registryDependencies": [
+    "@aura/use-callback-ref"
+  ],
+  "files": [
+    {
+      "path": "registry/default/hooks/use-debounced-callback.ts",
+      "content": "import * as React from \"react\";\n\nimport { useCallbackRef } from \"@/hooks/use-callback-ref\";\n\nexport function useDebouncedCallback<T extends (...args: never[]) => unknown>(\n  callback: T,\n  delay: number,\n) {\n  const handleCallback = useCallbackRef(callback);\n  const debounceTimerRef = React.useRef(0);\n  React.useEffect(\n    () => () => window.clearTimeout(debounceTimerRef.current),\n    [],\n  );\n\n  const setValue = React.useCallback(\n    (...args: Parameters<T>) => {\n      window.clearTimeout(debounceTimerRef.current);\n      debounceTimerRef.current = window.setTimeout(\n        () => handleCallback(...args),\n        delay,\n      );\n    },\n    [handleCallback, delay],\n  );\n\n  return setValue;\n}\n",
+      "type": "registry:hook"
+    }
+  ]
+}

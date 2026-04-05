@@ -30,6 +30,19 @@
           "target": "styles/main.css"
         }
       ]
+    },
+    {
+      "name": "design-md",
+      "type": "registry:file",
+      "title": "DESIGN.md",
+      "description": "Aura narrative design specification (visual language, tokens, spacing, motion). Installs to the project root for AI and team reference.",
+      "files": [
+        {
+          "path": "registry/default/design-md/DESIGN.md",
+          "type": "registry:file",
+          "target": "DESIGN.md"
+        }
+      ]
     }
   ]
 }
