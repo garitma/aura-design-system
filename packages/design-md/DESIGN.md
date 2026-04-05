@@ -144,6 +144,10 @@ Sizes use **height utilities** aligned to the **13px grid** (e.g. `h-4`, `h-3`, 
 
 Icon-only buttons should embed **Radix** icons with **`className="icon"`** (no `size` prop).
 
+### Empty (`@aura/empty`)
+
+Composable **empty states** for lists, tables, and panels. **`Empty`** is a centered column with **`border-dashed`** at **`gray-6`**, **`gray-2`** fill, and **`p-2`** on the **13px** grid. **`EmptyHeader`** groups **`EmptyMedia`** (default transparent wrap or **`variant="icon"`** on **`gray-3`**), **`EmptyTitle`** (**`.h5`**, **`gray-12`**), and **`EmptyDescription`** (**`text-sm`**, **`gray-11`**, underlined links that **`hover:text-primary`**). **`EmptyContent`** holds actions—typically a primary **`Button variant='fill'`** and an optional secondary **`variant='pill'`**, with **`gap-1`** between controls when they sit in one row.
+
 ### Card (`@aura/card`)
 
 Default **`Card`** uses **`bg-gray-2`**, **`border-gray-6`**, **`rounded-md`**, and **`CardFooter`** includes **`border-t border-gray-6`**. For an **editorial “registry unit”** (no chrome lines, tonal lift only), **override** with e.g. **`border-0`**, **`rounded-xl`**, **`bg-gray-3`** on **`gray-1`**, and rely on **padding + spacing**—**design target**; always reconcile with the installed **`Card.tsx`** when upgrading.
