@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "description": "DESIGN.md and token previews for AI agents (Aura Design System)",
+  "scripts": {
+    "build": "node scripts/prepare-public.cjs"
+  },
   "license": "MIT",
   "homepage": "https://auradesignsystem.com",
   "repository": {

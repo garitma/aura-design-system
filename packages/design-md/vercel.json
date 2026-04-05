@@ -1,0 +1,22 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "echo 'skip'",
+  "buildCommand": "node scripts/prepare-public.cjs",
+  "outputDirectory": "public",
+  "rewrites": [
+    { "source": "/", "destination": "/preview.html" },
+    { "source": "/dark", "destination": "/preview-dark.html" }
+  ],
+  "headers": [
+    {
+      "source": "/DESIGN.md",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "text/markdown; charset=utf-8"
+        }
+      ]
+    }
+  ]
+}
