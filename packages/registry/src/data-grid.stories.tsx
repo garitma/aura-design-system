@@ -204,7 +204,7 @@ function DataGridDemo() {
         maxSize: 52,
         enableResizing: false,
         header: ({ table }) => (
-          <div className="flex size-full items-center justify-center px-1">
+          <div className="flex flex-col size-full items-center justify-center px-1">
             <Checkbox
               checked={
                 table.getIsAllPageRowsSelected() ||
@@ -220,7 +220,7 @@ function DataGridDemo() {
           </div>
         ),
         cell: ({ row }) => (
-          <div className="flex size-full items-center justify-center px-1">
+          <div className="flex flex-col size-full items-center justify-center px-1">
             <Checkbox
               checked={row.getIsSelected()}
               onCheckedChange={(value) => row.toggleSelected(!!value)}

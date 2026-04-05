@@ -941,6 +941,7 @@ export function SelectCell<TData>({
       isActiveSearchMatch={isActiveSearchMatch}
       readOnly={readOnly}
       onKeyDown={onWrapperKeyDown}
+      className="flex min-w-0 items-center **:data-[slot=grid-cell-content]:line-clamp-none"
     >
       {isEditing ? (
         <Select
@@ -949,11 +950,11 @@ export function SelectCell<TData>({
           open={isEditing}
           onOpenChange={onOpenChange}
         >
-          <SelectTrigger className="size-full items-start border-none bg-transparent p-0 shadow-none focus-visible:ring-0 [&_svg]:hidden">
+          <SelectTrigger className="size-full min-w-0 items-start border-none bg-transparent p-0 shadow-none focus-visible:ring-0 [&_svg]:hidden">
             {displayLabel ? (
               <Badge
                 variant="secondary"
-                className="whitespace-pre-wrap px-1.5 py-px"
+                className="max-w-full min-w-0 whitespace-pre-wrap px-1.5 py-px"
               >
                 <SelectValue />
               </Badge>
@@ -963,11 +964,9 @@ export function SelectCell<TData>({
           </SelectTrigger>
           <SelectContent
             data-grid-cell-editor=""
-            // compensate for the wrapper padding
             align="start"
-            alignOffset={-8}
-            sideOffset={-8}
-            className="min-w-[calc(var(--radix-select-trigger-width)+16px)]"
+            sideOffset={4}
+            className="min-w-[var(--radix-select-trigger-width)]"
           >
             {options.map((option) => (
               <SelectItem key={option.value} value={option.value}>
@@ -980,7 +979,7 @@ export function SelectCell<TData>({
         <Badge
           data-slot="grid-cell-content"
           variant="secondary"
-          className="whitespace-pre-wrap px-1.5 py-px"
+          className="max-w-full min-w-0 shrink truncate px-1.5 py-px"
         >
           {displayLabel}
         </Badge>

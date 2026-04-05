@@ -4,7 +4,6 @@ import {
   SelectTrigger,
   SelectValue,
   SelectIcon,
-  SelectPortal,
   SelectContent,
   SelectViewport,
   SelectItem,
@@ -30,7 +29,6 @@ export const SelectDemo = () => {
           <SelectValue placeholder="Select a fruit..." />
           <SelectIcon />
         </SelectTrigger>
-        <SelectPortal>
           <SelectContent>
             <SelectScrollUpButton />
             <SelectViewport>
@@ -58,7 +56,6 @@ export const SelectDemo = () => {
             <SelectScrollDownButton />
             <SelectArrow />
           </SelectContent>
-        </SelectPortal>
       </Select>
     </div>
   );
@@ -73,7 +70,6 @@ export const SelectDemoWithDefaultValue = () => {
           <SelectValue placeholder="Select a fruit..." />
           <SelectIcon />
         </SelectTrigger>
-        <SelectPortal>
           <SelectContent>
             <SelectViewport>
               <SelectItem value="apple">
@@ -94,7 +90,6 @@ export const SelectDemoWithDefaultValue = () => {
               </SelectItem>
             </SelectViewport>
           </SelectContent>
-        </SelectPortal>
       </Select>
     </div>
   );
@@ -111,7 +106,6 @@ export const SelectDemoWithGroups = () => {
           <SelectValue placeholder="Select a country..." />
           <SelectIcon />
         </SelectTrigger>
-        <SelectPortal>
           <SelectContent>
             <SelectViewport>
               <SelectGroup>
@@ -163,7 +157,6 @@ export const SelectDemoWithGroups = () => {
               </SelectGroup>
             </SelectViewport>
           </SelectContent>
-        </SelectPortal>
       </Select>
     </div>
   );
@@ -180,7 +173,6 @@ export const SelectDemoWithDisabledItems = () => {
           <SelectValue placeholder="Select a fruit..." />
           <SelectIcon />
         </SelectTrigger>
-        <SelectPortal>
           <SelectContent>
             <SelectViewport>
               <SelectItem value="apple">
@@ -205,7 +197,6 @@ export const SelectDemoWithDisabledItems = () => {
               </SelectItem>
             </SelectViewport>
           </SelectContent>
-        </SelectPortal>
       </Select>
     </div>
   );
@@ -220,7 +211,6 @@ export const SelectDemoDisabled = () => {
           <SelectValue placeholder="Select a fruit..." />
           <SelectIcon />
         </SelectTrigger>
-        <SelectPortal>
           <SelectContent>
             <SelectViewport>
               <SelectItem value="apple">
@@ -237,7 +227,6 @@ export const SelectDemoDisabled = () => {
               </SelectItem>
             </SelectViewport>
           </SelectContent>
-        </SelectPortal>
       </Select>
     </div>
   );
@@ -277,7 +266,6 @@ export const SelectDemoWithLongList = () => {
           <SelectValue placeholder="Select a fruit..." />
           <SelectIcon />
         </SelectTrigger>
-        <SelectPortal>
           <SelectContent>
             <SelectScrollUpButton />
             <SelectViewport>
@@ -291,7 +279,6 @@ export const SelectDemoWithLongList = () => {
             <SelectScrollDownButton />
             <SelectArrow />
           </SelectContent>
-        </SelectPortal>
       </Select>
     </div>
   );
@@ -308,7 +295,6 @@ export const SelectDemoComplex = () => {
           <SelectValue placeholder="Select a location..." />
           <SelectIcon />
         </SelectTrigger>
-        <SelectPortal>
           <SelectContent>
             <SelectScrollUpButton />
             <SelectViewport>
@@ -379,7 +365,6 @@ export const SelectDemoComplex = () => {
             <SelectScrollDownButton />
             <SelectArrow />
           </SelectContent>
-        </SelectPortal>
       </Select>
     </div>
   );

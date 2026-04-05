@@ -71,15 +71,17 @@ function SelectContent({
   ...props
 }: React.ComponentProps<typeof SelectRadix.Content>) {
   return (
-    <SelectRadix.Content
-      data-slot="select-content"
-      collisionPadding={8}
-      className={cn(
-        className,
-        "relative z-50 max-h-96 min-w-10 overflow-hidden rounded-sm border border-gray-a6 bg-gray-1 shadow-md"
-      )}
-      {...props}
-    />
+    <SelectRadix.Portal>
+      <SelectRadix.Content
+        data-slot="select-content"
+        collisionPadding={8}
+        className={cn(
+          className,
+          "relative z-50 max-h-96 min-w-10 overflow-hidden rounded-sm border border-gray-a6 bg-gray-1 shadow-md"
+        )}
+        {...props}
+      />
+    </SelectRadix.Portal>
   );
 }
 

@@ -8,7 +8,6 @@ import {
   SelectTrigger,
   SelectValue,
   SelectIcon,
-  SelectPortal,
   SelectContent,
   SelectViewport,
   SelectItem,
@@ -104,18 +103,16 @@ export const FormFieldSelect = React.forwardRef<
               <SelectValue placeholder={placeholder} />
               <SelectIcon />
             </SelectTrigger>
-            <SelectPortal>
-              <SelectContent>
-                <SelectViewport>
-                  {options.map((option) => (
-                    <SelectItem key={option.value} value={option.value}>
-                      <SelectItemText>{option.label}</SelectItemText>
-                      <SelectItemIndicator />
-                    </SelectItem>
-                  ))}
-                </SelectViewport>
-              </SelectContent>
-            </SelectPortal>
+            <SelectContent>
+              <SelectViewport>
+                {options.map((option) => (
+                  <SelectItem key={option.value} value={option.value}>
+                    <SelectItemText>{option.label}</SelectItemText>
+                    <SelectItemIndicator />
+                  </SelectItem>
+                ))}
+              </SelectViewport>
+            </SelectContent>
           </Select>
         </FormRadix.Control>
         {hasError &&

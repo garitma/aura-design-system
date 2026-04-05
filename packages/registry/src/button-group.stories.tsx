@@ -24,21 +24,6 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "../registry/default/components/ui/DropdownMenu";
-import { Input } from "../registry/default/components/ui/Input";
-import { Label } from "../registry/default/components/ui/Label";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectIcon,
-  SelectPortal,
-  SelectContent,
-  SelectViewport,
-  SelectItem,
-  SelectItemText,
-  SelectItemIndicator,
-} from "../registry/default/components/ui/Select";
-
 export const Default = () => {
   const [label, setLabel] = useState("personal");
 
