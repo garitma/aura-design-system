@@ -13,7 +13,14 @@
     "url": "https://github.com/garitma/aura-design-system/issues"
   },
   "scripts": {
-    "dev": "pnpm npx turbo dev"
+    "dev": "pnpm npx turbo dev",
+    "preflight": "tsx scripts/preflight.ts",
+    "dev:server": "next dev",
+    "sonar:up": "docker start sonarqube 2>/dev/null || docker run -d --name sonarqube -p 9000:9000 sonarqube:lts",
+    "sonar:setup": "sleep 45 && curl -fsS -u admin:admin -X POST \"http://localhost:9000/api/users/change_password?login=admin&previousPassword=admin&password=$npm_package_name\" && curl -fsS -u admin:$npm_package_name -X POST \"http://localhost:9000/api/user_tokens/generate?name=local-token\" | jq -r .token > .sonar-token",
+    "sonar:scan": "sonar-scanner -Dsonar.login=$(cat .sonar-token) -Dsonar.projectKey=$npm_package_name -Dsonar.host.url=http://localhost:9000",
+    "sonar:report": "curl -u admin:$npm_package_name \"http://localhost:9000/api/issues/search?componentKeys=$npm_package_name&resolved=false\" | jq '[.issues[] | {message: .message, severity: .severity, component: .component, line: .line}]' > sonar-issues.json",
+    "sonar:full": "pnpm run sonar:up && pnpm run sonar:setup && pnpm run sonar:scan"
   },
   "keywords": [
     "react",
@@ -25,7 +32,9 @@
   "devDependencies": {
     "prettier": "^3.2.5",
     "turbo": "^2.0.11",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "sonarqube-scanner": "^4.3.5",
+    "tsx": "^4.19.1"
   },
   "packageManager": "pnpm@10.2.1"
 }

@@ -1,0 +1,38 @@
+info:
+  name: Query
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{APP_URL}}/api/search?query=button&mode=full"
+  params:
+    - name: query
+      value: button
+      type: query
+    - name: tag
+      value: ""
+      type: query
+      disabled: true
+    - name: locale
+      value: ""
+      type: query
+      disabled: true
+    - name: mode
+      value: full
+      type: query
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
+
+docs: |-
+  Mirrors `apps/www/app/api/search/route.ts` (`createFromSource` from fumadocs-core).
+
+  - `query` (required for results): search string. If omitted, the API returns `[]`.
+  - `tag`: optional, comma-separated tags.
+  - `locale`: optional.
+  - `mode`: `full` (default) or `vector`.

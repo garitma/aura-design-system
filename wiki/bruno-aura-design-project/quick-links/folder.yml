@@ -1,0 +1,7 @@
+info:
+  name: quick-links
+  type: folder
+  seq: 1
+
+settings:
+  encodeUrl: true

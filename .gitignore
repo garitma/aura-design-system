@@ -148,3 +148,6 @@ playwright/.cache/
 .turbo
 
 .pnpm-store
+.sonar-token
+sonar-issues.json
+.scannerwork/

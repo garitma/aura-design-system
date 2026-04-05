@@ -1,0 +1,17 @@
+info:
+  name: List
+  type: http
+  seq: 1
+
+http:
+  method: GET
+  url: "{{APP_URL}}/api/quick-links"
+  auth: inherit
+
+docs: |-
+  Mirrors `apps/www/app/api/quick-links/route.ts`.
+
+  Returns up to 10 quick-link objects derived from the docs source (main pages and component pages).
+
+settings:
+  encodeUrl: true
