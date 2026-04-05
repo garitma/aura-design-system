@@ -1,6 +1,6 @@
 # Design System: Aura
 
-Aura is a **registry-first** design system distributed in **shadcn mode**: you copy source into your app, own the code, and pull updates via CLI. It is built on **React**, **Radix UI primitives**, **Tailwind CSS v4**, and a **13px spacing grid**. Default documentation for LLMs lives at [https://auradesignsystem.com/llms-full.txt](https://auradesignsystem.com/llms-full.txt) (or your local `http://localhost:4000/llms-full.txt` when running the docs app).
+Aura is a **registry-first** design system distributed in **shadcn mode**: you copy source into your app, own the code, and pull updates via CLI. It is built on **React**, **Radix UI primitives**, **Tailwind CSS v4**, and a **13px spacing grid**. 
 
 **Product principles (non-visual):** prioritize accessibility, consistency, reusable components, shareable tooling, user control, forgiveness, and a perceived sense of stability—even when the underlying product is complex.
 
