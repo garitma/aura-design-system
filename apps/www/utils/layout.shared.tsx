@@ -58,6 +58,11 @@ export function baseOptions(): BaseLayoutProps {
         url: "/docs/forms",
         active: "nested-url",
       },
+      {
+        text: "DESIGN.md",
+        url: "https://design-md.auradesignsystem.com/",
+        active: "none",
+      },
     ],
     searchToggle: {
       enabled: false,
