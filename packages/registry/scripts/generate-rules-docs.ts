@@ -150,6 +150,9 @@ description: Cursor and AI rules for the Aura Design System. Use these in .curso
 
 These rules define foundations and principles for the Aura Design System. You can install them via the registry or copy them into your project's \`.cursor/rules/\` directory.
 
+\`\`\`bash
+pnpm dlx shadcn@latest add @aura/rules
+\`\`\`
 `;
 
   for (const rule of rules) {

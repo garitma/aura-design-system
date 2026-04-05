@@ -114,7 +114,8 @@ import {
   DropdownMenuDemoComplex
 } from "./dropdown-menu-demo"
 import { 
-  EmptyDemo
+  EmptyDemo,
+  EmptyDemoWithActions
 } from "./empty-demo"
 import { 
   FormDemo,
@@ -492,6 +493,9 @@ export const Registry = {
   },
   "empty-demo": {
     component: EmptyDemo,
+  },
+  "empty-demo-with-actions": {
+    component: EmptyDemoWithActions,
   },
   "form-demo": {
     component: FormDemo,

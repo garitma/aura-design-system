@@ -24,6 +24,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/DropdownMenu";
+
 export const ButtonGroupDemo = () => {
   const [label, setLabel] = useState("personal");
 
