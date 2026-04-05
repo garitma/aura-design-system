@@ -5,7 +5,6 @@
   "buildCommand": "node scripts/prepare-public.cjs",
   "outputDirectory": "public",
   "rewrites": [
-    { "source": "/", "destination": "/preview.html" },
     { "source": "/dark", "destination": "/preview-dark.html" }
   ],
   "headers": [

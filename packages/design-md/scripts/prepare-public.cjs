@@ -4,7 +4,12 @@ const path = require("path");
 
 const root = path.join(__dirname, "..");
 const out = path.join(root, "public");
-const files = ["DESIGN.md", "preview.html", "preview-dark.html"];
+const files = [
+  "DESIGN.md",
+  "index.html",
+  "preview.html",
+  "preview-dark.html",
+];
 
 fs.mkdirSync(out, { recursive: true });
 for (const name of files) {
