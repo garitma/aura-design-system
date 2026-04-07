@@ -251,7 +251,7 @@ importers:
         specifier: ^5.0.0
         version: 5.5.4
 
-  packages/design: {}
+  packages/design-md: {}
 
   packages/react-fixture:
     dependencies:
