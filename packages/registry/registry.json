@@ -1815,6 +1815,19 @@
       ]
     },
     {
+      "name": "rule-self-documenting-system",
+      "type": "registry:file",
+      "title": "Rule: Self Documenting System",
+      "description": "Aura rule: Self Documenting System. Install to .cursor/rules/ for Cursor AI guidance.",
+      "files": [
+        {
+          "path": "registry/default/rules/self-documenting-system.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/self-documenting-system.mdc"
+        }
+      ]
+    },
+    {
       "name": "rules",
       "type": "registry:file",
       "title": "Aura Rules",
@@ -1864,6 +1877,11 @@
           "path": "registry/default/rules/principles.mdc",
           "type": "registry:file",
           "target": ".cursor/rules/principles.mdc"
+        },
+        {
+          "path": "registry/default/rules/self-documenting-system.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/self-documenting-system.mdc"
         }
       ]
     },
