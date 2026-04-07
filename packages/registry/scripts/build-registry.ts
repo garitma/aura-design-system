@@ -556,18 +556,32 @@ function getRulesItems(): RegistryItem[] {
       const title = meta.title ?? defaultTitle;
       const description =
         meta.description ?? `Aura rule: ${title}. Install to .cursor/rules/ for Cursor AI guidance.`;
+
+      const ruleFile = {
+        path: `registry/default/rules/${file}`,
+        type: "registry:file" as const,
+        target: `.cursor/rules/${file}`,
+      };
+
+      // design-md rule also ships root DESIGN.md so `shadcn add @aura/rule-design-md` installs both.
+      const files =
+        file === "design-md.mdc"
+          ? [
+              ruleFile,
+              {
+                path: "registry/default/design-md/DESIGN.md",
+                type: "registry:file" as const,
+                target: "DESIGN.md",
+              },
+            ]
+          : [ruleFile];
+
       return {
         name: `rule-${kebabName}`,
         type: "registry:file" as const,
         title: `Rule: ${title}`,
         description,
-        files: [
-          {
-            path: `registry/default/rules/${file}`,
-            type: "registry:file" as const,
-            target: `.cursor/rules/${file}`,
-          },
-        ],
+        files,
       };
     });
 }

@@ -178,7 +178,6 @@ async function initializeAura() {
         "@aura/class-names",
         "@aura/page-get-starter",
         "@aura/css-main",
-        "@aura/design-md",
         "@aura/rules",
       ],
       {
