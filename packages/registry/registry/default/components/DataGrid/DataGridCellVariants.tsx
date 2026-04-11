@@ -17,8 +17,10 @@ import {
   Select,
   SelectContent,
   SelectItem,
+  SelectItemText,
   SelectTrigger,
   SelectValue,
+  SelectViewport,
 } from "@/components/ui/Select";
 import { Skeleton } from "@/components/ui/Skeleton";
 import { Textarea } from "@/components/ui/Textarea";
@@ -964,15 +966,19 @@ export function SelectCell<TData>({
           </SelectTrigger>
           <SelectContent
             data-grid-cell-editor=""
+            position="popper"
+            side="bottom"
             align="start"
             sideOffset={4}
-            className="min-w-[var(--radix-select-trigger-width)]"
+            className="z-[100] min-w-[var(--radix-select-trigger-width)]"
           >
-            {options.map((option) => (
-              <SelectItem key={option.value} value={option.value}>
-                {option.label}
-              </SelectItem>
-            ))}
+            <SelectViewport>
+              {options.map((option) => (
+                <SelectItem key={option.value} value={option.value}>
+                  <SelectItemText>{option.label}</SelectItemText>
+                </SelectItem>
+              ))}
+            </SelectViewport>
           </SelectContent>
         </Select>
       ) : displayLabel ? (

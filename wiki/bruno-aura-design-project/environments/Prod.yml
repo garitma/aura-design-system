@@ -1,0 +1,4 @@
+name: Prod
+variables:
+  - name: APP_URL
+    value: https://auradesignsystem.com
