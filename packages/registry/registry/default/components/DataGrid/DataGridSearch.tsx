@@ -175,6 +175,7 @@ function DataGridSearchImpl({
     >
       <div className="flex items-center gap-2">
         <Input
+          aria-label="Find in table"
           autoComplete="off"
           autoCorrect="off"
           autoCapitalize="off"

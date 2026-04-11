@@ -8,6 +8,7 @@ import { DataGrid } from "../registry/default/components/DataGrid/DataGrid";
 import { DataGridKeyboardShortcuts } from "../registry/default/components/DataGrid/DataGridKeyboardShortcuts";
 import { useDataGrid } from "../registry/default/components/DataGrid/use-data-grid";
 import { Checkbox } from "../registry/default/components/ui/Checkbox";
+import { cn } from "../registry/default/utils/class-names";
 
 interface SkateTrick {
   id: string;
@@ -203,24 +204,44 @@ function DataGridDemo() {
         minSize: 52,
         maxSize: 52,
         enableResizing: false,
-        header: ({ table }) => (
-          <div className="flex flex-col size-full items-center justify-center px-1">
-            <Checkbox
-              checked={
-                table.getIsAllPageRowsSelected() ||
-                (table.getIsSomePageRowsSelected() && "indeterminate")
-              }
-              onCheckedChange={(value) =>
-                table.toggleAllRowsSelected(!!value)
-              }
-              aria-label="Select all rows"
-              className="border-accent-9"
-              onClick={(event) => event.stopPropagation()}
-            />
-          </div>
-        ),
+        header: ({ table }) => {
+          const hasRowSelection =
+            table.getIsSomePageRowsSelected() ||
+            table.getIsAllPageRowsSelected();
+          return (
+            <div
+              className={cn(
+                "flex size-full flex-col items-center justify-center px-1",
+                "transition-opacity duration-150",
+                hasRowSelection
+                  ? "opacity-100"
+                  : "opacity-0 group-hover:opacity-100 group-focus-within:opacity-100",
+              )}
+            >
+              <Checkbox
+                checked={
+                  table.getIsAllPageRowsSelected() ||
+                  (table.getIsSomePageRowsSelected() && "indeterminate")
+                }
+                onCheckedChange={(value) =>
+                  table.toggleAllRowsSelected(!!value)
+                }
+                aria-label="Select all rows"
+                className="border-accent-9"
+                onClick={(event) => event.stopPropagation()}
+              />
+            </div>
+          );
+        },
         cell: ({ row }) => (
-          <div className="flex flex-col size-full items-center justify-center px-1">
+          <div
+            className={cn(
+              "flex size-full flex-col items-center justify-center px-1",
+              "opacity-0 transition-opacity duration-150",
+              "group-hover:opacity-100 group-focus-within:opacity-100",
+              "group-[[aria-selected=true]]:opacity-100",
+            )}
+          >
             <Checkbox
               checked={row.getIsSelected()}
               onCheckedChange={(value) => row.toggleSelected(!!value)}

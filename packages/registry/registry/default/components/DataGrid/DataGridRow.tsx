@@ -211,7 +211,7 @@ function DataGridRowImpl<TData>({
       {...props}
       ref={rowRef}
       className={cn(
-        "absolute flex w-full border-b border-gray-6 [content-visibility:auto]",
+        "group absolute flex w-full border-b border-gray-6 [content-visibility:auto]",
         !adjustLayout && "will-change-transform",
         className,
       )}
@@ -266,7 +266,11 @@ function DataGridRowImpl<TData>({
               },
             )}
             style={{
-              ...getColumnPinningStyle({ column: cell.column, dir }),
+              ...getColumnPinningStyle({
+                column: cell.column,
+                dir,
+                pinnedSurface: "body",
+              }),
               width: `calc(var(--col-${columnId}-size) * 1px)`,
             }}
           >

@@ -4,13 +4,18 @@ import * as React from "react";
 import { useComposedRefs } from "@/utils/compose-refs";
 import type { DataGridCellProps } from "./types";
 import { cn } from "@/utils/class-names";
-import { getCellKey } from "./data-grid-utils";
+import { getCellAccessibleLabel, getCellKey } from "./data-grid-utils";
 
 interface DataGridCellWrapperProps<TData>
   extends DataGridCellProps<TData>,
-    React.ComponentProps<"div"> {}
+    React.ComponentProps<"div"> {
+  /** When set, the wrapper is exposed as a single checkbox control (no nested interactive buttons). */
+  cellInteractionRole?: "checkbox";
+  ariaChecked?: boolean;
+}
 
 export function DataGridCellWrapper<TData>({
+  cell,
   tableMeta,
   rowIndex,
   columnId,
@@ -21,12 +26,16 @@ export function DataGridCellWrapper<TData>({
   isActiveSearchMatch,
   readOnly,
   rowHeight,
+  cellInteractionRole,
+  ariaChecked,
   className,
   onClick: onClickProp,
   onKeyDown: onKeyDownProp,
   ref,
   ...props
 }: DataGridCellWrapperProps<TData>) {
+  const cellAccessibleLabel = getCellAccessibleLabel(cell, rowIndex);
+  const isCheckboxCell = cellInteractionRole === "checkbox";
   const cellMapRef = tableMeta?.cellMapRef;
 
   const onCellChange = React.useCallback(
@@ -51,7 +60,7 @@ export function DataGridCellWrapper<TData>({
       if (!isEditing) {
         event.preventDefault();
         onClickProp?.(event);
-        if (isFocused && !readOnly) {
+        if (isFocused && !readOnly && !isCheckboxCell) {
           tableMeta?.onCellEditingStart?.(rowIndex, columnId);
         } else {
           tableMeta?.onCellClick?.(rowIndex, columnId, event);
@@ -65,6 +74,7 @@ export function DataGridCellWrapper<TData>({
       isEditing,
       isFocused,
       readOnly,
+      isCheckboxCell,
       onClickProp,
     ],
   );
@@ -108,7 +118,7 @@ export function DataGridCellWrapper<TData>({
         return;
       }
 
-      if (isFocused && !isEditing && !readOnly) {
+      if (isFocused && !isEditing && !readOnly && !isCheckboxCell) {
         if (event.key === "F2" || event.key === "Enter") {
           event.preventDefault();
           event.stopPropagation();
@@ -135,6 +145,7 @@ export function DataGridCellWrapper<TData>({
       isFocused,
       isEditing,
       readOnly,
+      isCheckboxCell,
       tableMeta,
       rowIndex,
       columnId,
@@ -164,12 +175,16 @@ export function DataGridCellWrapper<TData>({
 
   return (
     <div
-      role="button"
+      role={isCheckboxCell ? "checkbox" : undefined}
       data-slot="grid-cell-wrapper"
       data-editing={isEditing ? "" : undefined}
       data-focused={isFocused ? "" : undefined}
       data-selected={isSelected ? "" : undefined}
       tabIndex={isFocused && !isEditing ? 0 : -1}
+      aria-label={cellAccessibleLabel}
+      aria-checked={isCheckboxCell ? ariaChecked : undefined}
+      aria-readonly={!isCheckboxCell && readOnly ? true : undefined}
+      aria-disabled={isCheckboxCell && readOnly ? true : undefined}
       {...props}
       ref={composedRef}
       className={cn(

@@ -32,7 +32,9 @@ import {
   formatDateForDisplay,
   formatDateToString,
   formatFileSize,
+  getCellAccessibleLabel,
   getCellKey,
+  getColumnAccessibleLabel,
   getFileIcon,
   getLineCount,
   getUrlHref,
@@ -164,6 +166,7 @@ export function ShortTextCell<TData>({
   }, [isEditing, value]);
 
   const displayValue = !isEditing ? (value ?? "") : "";
+  const cellAriaLabel = getCellAccessibleLabel(cell, rowIndex);
 
   return (
     <DataGridCellWrapper<TData>
@@ -182,7 +185,8 @@ export function ShortTextCell<TData>({
       onKeyDown={onWrapperKeyDown}
     >
       <div
-        role="textbox"
+        role={isEditing ? "textbox" : undefined}
+        aria-label={isEditing ? cellAriaLabel : undefined}
         data-slot="grid-cell-content"
         contentEditable={isEditing}
         tabIndex={-1}
@@ -329,6 +333,8 @@ export function LongTextCell<TData>({
     [debouncedSave],
   );
 
+  const cellAriaLabel = getCellAccessibleLabel(cell, rowIndex);
+
   const onKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
       if (event.key === "Escape") {
@@ -384,6 +390,7 @@ export function LongTextCell<TData>({
         onOpenAutoFocus={onOpenAutoFocus}
       >
         <Textarea
+          aria-label={cellAriaLabel}
           placeholder="Enter text..."
           className="max-h-[300px] min-h-[150px] resize-none overflow-y-auto rounded-none border-0 shadow-none focus-visible:ring-2 focus-visible:ring-gray-8"
           ref={textareaRef}
@@ -491,6 +498,8 @@ export function NumberCell<TData>({
     }
   }, [isEditing]);
 
+  const cellAriaLabel = getCellAccessibleLabel(cell, rowIndex);
+
   return (
     <DataGridCellWrapper<TData>
       ref={containerRef}
@@ -510,6 +519,7 @@ export function NumberCell<TData>({
       {isEditing ? (
         <input
           type="number"
+          aria-label={cellAriaLabel}
           ref={inputRef}
           value={value}
           min={min}
@@ -690,6 +700,7 @@ export function UrlCell<TData>({
   const displayValue = !isEditing ? (value ?? "") : "";
   const urlHref = displayValue ? getUrlHref(displayValue) : "";
   const isDangerousUrl = displayValue && !urlHref;
+  const cellAriaLabel = getCellAccessibleLabel(cell, rowIndex);
 
   return (
     <DataGridCellWrapper<TData>
@@ -718,6 +729,7 @@ export function UrlCell<TData>({
             href={urlHref}
             target="_blank"
             rel="noopener noreferrer"
+            tabIndex={-1}
             className="truncate text-accent-9 underline decoration-accent-9/30 underline-offset-2 hover:decoration-accent-9/60 data-invalid:cursor-not-allowed data-focused:text-gray-12 data-invalid:text-warning-contrast data-focused:decoration-gray-12/50 data-invalid:decoration-warning-contrast/50 data-focused:hover:decoration-gray-12/70 data-invalid:hover:decoration-warning-contrast/70"
             onClick={onLinkClick}
           >
@@ -726,7 +738,8 @@ export function UrlCell<TData>({
         </div>
       ) : (
         <div
-          role="textbox"
+          role={isEditing ? "textbox" : undefined}
+          aria-label={isEditing ? cellAriaLabel : undefined}
           data-slot="grid-cell-content"
           contentEditable={isEditing}
           tabIndex={-1}
@@ -834,6 +847,8 @@ export function CheckboxCell<TData>({
       rowIndex={rowIndex}
       columnId={columnId}
       rowHeight={rowHeight}
+      cellInteractionRole="checkbox"
+      ariaChecked={value}
       isEditing={false}
       isFocused={isFocused}
       isSelected={isSelected}
@@ -844,15 +859,25 @@ export function CheckboxCell<TData>({
       onClick={onWrapperClick}
       onKeyDown={onWrapperKeyDown}
     >
-      <Checkbox
-        checked={value}
-        onCheckedChange={onCheckedChange}
-        disabled={readOnly}
-        className="border-accent-9"
-        onClick={onCheckboxClick}
-        onMouseDown={onCheckboxMouseDown}
-        onDoubleClick={onCheckboxDoubleClick}
-      />
+      <span
+        className={cn(
+          "inline-flex opacity-0 transition-opacity duration-150",
+          "group-hover:opacity-100 group-focus-within:opacity-100",
+          "group-[[aria-selected=true]]:opacity-100",
+        )}
+      >
+        <Checkbox
+          aria-hidden
+          tabIndex={-1}
+          checked={value}
+          onCheckedChange={onCheckedChange}
+          disabled={readOnly}
+          className="pointer-events-none border-accent-9"
+          onClick={onCheckboxClick}
+          onMouseDown={onCheckboxMouseDown}
+          onDoubleClick={onCheckboxDoubleClick}
+        />
+      </span>
     </DataGridCellWrapper>
   );
 }
@@ -927,6 +952,7 @@ export function SelectCell<TData>({
   );
 
   const displayLabel = optionByValue.get(value)?.label ?? value;
+  const cellAriaLabel = getCellAccessibleLabel(cell, rowIndex);
 
   return (
     <DataGridCellWrapper<TData>
@@ -952,7 +978,10 @@ export function SelectCell<TData>({
           open={isEditing}
           onOpenChange={onOpenChange}
         >
-          <SelectTrigger className="size-full min-w-0 items-start border-none bg-transparent p-0 shadow-none focus-visible:ring-0 [&_svg]:hidden">
+          <SelectTrigger
+            aria-label={cellAriaLabel}
+            className="size-full min-w-0 items-start border-none bg-transparent p-0 shadow-none focus-visible:ring-0 [&_svg]:hidden"
+          >
             {displayLabel ? (
               <Badge
                 variant="secondary"
@@ -1175,6 +1204,8 @@ export function MultiSelectCell<TData>({
       lineCount,
     });
 
+  const multiSelectColumnLabel = getColumnAccessibleLabel(cell);
+
   return (
     <DataGridCellWrapper<TData>
       ref={containerRef}
@@ -1217,6 +1248,7 @@ export function MultiSelectCell<TData>({
                       {label}
                       <button
                         type="button"
+                        aria-label={`Remove ${label}`}
                         onClick={(event) => removeValue(value, event)}
                         onPointerDown={(event) => {
                           event.preventDefault();
@@ -1231,6 +1263,7 @@ export function MultiSelectCell<TData>({
                 <input
                   ref={inputRef}
                   type="text"
+                  aria-label={`Search ${multiSelectColumnLabel} options`}
                   value={searchValue}
                   onChange={(event) => setSearchValue(event.target.value)}
                   onKeyDown={onInputKeyDown}
@@ -2074,6 +2107,7 @@ export function FileCell<TData>({
                             type="button"
                             mode="pill"
                             size="icon"
+                            aria-label={`Remove ${file.name}`}
                             className="min-w-0 rounded-sm px-1"
                             onClick={() => removeFile(file.id)}
                             disabled={isPending}

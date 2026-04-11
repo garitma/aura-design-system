@@ -1,4 +1,4 @@
-import type { Column, Table } from "@tanstack/react-table";
+import type { Cell, Column, RowData, Table } from "@tanstack/react-table";
 import {
   ArchiveIcon,
   CalendarIcon,
@@ -61,6 +61,25 @@ export function matchSelectOption(
 
 export function getCellKey(rowIndex: number, columnId: string) {
   return `${rowIndex}:${columnId}`;
+}
+
+export function getColumnAccessibleLabel<TData extends RowData>(
+  cell: Cell<TData, unknown>,
+): string {
+  const col = cell.column;
+  return (
+    col.columnDef.meta?.label ??
+    (typeof col.columnDef.header === "string"
+      ? col.columnDef.header
+      : String(col.id))
+  );
+}
+
+export function getCellAccessibleLabel<TData extends RowData>(
+  cell: Cell<TData, unknown>,
+  rowIndex: number,
+): string {
+  return `${getColumnAccessibleLabel(cell)}, row ${rowIndex + 1}`;
 }
 
 export function parseCellKey(cellKey: string): Required<CellPosition> {
@@ -133,8 +152,11 @@ export function getColumnPinningStyle<TData>(params: {
   column: Column<TData>;
   withBorder?: boolean;
   dir?: Direction;
+  /** Solid fill for sticky cells so scrolling content does not show through */
+  pinnedSurface?: "header" | "body";
 }): React.CSSProperties {
-  const { column, dir = "ltr", withBorder = false } = params;
+  const { column, dir = "ltr", withBorder = false, pinnedSurface = "body" } =
+    params;
 
   const isPinned = column.getIsPinned();
   const isLastLeftPinnedColumn =
@@ -163,9 +185,11 @@ export function getColumnPinningStyle<TData>(params: {
       : undefined,
     left: isRtl ? rightPosition : leftPosition,
     right: isRtl ? leftPosition : rightPosition,
-    opacity: isPinned ? 0.97 : 1,
     position: isPinned ? "sticky" : "relative",
-    background: isPinned ? "var(--background)" : "var(--background)",
+    ...(isPinned && {
+      backgroundColor:
+        pinnedSurface === "header" ? "var(--gray-2)" : "var(--gray-1)",
+    }),
     width: column.getSize(),
     zIndex: isPinned ? 1 : undefined,
   };

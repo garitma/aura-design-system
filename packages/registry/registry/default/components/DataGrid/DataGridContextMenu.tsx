@@ -212,7 +212,10 @@ function ContextMenuImpl<TData>({
       open={contextMenu.open}
       onOpenChange={onContextMenuOpenChange}
     >
-      <DropdownMenuTrigger style={triggerStyle} />
+      <DropdownMenuTrigger
+        aria-label="Table context menu"
+        style={triggerStyle}
+      />
       <DropdownMenuContent
         data-grid-popover=""
         align="start"
