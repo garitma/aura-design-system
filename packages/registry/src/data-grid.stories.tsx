@@ -418,7 +418,7 @@ function DataGridDemo() {
         enableSearch={!!dataGridProps.searchState}
         enableRowsDelete
       />
-      <DataGrid {...dataGridProps} table={table} height={340} />
+      <DataGrid {...dataGridProps} table={table} height="100%" />
     </>
   );
 }

@@ -174,6 +174,10 @@ function GridPopoverTextareaCell<TData>({
 
   const cellAriaLabel = getCellAccessibleLabel(cell, rowIndex);
 
+  const newlineRows = Math.max(1, value.split("\n").length);
+  const textareaRows = Math.min(newlineRows, 25);
+  const isMultilineText = newlineRows > 1;
+
   const onKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
       if (event.key === "Escape") {
@@ -225,13 +229,17 @@ function GridPopoverTextareaCell<TData>({
         align="start"
         side="bottom"
         sideOffset={sideOffset}
-        className="z-[100] w-[min(90vw,28rem)] rounded-none p-0"
+        className="z-[100] w-[min(45vw,14rem)] rounded-none p-0"
         onOpenAutoFocus={onOpenAutoFocus}
       >
         <Textarea
           aria-label={cellAriaLabel}
           placeholder="Enter text..."
-          className="min-h-[150px] max-h-[min(28rem,70vh)] w-full resize-none overflow-y-auto rounded-none border-0 bg-gray-1 text-sm text-gray-12 shadow-none focus-visible:ring-2 focus-visible:ring-gray-8"
+          rows={textareaRows}
+          className={cn(
+            "max-h-[min(28rem,70vh)] w-full resize-none overflow-y-auto rounded-none border-0 bg-gray-1 text-sm text-gray-12 shadow-none focus-visible:ring-2 focus-visible:ring-gray-8",
+            isMultilineText ? "min-h-[8rem]" : "min-h-0",
+          )}
           ref={textareaRef}
           value={value}
           onBlur={onBlur}
@@ -275,8 +283,6 @@ export function NumberCell<TData>({
   const max = numberCellOpts?.max;
   const step = numberCellOpts?.step;
 
-  const prevIsEditingRef = React.useRef(false);
-
   const prevInitialValueRef = React.useRef(initialValue);
   if (initialValue !== prevInitialValueRef.current) {
     prevInitialValueRef.current = initialValue;
@@ -298,31 +304,60 @@ export function NumberCell<TData>({
     [],
   );
 
+  const onOpenChange = React.useCallback(
+    (open: boolean) => {
+      if (open && !readOnly) {
+        tableMeta?.onCellEditingStart?.(rowIndex, columnId);
+      } else {
+        const numValue = value === "" ? null : Number(value);
+        if (!readOnly && numValue !== initialValue) {
+          tableMeta?.onDataUpdate?.({ rowIndex, columnId, value: numValue });
+        }
+        tableMeta?.onCellEditingStop?.();
+      }
+    },
+    [tableMeta, value, initialValue, rowIndex, columnId, readOnly],
+  );
+
+  const onOpenAutoFocus: NonNullable<
+    React.ComponentProps<typeof PopoverContent>["onOpenAutoFocus"]
+  > = React.useCallback((event) => {
+    event.preventDefault();
+    queueMicrotask(() => {
+      inputRef.current?.focus();
+    });
+  }, []);
+
+  const onNumberInputKeyDown = React.useCallback(
+    (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        const numValue = value === "" ? null : Number(value);
+        if (numValue !== initialValue) {
+          tableMeta?.onDataUpdate?.({ rowIndex, columnId, value: numValue });
+        }
+        tableMeta?.onCellEditingStop?.({ moveToNextRow: true });
+      } else if (event.key === "Tab") {
+        event.preventDefault();
+        const numValue = value === "" ? null : Number(value);
+        if (numValue !== initialValue) {
+          tableMeta?.onDataUpdate?.({ rowIndex, columnId, value: numValue });
+        }
+        tableMeta?.onCellEditingStop?.({
+          direction: event.shiftKey ? "left" : "right",
+        });
+      } else if (event.key === "Escape") {
+        event.preventDefault();
+        setValue(String(initialValue ?? ""));
+        inputRef.current?.blur();
+      }
+    },
+    [initialValue, tableMeta, rowIndex, columnId, value],
+  );
+
   const onWrapperKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (isEditing) {
-        if (event.key === "Enter") {
-          event.preventDefault();
-          const numValue = value === "" ? null : Number(value);
-          if (numValue !== initialValue) {
-            tableMeta?.onDataUpdate?.({ rowIndex, columnId, value: numValue });
-          }
-          tableMeta?.onCellEditingStop?.({ moveToNextRow: true });
-        } else if (event.key === "Tab") {
-          event.preventDefault();
-          const numValue = value === "" ? null : Number(value);
-          if (numValue !== initialValue) {
-            tableMeta?.onDataUpdate?.({ rowIndex, columnId, value: numValue });
-          }
-          tableMeta?.onCellEditingStop?.({
-            direction: event.shiftKey ? "left" : "right",
-          });
-        } else if (event.key === "Escape") {
-          event.preventDefault();
-          setValue(String(initialValue ?? ""));
-          inputRef.current?.blur();
-        }
-      } else if (isFocused) {
+      if (!isEditing && isFocused) {
         // Handle Backspace to start editing with empty value
         if (event.key === "Backspace") {
           setValue("");
@@ -332,38 +367,41 @@ export function NumberCell<TData>({
         }
       }
     },
-    [isEditing, isFocused, initialValue, tableMeta, rowIndex, columnId, value],
+    [isEditing, isFocused],
   );
 
-  React.useEffect(() => {
-    const wasEditing = prevIsEditingRef.current;
-    prevIsEditingRef.current = isEditing;
-
-    // Only focus when we start editing (transition from false to true)
-    if (isEditing && !wasEditing && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [isEditing]);
-
   const cellAriaLabel = getCellAccessibleLabel(cell, rowIndex);
+  const sideOffset = -(containerRef.current?.clientHeight ?? 0);
 
   return (
-    <DataGridCellWrapper<TData>
-      ref={containerRef}
-      cell={cell}
-      tableMeta={tableMeta}
-      rowIndex={rowIndex}
-      columnId={columnId}
-      rowHeight={rowHeight}
-      isEditing={isEditing}
-      isFocused={isFocused}
-      isSelected={isSelected}
-      isSearchMatch={isSearchMatch}
-      isActiveSearchMatch={isActiveSearchMatch}
-      readOnly={readOnly}
-      onKeyDown={onWrapperKeyDown}
-    >
-      {isEditing ? (
+    <Popover open={isEditing} onOpenChange={onOpenChange}>
+      <PopoverAnchor asChild>
+        <DataGridCellWrapper<TData>
+          ref={containerRef}
+          cell={cell}
+          tableMeta={tableMeta}
+          rowIndex={rowIndex}
+          columnId={columnId}
+          rowHeight={rowHeight}
+          isEditing={isEditing}
+          isFocused={isFocused}
+          isSelected={isSelected}
+          isSearchMatch={isSearchMatch}
+          isActiveSearchMatch={isActiveSearchMatch}
+          readOnly={readOnly}
+          onKeyDown={onWrapperKeyDown}
+        >
+          <span data-slot="grid-cell-content">{value}</span>
+        </DataGridCellWrapper>
+      </PopoverAnchor>
+      <PopoverContent
+        data-grid-cell-editor=""
+        align="start"
+        side="bottom"
+        sideOffset={sideOffset}
+        className="z-[100] w-[min(45vw,14rem)] rounded-none p-0"
+        onOpenAutoFocus={onOpenAutoFocus}
+      >
         <input
           type="number"
           aria-label={cellAriaLabel}
@@ -372,14 +410,13 @@ export function NumberCell<TData>({
           min={min}
           max={max}
           step={step}
-          className="w-full border-none bg-transparent p-0 outline-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
+          className="w-full min-h-0 border-0 bg-gray-1 px-2 py-1.5 text-sm text-gray-12 outline-none [appearance:textfield] focus-visible:ring-2 focus-visible:ring-gray-8 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none"
           onBlur={onBlur}
           onChange={onChange}
+          onKeyDown={onNumberInputKeyDown}
         />
-      ) : (
-        <span data-slot="grid-cell-content">{value}</span>
-      )}
-    </DataGridCellWrapper>
+      </PopoverContent>
+    </Popover>
   );
 }
 
@@ -553,6 +590,10 @@ export function UrlCell<TData>({
   const isDangerousUrl = Boolean(trimmed && !urlHref);
   const cellAriaLabel = getCellAccessibleLabel(cell, rowIndex);
 
+  const urlNewlineRows = Math.max(1, value.split("\n").length);
+  const urlTextareaRows = Math.min(urlNewlineRows, 25);
+  const isMultilineUrl = urlNewlineRows > 1;
+
   const onLinkClick = React.useCallback(
     (event: React.MouseEvent<HTMLAnchorElement>) => {
       const href = getUrlHref(trimmed);
@@ -615,13 +656,17 @@ export function UrlCell<TData>({
         align="start"
         side="bottom"
         sideOffset={sideOffset}
-        className="z-[100] w-[min(90vw,28rem)] rounded-none p-0"
+        className="z-[100] w-[min(45vw,14rem)] rounded-none p-0"
         onOpenAutoFocus={onOpenAutoFocus}
       >
         <Textarea
           aria-label={cellAriaLabel}
           placeholder="Enter URL..."
-          className="min-h-[120px] max-h-[min(28rem,70vh)] w-full resize-none overflow-y-auto rounded-none border-0 bg-gray-1 text-sm text-gray-12 shadow-none focus-visible:ring-2 focus-visible:ring-gray-8"
+          rows={urlTextareaRows}
+          className={cn(
+            "max-h-[min(28rem,70vh)] w-full resize-none overflow-y-auto rounded-none border-0 bg-gray-1 text-sm text-gray-12 shadow-none focus-visible:ring-2 focus-visible:ring-gray-8",
+            isMultilineUrl ? "min-h-[8rem]" : "min-h-0",
+          )}
           ref={textareaRef}
           value={value}
           onBlur={onBlur}
