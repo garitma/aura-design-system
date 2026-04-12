@@ -188,7 +188,7 @@ export function DataGridCellWrapper<TData>({
       {...props}
       ref={composedRef}
       className={cn(
-        "size-full min-h-0 min-w-0 px-0.5 py-0.5 text-start text-xs text-gray-12 outline-none has-data-[slot=checkbox]:pt-0.5",
+        "size-full min-h-3 min-w-3 px-0.5 py-0.5 text-start text-sm text-gray-12 outline-none has-data-[slot=checkbox]:pt-0.5",
         {
           "ring-1 ring-gray-8 ring-inset": isFocused,
           "bg-accent-5": isActiveSearchMatch,

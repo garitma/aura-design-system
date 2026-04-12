@@ -79,6 +79,7 @@ declare module "@tanstack/react-table" {
     onRowHeightChange?: (value: RowHeightValue) => void;
     onRowSelect?: (rowId: string, checked: boolean, shiftKey: boolean) => void;
     onDataUpdate?: (params: CellUpdate | Array<CellUpdate>) => void;
+    /** Internal handler: delete by visual row indices (from context menu / keyboard). */
     onRowsDelete?: (rowIndices: number[]) => void | Promise<void>;
     onColumnClick?: (columnId: string) => void;
     onCellClick?: (

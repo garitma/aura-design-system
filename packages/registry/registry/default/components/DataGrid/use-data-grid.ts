@@ -118,6 +118,12 @@ interface UseDataGridProps<TData>
     event?: React.MouseEvent<HTMLDivElement>,
   ) => Partial<CellPosition> | Promise<Partial<CellPosition> | null> | null;
   onRowsAdd?: (count: number) => void | Promise<void>;
+  /**
+   * Remove rows from your data when the user deletes via context menu
+   * ("Delete rows") or Ctrl/Cmd+Delete (or Backspace) with a row selection,
+   * multi-cell selection, or a focused cell. After this resolves, the grid
+   * clears selection and moves focus.
+   */
   onRowsDelete?: (rows: TData[], rowIndices: number[]) => void | Promise<void>;
   onPaste?: (updates: Array<CellUpdate>) => void | Promise<void>;
   onFilesUpload?: (params: {

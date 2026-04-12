@@ -388,11 +388,20 @@ function DataGridDemo() {
     };
   }, []);
 
+  const onRowsDelete = React.useCallback(
+    async (rowsToDelete: SkateTrick[]) => {
+      const ids = new Set(rowsToDelete.map((r) => r.id));
+      setData((prev) => prev.filter((row) => !ids.has(row.id)));
+    },
+    [],
+  );
+
   const { table, ...dataGridProps } = useDataGrid({
     columns,
     data,
     onDataChange: setData,
     onRowAdd,
+    onRowsDelete,
     getRowId: (row) => row.id,
     enableRowSelection: true,
     initialState: {
@@ -405,7 +414,10 @@ function DataGridDemo() {
 
   return (
     <>
-      <DataGridKeyboardShortcuts enableSearch={!!dataGridProps.searchState} />
+      <DataGridKeyboardShortcuts
+        enableSearch={!!dataGridProps.searchState}
+        enableRowsDelete
+      />
       <DataGrid {...dataGridProps} table={table} height={340} />
     </>
   );

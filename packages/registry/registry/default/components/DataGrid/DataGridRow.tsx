@@ -279,6 +279,13 @@ function DataGridRowImpl<TData>({
                 className={cn("size-full px-0.5 py-0.5", {
                   "bg-accent-3": isRowSelected,
                 })}
+                onContextMenu={(event) => {
+                  tableMeta?.onCellContextMenu?.(
+                    virtualRowIndex,
+                    columnId,
+                    event,
+                  );
+                }}
               >
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </div>

@@ -165,7 +165,7 @@ function DataGridSearchImpl({
   if (!searchOpen) return null;
 
   const inputClass =
-    "h-3 w-64 rounded-md border border-gray-6 bg-gray-1 px-2 py-1 text-xs text-gray-12 placeholder:text-gray-11 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-8";
+    "h-3 w-64 rounded-md border border-gray-6 bg-gray-1 px-2 py-1 text-sm text-gray-12 placeholder:text-gray-11 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-8";
 
   return (
     <div
@@ -224,7 +224,7 @@ function DataGridSearchImpl({
           </Button>
         </div>
       </div>
-      <div className="flex items-center gap-1 whitespace-nowrap text-xs text-gray-11">
+      <div className="flex items-center gap-1 whitespace-nowrap text-sm text-gray-11">
         {searchMatches.length > 0 ? (
           <span>
             {matchIndex + 1} of {searchMatches.length}

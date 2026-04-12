@@ -247,9 +247,10 @@ function ContextMenuImpl<TData>({
             <DropdownMenuSeparator />
             <DropdownMenuItem
               onSelect={onDelete}
-              className="gap-1 text-warning-contrast focus:text-warning-contrast"
+              disabled={tableMeta?.readOnly}
+              className="gap-1"
             >
-              <TrashIcon className="icon shrink-0" aria-hidden />
+              <TrashIcon className="icon shrink-0 text-gray-11" aria-hidden />
               Delete rows
             </DropdownMenuItem>
           </>

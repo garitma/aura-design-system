@@ -280,7 +280,7 @@ export function DataGrid<TData>({
               >
                 <div className="sticky start-0 flex items-center gap-1 px-1.5 text-gray-11">
                   <PlusIcon className="icon" aria-hidden />
-                  <span className="text-xs">Add row</span>
+                  <span className="text-sm">Add row</span>
                 </div>
               </div>
             </div>
