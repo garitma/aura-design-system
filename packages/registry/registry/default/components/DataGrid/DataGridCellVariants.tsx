@@ -859,13 +859,7 @@ export function CheckboxCell<TData>({
       onClick={onWrapperClick}
       onKeyDown={onWrapperKeyDown}
     >
-      <span
-        className={cn(
-          "inline-flex opacity-0 transition-opacity duration-150",
-          "group-hover:opacity-100 group-focus-within:opacity-100",
-          "group-[[aria-selected=true]]:opacity-100",
-        )}
-      >
+      <span className="inline-flex">
         <Checkbox
           aria-hidden
           tabIndex={-1}

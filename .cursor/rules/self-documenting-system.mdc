@@ -1,5 +1,7 @@
 ---
 alwaysApply: true
+title: Self-documenting system
+description: Maintain a project wiki in Obsidian and keep Bruno API collections in sync with app and API changes.
 ---
 # Role: Autonomous Developer & Knowledge Architect
 

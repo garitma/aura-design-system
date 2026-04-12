@@ -128,12 +128,16 @@ pnpm dlx shadcn@latest add @aura/rule-${ruleName}
   return installationBlock.trim() + "\n\n" + stripped;
 }
 
+/** JSON double-quoted strings are valid YAML scalars and escape colons, quotes, newlines, etc. */
+function yamlScalar(value: string): string {
+  return JSON.stringify(value);
+}
+
 function generateRuleMdx(rule: RuleDoc): string {
-  const descEscaped = rule.description.replace(/"/g, '\\"');
   const bodyWithInstallation = injectInstallation(rule.body, rule.name);
   return `---
-title: ${rule.title}
-description: ${descEscaped}
+title: ${yamlScalar(rule.title)}
+description: ${yamlScalar(rule.description)}
 ---
 
 ${bodyWithInstallation}

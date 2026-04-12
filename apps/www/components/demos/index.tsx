@@ -50,6 +50,9 @@ import {
   ButtonGroupDemoVertical
 } from "./button-group-demo"
 import { 
+  CalendarDemo
+} from "./calendar-demo"
+import { 
   CardDemoWithFooter,
   CardDemoWithActions,
   CardDemoSimpleCard,
@@ -358,6 +361,9 @@ export const Registry = {
   },
   "button-group-demo-vertical": {
     component: ButtonGroupDemoVertical,
+  },
+  "calendar-demo": {
+    component: CalendarDemo,
   },
   "card-demo-with-footer": {
     component: CardDemoWithFooter,

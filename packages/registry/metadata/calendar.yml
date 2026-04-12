@@ -1,0 +1,3 @@
+header:
+  description: Displays a calendar.
+extends: _templates/content.yml
