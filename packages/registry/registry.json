@@ -142,7 +142,6 @@
         "@aura/badge",
         "@aura/button",
         "@aura/calendar",
-        "@aura/checkbox",
         "@aura/class-names",
         "@aura/compose-refs",
         "@aura/dialog",
@@ -160,6 +159,36 @@
         "@aura/use-dynamic-form",
         "@aura/use-isomorphic-layout-effect",
         "@aura/use-lazy-ref"
+      ]
+    },
+    {
+      "name": "data-table",
+      "type": "registry:component",
+      "title": "DataTable",
+      "description": "The DataTable component.",
+      "files": [
+        {
+          "path": "registry/default/components/DataTable/DataTable.tsx",
+          "type": "registry:component",
+          "target": "components/DataTable/DataTable.tsx"
+        },
+        {
+          "path": "registry/default/components/DataTable/DataTablePagination.tsx",
+          "type": "registry:component",
+          "target": "components/DataTable/DataTablePagination.tsx"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "@tanstack/react-table"
+      ],
+      "registryDependencies": [
+        "@aura/button",
+        "@aura/class-names",
+        "@aura/empty",
+        "@aura/input",
+        "@aura/select",
+        "@aura/table"
       ]
     },
     {
@@ -1366,6 +1395,21 @@
       ],
       "dependencies": [
         "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "description": "The Table component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Table.tsx",
+          "type": "registry:ui"
+        }
       ],
       "registryDependencies": [
         "@aura/class-names"

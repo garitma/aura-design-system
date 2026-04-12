@@ -211,7 +211,7 @@ export function DocsLayout({
           <div className="flex">
             <Link
               href={nav.url ?? "/"}
-              className="inline-flex items-center gap-1 font-medium me-auto"
+              className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap font-medium me-auto"
             >
               {nav.title}
             </Link>
@@ -302,7 +302,7 @@ export function DocsLayout({
             <Navbar className="h-(--fd-nav-height) on-root:[--fd-nav-height:56px] md:on-root:[--fd-nav-height:0px] md:hidden">
               <Link
                 href={nav.url ?? "/"}
-                className="inline-flex items-center gap-2.5 font-semibold"
+                className="inline-flex shrink-0 items-center gap-2.5 whitespace-nowrap font-semibold"
               >
                 {nav.title}
               </Link>

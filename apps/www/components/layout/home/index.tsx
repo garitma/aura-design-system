@@ -126,12 +126,12 @@ export function Header({
     <Navbar>
       <Link
         href={nav.url ?? "/"}
-        className="inline-flex items-center gap-1 font-semibold"
+        className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap font-semibold"
       >
         {nav.title}
       </Link>
       {nav.children}
-      <ul className="flex flex-row items-center gap-0.5 px-2 max-sm:hidden">
+      <ul className="hidden flex-row items-center gap-0.5 px-2 lg:flex">
         {navItems
           .filter((item) => !isSecondary(item))
           .map((item, i) => (
@@ -163,7 +163,7 @@ export function Header({
       <ul className="flex flex-row items-center ms-auto lg:hidden gap-0.5">
         <SearchDialogTriggerIcon />
 
-        {(tree || menuItems.length > 0) && (
+        {(tree || menuItems.length > 0 || navItems.length > 0) && (
           <NavigationMenuItem>
             <MobileNavigationMenuTrigger
               aria-label="Toggle Menu"
@@ -179,39 +179,35 @@ export function Header({
               <ChevronDown className="icon transition-transform duration-300 group-data-[state=open]:rotate-180" />
             </MobileNavigationMenuTrigger>
             <MobileNavigationMenuContent className="flex flex-col gap-1">
+              <ul className="flex flex-col gap-0.5">
+                {navItems
+                  .filter((item) => !isSecondary(item))
+                  .map((item, i) => (
+                    <li key={i}>
+                      <MobileNavigationMenuLinkItem item={item} />
+                    </li>
+                  ))}
+              </ul>
               {tree ? (
                 <Sidebar
                   defaultOpenLevel={1}
                   prefetch={true}
                   Content={
-                    <div className="flex flex-col gap-1 max-h-[60vh] overflow-y-auto">
+                    <div className="flex flex-col gap-1 max-h-[60vh] overflow-y-auto border-t border-gray-a6 pt-1">
                       <SidebarPageTree />
                     </div>
                   }
                 />
-              ) : (
-                <>
-                  {menuItems
-                    .filter((item) => !isSecondary(item))
-                    .map((item, i) => (
-                      <MobileNavigationMenuLinkItem
-                        key={i}
-                        item={item}
-                        className="sm:hidden"
-                      />
-                    ))}
-                </>
-              )}
+              ) : null}
 
-              <div className="flex flex-row gap-1 mt-1">
-                {!tree &&
-                  menuItems.filter(isSecondary).map((item, i) => (
-                    <MobileNavigationMenuLinkItem
-                      key={i}
-                      item={item}
-                      className={cn(item.type === "icon" && "first:ms-0")}
-                    />
-                  ))}
+              <div className="flex flex-row flex-wrap gap-1 mt-1">
+                {navItems.filter(isSecondary).map((item, i) => (
+                  <MobileNavigationMenuLinkItem
+                    key={i}
+                    item={item}
+                    className={cn(item.type === "icon" && "first:ms-0")}
+                  />
+                ))}
 
                 {i18n && (
                   <LanguageToggle>

@@ -12,7 +12,7 @@ export function baseOptions(): BaseLayoutProps {
     nav: {
       title: (
         <>
-          <span className="inline-flex items-center gap-0.5">
+          <span className="inline-flex shrink-0 items-center gap-0.5 whitespace-nowrap">
             <svg
               className="icon"
               viewBox="0 0 43 43"
@@ -25,7 +25,9 @@ export function baseOptions(): BaseLayoutProps {
               />
             </svg>
 
-            <span className="font-bold text-gray-12">Aura Design System</span>
+            <span className="font-bold whitespace-nowrap text-gray-12">
+              Aura Design System
+            </span>
           </span>
         </>
       ),
