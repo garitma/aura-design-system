@@ -500,7 +500,7 @@ function CommandDialogBackdrop({
   return (
     <CommandDialogPrimitive.Backdrop
       className={cn(
-        "fixed inset-0 z-50 bg-gray-9a backdrop-blur-xs transition-all",
+        "fixed inset-0 z-50 bg-gray-9a backdrop-blur-xs",
         className,
       )}
       data-slot="command-dialog-backdrop"
@@ -538,7 +538,7 @@ function CommandDialogPopup({
       <CommandDialogViewport>
         <CommandDialogPrimitive.Popup
           className={cn(
-            "-translate-y-[calc(1.25rem*var(--nested-dialogs))] relative row-start-2 flex max-h-100 min-h-0 w-full min-w-0 max-w-xl scale-[calc(1-0.1*var(--nested-dialogs))] flex-col rounded-2xl border border-gray-a6 bg-gray-1 bg-clip-padding text-gray-12 opacity-[calc(1-0.1*var(--nested-dialogs))] shadow-lg transition-[scale,opacity,translate] duration-200 ease-in-out will-change-transform before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-2xl)-1px)] before:bg-gray-a2 data-nested:data-ending-style:translate-y-8 data-nested:data-starting-style:translate-y-8 data-nested-dialog-open:origin-top data-ending-style:scale-98 data-starting-style:scale-98 data-ending-style:opacity-0 data-starting-style:opacity-0 **:data-[slot=scroll-area-viewport]:data-has-overflow-y:pe-1",
+            "relative row-start-2 flex max-h-100 min-h-0 w-full min-w-0 max-w-xl flex-col rounded-2xl border border-gray-a6 bg-gray-1 bg-clip-padding text-gray-12 shadow-lg before:pointer-events-none before:absolute before:inset-0 before:rounded-[calc(var(--radius-2xl)-1px)] before:bg-gray-a2 data-nested-dialog-open:origin-top **:data-[slot=scroll-area-viewport]:data-has-overflow-y:pe-1",
             className,
           )}
           data-slot="command-dialog-popup"

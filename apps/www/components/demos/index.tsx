@@ -76,11 +76,7 @@ import {
   CheckboxDemoIndeterminate
 } from "./checkbox-demo"
 import { 
-  CollapsibleDemoDefaultOpen,
-  CollapsibleDemoWithRichContent,
-  CollapsibleDemoCustomTrigger,
-  CollapsibleDemo,
-  CollapsibleDemoDisabled
+  CollapsibleDemo
 } from "./collapsible-demo"
 import { 
   ComboboxDemo,
@@ -416,20 +412,8 @@ export const Registry = {
   "checkbox-demo-indeterminate": {
     component: CheckboxDemoIndeterminate,
   },
-  "collapsible-demo-default-open": {
-    component: CollapsibleDemoDefaultOpen,
-  },
-  "collapsible-demo-with-rich-content": {
-    component: CollapsibleDemoWithRichContent,
-  },
-  "collapsible-demo-custom-trigger": {
-    component: CollapsibleDemoCustomTrigger,
-  },
   "collapsible-demo": {
     component: CollapsibleDemo,
-  },
-  "collapsible-demo-disabled": {
-    component: CollapsibleDemoDisabled,
   },
   "combobox-demo": {
     component: ComboboxDemo,

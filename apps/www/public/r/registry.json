@@ -850,8 +850,18 @@
         {
           "path": "registry/default/components/ui/Command.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/command.css",
+          "type": "registry:component",
+          "target": "./styles/command.css"
         }
       ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/command.css\"": {}
+        }
+      },
       "dependencies": [
         "@base-ui/react",
         "@radix-ui/react-icons"
@@ -870,8 +880,18 @@
         {
           "path": "registry/default/components/ui/ContextMenu.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/context-menu.css",
+          "type": "registry:component",
+          "target": "./styles/context-menu.css"
         }
       ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/context-menu.css\"": {}
+        }
+      },
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"
@@ -937,8 +957,18 @@
         {
           "path": "registry/default/components/ui/DropdownMenu.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/dropdown-menu.css",
+          "type": "registry:component",
+          "target": "./styles/dropdown-menu.css"
         }
       ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/dropdown-menu.css\"": {}
+        }
+      },
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"
@@ -1014,8 +1044,18 @@
         {
           "path": "registry/default/components/ui/HoverCard.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/hover-card.css",
+          "type": "registry:component",
+          "target": "./styles/hover-card.css"
         }
       ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/hover-card.css\"": {}
+        }
+      },
       "dependencies": [
         "radix-ui"
       ],
@@ -1077,8 +1117,18 @@
         {
           "path": "registry/default/components/ui/Menubar.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/menubar.css",
+          "type": "registry:component",
+          "target": "./styles/menubar.css"
         }
       ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/menubar.css\"": {}
+        }
+      },
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"
@@ -1096,8 +1146,18 @@
         {
           "path": "registry/default/components/ui/NavigationMenu.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/navigation-menu.css",
+          "type": "registry:component",
+          "target": "./styles/navigation-menu.css"
         }
       ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/navigation-menu.css\"": {}
+        }
+      },
       "dependencies": [
         "radix-ui"
       ],
@@ -1114,8 +1174,18 @@
         {
           "path": "registry/default/components/ui/Popover.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/popover.css",
+          "type": "registry:component",
+          "target": "./styles/popover.css"
         }
       ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/popover.css\"": {}
+        }
+      },
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"
@@ -1202,8 +1272,18 @@
         {
           "path": "registry/default/components/ui/Select.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/select.css",
+          "type": "registry:component",
+          "target": "./styles/select.css"
         }
       ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/select.css\"": {}
+        }
+      },
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"
@@ -1239,8 +1319,18 @@
         {
           "path": "registry/default/components/ui/Sheet.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/sheet.css",
+          "type": "registry:component",
+          "target": "./styles/sheet.css"
         }
       ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/sheet.css\"": {}
+        }
+      },
       "dependencies": [
         "@radix-ui/react-icons",
         "radix-ui"

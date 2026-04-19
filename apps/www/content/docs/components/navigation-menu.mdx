@@ -208,7 +208,7 @@ function NavigationMenuContent({
     <NavigationMenuRadix.Content
       data-slot="navigation-menu-content"
       className={cn(
-        "absolute top-full mt-0.5 bg-gray-1 shadow-md rounded-md border border-gray-a6 overflow-hidden",
+        "absolute top-full z-50 mt-0.5 origin-(--radix-navigation-menu-content-transform-origin) overflow-hidden rounded-md border border-gray-a6 bg-gray-1 shadow-md data-[state=open]:animate-popover-show data-[state=closed]:animate-popover-hide",
         className
       )}
       {...props}

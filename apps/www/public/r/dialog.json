@@ -20,7 +20,7 @@
     },
     {
       "path": "registry/default/styles/dialog.css",
-      "content": "@theme animatons {\n    --animate-overlay-show: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);\n    --animate-content-show: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);\n  }\n  \n  @layer components {\n    @keyframes overlayShow {\n      from {\n        opacity: 0;\n      }\n      to {\n        opacity: 1;\n      }\n    }\n  \n    @keyframes contentShow {\n      from {\n        opacity: 0;\n        transform: scale(0.96);\n      }\n      to {\n        opacity: 1;\n        transform: scale(1);\n      }\n    }\n  }",
+      "content": "@theme animatons {\n    --animate-overlay-show: overlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);\n    --animate-content-show: contentShow 150ms cubic-bezier(0.16, 1, 0.3, 1);\n  }\n  \n  @layer components {\n    @keyframes overlayShow {\n      from {\n        opacity: 0;\n      }\n      to {\n        opacity: 1;\n      }\n    }\n  \n    @keyframes contentShow {\n      from {\n        opacity: 0;\n        transform: scale(0.96);\n      }\n      to {\n        opacity: 1;\n        transform: scale(1);\n      }\n    }\n  }\n\n@media (prefers-reduced-motion: reduce) {\n  @layer components {\n    [data-slot=\"dialog-overlay\"],\n    [data-slot=\"dialog-content\"],\n    [data-slot=\"alert-dialog-overlay\"],\n    [data-slot=\"alert-dialog-content\"] {\n      animation: none;\n    }\n  }\n}",
       "type": "registry:component",
       "target": "./styles/dialog.css"
     }

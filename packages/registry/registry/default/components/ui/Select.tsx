@@ -108,7 +108,7 @@ function SelectItem({
       data-slot="select-item"
       className={cn(
         className,
-        "relative flex w-full cursor-pointer select-none items-center rounded-sm py-1 px-2 text-gray-12 outline-none focus:bg-accent-3 focus:text-accent-12 data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+        "relative flex w-full cursor-pointer select-none items-center p-0.5 px-2 text-gray-12 outline-none hover:bg-accent-3 focus:bg-accent-3 focus:text-accent-12 data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
       )}
       {...props}
     >
@@ -143,7 +143,7 @@ function SelectItemIndicator({
       )}
       {...props}
     >
-      <CheckIcon className="size-1 text-accent-9" />
+      <CheckIcon className="text-accent-9" />
     </SelectRadix.ItemIndicator>
   );
 }
@@ -161,7 +161,7 @@ function SelectLabel({
   return (
     <SelectRadix.Label
       data-slot="select-label"
-      className={cn(className, "py-1 px-2 text-gray-12 font-medium")}
+      className={cn(className, "p-0.5 px-2 text-gray-12")}
       {...props}
     />
   );
@@ -189,11 +189,11 @@ function SelectScrollUpButton({
       data-slot="select-scroll-up-button"
       className={cn(
         className,
-        "flex cursor-default items-center justify-center py-1"
+        "flex cursor-default items-center justify-center p-0.5"
       )}
       {...props}
     >
-      <ChevronUpIcon className="size-1 text-gray-11" />
+      <ChevronUpIcon className="icon text-gray-11" />
     </SelectRadix.ScrollUpButton>
   );
 }
@@ -207,7 +207,7 @@ function SelectScrollDownButton({
       data-slot="select-scroll-down-button"
       className={cn(
         className,
-        "flex cursor-default items-center justify-center py-1"
+        "flex cursor-default items-center justify-center p-0.5"
       )}
       {...props}
     >
