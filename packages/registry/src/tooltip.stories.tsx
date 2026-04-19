@@ -11,7 +11,7 @@ export const Default = () => (
       <Button variant="pill">Hover me</Button>
     </TooltipTrigger>
     <TooltipContent>
-      <p>This is a tooltip</p>
+      This is a tooltip
     </TooltipContent>
   </Tooltip>
 );

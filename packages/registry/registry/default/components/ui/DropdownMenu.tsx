@@ -51,7 +51,7 @@ function DropdownMenuContent({
         collisionPadding={8}
         className={cn(
           className,
-          "z-50 bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md"
+          "z-50 origin-(--radix-dropdown-menu-content-transform-origin) bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md data-[state=open]:animate-popover-show data-[state=closed]:animate-popover-hide"
         )}
         {...props}
       />
@@ -209,7 +209,7 @@ function DropdownMenuSubContent({
       data-slot="dropdown-menu-sub-content"
       className={cn(
         className,
-        "z-50 bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md"
+        "z-50 origin-(--radix-dropdown-menu-content-transform-origin) bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md data-[state=open]:animate-popover-show data-[state=closed]:animate-popover-hide"
       )}
       {...props}
     />

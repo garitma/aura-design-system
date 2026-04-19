@@ -1,6 +1,6 @@
 @theme animatons {
-  --animate-accordion-open: slideDownAccordion 250ms ease-in-out;
-  --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;
+  --animate-accordion-open: slideDownAccordion 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  --animate-accordion-closed: slideUpAccordion 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 @layer components {
   @keyframes slideDownAccordion {
@@ -18,6 +18,26 @@
     }
     to {
       height: 0;
+    }
+  }
+
+  [data-slot="accordion-trigger"] svg {
+    transition: transform 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+
+  [data-slot="accordion-trigger"][data-state="open"] svg {
+    transform: rotate(180deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @layer components {
+    [data-slot="accordion-content"] {
+      animation: none;
+    }
+
+    [data-slot="accordion-trigger"] svg {
+      transition-duration: 0.01ms;
     }
   }
 }

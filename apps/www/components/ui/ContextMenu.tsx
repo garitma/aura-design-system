@@ -93,7 +93,7 @@ function ContextMenuSubContent({
       data-slot="context-menu-sub-content"
       className={cn(
         className,
-        "bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md"
+        "z-50 origin-(--radix-context-menu-content-transform-origin) bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md data-[state=open]:animate-popover-show data-[state=closed]:animate-popover-hide"
       )}
       {...props}
     />
@@ -111,7 +111,7 @@ function ContextMenuContent({
         collisionPadding={8}
         className={cn(
           className,
-          "bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md"
+          "z-50 origin-(--radix-context-menu-content-transform-origin) bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md data-[state=open]:animate-popover-show data-[state=closed]:animate-popover-hide"
         )}
         {...props}
       />

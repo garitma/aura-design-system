@@ -48,7 +48,7 @@ function PopoverContent({
         collisionPadding={8}
         className={cn(
           className,
-          "bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md"
+          "z-50 origin-(--radix-popover-content-transform-origin) bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md data-[state=open]:animate-popover-show data-[state=closed]:animate-popover-hide"
         )}
         {...props}
       />

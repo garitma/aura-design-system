@@ -270,8 +270,20 @@
   @import "../registry/default/styles/accordion.css";
   @import "../registry/default/styles/alert-dialog.css";
   @import "../registry/default/styles/collapsible.css";
+  @import "../registry/default/styles/command.css";
+  @import "../registry/default/styles/context-menu.css";
   @import "../registry/default/styles/dialog.css";
+  @import "../registry/default/styles/dropdown-menu.css";
+  @import "../registry/default/styles/hover-card.css";
+  @import "../registry/default/styles/menubar.css";
+  @import "../registry/default/styles/navigation-menu.css";
+  @import "../registry/default/styles/select.css";
+  @import "../registry/default/styles/popover.css";
+  @import "../registry/default/styles/sheet.css";
   @import "../registry/default/styles/sidebar.css";
+  @import "../registry/default/styles/tooltip.css";
+  
+
 
   html {
     font-size: 17px;

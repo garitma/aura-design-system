@@ -77,7 +77,7 @@ function SelectContent({
         collisionPadding={8}
         className={cn(
           className,
-          "relative z-50 max-h-96 min-w-10 overflow-hidden rounded-sm border border-gray-a6 bg-gray-1 shadow-md"
+          "relative z-50 max-h-96 min-w-10 origin-(--radix-select-content-transform-origin) overflow-hidden rounded-sm border border-gray-a6 bg-gray-1 shadow-md data-[state=open]:animate-popover-show data-[state=closed]:animate-popover-hide"
         )}
         {...props}
       />
@@ -92,7 +92,7 @@ function SelectViewport({
   return (
     <SelectRadix.Viewport
       data-slot="select-viewport"
-      className={cn(className, "p-1")}
+      className={cn(className, "p-0")}
       {...props}
     />
   );

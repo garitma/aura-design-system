@@ -5,23 +5,49 @@
   border-bottom-color: var(--gray-8);
 }
 
-/* Sidebar transitions: 250ms, ease (fundation-animations) */
+/* Layout + interactive transitions: single source (250ms; linear for width drag, smooth for chrome) */
 @media (prefers-reduced-motion: no-preference) {
-  [data-slot="sidebar-gap"],
-  [data-slot="sidebar-container"] {
+  [data-slot="sidebar-gap"] {
+    transition-property: width;
     transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+    transition-timing-function: linear;
   }
-  [data-slot="sidebar-rail"] {
+
+  [data-slot="sidebar-container"] {
+    transition-property: left, right, width;
     transition-duration: 250ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.6, 1);
+    transition-timing-function: linear;
+  }
+
+  [data-slot="sidebar-rail"] {
+    transition: transform 250ms linear, background-color 250ms linear,
+      opacity 250ms linear;
+  }
+
+  [data-slot="sidebar-group-label"] {
+    transition: margin 250ms linear, opacity 250ms linear;
+  }
+
+  [data-slot="sidebar-menu-button"] {
+    transition: width 250ms cubic-bezier(0.4, 0, 0.6, 1),
+      height 250ms cubic-bezier(0.4, 0, 0.6, 1),
+      padding 250ms cubic-bezier(0.4, 0, 0.6, 1);
+  }
+
+  [data-slot="sidebar-group-action"],
+  [data-slot="sidebar-menu-action"] {
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.6, 1);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   [data-slot="sidebar-gap"],
   [data-slot="sidebar-container"],
-  [data-slot="sidebar-rail"] {
+  [data-slot="sidebar-rail"],
+  [data-slot="sidebar-group-label"],
+  [data-slot="sidebar-menu-button"],
+  [data-slot="sidebar-group-action"],
+  [data-slot="sidebar-menu-action"] {
     transition-duration: 0.01ms;
   }
 }

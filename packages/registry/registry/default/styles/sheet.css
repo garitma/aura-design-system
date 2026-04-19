@@ -1,0 +1,103 @@
+@theme animatons {
+  --animate-sheet-overlay-show: sheetOverlayShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-sheet-right-open: sheetRightOpen 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-sheet-right-closed: sheetRightClosed 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-sheet-left-open: sheetLeftOpen 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-sheet-left-closed: sheetLeftClosed 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-sheet-top-open: sheetTopOpen 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-sheet-top-closed: sheetTopClosed 200ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-sheet-bottom-open: sheetBottomOpen 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  --animate-sheet-bottom-closed: sheetBottomClosed 200ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@layer components {
+  @keyframes sheetOverlayShow {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes sheetRightOpen {
+    from {
+      transform: translate3d(100%, 0, 0);
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes sheetRightClosed {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(100%, 0, 0);
+    }
+  }
+
+  @keyframes sheetLeftOpen {
+    from {
+      transform: translate3d(-100%, 0, 0);
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes sheetLeftClosed {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-100%, 0, 0);
+    }
+  }
+
+  @keyframes sheetTopOpen {
+    from {
+      transform: translate3d(0, -100%, 0);
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes sheetTopClosed {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(0, -100%, 0);
+    }
+  }
+
+  @keyframes sheetBottomOpen {
+    from {
+      transform: translate3d(0, 100%, 0);
+    }
+    to {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  @keyframes sheetBottomClosed {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(0, 100%, 0);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @layer components {
+    [data-slot="sheet-overlay"],
+    [data-slot="sheet-content"] {
+      animation: none;
+    }
+  }
+}

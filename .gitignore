@@ -151,3 +151,5 @@ playwright/.cache/
 .sonar-token
 sonar-issues.json
 .scannerwork/
+
+.cursor/skills/web-animation-design/*

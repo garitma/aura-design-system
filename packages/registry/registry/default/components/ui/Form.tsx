@@ -77,6 +77,7 @@ export const FormSubmit = React.forwardRef<HTMLButtonElement, FormSubmitProps>(
           isLoading={fetchStatus === "loading"}
           isLoadingText={
             <>
+              {/* Loading spinner: Tailwind `animate-spin` is an allowed exception (infinite rotation). */}
               <SymbolIcon className="icon animate-spin" />
             </>
           }

@@ -1,6 +1,6 @@
 @theme animatons {
-    --animate-collapsible-down: slideDownCollapsible 500ms ease;
-    --animate-collapsible-up: slideUpCollapsible 500ms ease;
+    --animate-collapsible-down: slideDownCollapsible 250ms cubic-bezier(0.645, 0.045, 0.355, 1);
+    --animate-collapsible-up: slideUpCollapsible 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
   }
   @layer components {
     @keyframes slideDownCollapsible {
@@ -21,4 +21,12 @@
       }
     }
   }
+
+@media (prefers-reduced-motion: reduce) {
+  @layer components {
+    [data-slot="collapsible-content"] {
+      animation: none;
+    }
+  }
+}
   

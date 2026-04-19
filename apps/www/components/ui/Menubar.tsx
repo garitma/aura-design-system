@@ -74,7 +74,7 @@ function MenubarContent({
       <MenubarRadix.Content
         data-slot="menubar-content"
         className={cn(
-          "bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md",
+          "z-50 origin-(--radix-menubar-content-transform-origin) bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md data-[state=open]:animate-popover-show data-[state=closed]:animate-popover-hide",
           className
         )}
         {...props}
@@ -215,7 +215,7 @@ function MenubarSubContent({
     <MenubarRadix.SubContent
       data-slot="menubar-sub-content"
       className={cn(
-        "bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md",
+        "z-50 origin-(--radix-menubar-content-transform-origin) bg-gray-1 border border-gray-a6 rounded-sm relative shadow-md data-[state=open]:animate-popover-show data-[state=closed]:animate-popover-hide",
         className
       )}
       {...props}

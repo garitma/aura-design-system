@@ -24,3 +24,12 @@
       }
     }
   }
+
+@media (prefers-reduced-motion: reduce) {
+  @layer components {
+    [data-slot="alert-dialog-overlay"],
+    [data-slot="alert-dialog-content"] {
+      animation: none;
+    }
+  }
+}
