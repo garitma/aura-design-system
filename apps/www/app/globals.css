@@ -304,7 +304,7 @@
 
 @layer utilities {
   .animate-marquee {
-    animation: marquee 50s linear infinite;
+    animation: marquee 130s linear infinite;
   }
 
   @keyframes marquee {
