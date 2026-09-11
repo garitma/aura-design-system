@@ -1,0 +1,409 @@
+---
+title: Message Scroller
+description: A chat scroll container that anchors turns, follows streamed output, loads history without jumping, and jumps to any message.
+---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="message-scroller-demo" description="A chat scroll container that anchors turns, follows streamed output, loads history without jumping, and jumps to any message.">
+
+```tsx
+import * as React from "react";
+import {
+  Avatar,
+  AvatarFallback,
+} from "@/components/ui/Avatar";
+import { Bubble, BubbleContent } from "@/components/ui/Bubble";
+import { Button } from "@/components/ui/Button";
+import {
+  Marker,
+  MarkerContent,
+} from "@/components/ui/Marker";
+import {
+  Message,
+  MessageAvatar,
+  MessageContent,
+} from "@/components/ui/Message";
+import {
+  MessageScroller,
+  MessageScrollerButton,
+  MessageScrollerContent,
+  MessageScrollerItem,
+  MessageScrollerProvider,
+  MessageScrollerViewport,
+  useMessageScroller,
+} from "@/components/ui/MessageScroller";
+
+export function MessageScrollerDemo() {
+  return {
+  const [messages, setMessages] = React.useState(seed);
+
+  return (
+    <Transcript
+      messages={messages}
+      onSend={() => {
+        const next = messages.length + 1;
+        setMessages((prev) => [
+          ...prev,
+          {
+            id: String(next),
+            role: "user",
+            content: `Follow-up #${next}: keep my place while this streams.`,
+          },
+          {
+            id: String(next + 1),
+            role: "assistant",
+            content:
+              "Anchored your turn near the top. New content can grow below without yanking the viewport unless you are following.",
+          },
+        ]);
+      }}
+    />
+  );
+};
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/message-scroller
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```bash
+pnpm install @radix-ui/react-icons @shadcn/react
+    ```
+  </Step>
+  <Step>
+    Copy and paste the button component into your `components/ui/Button.tsx` file.
+
+```tsx
+/**
+ * @description Displays a button or a component that looks like a button.
+ */
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/utils/class-names";
+
+const buttonVariants = cva("button", {
+  variants: {
+    variant: {
+      default: "button-fill",
+      fill: "button-fill",
+      pill: "button-pill border border-gray-6 text-gray-11 bg-gray-2 hover:bg-gray-3",
+      link: "button-link",
+      menu: "button-menu",
+    },
+    size: {
+      default: "h-4",
+      xs: "h-2.5",
+      sm: "h-3",
+      md: "h-4",
+      lg: "h-5",
+      xl: "h-6",
+      icon: "w-3 h-3 p-0",
+      "icon-md": "w-4 h-4 p-0",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+  },
+});
+
+interface ButtonProps
+  extends React.ComponentProps<"button">,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  isLoadingText?: string | React.ReactNode;
+  mode?: VariantProps<typeof buttonVariants>["variant"];
+  label?: string | React.ReactNode;
+}
+
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (props: ButtonProps, ref) => {
+    const {
+      className,
+      variant,
+      mode,
+      size,
+      asChild = false,
+      isDisabled,
+      isLoading,
+      isLoadingText,
+      children,
+      label,
+      ...rest
+    } = props;
+    const Comp = asChild ? Slot : "button";
+    const disabled = isDisabled || isLoading || props.disabled;
+    const effectiveVariant = variant ?? mode;
+
+    return (
+      <Comp
+        data-slot="button"
+        className={cn(
+          buttonVariants({ variant: effectiveVariant, size, className }),
+          disabled && "opacity-50 cursor-not-allowed"
+        )}
+        ref={ref}
+        disabled={disabled}
+        {...rest}
+      >
+        {asChild ? (
+          children
+        ) : (
+          <>
+      
+            {isLoading && isLoadingText ? isLoadingText : <>{label}{children}</>}
+          </>
+        )}
+      </Comp>
+    );
+  }
+);
+
+Button.displayName = "Button";
+
+export { Button, buttonVariants };
+export type { ButtonProps };
+export default Button;
+
+```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the MessageScroller component into your `components/ui/MessageScroller.tsx` file.
+
+```tsx
+"use client";
+
+/**
+ * @description A chat scroll container that anchors turns, follows streamed output, and jumps to messages.
+ */
+import * as React from "react";
+import { ArrowDownIcon } from "@radix-ui/react-icons";
+import {
+  MessageScroller as MessageScrollerPrimitive,
+  useMessageScroller,
+  useMessageScrollerScrollable,
+  useMessageScrollerVisibility,
+} from "@shadcn/react/message-scroller";
+
+import { cn } from "@/utils/class-names";
+import { Button } from "@/components/ui/Button";
+
+function MessageScrollerProvider(
+  props: React.ComponentProps<typeof MessageScrollerPrimitive.Provider>
+) {
+  return <MessageScrollerPrimitive.Provider {...props} />;
+}
+
+function MessageScroller({
+  className,
+  ...props
+}: React.ComponentProps<typeof MessageScrollerPrimitive.Root>) {
+  return (
+    <MessageScrollerPrimitive.Root
+      data-slot="message-scroller"
+      className={cn(
+        "group/message-scroller relative flex size-full min-h-0 flex-col overflow-hidden",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function MessageScrollerViewport({
+  className,
+  ...props
+}: React.ComponentProps<typeof MessageScrollerPrimitive.Viewport>) {
+  return (
+    <MessageScrollerPrimitive.Viewport
+      data-slot="message-scroller-viewport"
+      className={cn(
+        "size-full min-h-0 min-w-0 overflow-y-auto overscroll-contain contain-content data-pending-scroll:invisible",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function MessageScrollerContent({
+  className,
+  ...props
+}: React.ComponentProps<typeof MessageScrollerPrimitive.Content>) {
+  return (
+    <MessageScrollerPrimitive.Content
+      data-slot="message-scroller-content"
+      className={cn("flex h-max min-h-full flex-col gap-2", className)}
+      {...props}
+    />
+  );
+}
+
+function MessageScrollerItem({
+  className,
+  scrollAnchor = false,
+  ...props
+}: React.ComponentProps<typeof MessageScrollerPrimitive.Item>) {
+  return (
+    <MessageScrollerPrimitive.Item
+      data-slot="message-scroller-item"
+      scrollAnchor={scrollAnchor}
+      className={cn(
+        "min-w-0 shrink-0 [contain-intrinsic-size:auto_10rem] [content-visibility:auto]",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function MessageScrollerButton({
+  direction = "end",
+  className,
+  children,
+  render,
+  ...props
+}: React.ComponentProps<typeof MessageScrollerPrimitive.Button>) {
+  return (
+    <MessageScrollerPrimitive.Button
+      data-slot="message-scroller-button"
+      data-direction={direction}
+      direction={direction}
+      className={cn(
+        "absolute start-1/2 z-10 -translate-x-1/2 border border-gray-6 bg-gray-1 text-gray-12 transition-[translate,scale,opacity] duration-250 hover:bg-gray-3 hover:text-gray-12 data-[active=false]:pointer-events-none data-[active=false]:scale-95 data-[active=false]:opacity-0 data-[active=false]:duration-250 data-[active=false]:ease-[cubic-bezier(0.7,0,0.84,0)] data-[active=true]:translate-y-0 data-[active=true]:scale-100 data-[active=true]:opacity-100 data-[active=true]:ease-[cubic-bezier(0.23,1,0.32,1)] data-[direction=end]:bottom-1.5 data-[direction=end]:data-[active=false]:translate-y-full data-[direction=start]:top-1.5 data-[direction=start]:data-[active=false]:-translate-y-full rtl:translate-x-1/2 data-[direction=start]:[&_svg]:rotate-180",
+        className
+      )}
+      render={render ?? <Button variant="pill" size="icon" />}
+      {...props}
+    >
+      {children ?? (
+        <>
+          <ArrowDownIcon className="icon" />
+          <span className="sr-only">
+            {direction === "end" ? "Scroll to end" : "Scroll to start"}
+          </span>
+        </>
+      )}
+    </MessageScrollerPrimitive.Button>
+  );
+}
+
+export {
+  MessageScrollerProvider,
+  MessageScroller,
+  MessageScrollerViewport,
+  MessageScrollerContent,
+  MessageScrollerItem,
+  MessageScrollerButton,
+  useMessageScroller,
+  useMessageScrollerScrollable,
+  useMessageScrollerVisibility,
+};
+
+```
+  </Step>
+</Steps>
+
+## Usage
+
+### AnchoredTurns
+
+```tsx
+export const AnchoredTurns = () => {
+  const messages: DemoMessage[] = [
+    {
+      id: "a1",
+      role: "user",
+      content: "Anchor this user turn near the top.",
+    },
+    {
+      id: "a2",
+      role: "assistant",
+      content:
+        "The reply streams under the anchored prompt so the exchange stays connected.",
+    },
+    {
+      id: "a3",
+      role: "user",
+      content: "Send another turn to see the next anchor settle.",
+    },
+    {
+      id: "a4",
+      role: "assistant",
+      content: "Each user row with scrollAnchor becomes the start of a turn.",
+    },
+  ];
+
+  return (
+    <div className="flex h-[24rem] w-full max-w-lg flex-col overflow-hidden rounded-md border border-gray-6 bg-gray-1">
+      <MessageScrollerProvider defaultScrollPosition="last-anchor">
+        <MessageScroller className="flex-1">
+          <MessageScrollerViewport>
+            <MessageScrollerContent className="gap-1 p-1">
+              {messages.map((message) => (
+                <MessageScrollerItem
+                  key={message.id}
+                  messageId={message.id}
+                  scrollAnchor={message.role === "user"}
+                >
+                  <Message align={message.role === "user" ? "end" : "start"}>
+                    <MessageContent>
+                      <Bubble
+                        variant={
+                          message.role === "user" ? "default" : "secondary"
+                        }
+                        align={message.role === "user" ? "end" : "start"}
+                      >
+                        <BubbleContent>{message.content}</BubbleContent>
+                      </Bubble>
+                    </MessageContent>
+                  </Message>
+                </MessageScrollerItem>
+              ))}
+            </MessageScrollerContent>
+          </MessageScrollerViewport>
+          <MessageScrollerButton direction="start" />
+          <MessageScrollerButton direction="end" />
+        </MessageScroller>
+      </MessageScrollerProvider>
+    </div>
+  );
+};
+```
+

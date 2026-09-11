@@ -1,0 +1,300 @@
+---
+title: Marker
+description: Displays an inline status, system note, bordered row, or labeled separator in a conversation.
+---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="marker-demo" description="Displays an inline status, system note, bordered row, or labeled separator in a conversation.">
+
+```tsx
+import {
+  CheckCircledIcon,
+  FileTextIcon,
+  GitHubLogoIcon,
+  MagnifyingGlassIcon,
+  SymbolIcon,
+} from "@radix-ui/react-icons";
+import {
+  Marker,
+  MarkerContent,
+  MarkerIcon,
+} from "@/components/ui/Marker";
+
+export function MarkerDemo() {
+  return (
+  <div className="flex w-full max-w-md flex-col gap-1">
+    <Marker>
+      <MarkerIcon>
+        <GitHubLogoIcon className="icon" />
+      </MarkerIcon>
+      <MarkerContent>Switched to a new branch</MarkerContent>
+    </Marker>
+    <Marker role="status">
+      <MarkerContent>Thinking...</MarkerContent>
+    </Marker>
+    <Marker>
+      <MarkerIcon>
+        <MagnifyingGlassIcon className="icon" />
+      </MarkerIcon>
+      <MarkerContent>Explored 4 files</MarkerContent>
+    </Marker>
+  </div>
+)
+}
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/marker
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```bash
+pnpm install @radix-ui/react-slot class-variance-authority
+    ```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Marker component into your `components/ui/Marker.tsx` file.
+
+```tsx
+/**
+ * @description Displays an inline status, system note, bordered row, or labeled separator in a conversation.
+ */
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
+
+import { cn } from "@/utils/class-names";
+
+const markerVariants = cva(
+  "group/marker relative flex min-h-1.5 w-full items-center gap-0.5 text-left text-sm text-gray-11 [a]:underline [a]:underline-offset-2 [a]:hover:text-gray-12",
+  {
+    variants: {
+      variant: {
+        default: "",
+        separator:
+          "before:mr-0.5 before:h-px before:min-w-0 before:flex-1 before:bg-gray-6 after:ml-0.5 after:h-px after:min-w-0 after:flex-1 after:bg-gray-6",
+        border: "border-b border-gray-6 pb-0.5",
+      },
+    },
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+);
+
+function Marker({
+  className,
+  variant = "default",
+  asChild = false,
+  ...props
+}: React.ComponentProps<"div"> &
+  VariantProps<typeof markerVariants> & {
+    asChild?: boolean;
+  }) {
+  const Comp = asChild ? Slot : "div";
+
+  return (
+    <Comp
+      data-slot="marker"
+      data-variant={variant}
+      className={cn(markerVariants({ variant }), className)}
+      {...props}
+    />
+  );
+}
+
+function MarkerIcon({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="marker-icon"
+      aria-hidden="true"
+      className={cn("shrink-0 [&_.icon]:block", className)}
+      {...props}
+    />
+  );
+}
+
+function MarkerContent({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="marker-content"
+      className={cn(
+        "min-w-0 break-words group-data-[variant=separator]/marker:flex-none group-data-[variant=separator]/marker:text-center *:[a]:underline *:[a]:underline-offset-2 *:[a]:hover:text-gray-12",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+export { Marker, MarkerIcon, MarkerContent, markerVariants };
+
+```
+  </Step>
+</Steps>
+
+## Usage
+
+### Variants
+
+```tsx
+export const Variants = () => (
+  <div className="flex w-full max-w-md flex-col gap-1">
+    <Marker>
+      <MarkerContent>A default marker for inline notes.</MarkerContent>
+    </Marker>
+    <Marker variant="separator">
+      <MarkerContent>A separator marker</MarkerContent>
+    </Marker>
+    <Marker variant="border">
+      <MarkerContent>A border marker for row boundaries.</MarkerContent>
+    </Marker>
+  </div>
+)
+```
+
+### Status
+
+```tsx
+export const Status = () => (
+  <div className="flex w-full max-w-md flex-col gap-1">
+    <Marker role="status">
+      <MarkerIcon>
+        <SymbolIcon className="icon animate-spin" />
+      </MarkerIcon>
+      <MarkerContent>Compacting conversation</MarkerContent>
+    </Marker>
+    <Marker role="status">
+      <MarkerIcon>
+        <SymbolIcon className="icon animate-spin" />
+      </MarkerIcon>
+      <MarkerContent>Running tests</MarkerContent>
+    </Marker>
+  </div>
+)
+```
+
+### Separator
+
+```tsx
+export const Separator = () => (
+  <div className="flex w-full max-w-md flex-col gap-1">
+    <Marker variant="separator">
+      <MarkerContent>Today</MarkerContent>
+    </Marker>
+    <Marker variant="separator">
+      <MarkerContent>Worked for 42s</MarkerContent>
+    </Marker>
+    <Marker variant="separator">
+      <MarkerContent>Conversation compacted</MarkerContent>
+    </Marker>
+  </div>
+)
+```
+
+### Border
+
+```tsx
+export const Border = () => (
+  <div className="flex w-full max-w-md flex-col gap-1">
+    <Marker variant="border">
+      <MarkerIcon>
+        <GitHubLogoIcon className="icon" />
+      </MarkerIcon>
+      <MarkerContent>Switched to release-candidate</MarkerContent>
+    </Marker>
+    <Marker variant="border">
+      <MarkerIcon>
+        <MagnifyingGlassIcon className="icon" />
+      </MarkerIcon>
+      <MarkerContent>Reviewed 8 related files</MarkerContent>
+    </Marker>
+    <Marker variant="border">
+      <MarkerIcon>
+        <FileTextIcon className="icon" />
+      </MarkerIcon>
+      <MarkerContent>Opened implementation notes</MarkerContent>
+    </Marker>
+  </div>
+)
+```
+
+### WithIcon
+
+```tsx
+export const WithIcon = () => (
+  <div className="flex w-full max-w-md flex-col gap-1">
+    <Marker>
+      <MarkerIcon>
+        <GitHubLogoIcon className="icon" />
+      </MarkerIcon>
+      <MarkerContent>Switched to a new branch</MarkerContent>
+    </Marker>
+    <Marker>
+      <MarkerIcon>
+        <MagnifyingGlassIcon className="icon" />
+      </MarkerIcon>
+      <MarkerContent>Explored 4 files</MarkerContent>
+    </Marker>
+    <Marker>
+      <MarkerIcon>
+        <CheckCircledIcon className="icon" />
+      </MarkerIcon>
+      <MarkerContent>Syncing completed</MarkerContent>
+    </Marker>
+  </div>
+)
+```
+
+### AsLink
+
+```tsx
+export const AsLink = () => (
+  <div className="flex w-full max-w-md flex-col gap-1">
+    <Marker asChild>
+      <a href="#pr">
+        <MarkerContent>View the pull request</MarkerContent>
+      </a>
+    </Marker>
+    <Marker asChild>
+      <button type="button">
+        <MarkerIcon>
+          <SymbolIcon className="icon" />
+        </MarkerIcon>
+        <MarkerContent>Retry last step</MarkerContent>
+      </button>
+    </Marker>
+  </div>
+)
+```
+

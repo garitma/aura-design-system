@@ -684,6 +684,25 @@
       ]
     },
     {
+      "name": "bubble",
+      "type": "registry:ui",
+      "title": "Bubble",
+      "description": "The Bubble component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Bubble.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
       "name": "button",
       "type": "registry:ui",
       "title": "Button",
@@ -1109,6 +1128,25 @@
       ]
     },
     {
+      "name": "marker",
+      "type": "registry:ui",
+      "title": "Marker",
+      "description": "The Marker component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Marker.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
       "name": "menubar",
       "type": "registry:ui",
       "title": "Menubar",
@@ -1134,6 +1172,41 @@
         "radix-ui"
       ],
       "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
+      "name": "message",
+      "type": "registry:ui",
+      "title": "Message",
+      "description": "The Message component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Message.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
+      "name": "message-scroller",
+      "type": "registry:ui",
+      "title": "MessageScroller",
+      "description": "The MessageScroller component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/MessageScroller.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "@shadcn/react"
+      ],
+      "registryDependencies": [
+        "@aura/button",
         "@aura/class-names"
       ]
     },

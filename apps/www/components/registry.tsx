@@ -34,6 +34,14 @@ import {
   AvatarDemoCustomFallbackStyles
 } from "@/components/demos/avatar-demo"
 import { 
+  BubbleDemo,
+  BubbleDemoVariants,
+  BubbleDemoAlignment,
+  BubbleDemoGroup,
+  BubbleDemoAsLink,
+  BubbleDemoReactions
+} from "@/components/demos/bubble-demo"
+import { 
   ButtonDemoFill,
   ButtonDemoPill,
   ButtonDemoLink,
@@ -148,8 +156,28 @@ import {
   KbdDemoGroup
 } from "@/components/demos/kbd-demo"
 import { 
+  MarkerDemo,
+  MarkerDemoVariants,
+  MarkerDemoStatus,
+  MarkerDemoSeparator,
+  MarkerDemoBorder,
+  MarkerDemoWithIcon,
+  MarkerDemoAsLink
+} from "@/components/demos/marker-demo"
+import { 
   MenubarDemo
 } from "@/components/demos/menubar-demo"
+import { 
+  MessageDemo,
+  MessageDemoAlignment,
+  MessageDemoGroup,
+  MessageDemoHeaderAndFooter,
+  MessageDemoActions
+} from "@/components/demos/message-demo"
+import { 
+  MessageScrollerDemo,
+  MessageScrollerDemoAnchoredTurns
+} from "@/components/demos/message-scroller-demo"
 import { 
   NavigationMenuDemoDefault,
   NavigationMenuDemo
@@ -321,6 +349,24 @@ export const Registry = {
   },
   "avatar-demo-custom-fallback-styles": {
     component: AvatarDemoCustomFallbackStyles,
+  },
+  "bubble-demo": {
+    component: BubbleDemo,
+  },
+  "bubble-demo-variants": {
+    component: BubbleDemoVariants,
+  },
+  "bubble-demo-alignment": {
+    component: BubbleDemoAlignment,
+  },
+  "bubble-demo-group": {
+    component: BubbleDemoGroup,
+  },
+  "bubble-demo-as-link": {
+    component: BubbleDemoAsLink,
+  },
+  "bubble-demo-reactions": {
+    component: BubbleDemoReactions,
   },
   "button-demo-fill": {
     component: ButtonDemoFill,
@@ -556,8 +602,50 @@ export const Registry = {
   "kbd-demo-group": {
     component: KbdDemoGroup,
   },
+  "marker-demo": {
+    component: MarkerDemo,
+  },
+  "marker-demo-variants": {
+    component: MarkerDemoVariants,
+  },
+  "marker-demo-status": {
+    component: MarkerDemoStatus,
+  },
+  "marker-demo-separator": {
+    component: MarkerDemoSeparator,
+  },
+  "marker-demo-border": {
+    component: MarkerDemoBorder,
+  },
+  "marker-demo-with-icon": {
+    component: MarkerDemoWithIcon,
+  },
+  "marker-demo-as-link": {
+    component: MarkerDemoAsLink,
+  },
   "menubar-demo": {
     component: MenubarDemo,
+  },
+  "message-demo": {
+    component: MessageDemo,
+  },
+  "message-demo-alignment": {
+    component: MessageDemoAlignment,
+  },
+  "message-demo-group": {
+    component: MessageDemoGroup,
+  },
+  "message-demo-header-and-footer": {
+    component: MessageDemoHeaderAndFooter,
+  },
+  "message-demo-actions": {
+    component: MessageDemoActions,
+  },
+  "message-scroller-demo": {
+    component: MessageScrollerDemo,
+  },
+  "message-scroller-demo-anchored-turns": {
+    component: MessageScrollerDemoAnchoredTurns,
   },
   "navigation-menu-demo": {
     component: NavigationMenuDemoDefault,

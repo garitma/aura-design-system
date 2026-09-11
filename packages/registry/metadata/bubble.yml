@@ -1,0 +1,3 @@
+header:
+  description: Displays conversational content in a message bubble. Supports variants, alignment, grouping, reactions, and polymorphic content.
+extends: _templates/content.yml

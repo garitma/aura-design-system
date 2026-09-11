@@ -4,8 +4,9 @@ date: 2026-09-11
 tags: [dev-log]
 ---
 ## Summary
-Added `/docs/mcp-agent-blueprint`: agent runbook for `Ejecuta` + URL to audit/install MCP, rules, skills, DESIGN.md on existing projects. Linked from `/docs/mcp`.
+Ported shadcn `Message` and `MessageScroller` as `@aura/message` and `@aura/message-scroller`. Scroller behavior comes from `@shadcn/react`; Aura styles the frame and jump button.
 
 ## Context
-- Related: [[MCP]] · [[Site and docs app]]
-- Next: Deploy docs so production URL works for paste-into-agent flow.
+- Related: [[Message and MessageScroller]] · [[Bubble component]] · [[Marker component]]
+- Implementation Path: `packages/registry/registry/default/components/ui/Message.tsx`, `MessageScroller.tsx`
+- Next: Ladle check `message--default` and `message-scroller--default`

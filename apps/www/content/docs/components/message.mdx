@@ -1,0 +1,330 @@
+---
+title: Message
+description: Displays a message in a conversation, with optional avatar, header, footer, and alignment.
+---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="message-demo" description="Displays a message in a conversation, with optional avatar, header, footer, and alignment.">
+
+```tsx
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/Avatar";
+import { Bubble, BubbleContent } from "@/components/ui/Bubble";
+import { Button } from "@/components/ui/Button";
+import {
+  Marker,
+  MarkerContent,
+  MarkerIcon,
+} from "@/components/ui/Marker";
+import {
+  Message,
+  MessageAvatar,
+  MessageContent,
+  MessageFooter,
+  MessageGroup,
+  MessageHeader,
+} from "@/components/ui/Message";
+import { SymbolIcon } from "@radix-ui/react-icons";
+
+export function MessageDemo() {
+  return (
+  <div className="flex w-full max-w-lg flex-col gap-2">
+    <Message>
+      <MessageAvatar>
+        <Avatar>
+          <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+          <AvatarFallback>CN</AvatarFallback>
+        </Avatar>
+      </MessageAvatar>
+      <MessageContent>
+        <Bubble variant="secondary">
+          <BubbleContent>It&apos;s 4:55 PM. On a Friday.</BubbleContent>
+        </Bubble>
+      </MessageContent>
+    </Message>
+    <Message align="end">
+      <MessageContent>
+        <Bubble>
+          <BubbleContent>How can I help you today?</BubbleContent>
+        </Bubble>
+        <MessageFooter>Delivered</MessageFooter>
+      </MessageContent>
+    </Message>
+    <Message>
+      <Marker role="status">
+        <MarkerIcon>
+          <SymbolIcon className="icon animate-spin" />
+        </MarkerIcon>
+        <MarkerContent>Oliver is typing...</MarkerContent>
+      </Marker>
+    </Message>
+  </div>
+)
+}
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/message
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Message component into your `components/ui/Message.tsx` file.
+
+```tsx
+/**
+ * @description Displays a message in a conversation, with optional avatar, header, footer, and alignment.
+ */
+import * as React from "react";
+
+import { cn } from "@/utils/class-names";
+
+function MessageGroup({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="message-group"
+      className={cn("flex min-w-0 flex-col gap-1", className)}
+      {...props}
+    />
+  );
+}
+
+function Message({
+  className,
+  align = "start",
+  ...props
+}: React.ComponentProps<"div"> & { align?: "start" | "end" }) {
+  return (
+    <div
+      data-slot="message"
+      data-align={align}
+      className={cn(
+        "group/message relative flex w-full min-w-0 gap-0.5 text-sm data-[align=end]:flex-row-reverse",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function MessageAvatar({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="message-avatar"
+      className={cn(
+        "flex w-fit min-w-3 shrink-0 items-center justify-center self-end overflow-hidden rounded-full bg-gray-3 group-has-data-[slot=message-footer]/message:-translate-y-2",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function MessageContent({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="message-content"
+      className={cn(
+        "flex w-full min-w-0 flex-col gap-1 break-words group-data-[align=end]/message:*:data-slot:self-end",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function MessageHeader({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="message-header"
+      className={cn(
+        "flex max-w-full min-w-0 items-center px-1 text-xs font-medium text-gray-11 group-has-data-[variant=ghost]/message:px-0",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function MessageFooter({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="message-footer"
+      className={cn(
+        "flex max-w-full min-w-0 items-center px-1 text-xs font-medium text-gray-11 group-has-data-[variant=ghost]/message:px-0 group-data-[align=end]/message:justify-end",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+export {
+  MessageGroup,
+  Message,
+  MessageAvatar,
+  MessageContent,
+  MessageFooter,
+  MessageHeader,
+};
+
+```
+  </Step>
+</Steps>
+
+## Usage
+
+### Alignment
+
+```tsx
+export const Alignment = () => (
+  <div className="flex w-full max-w-lg flex-col gap-2">
+    <Message>
+      <MessageAvatar>
+        <Avatar>
+          <AvatarFallback>AI</AvatarFallback>
+        </Avatar>
+      </MessageAvatar>
+      <MessageContent>
+        <Bubble variant="secondary">
+          <BubbleContent>The build failed during dependency installation.</BubbleContent>
+        </Bubble>
+      </MessageContent>
+    </Message>
+    <Message align="end">
+      <MessageContent>
+        <Bubble>
+          <BubbleContent>Can you share the exact error?</BubbleContent>
+        </Bubble>
+      </MessageContent>
+    </Message>
+    <Message>
+      <MessageAvatar>
+        <Avatar>
+          <AvatarFallback>AI</AvatarFallback>
+        </Avatar>
+      </MessageAvatar>
+      <MessageContent>
+        <Bubble variant="secondary">
+          <BubbleContent>
+            Something went wrong with the build. Try running it again.
+          </BubbleContent>
+        </Bubble>
+      </MessageContent>
+    </Message>
+  </div>
+)
+```
+
+### Group
+
+```tsx
+export const Group = () => (
+  <div className="flex w-full max-w-lg flex-col gap-2">
+    <MessageGroup>
+      <Message>
+        <MessageAvatar className="invisible" aria-hidden />
+        <MessageContent>
+          <Bubble variant="secondary">
+            <BubbleContent>I checked the registry addresses.</BubbleContent>
+          </Bubble>
+        </MessageContent>
+      </Message>
+      <Message>
+        <MessageAvatar>
+          <Avatar>
+            <AvatarFallback>AI</AvatarFallback>
+          </Avatar>
+        </MessageAvatar>
+        <MessageContent>
+          <Bubble variant="secondary">
+            <BubbleContent>They look correct on my end.</BubbleContent>
+          </Bubble>
+        </MessageContent>
+      </Message>
+    </MessageGroup>
+  </div>
+)
+```
+
+### HeaderAndFooter
+
+```tsx
+export const HeaderAndFooter = () => (
+  <div className="flex w-full max-w-lg flex-col gap-2">
+    <Message>
+      <MessageAvatar>
+        <Avatar>
+          <AvatarFallback>YO</AvatarFallback>
+        </Avatar>
+      </MessageAvatar>
+      <MessageContent>
+        <MessageHeader>You</MessageHeader>
+        <Bubble variant="secondary">
+          <BubbleContent>
+            Send the report to the team. Ping @shadcn if you need help.
+          </BubbleContent>
+        </Bubble>
+        <MessageFooter>Just now</MessageFooter>
+      </MessageContent>
+    </Message>
+  </div>
+)
+```
+
+### Actions
+
+```tsx
+export const Actions = () => (
+  <div className="flex w-full max-w-lg flex-col gap-2">
+    <Message>
+      <MessageContent>
+        <Bubble variant="ghost">
+          <BubbleContent>
+            The install failure is coming from the workspace package.
+          </BubbleContent>
+        </Bubble>
+        <MessageFooter className="gap-0.5">
+          <Button variant="pill" size="xs" type="button" aria-label="Copy">
+            Copy
+          </Button>
+          <Button variant="pill" size="xs" type="button" aria-label="Retry">
+            Retry
+          </Button>
+        </MessageFooter>
+      </MessageContent>
+    </Message>
+  </div>
+)
+```
+

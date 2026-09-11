@@ -1,0 +1,3 @@
+header:
+  description: A chat scroll container that anchors turns, follows streamed output, loads history without jumping, and jumps to any message.
+extends: _templates/content.yml
