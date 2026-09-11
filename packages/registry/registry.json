@@ -1344,6 +1344,27 @@
       ]
     },
     {
+      "name": "responsive-dialog",
+      "type": "registry:ui",
+      "title": "ResponsiveDialog",
+      "description": "The ResponsiveDialog component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/ResponsiveDialog.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/dialog",
+        "@aura/drawer",
+        "@aura/use-as-ref",
+        "@aura/use-isomorphic-layout-effect",
+        "@aura/use-lazy-ref",
+        "@aura/use-mobile"
+      ]
+    },
+    {
       "name": "scroll-area",
       "type": "registry:ui",
       "title": "ScrollArea",

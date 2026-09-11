@@ -220,6 +220,11 @@ import {
   RadioGroupDemoHorizontal
 } from "./radio-group-demo"
 import { 
+  ResponsiveDialogDemo,
+  ResponsiveDialogDemoConfirmation,
+  ResponsiveDialogDemoCustomBreakpoint
+} from "./responsive-dialog-demo"
+import { 
   ScrollAreaDemo
 } from "./scroll-area-demo"
 import { 
@@ -747,6 +752,15 @@ export const Registry = {
   },
   "radio-group-demo-horizontal": {
     component: RadioGroupDemoHorizontal,
+  },
+  "responsive-dialog-demo": {
+    component: ResponsiveDialogDemo,
+  },
+  "responsive-dialog-demo-confirmation": {
+    component: ResponsiveDialogDemoConfirmation,
+  },
+  "responsive-dialog-demo-custom-breakpoint": {
+    component: ResponsiveDialogDemoCustomBreakpoint,
   },
   "scroll-area-demo": {
     component: ScrollAreaDemo,

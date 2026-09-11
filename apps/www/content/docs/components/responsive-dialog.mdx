@@ -1,0 +1,788 @@
+---
+title: Responsive Dialog
+description: A dialog on desktop and a drawer on mobile, sharing one API.
+---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="responsive-dialog-demo" description="A dialog on desktop and a drawer on mobile, sharing one API.">
+
+```tsx
+import { Button } from "@/components/ui/Button";
+import {
+  ResponsiveDialog,
+  ResponsiveDialogClose,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogFooter,
+  ResponsiveDialogHeader,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
+} from "@/components/ui/ResponsiveDialog";
+
+export function ResponsiveDialogDemo() {
+  return (
+  <ResponsiveDialog>
+    <ResponsiveDialogTrigger asChild>
+      <Button variant="pill">Open</Button>
+    </ResponsiveDialogTrigger>
+    <ResponsiveDialogContent className="data-[variant=dialog]:max-w-md">
+      <ResponsiveDialogHeader>
+        <ResponsiveDialogTitle>Edit profile</ResponsiveDialogTitle>
+        <ResponsiveDialogDescription>
+          Dialog on desktop, drawer on mobile. Resize the viewport to switch.
+        </ResponsiveDialogDescription>
+      </ResponsiveDialogHeader>
+      <p className="text-sm text-gray-11 p-1">
+        Use <code className="text-xs">data-variant</code> to style each surface.
+      </p>
+      <ResponsiveDialogFooter className="gap-1 p-1">
+        <ResponsiveDialogClose asChild>
+          <Button variant="pill">Cancel</Button>
+        </ResponsiveDialogClose>
+        <Button variant="fill">Save</Button>
+      </ResponsiveDialogFooter>
+    </ResponsiveDialogContent>
+  </ResponsiveDialog>
+)
+}
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/responsive-dialog
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the dialog component into your `components/ui/Dialog.tsx` file.
+
+```tsx
+/**
+ * @description A window overlaid on the primary content, rendering content in a layer above the page.
+ */
+import { Dialog as DialogPrimitive } from "radix-ui";
+import { Cross2Icon } from "@radix-ui/react-icons";
+
+import { cn } from "@/utils/class-names";
+import { Button } from "@/components/ui/Button";
+
+function Dialog({
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Root>) {
+  return <DialogPrimitive.Root data-slot="dialog" {...props} />;
+}
+
+function DialogTrigger({
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Trigger>) {
+  return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />;
+}
+
+function DialogPortal({
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Portal>) {
+  return <DialogPrimitive.Portal data-slot="dialog-portal" {...props} />;
+}
+
+function DialogClose({
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Close>) {
+  return <DialogPrimitive.Close data-slot="dialog-close" {...props} />;
+}
+
+function DialogOverlay({
+  className,
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Overlay>) {
+  return (
+    <DialogPrimitive.Overlay
+      data-slot="dialog-overlay"
+      className={cn(
+        "fixed inset-0 bg-gray-9a backdrop-blur-xs z-50 data-[state=open]:animate-overlay-show",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function DialogContent({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Content>) {
+  return (
+    <DialogPortal data-slot="dialog-portal">
+      <DialogOverlay />
+      <DialogPrimitive.Content
+        data-slot="dialog-content"
+        className={cn(
+          "smash fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] -translate-x-1/2 -translate-y-1/2 bg-gray-1 p-2 rounded-md z-50 data-[state=open]:animate-content-show border border-gray-a6",
+          className
+        )}
+        {...props}
+      >
+        {children}
+        <DialogPrimitive.Close asChild>
+          <Button mode="link" className="absolute top-0.5 right-0.5">
+            <Cross2Icon />
+          </Button>
+        </DialogPrimitive.Close>
+      </DialogPrimitive.Content>
+    </DialogPortal>
+  );
+}
+
+function DialogHeader({ ...props }: React.ComponentProps<"div">) {
+  return <div data-slot="dialog-header" {...props} />;
+}
+
+function DialogFooter({ ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="dialog-footer"
+      className="flex justify-end gap-1"
+      {...props}
+    />
+  );
+}
+
+function DialogTitle({
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Title>) {
+  return <DialogPrimitive.Title data-slot="dialog-title" {...props} />;
+}
+
+function DialogDescription({
+  ...props
+}: React.ComponentProps<typeof DialogPrimitive.Description>) {
+  return (
+    <DialogPrimitive.Description data-slot="dialog-description" {...props} />
+  );
+}
+
+export {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
+};
+
+```
+  </Step>
+  <Step>
+    Copy and paste the drawer component into your `components/ui/Drawer.tsx` file.
+
+```tsx
+"use client";
+/**
+ * @description A drawer component that slides in from the edge of the screen.
+ */
+import * as React from "react";
+import { Drawer as DrawerPrimitive } from "vaul";
+
+import { cn } from "@/utils/class-names";
+
+function Drawer({
+  ...props
+}: React.ComponentProps<typeof DrawerPrimitive.Root>) {
+  return <DrawerPrimitive.Root data-slot="drawer" {...props} />;
+}
+
+function DrawerTrigger({
+  ...props
+}: React.ComponentProps<typeof DrawerPrimitive.Trigger>) {
+  return <DrawerPrimitive.Trigger data-slot="drawer-trigger" {...props} />;
+}
+
+function DrawerPortal({
+  ...props
+}: React.ComponentProps<typeof DrawerPrimitive.Portal>) {
+  return <DrawerPrimitive.Portal data-slot="drawer-portal" {...props} />;
+}
+
+function DrawerClose({
+  ...props
+}: React.ComponentProps<typeof DrawerPrimitive.Close>) {
+  return <DrawerPrimitive.Close data-slot="drawer-close" {...props} />;
+}
+
+function DrawerOverlay({
+  className,
+  ...props
+}: React.ComponentProps<typeof DrawerPrimitive.Overlay>) {
+  return (
+    <DrawerPrimitive.Overlay
+      data-slot="drawer-overlay"
+      className={cn("fixed inset-0 z-50 bg-gray-9a backdrop-blur-xs", className)}
+      {...props}
+    />
+  );
+}
+
+function DrawerContent({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof DrawerPrimitive.Content>) {
+  return (
+    <DrawerPortal data-slot="drawer-portal">
+      <DrawerOverlay />
+      <DrawerPrimitive.Content
+        data-slot="drawer-content"
+        className={cn(
+          "fixed inset-x-0 bottom-0 z-50 mt-8 flex h-auto flex-col rounded-t-[10px] border border-gray-6 bg-gray-1",
+          className
+        )}
+        {...props}
+      >
+        <div className="mx-auto mt-1 h-0.5 w-8 rounded-full bg-gray-3" />
+        {children}
+      </DrawerPrimitive.Content>
+    </DrawerPortal>
+  );
+}
+
+function DrawerHeader({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="drawer-header"
+      className={cn("grid gap-0.5 p-1.5 text-center sm:text-left", className)}
+      {...props}
+    />
+  );
+}
+
+function DrawerFooter({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="drawer-footer"
+      className={cn("mt-auto flex flex-col gap-1 p-1.5", className)}
+      {...props}
+    />
+  );
+}
+
+function DrawerTitle({
+  className,
+  ...props
+}: React.ComponentProps<typeof DrawerPrimitive.Title>) {
+  return (
+    <DrawerPrimitive.Title
+      data-slot="drawer-title"
+      className={cn(
+        "text-lg font-semibold leading-none tracking-tight text-gray-12",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function DrawerDescription({
+  className,
+  ...props
+}: React.ComponentProps<typeof DrawerPrimitive.Description>) {
+  return (
+    <DrawerPrimitive.Description
+      data-slot="drawer-description"
+      className={cn("text-sm text-gray-11", className)}
+      {...props}
+    />
+  );
+}
+
+export {
+  Drawer,
+  DrawerPortal,
+  DrawerOverlay,
+  DrawerTrigger,
+  DrawerClose,
+  DrawerContent,
+  DrawerHeader,
+  DrawerFooter,
+  DrawerTitle,
+  DrawerDescription,
+};
+
+```
+  </Step>
+  <Step>
+    Copy and paste the use as ref hook into your `hooks/use-as-ref.ts` file.
+
+```ts
+import * as React from "react";
+
+import { useIsomorphicLayoutEffect } from "@/hooks/use-isomorphic-layout-effect";
+
+function useAsRef<T>(props: T) {
+  const ref = React.useRef<T>(props);
+
+  useIsomorphicLayoutEffect(() => {
+    ref.current = props;
+  });
+
+  return ref;
+}
+
+export { useAsRef };
+
+```
+  </Step>
+  <Step>
+    Copy and paste the use isomorphic layout effect hook into your `hooks/use-isomorphic-layout-effect.ts` file.
+
+```ts
+import * as React from "react";
+
+const useIsomorphicLayoutEffect =
+  typeof window !== "undefined" ? React.useLayoutEffect : React.useEffect;
+
+export { useIsomorphicLayoutEffect };
+
+```
+  </Step>
+  <Step>
+    Copy and paste the use lazy ref hook into your `hooks/use-lazy-ref.ts` file.
+
+```ts
+import * as React from "react";
+
+function useLazyRef<T>(fn: () => T) {
+  const ref = React.useRef<T | null>(null);
+
+  if (ref.current === null) {
+    ref.current = fn();
+  }
+
+  return ref as React.RefObject<T>;
+}
+
+export { useLazyRef };
+
+```
+  </Step>
+  <Step>
+    Copy and paste the use mobile hook into your `hooks/use-mobile.ts` file.
+
+```ts
+import * as React from "react"
+
+const MOBILE_BREAKPOINT = 768
+
+export function useIsMobile(breakpoint = MOBILE_BREAKPOINT) {
+  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
+
+  React.useEffect(() => {
+    const mql = window.matchMedia(`(max-width: ${breakpoint - 1}px)`)
+    const onChange = () => {
+      setIsMobile(window.innerWidth < breakpoint)
+    }
+    mql.addEventListener("change", onChange)
+    setIsMobile(window.innerWidth < breakpoint)
+    return () => mql.removeEventListener("change", onChange)
+  }, [breakpoint])
+
+  return !!isMobile
+}
+
+```
+  </Step>
+  <Step>
+    Copy and paste the ResponsiveDialog component into your `components/ui/ResponsiveDialog.tsx` file.
+
+```tsx
+"use client";
+
+/**
+ * @description A dialog on desktop and a drawer on mobile, sharing one API.
+ */
+import * as React from "react";
+
+import { cn } from "@/utils/class-names";
+import { useAsRef } from "@/hooks/use-as-ref";
+import { useIsomorphicLayoutEffect } from "@/hooks/use-isomorphic-layout-effect";
+import { useLazyRef } from "@/hooks/use-lazy-ref";
+import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogOverlay,
+  DialogPortal,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/Dialog";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerOverlay,
+  DrawerPortal,
+  DrawerTitle,
+  DrawerTrigger,
+} from "@/components/ui/Drawer";
+
+const ROOT_NAME = "ResponsiveDialog";
+
+interface StoreState {
+  open: boolean;
+  isMobile: boolean;
+}
+
+interface Store {
+  subscribe: (callback: () => void) => () => void;
+  getState: () => StoreState;
+  setState: <K extends keyof StoreState>(key: K, value: StoreState[K]) => void;
+  notify: () => void;
+}
+
+const StoreContext = React.createContext<Store | null>(null);
+
+function useStore<T>(
+  selector: (state: StoreState) => T,
+  ogStore?: Store | null
+): T {
+  const contextStore = React.useContext(StoreContext);
+  const store = ogStore ?? contextStore;
+
+  if (!store) {
+    throw new Error(`\`useStore\` must be used within \`${ROOT_NAME}\``);
+  }
+
+  const getSnapshot = React.useCallback(
+    () => selector(store.getState()),
+    [store, selector]
+  );
+
+  return React.useSyncExternalStore(store.subscribe, getSnapshot, getSnapshot);
+}
+
+interface ResponsiveDialogProps extends React.ComponentProps<typeof Dialog> {
+  breakpoint?: number;
+}
+
+function ResponsiveDialog({
+  breakpoint = 768,
+  open: openProp,
+  defaultOpen = false,
+  onOpenChange: onOpenChangeProp,
+  ...props
+}: ResponsiveDialogProps) {
+  const isMobile = useIsMobile(breakpoint);
+
+  const listenersRef = useLazyRef(() => new Set<() => void>());
+  const stateRef = useLazyRef<StoreState>(() => ({
+    open: openProp ?? defaultOpen,
+    isMobile,
+  }));
+
+  const onOpenChangeRef = useAsRef(onOpenChangeProp);
+
+  const store = React.useMemo<Store>(() => {
+    return {
+      subscribe: (cb) => {
+        listenersRef.current.add(cb);
+        return () => {
+          listenersRef.current.delete(cb);
+        };
+      },
+      getState: () => stateRef.current,
+      setState: (key, value) => {
+        if (Object.is(stateRef.current[key], value)) return;
+
+        if (key === "open" && typeof value === "boolean") {
+          stateRef.current.open = value;
+          onOpenChangeRef.current?.(value);
+        } else {
+          stateRef.current[key] = value;
+        }
+
+        store.notify();
+      },
+      notify: () => {
+        for (const cb of listenersRef.current) {
+          cb();
+        }
+      },
+    };
+  }, [listenersRef, stateRef, onOpenChangeRef]);
+
+  if (stateRef.current.isMobile !== isMobile) {
+    stateRef.current.isMobile = isMobile;
+  }
+
+  const open = useStore((state) => state.open, store);
+
+  useIsomorphicLayoutEffect(() => {
+    if (openProp !== undefined) {
+      store.setState("open", openProp);
+    }
+  }, [openProp]);
+
+  const onOpenChange = React.useCallback(
+    (value: boolean) => {
+      store.setState("open", value);
+    },
+    [store]
+  );
+
+  if (isMobile) {
+    return (
+      <StoreContext.Provider value={store}>
+        <Drawer open={open} onOpenChange={onOpenChange} {...props} />
+      </StoreContext.Provider>
+    );
+  }
+
+  return (
+    <StoreContext.Provider value={store}>
+      <Dialog open={open} onOpenChange={onOpenChange} {...props} />
+    </StoreContext.Provider>
+  );
+}
+
+function ResponsiveDialogTrigger({
+  ...props
+}: React.ComponentProps<typeof DialogTrigger>) {
+  const isMobile = useStore((state) => state.isMobile);
+
+  if (isMobile) {
+    return <DrawerTrigger data-variant="drawer" {...props} />;
+  }
+
+  return <DialogTrigger data-variant="dialog" {...props} />;
+}
+
+function ResponsiveDialogClose({
+  ...props
+}: React.ComponentProps<typeof DialogClose>) {
+  const isMobile = useStore((state) => state.isMobile);
+
+  if (isMobile) {
+    return <DrawerClose data-variant="drawer" {...props} />;
+  }
+
+  return <DialogClose data-variant="dialog" {...props} />;
+}
+
+function ResponsiveDialogPortal({
+  ...props
+}: React.ComponentProps<typeof DialogPortal>) {
+  const isMobile = useStore((state) => state.isMobile);
+
+  if (isMobile) {
+    return <DrawerPortal data-variant="drawer" {...props} />;
+  }
+
+  return <DialogPortal data-variant="dialog" {...props} />;
+}
+
+function ResponsiveDialogOverlay({
+  ...props
+}: React.ComponentProps<typeof DialogOverlay>) {
+  const isMobile = useStore((state) => state.isMobile);
+
+  if (isMobile) {
+    return <DrawerOverlay data-variant="drawer" {...props} />;
+  }
+
+  return <DialogOverlay data-variant="dialog" {...props} />;
+}
+
+function ResponsiveDialogContent({
+  className,
+  ...props
+}: React.ComponentProps<typeof DialogContent>) {
+  const isMobile = useStore((state) => state.isMobile);
+
+  if (isMobile) {
+    return (
+      <DrawerContent
+        data-variant="drawer"
+        className={cn("px-1.5 pb-1.5", className)}
+        {...props}
+      />
+    );
+  }
+
+  return (
+    <DialogContent data-variant="dialog" className={className} {...props} />
+  );
+}
+
+function ResponsiveDialogHeader({
+  ...props
+}: React.ComponentProps<typeof DialogHeader>) {
+  const isMobile = useStore((state) => state.isMobile);
+
+  if (isMobile) {
+    return <DrawerHeader data-variant="drawer" {...props} />;
+  }
+
+  return <DialogHeader data-variant="dialog" {...props} />;
+}
+
+function ResponsiveDialogFooter({
+  className,
+  ...props
+}: React.ComponentProps<typeof DialogFooter>) {
+  const isMobile = useStore((state) => state.isMobile);
+
+  if (isMobile) {
+    return (
+      <DrawerFooter
+        data-variant="drawer"
+        className={cn(
+          "data-[variant=drawer]:flex-col",
+          className
+        )}
+        {...props}
+      />
+    );
+  }
+
+  return (
+    <DialogFooter
+      data-variant="dialog"
+      className={cn("data-[variant=dialog]:flex-row", className)}
+      {...props}
+    />
+  );
+}
+
+function ResponsiveDialogTitle({
+  ...props
+}: React.ComponentProps<typeof DialogTitle>) {
+  const isMobile = useStore((state) => state.isMobile);
+
+  if (isMobile) {
+    return <DrawerTitle data-variant="drawer" {...props} />;
+  }
+
+  return <DialogTitle data-variant="dialog" {...props} />;
+}
+
+function ResponsiveDialogDescription({
+  ...props
+}: React.ComponentProps<typeof DialogDescription>) {
+  const isMobile = useStore((state) => state.isMobile);
+
+  if (isMobile) {
+    return <DrawerDescription data-variant="drawer" {...props} />;
+  }
+
+  return <DialogDescription data-variant="dialog" {...props} />;
+}
+
+export {
+  ResponsiveDialog,
+  ResponsiveDialogClose,
+  ResponsiveDialogContent,
+  ResponsiveDialogDescription,
+  ResponsiveDialogFooter,
+  ResponsiveDialogHeader,
+  ResponsiveDialogOverlay,
+  ResponsiveDialogPortal,
+  ResponsiveDialogTitle,
+  ResponsiveDialogTrigger,
+};
+
+```
+  </Step>
+</Steps>
+
+## Usage
+
+### Confirmation
+
+```tsx
+export const Confirmation = () => (
+  <ResponsiveDialog>
+    <ResponsiveDialogTrigger asChild>
+      <Button variant="pill">Delete project</Button>
+    </ResponsiveDialogTrigger>
+    <ResponsiveDialogContent className="data-[variant=dialog]:max-w-sm">
+      <ResponsiveDialogHeader>
+        <ResponsiveDialogTitle>Delete this project?</ResponsiveDialogTitle>
+        <ResponsiveDialogDescription>
+          This action cannot be undone. The project and its resources will be
+          permanently removed.
+        </ResponsiveDialogDescription>
+      </ResponsiveDialogHeader>
+      <ResponsiveDialogFooter className="gap-1 p-1 data-[variant=drawer]:flex-col data-[variant=dialog]:flex-row data-[variant=dialog]:justify-end">
+        <ResponsiveDialogClose asChild>
+          <Button variant="pill">Cancel</Button>
+        </ResponsiveDialogClose>
+        <ResponsiveDialogClose asChild>
+          <Button variant="fill">Delete</Button>
+        </ResponsiveDialogClose>
+      </ResponsiveDialogFooter>
+    </ResponsiveDialogContent>
+  </ResponsiveDialog>
+)
+```
+
+### CustomBreakpoint
+
+```tsx
+export const CustomBreakpoint = () => (
+  <ResponsiveDialog breakpoint={1024}>
+    <ResponsiveDialogTrigger asChild>
+      <Button variant="pill">Breakpoint 1024</Button>
+    </ResponsiveDialogTrigger>
+    <ResponsiveDialogContent>
+      <ResponsiveDialogHeader>
+        <ResponsiveDialogTitle>Custom breakpoint</ResponsiveDialogTitle>
+        <ResponsiveDialogDescription>
+          Switches to drawer below 1024px instead of the default 768px.
+        </ResponsiveDialogDescription>
+      </ResponsiveDialogHeader>
+      <ResponsiveDialogFooter className="p-1">
+        <ResponsiveDialogClose asChild>
+          <Button variant="fill">Got it</Button>
+        </ResponsiveDialogClose>
+      </ResponsiveDialogFooter>
+    </ResponsiveDialogContent>
+  </ResponsiveDialog>
+)
+```
+
