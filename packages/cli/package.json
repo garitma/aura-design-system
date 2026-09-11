@@ -14,7 +14,7 @@
   "author": "Pablo Orozco <me@pablopvsky.com>",
   "license": "MIT",
   "bin": {
-    "aura": "./dist/index.js"
+    "aura": "dist/index.js"
   },
   "publishConfig": {
     "access": "public"
