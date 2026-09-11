@@ -1,0 +1,3 @@
+header:
+  description: Add addons, buttons, and helper content to inputs.
+extends: _templates/content.yml

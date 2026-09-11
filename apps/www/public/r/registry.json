@@ -1098,6 +1098,27 @@
       ]
     },
     {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "InputGroup",
+      "description": "The InputGroup component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/InputGroup.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@aura/button",
+        "@aura/class-names",
+        "@aura/input",
+        "@aura/textarea"
+      ]
+    },
+    {
       "name": "kbd",
       "type": "registry:ui",
       "title": "Kbd",
@@ -1235,6 +1256,25 @@
         "radix-ui"
       ],
       "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "description": "The Pagination component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Pagination.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons"
+      ],
+      "registryDependencies": [
+        "@aura/button",
         "@aura/class-names"
       ]
     },

@@ -1,0 +1,506 @@
+---
+title: Input Group
+description: Add addons, buttons, and helper content to inputs.
+---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="input-group-demo" description="Add addons, buttons, and helper content to inputs.">
+
+```tsx
+import {
+  CopyIcon,
+  EyeNoneIcon,
+  MagnifyingGlassIcon,
+} from "@radix-ui/react-icons";
+import { Kbd } from "@/components/ui/Kbd";
+import {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupInput,
+  InputGroupText,
+  InputGroupTextarea,
+} from "@/components/ui/InputGroup";
+
+export function InputGroupDemo() {
+  return (
+  <div className="flex w-full max-w-sm flex-col gap-1">
+    <InputGroup>
+      <InputGroupInput placeholder="Search..." />
+      <InputGroupAddon>
+        <MagnifyingGlassIcon className="icon" />
+      </InputGroupAddon>
+    </InputGroup>
+  </div>
+)
+}
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/input-group
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```bash
+pnpm install class-variance-authority
+    ```
+  </Step>
+  <Step>
+    Copy and paste the button component into your `components/ui/Button.tsx` file.
+
+```tsx
+/**
+ * @description Displays a button or a component that looks like a button.
+ */
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/utils/class-names";
+
+const buttonVariants = cva("button", {
+  variants: {
+    variant: {
+      default: "button-fill",
+      fill: "button-fill",
+      pill: "button-pill border border-gray-6 text-gray-11 bg-gray-2 hover:bg-gray-3",
+      link: "button-link",
+      menu: "button-menu",
+    },
+    size: {
+      default: "h-4",
+      xs: "h-2.5",
+      sm: "h-3",
+      md: "h-4",
+      lg: "h-5",
+      xl: "h-6",
+      icon: "w-3 h-3 p-0",
+      "icon-md": "w-4 h-4 p-0",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+  },
+});
+
+interface ButtonProps
+  extends React.ComponentProps<"button">,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  isLoadingText?: string | React.ReactNode;
+  mode?: VariantProps<typeof buttonVariants>["variant"];
+  label?: string | React.ReactNode;
+}
+
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (props: ButtonProps, ref) => {
+    const {
+      className,
+      variant,
+      mode,
+      size,
+      asChild = false,
+      isDisabled,
+      isLoading,
+      isLoadingText,
+      children,
+      label,
+      ...rest
+    } = props;
+    const Comp = asChild ? Slot : "button";
+    const disabled = isDisabled || isLoading || props.disabled;
+    const effectiveVariant = variant ?? mode;
+
+    return (
+      <Comp
+        data-slot="button"
+        className={cn(
+          buttonVariants({ variant: effectiveVariant, size, className }),
+          disabled && "opacity-50 cursor-not-allowed"
+        )}
+        ref={ref}
+        disabled={disabled}
+        {...rest}
+      >
+        {asChild ? (
+          children
+        ) : (
+          <>
+      
+            {isLoading && isLoadingText ? isLoadingText : <>{label}{children}</>}
+          </>
+        )}
+      </Comp>
+    );
+  }
+);
+
+Button.displayName = "Button";
+
+export { Button, buttonVariants };
+export type { ButtonProps };
+export default Button;
+
+```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the input component into your `components/ui/Input.tsx` file.
+
+```tsx
+/**
+ * @description Displays a form input field or a component that looks like an input field.
+ */
+import * as React from "react";
+
+import { cn } from "@/utils/class-names";
+
+function Input({ className, ...props }: React.ComponentProps<"input">) {
+  return <input data-slot="input" className={cn(className)} {...props} />;
+}
+
+export { Input };
+
+```
+  </Step>
+  <Step>
+    Copy and paste the textarea component into your `components/ui/Textarea.tsx` file.
+
+```tsx
+/**
+ * @description Multi-line text input.
+ */
+import * as React from "react";
+
+import { cn } from "@/utils/class-names";
+
+const Textarea = React.forwardRef<
+  HTMLTextAreaElement,
+  React.ComponentProps<"textarea">
+>(({ className, ...props }, ref) => {
+  return (
+    <textarea
+      data-slot="textarea"
+      ref={ref}
+      className={cn(
+        "flex min-h-20 w-full rounded-md border border-gray-6 bg-gray-1 px-2 py-1.5 text-xs text-gray-12 placeholder:text-gray-11 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-8 disabled:cursor-not-allowed disabled:opacity-50",
+        className,
+      )}
+      {...props}
+    />
+  );
+});
+Textarea.displayName = "Textarea";
+
+export { Textarea };
+
+```
+  </Step>
+  <Step>
+    Copy and paste the InputGroup component into your `components/ui/InputGroup.tsx` file.
+
+```tsx
+"use client";
+
+/**
+ * @description Add addons, buttons, and helper content to inputs.
+ */
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+
+import { cn } from "@/utils/class-names";
+import { Button, type ButtonProps } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
+import { Textarea } from "@/components/ui/Textarea";
+
+function InputGroup({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="input-group"
+      role="group"
+      className={cn(
+        "group/input-group relative flex h-4 w-full min-w-0 items-center rounded-sm border border-gray-a6 bg-gray-2 transition-colors outline-none",
+        "has-disabled:opacity-50 has-disabled:bg-gray-3",
+        "has-[[data-slot=input-group-control]:focus-visible]:border-gray-8 has-[[data-slot=input-group-control]:focus-visible]:ring-2 has-[[data-slot=input-group-control]:focus-visible]:ring-gray-8/50",
+        "has-[[data-slot][aria-invalid=true]]:border-danger has-[[data-slot][aria-invalid=true]]:ring-2 has-[[data-slot][aria-invalid=true]]:ring-danger/20",
+        "has-[>[data-align=block-end]]:h-auto has-[>[data-align=block-end]]:flex-col has-[>[data-align=block-start]]:h-auto has-[>[data-align=block-start]]:flex-col has-[>textarea]:h-auto",
+        "has-[>[data-align=block-end]]:[&>input]:pt-1 has-[>[data-align=block-start]]:[&>input]:pb-1",
+        "has-[>[data-align=inline-end]]:[&>input]:pr-0.5 has-[>[data-align=inline-start]]:[&>input]:pl-0.5",
+        "in-data-[slot=combobox-content]:focus-within:border-inherit in-data-[slot=combobox-content]:focus-within:ring-0",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+const inputGroupAddonVariants = cva(
+  "flex h-auto cursor-text items-center justify-center gap-0.5 py-0.5 text-sm font-medium text-gray-11 select-none group-data-[disabled=true]/input-group:opacity-50 [&_.icon]:block",
+  {
+    variants: {
+      align: {
+        "inline-start": "order-first pl-1 has-[>button]:-ml-0.5",
+        "inline-end": "order-last pr-1 has-[>button]:-mr-0.5",
+        "block-start":
+          "order-first w-full justify-start px-1.5 pt-1 group-has-[>input]/input-group:pt-1 [.border-b]:pb-1",
+        "block-end":
+          "order-last w-full justify-start px-1.5 pb-1 group-has-[>input]/input-group:pb-1 [.border-t]:pt-1",
+      },
+    },
+    defaultVariants: {
+      align: "inline-start",
+    },
+  }
+);
+
+function InputGroupAddon({
+  className,
+  align = "inline-start",
+  ...props
+}: React.ComponentProps<"div"> & VariantProps<typeof inputGroupAddonVariants>) {
+  return (
+    <div
+      role="group"
+      data-slot="input-group-addon"
+      data-align={align}
+      className={cn(inputGroupAddonVariants({ align }), className)}
+      onClick={(e) => {
+        if ((e.target as HTMLElement).closest("button")) {
+          return;
+        }
+        e.currentTarget.parentElement
+          ?.querySelector<HTMLElement>(
+            "input[data-slot=input-group-control], textarea[data-slot=input-group-control]"
+          )
+          ?.focus();
+      }}
+      {...props}
+    />
+  );
+}
+
+const inputGroupButtonVariants = cva("flex items-center gap-0.5 text-sm shadow-none", {
+  variants: {
+    size: {
+      xs: "h-2.5 gap-0.5 px-0.5",
+      sm: "h-3 px-1",
+      "icon-xs": "size-2.5 p-0",
+      "icon-sm": "size-3 p-0",
+    },
+  },
+  defaultVariants: {
+    size: "xs",
+  },
+});
+
+type InputGroupButtonSize = NonNullable<
+  VariantProps<typeof inputGroupButtonVariants>["size"]
+>;
+
+function InputGroupButton({
+  className,
+  type = "button",
+  variant = "link",
+  size = "xs",
+  ...props
+}: Omit<ButtonProps, "size"> & {
+  size?: InputGroupButtonSize;
+}) {
+  const buttonSize =
+    size === "icon-xs" || size === "icon-sm"
+      ? "icon"
+      : size === "sm"
+        ? "sm"
+        : "xs";
+
+  return (
+    <Button
+      type={type}
+      data-size={size}
+      variant={variant}
+      size={buttonSize}
+      className={cn(inputGroupButtonVariants({ size }), className)}
+      {...props}
+    />
+  );
+}
+
+function InputGroupText({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      className={cn(
+        "flex items-center gap-0.5 text-sm text-gray-11 [&_svg]:pointer-events-none [&_.icon]:block",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function InputGroupInput({
+  className,
+  ...props
+}: React.ComponentProps<"input">) {
+  return (
+    <Input
+      data-slot="input-group-control"
+      className={cn(
+        "h-full min-w-0 flex-1 rounded-none border-0 bg-transparent px-1 text-sm text-gray-12 shadow-none outline-none placeholder:text-gray-11 focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function InputGroupTextarea({
+  className,
+  ...props
+}: React.ComponentProps<"textarea">) {
+  return (
+    <Textarea
+      data-slot="input-group-control"
+      className={cn(
+        "min-h-16 flex-1 resize-none rounded-none border-0 bg-transparent px-1 py-1 text-sm shadow-none focus-visible:ring-0 disabled:bg-transparent aria-invalid:ring-0",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+export {
+  InputGroup,
+  InputGroupAddon,
+  InputGroupButton,
+  InputGroupText,
+  InputGroupInput,
+  InputGroupTextarea,
+};
+
+```
+  </Step>
+</Steps>
+
+## Usage
+
+### InlineEnd
+
+```tsx
+export const InlineEnd = () => (
+  <div className="flex w-full max-w-sm flex-col gap-1">
+    <InputGroup>
+      <InputGroupInput type="password" placeholder="Password" />
+      <InputGroupAddon align="inline-end">
+        <InputGroupButton size="icon-xs" aria-label="Hide password">
+          <EyeNoneIcon className="icon" />
+        </InputGroupButton>
+      </InputGroupAddon>
+    </InputGroup>
+  </div>
+)
+```
+
+### Text
+
+```tsx
+export const Text = () => (
+  <div className="flex w-full max-w-sm flex-col gap-1">
+    <InputGroup>
+      <InputGroupAddon>
+        <InputGroupText>https://</InputGroupText>
+      </InputGroupAddon>
+      <InputGroupInput placeholder="example.com" />
+      <InputGroupAddon align="inline-end">
+        <InputGroupText>.com</InputGroupText>
+      </InputGroupAddon>
+    </InputGroup>
+  </div>
+)
+```
+
+### WithKbd
+
+```tsx
+export const WithKbd = () => (
+  <div className="flex w-full max-w-sm flex-col gap-1">
+    <InputGroup>
+      <InputGroupInput placeholder="Search documentation..." />
+      <InputGroupAddon align="inline-end">
+        <Kbd>⌘</Kbd>
+        <Kbd>K</Kbd>
+      </InputGroupAddon>
+    </InputGroup>
+  </div>
+)
+```
+
+### BlockStart
+
+```tsx
+export const BlockStart = () => (
+  <div className="flex w-full max-w-sm flex-col gap-1">
+    <InputGroup>
+      <InputGroupInput placeholder="package.json" />
+      <InputGroupAddon align="block-start" className="border-b border-gray-6">
+        <InputGroupText>File</InputGroupText>
+        <InputGroupButton size="icon-xs" aria-label="Copy" className="ml-auto">
+          <CopyIcon className="icon" />
+        </InputGroupButton>
+      </InputGroupAddon>
+    </InputGroup>
+  </div>
+)
+```
+
+### TextareaWithFooter
+
+```tsx
+export const TextareaWithFooter = () => (
+  <div className="flex w-full max-w-sm flex-col gap-1">
+    <InputGroup>
+      <InputGroupTextarea placeholder="Write a message..." />
+      <InputGroupAddon align="block-end" className="border-t border-gray-6">
+        <InputGroupText>0/240</InputGroupText>
+        <InputGroupButton variant="fill" size="xs" className="ml-auto">
+          Send
+        </InputGroupButton>
+      </InputGroupAddon>
+    </InputGroup>
+  </div>
+)
+```
+

@@ -6,7 +6,7 @@
     "build": "next build",
     "dev": "next dev --turbo --port 4000",
     "start": "next start",
-    "postinstall": "fumadocs-mdx",
+    "postinstall": "node scripts/compile-source-config.mjs",
     "lint": "eslint"
   },
   "dependencies": {
@@ -34,6 +34,7 @@
     "@radix-ui/react-presence": "^1.1.5",
     "@radix-ui/react-scroll-area": "^1.2.10",
     "@radix-ui/react-slot": "^1.2.3",
+    "@shadcn/react": "^0.3.1",
     "@vercel/analytics": "^1.6.1",
     "ajv": "^8.17.1",
     "ajv-errors": "^3.0.0",

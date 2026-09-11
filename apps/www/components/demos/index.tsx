@@ -147,6 +147,14 @@ import {
   HoverCardDemo
 } from "./hover-card-demo"
 import { 
+  InputGroupDemo,
+  InputGroupDemoInlineEnd,
+  InputGroupDemoText,
+  InputGroupDemoWithKbd,
+  InputGroupDemoBlockStart,
+  InputGroupDemoTextareaWithFooter
+} from "./input-group-demo"
+import { 
   KbdDemo,
   KbdDemoSingleKey,
   KbdDemoModifierKeys,
@@ -182,6 +190,12 @@ import {
   NavigationMenuDemoDefault,
   NavigationMenuDemo
 } from "./navigation-menu-demo"
+import { 
+  PaginationDemo,
+  PaginationDemoSimple,
+  PaginationDemoIconsOnly,
+  PaginationDemoWithEllipsis
+} from "./pagination-demo"
 import { 
   PopoverDemo,
   PopoverDemoWithCloseButton,
@@ -581,6 +595,24 @@ export const Registry = {
   "hover-card-demo": {
     component: HoverCardDemo,
   },
+  "input-group-demo": {
+    component: InputGroupDemo,
+  },
+  "input-group-demo-inline-end": {
+    component: InputGroupDemoInlineEnd,
+  },
+  "input-group-demo-text": {
+    component: InputGroupDemoText,
+  },
+  "input-group-demo-with-kbd": {
+    component: InputGroupDemoWithKbd,
+  },
+  "input-group-demo-block-start": {
+    component: InputGroupDemoBlockStart,
+  },
+  "input-group-demo-textarea-with-footer": {
+    component: InputGroupDemoTextareaWithFooter,
+  },
   "kbd-demo": {
     component: KbdDemo,
   },
@@ -652,6 +684,18 @@ export const Registry = {
   },
   "navigation-menu-demo-navigation-menu-demo": {
     component: NavigationMenuDemo,
+  },
+  "pagination-demo": {
+    component: PaginationDemo,
+  },
+  "pagination-demo-simple": {
+    component: PaginationDemoSimple,
+  },
+  "pagination-demo-icons-only": {
+    component: PaginationDemoIconsOnly,
+  },
+  "pagination-demo-with-ellipsis": {
+    component: PaginationDemoWithEllipsis,
   },
   "popover-demo": {
     component: PopoverDemo,

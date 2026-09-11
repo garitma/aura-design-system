@@ -1,0 +1,3 @@
+header:
+  description: Pagination with page links, previous/next controls, and ellipsis.
+extends: _templates/content.yml
