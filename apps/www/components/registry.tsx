@@ -9,6 +9,11 @@ import {
   AccordionDemoDisabledItem
 } from "@/components/demos/accordion-demo"
 import { 
+  ActionBarDemo,
+  ActionBarDemoTopAligned,
+  ActionBarDemoVertical
+} from "@/components/demos/action-bar-demo"
+import { 
   AlertDemoDefault,
   AlertDemo,
   AlertStatusStatusesDemo
@@ -205,6 +210,10 @@ import {
   PopoverDemoPositioning
 } from "@/components/demos/popover-demo"
 import { 
+  PresentationDemo,
+  PresentationDemoEditing
+} from "@/components/demos/presentation-demo"
+import { 
   ProgressDemo,
   ProgressDemoZero,
   ProgressDemoComplete,
@@ -284,6 +293,12 @@ import {
   SortableDemoWithOnMove
 } from "@/components/demos/sortable-demo"
 import { 
+  StatDemo,
+  StatDemoIndicatorVariants,
+  StatDemoTrends,
+  StatDemoWithDescription
+} from "@/components/demos/stat-demo"
+import { 
   StepperDemo
 } from "@/components/demos/stepper-demo"
 import { 
@@ -323,6 +338,15 @@ export const Registry = {
   },
   "accordion-demo-disabled-item": {
     component: AccordionDemoDisabledItem,
+  },
+  "action-bar-demo": {
+    component: ActionBarDemo,
+  },
+  "action-bar-demo-top-aligned": {
+    component: ActionBarDemoTopAligned,
+  },
+  "action-bar-demo-vertical": {
+    component: ActionBarDemoVertical,
   },
   "alert-demo": {
     component: AlertDemoDefault,
@@ -720,6 +744,12 @@ export const Registry = {
   "popover-demo-positioning": {
     component: PopoverDemoPositioning,
   },
+  "presentation-demo": {
+    component: PresentationDemo,
+  },
+  "presentation-demo-editing": {
+    component: PresentationDemoEditing,
+  },
   "progress-demo": {
     component: ProgressDemo,
   },
@@ -878,6 +908,18 @@ export const Registry = {
   },
   "sortable-demo-with-on-move": {
     component: SortableDemoWithOnMove,
+  },
+  "stat-demo": {
+    component: StatDemo,
+  },
+  "stat-demo-indicator-variants": {
+    component: StatDemoIndicatorVariants,
+  },
+  "stat-demo-trends": {
+    component: StatDemoTrends,
+  },
+  "stat-demo-with-description": {
+    component: StatDemoWithDescription,
   },
   "stepper-demo": {
     component: StepperDemo,

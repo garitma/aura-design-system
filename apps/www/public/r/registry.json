@@ -564,6 +564,39 @@
       ]
     },
     {
+      "name": "action-bar",
+      "type": "registry:ui",
+      "title": "ActionBar",
+      "description": "The ActionBar component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/ActionBar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/action-bar.css",
+          "type": "registry:component",
+          "target": "./styles/action-bar.css"
+        }
+      ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/action-bar.css\"": {}
+        }
+      },
+      "dependencies": [
+        "@radix-ui/react-direction",
+        "@radix-ui/react-slot"
+      ],
+      "registryDependencies": [
+        "@aura/button",
+        "@aura/class-names",
+        "@aura/compose-refs",
+        "@aura/use-as-ref",
+        "@aura/use-isomorphic-layout-effect"
+      ]
+    },
+    {
       "name": "alert",
       "type": "registry:ui",
       "title": "Alert",
@@ -1308,6 +1341,27 @@
       ]
     },
     {
+      "name": "presentation",
+      "type": "registry:ui",
+      "title": "Presentation",
+      "description": "The Presentation component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Presentation.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@diceui/pptx",
+        "@radix-ui/react-icons"
+      ],
+      "registryDependencies": [
+        "@aura/button",
+        "@aura/class-names",
+        "@aura/use-mobile"
+      ]
+    },
+    {
       "name": "progress",
       "type": "registry:ui",
       "title": "Progress",
@@ -1580,6 +1634,25 @@
         "@dnd-kit/sortable",
         "@dnd-kit/utilities",
         "@radix-ui/react-slot"
+      ]
+    },
+    {
+      "name": "stat",
+      "type": "registry:ui",
+      "title": "Stat",
+      "description": "The Stat component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Stat.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/separator"
       ]
     },
     {

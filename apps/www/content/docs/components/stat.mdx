@@ -1,0 +1,383 @@
+---
+title: Stat
+description: Displays a statistic with label, value, optional indicator, trend, and description.
+---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="stat-demo" description="Displays a statistic with label, value, optional indicator, trend, and description.">
+
+```tsx
+import {
+  ArrowDownIcon,
+  ArrowUpIcon,
+  Cross2Icon,
+  DotsHorizontalIcon,
+  EnvelopeClosedIcon,
+  PersonIcon,
+  ReaderIcon,
+} from "@radix-ui/react-icons";
+import {
+  Stat,
+  StatDescription,
+  StatIndicator,
+  StatLabel,
+  StatSeparator,
+  StatTrend,
+  StatValue,
+} from "@/components/ui/Stat";
+
+export function StatDemo() {
+  return (
+  <Stat className="max-w-xs">
+    <StatLabel>Total Revenue</StatLabel>
+    <StatIndicator variant="icon" color="success">
+      <ReaderIcon className="icon" aria-hidden />
+    </StatIndicator>
+    <StatValue>$45,231</StatValue>
+    <StatTrend trend="up">
+      <ArrowUpIcon className="icon" aria-hidden />
+      +20.1% from last month
+    </StatTrend>
+    <StatSeparator />
+    <StatDescription>
+      Total revenue generated in the current billing period
+    </StatDescription>
+  </Stat>
+)
+}
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/stat
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```bash
+pnpm install class-variance-authority
+    ```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the separator component into your `components/ui/Separator.tsx` file.
+
+```tsx
+"use client"
+
+import * as React from "react"
+import {Separator as SeparatorPrimitive} from "radix-ui"
+
+import { cn } from "@/utils/class-names"
+
+function Separator({
+  className,
+  orientation = "horizontal",
+  decorative = true,
+  ...props
+}: React.ComponentProps<typeof SeparatorPrimitive.Root>) {
+  return (
+    <SeparatorPrimitive.Root
+      data-slot="separator"
+      decorative={decorative}
+      orientation={orientation}
+      className={cn(
+        "bg-gray-a6 shrink-0 data-[orientation=horizontal]:h-px data-[orientation=horizontal]:w-full data-[orientation=vertical]:h-full data-[orientation=vertical]:w-px",
+        className
+      )}
+      {...props}
+    />
+  )
+}
+
+export { Separator }
+```
+  </Step>
+  <Step>
+    Copy and paste the Stat component into your `components/ui/Stat.tsx` file.
+
+```tsx
+/**
+ * @description Displays a statistic with label, value, optional indicator, trend, and description.
+ */
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+
+import { cn } from "@/utils/class-names";
+import { Separator } from "@/components/ui/Separator";
+
+function Stat({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="stat"
+      className={cn(
+        "grid grid-cols-[1fr_auto] gap-x-1.5 gap-y-0.5 rounded-md border border-gray-6 bg-gray-2 p-1.5 text-gray-12",
+        "**:data-[slot=stat-label]:col-span-1 **:data-[slot=stat-value]:col-span-1",
+        "**:data-[slot=stat-indicator]:col-start-2 **:data-[slot=stat-indicator]:row-span-2 **:data-[slot=stat-indicator]:row-start-1 **:data-[slot=stat-indicator]:self-start",
+        "**:data-[slot=stat-description]:col-span-2 **:data-[slot=stat-separator]:col-span-2 **:data-[slot=stat-trend]:col-span-2",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function StatLabel({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="stat-label"
+      className={cn("text-sm font-medium text-gray-11", className)}
+      {...props}
+    />
+  );
+}
+
+const statIndicatorVariants = cva(
+  "flex shrink-0 items-center justify-center [&_svg]:pointer-events-none",
+  {
+    variants: {
+      variant: {
+        default: "text-gray-11",
+        icon: "size-2.5 rounded-md border",
+        badge:
+          "h-2 min-w-2 rounded-sm border px-0.5 text-xs font-medium",
+        action:
+          "size-2.5 cursor-pointer rounded-md transition-colors hover:bg-gray-3",
+      },
+      color: {
+        default: "bg-gray-3 text-gray-11 border-gray-6",
+        success:
+          "border-success/20 bg-success/10 text-success-contrast",
+        info: "border-info/20 bg-info/10 text-info-contrast",
+        warning:
+          "border-warning/20 bg-warning/10 text-warning-contrast",
+        error: "border-danger/20 bg-danger/10 text-danger-contrast",
+      },
+    },
+    compoundVariants: [
+      {
+        variant: "default",
+        color: "default",
+        class: "bg-transparent border-transparent",
+      },
+    ],
+    defaultVariants: {
+      variant: "default",
+      color: "default",
+    },
+  }
+);
+
+interface StatIndicatorProps
+  extends Omit<React.ComponentProps<"div">, "color">,
+    VariantProps<typeof statIndicatorVariants> {}
+
+function StatIndicator({
+  className,
+  variant = "default",
+  color = "default",
+  ...props
+}: StatIndicatorProps) {
+  return (
+    <div
+      data-slot="stat-indicator"
+      data-variant={variant}
+      data-color={color}
+      className={cn(statIndicatorVariants({ variant, color }), className)}
+      {...props}
+    />
+  );
+}
+
+function StatValue({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="stat-value"
+      className={cn("h4 font-semibold tracking-tight text-gray-12", className)}
+      {...props}
+    />
+  );
+}
+
+function StatTrend({
+  className,
+  trend,
+  ...props
+}: React.ComponentProps<"div"> & { trend?: "up" | "down" | "neutral" }) {
+  return (
+    <div
+      data-slot="stat-trend"
+      data-trend={trend}
+      className={cn(
+        "inline-flex items-center gap-0.5 text-xs font-medium [&_svg]:pointer-events-none [&_svg]:shrink-0",
+        {
+          "text-success-contrast": trend === "up",
+          "text-danger-contrast": trend === "down",
+          "text-gray-11": trend === "neutral" || !trend,
+        },
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function StatSeparator({
+  className,
+  ...props
+}: React.ComponentProps<typeof Separator>) {
+  return (
+    <Separator
+      data-slot="stat-separator"
+      className={cn("my-0.5", className)}
+      {...props}
+    />
+  );
+}
+
+function StatDescription({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="stat-description"
+      className={cn("text-xs text-gray-11", className)}
+      {...props}
+    />
+  );
+}
+
+export {
+  Stat,
+  StatDescription,
+  StatIndicator,
+  StatLabel,
+  StatSeparator,
+  StatTrend,
+  StatValue,
+  statIndicatorVariants,
+};
+
+```
+  </Step>
+</Steps>
+
+## Usage
+
+### IndicatorVariants
+
+```tsx
+export const IndicatorVariants = () => (
+  <div className="flex flex-wrap gap-1">
+    <Stat className="max-w-xs">
+      <StatLabel>Default</StatLabel>
+      <StatIndicator>
+        <PersonIcon className="icon" aria-hidden />
+      </StatIndicator>
+      <StatValue>1,204</StatValue>
+    </Stat>
+    <Stat className="max-w-xs">
+      <StatLabel>Icon</StatLabel>
+      <StatIndicator variant="icon" color="info">
+        <EnvelopeClosedIcon className="icon" aria-hidden />
+      </StatIndicator>
+      <StatValue>892</StatValue>
+    </Stat>
+    <Stat className="max-w-xs">
+      <StatLabel>Badge</StatLabel>
+      <StatIndicator variant="badge" color="warning">
+        New
+      </StatIndicator>
+      <StatValue>64</StatValue>
+    </Stat>
+    <Stat className="max-w-xs">
+      <StatLabel>Action</StatLabel>
+      <StatIndicator variant="action" color="default" role="button" tabIndex={0}>
+        <DotsHorizontalIcon className="icon" aria-hidden />
+      </StatIndicator>
+      <StatValue>318</StatValue>
+    </Stat>
+  </div>
+)
+```
+
+### Trends
+
+```tsx
+export const Trends = () => (
+  <div className="flex flex-wrap gap-1">
+    <Stat className="max-w-xs">
+      <StatLabel>Active users</StatLabel>
+      <StatValue>12,480</StatValue>
+      <StatTrend trend="up">
+        <ArrowUpIcon className="icon" aria-hidden />
+        +4.2%
+      </StatTrend>
+    </Stat>
+    <Stat className="max-w-xs">
+      <StatLabel>Churn</StatLabel>
+      <StatValue>2.1%</StatValue>
+      <StatTrend trend="down">
+        <ArrowDownIcon className="icon" aria-hidden />
+        -0.4%
+      </StatTrend>
+    </Stat>
+    <Stat className="max-w-xs">
+      <StatLabel>Open tickets</StatLabel>
+      <StatIndicator variant="icon" color="error">
+        <Cross2Icon className="icon" aria-hidden />
+      </StatIndicator>
+      <StatValue>37</StatValue>
+      <StatTrend trend="neutral">No change</StatTrend>
+    </Stat>
+  </div>
+)
+```
+
+### WithDescription
+
+```tsx
+export const WithDescription = () => (
+  <Stat className="max-w-sm">
+    <StatLabel>Conversion rate</StatLabel>
+    <StatIndicator variant="badge" color="success">
+      Live
+    </StatIndicator>
+    <StatValue>3.24%</StatValue>
+    <StatTrend trend="up">
+      <ArrowUpIcon className="icon" aria-hidden />
+      +0.3% vs prior week
+    </StatTrend>
+    <StatSeparator />
+    <StatDescription>
+      Share of sessions that completed checkout in the last 7 days.
+    </StatDescription>
+  </Stat>
+)
+```
+

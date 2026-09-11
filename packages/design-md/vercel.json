@@ -6,7 +6,7 @@
   "outputDirectory": "public",
   "git": {
     "deploymentEnabled": {
-      "*": false,
+      "**": false,
       "canary": true
     }
   },

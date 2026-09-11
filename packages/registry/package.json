@@ -31,11 +31,13 @@
     "docs:generate": "pnpm sync:rules && pnpm sync:skills && pnpm sync:design-md && npx tsx scripts/generate-docs.ts && npx tsx scripts/generate-rules-docs.ts",
     "docs:rules": "npx tsx scripts/generate-rules-docs.ts",
     "new:rule": "npx tsx scripts/new-rule.ts",
+    "fixtures:presentation": "npx tsx scripts/generate-presentation-fixture.ts",
     "registry:bootstrap": "pnpm registry:generate && pnpm registry:build && pnpm docs:generate",
     "test": "vitest"
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
+    "@diceui/pptx": "0.2.0",
     "@dnd-kit/core": "^6.3.1",
     "@dnd-kit/modifiers": "^9.0.0",
     "@dnd-kit/sortable": "^10.0.0",
@@ -91,6 +93,7 @@
     "@types/react": "^19.0.0",
     "@vitejs/plugin-react": "^5.1.1",
     "jsdom": "^27.2.0",
+    "pptxgenjs": "^4.0.1",
     "typescript": "^5.0.0",
     "vitest": "^4.0.13"
   }

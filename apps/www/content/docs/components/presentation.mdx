@@ -1,0 +1,679 @@
+---
+title: Presentation
+description: Composable PowerPoint viewer and editor built on @diceui/pptx.
+---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="presentation-demo" description="Composable PowerPoint viewer and editor built on @diceui/pptx.">
+
+```tsx
+import * as React from "react";
+import { Button } from "@/components/ui/Button";
+import {
+  Presentation,
+  PresentationContent,
+  PresentationError,
+  PresentationLoading,
+  PresentationSelection,
+  PresentationSlide,
+  PresentationThumbnailList,
+  PresentationViewport,
+} from "@/components/ui/Presentation";
+
+export function PresentationDemo() {
+  return {
+  const [file, setFile] = React.useState<ArrayBuffer | null>(null);
+  const [error, setError] = React.useState<string | null>(null);
+  const [picked, setPicked] = React.useState<File | null>(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    fetch(SAMPLE_PPTX)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to load sample pptx");
+        }
+        return response.arrayBuffer();
+      })
+      .then((buffer) => {
+        if (!cancelled) setFile(buffer);
+      })
+      .catch((err: unknown) => {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : "Failed to load sample");
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const source = picked ?? file;
+
+  return (
+    <div className="flex w-full flex-col gap-0.5">
+      <div className="flex flex-wrap items-center gap-0.5">
+        <input
+          ref={inputRef}
+          type="file"
+          accept=".pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          className="sr-only"
+          onChange={(event) => {
+            const next = event.target.files?.[0] ?? null;
+            setPicked(next);
+          }}
+        />
+        <Button
+          type="button"
+          variant="pill"
+          size="sm"
+          onClick={() => inputRef.current?.click()}
+        >
+          Open .pptx
+        </Button>
+        {error ? (
+          <span className="text-xs text-danger-contrast">{error}</span>
+        ) : null}
+      </div>
+
+      <Presentation
+        file={source ?? undefined}
+        readOnly
+        className="h-32 w-full overflow-hidden rounded-md border border-gray-6 bg-gray-1"
+      >
+        <PresentationThumbnailList />
+        <PresentationContent>
+          <PresentationLoading />
+          <PresentationError />
+          <PresentationViewport>
+            <PresentationSlide />
+          </PresentationViewport>
+        </PresentationContent>
+      </Presentation>
+    </div>
+  );
+};
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/presentation
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```bash
+pnpm install @diceui/pptx @radix-ui/react-icons
+    ```
+  </Step>
+  <Step>
+    Copy and paste the button component into your `components/ui/Button.tsx` file.
+
+```tsx
+/**
+ * @description Displays a button or a component that looks like a button.
+ */
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+
+import { cva, type VariantProps } from "class-variance-authority";
+import { cn } from "@/utils/class-names";
+
+const buttonVariants = cva("button", {
+  variants: {
+    variant: {
+      default: "button-fill",
+      fill: "button-fill",
+      pill: "button-pill border border-gray-6 text-gray-11 bg-gray-2 hover:bg-gray-3",
+      link: "button-link",
+      menu: "button-menu",
+    },
+    size: {
+      default: "h-4",
+      xs: "h-2.5",
+      sm: "h-3",
+      md: "h-4",
+      lg: "h-5",
+      xl: "h-6",
+      icon: "w-3 h-3 p-0",
+      "icon-md": "w-4 h-4 p-0",
+    },
+  },
+  defaultVariants: {
+    variant: "default",
+    size: "default",
+  },
+});
+
+interface ButtonProps
+  extends React.ComponentProps<"button">,
+    VariantProps<typeof buttonVariants> {
+  asChild?: boolean;
+  isDisabled?: boolean;
+  isLoading?: boolean;
+  isLoadingText?: string | React.ReactNode;
+  mode?: VariantProps<typeof buttonVariants>["variant"];
+  label?: string | React.ReactNode;
+}
+
+
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  (props: ButtonProps, ref) => {
+    const {
+      className,
+      variant,
+      mode,
+      size,
+      asChild = false,
+      isDisabled,
+      isLoading,
+      isLoadingText,
+      children,
+      label,
+      ...rest
+    } = props;
+    const Comp = asChild ? Slot : "button";
+    const disabled = isDisabled || isLoading || props.disabled;
+    const effectiveVariant = variant ?? mode;
+
+    return (
+      <Comp
+        data-slot="button"
+        className={cn(
+          buttonVariants({ variant: effectiveVariant, size, className }),
+          disabled && "opacity-50 cursor-not-allowed"
+        )}
+        ref={ref}
+        disabled={disabled}
+        {...rest}
+      >
+        {asChild ? (
+          children
+        ) : (
+          <>
+      
+            {isLoading && isLoadingText ? isLoadingText : <>{label}{children}</>}
+          </>
+        )}
+      </Comp>
+    );
+  }
+);
+
+Button.displayName = "Button";
+
+export { Button, buttonVariants };
+export type { ButtonProps };
+export default Button;
+
+```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the use mobile hook into your `hooks/use-mobile.ts` file.
+
+```ts
+import * as React from "react"
+
+const MOBILE_BREAKPOINT = 768
+
+export function useIsMobile(breakpoint = MOBILE_BREAKPOINT) {
+  const [isMobile, setIsMobile] = React.useState<boolean | undefined>(undefined)
+
+  React.useEffect(() => {
+    const mql = window.matchMedia(`(max-width: ${breakpoint - 1}px)`)
+    const onChange = () => {
+      setIsMobile(window.innerWidth < breakpoint)
+    }
+    mql.addEventListener("change", onChange)
+    setIsMobile(window.innerWidth < breakpoint)
+    return () => mql.removeEventListener("change", onChange)
+  }, [breakpoint])
+
+  return !!isMobile
+}
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Presentation component into your `components/ui/Presentation.tsx` file.
+
+```tsx
+"use client";
+
+/**
+ * @description Composable PowerPoint viewer and editor built on @diceui/pptx.
+ */
+import * as React from "react";
+import { Presentation as PresentationPrimitive } from "@diceui/pptx";
+import { ViewVerticalIcon } from "@radix-ui/react-icons";
+
+import { cn } from "@/utils/class-names";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { Button } from "@/components/ui/Button";
+
+function PresentationProvider({
+  ...props
+}: PresentationPrimitive.Provider.Props) {
+  return (
+    <PresentationPrimitive.Provider
+      data-slot="presentation-provider"
+      {...props}
+    />
+  );
+}
+
+function Presentation({
+  className,
+  ...props
+}: PresentationPrimitive.Root.Props) {
+  return (
+    <PresentationPrimitive.Root
+      data-slot="presentation"
+      className={cn("relative flex overflow-hidden", className)}
+      {...props}
+    />
+  );
+}
+
+function PresentationContent({
+  className,
+  ...props
+}: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="presentation-content"
+      className={cn(
+        "relative isolate flex flex-1 flex-col overflow-hidden",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function PresentationViewport({
+  className,
+  autoFit = true,
+  autoFitPadding = 13,
+  ...props
+}: PresentationPrimitive.Viewport.Props) {
+  return (
+    <PresentationPrimitive.Viewport
+      autoFit={autoFit}
+      autoFitPadding={autoFitPadding}
+      data-slot="presentation-viewport"
+      className={cn(
+        "flex flex-1 items-center justify-center overflow-hidden bg-gray-2",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function PresentationSlide({
+  className,
+  ...props
+}: PresentationPrimitive.Slide.Props) {
+  return (
+    <PresentationPrimitive.Slide
+      data-slot="presentation-slide"
+      className={cn("border border-gray-6", className)}
+      {...props}
+    />
+  );
+}
+
+function PresentationSelection({
+  className,
+  ...props
+}: PresentationPrimitive.Selection.Props) {
+  return (
+    <PresentationPrimitive.Selection
+      data-slot="presentation-selection"
+      className={cn("[--presentation-selection:var(--accent-8)]", className)}
+      {...props}
+    />
+  );
+}
+
+function PresentationLoading({
+  className,
+  children,
+  ...props
+}: PresentationPrimitive.Loading.Props) {
+  return (
+    <PresentationPrimitive.Loading
+      data-slot="presentation-loading"
+      className={cn(
+        "absolute inset-0 z-10 flex items-center justify-center text-sm text-gray-11",
+        className
+      )}
+      {...props}
+    >
+      {children ?? ((progress) => <span>Loading… {progress}%</span>)}
+    </PresentationPrimitive.Loading>
+  );
+}
+
+function PresentationError({
+  className,
+  children,
+  ...props
+}: PresentationPrimitive.Error.Props) {
+  return (
+    <PresentationPrimitive.Error
+      data-slot="presentation-error"
+      className={cn(
+        "absolute inset-0 z-10 flex items-center justify-center text-sm text-danger-contrast",
+        className
+      )}
+      {...props}
+    >
+      {children ?? ((error: Error) => <span>{error.message}</span>)}
+    </PresentationPrimitive.Error>
+  );
+}
+
+function PresentationThumbnailItemPreview({
+  className,
+  ...props
+}: PresentationPrimitive.ThumbnailItemPreview.Props) {
+  return (
+    <PresentationPrimitive.ThumbnailItemPreview
+      data-slot="presentation-thumbnail-item-preview"
+      className={cn(
+        "w-full overflow-hidden rounded-sm data-pending:animate-pulse data-pending:bg-gray-3",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function PresentationThumbnailItemNumber({
+  className,
+  ...props
+}: PresentationPrimitive.ThumbnailItemNumber.Props) {
+  return (
+    <PresentationPrimitive.ThumbnailItemNumber
+      data-slot="presentation-thumbnail-item-number"
+      className={cn(
+        "block shrink-0 text-center font-mono text-xs leading-none text-gray-11 tabular-nums",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function PresentationThumbnailItem({
+  className,
+  children,
+  ...props
+}: PresentationPrimitive.ThumbnailItem.Props) {
+  return (
+    <PresentationPrimitive.ThumbnailItem
+      data-slot="presentation-thumbnail-item"
+      className={cn(
+        "relative flex w-full cursor-pointer gap-0.5 rounded-md border border-gray-6 p-0.5 outline-none hover:bg-gray-3",
+        "ring-2 ring-transparent transition-[color,box-shadow] duration-100 focus-visible:ring-accent-8 data-active:bg-gray-3",
+        className
+      )}
+      {...props}
+    >
+      {children ?? (
+        <>
+          <PresentationThumbnailItemNumber />
+          <PresentationThumbnailItemPreview />
+        </>
+      )}
+    </PresentationPrimitive.ThumbnailItem>
+  );
+}
+
+function PresentationThumbnailList({
+  className,
+  children,
+  ...props
+}: PresentationPrimitive.ThumbnailList.Props) {
+  const isMobile = useIsMobile();
+  const id = React.useId();
+  const [open, setOpen] = React.useState(false);
+  const [wasMobile, setWasMobile] = React.useState(isMobile);
+  const listRef = React.useRef<HTMLDivElement | null>(null);
+  const triggerRef = React.useRef<HTMLButtonElement | null>(null);
+
+  const isHidden = isMobile && !open;
+
+  if (wasMobile !== isMobile) {
+    setWasMobile(isMobile);
+    setOpen(false);
+  }
+
+  React.useEffect(() => {
+    if (!isMobile || !open) return;
+
+    let pendingPointerId: number | null = null;
+
+    function isInside(target: Node) {
+      return (
+        !!listRef.current?.contains(target) ||
+        !!triggerRef.current?.contains(target)
+      );
+    }
+
+    function onPointerDown(event: PointerEvent) {
+      pendingPointerId = isInside(event.target as Node)
+        ? null
+        : event.pointerId;
+    }
+
+    function onPointerUp(event: PointerEvent) {
+      const isPendingPointer = pendingPointerId === event.pointerId;
+      pendingPointerId = null;
+      if (isPendingPointer && !isInside(event.target as Node)) setOpen(false);
+    }
+
+    function onPointerCancel() {
+      pendingPointerId = null;
+    }
+
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setOpen(false);
+    }
+
+    document.addEventListener("pointerdown", onPointerDown);
+    document.addEventListener("pointerup", onPointerUp);
+    document.addEventListener("pointercancel", onPointerCancel);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("pointerdown", onPointerDown);
+      document.removeEventListener("pointerup", onPointerUp);
+      document.removeEventListener("pointercancel", onPointerCancel);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isMobile, open]);
+
+  return (
+    <>
+      {isMobile && (
+        <Button
+          type="button"
+          aria-controls={id}
+          aria-expanded={open}
+          aria-label="Toggle thumbnails"
+          variant="pill"
+          size="icon"
+          ref={triggerRef}
+          className="absolute top-0.5 left-0.5 z-10 bg-gray-1/80 backdrop-blur-sm"
+          onClick={() => setOpen((value) => !value)}
+        >
+          <ViewVerticalIcon className="icon" aria-hidden />
+        </Button>
+      )}
+      <PresentationPrimitive.ThumbnailList
+        id={id}
+        aria-hidden={isHidden || undefined}
+        data-slot="presentation-thumbnail-list"
+        data-mobile={isMobile || undefined}
+        inert={isHidden}
+        ref={listRef}
+        render={<aside />}
+        className={cn(
+          "flex w-12 shrink-0 flex-col gap-0.5 overflow-y-auto border-r border-gray-6 bg-gray-1 p-0.5",
+          isMobile && "absolute inset-y-0 left-0 z-20 transition-transform",
+          isHidden && "-translate-x-full",
+          className
+        )}
+        {...props}
+      >
+        {children ??
+          (({ slides }) =>
+            slides.map((slide) => (
+              <PresentationThumbnailItem key={slide.id} slideId={slide.id} />
+            )))}
+      </PresentationPrimitive.ThumbnailList>
+    </>
+  );
+}
+
+export {
+  Presentation,
+  PresentationContent,
+  PresentationError,
+  PresentationLoading,
+  PresentationProvider,
+  PresentationSelection,
+  PresentationSlide,
+  PresentationThumbnailItem,
+  PresentationThumbnailItemNumber,
+  PresentationThumbnailItemPreview,
+  PresentationThumbnailList,
+  PresentationViewport,
+};
+
+export {
+  useCreatePresentationStore,
+  useHistory,
+  usePresentation,
+  usePresentationStore,
+  useSlide,
+  useZoom,
+} from "@diceui/pptx";
+
+```
+  </Step>
+</Steps>
+
+## Usage
+
+### Editing
+
+```tsx
+export const Editing = () => {
+  const [file, setFile] = React.useState<ArrayBuffer | null>(null);
+  const [error, setError] = React.useState<string | null>(null);
+  const [picked, setPicked] = React.useState<File | null>(null);
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  React.useEffect(() => {
+    let cancelled = false;
+    fetch(SAMPLE_PPTX)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to load sample pptx");
+        }
+        return response.arrayBuffer();
+      })
+      .then((buffer) => {
+        if (!cancelled) setFile(buffer);
+      })
+      .catch((err: unknown) => {
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : "Failed to load sample");
+        }
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  const source = picked ?? file;
+
+  return (
+    <div className="flex w-full flex-col gap-0.5">
+      <div className="flex flex-wrap items-center gap-0.5">
+        <input
+          ref={inputRef}
+          type="file"
+          accept=".pptx,application/vnd.openxmlformats-officedocument.presentationml.presentation"
+          className="sr-only"
+          onChange={(event) => {
+            const next = event.target.files?.[0] ?? null;
+            setPicked(next);
+          }}
+        />
+        <Button
+          type="button"
+          variant="pill"
+          size="sm"
+          onClick={() => inputRef.current?.click()}
+        >
+          Open .pptx
+        </Button>
+        {error ? (
+          <span className="text-xs text-danger-contrast">{error}</span>
+        ) : null}
+      </div>
+
+      <Presentation
+        file={source ?? undefined}
+        readOnly={false}
+        className="h-32 w-full overflow-hidden rounded-md border border-gray-6 bg-gray-1"
+      >
+        <PresentationThumbnailList />
+        <PresentationContent>
+          <PresentationLoading />
+          <PresentationError />
+          <PresentationViewport>
+            <PresentationSlide>
+              <PresentationSelection undoRedoShortcuts />
+            </PresentationSlide>
+          </PresentationViewport>
+        </PresentationContent>
+      </Presentation>
+    </div>
+  );
+};
+```
+
