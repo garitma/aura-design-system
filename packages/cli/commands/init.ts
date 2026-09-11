@@ -132,7 +132,9 @@ export async function applyAuraToProject(appDir: string): Promise<void> {
     `\n✓ class-names utility, DESIGN.md, Aura rules, and Aura skills have been added`,
   );
 
-  console.log("\nScaffolding Aura blueprint (wiki, preflight, Sonar)...");
+  console.log(
+    "\nScaffolding Aura blueprint (wiki identity, image generation, preflight, Sonar)...",
+  );
   applyBlueprintToProject(appDir);
 }
 
@@ -205,7 +207,7 @@ export function registerInitCommand(program: Command) {
   program
     .command("init")
     .description(
-      "Initialize Aura Design System (create-next-app, Aura registry packages, and blueprint)",
+      "Initialize Aura Design System with Next.js, Aura context, blueprint wiki, and identity-aware image generation",
     )
     .action(async () => {
       await initializeAura();

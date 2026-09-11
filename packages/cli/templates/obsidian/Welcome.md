@@ -5,7 +5,8 @@ This Obsidian vault lives at **`{{OBSIDIAN_VAULT_RELATIVE}}`** inside the repo w
 ## Start here
 
 1. Read [[Bootstrap]] for how to document the product with AI assistance.
-2. Pair with the Bruno collection at **`{{BRUNO_COLLECTION_RELATIVE}}`** for API truth (HTTP methods, URLs, payloads).
+2. Define [[Image-Identity]] before asking an agent to generate landing-page imagery.
+3. Pair with the Bruno collection at **`{{BRUNO_COLLECTION_RELATIVE}}`** for API truth (HTTP methods, URLs, payloads).
 
 ## Suggested structure
 

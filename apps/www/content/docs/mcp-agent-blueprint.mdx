@@ -12,7 +12,7 @@ Ejecuta https://auradesignsystem.com/docs/mcp-agent-blueprint
 
 (Local docs: `http://localhost:4000/docs/mcp-agent-blueprint`.)
 
-This is **not** the CLI command `aura blueprint` (wiki/Sonar scaffolding). This page is an **agent runbook** to wire Cursor + Aura AI context into an existing repo.
+This page is an **agent runbook**, not the CLI command `aura blueprint`. The runbook may invoke that command when the project is missing its wiki, image-generation command, preflight, or Sonar scaffolding.
 
 ---
 
@@ -38,7 +38,9 @@ Check and record **present / missing** for each:
 | Aura `components.json` | File exists; `registries["@aura"]` points at Aura registry JSON |
 | `DESIGN.md` (root) | File at project root (or install via `@aura/rule-design-md` / `@aura/design-md`) |
 | Cursor rules | `.cursor/rules/*.mdc` (foundations, principles, design-md, etc.) |
-| Cursor skills | `.cursor/skills/port-component-to-aura/SKILL.md` (and/or other Aura skills) |
+| Cursor skills | `.cursor/skills/port-component-to-aura/SKILL.md` and `.cursor/skills/generate-brand-images/SKILL.md` |
+| Image identity | `wiki/obsidian-*/01-Identity/Image-Identity.md`; `status: ready` only when style, palette, composition/motifs, and exclusions are concrete |
+| Gemini image env | `.env.example` names `GOOGLE_API_KEY`; only check whether `.env` has `GOOGLE_API_KEY` or `GEMINI_API_KEY`, never print its value |
 | shadcn MCP | `.cursor/mcp.json` (or user MCP) with `shadcn` → `npx shadcn@latest mcp` |
 | Package manager | Prefer `pnpm`; fall back to npm/yarn if that is what the repo uses |
 
@@ -65,8 +67,14 @@ pnpm dlx shadcn@latest add @aura/rules @aura/skills @aura/rule-design-md
 ```
 
 - `@aura/rules` → `.cursor/rules/`
-- `@aura/skills` → `.cursor/skills/` (includes `port-component-to-aura`)
+- `@aura/skills` → `.cursor/skills/` (includes `port-component-to-aura` and `generate-brand-images`)
 - `@aura/rule-design-md` → rule + root `DESIGN.md`
+
+If the blueprint wiki, `Image-Identity.md`, or `pnpm ai:image` is missing, scaffold those project capabilities without rewriting the Aura theme:
+
+```bash
+pnpm dlx @aura-design/cli@latest blueprint .
+```
 
 Ensure `components.json` has:
 
@@ -104,6 +112,9 @@ Confirm after installs:
 
 - [ ] `.cursor/rules/` has Aura foundation rules
 - [ ] `.cursor/skills/port-component-to-aura/SKILL.md` exists
+- [ ] `.cursor/skills/generate-brand-images/SKILL.md` and its generator script exist
+- [ ] `wiki/obsidian-*/01-Identity/Image-Identity.md` exists
+- [ ] `package.json` has `ai:image`; `.env.example` names `GOOGLE_API_KEY`
 - [ ] Root `DESIGN.md` exists (or user declined design-md)
 - [ ] `components.json` includes `@aura`
 - [ ] `.cursor/mcp.json` has shadcn MCP (user must enable in UI)
@@ -114,6 +125,9 @@ Optional smoke: `pnpm dlx shadcn@latest add @aura/button` only if the user asked
 
 - **Consumer app:** follow the skill `port-component-to-aura` in **project** mode — write into `@/components` aliases; do **not** create Ladle/registry metadata.
 - **Aura monorepo:** skill **registry** mode — component + Ladle `Default` story + `metadata/{kebab}.yml` + `registry:generate` / `registry:build`.
+- **Landing with images:** follow `generate-brand-images`. Read the blueprint `01-Identity` notes first. If image identity is undefined, ask focused identity questions and update `Image-Identity.md` before generating.
+- **Gemini access:** the bundled command reads `GOOGLE_API_KEY` or `GEMINI_API_KEY` directly from root `.env`. If absent, ask whether the user wants to add a key, use agent-native image generation when available, or continue with placeholders; never fabricate a key.
+- **Batch landing flow:** inspect the landing, create one manifest for the necessary image set, run `pnpm ai:image -- --manifest <path>`, integrate accepted local assets, then record their paths in the wiki.
 - Concepts: [MCP overview](/docs/mcp) · [Rules](/docs/rules) · [Installation](/docs/installation)
 
 ### 5. Final reply to the user (required format)
@@ -130,11 +144,13 @@ Optional smoke: `pnpm dlx shadcn@latest add @aura/button` only if the user asked
 | DESIGN.md | … | … | … |
 | .cursor/rules | … | … | … |
 | .cursor/skills | … | … | … |
+| Blueprint image identity | … | … | … |
+| Gemini image command | … | … | … |
 | .cursor/mcp.json | … | … | … |
 
 **Manual step for you:** enable shadcn MCP in Cursor Settings (if not already green).
 
-**Next:** paste a component URL and ask to port it with Aura, or say what to update next.
+**Next:** paste a component URL to port it, or describe a landing page; the agent can plan and generate its identity-aligned image set.
 ```
 
 Stop when the table is accurate. Do not claim MCP is connected if the user still needs to flip the Settings toggle.

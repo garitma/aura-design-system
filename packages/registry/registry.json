@@ -2259,6 +2259,24 @@
       ]
     },
     {
+      "name": "skill-generate-brand-images",
+      "type": "registry:file",
+      "title": "Skill: Generate Brand Images",
+      "description": "Aura Cursor skill: Generate Brand Images. Installs to .cursor/skills/generate-brand-images/.",
+      "files": [
+        {
+          "path": "registry/default/skills/generate-brand-images/SKILL.md",
+          "type": "registry:file",
+          "target": ".cursor/skills/generate-brand-images/SKILL.md"
+        },
+        {
+          "path": "registry/default/skills/generate-brand-images/generate-images.mjs",
+          "type": "registry:file",
+          "target": ".cursor/skills/generate-brand-images/generate-images.mjs"
+        }
+      ]
+    },
+    {
       "name": "skill-port-component-to-aura",
       "type": "registry:file",
       "title": "Skill: Port Component To Aura",
@@ -2277,6 +2295,16 @@
       "title": "Aura Skills",
       "description": "All Aura Design System Cursor skills. Installs to .cursor/skills/ for AI workflows.",
       "files": [
+        {
+          "path": "registry/default/skills/generate-brand-images/SKILL.md",
+          "type": "registry:file",
+          "target": ".cursor/skills/generate-brand-images/SKILL.md"
+        },
+        {
+          "path": "registry/default/skills/generate-brand-images/generate-images.mjs",
+          "type": "registry:file",
+          "target": ".cursor/skills/generate-brand-images/generate-images.mjs"
+        },
         {
           "path": "registry/default/skills/port-component-to-aura/SKILL.md",
           "type": "registry:file",

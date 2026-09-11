@@ -5,6 +5,8 @@ import { fileURLToPath } from "url";
 
 const SCRIPTS_TO_MERGE: Record<string, string> = {
   preflight: "tsx scripts/preflight.ts",
+  "ai:image":
+    "node .cursor/skills/generate-brand-images/generate-images.mjs",
   "dev:server": "next dev",
   dev: "pnpm run preflight && pnpm run dev:server",
   "sonar:up":
@@ -23,7 +25,8 @@ const DEV_DEPS_TO_ADD: Record<string, string> = {
   tsx: "^4.19.1",
 };
 
-const GITIGNORE_SONAR_LINES = [
+const GITIGNORE_BLUEPRINT_LINES = [
+  ".env",
   ".sonar-token",
   "sonar-issues.json",
   ".scannerwork/",
@@ -98,21 +101,54 @@ function mergePackageJson(projectRoot: string): void {
 
 function ensureGitignoreLines(projectRoot: string): void {
   const path = join(projectRoot, ".gitignore");
-  const lines = GITIGNORE_SONAR_LINES;
+  const lines = GITIGNORE_BLUEPRINT_LINES;
   if (!existsSync(path)) {
     writeFileSync(path, lines.join("\n") + "\n", "utf-8");
-    console.log("  write: .gitignore (Sonar entries)");
+    console.log("  write: .gitignore (blueprint entries)");
     return;
   }
   const current = readFileSync(path, "utf-8");
   const toAppend = lines.filter((l) => !current.split(/\r?\n/).includes(l));
   if (toAppend.length === 0) {
-    console.log("  .gitignore: Sonar lines already present");
+    console.log("  .gitignore: blueprint lines already present");
     return;
   }
   const sep = current.endsWith("\n") ? "" : "\n";
   writeFileSync(path, current + sep + toAppend.join("\n") + "\n", "utf-8");
-  console.log(`  patch: .gitignore (+${toAppend.length} Sonar line(s))`);
+  console.log(`  patch: .gitignore (+${toAppend.length} blueprint line(s))`);
+}
+
+function ensureEnvExample(projectRoot: string): void {
+  const path = join(projectRoot, ".env.example");
+  const variable = "GOOGLE_API_KEY=";
+  if (!existsSync(path)) {
+    writeFileSync(
+      path,
+      "# Google AI Studio key for `pnpm ai:image`; never commit the real value\n" +
+        variable +
+        "\n",
+      "utf-8",
+    );
+    console.log("  write: .env.example (Gemini image key)");
+    return;
+  }
+
+  const current = readFileSync(path, "utf-8");
+  if (/^(GOOGLE_API_KEY|GEMINI_API_KEY)=/m.test(current)) {
+    console.log("  .env.example: Gemini image key already present");
+    return;
+  }
+  const separator = current.endsWith("\n") ? "\n" : "\n\n";
+  writeFileSync(
+    path,
+    current +
+      separator +
+      "# Google AI Studio key for `pnpm ai:image`\n" +
+      variable +
+      "\n",
+    "utf-8",
+  );
+  console.log("  patch: .env.example (Gemini image key)");
 }
 
 function scaffoldWiki(
@@ -133,6 +169,7 @@ function scaffoldWiki(
 
   const vars = {
     PACKAGE_NAME: packageName,
+    DATE: new Date().toISOString().slice(0, 10),
     BRUNO_COLLECTION_NAME: brunoName,
     OBSIDIAN_VAULT_RELATIVE: `wiki/${obsidianName}`,
     BRUNO_COLLECTION_RELATIVE: `wiki/${brunoName}`,
@@ -195,6 +232,34 @@ function scaffoldWiki(
     force,
     `wiki/${obsidianName}/Bootstrap.md`,
   );
+
+  const imageIdentity = interpolate(
+    readTpl("obsidian/Image-Identity.md"),
+    vars,
+  );
+  writeIfMissingOrForce(
+    join(obsidianDir, "01-Identity", "Image-Identity.md"),
+    imageIdentity,
+    false,
+    `wiki/${obsidianName}/01-Identity/Image-Identity.md`,
+  );
+}
+
+function scaffoldImageSkill(projectRoot: string, force: boolean): void {
+  const skillDir = join(
+    projectRoot,
+    ".cursor",
+    "skills",
+    "generate-brand-images",
+  );
+  for (const file of ["SKILL.md", "generate-images.mjs"]) {
+    writeIfMissingOrForce(
+      join(skillDir, file),
+      readTpl(`cursor/skills/generate-brand-images/${file}`),
+      force,
+      `.cursor/skills/generate-brand-images/${file}`,
+    );
+  }
 }
 
 function scaffoldPreflight(projectRoot: string, force: boolean): void {
@@ -228,7 +293,7 @@ export type ApplyBlueprintOptions = {
   suffix?: string;
 };
 
-/** Scaffold wiki (Bruno + Obsidian), preflight, Sonar scripts, and scanner config. */
+/** Scaffold the wiki, image-generation skill, preflight, and Sonar config. */
 export function applyBlueprintToProject(
   projectRoot: string,
   options: ApplyBlueprintOptions = {},
@@ -253,9 +318,11 @@ export function applyBlueprintToProject(
   console.log(`  wiki suffix: ${suffix}\n`);
 
   scaffoldWiki(projectRoot, suffix, packageName, force);
+  scaffoldImageSkill(projectRoot, force);
   scaffoldPreflight(projectRoot, force);
   scaffoldSonarProperties(projectRoot, force);
   ensureGitignoreLines(projectRoot);
+  ensureEnvExample(projectRoot);
   mergePackageJson(projectRoot);
 
   console.log("\n✓ Blueprint scaffolding complete.\n");
@@ -265,7 +332,7 @@ export function registerBlueprintCommand(program: Command) {
   program
     .command("blueprint [projectDir]")
     .description(
-      "Scaffold wiki (Bruno + Obsidian), generic preflight, Sonar scripts, and scanner config",
+      "Scaffold wiki, identity-aware image generation, preflight, and Sonar config",
     )
     .option(
       "-f, --force",

@@ -121,9 +121,9 @@ All Aura skills:
 pnpm dlx shadcn@latest add @aura/skills
 ```
 
-That writes `.cursor/skills/port-component-to-aura/SKILL.md`. `aura init` / `aura setup` also install `@aura/skills` next to `@aura/rules`.
+That writes the component-porting and identity-aware image-generation skills under `.cursor/skills/`. `aura init` / `aura setup` also install `@aura/skills` next to `@aura/rules`.
 
-Authoring in this monorepo: edit `.cursor/skills/port-component-to-aura/SKILL.md`, then from `packages/registry`:
+Authoring in this monorepo: edit the relevant folder under `.cursor/skills/`, then from `packages/registry`:
 
 ```bash
 pnpm sync:skills
@@ -132,6 +132,16 @@ pnpm registry:build
 ```
 
 `sync:skills` copies whitelisted skill folders into `registry/default/skills/`; `registry:generate` publishes `@aura/skill-*` and `@aura/skills`.
+
+### Skill: prompt → identity-aligned landing images
+
+`generate-brand-images` reads the blueprint vault's `01-Identity` notes, asks for missing image direction before generation, and batches all required landing assets through Gemini. The generated project command reads `GOOGLE_API_KEY` or `GEMINI_API_KEY` directly from root `.env`:
+
+```bash
+pnpm ai:image -- --manifest tmp/aura-image-plan.json
+```
+
+If the key is absent, the agent asks whether to add one, use agent-native image generation when available, or keep placeholders. The skill never creates or exposes API keys.
 
 ### Two scenarios
 
@@ -193,5 +203,5 @@ Manual checklist:
 
 1. Add `.cursor/mcp.json` and enable the shadcn server.
 2. Keep using existing [Rules](/docs/rules) and DESIGN.md (`pnpm dlx shadcn@latest add @aura/rules`).
-3. Install the skill: `pnpm dlx shadcn@latest add @aura/skill-port-component-to-aura` (or `@aura/skills`).
-4. Paste a component URL and ask Cursor to recreate it in Aura.
+3. Install skills with `pnpm dlx shadcn@latest add @aura/skills`.
+4. Paste a component URL, or describe a complete landing page and let the agent plan its required image set.

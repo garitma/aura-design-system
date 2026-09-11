@@ -10,7 +10,7 @@ const CURSOR_SKILLS_PATH = path.join(WORKSPACE_ROOT, ".cursor/skills");
 const REGISTRY_SKILLS_PATH = path.join(__dirname, "../registry/default/skills");
 
 /** Skill folders under .cursor/skills/ that ship via the registry. */
-const SKILL_DIRS = ["port-component-to-aura"];
+const SKILL_DIRS = ["port-component-to-aura", "generate-brand-images"];
 
 function copyDir(src: string, dest: string) {
   fs.mkdirSync(dest, { recursive: true });
