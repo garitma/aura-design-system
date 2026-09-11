@@ -233,6 +233,10 @@ import {
   ResponsiveDialogDemoConfirmation,
   ResponsiveDialogDemoCustomBreakpoint
 } from "@/components/demos/responsive-dialog-demo"
+import {
+  ResponsiveDropdownMenuDemo,
+  ResponsiveDropdownMenuDemoCustomBreakpoint
+} from "@/components/demos/responsive-dropdown-menu-demo"
 import { 
   ScrollAreaDemo
 } from "@/components/demos/scroll-area-demo"
@@ -791,6 +795,12 @@ export const Registry = {
   },
   "responsive-dialog-demo-custom-breakpoint": {
     component: ResponsiveDialogDemoCustomBreakpoint,
+  },
+  "responsive-dropdown-menu-demo": {
+    component: ResponsiveDropdownMenuDemo,
+  },
+  "responsive-dropdown-menu-demo-custom-breakpoint": {
+    component: ResponsiveDropdownMenuDemoCustomBreakpoint,
   },
   "scroll-area-demo": {
     component: ScrollAreaDemo,

@@ -4,9 +4,10 @@ date: 2026-09-11
 tags: [dev-log]
 ---
 ## Summary
-Ported Dice UI Presentation as `@aura/presentation` (wrappers around `@diceui/pptx`) with sample fixture and Ladle stories.
+Added `@aura/responsive-dropdown-menu`, which uses a desktop dropdown and a mobile drawer with stacked nested-menu navigation.
 
 ## Context
-- Related: [[Presentation]]
-- Implementation Path: `packages/registry/registry/default/components/ui/Presentation.tsx`
-- Next: Ladle `?story=presentation--default`; commit when requested (also pending Stat, Action Bar, vercel `**` fix)
+- Related: [[Responsive-Dropdown-Menu]], [[Responsive-Dialog]], [[Registry]]
+- Implementation Path: `packages/registry/registry/default/components/ui/ResponsiveDropdownMenu.tsx`
+- Verification: docs generation and the production docs build pass; the repository-wide typecheck still reports unrelated existing errors.
+- Next: visually exercise nested forward/back navigation at mobile and desktop breakpoints; commit when requested (Presentation, Stat, Action Bar, and Vercel `**` work remain pending).

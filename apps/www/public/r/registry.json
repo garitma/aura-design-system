@@ -1419,6 +1419,38 @@
       ]
     },
     {
+      "name": "responsive-dropdown-menu",
+      "type": "registry:ui",
+      "title": "ResponsiveDropdownMenu",
+      "description": "The ResponsiveDropdownMenu component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/ResponsiveDropdownMenu.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/responsive-dropdown-menu.css",
+          "type": "registry:component",
+          "target": "./styles/responsive-dropdown-menu.css"
+        }
+      ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/responsive-dropdown-menu.css\"": {}
+        }
+      },
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "@radix-ui/react-slot"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/drawer",
+        "@aura/dropdown-menu",
+        "@aura/use-mobile"
+      ]
+    },
+    {
       "name": "scroll-area",
       "type": "registry:ui",
       "title": "ScrollArea",

@@ -1,0 +1,6 @@
+header:
+  description: A dropdown menu on desktop and a stacked drawer for nested menus on mobile.
+links:
+  doc: https://www.radix-ui.com/primitives/docs/components/dropdown-menu
+  api: https://www.radix-ui.com/primitives/docs/components/dropdown-menu#api-reference
+extends: _templates/content.yml
