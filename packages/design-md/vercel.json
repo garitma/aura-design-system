@@ -4,6 +4,12 @@
   "installCommand": "echo 'skip'",
   "buildCommand": "node scripts/prepare-public.cjs",
   "outputDirectory": "public",
+  "git": {
+    "deploymentEnabled": {
+      "*": false,
+      "canary": true
+    }
+  },
   "rewrites": [
     { "source": "/dark", "destination": "/preview-dark.html" }
   ],
