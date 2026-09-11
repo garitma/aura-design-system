@@ -5,6 +5,7 @@ import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 import { generateGlobalsCss } from "./colors.js";
 import { generateRadixColors } from "../utils/color-utils.js";
+import { applyBlueprintToProject } from "./blueprint.js";
 
 /** Apply Aura components.json, globals.css, and shadcn registry packages to an existing app root. */
 export async function applyAuraToProject(appDir: string): Promise<void> {
@@ -109,7 +110,7 @@ export async function applyAuraToProject(appDir: string): Promise<void> {
     `\n✓ globals.css has been updated with Aura Design System styles`,
   );
 
-  console.log("\nAdding class-names utility and Aura rules...");
+  console.log("\nAdding class-names utility, Aura rules, and Aura skills...");
   await execa(
     "pnpm",
     [
@@ -120,6 +121,7 @@ export async function applyAuraToProject(appDir: string): Promise<void> {
       "@aura/page-get-starter",
       "@aura/css-main",
       "@aura/rules",
+      "@aura/skills",
     ],
     {
       stdio: "inherit",
@@ -127,8 +129,11 @@ export async function applyAuraToProject(appDir: string): Promise<void> {
     },
   );
   console.log(
-    `\n✓ class-names utility, DESIGN.md, and Aura rules have been added`,
+    `\n✓ class-names utility, DESIGN.md, Aura rules, and Aura skills have been added`,
   );
+
+  console.log("\nScaffolding Aura blueprint (wiki, preflight, Sonar)...");
+  applyBlueprintToProject(appDir);
 }
 
 async function initializeAura() {
@@ -199,7 +204,9 @@ async function initializeAura() {
 export function registerInitCommand(program: Command) {
   program
     .command("init")
-    .description("Initialize Aura Design System")
+    .description(
+      "Initialize Aura Design System (create-next-app, Aura registry packages, and blueprint)",
+    )
     .action(async () => {
       await initializeAura();
     });

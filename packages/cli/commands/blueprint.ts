@@ -223,6 +223,44 @@ function deriveSuffix(packageName: string): string {
   return parts.slice(1).join("-");
 }
 
+export type ApplyBlueprintOptions = {
+  force?: boolean;
+  suffix?: string;
+};
+
+/** Scaffold wiki (Bruno + Obsidian), preflight, Sonar scripts, and scanner config. */
+export function applyBlueprintToProject(
+  projectRoot: string,
+  options: ApplyBlueprintOptions = {},
+): void {
+  const pkgPath = join(projectRoot, "package.json");
+  if (!existsSync(pkgPath)) {
+    throw new Error(`No package.json at ${projectRoot}`);
+  }
+
+  const pkg = JSON.parse(readFileSync(pkgPath, "utf-8")) as {
+    name?: string;
+  };
+  const packageName = pkg.name ?? "app";
+  const suffix =
+    typeof options.suffix === "string" && options.suffix.length > 0
+      ? options.suffix
+      : deriveSuffix(packageName);
+  const force = Boolean(options.force);
+
+  console.log(`\n@aura-design/cli blueprint → ${projectRoot}`);
+  console.log(`  package: ${packageName}`);
+  console.log(`  wiki suffix: ${suffix}\n`);
+
+  scaffoldWiki(projectRoot, suffix, packageName, force);
+  scaffoldPreflight(projectRoot, force);
+  scaffoldSonarProperties(projectRoot, force);
+  ensureGitignoreLines(projectRoot);
+  mergePackageJson(projectRoot);
+
+  console.log("\n✓ Blueprint scaffolding complete.\n");
+}
+
 export function registerBlueprintCommand(program: Command) {
   program
     .command("blueprint [projectDir]")
@@ -240,33 +278,17 @@ export function registerBlueprintCommand(program: Command) {
     )
     .action(async (projectDir: string | undefined, options) => {
       const root = resolve(process.cwd(), projectDir ?? ".");
-      const pkgPath = join(root, "package.json");
-      if (!existsSync(pkgPath)) {
-        console.error(`No package.json at ${root}`);
+      try {
+        applyBlueprintToProject(root, {
+          force: Boolean(options.force),
+          suffix:
+            typeof options.suffix === "string" && options.suffix.length > 0
+              ? options.suffix
+              : undefined,
+        });
+      } catch (error) {
+        console.error(error instanceof Error ? error.message : error);
         process.exit(1);
       }
-
-      const pkg = JSON.parse(readFileSync(pkgPath, "utf-8")) as {
-        name?: string;
-      };
-      const packageName = pkg.name ?? "app";
-      const suffix =
-        typeof options.suffix === "string" && options.suffix.length > 0
-          ? options.suffix
-          : deriveSuffix(packageName);
-
-      const force = Boolean(options.force);
-
-      console.log(`\n@aura-design/cli blueprint → ${root}`);
-      console.log(`  package: ${packageName}`);
-      console.log(`  wiki suffix: ${suffix}\n`);
-
-      scaffoldWiki(root, suffix, packageName, force);
-      scaffoldPreflight(root, force);
-      scaffoldSonarProperties(root, force);
-      ensureGitignoreLines(root);
-      mergePackageJson(root);
-
-      console.log("\nDone.\n");
     });
 }

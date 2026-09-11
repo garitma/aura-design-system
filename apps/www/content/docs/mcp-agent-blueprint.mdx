@@ -1,0 +1,149 @@
+---
+title: Agent blueprint
+description: Paste this URL to an agent with “Ejecuta” — audit and install MCP, rules, skills, and DESIGN.md on an existing project.
+icon: Bot
+---
+
+**Human usage:** copy this page URL and tell the agent:
+
+```text
+Ejecuta https://auradesignsystem.com/docs/mcp-agent-blueprint
+```
+
+(Local docs: `http://localhost:4000/docs/mcp-agent-blueprint`.)
+
+This is **not** the CLI command `aura blueprint` (wiki/Sonar scaffolding). This page is an **agent runbook** to wire Cursor + Aura AI context into an existing repo.
+
+---
+
+## Agent: follow this runbook
+
+If the user pasted this URL with **Ejecuta**, **Run**, **Execute**, or **Aplica**, you are the agent. Do not only explain. **Audit the workspace, install what is missing, and report.**
+
+Default target: **consumer project** (an app using Aura). Only use the Aura monorepo registry path if the repo clearly is `aura-design-system` (has `packages/registry/registry/default/components/`).
+
+### 0. Preconditions
+
+- Work in the project root that has (or will have) `package.json` / the Next app.
+- Prefer non-interactive installs: `pnpm dlx …`.
+- Do not invent secrets. Do not force-push.
+- If `components.json` is missing and the app is not Next-like, say what blocked you and stop after the audit.
+
+### 1. Audit (read before write)
+
+Check and record **present / missing** for each:
+
+| Item | How to detect |
+| --- | --- |
+| Aura `components.json` | File exists; `registries["@aura"]` points at Aura registry JSON |
+| `DESIGN.md` (root) | File at project root (or install via `@aura/rule-design-md` / `@aura/design-md`) |
+| Cursor rules | `.cursor/rules/*.mdc` (foundations, principles, design-md, etc.) |
+| Cursor skills | `.cursor/skills/port-component-to-aura/SKILL.md` (and/or other Aura skills) |
+| shadcn MCP | `.cursor/mcp.json` (or user MCP) with `shadcn` → `npx shadcn@latest mcp` |
+| Package manager | Prefer `pnpm`; fall back to npm/yarn if that is what the repo uses |
+
+Also note: Tailwind/Aura CSS already applied? (`globals.css` with accent/gray scales, or prior `aura setup` / `init`).
+
+### 2. Install / fix gaps
+
+Apply **only what is missing**. Prefer the smallest fix.
+
+#### A. Full Aura apply (no Aura yet, or heavily incomplete)
+
+```bash
+pnpm dlx @aura-design/cli@latest setup
+```
+
+(`setup` updates `components.json`, `globals.css`, adds registry packages, rules, skills, and runs CLI blueprint scaffolding. Use from the app root.)
+
+If the user only wants AI context (not full theme rewrite), skip `setup` and use the targeted adds below.
+
+#### B. Targeted AI context (typical “old project already on Aura”)
+
+```bash
+pnpm dlx shadcn@latest add @aura/rules @aura/skills @aura/rule-design-md
+```
+
+- `@aura/rules` → `.cursor/rules/`
+- `@aura/skills` → `.cursor/skills/` (includes `port-component-to-aura`)
+- `@aura/rule-design-md` → rule + root `DESIGN.md`
+
+Ensure `components.json` has:
+
+```json
+"registries": {
+  "@aura": "https://auradesignsystem.com/r/{name}.json"
+}
+```
+
+(Optional local registry while developing Aura itself: `"@aura-dev": "http://localhost:4000/r/{name}.json"`.)
+
+#### C. MCP config (create if missing)
+
+Write **project** `.cursor/mcp.json` if absent:
+
+```json
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "npx",
+      "args": ["shadcn@latest", "mcp"]
+    }
+  }
+}
+```
+
+Then tell the user (you cannot finish this in the terminal):
+
+1. Restart Cursor or reload MCP.
+2. Settings → MCP → enable **shadcn** (green dot).
+
+### 3. Verify
+
+Confirm after installs:
+
+- [ ] `.cursor/rules/` has Aura foundation rules
+- [ ] `.cursor/skills/port-component-to-aura/SKILL.md` exists
+- [ ] Root `DESIGN.md` exists (or user declined design-md)
+- [ ] `components.json` includes `@aura`
+- [ ] `.cursor/mcp.json` has shadcn MCP (user must enable in UI)
+
+Optional smoke: `pnpm dlx shadcn@latest add @aura/button` only if the user asked to install a component; do not add random UI.
+
+### 4. How to work after setup
+
+- **Consumer app:** follow the skill `port-component-to-aura` in **project** mode — write into `@/components` aliases; do **not** create Ladle/registry metadata.
+- **Aura monorepo:** skill **registry** mode — component + Ladle `Default` story + `metadata/{kebab}.yml` + `registry:generate` / `registry:build`.
+- Concepts: [MCP overview](/docs/mcp) · [Rules](/docs/rules) · [Installation](/docs/installation)
+
+### 5. Final reply to the user (required format)
+
+```markdown
+## Agent blueprint — result
+
+**Project:** <path or package name>
+**Scenario:** consumer | aura-monorepo
+
+| Check | Before | Action | After |
+| --- | --- | --- | --- |
+| components.json @aura | … | … | … |
+| DESIGN.md | … | … | … |
+| .cursor/rules | … | … | … |
+| .cursor/skills | … | … | … |
+| .cursor/mcp.json | … | … | … |
+
+**Manual step for you:** enable shadcn MCP in Cursor Settings (if not already green).
+
+**Next:** paste a component URL and ask to port it with Aura, or say what to update next.
+```
+
+Stop when the table is accurate. Do not claim MCP is connected if the user still needs to flip the Settings toggle.
+
+---
+
+## Related
+
+- [MCP](/docs/mcp) — what MCP/skills/rules are
+- [Rules](/docs/rules) — install `@aura/rules`
+- [Installation](/docs/installation) — `aura` CLI init
+- CLI `aura blueprint` — separate; wiki/preflight/Sonar only

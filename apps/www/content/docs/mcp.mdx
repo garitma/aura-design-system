@@ -1,0 +1,197 @@
+---
+title: MCP
+description: Connect Cursor to shadcn registries and recreate components in Aura from a pasted link.
+icon: Sparkles
+---
+
+## Update an existing project (copy → Ejecuta)
+
+You do **not** only paste the MCP overview. For an old app, use the **agent blueprint** page: one URL the agent audits and installs (MCP config, rules, skills, DESIGN.md).
+
+1. Copy: [Agent blueprint](/docs/mcp-agent-blueprint)
+2. Tell the agent:
+
+```text
+Ejecuta https://auradesignsystem.com/docs/mcp-agent-blueprint
+```
+
+That runbook is **not** the CLI command `aura blueprint`. It is instructions for the agent to evaluate and wire AI context into the repo.
+
+---
+
+Aura is a [shadcn-compatible registry](/docs/registry). You do not write a custom MCP server to browse it. You wire the **shadcn MCP**, keep **Aura rules** as the visual contract, and add a **Cursor skill** for the porting workflow.
+
+[shadcn MCP documentation](https://ui.shadcn.com/docs/mcp)
+
+## What MCP does
+
+The shadcn MCP server is a bridge between Cursor, **component registries**, and the **shadcn CLI**. Once it is enabled, the assistant can:
+
+- List and search components across configured registries
+- Fetch registry JSON for an item
+- Install items with natural language (“add the dialog”)
+
+It reads registries from `components.json`. Aura is already a namespace:
+
+```json
+{
+  "registries": {
+    "@aura": "https://auradesignsystem.com/r/{name}.json",
+    "@aura-dev": "http://localhost:4000/r/{name}.json"
+  }
+}
+```
+
+The default shadcn/ui registry needs no extra config. MCP **fetches and installs**. It does not restyle shadcn into Aura. Recreating a component with Aura tokens is a **skill** plus the [Rules](/docs/rules).
+
+## Configure Cursor
+
+Add a project MCP config at `.cursor/mcp.json`:
+
+```json
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "npx",
+      "args": ["shadcn@latest", "mcp"]
+    }
+  }
+}
+```
+
+Then:
+
+1. Restart Cursor (or reload MCP).
+2. Enable **shadcn** in Cursor Settings → MCP until it shows a green dot.
+3. Confirm browse / search / add tools appear.
+
+`components.json` must live in the project you install *into*. In this monorepo that is typically `apps/www`. For local registry work, keep `@aura-dev` pointed at `http://localhost:4000/r/{name}.json` and run the docs app.
+
+Example prompts:
+
+- Show components in the shadcn registry
+- Show `@aura` registry items
+- Fetch `@shadcn/dialog` JSON, do not install yet
+
+**Inside the Aura repo**, prefer fetching source over `shadcn add` of upstream shadcn into `packages/registry`. Copy behavior, then write an Aura registry item.
+
+If MCP shows “No tools or prompts”: run `npx clear-npx-cache`, re-enable the server, and check **View → Output → MCP**.
+
+### Other clients
+
+Same command, different config file: `.mcp.json` (Claude Code), `.vscode/mcp.json` (VS Code), or `~/.codex/config.toml` (Codex). See the [shadcn MCP client notes](https://ui.shadcn.com/docs/mcp).
+
+## Three layers
+
+| Layer | Role |
+| --- | --- |
+| **MCP** | Live catalog: search and fetch registry items |
+| **[Rules](/docs/rules)** + [DESIGN.md](https://design-md.auradesignsystem.com/) | Always-on Aura constraints (color steps, 13px spacing, fluid type, Radix icons, motion) |
+| **Skill** | Procedure: pasted URL → Aura registry item |
+
+Do not put the full “port from URL” playbook in an always-apply rule. Rules stay small and constant. The skill runs only when someone pastes a component link or asks to recreate one.
+
+```text
+You paste: https://ui.shadcn.com/docs/components/sheet
+                │
+                ▼
+     Skill: port-component-to-aura
+                │
+        ┌───────┴────────┐
+        ▼                ▼
+  MCP shadcn         Rules + DESIGN.md
+  (source JSON)      (Aura constraints)
+        │                │
+        └───────┬────────┘
+                ▼
+  New @aura item in packages/registry
+```
+
+## Skill: URL → Aura component
+
+Install like rules:
+
+```bash
+pnpm dlx shadcn@latest add @aura/skill-port-component-to-aura
+```
+
+All Aura skills:
+
+```bash
+pnpm dlx shadcn@latest add @aura/skills
+```
+
+That writes `.cursor/skills/port-component-to-aura/SKILL.md`. `aura init` / `aura setup` also install `@aura/skills` next to `@aura/rules`.
+
+Authoring in this monorepo: edit `.cursor/skills/port-component-to-aura/SKILL.md`, then from `packages/registry`:
+
+```bash
+pnpm sync:skills
+pnpm registry:generate
+pnpm registry:build
+```
+
+`sync:skills` copies whitelisted skill folders into `registry/default/skills/`; `registry:generate` publishes `@aura/skill-*` and `@aura/skills`.
+
+### Two scenarios
+
+The skill **detects context** before writing:
+
+| Context | Goal | Output |
+| --- | --- | --- |
+| **Consumer project** (typical Next app with Aura) | Component for **this app** | Files under `components.json` aliases (`@/components/ui`, etc.). No Ladle, no `metadata/*.yml`, no registry publish. |
+| **Aura design system monorepo** | Document for the **public registry** | `packages/registry/...` component + Ladle story with `export const Default` + `metadata/{kebab}.yml`, then `registry:generate` / `registry:build` / `docs:generate`. |
+
+### Shared workflow
+
+1. **Read the source, do not paste blindly** (MCP / registry JSON / fetch docs).
+2. **Map to Aura** — primitives, Radix `icon`, 13px spacing, fluid type, 12-step colors, reduced motion.
+
+### Consumer project
+
+- Prefer `shadcn add @aura/<name>` when an Aura item already exists.
+- Otherwise write Aura-styled source into the app only.
+- Done when it compiles and follows Aura rules in that project.
+
+### Aura monorepo (registry)
+
+1. Component under `packages/registry/registry/default/components/ui/`
+2. Story at `packages/registry/src/{kebab}.stories.tsx` with **`export const Default`**
+3. Metadata at `packages/registry/metadata/{kebab}.yml` (`header.description` + `extends: _templates/content.yml`) — docs automation uses `preview: Default`
+4. Rebuild: `pnpm registry:generate && pnpm registry:build` (and `pnpm docs:generate` for MDX/demos)
+5. Verify in Ladle: `pnpm --filter @aura-design/registry dev`
+## Any design system
+
+| Source | MCP? | What to do |
+| --- | --- | --- |
+| shadcn/ui | Yes | Search or get item JSON, then rewrite |
+| Aura (`@aura`, `@aura-dev`) | Yes, via `components.json` | Prefer existing items; extend, do not fork |
+| Other shadcn-compatible registries | Yes, add under `registries` | Same as shadcn |
+| Random DS docs | No | Fetch URL, extract API, implement with Aura primitives |
+| Figma | Figma MCP, not shadcn MCP | Design-to-code, then the same Aura mapping |
+
+Another shadcn-style registry:
+
+```json
+{
+  "registries": {
+    "@aura": "https://auradesignsystem.com/r/{name}.json",
+    "@acme": "https://acme.com/r/{name}.json"
+  }
+}
+```
+
+Private registries use `headers` and environment variables. See [shadcn registry authentication](https://ui.shadcn.com/docs/mcp).
+
+Aura already *is* a registry. With shadcn MCP enabled, Cursor can list `@aura/*` the same way it lists shadcn. A second “Aura MCP” is only useful if you want custom tools (token search, 13px class validation, `registry.json` scaffolding).
+
+## Setup order
+
+**Existing project:** prefer [Agent blueprint](/docs/mcp-agent-blueprint) (`Ejecuta` + that URL).
+
+Manual checklist:
+
+1. Add `.cursor/mcp.json` and enable the shadcn server.
+2. Keep using existing [Rules](/docs/rules) and DESIGN.md (`pnpm dlx shadcn@latest add @aura/rules`).
+3. Install the skill: `pnpm dlx shadcn@latest add @aura/skill-port-component-to-aura` (or `@aura/skills`).
+4. Paste a component URL and ask Cursor to recreate it in Aura.

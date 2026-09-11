@@ -2020,6 +2020,32 @@
       ]
     },
     {
+      "name": "skill-port-component-to-aura",
+      "type": "registry:file",
+      "title": "Skill: Port Component To Aura",
+      "description": "Aura Cursor skill: Port Component To Aura. Installs to .cursor/skills/port-component-to-aura/.",
+      "files": [
+        {
+          "path": "registry/default/skills/port-component-to-aura/SKILL.md",
+          "type": "registry:file",
+          "target": ".cursor/skills/port-component-to-aura/SKILL.md"
+        }
+      ]
+    },
+    {
+      "name": "skills",
+      "type": "registry:file",
+      "title": "Aura Skills",
+      "description": "All Aura Design System Cursor skills. Installs to .cursor/skills/ for AI workflows.",
+      "files": [
+        {
+          "path": "registry/default/skills/port-component-to-aura/SKILL.md",
+          "type": "registry:file",
+          "target": ".cursor/skills/port-component-to-aura/SKILL.md"
+        }
+      ]
+    },
+    {
       "name": "page-get-starter",
       "type": "registry:page",
       "title": "PageGetStarter",

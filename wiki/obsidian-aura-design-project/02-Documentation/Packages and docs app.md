@@ -14,6 +14,7 @@
 ## Docs site
 
 - [[Site and docs app]] — `apps/www` (`@aura-design/www`), Fumadocs, `content/docs/`, registry static files under `public/r/`.
+- [[MCP]] — Docs page for Cursor shadcn MCP, registries, and the port-to-Aura skill (`/docs/mcp`).
 
 ## Other
 

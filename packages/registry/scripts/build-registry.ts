@@ -14,6 +14,7 @@ const UTILS_PATH = path.join(__dirname, "../registry/default/utils");
 const HOOKS_PATH = path.join(__dirname, "../registry/default/hooks");
 const STYLES_PATH = path.join(__dirname, "../registry/default/styles");
 const RULES_PATH = path.join(__dirname, "../registry/default/rules");
+const SKILLS_PATH = path.join(__dirname, "../registry/default/skills");
 const METADATA_PATH = path.join(__dirname, "../metadata");
 const WWW_COMPONENTS_PATH = path.join(__dirname, "../../../apps/www/components");
 const WWW_UI_COMPONENTS_PATH = path.join(__dirname, "../../../apps/www/components/ui");
@@ -587,6 +588,47 @@ function getRulesItems(): RegistryItem[] {
 }
 
 /**
+ * Get skill items from registry/default/skills (Cursor Agent Skills for distribution).
+ * Each skill folder with SKILL.md is exposed as registry:file → .cursor/skills/<name>/SKILL.md
+ * (and any sibling files in that folder).
+ */
+function getSkillsItems(): RegistryItem[] {
+  if (!fs.existsSync(SKILLS_PATH)) return [];
+
+  return fs
+    .readdirSync(SKILLS_PATH, { withFileTypes: true })
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => {
+      const skillDir = path.join(SKILLS_PATH, entry.name);
+      const skillMd = path.join(skillDir, "SKILL.md");
+      if (!fs.existsSync(skillMd)) return null;
+
+      const files = fs
+        .readdirSync(skillDir, { withFileTypes: true })
+        .filter((f) => f.isFile())
+        .map((f) => ({
+          path: `registry/default/skills/${entry.name}/${f.name}`,
+          type: "registry:file" as const,
+          target: `.cursor/skills/${entry.name}/${f.name}`,
+        }));
+
+      const defaultTitle = entry.name
+        .split("-")
+        .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+        .join(" ");
+
+      return {
+        name: `skill-${entry.name}`,
+        type: "registry:file" as const,
+        title: `Skill: ${defaultTitle}`,
+        description: `Aura Cursor skill: ${defaultTitle}. Installs to .cursor/skills/${entry.name}/.`,
+        files,
+      } satisfies RegistryItem;
+    })
+    .filter((item): item is RegistryItem => item !== null);
+}
+
+/**
  * Load custom registry items from registry-items.custom.json
  */
 function getCustomItems(): RegistryItem[] {
@@ -875,9 +917,28 @@ function buildRegistry() {
     description: "All Aura Design System Cursor rules. Installs to .cursor/rules/ for AI guidance.",
     files: rulesItems.flatMap((item) => item.files ?? []),
   };
+  const skillsItems = getSkillsItems();
+  const skillsBundle: RegistryItem = {
+    name: "skills",
+    type: "registry:file",
+    title: "Aura Skills",
+    description: "All Aura Design System Cursor skills. Installs to .cursor/skills/ for AI workflows.",
+    files: skillsItems.flatMap((item) => item.files ?? []),
+  };
   const customItems = getCustomItems();
 
-  registry.items = [...components, ...blocks, ...utils, ...hooks, ...animationStyles, ...rulesItems, rulesBundle, ...customItems];
+  registry.items = [
+    ...components,
+    ...blocks,
+    ...utils,
+    ...hooks,
+    ...animationStyles,
+    ...rulesItems,
+    rulesBundle,
+    ...skillsItems,
+    skillsBundle,
+    ...customItems,
+  ];
 
   fs.writeFileSync(REGISTRY_PATH, JSON.stringify(registry, null, 2));
   console.log(`Registry generated at ${REGISTRY_PATH}`);
@@ -887,6 +948,7 @@ function buildRegistry() {
   console.log(`  Hooks: ${hooks.length}`);
   console.log(`  Animation Styles: ${animationStyles.length}`);
   console.log(`  Rules: ${rulesItems.length}`);
+  console.log(`  Skills: ${skillsItems.length}`);
   console.log(`  Custom Items: ${customItems.length}`);
   console.log(`  Total: ${registry.items.length}`);
 }

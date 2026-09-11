@@ -45,6 +45,11 @@ export function baseOptions(): BaseLayoutProps {
         active: "nested-url",
       },
       {
+        text: "MCP",
+        url: "/docs/mcp",
+        active: "nested-url",
+      },
+      {
         text: "Rules",
         url: "/docs/rules",
         active: "nested-url",

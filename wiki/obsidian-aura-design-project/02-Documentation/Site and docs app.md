@@ -17,7 +17,7 @@ The public docs experience is the **`@aura-design/www`** Next.js app under `apps
 
 ## Content pipeline
 
-- **Authoring** — MDX and `meta.json` under `apps/www/content/docs/` (sections: handbook, components, forms, rules, etc.).
+- **Authoring** — MDX and `meta.json` under `apps/www/content/docs/` (sections: handbook, MCP, components, forms, rules, etc.). Header nav in `utils/layout.shared.tsx` lists MCP after Handbook and before Rules (`/docs/mcp`).
 - **Fumadocs MDX** — `apps/www/source.config.ts`; `postinstall` runs `fumadocs-mdx` to generate `@/.source`.
 - **Runtime** — `utils/source.ts` builds the Fumadocs `loader` with base URL `/docs`.
 - **Search UI** — `apps/www/components/SearchDialog.tsx` calls `/api/search?query=…` and `/api/quick-links`.
