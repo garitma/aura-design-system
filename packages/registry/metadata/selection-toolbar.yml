@@ -1,0 +1,3 @@
+header:
+  description: A floating toolbar that appears on text selection with formatting and utility actions.
+extends: _templates/content.yml

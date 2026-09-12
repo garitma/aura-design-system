@@ -280,6 +280,7 @@
   @import "../styles/collapsible.css" ;
   @import "../styles/dialog.css" ;
   @import "../../../packages/registry/registry/default/styles/responsive-dropdown-menu.css";
+  @import "../../../packages/registry/registry/default/styles/selection-toolbar.css";
 
   .fd-step:before {
     width: 39px!important;

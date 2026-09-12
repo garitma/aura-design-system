@@ -722,7 +722,7 @@ function ResponsiveDropdownMenuContent({
     );
   }
 
-  const currentTitle = stack.at(-1)?.title ?? mobileTitle;
+  const currentTitle = stack[stack.length - 1]?.title ?? mobileTitle;
 
   return (
     <DrawerContent
@@ -1037,6 +1037,7 @@ function ResponsiveDropdownMenuSub({
 }
 
 function ResponsiveDropdownMenuSubTrigger({
+  asChild,
   children,
   className,
   disabled,
@@ -1063,14 +1064,42 @@ function ResponsiveDropdownMenuSubTrigger({
     );
   }
 
+  const title = React.isValidElement<{ children?: React.ReactNode }>(children)
+    ? children.props.children
+    : children;
+
+  if (asChild && React.isValidElement<{ children?: React.ReactNode }>(children)) {
+    return (
+      <Slot
+        {...(props as React.ComponentPropsWithoutRef<typeof Slot>)}
+        role="menuitem"
+        data-disabled={disabled ? "" : undefined}
+        className={cn("responsive-dropdown-item", className)}
+        onClick={() => {
+          if (!disabled) push({ id: sub.id, title });
+        }}
+      >
+        {React.cloneElement(
+          children,
+          undefined,
+          <>
+            {children.props.children}
+            <ChevronRightIcon className="icon responsive-dropdown-chevron" />
+          </>
+        )}
+      </Slot>
+    );
+  }
+
   return (
     <button
       {...(props as React.ComponentPropsWithoutRef<"button">)}
       type="button"
       role="menuitem"
       disabled={disabled}
+      data-disabled={disabled ? "" : undefined}
       className={cn("responsive-dropdown-item", className)}
-      onClick={() => push({ id: sub.id, title: children })}
+      onClick={() => push({ id: sub.id, title })}
     >
       {children}
       <ChevronRightIcon className="icon responsive-dropdown-chevron" />

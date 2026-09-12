@@ -1541,6 +1541,40 @@
       ]
     },
     {
+      "name": "selection-toolbar",
+      "type": "registry:ui",
+      "title": "SelectionToolbar",
+      "description": "The SelectionToolbar component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/SelectionToolbar.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/selection-toolbar.css",
+          "type": "registry:component",
+          "target": "./styles/selection-toolbar.css"
+        }
+      ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/selection-toolbar.css\"": {}
+        }
+      },
+      "dependencies": [
+        "@floating-ui/react-dom",
+        "@radix-ui/react-slot"
+      ],
+      "registryDependencies": [
+        "@aura/button",
+        "@aura/class-names",
+        "@aura/compose-refs",
+        "@aura/use-as-ref",
+        "@aura/use-isomorphic-layout-effect",
+        "@aura/use-lazy-ref"
+      ]
+    },
+    {
       "name": "separator",
       "type": "registry:ui",
       "title": "Separator",
