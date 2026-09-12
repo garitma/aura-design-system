@@ -1,7 +1,7 @@
 import { type ComponentProps } from "react";
 import { Text } from "lucide-react";
 import type { AnchorProviderProps } from "fumadocs-core/toc";
-import { I18nLabel } from "fumadocs-ui/contexts/i18n";
+import { I18nLabel } from "@/components/layout/contexts/i18n";
 
 import { cn } from "@/utils/class-names";
 

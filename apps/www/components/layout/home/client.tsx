@@ -2,7 +2,7 @@
 import { type ComponentProps, Fragment, useState } from "react";
 import { cva } from "class-variance-authority";
 import Link from "fumadocs-core/link";
-import { useNav } from "fumadocs-ui/contexts/layout";
+import { useNav } from "@/components/layout/contexts/layout";
 
 import { cn } from "@/utils/class-names";
 

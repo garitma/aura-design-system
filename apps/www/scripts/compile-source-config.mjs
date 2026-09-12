@@ -1,10 +1,12 @@
-import path from "node:path";
-import { start } from "fumadocs-mdx/next";
+import { postInstall } from "fumadocs-mdx/next";
 
 /**
- * Prefer `start()` over the `fumadocs-mdx` CLI postInstall: the CLI deletes
- * `.source` after compiling `source.config.mjs` into it, which races Turbopack
- * and yields "Cannot find module '.source/source.config.mjs'".
+ * Generate `.source` after install. Prefer `postInstall` over the CLI:
+ * `createMDX()` also initializes asynchronously; this keeps artifacts ready
+ * before `next build` / Turbopack first resolve `@/.source`.
  */
-await start(false, path.resolve("source.config.ts"), ".source");
+await postInstall({
+  configPath: "source.config.ts",
+  outDir: ".source",
+});
 console.log("[MDX] .source ready");

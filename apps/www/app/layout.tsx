@@ -3,6 +3,8 @@ import { RootProvider } from "fumadocs-ui/provider/next";
 import { IBM_Plex_Sans } from "next/font/google";
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import { SidebarProvider } from "@/components/layout/contexts/sidebar";
+import { DocsI18nProvider } from "@/components/layout/contexts/i18n";
 
 const ibmPlexSans = IBM_Plex_Sans({
   subsets: ["latin"],
@@ -33,7 +35,11 @@ export default function Layout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${ibmPlexSans.className} flex flex-col min-h-screen`}>
-        <RootProvider search={{ enabled: false }}>{children}</RootProvider>
+        <RootProvider search={{ enabled: false }}>
+          <DocsI18nProvider>
+            <SidebarProvider>{children}</SidebarProvider>
+          </DocsI18nProvider>
+        </RootProvider>
         <Analytics />
       </body>
     </html>

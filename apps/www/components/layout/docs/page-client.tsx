@@ -13,7 +13,7 @@ import {
 } from "react";
 import { ChevronDown, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "fumadocs-core/link";
-import { useI18n } from "fumadocs-ui/contexts/i18n";
+import { useDocsI18n } from "@/components/layout/contexts/i18n";
 import type * as PageTree from "fumadocs-core/page-tree";
 import { usePathname } from "fumadocs-core/framework";
 import { useTreeContext, useTreePath } from "fumadocs-ui/contexts/tree";
@@ -23,14 +23,14 @@ import {
   type BreadcrumbOptions,
   getBreadcrumbItemsFromPath,
 } from "fumadocs-core/breadcrumb";
-import { useNav } from "fumadocs-ui/contexts/layout";
+import { useNav } from "@/components/layout/contexts/layout";
 import { isActive } from "@/utils/is-active";
 import {
   Collapsible,
   CollapsibleContent,
   CollapsibleTrigger,
 } from "@/components/ui/Collapsible";
-import { useSidebar } from "fumadocs-ui/contexts/sidebar";
+import { useSidebar } from "@/components/layout/contexts/sidebar";
 import { useTOCItems } from "@/components/ui/Toc";
 import { useActiveAnchor } from "fumadocs-core/toc";
 
@@ -40,7 +40,7 @@ const TocPopoverContext = createContext<{
 } | null>(null);
 
 export function PageTOCPopoverTrigger(props: ComponentProps<"button">) {
-  const { text } = useI18n();
+  const { text } = useDocsI18n();
   const { open } = use(TocPopoverContext)!;
   const items = useTOCItems();
   const active = useActiveAnchor();
@@ -227,7 +227,7 @@ export function PageLastUpdate({
   date: value,
   ...props
 }: Omit<ComponentProps<"p">, "children"> & { date: Date | string }) {
-  const { text } = useI18n();
+  const { text } = useDocsI18n();
   const [date, setDate] = useState("");
 
   useEffect(() => {
@@ -315,7 +315,7 @@ export function PageFooter({ items, ...props }: FooterProps) {
 }
 
 function FooterItem({ item, index }: { item: Item; index: 0 | 1 }) {
-  const { text } = useI18n();
+  const { text } = useDocsI18n();
   const Icon = index === 0 ? ChevronLeft : ChevronRight;
 
   return (
