@@ -1,0 +1,153 @@
+---
+title: CLI
+description: Commands in @aura-design/cli for initializing Aura, theming, spacing migration, and blueprint scaffolding.
+icon: Terminal
+---
+
+`@aura-design/cli` is the on-ramp for Aura. It wraps Next.js scaffolding and the shadcn CLI with Aura registries, tokens, rules, skills, and optional project tooling.
+
+Invoke it with:
+
+```bash
+pnpm dlx @aura-design/cli@latest <command>
+```
+
+The published binary name is `aura`.
+
+## Quick start
+
+**New Next.js app** with Aura fixtures:
+
+```bash
+pnpm dlx @aura-design/cli@latest init
+```
+
+**Existing Next.js app** (skips `create-next-app`):
+
+```bash
+pnpm dlx @aura-design/cli@latest setup
+# or
+pnpm dlx @aura-design/cli@latest setup --dir ./apps/web
+```
+
+See also [Installation](/docs/installation) for adding every registry component via `all.txt`.
+
+## Commands
+
+### `init`
+
+Creates a Next.js app with `create-next-app`, then applies Aura to the new (or current) project root:
+
+1. Writes `components.json` with `@aura` and `@aura-dev` registries
+2. Generates light/dark Radix scales into `globals.css`
+3. Runs `shadcn add` for `@aura/class-names`, `@aura/page-get-starter`, `@aura/css-main`, `@aura/rules`, and `@aura/skills`
+4. Runs the same scaffolding as [`blueprint`](#blueprint)
+
+```bash
+pnpm dlx @aura-design/cli@latest init
+```
+
+### `setup`
+
+Same Aura apply step as `init`, for a project that already has a `package.json`. Does **not** run `create-next-app`.
+
+| Option | Description |
+| --- | --- |
+| `-d, --dir <path>` | Project root (default: current working directory) |
+
+```bash
+pnpm dlx @aura-design/cli@latest setup --dir .
+```
+
+### `link`
+
+Downloads the canonical Aura `components.json` (shadcn config with `@aura` registry URLs) into your project. Useful when you only need the registry config, not a full `setup`.
+
+| Option | Description |
+| --- | --- |
+| `-o, --output <path>` | Output path relative to cwd (default: `components.json`) |
+
+```bash
+pnpm dlx @aura-design/cli@latest link
+pnpm dlx @aura-design/cli@latest link --output ./apps/web/components.json
+```
+
+### `blueprint [projectDir]`
+
+Scaffolds Aura project tooling into any repo with a `package.json`:
+
+- `wiki/bruno-*` and `wiki/obsidian-*` (suffix from the package name, first segment stripped)
+- `.cursor/skills/generate-brand-images/` (identity-aware Gemini landing images)
+- `scripts/preflight.ts`
+- `sonar-project.properties` plus Sonar-related scripts / devDependencies
+- `.gitignore` and `.env.example` entries for Sonar / Gemini keys
+
+Also runs automatically at the end of `init` and `setup`.
+
+| Option | Description |
+| --- | --- |
+| `-f, --force` | Overwrite bootstrap files and `scripts/preflight.ts` if they exist |
+| `--suffix <string>` | Override wiki folder suffix |
+
+```bash
+pnpm dlx @aura-design/cli@latest blueprint
+pnpm dlx @aura-design/cli@latest blueprint ./apps/web --force --suffix my-app
+```
+
+> **Note:** The docs page [Agent blueprint](/docs/mcp-agent-blueprint) is an **agent runbook** (`Ejecuta` + URL). It is not this CLI command, though the runbook may invoke `aura blueprint` when scaffolding is missing.
+
+### `colors`
+
+Regenerates `globals.css` from accent, gray, and background hex values (Radix-style 12-step scales, light and dark). Pass flags or answer prompts.
+
+| Option | Description |
+| --- | --- |
+| `--accent <hex>` | Accent color |
+| `--gray <hex>` | Gray / neutral base |
+| `--background <hex>` | App background |
+
+```bash
+pnpm dlx @aura-design/cli@latest colors --accent "#964CE1" --gray "#6b7394" --background "#FFFFFF"
+```
+
+Looks for `app/globals.css`, `src/app/globals.css`, `styles/globals.css`, or `src/styles/globals.css` (creates `app/globals.css` if none exist).
+
+### `typography generate`
+
+Interactive prompts for body size, small size, and a headline scale (ratio or explicit `h6`–`h1`). Writes a custom `typography.css` aligned with Aura’s fluid `clamp()` philosophy.
+
+```bash
+pnpm dlx @aura-design/cli@latest typography generate
+```
+
+### `spacing [target]`
+
+Rewrites Tailwind spacing utilities in `.tsx` files from the default **4px** mental model to the closest **13px**-based token (Aura’s `--spacing`).
+
+| Option | Description |
+| --- | --- |
+| `-d, --dir <directory>` | Scan root when `target` is omitted (default: `.`) |
+
+```bash
+pnpm dlx @aura-design/cli@latest spacing
+pnpm dlx @aura-design/cli@latest spacing ./components
+pnpm dlx @aura-design/cli@latest spacing --dir ./apps/web
+```
+
+## Adding components
+
+After `init` or `setup`, install individual registry items with the shadcn CLI and the `@aura` namespace:
+
+```bash
+pnpm dlx shadcn@latest add @aura/button
+```
+
+There is no Aura command that adds every component. Use the newline-delimited list at [https://auradesignsystem.com/all.txt](https://auradesignsystem.com/all.txt).
+
+## Related
+
+- [Installation](/docs/installation) — shortest path to a working Aura app
+- [Registry](/docs/registry) — how `@aura/*` items are distributed
+- [Namespace](/docs/namespace) — `@aura` vs `@aura-dev` in `components.json`
+- [MCP](/docs/mcp) — browse and install registries from Cursor
+- [Agent blueprint](/docs/mcp-agent-blueprint) — agent runbook for existing projects

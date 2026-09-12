@@ -19,7 +19,7 @@ The public docs experience is the **`@aura-design/www`** Next.js app under `apps
 
 ## Content pipeline
 
-- **Authoring** — MDX and `meta.json` under `apps/www/content/docs/` (Get Started includes MCP + Agent blueprint; also handbook, components, forms, rules, etc.).
+- **Authoring** — MDX and `meta.json` under `apps/www/content/docs/` (Get Started includes Installation, [[CLI]], MCP + Agent blueprint; also handbook, components, forms, rules, etc.).
 - **Vercel** — Three independent projects: `aura-design-system-www` (`apps/www`), `aura-design-system-design-md` (`packages/design-md`), `aura-design-system-stories` / Ladle (`packages/registry`). Each `vercel.json` uses `git.deploymentEnabled` with `**`: false and `canary`: true — `*` alone does not match branches with `/` (e.g. `feature/mcp`).
 - **Fumadocs** — **16.15.9** (`fumadocs-core` / `fumadocs-ui`) + **fumadocs-mdx 15.4.0**. See [[Fumadocs-upgrade]].
 - **Fumadocs MDX** — `apps/www/source.config.ts`; `postinstall` runs `postInstall` to generate `@/.source` (`server.ts`).
