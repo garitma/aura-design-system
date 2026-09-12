@@ -148,6 +148,14 @@ import {
   DropdownMenuDemoComplex
 } from "@/components/demos/dropdown-menu-demo"
 import { 
+  EditableDemo,
+  EditableDemoWithTrigger,
+  EditableDemoDoubleClick,
+  EditableDemoAutosize,
+  EditableDemoTodoList,
+  EditableDemoWithForm
+} from "@/components/demos/editable-demo"
+import { 
   EmptyDemo,
   EmptyDemoWithActions
 } from "@/components/demos/empty-demo"
@@ -653,6 +661,24 @@ export const Registry = {
   },
   "dropdown-menu-demo-complex": {
     component: DropdownMenuDemoComplex,
+  },
+  "editable-demo": {
+    component: EditableDemo,
+  },
+  "editable-demo-with-trigger": {
+    component: EditableDemoWithTrigger,
+  },
+  "editable-demo-double-click": {
+    component: EditableDemoDoubleClick,
+  },
+  "editable-demo-autosize": {
+    component: EditableDemoAutosize,
+  },
+  "editable-demo-todo-list": {
+    component: EditableDemoTodoList,
+  },
+  "editable-demo-with-form": {
+    component: EditableDemoWithForm,
   },
   "empty-demo": {
     component: EmptyDemo,

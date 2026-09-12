@@ -1091,6 +1091,29 @@
       ]
     },
     {
+      "name": "editable",
+      "type": "registry:ui",
+      "title": "Editable",
+      "description": "The Editable component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Editable.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/compose-refs",
+        "@aura/use-as-ref",
+        "@aura/use-isomorphic-layout-effect",
+        "@aura/use-lazy-ref",
+        "@aura/visually-hidden-input"
+      ]
+    },
+    {
       "name": "empty",
       "type": "registry:ui",
       "title": "Empty",

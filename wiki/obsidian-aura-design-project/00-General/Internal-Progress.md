@@ -1,12 +1,12 @@
 ---
 title: Internal progress
-date: 2026-03-22
+date: 2026-09-12
 tags: [dev-log]
 ---
 ## Summary
-Recreated DiceUI **Angle Slider** as `@aura/angle-slider` with dependency `@aura/visually-hidden-input`. Existing Aura hooks/compose-refs were reused. Docs + registry JSON generated; www build verified.
+Recreated DiceUI **Editable** as `@aura/editable` with Aura tokens (gray/accent scales, 13px spacing, ≥17px inputs). Reused existing hooks, compose-refs, and VisuallyHiddenInput. Stories cover default, trigger, double-click, autosize, todo list, and form.
 
 ## Context
-- Related: [[Angle-Slider]], [[Visually-Hidden-Input]], [[Registry]]
-- Implementation Path: `packages/registry/registry/default/components/ui/AngleSlider.tsx`
-- Next: none for this task.
+- Related: [[Editable]], [[Visually-Hidden-Input]], [[Registry]]
+- Implementation Path: `packages/registry/registry/default/components/ui/Editable.tsx`
+- Next: verify Ladle + docs generate.
