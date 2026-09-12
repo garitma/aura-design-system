@@ -1,0 +1,31 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "mention",
+  "type": "registry:ui",
+  "title": "Mention",
+  "description": "The Mention component.",
+  "dependencies": [
+    "@diceui/mention"
+  ],
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Mention.tsx",
+      "content": "\"use client\";\n/**\n * @description Adds accessible, trigger-based mentions to a text input.\n */\nimport * as React from \"react\";\nimport * as MentionPrimitive from \"@diceui/mention\";\n\nimport { cn } from \"@/utils/class-names\";\n\nfunction Mention({\n  className,\n  ...props\n}: React.ComponentProps<typeof MentionPrimitive.Root>) {\n  return (\n    <MentionPrimitive.Root\n      data-slot=\"mention\"\n      className={cn(\n        \"**:data-tag:rounded-sm **:data-tag:bg-accent-3 **:data-tag:px-0.5 **:data-tag:text-accent-12\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction MentionLabel({\n  className,\n  ...props\n}: React.ComponentProps<typeof MentionPrimitive.Label>) {\n  return (\n    <MentionPrimitive.Label\n      data-slot=\"mention-label\"\n      className={cn(\n        \"mb-0.5 block text-sm font-semibold text-gray-12 peer-disabled:cursor-not-allowed peer-disabled:opacity-50\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction MentionInput({\n  className,\n  ...props\n}: React.ComponentProps<typeof MentionPrimitive.Input>) {\n  return (\n    <MentionPrimitive.Input\n      data-slot=\"mention-input\"\n      className={cn(\n        \"flex min-h-4 w-full rounded-md border border-gray-7 bg-gray-1 px-1 py-0.5 text-sm text-gray-12 placeholder:text-gray-11 focus-visible:border-gray-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-8 disabled:cursor-not-allowed disabled:opacity-50\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction MentionPortal({\n  ...props\n}: React.ComponentProps<typeof MentionPrimitive.Portal>) {\n  return <MentionPrimitive.Portal data-slot=\"mention-portal\" {...props} />;\n}\n\nfunction MentionContent({\n  className,\n  ...props\n}: React.ComponentProps<typeof MentionPrimitive.Content>) {\n  return (\n    <MentionPrimitive.Content\n      data-slot=\"mention-content\"\n      className={cn(\n        \"z-50 min-w-(--dice-anchor-width) origin-(--dice-transform-origin) overflow-hidden rounded-md border border-gray-7 bg-gray-1 p-0.5 text-gray-12 shadow-md data-[state=closed]:animate-mention-hide data-[state=open]:animate-mention-show\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction MentionItem({\n  className,\n  ...props\n}: React.ComponentProps<typeof MentionPrimitive.Item>) {\n  return (\n    <MentionPrimitive.Item\n      data-slot=\"mention-item\"\n      className={cn(\n        \"relative flex w-full cursor-default select-none items-center gap-0.5 rounded-sm px-1 py-0.5 text-sm outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-accent-3 data-highlighted:text-accent-12\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport {\n  Mention,\n  MentionContent,\n  MentionInput,\n  MentionItem,\n  MentionLabel,\n  MentionPortal,\n};\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/styles/mention.css",
+      "content": "@theme animatons {\n  --animate-mention-show: mentionShow 250ms cubic-bezier(0.16, 1, 0.3, 1);\n  --animate-mention-hide: mentionHide 250ms cubic-bezier(0.16, 1, 0.3, 1);\n}\n\n@layer components {\n  @keyframes mentionShow {\n    from {\n      opacity: 0;\n      transform: scale(0.96);\n    }\n    to {\n      opacity: 1;\n      transform: scale(1);\n    }\n  }\n\n  @keyframes mentionHide {\n    from {\n      opacity: 1;\n      transform: scale(1);\n    }\n    to {\n      opacity: 0;\n      transform: scale(0.96);\n    }\n  }\n}\n\n@media (prefers-reduced-motion: reduce) {\n  @layer components {\n    [data-slot=\"mention-content\"] {\n      animation: none;\n    }\n  }\n}\n",
+      "type": "registry:component",
+      "target": "./styles/mention.css"
+    }
+  ],
+  "css": {
+    "@layer components": {
+      "@import \"../styles/mention.css\"": {}
+    }
+  }
+}

@@ -1,14 +1,14 @@
 ---
 title: Internal progress
-date: 2026-09-11
+date: 2026-09-12
 tags: [dev-log]
 ---
 ## Summary
-Added `@aura/responsive-dropdown-menu` and an identity-aware Gemini image workflow that ships with new Aura blueprint projects.
+Added `@aura/mention`, an Aura-styled wrapper around `@diceui/mention` with trigger-based suggestions, custom filtering, accessible labels, and reduced-motion-aware popover animation.
 
 ## Context
-- Related: [[Responsive-Dropdown-Menu]], [[Responsive-Dialog]], [[Registry]], [[Brand-Image-Generation]]
-- Implementation Path: `packages/registry/registry/default/components/ui/ResponsiveDropdownMenu.tsx`
-- Image workflow: `.cursor/skills/generate-brand-images/` and `packages/cli/commands/blueprint.ts`
-- Verification: CLI build, isolated blueprint scaffold, generator dry-run, missing-key guidance, identity gate, and registry generation/build pass.
-- Next: visually exercise responsive dropdown navigation and perform a real Gemini generation in a consumer project with a user-provided key.
+- Related: [[Registry]]
+- Implementation Path: `packages/registry/registry/default/components/ui/Mention.tsx`
+- Examples: `packages/registry/src/mention.stories.tsx`
+- Verification: registry generation, static registry build, docs generation, and Ladle build pass; browser checks confirm keyboard selection, custom triggers, custom filtering, and a clean console.
+- Next: add focused automated interaction coverage when the registry test suite gains Mention tests.

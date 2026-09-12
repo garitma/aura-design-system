@@ -177,6 +177,11 @@ import {
   MarkerDemoWithIcon,
   MarkerDemoAsLink
 } from "@/components/demos/marker-demo"
+import {
+  MentionDemo,
+  MentionDemoCustomTrigger,
+  MentionDemoCustomFilter
+} from "@/components/demos/mention-demo"
 import { 
   MenubarDemo
 } from "@/components/demos/menubar-demo"
@@ -687,6 +692,15 @@ export const Registry = {
   },
   "marker-demo-as-link": {
     component: MarkerDemoAsLink,
+  },
+  "mention-demo": {
+    component: MentionDemo,
+  },
+  "mention-demo-custom-trigger": {
+    component: MentionDemoCustomTrigger,
+  },
+  "mention-demo-custom-filter": {
+    component: MentionDemoCustomFilter,
   },
   "menubar-demo": {
     component: MenubarDemo,

@@ -1201,6 +1201,34 @@
       ]
     },
     {
+      "name": "mention",
+      "type": "registry:ui",
+      "title": "Mention",
+      "description": "The Mention component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/Mention.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/mention.css",
+          "type": "registry:component",
+          "target": "./styles/mention.css"
+        }
+      ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/mention.css\"": {}
+        }
+      },
+      "dependencies": [
+        "@diceui/mention"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
       "name": "menubar",
       "type": "registry:ui",
       "title": "Menubar",
