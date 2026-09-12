@@ -33,7 +33,7 @@ import {
   AvatarDemoWithFallback,
   AvatarDemoFallbackOnly,
   AvatarDemoCustomSize,
-  AvatarGroupDemo,
+  AvatarDemoGrouped,
   AvatarDemoWithStatus,
   AvatarDemoDifferentShapes,
   AvatarDemoCustomFallbackStyles
@@ -410,8 +410,8 @@ export const Registry = {
   "avatar-demo-custom-size": {
     component: AvatarDemoCustomSize,
   },
-  "avatar-demo-avatar-group": {
-    component: AvatarGroupDemo,
+  "avatar-demo-grouped": {
+    component: AvatarDemoGrouped,
   },
   "avatar-demo-with-status": {
     component: AvatarDemoWithStatus,
