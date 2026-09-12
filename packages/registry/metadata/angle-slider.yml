@@ -1,0 +1,3 @@
+header:
+  description: A circular slider for selecting an angle or value along an arc.
+extends: _templates/content.yml
