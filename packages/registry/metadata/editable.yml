@@ -1,0 +1,3 @@
+header:
+  description: Inline text that switches between preview and edit modes.
+extends: _templates/content.yml
