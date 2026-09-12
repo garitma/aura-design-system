@@ -23,7 +23,7 @@ import { cn } from "@/utils/class-names";
 const AESTHETIC_COLUMNS = [
   ["card-demo-with-actions", "calendar-demo"],
   ["tabs-demo", "toggle-demo", "switch-demo"],
-  ["combobox-demo", "progress-demo-simulated", "avatar-demo-avatar-group"],
+  ["combobox-demo", "progress-demo-simulated", "avatar-demo-grouped"],
   ["checkbox-demo-group", "accordion-demo"],
   ["kbd-demo", "empty-demo"],
   ["hover-card-demo", "radio-group-demo-horizontal", "separator-demo"],
