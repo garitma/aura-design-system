@@ -1,0 +1,3 @@
+header:
+  description: Overlapping avatars with truncation, orientation, and custom overflow.
+extends: _templates/content.yml

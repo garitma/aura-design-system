@@ -1,0 +1,374 @@
+---
+title: Avatar Group
+description: Overlapping avatars with truncation, orientation, and custom overflow.
+---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="avatar-group-demo" description="Overlapping avatars with truncation, orientation, and custom overflow.">
+
+```tsx
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from "@/components/ui/Avatar";
+import { AvatarGroup } from "@/components/ui/AvatarGroup";
+
+export function AvatarGroupDemo() {
+  return (
+  <AvatarGroup>
+    {people.slice(0, 3).map((person) => (
+      <PersonAvatar key={person.fallback} person={person} />
+    ))}
+  </AvatarGroup>
+)
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/avatar-group
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```bash
+pnpm install @radix-ui/react-slot class-variance-authority
+    ```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the AvatarGroup component into your `components/ui/AvatarGroup.tsx` file.
+
+```tsx
+"use client";
+
+/**
+ * @description Overlapping avatars with truncation, orientation, and custom overflow.
+ */
+import * as React from "react";
+import { Slot } from "@radix-ui/react-slot";
+import { cva, type VariantProps } from "class-variance-authority";
+
+import { cn } from "@/utils/class-names";
+
+const avatarGroupVariants = cva("flex items-center", {
+  variants: {
+    orientation: {
+      horizontal: "flex-row",
+      vertical: "flex-col",
+    },
+    dir: {
+      ltr: "",
+      rtl: "",
+    },
+  },
+  compoundVariants: [
+    {
+      orientation: "horizontal",
+      dir: "ltr",
+      className: "-space-x-1",
+    },
+    {
+      orientation: "horizontal",
+      dir: "rtl",
+      className: "flex-row-reverse -space-x-1 space-x-reverse",
+    },
+    {
+      orientation: "vertical",
+      dir: "ltr",
+      className: "-space-y-1",
+    },
+    {
+      orientation: "vertical",
+      dir: "rtl",
+      className: "flex-col-reverse -space-y-1 space-y-reverse",
+    },
+  ],
+  defaultVariants: {
+    orientation: "horizontal",
+    dir: "ltr",
+  },
+});
+
+interface AvatarGroupProps
+  extends Omit<React.ComponentProps<"div">, "dir">,
+    VariantProps<typeof avatarGroupVariants> {
+  /** Pixel size applied to each item (default matches Aura `size-3` = 39px). */
+  size?: number;
+  /** Max visible slots including the overflow indicator when truncating. */
+  max?: number;
+  asChild?: boolean;
+  reverse?: boolean;
+  renderOverflow?: (count: number) => React.ReactNode;
+}
+
+function AvatarGroup(props: AvatarGroupProps) {
+  const {
+    orientation = "horizontal",
+    dir = "ltr",
+    size = 39,
+    max,
+    asChild,
+    reverse = false,
+    renderOverflow,
+    className,
+    children,
+    ...rootProps
+  } = props;
+
+  const childrenArray = React.Children.toArray(children).filter(
+    React.isValidElement,
+  );
+  const itemCount = childrenArray.length;
+  const shouldTruncate = Boolean(max && itemCount > max);
+  const visibleItems = shouldTruncate
+    ? childrenArray.slice(0, (max as number) - 1)
+    : childrenArray;
+  const overflowCount = shouldTruncate ? itemCount - ((max as number) - 1) : 0;
+  const totalRenderedItems = shouldTruncate ? (max as number) : itemCount;
+
+  const RootPrimitive = asChild ? Slot : "div";
+
+  return (
+    <RootPrimitive
+      data-orientation={orientation}
+      data-slot="avatar-group"
+      {...rootProps}
+      className={cn(avatarGroupVariants({ orientation, dir }), className)}
+    >
+      {visibleItems.map((child, index) => (
+        <AvatarGroupItem
+          key={index}
+          child={child}
+          index={index}
+          itemCount={totalRenderedItems}
+          orientation={orientation}
+          dir={dir}
+          size={size}
+          reverse={reverse}
+        />
+      ))}
+      {shouldTruncate ? (
+        <AvatarGroupItem
+          key="overflow"
+          child={
+            renderOverflow ? (
+              renderOverflow(overflowCount)
+            ) : (
+              <div className="inline-flex size-full items-center justify-center rounded-full bg-gray-3 text-xs font-medium text-gray-11">
+                +{overflowCount}
+              </div>
+            )
+          }
+          index={visibleItems.length}
+          itemCount={totalRenderedItems}
+          orientation={orientation}
+          dir={dir}
+          size={size}
+          reverse={reverse}
+        />
+      ) : null}
+    </RootPrimitive>
+  );
+}
+
+interface AvatarGroupItemProps
+  extends Omit<React.ComponentProps<typeof Slot>, "dir">,
+    VariantProps<typeof avatarGroupVariants> {
+  child: React.ReactNode;
+  index: number;
+  itemCount: number;
+  size: number;
+  reverse: boolean;
+}
+
+function AvatarGroupItem(props: AvatarGroupItemProps) {
+  const {
+    child,
+    index,
+    size,
+    orientation,
+    dir = "ltr",
+    reverse = false,
+    itemCount,
+    className,
+    style,
+    ...itemProps
+  } = props;
+
+  const maskStyle = React.useMemo<React.CSSProperties>(() => {
+    let maskImage = "";
+    let shouldMask = false;
+
+    if (orientation === "vertical" && dir === "rtl" && reverse) {
+      shouldMask = index !== itemCount - 1;
+    } else {
+      shouldMask = reverse ? index < itemCount - 1 : index > 0;
+    }
+
+    if (shouldMask) {
+      const maskRadius = size / 2;
+      const maskOffset = size / 4 + size / 10;
+
+      if (orientation === "vertical") {
+        if (dir === "ltr") {
+          maskImage = reverse
+            ? `radial-gradient(circle ${maskRadius}px at 50% ${size + maskOffset}px, transparent 99%, white 100%)`
+            : `radial-gradient(circle ${maskRadius}px at 50% -${maskOffset}px, transparent 99%, white 100%)`;
+        } else {
+          maskImage = reverse
+            ? `radial-gradient(circle ${maskRadius}px at 50% -${maskOffset}px, transparent 99%, white 100%)`
+            : `radial-gradient(circle ${maskRadius}px at 50% ${size + maskOffset}px, transparent 99%, white 100%)`;
+        }
+      } else if (dir === "ltr") {
+        maskImage = reverse
+          ? `radial-gradient(circle ${maskRadius}px at ${size + maskOffset}px 50%, transparent 99%, white 100%)`
+          : `radial-gradient(circle ${maskRadius}px at -${maskOffset}px 50%, transparent 99%, white 100%)`;
+      } else {
+        maskImage = reverse
+          ? `radial-gradient(circle ${maskRadius}px at -${maskOffset}px 50%, transparent 99%, white 100%)`
+          : `radial-gradient(circle ${maskRadius}px at ${size + maskOffset}px 50%, transparent 99%, white 100%)`;
+      }
+    }
+
+    return {
+      width: size,
+      height: size,
+      maskImage,
+    };
+  }, [size, index, orientation, dir, reverse, itemCount]);
+
+  return (
+    <Slot
+      data-slot="avatar-group-item"
+      className={cn(
+        "size-full shrink-0 overflow-hidden rounded-full [&_img]:size-full",
+        className,
+      )}
+      style={{
+        ...maskStyle,
+        ...style,
+      }}
+      {...itemProps}
+    >
+      {child}
+    </Slot>
+  );
+}
+
+export { AvatarGroup, avatarGroupVariants };
+export type { AvatarGroupProps };
+
+```
+  </Step>
+</Steps>
+
+## Usage
+
+### WithTruncation
+
+```tsx
+export const WithTruncation = () => (
+  <AvatarGroup max={4}>
+    {people.map((person) => (
+      <PersonAvatar key={person.fallback} person={person} />
+    ))}
+  </AvatarGroup>
+)
+```
+
+### Vertical
+
+```tsx
+export const Vertical = () => (
+  <AvatarGroup orientation="vertical">
+    {people.slice(0, 3).map((person) => (
+      <PersonAvatar key={person.fallback} person={person} />
+    ))}
+  </AvatarGroup>
+)
+```
+
+### Rtl
+
+```tsx
+export const Rtl = () => (
+  <div className="flex flex-col gap-4">
+    <AvatarGroup dir="rtl">
+      {people.slice(0, 4).map((person) => (
+        <PersonAvatar key={person.fallback} person={person} />
+      ))}
+    </AvatarGroup>
+    <AvatarGroup orientation="vertical" dir="rtl">
+      {people.slice(0, 3).map((person) => (
+        <PersonAvatar key={person.fallback} person={person} />
+      ))}
+    </AvatarGroup>
+  </div>
+)
+```
+
+### CustomOverflow
+
+```tsx
+export const CustomOverflow = () => (
+  <AvatarGroup
+    max={3}
+    renderOverflow={(count) => (
+      <div className="inline-flex size-full items-center justify-center rounded-full bg-accent-9 text-xs font-medium text-accent-contrast">
+        +{count}
+      </div>
+    )}
+  >
+    {people.map((person) => (
+      <PersonAvatar key={person.fallback} person={person} />
+    ))}
+  </AvatarGroup>
+)
+```
+
+### WithIcons
+
+```tsx
+export const WithIcons = () => (
+  <AvatarGroup size={39}>
+    <Avatar>
+      <AvatarFallback className="bg-accent-3 text-accent-11">A</AvatarFallback>
+    </Avatar>
+    <Avatar>
+      <AvatarFallback className="bg-gray-4 text-gray-12">B</AvatarFallback>
+    </Avatar>
+    <Avatar>
+      <AvatarFallback className="bg-info text-info-contrast">C</AvatarFallback>
+    </Avatar>
+  </AvatarGroup>
+)
+```
+
