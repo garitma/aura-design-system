@@ -736,6 +736,25 @@
       ]
     },
     {
+      "name": "badge-overflow",
+      "type": "registry:ui",
+      "title": "BadgeOverflow",
+      "description": "The BadgeOverflow component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/BadgeOverflow.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-slot"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/compose-refs"
+      ]
+    },
+    {
       "name": "bubble",
       "type": "registry:ui",
       "title": "Bubble",
