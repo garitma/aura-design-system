@@ -6,6 +6,7 @@
 
 - [[CLI]] — `packages/cli` (`@aura-design/cli`); public docs `/docs/cli`
 - [[Avatar-Group]] — `@aura/avatar-group` overlapping avatars (DiceUI port)
+- [[Badge-Overflow]] — `@aura/badge-overflow` measured badge rows with +N overflow (DiceUI port)
 - [[Registry]] — `packages/registry` (`@aura-design/registry`)
 - [[Design md]] — `packages/design` / npm `@aura/design-md`
 - [[React fixture]] — `packages/react-fixture` (`@aura-design/react-fixture`)

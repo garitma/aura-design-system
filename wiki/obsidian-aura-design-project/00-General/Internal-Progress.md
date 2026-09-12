@@ -4,9 +4,9 @@ date: 2026-03-22
 tags: [dev-log]
 ---
 ## Summary
-Recreated DiceUI **Avatar Group** as Aura registry item `@aura/avatar-group` (component, Ladle stories, metadata, docs, `public/r/avatar-group.json`). Avatar docs story now uses the shared group primitive.
+Recreated DiceUI **Badge Overflow** as `@aura/badge-overflow` (component, Ladle stories, metadata, docs, registry JSON). Supports primitive/object items, multi-line layout, and custom overflow rendering.
 
 ## Context
-- Related: [[Avatar-Group]], [[Registry]]
-- Implementation Path: `packages/registry/registry/default/components/ui/AvatarGroup.tsx`
+- Related: [[Badge-Overflow]], [[Badge]], [[Registry]]
+- Implementation Path: `packages/registry/registry/default/components/ui/BadgeOverflow.tsx`
 - Next: none for this task.

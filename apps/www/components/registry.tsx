@@ -47,6 +47,13 @@ import {
   AvatarGroupDemoWithIcons
 } from "@/components/demos/avatar-group-demo"
 import { 
+  BadgeOverflowDemo,
+  BadgeOverflowDemoWithObjects,
+  BadgeOverflowDemoMultiLine,
+  BadgeOverflowDemoCustomOverflow,
+  BadgeOverflowDemoInteractiveTags
+} from "@/components/demos/badge-overflow-demo"
+import { 
   BubbleDemo,
   BubbleDemoVariants,
   BubbleDemoAlignment,
@@ -432,6 +439,21 @@ export const Registry = {
   },
   "avatar-group-demo-with-icons": {
     component: AvatarGroupDemoWithIcons,
+  },
+  "badge-overflow-demo": {
+    component: BadgeOverflowDemo,
+  },
+  "badge-overflow-demo-with-objects": {
+    component: BadgeOverflowDemoWithObjects,
+  },
+  "badge-overflow-demo-multi-line": {
+    component: BadgeOverflowDemoMultiLine,
+  },
+  "badge-overflow-demo-custom-overflow": {
+    component: BadgeOverflowDemoCustomOverflow,
+  },
+  "badge-overflow-demo-interactive-tags": {
+    component: BadgeOverflowDemoInteractiveTags,
   },
   "bubble-demo": {
     component: BubbleDemo,
