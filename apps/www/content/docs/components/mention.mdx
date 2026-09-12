@@ -1,0 +1,275 @@
+---
+title: Mention
+description: An accessible text input that suggests and inserts items after a trigger character.
+---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="mention-demo" description="An accessible text input that suggests and inserts items after a trigger character.">
+
+```tsx
+import * as React from "react";
+import {
+  Mention,
+  MentionContent,
+  MentionInput,
+  MentionItem,
+  MentionLabel,
+  MentionPortal,
+} from "@/components/ui/Mention";
+import { Textarea } from "@/components/ui/Textarea";
+
+export function MentionDemo() {
+  return {
+  return (
+    <Mention className="smosh">
+      <MentionLabel>Mention users</MentionLabel>
+      <MentionInput placeholder="Type @ to mention someone…" asChild>
+        <Textarea />
+      </MentionInput>
+      <MentionPortal>
+        <MentionContent>
+          {users.map((user) => (
+            <MentionItem
+              key={user.id}
+              value={user.name}
+              className="flex-col items-start"
+            >
+              <span className="text-sm">{user.name}</span>
+              <span className="text-xs text-gray-11">{user.email}</span>
+            </MentionItem>
+          ))}
+        </MentionContent>
+      </MentionPortal>
+    </Mention>
+  );
+};
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/mention
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```bash
+pnpm install @diceui/mention
+    ```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Mention component into your `components/ui/Mention.tsx` file.
+
+```tsx
+"use client";
+/**
+ * @description Adds accessible, trigger-based mentions to a text input.
+ */
+import * as React from "react";
+import * as MentionPrimitive from "@diceui/mention";
+
+import { cn } from "@/utils/class-names";
+
+function Mention({
+  className,
+  ...props
+}: React.ComponentProps<typeof MentionPrimitive.Root>) {
+  return (
+    <MentionPrimitive.Root
+      data-slot="mention"
+      className={cn(
+        "**:data-tag:rounded-sm **:data-tag:bg-accent-3 **:data-tag:px-0.5 **:data-tag:text-accent-12",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function MentionLabel({
+  className,
+  ...props
+}: React.ComponentProps<typeof MentionPrimitive.Label>) {
+  return (
+    <MentionPrimitive.Label
+      data-slot="mention-label"
+      className={cn(
+        "mb-0.5 block text-sm font-semibold text-gray-12 peer-disabled:cursor-not-allowed peer-disabled:opacity-50",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function MentionInput({
+  className,
+  ...props
+}: React.ComponentProps<typeof MentionPrimitive.Input>) {
+  return (
+    <MentionPrimitive.Input
+      data-slot="mention-input"
+      className={cn(
+        "flex min-h-4 w-full rounded-md border border-gray-7 bg-gray-1 px-1 py-0.5 text-sm text-gray-12 placeholder:text-gray-11 focus-visible:border-gray-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-8 disabled:cursor-not-allowed disabled:opacity-50",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function MentionPortal({
+  ...props
+}: React.ComponentProps<typeof MentionPrimitive.Portal>) {
+  return <MentionPrimitive.Portal data-slot="mention-portal" {...props} />;
+}
+
+function MentionContent({
+  className,
+  ...props
+}: React.ComponentProps<typeof MentionPrimitive.Content>) {
+  return (
+    <MentionPrimitive.Content
+      data-slot="mention-content"
+      className={cn(
+        "z-50 min-w-(--dice-anchor-width) origin-(--dice-transform-origin) overflow-hidden rounded-md border border-gray-7 bg-gray-1 p-0.5 text-gray-12 shadow-md data-[state=closed]:animate-mention-hide data-[state=open]:animate-mention-show",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+function MentionItem({
+  className,
+  ...props
+}: React.ComponentProps<typeof MentionPrimitive.Item>) {
+  return (
+    <MentionPrimitive.Item
+      data-slot="mention-item"
+      className={cn(
+        "relative flex w-full cursor-default select-none items-center gap-0.5 rounded-sm px-1 py-0.5 text-sm outline-none data-disabled:pointer-events-none data-disabled:opacity-50 data-highlighted:bg-accent-3 data-highlighted:text-accent-12",
+        className,
+      )}
+      {...props}
+    />
+  );
+}
+
+export {
+  Mention,
+  MentionContent,
+  MentionInput,
+  MentionItem,
+  MentionLabel,
+  MentionPortal,
+};
+
+```
+  </Step>
+</Steps>
+
+## Usage
+
+### CustomTrigger
+
+```tsx
+export const CustomTrigger = () => {
+  return (
+    <Mention trigger="#" className="smosh">
+      <MentionLabel>Mention a topic</MentionLabel>
+      <MentionInput placeholder="Type # to mention a topic…" asChild>
+        <Textarea />
+      </MentionInput>
+      <MentionPortal>
+        <MentionContent>
+          {users.map((user) => (
+            <MentionItem key={user.id} value={user.name}>
+              {user.name}
+            </MentionItem>
+          ))}
+        </MentionContent>
+      </MentionPortal>
+    </Mention>
+  );
+};
+```
+
+### CustomFilter
+
+```tsx
+export const CustomFilter = () => {
+  const [value, setValue] = React.useState<string[]>([]);
+  const [inputValue, setInputValue] = React.useState("");
+
+  const filterCommands = React.useCallback(
+    (options: string[], term: string) =>
+      options.filter((option) =>
+        option.toLowerCase().startsWith(term.toLowerCase()),
+      ),
+    [],
+  );
+
+  return (
+    <Mention
+      className="smosh"
+      inputValue={inputValue}
+      onFilter={filterCommands}
+      onInputValueChange={setInputValue}
+      onValueChange={setValue}
+      trigger="/"
+      value={value}
+    >
+      <MentionLabel>Run a command</MentionLabel>
+      <MentionInput placeholder="Type / to use a command…" asChild>
+        <Textarea />
+      </MentionInput>
+      <MentionPortal>
+        <MentionContent>
+          {commands.map((command) => (
+            <MentionItem
+              key={command.name}
+              label={command.name}
+              value={command.name}
+              className="flex-col items-start"
+            >
+              <span className="font-mono text-sm">{command.name}</span>
+              <span className="text-xs text-gray-11">
+                {command.description}
+              </span>
+            </MentionItem>
+          ))}
+        </MentionContent>
+      </MentionPortal>
+    </Mention>
+  );
+};
+```
+
