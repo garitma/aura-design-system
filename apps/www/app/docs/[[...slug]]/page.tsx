@@ -1,6 +1,7 @@
-import { getPageImage, source } from "@/utils/source";
+import { getPageImage, getPageMarkdownUrl, source } from "@/utils/source";
 import { DocsBody, DocsDescription, DocsTitle } from "fumadocs-ui/page";
 import { DocsPage } from "@/components/layout/page";
+import { DocsPageActions } from "@/components/DocsPageActions";
 import { notFound } from "next/navigation";
 import { getMDXComponents } from "@/mdx-components";
 import type { Metadata } from "next";
@@ -82,6 +83,8 @@ export default async function Page(props: PageProps) {
   const raw = await page.data.getText("raw");
   const attributes = parseFrontmatter(raw);
   const links = attributes.links || {};
+  const markdownUrl = getPageMarkdownUrl(page).url;
+  const githubUrl = `https://github.com/garitma/aura-design-system/blob/canary/apps/www/content/docs/${page.path}`;
 
   return (
     <DocsPage
@@ -96,6 +99,7 @@ export default async function Page(props: PageProps) {
       <DocsDescription className="mb-1">
         {page.data.description}
       </DocsDescription>
+      <DocsPageActions markdownUrl={markdownUrl} githubUrl={githubUrl} />
       {links ? (
         <div className="flex items-center gap-1 mb-1">
           {links?.doc && (

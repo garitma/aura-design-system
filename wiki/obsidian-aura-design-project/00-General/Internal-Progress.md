@@ -4,9 +4,9 @@ date: 2026-09-12
 tags: [dev-log]
 ---
 ## Summary
-Typography rule now **MUST** keep `input` / `textarea` / `select` at **≥17px** (iOS focus-zoom). Enforced globally via unlayered CSS in `globals.css` + `styles/main.css`, documented in agent blueprint / `DESIGN.md`, and undersized `text-sm`/`text-xs` removed from Textarea, InputGroup, and Mention controls.
+Upgraded `apps/www` Fumadocs to **16.15.9** (latest MDX-compatible line), kept the customized Aura docs layout via vendored contexts, and added **Copy Markdown** + **Open in Cursor/Claude/ChatGPT** page actions with `/docs/*.md`, `llms.txt`, and `llms-full.txt` routes.
 
 ## Context
-- Related: [[Typography]], [[Agent blueprint]], [[Forms]]
-- Implementation Path: `.cursor/rules/fundations-typography.mdc`, `apps/www/app/globals.css`, `packages/registry/styles/main.css`
-- Next: merge and verify docs registry JSON if `registry:build` needs a local `shadcn` binary.
+- Related: [[Fumadocs-upgrade]], [[Site and docs app]], [[API routes]]
+- Implementation Path: `apps/www/components/DocsPageActions.tsx`, `apps/www/utils/source.ts`
+- Next: optional Fumadocs 17 when `fumadocs-mdx` peers catch up; Turbopack production build once mdx rules are compatible with Next 16.1.

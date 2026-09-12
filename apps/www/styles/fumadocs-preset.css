@@ -1,7 +1,7 @@
-@import "../node_modules/fumadocs-ui/css/shiki.css";
+@import 'fumadocs-ui/css/lib/shiki.css';
 
 @source "../node_modules/fumadocs-ui/dist/**/*.js";
-@plugin "../node_modules/fumadocs-ui/dist/theme/typography/index.js";
+@plugin "../node_modules/fumadocs-ui/dist/tailwind/typography.js";
 
 @theme static {
   --color-fd-info: oklch(62.3% 0.214 259.815);

@@ -1,7 +1,7 @@
 "use client";
 import * as Primitive from "fumadocs-core/toc";
 import { type ComponentProps, createContext, useContext, useRef } from "react";
-import { useI18n } from "fumadocs-ui/contexts/i18n";
+import { useDocsI18n } from "@/components/layout/contexts/i18n";
 
 import { cn } from "@/utils/class-names";
 import { TocThumb } from "@/components/ui/TocThumb";
@@ -53,7 +53,7 @@ export function TOCScrollArea({
 export function TOCItems({ ref, className, ...props }: ComponentProps<"div">) {
   const containerRef = useRef<HTMLDivElement>(null);
   const items = useTOCItems();
-  const { text } = useI18n();
+  const { text } = useDocsI18n();
 
   if (items.length === 0)
     return (

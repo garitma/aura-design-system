@@ -1,7 +1,7 @@
 import { type HTMLAttributes, useMemo } from "react";
 import { ChevronDown, Languages } from "lucide-react";
 import Link from "fumadocs-core/link";
-import { NavProvider } from "fumadocs-ui/contexts/layout";
+import { NavProvider } from "@/components/layout/contexts/layout";
 import type * as PageTree from "fumadocs-core/page-tree";
 import { TreeContextProvider } from "fumadocs-ui/contexts/tree";
 

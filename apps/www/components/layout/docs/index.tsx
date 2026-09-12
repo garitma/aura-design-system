@@ -7,7 +7,7 @@ import {
 import { Languages, Sidebar as SidebarIcon } from "lucide-react";
 import Link from "fumadocs-core/link";
 import type * as PageTree from "fumadocs-core/page-tree";
-import { NavProvider } from "fumadocs-ui/contexts/layout";
+import { NavProvider } from "@/components/layout/contexts/layout";
 import { TreeContextProvider } from "fumadocs-ui/contexts/tree";
 import {
   getSidebarTabs,

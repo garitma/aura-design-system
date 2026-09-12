@@ -1,7 +1,7 @@
 "use client";
 import { type ComponentProps, useEffect, useRef, useState } from "react";
 import * as Primitive from "fumadocs-core/toc";
-import { useI18n } from "fumadocs-ui/contexts/i18n";
+import { useDocsI18n } from "@/components/layout/contexts/i18n";
 
 import { cn } from "@/utils/class-names";
 import { TocThumb } from "@/components/ui/TocThumb";
@@ -15,7 +15,7 @@ export default function ClerkTOCItems({
 }: ComponentProps<"div">) {
   const containerRef = useRef<HTMLDivElement>(null);
   const items = useTOCItems();
-  const { text } = useI18n();
+  const { text } = useDocsI18n();
 
   const [svg, setSvg] = useState<{
     path: string;

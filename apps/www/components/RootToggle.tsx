@@ -5,7 +5,7 @@ import Link from "fumadocs-core/link";
 import { usePathname } from "fumadocs-core/framework";
 import { cn } from "../utils/class-names";
 import { isTabActive } from "../utils/is-active";
-import { useSidebar } from "fumadocs-ui/contexts/sidebar";
+import { useSidebar } from "@/components/layout/contexts/sidebar";
 import { Popover, PopoverContent, PopoverTrigger } from "./ui/Popover";
 import type { SidebarTab } from "fumadocs-ui/utils/get-sidebar-tabs";
 

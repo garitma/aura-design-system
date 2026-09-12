@@ -1,6 +1,6 @@
 import type { HTMLAttributes, ReactNode } from 'react';
 import type { I18nConfig } from 'fumadocs-core/i18n';
-import type { NavProviderProps } from 'fumadocs-ui/contexts/layout';
+import type { NavProviderProps } from '@/components/layout/contexts/layout';
 import { GitHubLogoIcon } from "@radix-ui/react-icons";
 
 export interface NavOptions extends NavProviderProps {
