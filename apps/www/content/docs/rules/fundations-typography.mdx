@@ -31,12 +31,29 @@ pnpm dlx shadcn@latest add @aura/rule-fundations-typography
 
 * **NEVER**: Use Tailwind utility classes for primary font sizes (e.g., **NEVER** use `text-xl`, `text-2xl`, `text-4xl`, etc.).
 * **MUST**: Use semantic classes (`.h1`, `.h2`, etc.) when a heading style is needed on a non-heading element.
-* **EXCEPTION**: Use Tailwind `text-sm` (0.875rem) and `text-xs` (0.75rem) for small, fixed-size utility text. The fluid scale only applies from `p` (16px) and up.
+* **EXCEPTION**: Use Tailwind `text-sm` (0.875rem) and `text-xs` (0.75rem) for small, fixed-size utility text. The fluid scale only applies from `p` (16px) and up. **Do not** use these on editable `input` / `textarea` / `select` (see Form controls below).
 * **SHOULD**: Apply the fluid `clamp` logic globally in CSS to ensure consistency:
 ```css
 body h1, body h2, body h3, body h4, body h5, body h6, body p,
 body .h1, body .h2, body .h3, body .h4, body .h5, body .h6 {
   font-size: clamp(var(--min), var(--val), var(--max));
+}
+```
+
+## Form controls (mobile UX)
+
+* **MUST**: Font size on `input`, `textarea`, and `select` is **never less than 17px** (use `max(1rem, 17px)` or omit size utilities so controls inherit the 17px root).
+* **MUST**: Do **not** apply Tailwind `text-sm` / `text-xs` (or any computed size under 17px) to editable form controls—iOS Safari zooms the viewport on focus when the focused field is under ~16–17px.
+* **MUST**: Enforce the floor globally in CSS (see `styles/main.css`); do not rely on per-component classes alone.
+* **SHOULD**: Keep `html { font-size: 17px; }` so `1rem` on controls already meets the floor.
+* **EXCEPTION**: Non-text controls (`checkbox`, `radio`, `range`, `file`, `hidden`, `button`, `submit`, `reset`, `image`, `color`) are exempt from the 17px text floor.
+
+```css
+/* Unlayered so this wins over Tailwind text-sm/text-xs on form controls */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="image"]):not([type="color"]),
+textarea,
+select {
+  font-size: max(1rem, 17px);
 }
 ```
 

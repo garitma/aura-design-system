@@ -274,6 +274,16 @@ export function generateGlobalsCss(lightColors: any, darkColors: any) {
   }
 }
 
+/*
+ * Mobile UX: editable controls must stay ≥17px (iOS focus-zoom).
+ * Outside @layer so this beats Tailwind text-sm/text-xs. Also in styles/main.css.
+ */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="image"]):not([type="color"]),
+textarea,
+select {
+  font-size: max(1rem, 17px);
+}
+
 @layer components {
 }
 `;

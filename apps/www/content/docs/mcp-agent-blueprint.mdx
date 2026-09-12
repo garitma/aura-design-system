@@ -128,6 +128,7 @@ Optional smoke: `pnpm dlx shadcn@latest add @aura/button` only if the user asked
 - **Landing with images:** follow `generate-brand-images`. Read the blueprint `01-Identity` notes first. If image identity is undefined, ask focused identity questions and update `Image-Identity.md` before generating.
 - **Gemini access:** the bundled command reads `GOOGLE_API_KEY` or `GEMINI_API_KEY` directly from root `.env`. If absent, ask whether the user wants to add a key, use agent-native image generation when available, or continue with placeholders; never fabricate a key.
 - **Batch landing flow:** inspect the landing, create one manifest for the necessary image set, run `pnpm ai:image -- --manifest <path>`, integrate accepted local assets, then record their paths in the wiki.
+- **Mobile form UX (critical):** `input` / `textarea` / `select` font-size **MUST be ≥ 17px**. Never put `text-sm` or `text-xs` on editable fields—iOS Safari zooms on focus below that size. Keep `html { font-size: 17px; }` and the global floor in `styles/main.css` (`font-size: max(1rem, 17px)`). See [Typography rules](/docs/rules/fundations-typography) and `DESIGN.md`.
 - Concepts: [MCP overview](/docs/mcp) · [Rules](/docs/rules) · [Installation](/docs/installation)
 
 ### 5. Final reply to the user (required format)

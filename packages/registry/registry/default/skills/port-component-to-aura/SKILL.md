@@ -45,7 +45,7 @@ Shared mapping rules apply in both scenarios. Deliverables differ.
 - Reuse Aura primitives already in the target (`Button`, `Dialog`, `Input`, `class-names`, etc.)
 - Icons: Lucide → `@radix-ui/react-icons` with `className="icon"`
 - Spacing: `--spacing: 13px` (`p-4` = 52px)
-- Typography: fluid `.h1`–`.p`; no `text-xl` for primary copy; `text-sm` / `text-xs` OK for utility
+- Typography: fluid `.h1`–`.p`; no `text-xl` for primary copy; `text-sm` / `text-xs` OK for utility **except** editable `input` / `textarea` / `select` (MUST stay ≥ 17px for iOS)
 - Color: `--accent-*` / `--gray-*` steps 1–12; no one-off hex
 - Motion: `transform` + `opacity`; honor `prefers-reduced-motion`
 - Follow `DESIGN.md` and `.cursor/rules/` when present

@@ -47,7 +47,7 @@ function MentionInput({
     <MentionPrimitive.Input
       data-slot="mention-input"
       className={cn(
-        "flex min-h-4 w-full rounded-md border border-gray-7 bg-gray-1 px-1 py-0.5 text-sm text-gray-12 placeholder:text-gray-11 focus-visible:border-gray-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-8 disabled:cursor-not-allowed disabled:opacity-50",
+        "flex min-h-4 w-full rounded-md border border-gray-7 bg-gray-1 px-1 py-0.5 text-gray-12 placeholder:text-gray-11 focus-visible:border-gray-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-8 disabled:cursor-not-allowed disabled:opacity-50",
         className,
       )}
       {...props}

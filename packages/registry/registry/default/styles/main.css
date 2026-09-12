@@ -589,6 +589,18 @@
   select:not(.default):focus {
     outline: var(--aura-outline);
   }
+
+  /*
+   * Mobile UX: form control font-size must stay ≥17px so iOS Safari does not
+   * zoom on focus. Unlayered intent — keep in base sheet shipped with css-main.
+   * See fundations-typography rule / DESIGN.md.
+   */
+  input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="image"]):not([type="color"]),
+  textarea,
+  select {
+    font-size: max(1rem, 17px);
+  }
+
   
   .icon {
     width: 1em;
