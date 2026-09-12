@@ -4,10 +4,9 @@ date: 2026-09-12
 tags: [dev-log]
 ---
 ## Summary
-Added `@aura/selection-toolbar`, an Aura-styled port of Dice UI Selection Toolbar: text-range anchored floating toolbar, optional container scope, selection metrics via `onSelectionChange`, and reduced-motion-aware enter animation.
+Fixed `@aura-design/www` deploy: `Mention.tsx` imports `@diceui/mention`, but that package was only listed under `packages/registry`, so Vercel failed with module-not-found. Added `"@diceui/mention": "^1.0.0"` to `apps/www/package.json`; local `pnpm --filter @aura-design/www run build` succeeds.
 
 ## Context
-- Related: [[Registry]], [[Selection-Toolbar]], [[Action-Bar]]
-- Implementation Path: `packages/registry/registry/default/components/ui/SelectionToolbar.tsx`
-- Examples: `packages/registry/src/selection-toolbar.stories.tsx`
-- Next: verify Ladle and docs previews after registry bootstrap.
+- Related: [[Mention]], [[Registry]]
+- Implementation Path: `apps/www/package.json`
+- Next: merge so canary/www deploy recovers.
