@@ -177,7 +177,7 @@ import {
   MarkerDemoWithIcon,
   MarkerDemoAsLink
 } from "./marker-demo"
-import {
+import { 
   MentionDemo,
   MentionDemoCustomTrigger,
   MentionDemoCustomFilter
@@ -238,7 +238,7 @@ import {
   ResponsiveDialogDemoConfirmation,
   ResponsiveDialogDemoCustomBreakpoint
 } from "./responsive-dialog-demo"
-import {
+import { 
   ResponsiveDropdownMenuDemo,
   ResponsiveDropdownMenuDemoCustomBreakpoint
 } from "./responsive-dropdown-menu-demo"
@@ -257,6 +257,11 @@ import {
   SelectDemoWithLongList,
   SelectDemoComplex
 } from "./select-demo"
+import { 
+  SelectionToolbarDemo,
+  SelectionToolbarDemoSelectionInfo,
+  SelectionToolbarDemoScopedContainer
+} from "./selection-toolbar-demo"
 import { 
   SeparatorDemo
 } from "./separator-demo"
@@ -842,6 +847,15 @@ export const Registry = {
   },
   "select-demo-complex": {
     component: SelectDemoComplex,
+  },
+  "selection-toolbar-demo": {
+    component: SelectionToolbarDemo,
+  },
+  "selection-toolbar-demo-selection-info": {
+    component: SelectionToolbarDemoSelectionInfo,
+  },
+  "selection-toolbar-demo-scoped-container": {
+    component: SelectionToolbarDemoScopedContainer,
   },
   "separator-demo": {
     component: SeparatorDemo,
