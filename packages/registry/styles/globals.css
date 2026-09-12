@@ -304,6 +304,16 @@
   }
 }
 
+/*
+ * Mobile UX: form controls ≥17px (prevents iOS Safari focus zoom).
+ * Outside @layer so this beats Tailwind text-sm/text-xs utilities.
+ */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="image"]):not([type="color"]),
+textarea,
+select {
+  font-size: max(1rem, 17px);
+}
+
 @layer components {
   body:has([data-sidebar="sidebar"]) .ladle-main{
     padding: 0!important;

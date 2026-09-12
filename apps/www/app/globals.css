@@ -270,6 +270,17 @@
   }
 }
 
+/*
+ * Mobile UX: form controls ≥17px (prevents iOS Safari focus zoom).
+ * Kept outside @layer so this beats Tailwind text-sm/text-xs utilities.
+ * See .cursor/rules/fundations-typography.mdc and DESIGN.md.
+ */
+input:not([type="checkbox"]):not([type="radio"]):not([type="range"]):not([type="file"]):not([type="hidden"]):not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="image"]):not([type="color"]),
+textarea,
+select {
+  font-size: max(1rem, 17px);
+}
+
 @layer components {
   article {
     --spacing: 4px;

@@ -107,14 +107,15 @@ font-size: clamp(var(--min), var(--val), var(--max));
 
 - **Never** use Tailwind **`text-xl`**, **`text-2xl`**, etc. for primary marketing or page copy.
 - **Do** use **`h1`–`h6`**, **`p`**, or **`.h1`–`.h6`**, **`.p`** on non-semantic nodes.
-- **Exception**: **`text-sm`** (0.875rem) and **`text-xs`** (0.75rem) for small fixed UI/meta text.
+- **Exception**: **`text-sm`** (0.875rem) and **`text-xs`** (0.75rem) for small fixed UI/meta text—**never on editable form controls**.
+- **Form controls (mobile UX):** `input`, `textarea`, and `select` font-size **MUST** be **≥ 17px** (`max(1rem, 17px)`). Do **not** use `text-sm` / `text-xs` on those controls—iOS Safari zooms on focus when the field is under ~16–17px. Enforce this globally in `styles/main.css` / unlayered `globals.css` (see typography rule).
 - **Line-height** on large headings should stay roughly **1.1–1.3**.
 - Use **`rem`** for `--min` / `--max` so user font settings are respected.
 - **`blockquote`** shares the **`h4`** scale.
 
 ### Font stack
 
-Docs and registry reference **`Inter`** as the primary sans stack; quotes may use a serif stack (`--aura-font-quotes`). Root docs set **`html { font-size: 17px; }`** in the base layer—respect that context when mixing `rem` with design specs.
+Docs and registry reference **`Inter`** as the primary sans stack; quotes may use a serif stack (`--aura-font-quotes`). Root docs set **`html { font-size: 17px; }`** in the base layer—respect that context when mixing `rem` with design specs. That root size is also why `1rem` form controls already meet the **17px** mobile floor.
 
 ### Editorial / registry hierarchy
 
