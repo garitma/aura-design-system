@@ -698,6 +698,25 @@
       ]
     },
     {
+      "name": "avatar-group",
+      "type": "registry:ui",
+      "title": "AvatarGroup",
+      "description": "The AvatarGroup component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/AvatarGroup.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "@radix-ui/react-slot",
+        "class-variance-authority"
+      ],
+      "registryDependencies": [
+        "@aura/class-names"
+      ]
+    },
+    {
       "name": "badge",
       "type": "registry:ui",
       "title": "Badge",

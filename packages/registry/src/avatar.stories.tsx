@@ -3,6 +3,7 @@ import {
   AvatarImage,
   AvatarFallback,
 } from "../registry/default/components/ui/Avatar";
+import { AvatarGroup as AvatarGroupRoot } from "../registry/default/components/ui/AvatarGroup";
 
 export const Default = () => (
   <Avatar>
@@ -54,32 +55,35 @@ export const CustomSize = () => (
 );
 
 export const AvatarGroup = () => (
-  <div className="flex -space-x-2">
-    <Avatar className="border-2 border-white">
+  <AvatarGroupRoot max={4}>
+    <Avatar>
       <AvatarImage
         src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?w=128&h=128&fit=crop"
         alt="User 1"
       />
       <AvatarFallback>U1</AvatarFallback>
     </Avatar>
-    <Avatar className="border-2 border-white">
+    <Avatar>
       <AvatarImage
         src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&h=128&fit=crop"
         alt="User 2"
       />
       <AvatarFallback>U2</AvatarFallback>
     </Avatar>
-    <Avatar className="border-2 border-white">
+    <Avatar>
       <AvatarImage
         src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop"
         alt="User 3"
       />
       <AvatarFallback>U3</AvatarFallback>
     </Avatar>
-    <Avatar className="border-2 border-white">
-      <AvatarFallback>+5</AvatarFallback>
+    <Avatar>
+      <AvatarFallback>U4</AvatarFallback>
     </Avatar>
-  </div>
+    <Avatar>
+      <AvatarFallback>U5</AvatarFallback>
+    </Avatar>
+  </AvatarGroupRoot>
 );
 
 export const WithStatus = () => (

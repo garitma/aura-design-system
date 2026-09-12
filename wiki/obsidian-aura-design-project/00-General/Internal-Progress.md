@@ -1,12 +1,12 @@
 ---
 title: Internal progress
-date: 2026-09-12
+date: 2026-03-22
 tags: [dev-log]
 ---
 ## Summary
-Added public **CLI** documentation at `/docs/cli` covering `init`, `setup`, `link`, `blueprint`, `colors`, `typography`, and `spacing`. Wired into Get Started nav; updated Installation / Intro cross-links, package README, and wiki [[CLI]] note.
+Recreated DiceUI **Avatar Group** as Aura registry item `@aura/avatar-group` (component, Ladle stories, metadata, docs, `public/r/avatar-group.json`). Avatar docs story now uses the shared group primitive.
 
 ## Context
-- Related: [[CLI]], [[Site and docs app]]
-- Implementation Path: `apps/www/content/docs/cli.mdx`, `apps/www/content/docs/meta.json`, `packages/cli/README.md`
-- Next: none for this task (docs-only; no runtime verification requested).
+- Related: [[Avatar-Group]], [[Registry]]
+- Implementation Path: `packages/registry/registry/default/components/ui/AvatarGroup.tsx`
+- Next: none for this task.

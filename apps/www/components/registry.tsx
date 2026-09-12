@@ -39,6 +39,14 @@ import {
   AvatarDemoCustomFallbackStyles
 } from "@/components/demos/avatar-demo"
 import { 
+  AvatarGroupDemo,
+  AvatarGroupDemoWithTruncation,
+  AvatarGroupDemoVertical,
+  AvatarGroupDemoRtl,
+  AvatarGroupDemoCustomOverflow,
+  AvatarGroupDemoWithIcons
+} from "@/components/demos/avatar-group-demo"
+import { 
   BubbleDemo,
   BubbleDemoVariants,
   BubbleDemoAlignment,
@@ -406,6 +414,24 @@ export const Registry = {
   },
   "avatar-demo-custom-fallback-styles": {
     component: AvatarDemoCustomFallbackStyles,
+  },
+  "avatar-group-demo": {
+    component: AvatarGroupDemo,
+  },
+  "avatar-group-demo-with-truncation": {
+    component: AvatarGroupDemoWithTruncation,
+  },
+  "avatar-group-demo-vertical": {
+    component: AvatarGroupDemoVertical,
+  },
+  "avatar-group-demo-rtl": {
+    component: AvatarGroupDemoRtl,
+  },
+  "avatar-group-demo-custom-overflow": {
+    component: AvatarGroupDemoCustomOverflow,
+  },
+  "avatar-group-demo-with-icons": {
+    component: AvatarGroupDemoWithIcons,
   },
   "bubble-demo": {
     component: BubbleDemo,
