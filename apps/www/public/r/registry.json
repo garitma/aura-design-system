@@ -644,6 +644,29 @@
       ]
     },
     {
+      "name": "angle-slider",
+      "type": "registry:ui",
+      "title": "AngleSlider",
+      "description": "The AngleSlider component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/AngleSlider.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/compose-refs",
+        "@aura/use-as-ref",
+        "@aura/use-isomorphic-layout-effect",
+        "@aura/use-lazy-ref",
+        "@aura/visually-hidden-input"
+      ]
+    },
+    {
       "name": "aspect-ratio",
       "type": "registry:ui",
       "title": "AspectRatio",
@@ -1941,6 +1964,18 @@
       ],
       "registryDependencies": [
         "@aura/class-names"
+      ]
+    },
+    {
+      "name": "visually-hidden-input",
+      "type": "registry:ui",
+      "title": "VisuallyHiddenInput",
+      "description": "The VisuallyHiddenInput component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/VisuallyHiddenInput.tsx",
+          "type": "registry:ui"
+        }
       ]
     },
     {

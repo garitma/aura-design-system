@@ -7,6 +7,8 @@
 - [[CLI]] — `packages/cli` (`@aura-design/cli`); public docs `/docs/cli`
 - [[Avatar-Group]] — `@aura/avatar-group` overlapping avatars (DiceUI port)
 - [[Badge-Overflow]] — `@aura/badge-overflow` measured badge rows with +N overflow (DiceUI port)
+- [[Angle-Slider]] — `@aura/angle-slider` circular angle control (DiceUI port)
+- [[Visually-Hidden-Input]] — `@aura/visually-hidden-input` form mirror input (Angle Slider dep)
 - [[Registry]] — `packages/registry` (`@aura-design/registry`)
 - [[Design md]] — `packages/design` / npm `@aura/design-md`
 - [[React fixture]] — `packages/react-fixture` (`@aura-design/react-fixture`)

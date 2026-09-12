@@ -4,9 +4,9 @@ date: 2026-03-22
 tags: [dev-log]
 ---
 ## Summary
-Recreated DiceUI **Badge Overflow** as `@aura/badge-overflow` (component, Ladle stories, metadata, docs, registry JSON). Supports primitive/object items, multi-line layout, and custom overflow rendering.
+Recreated DiceUI **Angle Slider** as `@aura/angle-slider` with dependency `@aura/visually-hidden-input`. Existing Aura hooks/compose-refs were reused. Docs + registry JSON generated; www build verified.
 
 ## Context
-- Related: [[Badge-Overflow]], [[Badge]], [[Registry]]
-- Implementation Path: `packages/registry/registry/default/components/ui/BadgeOverflow.tsx`
+- Related: [[Angle-Slider]], [[Visually-Hidden-Input]], [[Registry]]
+- Implementation Path: `packages/registry/registry/default/components/ui/AngleSlider.tsx`
 - Next: none for this task.

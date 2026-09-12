@@ -22,6 +22,13 @@ import {
   AlertDialogDemo
 } from "@/components/demos/alert-dialog-demo"
 import { 
+  AngleSliderDemo,
+  AngleSliderDemoControlled,
+  AngleSliderDemoRangeSelection,
+  AngleSliderDemoThemes,
+  AngleSliderDemoWithForm
+} from "@/components/demos/angle-slider-demo"
+import { 
   AspectRatioDemoDefault,
   AspectRatioDemo
 } from "@/components/demos/aspect-ratio-demo"
@@ -388,6 +395,21 @@ export const Registry = {
   },
   "alert-dialog-demo": {
     component: AlertDialogDemo,
+  },
+  "angle-slider-demo": {
+    component: AngleSliderDemo,
+  },
+  "angle-slider-demo-controlled": {
+    component: AngleSliderDemoControlled,
+  },
+  "angle-slider-demo-range-selection": {
+    component: AngleSliderDemoRangeSelection,
+  },
+  "angle-slider-demo-themes": {
+    component: AngleSliderDemoThemes,
+  },
+  "angle-slider-demo-with-form": {
+    component: AngleSliderDemoWithForm,
   },
   "aspect-ratio-demo": {
     component: AspectRatioDemoDefault,
