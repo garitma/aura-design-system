@@ -54,7 +54,7 @@ export const CustomSize = () => (
   </div>
 );
 
-export const AvatarGroup = () => (
+export const Grouped = () => (
   <AvatarGroupRoot max={4}>
     <Avatar>
       <AvatarImage
