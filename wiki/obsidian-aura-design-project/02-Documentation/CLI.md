@@ -1,46 +1,38 @@
-# CLI
+---
+title: CLI
+date: 2026-09-12
+tags: [dev-log, documentation, architecture]
+---
+## Summary
+`@aura-design/cli` (`packages/cli`, binary `aura`) bootstraps Aura apps, regenerates theme CSS, migrates spacing, and scaffolds wiki / image / Sonar tooling. Public docs live at `/docs/cli` (`apps/www/content/docs/cli.mdx`).
 
-**Aura Design System command-line tool** for bootstrapping apps with Aura tokens and registries, generating theme-related CSS, and scaffolding optional project tooling (wiki, Sonar, preflight).
+## Context
+- Related: [[Registry]], [[Design md]], [[Site and docs app]], [[Brand-Image-Generation]]
+- Implementation Path: `packages/cli`, `apps/www/content/docs/cli.mdx`
 
 ## Path / npm name
 
 - **Folder:** `packages/cli`
-- **Package:** `@aura-design/cli` (`packages/cli/package.json`)
-- **Binary:** `aura` (invoke via `pnpm dlx @aura-design/cli@latest …` so you always pick up the published CLI)
+- **Package:** `@aura-design/cli`
+- **Binary:** `aura` via `pnpm dlx @aura-design/cli@latest …`
 
-## What it does
+## Commands
 
-The CLI is the **on-ramp for consumers**: it can create or point at a Next-style app, drop in Aura’s **`components.json`** (registry URLs for production and local docs), regenerate **`globals.css`** from Radix-style accent/gray/background inputs, pull first-party registry items such as `class-names`, `design-md`, `rules`, and `skills`, and run **blueprint** scaffolding (Bruno + Obsidian wiki, preflight, Sonar).
-
-Separate commands help **migrate or customize** Tailwind spacing (4px scale → Aura’s 13px mental model), **regenerate typography** CSS from prompts, **recolor** the theme non-interactively or via prompts, and **blueprint** internal extras (Bruno + Obsidian wiki folders, `scripts/preflight.ts`, Sonar scripts and config) into *any* repo that has a `package.json`.
-
-## Key commands or entrypoints
-
-- **`aura init`** — Runs **`pnpm dlx create-next-app@latest`** with inherited stdio (interactive). Detects a newly created app subdirectory or uses the current folder, then:
-  - Writes **`components.json`** from the monorepo registry template when available (`packages/registry/registry/default/theming/components.json`), otherwise a built-in default with `@aura` → `https://auradesignsystem.com/r/{name}.json` and `@aura-dev` → `http://localhost:4000/r/{name}.json`.
-  - Generates **light/dark** Radix-based scales and writes **`globals.css`** (searches `app/globals.css`, `src/app/globals.css`, `styles/globals.css`, `src/styles/globals.css`, or creates `app/globals.css`).
-  - Runs **`pnpm dlx shadcn@latest add`** for `@aura/class-names`, `@aura/page-get-starter`, `@aura/css-main`, `@aura/rules`, `@aura/skills`.
-  - Runs **`applyBlueprintToProject`** (same as `aura blueprint`): Bruno + Obsidian wiki under `wiki/`, `scripts/preflight.ts`, Sonar scripts/config, and `.gitignore` Sonar entries.
-- **`aura setup`** — Same Aura apply step as `init` for an existing Next app (`--dir`), including blueprint scaffolding.
-- **`aura blueprint [projectDir]`** — Standalone blueprint scaffold (also invoked from `init` / `setup`).
-- **`aura typography generate`** — Interactive prompts; outputs a custom **`typography.css`** aligned with Aura’s fluid scale philosophy (`packages/cli/commands/typography.ts`).
-- **`aura colors`** — Optional flags `--accent`, `--gray`, `--background` (hex); otherwise prompts. Regenerates **`globals.css`** via `generateRadixColors` + shared `generateGlobalsCss` (`packages/cli/commands/colors.ts`).
-- **`aura spacing [target]`** — Rewrites Tailwind spacing utilities in **`.tsx`** files from the default 4px assumption to the closest **13px-based** token (`--dir` for scan root, default `.`) (`packages/cli/commands/spacing.ts`).
-- **`aura blueprint [projectDir]`** — Scaffolds under the target repo: `wiki/bruno-*`, `wiki/obsidian-*`, `scripts/preflight.ts`, `sonar-project.properties`, merges Sonar-related **scripts** and **devDependencies** into `package.json`, patches `.gitignore`. Options: `--force`, `--suffix` (`packages/cli/commands/blueprint.ts`).
-
-**Maintainer scripts** (from `packages/cli/package.json`): `build` runs `tsc --build` and copies `templates/` into `dist/templates/` so the compiled CLI resolves bundled files at runtime.
+- **`aura init`** — `create-next-app`, then `components.json`, Radix `globals.css`, `shadcn add` for `@aura/class-names` / `page-get-starter` / `css-main` / `rules` / `skills`, then blueprint scaffolding.
+- **`aura setup [--dir]`** — Same Aura apply as `init` on an existing Next app (no `create-next-app`).
+- **`aura link [-o]`** — Downloads canonical Aura `components.json` from the docs-site raw URL.
+- **`aura blueprint [projectDir]`** — Wiki (Bruno + Obsidian), `generate-brand-images` skill, `preflight.ts`, Sonar scripts/config, `.gitignore` / `.env.example`. Options: `--force`, `--suffix`.
+- **`aura colors`** — `--accent` / `--gray` / `--background` (or prompts); overwrites `globals.css`.
+- **`aura typography generate`** — Interactive fluid `typography.css`.
+- **`aura spacing [target]`** — Remap Tailwind spacing utilities in `.tsx` from 4px to closest 13px token (`--dir`).
 
 ## Important paths
 
-- `packages/cli/index.ts` — Registers all commands (Commander).
-- `packages/cli/commands/` — `init`, `typography`, `colors`, `spacing`, `blueprint`.
-- `packages/cli/utils/` — e.g. `color-utils.ts`, `registry-utils.ts`.
-- `packages/cli/templates/` — Copied to `dist/templates/` on build (Bruno, Obsidian dotfiles, `preflight.ts`, Sonar properties).
+- `packages/cli/index.ts` — Commander entry.
+- `packages/cli/commands/` — `init`, `setup`, `link`, `typography`, `colors`, `spacing`, `blueprint`.
+- `packages/cli/templates/` — Copied to `dist/templates/` on `pnpm build`.
+- Public page: `apps/www/content/docs/cli.mdx` (nav: Get Started → CLI).
 
 ## Related
 
-- [[Registry]] — Registry items the CLI installs and the `components.json` template.
-- [[Design md]] — `@aura/design-md` content pulled during `init`.
-- [[Packages and docs app]] — Index of all package notes.
-- [[Site and docs app]] — `@aura-dev` registry URL points at local docs (`localhost:4000`).
-- [[Local development]]
+- [[Registry]] · [[Design md]] · [[Packages and docs app]] · [[Site and docs app]] · [[Local development]] · [[MCP]]

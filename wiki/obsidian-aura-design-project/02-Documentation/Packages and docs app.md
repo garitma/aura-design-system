@@ -4,7 +4,7 @@
 
 ## Package notes
 
-- [[CLI]] — `packages/cli` (`@aura-design/cli`)
+- [[CLI]] — `packages/cli` (`@aura-design/cli`); public docs `/docs/cli`
 - [[Registry]] — `packages/registry` (`@aura-design/registry`)
 - [[Design md]] — `packages/design` / npm `@aura/design-md`
 - [[React fixture]] — `packages/react-fixture` (`@aura-design/react-fixture`)
@@ -14,6 +14,7 @@
 ## Docs site
 
 - [[Site and docs app]] — `apps/www` (`@aura-design/www`), Fumadocs, `content/docs/`, registry static files under `public/r/`.
+- [[CLI]] — Get Started page for `@aura-design/cli` commands (`/docs/cli`).
 - [[MCP]] — Docs page for Cursor shadcn MCP, registries, and the port-to-Aura skill (`/docs/mcp`).
 
 ## Other

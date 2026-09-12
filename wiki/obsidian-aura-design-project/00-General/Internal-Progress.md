@@ -4,9 +4,9 @@ date: 2026-09-12
 tags: [dev-log]
 ---
 ## Summary
-Upgraded `apps/www` Fumadocs to **16.15.9** (latest MDX-compatible line), kept the customized Aura docs layout via vendored contexts, and added **Copy Markdown** + **Open in Cursor/Claude/ChatGPT** page actions with `/docs/*.md`, `llms.txt`, and `llms-full.txt` routes.
+Added public **CLI** documentation at `/docs/cli` covering `init`, `setup`, `link`, `blueprint`, `colors`, `typography`, and `spacing`. Wired into Get Started nav; updated Installation / Intro cross-links, package README, and wiki [[CLI]] note.
 
 ## Context
-- Related: [[Fumadocs-upgrade]], [[Site and docs app]], [[API routes]]
-- Implementation Path: `apps/www/components/DocsPageActions.tsx`, `apps/www/utils/source.ts`
-- Next: optional Fumadocs 17 when `fumadocs-mdx` peers catch up; Turbopack production build once mdx rules are compatible with Next 16.1.
+- Related: [[CLI]], [[Site and docs app]]
+- Implementation Path: `apps/www/content/docs/cli.mdx`, `apps/www/content/docs/meta.json`, `packages/cli/README.md`
+- Next: none for this task (docs-only; no runtime verification requested).
