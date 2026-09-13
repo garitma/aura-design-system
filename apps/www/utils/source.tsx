@@ -12,7 +12,7 @@ function StatusBadge({ status }: { status: string }) {
   if (status === "new") {
     return (
       <span
-        className="ms-0.5 inline-block size-1 shrink-0 self-center rounded-full bg-accent-9"
+        className="ms-0.5 inline-block size-0.5 shrink-0 self-center rounded-full bg-accent-9"
         title="New this week"
         aria-label="New this week"
       />
