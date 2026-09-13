@@ -1344,6 +1344,8 @@ function formatStoryCodeForPreview(storyCode: string, componentName: string): st
       /export\s+const\s+Default\s*=\s*\(\)\s*=>\s*\{/g,
       `export function ${demoName}() {`
     );
+    // Arrow const exports end with `};` — strip the semicolon for a function declaration
+    formattedCode = formattedCode.replace(/\};(\s*)$/, "}$1");
   }
   // Handle: export const Default = () => <JSX /> or () => ( ... )
   else if (formattedCode.includes("export const Default = () =>")) {

@@ -1316,6 +1316,25 @@
       ]
     },
     {
+      "name": "mask-input",
+      "type": "registry:ui",
+      "title": "MaskInput",
+      "description": "The MaskInput component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/MaskInput.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/compose-refs"
+      ]
+    },
+    {
       "name": "mention",
       "type": "registry:ui",
       "title": "Mention",

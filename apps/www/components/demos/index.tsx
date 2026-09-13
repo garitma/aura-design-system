@@ -215,6 +215,13 @@ import {
   MarkerDemoAsLink
 } from "./marker-demo"
 import { 
+  MaskInputDemo,
+  MaskInputDemoBuiltInPatterns,
+  MaskInputDemoCustomPattern,
+  MaskInputDemoValidationModes,
+  MaskInputDemoCardInformation
+} from "./mask-input-demo"
+import { 
   MentionDemo,
   MentionDemoCustomTrigger,
   MentionDemoCustomFilter
@@ -815,6 +822,21 @@ export const Registry = {
   },
   "marker-demo-as-link": {
     component: MarkerDemoAsLink,
+  },
+  "mask-input-demo": {
+    component: MaskInputDemo,
+  },
+  "mask-input-demo-built-in-patterns": {
+    component: MaskInputDemoBuiltInPatterns,
+  },
+  "mask-input-demo-custom-pattern": {
+    component: MaskInputDemoCustomPattern,
+  },
+  "mask-input-demo-validation-modes": {
+    component: MaskInputDemoValidationModes,
+  },
+  "mask-input-demo-card-information": {
+    component: MaskInputDemoCardInformation,
   },
   "mention-demo": {
     component: MentionDemo,

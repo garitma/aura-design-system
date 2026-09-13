@@ -1,0 +1,3 @@
+header:
+  description: An input that formats values with built-in or custom mask patterns.
+extends: _templates/content.yml
