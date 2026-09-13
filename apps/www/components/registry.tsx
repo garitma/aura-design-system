@@ -160,6 +160,13 @@ import {
   EmptyDemoWithActions
 } from "@/components/demos/empty-demo"
 import { 
+  FileUploadDemo,
+  FileUploadDemoWithValidation,
+  FileUploadDemoDirectUpload,
+  FileUploadDemoCircularProgress,
+  FileUploadDemoFillProgress
+} from "@/components/demos/file-upload-demo"
+import { 
   FormDemo,
   FormDemoMultipleFields,
   FormDemoWithErrors,
@@ -685,6 +692,21 @@ export const Registry = {
   },
   "empty-demo-with-actions": {
     component: EmptyDemoWithActions,
+  },
+  "file-upload-demo": {
+    component: FileUploadDemo,
+  },
+  "file-upload-demo-with-validation": {
+    component: FileUploadDemoWithValidation,
+  },
+  "file-upload-demo-direct-upload": {
+    component: FileUploadDemoDirectUpload,
+  },
+  "file-upload-demo-circular-progress": {
+    component: FileUploadDemoCircularProgress,
+  },
+  "file-upload-demo-fill-progress": {
+    component: FileUploadDemoFillProgress,
   },
   "form-demo": {
     component: FormDemo,

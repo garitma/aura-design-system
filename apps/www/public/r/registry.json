@@ -1132,6 +1132,37 @@
       ]
     },
     {
+      "name": "file-upload",
+      "type": "registry:ui",
+      "title": "FileUpload",
+      "description": "The FileUpload component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/FileUpload.tsx",
+          "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/file-upload.css",
+          "type": "registry:component",
+          "target": "./styles/file-upload.css"
+        }
+      ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/file-upload.css\"": {}
+        }
+      },
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/use-as-ref",
+        "@aura/use-lazy-ref"
+      ]
+    },
+    {
       "name": "form",
       "type": "registry:ui",
       "title": "Form",
