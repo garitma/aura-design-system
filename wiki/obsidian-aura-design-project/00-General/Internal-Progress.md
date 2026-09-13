@@ -4,9 +4,9 @@ date: 2026-09-13
 tags: [dev-log]
 ---
 ## Summary
-Added docs sidebar visual feedback for recently landed components: frontmatter/metadata `status: new` renders an accent-9 dot via Fumadocs `statusBadgesPlugin`. Marked this week’s registry additions (Mask Input, File Upload, Editable, Angle Slider, Avatar Group, Badge Overflow, Presentation, etc.).
+Replaced the home marquee/slider aesthetic strip with a Radix-style custom palette section: light/dark accent–gray–background controls, 12-step swatches, and an Aura components showcase. Theme mixer popover now shares `useAuraThemeColors` with that section.
 
 ## Context
-- Related: [[Sidebar-status-badges]], [[Site and docs app]], [[Mask-Input]]
-- Implementation Path: `apps/www/utils/source.tsx`, `apps/www/source.config.ts`
-- Next: verify sidebar dots on `/docs/components/*` in the browser.
+- Related: [[Custom-Colors-Showcase]], [[Sidebar-status-badges]]
+- Implementation Path: `apps/www/components/AuraAesthetic.tsx`, `apps/www/hooks/use-aura-theme-colors.ts`
+- Next: verify the home showcase on desktop/mobile in the browser.
