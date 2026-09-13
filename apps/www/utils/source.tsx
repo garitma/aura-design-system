@@ -12,7 +12,7 @@ function StatusBadge({ status }: { status: string }) {
   if (status === "new") {
     return (
       <span
-        className="ms-auto inline-block size-1 shrink-0 rounded-full bg-accent-9"
+        className="ms-0.5 inline-block size-1 shrink-0 self-center rounded-full bg-accent-9"
         title="New this week"
         aria-label="New this week"
       />
@@ -22,7 +22,7 @@ function StatusBadge({ status }: { status: string }) {
   return (
     <span
       data-status={status}
-      className="ms-auto inline-block shrink-0 rounded-full bg-accent-3 px-0.5 text-xs font-medium text-accent-11 capitalize"
+      className="ms-0.5 inline-block shrink-0 self-center rounded-full bg-accent-3 px-0.5 text-xs font-medium text-accent-11 capitalize"
     >
       {status}
     </span>
