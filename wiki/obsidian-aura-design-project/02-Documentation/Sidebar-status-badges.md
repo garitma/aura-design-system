@@ -9,4 +9,4 @@ Docs sidebar shows an accent-9 dot for components with frontmatter `status: new`
 ## Context
 - Related: [[Site and docs app]], [[Fumadocs-upgrade]], [[Registry]]
 - Implementation Path: `apps/www/utils/source.tsx`, `apps/www/source.config.ts`, `packages/registry/scripts/generate-docs.ts`
-- Values: `new` (dot), `beta` / `deprecated` / `experimental` (text chip)
+- Values: `new` (accent-9 `inline-block` dot), `beta` / `deprecated` / `experimental` (text chip)
