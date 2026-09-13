@@ -71,6 +71,8 @@ interface Metadata {
     doc?: string;
     api?: string;
   };
+  /** Sidebar status badge (`new` | `beta` | `deprecated` | `experimental`). */
+  status?: string;
   content?: MetadataContent[];
 }
 
@@ -202,6 +204,12 @@ function parseMetadata(componentName: string): Metadata | null {
       metadata.header = {
         description: headerMatch[1].trim(),
       };
+    }
+
+    // Parse sidebar status badge (e.g. status: new)
+    const statusMatch = yamlContent.match(/^status:\s*(.+)$/m);
+    if (statusMatch) {
+      metadata.status = statusMatch[1].trim();
     }
 
     // Parse links section
@@ -1420,6 +1428,11 @@ function generateMdxContent(
   let frontmatter = `---
 title: ${title}
 description: ${description}`;
+
+  // Sidebar status badge for recently landed / flagged components
+  if (metadata?.status) {
+    frontmatter += `\nstatus: ${metadata.status}`;
+  }
 
   // Add links if they exist
   if (metadata?.links) {

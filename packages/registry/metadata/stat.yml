@@ -1,3 +1,4 @@
+status: new
 header:
   description: Displays a statistic with label, value, optional indicator, trend, and description.
 extends: _templates/content.yml

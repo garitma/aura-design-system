@@ -1,3 +1,4 @@
+status: new
 header:
   description: A dialog on desktop and a drawer on mobile, sharing one API.
 extends: _templates/content.yml

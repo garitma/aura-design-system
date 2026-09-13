@@ -1,3 +1,4 @@
+status: new
 header:
   description: Measures available space and shows badges with an overflow indicator.
 extends: _templates/content.yml

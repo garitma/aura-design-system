@@ -1,3 +1,4 @@
+status: new
 header:
   description: Composable PowerPoint viewer and editor built on @diceui/pptx.
 extends: _templates/content.yml
