@@ -1337,8 +1337,16 @@ function formatStoryCodeForPreview(storyCode: string, componentName: string): st
   // Replace export const Default with export function ComponentNameDemo
   let formattedCode = codeSection;
   
-  // Handle: export const Default = () => <JSX />
-  if (formattedCode.includes("export const Default = () =>")) {
+  // Handle braced body first: export const Default = () => { ... }
+  // (must run before the generic `() =>` branch, which would inject a broken `return {`)
+  if (/export\s+const\s+Default\s*=\s*\(\)\s*=>\s*\{/.test(formattedCode)) {
+    formattedCode = formattedCode.replace(
+      /export\s+const\s+Default\s*=\s*\(\)\s*=>\s*\{/g,
+      `export function ${demoName}() {`
+    );
+  }
+  // Handle: export const Default = () => <JSX /> or () => ( ... )
+  else if (formattedCode.includes("export const Default = () =>")) {
     formattedCode = formattedCode.replace(
       /export\s+const\s+Default\s*=\s*\(\)\s*=>\s*/g,
       `export function ${demoName}() {\n  return `
@@ -1347,13 +1355,6 @@ function formatStoryCodeForPreview(storyCode: string, componentName: string): st
     if (!formattedCode.includes("}")) {
       formattedCode = formattedCode.trim() + "\n}";
     }
-  }
-  // Handle: export const Default = () => { ... }
-  else if (formattedCode.includes("export const Default = () => {")) {
-    formattedCode = formattedCode.replace(
-      /export\s+const\s+Default\s*=\s*\(\)\s*=>\s*\{/g,
-      `export function ${demoName}() {`
-    );
   }
   // Handle: export const Default: Story = () => { ... }
   else if (formattedCode.includes("export const Default:")) {
@@ -1807,7 +1808,7 @@ function toRegistryKey(componentName: string, storyName: string, demoName: strin
 function extractTopLevelConstants(storiesContent: string): string {
   const lines = storiesContent.split("\n");
   const constants: string[] = [];
-  let inImports = true;
+  let inMultiLineImport = false;
   let foundFirstExport = false;
   let currentConstant: string[] = [];
   let braceCount = 0;
@@ -1818,19 +1819,20 @@ function extractTopLevelConstants(storiesContent: string): string {
     const line = lines[i];
     const trimmed = line.trim();
     
-    // Skip imports
+    // Track multi-line imports so nested `type Foo,` lines are not treated as constants
     if (trimmed.startsWith("import ")) {
       if (trimmed.includes(" from ")) {
-        inImports = false;
-        continue;
-      } else {
-        // Multi-line import - continue until we find " from "
+        inMultiLineImport = false;
         continue;
       }
+      inMultiLineImport = true;
+      continue;
     }
-    
-    if (trimmed.includes(" from ")) {
-      inImports = false;
+
+    if (inMultiLineImport) {
+      if (trimmed.includes(" from ")) {
+        inMultiLineImport = false;
+      }
       continue;
     }
     
@@ -1841,7 +1843,7 @@ function extractTopLevelConstants(storiesContent: string): string {
     }
     
     // Check for const/let/var declarations (but not inside functions)
-    if (!inImports && !foundFirstExport) {
+    if (!foundFirstExport) {
       // Match: const name = ... or const name: Type = ...
       const constMatch = trimmed.match(/^(const|let|var|function|type|interface)\s+(\w+)/);
       if (constMatch) {

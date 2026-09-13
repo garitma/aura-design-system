@@ -283,8 +283,7 @@
   @import "../registry/default/styles/sidebar.css";
   @import "../registry/default/styles/tooltip.css";
   @import "../registry/default/styles/selection-toolbar.css";
-  
-
+  @import "../registry/default/styles/file-upload.css";
 
   html {
     font-size: 17px;
