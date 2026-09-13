@@ -1,3 +1,4 @@
+status: new
 header:
   description: An accessible text input that suggests and inserts items after a trigger character.
 extends: _templates/content.yml

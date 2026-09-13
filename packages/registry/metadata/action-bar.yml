@@ -1,3 +1,4 @@
+status: new
 header:
   description: A floating toolbar for bulk actions on selected items.
 extends: _templates/content.yml

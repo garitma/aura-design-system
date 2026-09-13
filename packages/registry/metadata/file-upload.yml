@@ -1,3 +1,4 @@
+status: new
 header:
   description: A composable file upload with dropzone, list, previews, and progress indicators.
 extends: _templates/content.yml

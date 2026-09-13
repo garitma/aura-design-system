@@ -1,3 +1,4 @@
+status: new
 header:
   description: Displays an inline status, system note, bordered row, or labeled separator in a conversation.
 extends: _templates/content.yml

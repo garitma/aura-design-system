@@ -1,3 +1,4 @@
+status: new
 header:
   description: Displays a message in a conversation, with optional avatar, header, footer, and alignment.
 extends: _templates/content.yml

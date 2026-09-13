@@ -4,9 +4,9 @@ date: 2026-09-13
 tags: [dev-log]
 ---
 ## Summary
-Recreated DiceUI **Mask Input** as `@aura/mask-input` with Aura tokens (gray/accent/danger, 13px spacing, ≥17px inputs). Reused existing `compose-refs`. Stories cover default phone, built-in patterns, custom pattern, blur validation, and card fields.
+Added docs sidebar visual feedback for recently landed components: frontmatter/metadata `status: new` renders an accent-9 dot via Fumadocs `statusBadgesPlugin`. Marked this week’s registry additions (Mask Input, File Upload, Editable, Angle Slider, Avatar Group, Badge Overflow, Presentation, etc.).
 
 ## Context
-- Related: [[Mask-Input]], [[Input]], [[Registry]]
-- Implementation Path: `packages/registry/registry/default/components/ui/MaskInput.tsx`
-- Next: verify Ladle + docs generate.
+- Related: [[Sidebar-status-badges]], [[Site and docs app]], [[Mask-Input]]
+- Implementation Path: `apps/www/utils/source.tsx`, `apps/www/source.config.ts`
+- Next: verify sidebar dots on `/docs/components/*` in the browser.
