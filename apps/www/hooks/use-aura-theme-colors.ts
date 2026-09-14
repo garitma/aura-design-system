@@ -17,8 +17,8 @@ export type ThemeColorsByMode = {
 };
 
 export const DEFAULT_THEME_COLORS: ThemeColorsByMode = {
-  light: { accent: "#964CE1", gray: "#16204e", background: "#fcfcfc" },
-  dark: { accent: "#964CE1", gray: "#16204e", background: "#0c122b" },
+  light: { accent: "#964ce1", gray: "#16204e", background: "#fcfcfc" },
+  dark: { accent: "#964ce1", gray: "#16204e", background: "#0c122b" },
 };
 
 const STORAGE_KEY = "aura-theme-colors";
@@ -27,6 +27,7 @@ const CHANGE_EVENT = "aura-theme-colors-change";
 type Listener = () => void;
 
 let memoryStore: ThemeColorsByMode = DEFAULT_THEME_COLORS;
+let didHydrateFromStorage = false;
 const listeners = new Set<Listener>();
 
 function emitChange() {
@@ -34,6 +35,18 @@ function emitChange() {
   if (typeof window !== "undefined") {
     window.dispatchEvent(new Event(CHANGE_EVENT));
   }
+}
+
+function sameThemeColors(a: ThemeColors, b: ThemeColors) {
+  return (
+    a.accent === b.accent && a.gray === b.gray && a.background === b.background
+  );
+}
+
+function sameThemeColorsByMode(a: ThemeColorsByMode, b: ThemeColorsByMode) {
+  return (
+    sameThemeColors(a.light, b.light) && sameThemeColors(a.dark, b.dark)
+  );
 }
 
 function isValidThemeColors(value: unknown): value is ThemeColors {
@@ -64,6 +77,14 @@ function clearCorruptStorage() {
   }
 }
 
+function toNormalizedThemeColors(colors: ThemeColors): ThemeColors {
+  return {
+    accent: normalizeHex(colors.accent),
+    gray: normalizeHex(colors.gray),
+    background: normalizeHex(colors.background),
+  };
+}
+
 function readFromStorage(): ThemeColorsByMode {
   if (typeof window === "undefined") return memoryStore;
   try {
@@ -71,43 +92,33 @@ function readFromStorage(): ThemeColorsByMode {
     if (!saved) return memoryStore;
     const parsed = JSON.parse(saved) as unknown;
     if (isValidThemeColorsByMode(parsed)) {
-      memoryStore = {
-        light: {
-          accent: normalizeHex(parsed.light.accent),
-          gray: normalizeHex(parsed.light.gray),
-          background: normalizeHex(parsed.light.background),
-        },
-        dark: {
-          accent: normalizeHex(parsed.dark.accent),
-          gray: normalizeHex(parsed.dark.gray),
-          background: normalizeHex(parsed.dark.background),
-        },
+      const next: ThemeColorsByMode = {
+        light: toNormalizedThemeColors(parsed.light),
+        dark: toNormalizedThemeColors(parsed.dark),
       };
+      if (!sameThemeColorsByMode(memoryStore, next)) {
+        memoryStore = next;
+      }
       return memoryStore;
     }
     clearCorruptStorage();
   } catch {
     clearCorruptStorage();
   }
-  memoryStore = DEFAULT_THEME_COLORS;
+  if (!sameThemeColorsByMode(memoryStore, DEFAULT_THEME_COLORS)) {
+    memoryStore = DEFAULT_THEME_COLORS;
+  }
   return memoryStore;
 }
 
 function writeToStorage(next: ThemeColorsByMode) {
   const safeNext = isValidThemeColorsByMode(next)
     ? {
-        light: {
-          accent: normalizeHex(next.light.accent),
-          gray: normalizeHex(next.light.gray),
-          background: normalizeHex(next.light.background),
-        },
-        dark: {
-          accent: normalizeHex(next.dark.accent),
-          gray: normalizeHex(next.dark.gray),
-          background: normalizeHex(next.dark.background),
-        },
+        light: toNormalizedThemeColors(next.light),
+        dark: toNormalizedThemeColors(next.dark),
       }
     : DEFAULT_THEME_COLORS;
+  if (sameThemeColorsByMode(memoryStore, safeNext)) return;
   memoryStore = safeNext;
   if (typeof window !== "undefined") {
     try {
@@ -122,7 +133,9 @@ function writeToStorage(next: ThemeColorsByMode) {
 function subscribe(listener: Listener) {
   listeners.add(listener);
   const onStorage = (event: StorageEvent) => {
-    if (event.key === STORAGE_KEY) listener();
+    if (event.key !== STORAGE_KEY) return;
+    readFromStorage();
+    listener();
   };
   const onCustom = () => listener();
   if (typeof window !== "undefined") {
@@ -139,7 +152,11 @@ function subscribe(listener: Listener) {
 }
 
 function getSnapshot() {
-  return readFromStorage();
+  if (typeof window !== "undefined" && !didHydrateFromStorage) {
+    didHydrateFromStorage = true;
+    readFromStorage();
+  }
+  return memoryStore;
 }
 
 function getServerSnapshot() {
@@ -147,11 +164,30 @@ function getServerSnapshot() {
 }
 
 export function isValidHex(hex: string) {
-  return typeof hex === "string" && /^#?([0-9A-F]{3}){1,2}$/i.test(hex);
+  return (
+    typeof hex === "string" &&
+    /^#?([0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})$/.test(hex.trim())
+  );
 }
 
+/** Always returns `#rrggbb` (expands 3-digit hex). Safe for `<input type="color">`. */
 export function normalizeHex(value: string) {
-  return value.startsWith("#") ? value : `#${value}`;
+  const raw = value.trim();
+  const withHash = raw.startsWith("#") ? raw : `#${raw}`;
+  const body = withHash.slice(1);
+  if (body.length === 3) {
+    return `#${body
+      .split("")
+      .map((char) => `${char}${char}`)
+      .join("")}`.toLowerCase();
+  }
+  return `#${body}`.toLowerCase();
+}
+
+/** Native color inputs require `#rrggbb`; never pass short or invalid values. */
+export function toColorInputValue(value: string, fallback = "#964ce1") {
+  if (!isValidHex(value)) return normalizeHex(fallback);
+  return normalizeHex(value);
 }
 
 export function safeGenerateRadixColors(input: {
@@ -489,8 +525,6 @@ export function useAuraThemeColors() {
 
   useEffect(() => {
     setMounted(true);
-    readFromStorage();
-    emitChange();
   }, []);
 
   const appearance: "light" | "dark" =

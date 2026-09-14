@@ -4,9 +4,9 @@ date: 2026-09-13
 tags: [dev-log, architecture, taste]
 ---
 ## Summary
-Replaced the home-page marquee (`AuraAesthetic`) with a Radix Colors–style custom palette: light/dark inputs, 12-step accent/gray swatches, and a live Aura component showcase. Shared theme state lives in `useAuraThemeColors`.
+Home-page `AuraAesthetic` uses the same live preview as [[Theme Color Switcher]]: `useAuraThemeColors` injects `--accent-*` / `--gray-*` on `:root`. Swatches read CSS variables only—no separate Radix theme emulation in the section.
 
 ## Context
-- Related: [[Taste]], [[Site and docs app]]
+- Related: [[Taste]], [[Theme-Colors-Crash-Fix]], [[Internal-Progress]]
 - Implementation Path: `apps/www/components/AuraAesthetic.tsx`, `apps/www/hooks/use-aura-theme-colors.ts`, `apps/www/components/ThemeColorSwitcher.tsx`
-- Inspired by: https://www.radix-ui.com/colors/custom
+- Layout: `smesh` container, stacked controls on mobile, 3-column component preview from `lg`

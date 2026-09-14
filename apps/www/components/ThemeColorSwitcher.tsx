@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { MixerHorizontalIcon, DownloadIcon } from "@radix-ui/react-icons";
 
 import {
-  normalizeHex,
+  toColorInputValue,
   useAuraThemeColors,
   type ThemeColors,
 } from "@/hooks/use-aura-theme-colors";
@@ -107,7 +107,7 @@ export function ThemeColorSwitcher() {
               />
               <Input
                 type="color"
-                value={normalizeHex(currentColors.accent)}
+                value={toColorInputValue(currentColors.accent)}
                 onChange={(e) => handleColorChange(e.target.value, "accent")}
                 className="w-2.5 h-2.5 border-2 border-gray-6 cursor-pointer shrink-0 p-0 absolute right-0.5 top-1/2 -translate-y-1/2"
               />
@@ -128,7 +128,7 @@ export function ThemeColorSwitcher() {
               />
               <Input
                 type="color"
-                value={normalizeHex(currentColors.gray)}
+                value={toColorInputValue(currentColors.gray)}
                 onChange={(e) => handleColorChange(e.target.value, "gray")}
                 className="w-2.5 h-2.5 border-2 border-gray-6 cursor-pointer shrink-0 p-0 absolute right-0.5 top-1/2 -translate-y-1/2"
               />
@@ -151,7 +151,7 @@ export function ThemeColorSwitcher() {
               />
               <Input
                 type="color"
-                value={normalizeHex(currentColors.background)}
+                value={toColorInputValue(currentColors.background)}
                 onChange={(e) =>
                   handleColorChange(e.target.value, "background")
                 }
