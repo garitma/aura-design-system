@@ -36,26 +36,85 @@ function emitChange() {
   }
 }
 
+function isValidThemeColors(value: unknown): value is ThemeColors {
+  if (!value || typeof value !== "object") return false;
+  const colors = value as ThemeColors;
+  return (
+    typeof colors.accent === "string" &&
+    typeof colors.gray === "string" &&
+    typeof colors.background === "string" &&
+    isValidHex(colors.accent) &&
+    isValidHex(colors.gray) &&
+    isValidHex(colors.background)
+  );
+}
+
+function isValidThemeColorsByMode(value: unknown): value is ThemeColorsByMode {
+  if (!value || typeof value !== "object") return false;
+  const parsed = value as ThemeColorsByMode;
+  return isValidThemeColors(parsed.light) && isValidThemeColors(parsed.dark);
+}
+
+function clearCorruptStorage() {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.removeItem(STORAGE_KEY);
+  } catch {
+    // ignore quota / privacy mode failures
+  }
+}
+
 function readFromStorage(): ThemeColorsByMode {
   if (typeof window === "undefined") return memoryStore;
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
     if (!saved) return memoryStore;
-    const parsed = JSON.parse(saved) as ThemeColorsByMode;
-    if (parsed?.light && parsed?.dark) {
-      memoryStore = parsed;
-      return parsed;
+    const parsed = JSON.parse(saved) as unknown;
+    if (isValidThemeColorsByMode(parsed)) {
+      memoryStore = {
+        light: {
+          accent: normalizeHex(parsed.light.accent),
+          gray: normalizeHex(parsed.light.gray),
+          background: normalizeHex(parsed.light.background),
+        },
+        dark: {
+          accent: normalizeHex(parsed.dark.accent),
+          gray: normalizeHex(parsed.dark.gray),
+          background: normalizeHex(parsed.dark.background),
+        },
+      };
+      return memoryStore;
     }
+    clearCorruptStorage();
   } catch {
-    // ignore corrupt storage
+    clearCorruptStorage();
   }
+  memoryStore = DEFAULT_THEME_COLORS;
   return memoryStore;
 }
 
 function writeToStorage(next: ThemeColorsByMode) {
-  memoryStore = next;
+  const safeNext = isValidThemeColorsByMode(next)
+    ? {
+        light: {
+          accent: normalizeHex(next.light.accent),
+          gray: normalizeHex(next.light.gray),
+          background: normalizeHex(next.light.background),
+        },
+        dark: {
+          accent: normalizeHex(next.dark.accent),
+          gray: normalizeHex(next.dark.gray),
+          background: normalizeHex(next.dark.background),
+        },
+      }
+    : DEFAULT_THEME_COLORS;
+  memoryStore = safeNext;
   if (typeof window !== "undefined") {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(safeNext));
+    } catch {
+      // ignore quota / privacy mode failures
+    }
   }
   emitChange();
 }
@@ -88,26 +147,52 @@ function getServerSnapshot() {
 }
 
 export function isValidHex(hex: string) {
-  return /^#?([0-9A-F]{3}){1,2}$/i.test(hex);
+  return typeof hex === "string" && /^#?([0-9A-F]{3}){1,2}$/i.test(hex);
 }
 
 export function normalizeHex(value: string) {
   return value.startsWith("#") ? value : `#${value}`;
 }
 
+export function safeGenerateRadixColors(input: {
+  appearance: "light" | "dark";
+  accent: string;
+  gray: string;
+  background: string;
+}) {
+  try {
+    if (
+      !isValidHex(input.accent) ||
+      !isValidHex(input.gray) ||
+      !isValidHex(input.background)
+    ) {
+      return null;
+    }
+    return generateRadixColors({
+      appearance: input.appearance,
+      accent: normalizeHex(input.accent),
+      gray: normalizeHex(input.gray),
+      background: normalizeHex(input.background),
+    });
+  } catch {
+    return null;
+  }
+}
+
 export function injectThemeColors(
   appearance: "light" | "dark",
   colors: ThemeColors
 ) {
-  if (typeof document === "undefined") return;
+  if (typeof document === "undefined") return null;
 
   const rootElement = document.documentElement;
-  const generated = generateRadixColors({
+  const generated = safeGenerateRadixColors({
     appearance,
     accent: colors.accent,
     gray: colors.gray,
     background: colors.background,
   });
+  if (!generated) return null;
 
   const injectScale = (
     name: string,
@@ -170,19 +255,33 @@ export function injectThemeColors(
 export function generateGlobalsCssContent(
   themeColors: ThemeColorsByMode
 ): string {
-  const lightColors = generateRadixColors({
-    appearance: "light",
-    accent: themeColors.light.accent,
-    gray: themeColors.light.gray,
-    background: themeColors.light.background,
-  });
+  const lightColors =
+    safeGenerateRadixColors({
+      appearance: "light",
+      accent: themeColors.light.accent,
+      gray: themeColors.light.gray,
+      background: themeColors.light.background,
+    }) ??
+    generateRadixColors({
+      appearance: "light",
+      accent: DEFAULT_THEME_COLORS.light.accent,
+      gray: DEFAULT_THEME_COLORS.light.gray,
+      background: DEFAULT_THEME_COLORS.light.background,
+    });
 
-  const darkColors = generateRadixColors({
-    appearance: "dark",
-    accent: themeColors.dark.accent,
-    gray: themeColors.dark.gray,
-    background: themeColors.dark.background,
-  });
+  const darkColors =
+    safeGenerateRadixColors({
+      appearance: "dark",
+      accent: themeColors.dark.accent,
+      gray: themeColors.dark.gray,
+      background: themeColors.dark.background,
+    }) ??
+    generateRadixColors({
+      appearance: "dark",
+      accent: DEFAULT_THEME_COLORS.dark.accent,
+      gray: DEFAULT_THEME_COLORS.dark.gray,
+      background: DEFAULT_THEME_COLORS.dark.background,
+    });
 
   const generateScaleVars = (
     name: string,
@@ -439,7 +538,7 @@ export function useAuraThemeColors() {
   }, [appearance, currentColors, mounted]);
 
   const generated = mounted
-    ? generateRadixColors({
+    ? safeGenerateRadixColors({
         appearance,
         accent: currentColors.accent,
         gray: currentColors.gray,

@@ -1,12 +1,12 @@
 ---
 title: Internal progress
-date: 2026-09-13
+date: 2026-09-14
 tags: [dev-log]
 ---
 ## Summary
-Replaced the home marquee/slider aesthetic strip with a Radix-style custom palette section: light/dark accent–gray–background controls, 12-step swatches, and an Aura components showcase. Theme mixer popover now shares `useAuraThemeColors` with that section.
+Fixed production client-side Application error caused by invalid `aura-theme-colors` localStorage reaching `generateRadixColors` during render. `useAuraThemeColors` now validates hex fields, clears corrupt storage, and uses `safeGenerateRadixColors`.
 
 ## Context
-- Related: [[Custom-Colors-Showcase]], [[Sidebar-status-badges]]
-- Implementation Path: `apps/www/components/AuraAesthetic.tsx`, `apps/www/hooks/use-aura-theme-colors.ts`
-- Next: verify the home showcase on desktop/mobile in the browser.
+- Related: [[Theme-Colors-Crash-Fix]], [[Custom-Colors-Showcase]]
+- Implementation Path: `apps/www/hooks/use-aura-theme-colors.ts`
+- Next: confirm production no longer crashes with corrupt theme storage after deploy.
