@@ -293,6 +293,14 @@ import {
   SectionDemo
 } from "./section-demo"
 import { 
+  SegmentedInputDemo,
+  SegmentedInputDemoFormInput,
+  SegmentedInputDemoRgbColor,
+  SegmentedInputDemoVertical,
+  SegmentedInputDemoSizes,
+  SegmentedInputDemoInvalid
+} from "./segmented-input-demo"
+import { 
   SelectDemo,
   SelectDemoWithDefaultValue,
   SelectDemoWithGroups,
@@ -966,6 +974,24 @@ export const Registry = {
   },
   "section-demo": {
     component: SectionDemo,
+  },
+  "segmented-input-demo": {
+    component: SegmentedInputDemo,
+  },
+  "segmented-input-demo-form-input": {
+    component: SegmentedInputDemoFormInput,
+  },
+  "segmented-input-demo-rgb-color": {
+    component: SegmentedInputDemoRgbColor,
+  },
+  "segmented-input-demo-vertical": {
+    component: SegmentedInputDemoVertical,
+  },
+  "segmented-input-demo-sizes": {
+    component: SegmentedInputDemoSizes,
+  },
+  "segmented-input-demo-invalid": {
+    component: SegmentedInputDemoInvalid,
   },
   "select-demo": {
     component: SelectDemo,

@@ -1,12 +1,12 @@
 ---
 title: Internal progress
-date: 2026-09-13
+date: 2026-09-14
 tags: [dev-log]
 ---
 ## Summary
-Unblocked `@aura-design/www` Turbopack by upgrading Next to 16.3.5 (`condition.query` support). Added `baseline-browser-mapping` and `sonner`. Stabilized `useAuraThemeColors` snapshots to stop max-update-depth loops.
+Ported Dice UI Segmented Input into Aura as `@aura/segmented-input` with Ladle stories, metadata, registry JSON, and docs. Sizes remapped to the 13px spacing scale; no `text-xs` on editable segments (iOS zoom).
 
 ## Context
-- Related: [[Theme-Colors-Crash-Fix]], [[Custom-Colors-Showcase]]
-- Implementation Path: `apps/www/package.json`, `apps/www/hooks/use-aura-theme-colors.ts`
-- Next: verify color mixer + custom palette section on http://localhost:4000
+- Related: [[Segmented-Input]]
+- Implementation Path: `packages/registry/registry/default/components/ui/SegmentedInput.tsx`
+- Next: preview in Ladle (`pnpm --filter @aura-design/registry dev`) and docs page

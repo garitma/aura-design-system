@@ -1,0 +1,4 @@
+status: new
+header:
+  description: A group of connected input fields that appear as a single segmented visual unit.
+extends: _templates/content.yml

@@ -1646,6 +1646,26 @@
       ]
     },
     {
+      "name": "segmented-input",
+      "type": "registry:ui",
+      "title": "SegmentedInput",
+      "description": "The SegmentedInput component.",
+      "files": [
+        {
+          "path": "registry/default/components/ui/SegmentedInput.tsx",
+          "type": "registry:ui"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority",
+        "radix-ui"
+      ],
+      "registryDependencies": [
+        "@aura/class-names",
+        "@aura/input"
+      ]
+    },
+    {
       "name": "select",
       "type": "registry:ui",
       "title": "Select",

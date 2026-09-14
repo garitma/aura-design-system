@@ -1,0 +1,613 @@
+---
+title: Segmented Input
+description: A group of connected input fields that appear as a single segmented visual unit.
+status: new
+---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="segmented-input-demo" description="A group of connected input fields that appear as a single segmented visual unit.">
+
+```tsx
+import * as React from "react";
+import { Button } from "@/components/ui/Button";
+import {
+  SegmentedInput,
+  SegmentedInputItem,
+} from "@/components/ui/SegmentedInput";
+
+export function SegmentedInputDemo() {
+  const [values, setValues] = React.useState({
+    first: "",
+    second: "",
+    third: "",
+  });
+
+  const onValueChange = React.useCallback(
+    (field: keyof typeof values) =>
+      (event: React.ChangeEvent<HTMLInputElement>) => {
+        setValues((prev) => ({
+          ...prev,
+          [field]: event.target.value,
+        }));
+      },
+    [],
+  );
+
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-1">
+      <label className="text-sm font-medium text-gray-12">
+        Enter your details
+      </label>
+      <SegmentedInput className="w-full" aria-label="Name segments">
+        <SegmentedInputItem
+          placeholder="First"
+          value={values.first}
+          onChange={onValueChange("first")}
+          aria-label="First name"
+        />
+        <SegmentedInputItem
+          placeholder="Second"
+          value={values.second}
+          onChange={onValueChange("second")}
+          aria-label="Middle name"
+        />
+        <SegmentedInputItem
+          placeholder="Third"
+          value={values.third}
+          onChange={onValueChange("third")}
+          aria-label="Last name"
+        />
+      </SegmentedInput>
+    </div>
+  );
+}
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/segmented-input
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```bash
+pnpm install class-variance-authority radix-ui
+    ```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the input component into your `components/ui/Input.tsx` file.
+
+```tsx
+/**
+ * @description Displays a form input field or a component that looks like an input field.
+ */
+import * as React from "react";
+
+import { cn } from "@/utils/class-names";
+
+function Input({ className, ...props }: React.ComponentProps<"input">) {
+  return <input data-slot="input" className={cn(className)} {...props} />;
+}
+
+export { Input };
+
+```
+  </Step>
+  <Step>
+    Copy and paste the SegmentedInput component into your `components/ui/SegmentedInput.tsx` file.
+
+```tsx
+"use client";
+
+/**
+ * @description A group of connected input fields that appear as a single segmented visual unit.
+ */
+import * as React from "react";
+import { cva, type VariantProps } from "class-variance-authority";
+import {
+  Direction as DirectionPrimitive,
+  Slot as SlotPrimitive,
+} from "radix-ui";
+
+import { cn } from "@/utils/class-names";
+import { Input } from "@/components/ui/Input";
+
+const ROOT_NAME = "SegmentedInput";
+const ITEM_NAME = "SegmentedInputItem";
+
+type Direction = "ltr" | "rtl";
+type Orientation = "horizontal" | "vertical";
+type Size = "default" | "sm" | "lg";
+type Position = "isolated" | "first" | "middle" | "last";
+
+interface SegmentedInputContextValue {
+  dir?: Direction;
+  orientation?: Orientation;
+  size?: Size;
+  disabled?: boolean;
+  invalid?: boolean;
+  required?: boolean;
+}
+
+const SegmentedInputContext =
+  React.createContext<SegmentedInputContextValue | null>(null);
+
+function useSegmentedInputContext(consumerName: string) {
+  const context = React.useContext(SegmentedInputContext);
+  if (!context) {
+    throw new Error(`\`${consumerName}\` must be used within \`${ROOT_NAME}\``);
+  }
+  return context;
+}
+
+interface SegmentedInputProps extends React.ComponentProps<"div"> {
+  dir?: Direction;
+  orientation?: Orientation;
+  size?: Size;
+  asChild?: boolean;
+  disabled?: boolean;
+  invalid?: boolean;
+  required?: boolean;
+}
+
+function SegmentedInput(props: SegmentedInputProps) {
+  const {
+    size = "default",
+    dir: dirProp,
+    orientation = "horizontal",
+    children,
+    className,
+    asChild,
+    disabled,
+    invalid,
+    required,
+    ...rootProps
+  } = props;
+
+  const dir = DirectionPrimitive.useDirection(dirProp);
+
+  const contextValue = React.useMemo<SegmentedInputContextValue>(
+    () => ({
+      dir,
+      orientation,
+      size,
+      disabled,
+      invalid,
+      required,
+    }),
+    [dir, orientation, size, disabled, invalid, required],
+  );
+
+  const childrenArray = React.Children.toArray(children);
+  const childrenCount = childrenArray.length;
+
+  const segmentedInputItems = React.Children.map(children, (child, index) => {
+    if (React.isValidElement<SegmentedInputItemProps>(child)) {
+      if (!child.props.position) {
+        let position: Position;
+
+        if (childrenCount === 1) {
+          position = "isolated";
+        } else if (index === 0) {
+          position = "first";
+        } else if (index === childrenCount - 1) {
+          position = "last";
+        } else {
+          position = "middle";
+        }
+
+        return React.cloneElement(child, { position });
+      }
+    }
+    return child;
+  });
+
+  const RootPrimitive = asChild ? SlotPrimitive.Slot : "div";
+
+  return (
+    <SegmentedInputContext.Provider value={contextValue}>
+      <RootPrimitive
+        role="group"
+        aria-orientation={orientation}
+        data-slot="segmented-input"
+        data-orientation={orientation}
+        data-disabled={disabled ? "" : undefined}
+        data-invalid={invalid ? "" : undefined}
+        data-required={required ? "" : undefined}
+        dir={dir}
+        {...rootProps}
+        className={cn(
+          "flex",
+          orientation === "horizontal" ? "flex-row" : "flex-col",
+          className,
+        )}
+      >
+        {segmentedInputItems}
+      </RootPrimitive>
+    </SegmentedInputContext.Provider>
+  );
+}
+
+const segmentedInputItemVariants = cva(
+  [
+    "relative min-w-0 flex-1 rounded-md border border-gray-7 bg-gray-1 text-gray-12 transition-colors outline-none",
+    "selection:bg-accent-4 selection:text-gray-12 placeholder:text-gray-11",
+    "focus-visible:z-10 focus-visible:border-gray-8 focus-visible:ring-2 focus-visible:ring-gray-8",
+    "disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
+    "aria-invalid:border-danger aria-invalid:ring-2 aria-invalid:ring-danger/20",
+  ].join(" "),
+  {
+    variants: {
+      position: {
+        isolated: "",
+        first: "rounded-e-none",
+        middle: "-ms-px rounded-none border-l-0",
+        last: "-ms-px rounded-s-none border-l-0",
+      },
+      orientation: {
+        horizontal: "",
+        vertical: "",
+      },
+      size: {
+        // Aura --spacing 13px: avoid text-xs/text-sm on editable inputs (iOS zoom)
+        sm: "h-2.5 px-1",
+        default: "h-3 px-1",
+        lg: "h-4 px-1.5",
+      },
+    },
+    compoundVariants: [
+      {
+        position: "first",
+        orientation: "vertical",
+        class: "ms-0 rounded-e-md rounded-b-none border-l",
+      },
+      {
+        position: "middle",
+        orientation: "vertical",
+        class: "ms-0 -mt-px rounded-none border-t-0 border-l",
+      },
+      {
+        position: "last",
+        orientation: "vertical",
+        class: "ms-0 -mt-px rounded-s-md rounded-t-none border-t-0 border-l",
+      },
+    ],
+    defaultVariants: {
+      position: "isolated",
+      orientation: "horizontal",
+      size: "default",
+    },
+  },
+);
+
+interface SegmentedInputItemProps
+  extends
+    React.ComponentProps<"input">,
+    Omit<VariantProps<typeof segmentedInputItemVariants>, "size"> {
+  asChild?: boolean;
+}
+
+function SegmentedInputItem(props: SegmentedInputItemProps) {
+  const { asChild, className, position, disabled, required, ...inputProps } =
+    props;
+  const context = useSegmentedInputContext(ITEM_NAME);
+
+  const isDisabled = disabled ?? context.disabled;
+  const isRequired = required ?? context.required;
+
+  const ItemPrimitive = asChild ? SlotPrimitive.Slot : Input;
+
+  return (
+    <ItemPrimitive
+      aria-invalid={context.invalid}
+      aria-required={isRequired}
+      data-disabled={isDisabled ? "" : undefined}
+      data-invalid={context.invalid ? "" : undefined}
+      data-orientation={context.orientation}
+      data-position={position}
+      data-required={isRequired ? "" : undefined}
+      data-slot="segmented-input-item"
+      disabled={isDisabled}
+      required={isRequired}
+      {...inputProps}
+      className={cn(
+        segmentedInputItemVariants({
+          position,
+          orientation: context.orientation,
+          size: context.size,
+          className,
+        }),
+      )}
+    />
+  );
+}
+
+export {
+  SegmentedInput,
+  SegmentedInputItem,
+  SegmentedInput as Root,
+  SegmentedInputItem as Item,
+  segmentedInputItemVariants,
+  type SegmentedInputProps,
+  type SegmentedInputItemProps,
+};
+
+```
+  </Step>
+</Steps>
+
+## Usage
+
+### FormInput
+
+```tsx
+export const FormInput = () => {
+  const [phoneNumber, setPhoneNumber] = React.useState({
+    countryCode: "+1",
+    areaCode: "",
+    number: "",
+  });
+
+  const onSubmit = React.useCallback(
+    (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+    },
+    [],
+  );
+
+  return (
+    <form onSubmit={onSubmit} className="flex w-full max-w-sm flex-col gap-2">
+      <div className="flex flex-col gap-1">
+        <label className="text-sm font-medium text-gray-12">Phone Number</label>
+        <SegmentedInput
+          className="w-full"
+          aria-label="Phone number input"
+        >
+          <SegmentedInputItem
+            placeholder="+1"
+            value={phoneNumber.countryCode}
+            onChange={(event) =>
+              setPhoneNumber((prev) => ({
+                ...prev,
+                countryCode: event.target.value,
+              }))
+            }
+            className="w-5 flex-none"
+            aria-label="Country code"
+          />
+          <SegmentedInputItem
+            placeholder="555"
+            value={phoneNumber.areaCode}
+            onChange={(event) =>
+              setPhoneNumber((prev) => ({
+                ...prev,
+                areaCode: event.target.value,
+              }))
+            }
+            className="w-6 flex-none"
+            maxLength={3}
+            inputMode="numeric"
+            pattern="[0-9]*"
+            aria-label="Area code"
+          />
+          <SegmentedInputItem
+            placeholder="1234567"
+            value={phoneNumber.number}
+            onChange={(event) =>
+              setPhoneNumber((prev) => ({
+                ...prev,
+                number: event.target.value,
+              }))
+            }
+            className="flex-1"
+            maxLength={7}
+            inputMode="numeric"
+            pattern="[0-9]*"
+            aria-label="Phone number"
+          />
+        </SegmentedInput>
+      </div>
+      <Button type="submit" size="sm">
+        Submit
+      </Button>
+    </form>
+  );
+};
+```
+
+### RgbColor
+
+```tsx
+export const RgbColor = () => {
+  const [rgb, setRgb] = React.useState({
+    r: 255,
+    g: 128,
+    b: 0,
+  });
+
+  const onChannelChange = React.useCallback(
+    (channel: keyof typeof rgb) =>
+      (event: React.ChangeEvent<HTMLInputElement>) => {
+        const value = Number.parseInt(event.target.value, 10);
+        if (!Number.isNaN(value) && value >= 0 && value <= 255) {
+          setRgb((prev) => ({
+            ...prev,
+            [channel]: value,
+          }));
+        }
+      },
+    [],
+  );
+
+  return (
+    <div className="flex flex-col gap-1">
+      <label className="text-sm font-medium text-gray-12">RGB Color</label>
+      <div className="flex items-center gap-1">
+        <SegmentedInput className="w-fit" aria-label="RGB color input">
+          <SegmentedInputItem
+            placeholder="255"
+            value={rgb.r}
+            onChange={onChannelChange("r")}
+            className="w-5 flex-none"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            min={0}
+            max={255}
+            aria-label="Red channel (0-255)"
+          />
+          <SegmentedInputItem
+            placeholder="128"
+            value={rgb.g}
+            onChange={onChannelChange("g")}
+            className="w-5 flex-none"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            min={0}
+            max={255}
+            aria-label="Green channel (0-255)"
+          />
+          <SegmentedInputItem
+            placeholder="0"
+            value={rgb.b}
+            onChange={onChannelChange("b")}
+            className="w-5 flex-none"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            min={0}
+            max={255}
+            aria-label="Blue channel (0-255)"
+          />
+        </SegmentedInput>
+        <span
+          className="size-3 rounded-sm border border-gray-6"
+          style={{ backgroundColor: `rgb(${rgb.r}, ${rgb.g}, ${rgb.b})` }}
+          aria-hidden
+        />
+      </div>
+    </div>
+  );
+};
+```
+
+### Vertical
+
+```tsx
+export const Vertical = () => {
+  const [address, setAddress] = React.useState({
+    street: "",
+    city: "",
+    zipCode: "",
+  });
+
+  const onFieldChange = React.useCallback(
+    (field: keyof typeof address) =>
+      (event: React.ChangeEvent<HTMLInputElement>) => {
+        setAddress((prev) => ({
+          ...prev,
+          [field]: event.target.value,
+        }));
+      },
+    [],
+  );
+
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-1">
+      <label className="text-sm font-medium text-gray-12">
+        Mailing Address
+      </label>
+      <SegmentedInput
+        aria-label="Mailing address input"
+        className="w-full"
+        orientation="vertical"
+      >
+        <SegmentedInputItem
+          aria-label="Street address"
+          placeholder="Street Address"
+          value={address.street}
+          onChange={onFieldChange("street")}
+        />
+        <SegmentedInputItem
+          aria-label="City"
+          placeholder="City"
+          value={address.city}
+          onChange={onFieldChange("city")}
+        />
+        <SegmentedInputItem
+          aria-label="ZIP code"
+          placeholder="ZIP Code"
+          value={address.zipCode}
+          onChange={onFieldChange("zipCode")}
+        />
+      </SegmentedInput>
+      <p className="text-xs text-gray-11">
+        Tab between fields to move through the vertical segments.
+      </p>
+    </div>
+  );
+};
+```
+
+### Sizes
+
+```tsx
+export const Sizes = () => (
+  <div className="flex w-full max-w-sm flex-col gap-2">
+    <SegmentedInput size="sm" className="w-full" aria-label="Small size">
+      <SegmentedInputItem placeholder="Small" aria-label="Small first" />
+      <SegmentedInputItem placeholder="Small" aria-label="Small second" />
+    </SegmentedInput>
+    <SegmentedInput size="default" className="w-full" aria-label="Default size">
+      <SegmentedInputItem placeholder="Default" aria-label="Default first" />
+      <SegmentedInputItem placeholder="Default" aria-label="Default second" />
+    </SegmentedInput>
+    <SegmentedInput size="lg" className="w-full" aria-label="Large size">
+      <SegmentedInputItem placeholder="Large" aria-label="Large first" />
+      <SegmentedInputItem placeholder="Large" aria-label="Large second" />
+    </SegmentedInput>
+  </div>
+)
+```
+
+### Invalid
+
+```tsx
+export const Invalid = () => (
+  <div className="flex w-full max-w-sm flex-col gap-1">
+    <label className="text-sm font-medium text-gray-12">Invalid state</label>
+    <SegmentedInput invalid className="w-full" aria-label="Invalid segments">
+      <SegmentedInputItem defaultValue="12" aria-label="Part one" />
+      <SegmentedInputItem defaultValue="ab" aria-label="Part two" />
+      <SegmentedInputItem defaultValue="" placeholder="Required" aria-label="Part three" />
+    </SegmentedInput>
+  </div>
+)
+```
+
