@@ -4,7 +4,7 @@ date: 2026-09-11
 tags: [dev-log, documentation, architecture]
 ---
 ## Summary
-Public docs: `/docs/mcp` (overview) and `/docs/mcp-agent-blueprint` (agent runbook). Runbook § D installs `@aura/eslint-shadcn-lint` + `@shadcn/lint`. Not the CLI `aura blueprint` command.
+Public docs: `/docs/lint` (guide), `/docs/mcp` (overview), `/docs/mcp-agent-blueprint` (agent runbook § D). Runbook installs `@aura/eslint-shadcn-lint` + `@shadcn/lint`. Not the CLI `aura blueprint` command.
 
 
 ## Context

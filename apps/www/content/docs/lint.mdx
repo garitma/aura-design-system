@@ -1,0 +1,78 @@
+---
+title: Lint
+description: Enforce Aura Tailwind policy with @shadcn/lint — tokens, 13px spacing, and no-restyle contracts agents can fix.
+icon: ShieldCheck
+---
+
+`@shadcn/lint` is the **machine-checkable** layer for Aura’s design system. Cursor [rules](/docs/rules) and `DESIGN.md` tell agents what to do; lint errors tell them **how to fix** UI that drifts from Aura.
+
+It works with Tailwind v4 design systems (shadcn/ui is **not** required). Aura ships a ready policy as registry items.
+
+## Quick start
+
+Requires **ESLint ≥ 9.30** and **Node ≥ 20.19**.
+
+```bash
+pnpm add -D @shadcn/lint
+pnpm dlx shadcn@latest add @aura/eslint-shadcn-lint
+```
+
+That installs:
+
+- `eslint.aura-shadcn.mjs` — Aura policy fragment (`createAuraShadcnLintConfig`)
+- `.cursor/rules/shadcn-lint.mdc` — agent guidance
+
+(`@aura/rule-shadcn-lint` installs the same pair.)
+
+Merge into your existing `eslint.config.mjs` — do **not** replace Next/ESLint presets:
+
+```js
+import { plugin as shadcn } from "@shadcn/lint"
+import { createAuraShadcnLintConfig } from "./eslint.aura-shadcn.mjs"
+
+export default [
+  ...existingConfig,
+  ...createAuraShadcnLintConfig(shadcn),
+]
+```
+
+Ensure `package.json` has a `lint` script. After UI work, run it and clear findings.
+
+On an existing Aura app, the [Agent blueprint](/docs/mcp-agent-blueprint) runbook (§ D) audits and installs this for you.
+
+## What Aura enables
+
+Rules start at **`warn`**. Promote to **`error`** once the baseline is clean.
+
+| Rule | Aura intent |
+| --- | --- |
+| `shadcn/no-arbitrary-values` | Use the **13px** spacing scale — no `p-[16px]` |
+| `shadcn/no-raw-colors` | Use **accent/gray** steps or semantic tokens — no `bg-pink-500` |
+| `shadcn/no-restyle` | Callers may use **layout/width** only; appearance stays on the component |
+
+### Form controls
+
+`Input`, `Textarea`, `SelectTrigger`, `MaskInput`, and `SegmentedInput` **own their padding**. Use layout/width at the call site. If the design needs different padding, **add a size or variant on the component** — do not override padding with `className`.
+
+Never put `text-sm` / `text-xs` on editable controls (Aura floor is **17px**). See [Typography rules](/docs/rules/fundations-typography).
+
+Form shells (`Form`, `FormField`, …) may use **layout + spacing** (e.g. gap around fields).
+
+### Component directory
+
+Keep `no-restyle` and `no-arbitrary-values` **off** under `components/ui/**`. Components own their appearance; the policy applies to **callers**.
+
+Adjust `settings.shadcn.ui` (default `@/components/ui`) if your alias differs.
+
+## Why lint (not only Cursor rules)
+
+Prose rules guide agents. Lint closes the loop: write UI → `pnpm lint` → fixable error with Aura-specific guidance → correct in one round.
+
+Upstream project and evals: [shadcn-ui/lint](https://github.com/shadcn-ui/lint).
+
+## Related
+
+- [Agent blueprint](/docs/mcp-agent-blueprint) — install via `Ejecuta` runbook (§ D)
+- [Rules / shadcn lint](/docs/rules/shadcn-lint) — Cursor rule mirror
+- [DESIGN.md rule](/docs/rules/design-md) — narrative design spec
+- [MCP](/docs/mcp) — registries and skills setup

@@ -4,7 +4,7 @@ date: 2026-09-14
 tags: [dev-log, architecture, lint, registry]
 ---
 ## Summary
-`@shadcn/lint` is distributed as `@aura/eslint-shadcn-lint` / `@aura/rule-shadcn-lint` (Cursor rule + `eslint.aura-shadcn.mjs`). Agent blueprint § D installs and merges it. Rebuild with `pnpm --filter @aura-design/registry registry:generate && registry:build`.
+Public guide at `/docs/lint`. Registry items `@aura/eslint-shadcn-lint` / `@aura/rule-shadcn-lint`. Agent blueprint § D installs and merges the policy. Rebuild with `pnpm --filter @aura-design/registry registry:generate && registry:build`.
 
 ## Context
 - Related: [[MCP]] [[Registry]] [[Internal-Progress]] [[Design md]]
