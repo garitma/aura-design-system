@@ -43,6 +43,24 @@
           "target": "DESIGN.md"
         }
       ]
+    },
+    {
+      "name": "eslint-shadcn-lint",
+      "type": "registry:file",
+      "title": "ESLint @shadcn/lint (Aura)",
+      "description": "Aura Tailwind lint policy for agents: installs eslint.aura-shadcn.mjs and the shadcn-lint Cursor rule. Add @shadcn/lint as a dep, then merge createAuraShadcnLintConfig into eslint.config.",
+      "files": [
+        {
+          "path": "registry/default/lint/eslint.aura-shadcn.mjs",
+          "type": "registry:file",
+          "target": "eslint.aura-shadcn.mjs"
+        },
+        {
+          "path": "registry/default/rules/shadcn-lint.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/shadcn-lint.mdc"
+        }
+      ]
     }
   ]
 }

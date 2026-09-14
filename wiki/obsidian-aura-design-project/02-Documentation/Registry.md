@@ -19,7 +19,7 @@ Holds the **default registry tree** under `registry/` (UI primitives, blocks, Cu
 - **`pnpm sync:rules`** — Copies rules into the registry (`scripts/sync-rules.ts`).
 - **`pnpm sync:skills`** — Copies whitelisted `.cursor/skills/*` into the registry (`scripts/sync-skills.ts`).
 - **`pnpm sync:design-md`** — Syncs DESIGN.md into the registry (`scripts/sync-design-md.ts`).
-- **`pnpm registry:generate`** — `sync:rules`, `sync:skills`, `sync:design-md`, then `scripts/build-registry.ts`.
+- **`pnpm registry:generate`** — `sync:rules`, `sync:skills`, `sync:design-md`, then `scripts/build-registry.ts` (includes `@aura/rule-shadcn-lint` + `@aura/eslint-shadcn-lint`).
 - **`pnpm registry:build`** — `shadcn build -o ../../apps/www/public/r` — production registry artifacts for the docs host.
 - **`pnpm docs:generate`** — Broader docs pipeline (includes `generate-docs.ts`, `generate-rules-docs.ts`).
 - **`pnpm registry:bootstrap`** — `registry:generate` + `registry:build` + `docs:generate`.

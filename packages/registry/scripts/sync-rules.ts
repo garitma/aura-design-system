@@ -17,6 +17,7 @@ const RULE_FILES = [
   "fundations-layout-spacing.mdc",
   "fundations-typography.mdc",
   "principles.mdc",
+  "shadcn-lint.mdc",
 ];
 
 function syncRules() {

@@ -1,0 +1,39 @@
+---
+title: "shadcn lint"
+description: "Aura @shadcn/lint policy (no arbitrary values, no raw colors, no-restyle). Installs Cursor rule + eslint.aura-shadcn.mjs. Add with shadcn as @aura/rule-shadcn-lint or @aura/eslint-shadcn-lint."
+---
+
+# Aura + @shadcn/lint
+
+## Installation
+```bash
+pnpm dlx shadcn@latest add @aura/rule-shadcn-lint
+```
+`@shadcn/lint` is the **machine-checkable** layer for Aura Tailwind policy. Cursor rules and `DESIGN.md` guide agents; lint errors tell them how to fix UI.
+
+## MUST
+
+* **MUST**: After UI changes, run the project `lint` script and fix `@shadcn/lint` findings before finishing.
+* **MUST**: Prefer theme tokens (`accent-*`, `gray-*`, semantic) over raw palette colors (`bg-pink-500`, hex).
+* **MUST**: Prefer the Aura **13px** spacing scale over arbitrary values (`p-[16px]`).
+* **MUST**: Do not restyle design-system components with padding, colors, or typography via `className` — use **variants/sizes**, or **layout/width** only.
+* **MUST**: Form controls (`Input`, `Textarea`, `SelectTrigger`, `MaskInput`, `SegmentedInput`) **own their padding**. Use layout/width only. If the design needs different padding, **add a size/variant on the component** — do not override padding at the call site.
+* **MUST**: Never put `text-sm` / `text-xs` on editable form controls (Aura floor is **17px**).
+
+## Setup (if missing)
+
+1. Ensure ESLint **≥ 9.30** and Node **≥ 20.19**.
+2. Install: `pnpm add -D @shadcn/lint` (in the app that owns `eslint.config.*`).
+3. Install the Aura snippet: `pnpm dlx shadcn@latest add @aura/eslint-shadcn-lint` (writes `eslint.aura-shadcn.mjs` + this rule).
+4. Merge the exported config into the app’s `eslint.config.mjs` (see snippet file header).
+5. Set `settings.shadcn.ui` to the project’s UI alias (default `@/components/ui`).
+6. Keep `no-restyle` / `no-arbitrary-values` **off** under `components/ui/**` (components own appearance).
+7. Start rules at **`warn`**; promote to **`error`** as debt clears.
+
+## SHOULD
+
+* **SHOULD**: Point `settings.shadcn.note` at `DESIGN.md` and `.cursor/rules`.
+* **SHOULD**: Allow `layout` + `spacing` on Form shells (`Form`, `FormField`, …) when pages set gap around fields.
+* **SHOULD**: Document intentional exceptions with `eslint-disable-next-line shadcn/… -- reason`.
+
+Upstream: [shadcn-ui/lint](https://github.com/shadcn-ui/lint).

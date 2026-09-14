@@ -2429,6 +2429,24 @@
       ]
     },
     {
+      "name": "rule-shadcn-lint",
+      "type": "registry:file",
+      "title": "Rule: shadcn lint",
+      "description": "Aura @shadcn/lint policy (no arbitrary values, no raw colors, no-restyle). Installs Cursor rule + eslint.aura-shadcn.mjs. Add with shadcn as @aura/rule-shadcn-lint or @aura/eslint-shadcn-lint.",
+      "files": [
+        {
+          "path": "registry/default/rules/shadcn-lint.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/shadcn-lint.mdc"
+        },
+        {
+          "path": "registry/default/lint/eslint.aura-shadcn.mjs",
+          "type": "registry:file",
+          "target": "eslint.aura-shadcn.mjs"
+        }
+      ]
+    },
+    {
       "name": "rules",
       "type": "registry:file",
       "title": "Aura Rules",
@@ -2483,6 +2501,16 @@
           "path": "registry/default/rules/self-documenting-system.mdc",
           "type": "registry:file",
           "target": ".cursor/rules/self-documenting-system.mdc"
+        },
+        {
+          "path": "registry/default/rules/shadcn-lint.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/shadcn-lint.mdc"
+        },
+        {
+          "path": "registry/default/lint/eslint.aura-shadcn.mjs",
+          "type": "registry:file",
+          "target": "eslint.aura-shadcn.mjs"
         }
       ]
     },
@@ -2581,6 +2609,24 @@
           "path": "registry/default/design-md/DESIGN.md",
           "type": "registry:file",
           "target": "DESIGN.md"
+        }
+      ]
+    },
+    {
+      "name": "eslint-shadcn-lint",
+      "type": "registry:file",
+      "title": "ESLint @shadcn/lint (Aura)",
+      "description": "Aura Tailwind lint policy for agents: installs eslint.aura-shadcn.mjs and the shadcn-lint Cursor rule. Add @shadcn/lint as a dep, then merge createAuraShadcnLintConfig into eslint.config.",
+      "files": [
+        {
+          "path": "registry/default/lint/eslint.aura-shadcn.mjs",
+          "type": "registry:file",
+          "target": "eslint.aura-shadcn.mjs"
+        },
+        {
+          "path": "registry/default/rules/shadcn-lint.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/shadcn-lint.mdc"
         }
       ]
     }

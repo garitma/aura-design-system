@@ -565,6 +565,7 @@ function getRulesItems(): RegistryItem[] {
       };
 
       // design-md rule also ships root DESIGN.md so `shadcn add @aura/rule-design-md` installs both.
+      // shadcn-lint rule also ships the ESLint fragment for @shadcn/lint merge.
       const files =
         file === "design-md.mdc"
           ? [
@@ -575,7 +576,16 @@ function getRulesItems(): RegistryItem[] {
                 target: "DESIGN.md",
               },
             ]
-          : [ruleFile];
+          : file === "shadcn-lint.mdc"
+            ? [
+                ruleFile,
+                {
+                  path: "registry/default/lint/eslint.aura-shadcn.mjs",
+                  type: "registry:file" as const,
+                  target: "eslint.aura-shadcn.mjs",
+                },
+              ]
+            : [ruleFile];
 
       return {
         name: `rule-${kebabName}`,

@@ -4,9 +4,9 @@ date: 2026-09-14
 tags: [dev-log]
 ---
 ## Summary
-Ported Dice UI Segmented Input into Aura as `@aura/segmented-input` with Ladle stories, metadata, registry JSON, and docs. Sizes remapped to the 13px spacing scale; no `text-xs` on editable segments (iOS zoom).
+Distributed `@shadcn/lint` via registry (`@aura/eslint-shadcn-lint`) and documented install in Agent blueprint § D. Source policy lives in `packages/registry/registry/default/lint/eslint.aura-shadcn.mjs`; `apps/www` imports it.
 
 ## Context
-- Related: [[Segmented-Input]]
-- Implementation Path: `packages/registry/registry/default/components/ui/SegmentedInput.tsx`
-- Next: preview in Ladle (`pnpm --filter @aura-design/registry dev`) and docs page
+- Related: [[shadcn-lint]] [[MCP]] [[Registry]]
+- Implementation Path: `apps/www/content/docs/mcp-agent-blueprint.mdx`
+- Next: promote lint rules from `warn` → `error` after baseline cleanup

@@ -42,6 +42,7 @@ Check and record **present / missing** for each:
 | Image identity | `wiki/obsidian-*/01-Identity/Image-Identity.md`; `status: ready` only when style, palette, composition/motifs, and exclusions are concrete |
 | Gemini image env | `.env.example` names `GOOGLE_API_KEY`; only check whether `.env` has `GOOGLE_API_KEY` or `GEMINI_API_KEY`, never print its value |
 | shadcn MCP | `.cursor/mcp.json` (or user MCP) with `shadcn` → `npx shadcn@latest mcp` |
+| `@shadcn/lint` | Dep `@shadcn/lint` present; `eslint.config.*` registers `shadcn/*` rules; optional `eslint.aura-shadcn.mjs` + `.cursor/rules/shadcn-lint.mdc` |
 | Package manager | Prefer `pnpm`; fall back to npm/yarn if that is what the repo uses |
 
 Also note: Tailwind/Aura CSS already applied? (`globals.css` with accent/gray scales, or prior `aura setup` / `init`).
@@ -63,12 +64,13 @@ If the user only wants AI context (not full theme rewrite), skip `setup` and use
 #### B. Targeted AI context (typical “old project already on Aura”)
 
 ```bash
-pnpm dlx shadcn@latest add @aura/rules @aura/skills @aura/rule-design-md
+pnpm dlx shadcn@latest add @aura/rules @aura/skills @aura/rule-design-md @aura/eslint-shadcn-lint
 ```
 
 - `@aura/rules` → `.cursor/rules/`
 - `@aura/skills` → `.cursor/skills/` (includes `port-component-to-aura` and `generate-brand-images`)
 - `@aura/rule-design-md` → rule + root `DESIGN.md`
+- `@aura/eslint-shadcn-lint` → `eslint.aura-shadcn.mjs` + `.cursor/rules/shadcn-lint.mdc` (see **D** below)
 
 If the blueprint wiki, `Image-Identity.md`, or `pnpm ai:image` is missing, scaffold those project capabilities without rewriting the Aura theme:
 
@@ -106,6 +108,43 @@ Then tell the user (you cannot finish this in the terminal):
 1. Restart Cursor or reload MCP.
 2. Settings → MCP → enable **shadcn** (green dot).
 
+#### D. `@shadcn/lint` (Aura Tailwind policy for agents)
+
+Machine-checks design-system usage so agents get fixable errors (not only prose rules). Requires **ESLint ≥ 9.30** and **Node ≥ 20.19**.
+
+If missing:
+
+```bash
+pnpm add -D @shadcn/lint
+pnpm dlx shadcn@latest add @aura/eslint-shadcn-lint
+```
+
+(`@aura/rule-shadcn-lint` installs the same pair: Cursor rule + `eslint.aura-shadcn.mjs`.)
+
+Merge into the app’s `eslint.config.mjs` (do **not** replace an existing Next/ESLint setup):
+
+```js
+import { plugin as shadcn } from "@shadcn/lint"
+import { createAuraShadcnLintConfig } from "./eslint.aura-shadcn.mjs"
+
+export default [
+  ...existingConfig,
+  ...createAuraShadcnLintConfig(shadcn),
+]
+```
+
+Policy shipped at **`warn`**:
+
+| Rule | Aura intent |
+| --- | --- |
+| `shadcn/no-arbitrary-values` | 13px spacing scale — no `p-[16px]` |
+| `shadcn/no-raw-colors` | accent/gray / semantic tokens only |
+| `shadcn/no-restyle` | layout only; form controls own padding (add a size/variant if needed) |
+
+Keep `no-restyle` / `no-arbitrary-values` **off** under `components/ui/**`. Ensure `package.json` has a `lint` script; after UI work, run it and fix findings. Promote rules to `error` once the warning baseline is under control.
+
+Upstream: [shadcn-ui/lint](https://github.com/shadcn-ui/lint).
+
 ### 3. Verify
 
 Confirm after installs:
@@ -118,6 +157,7 @@ Confirm after installs:
 - [ ] Root `DESIGN.md` exists (or user declined design-md)
 - [ ] `components.json` includes `@aura`
 - [ ] `.cursor/mcp.json` has shadcn MCP (user must enable in UI)
+- [ ] `@shadcn/lint` installed; `eslint.config.*` spreads `createAuraShadcnLintConfig` (or equivalent); `eslint.aura-shadcn.mjs` / `shadcn-lint` rule present when using the registry item
 
 Optional smoke: `pnpm dlx shadcn@latest add @aura/button` only if the user asked to install a component; do not add random UI.
 
@@ -129,6 +169,7 @@ Optional smoke: `pnpm dlx shadcn@latest add @aura/button` only if the user asked
 - **Gemini access:** the bundled command reads `GOOGLE_API_KEY` or `GEMINI_API_KEY` directly from root `.env`. If absent, ask whether the user wants to add a key, use agent-native image generation when available, or continue with placeholders; never fabricate a key.
 - **Batch landing flow:** inspect the landing, create one manifest for the necessary image set, run `pnpm ai:image -- --manifest <path>`, integrate accepted local assets, then record their paths in the wiki.
 - **Mobile form UX (critical):** `input` / `textarea` / `select` font-size **MUST be ≥ 17px**. Never put `text-sm` or `text-xs` on editable fields—iOS Safari zooms on focus below that size. Keep `html { font-size: 17px; }` and the global floor in `styles/main.css` (`font-size: max(1rem, 17px)`). See [Typography rules](/docs/rules/fundations-typography) and `DESIGN.md`.
+- **Design lint:** after UI edits, run `pnpm lint` (or the app’s lint script) and clear `@shadcn/lint` warnings. Form controls own padding — add a size/variant on the component if spacing must change.
 - Concepts: [MCP overview](/docs/mcp) · [Rules](/docs/rules) · [Installation](/docs/installation)
 
 ### 5. Final reply to the user (required format)
@@ -148,6 +189,7 @@ Optional smoke: `pnpm dlx shadcn@latest add @aura/button` only if the user asked
 | Blueprint image identity | … | … | … |
 | Gemini image command | … | … | … |
 | .cursor/mcp.json | … | … | … |
+| @shadcn/lint + Aura eslint fragment | … | … | … |
 
 **Manual step for you:** enable shadcn MCP in Cursor Settings (if not already green).
 
