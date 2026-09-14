@@ -177,11 +177,11 @@ function ColorField({
   }, [value]);
 
   return (
-    <div className="flex w-full min-w-0 flex-col gap-0.5">
+    <div className="flex w-full min-w-0 flex-col gap-1">
       <Label htmlFor={id} className="text-xs font-medium text-gray-11">
         {label}
       </Label>
-      <div className="relative flex h-3 items-center">
+      <div className="relative flex h-4 items-center">
         <Input
           id={id}
           type="text"
@@ -190,7 +190,7 @@ function ColorField({
             setDraft(event.target.value);
             onChange(event.target.value);
           }}
-          className="h-3 w-full rounded-md border border-gray-6 bg-gray-1 px-1 pr-3.5 font-mono text-sm text-gray-12"
+          className="h-4 w-full rounded-md border border-gray-6 bg-gray-1 px-1 pr-3.5 font-mono text-sm text-gray-12"
           placeholder="#964CE1"
           spellCheck={false}
         />
@@ -413,7 +413,7 @@ function ComponentsShowcase() {
             </InputGroupAddon>
             <InputGroupInput placeholder="Search" name="showcase-search" />
           </InputGroup>
-          <Button type="button" size="sm" className="shrink-0">
+          <Button type="button" className="shrink-0">
             Submit
           </Button>
         </div>
@@ -548,7 +548,7 @@ function ComponentsShowcase() {
           </div>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button type="button" size="sm" variant="pill" className="shrink-0">
+              <Button type="button" variant="pill" className="shrink-0">
                 Actions
               </Button>
             </DropdownMenuTrigger>
@@ -826,15 +826,10 @@ export default function AuraAesthetic() {
             />
           </div>
           <div className="flex shrink-0 flex-wrap items-center gap-1">
-            <Button
-              type="button"
-              size="sm"
-              variant="pill"
-              onClick={resetDefaults}
-            >
+            <Button type="button" variant="pill" onClick={resetDefaults}>
               Reset
             </Button>
-            <Button type="button" size="sm" onClick={downloadCSS}>
+            <Button type="button" className="gap-0.5" onClick={downloadCSS}>
               <DownloadIcon className="icon" />
               Download CSS
             </Button>
