@@ -64,7 +64,11 @@ If the user only wants AI context (not full theme rewrite), skip `setup` and use
 #### B. Targeted AI context (typical “old project already on Aura”)
 
 ```bash
-pnpm dlx shadcn@latest add @aura/rules @aura/skills @aura/rule-design-md @aura/eslint-shadcn-lint
+pnpm dlx shadcn@latest add \
+  @aura/rules \
+  @aura/skills \
+  @aura/rule-design-md \
+  @aura/eslint-shadcn-lint
 ```
 
 - `@aura/rules` → `.cursor/rules/`
@@ -125,7 +129,9 @@ Merge into the app’s `eslint.config.mjs` (do **not** replace an existing Next/
 
 ```js
 import { plugin as shadcn } from "@shadcn/lint"
-import { createAuraShadcnLintConfig } from "./eslint.aura-shadcn.mjs"
+import {
+  createAuraShadcnLintConfig,
+} from "./eslint.aura-shadcn.mjs"
 
 export default [
   ...existingConfig,
@@ -149,15 +155,15 @@ Upstream: [shadcn-ui/lint](https://github.com/shadcn-ui/lint). Docs: [Lint](/doc
 
 Confirm after installs:
 
-- [ ] `.cursor/rules/` has Aura foundation rules
-- [ ] `.cursor/skills/port-component-to-aura/SKILL.md` exists
-- [ ] `.cursor/skills/generate-brand-images/SKILL.md` and its generator script exist
-- [ ] `wiki/obsidian-*/01-Identity/Image-Identity.md` exists
-- [ ] `package.json` has `ai:image`; `.env.example` names `GOOGLE_API_KEY`
-- [ ] Root `DESIGN.md` exists (or user declined design-md)
-- [ ] `components.json` includes `@aura`
-- [ ] `.cursor/mcp.json` has shadcn MCP (user must enable in UI)
-- [ ] `@shadcn/lint` installed; `eslint.config.*` spreads `createAuraShadcnLintConfig` (or equivalent); `eslint.aura-shadcn.mjs` / `shadcn-lint` rule present when using the registry item
+- `.cursor/rules/` has Aura foundation rules
+- `.cursor/skills/port-component-to-aura/SKILL.md` exists
+- `.cursor/skills/generate-brand-images/SKILL.md` and its generator script exist
+- `wiki/obsidian-*/01-Identity/Image-Identity.md` exists
+- `package.json` has `ai:image`; `.env.example` names `GOOGLE_API_KEY`
+- Root `DESIGN.md` exists (or user declined design-md)
+- `components.json` includes `@aura`
+- `.cursor/mcp.json` has shadcn MCP (user must enable in UI)
+- `@shadcn/lint` installed; `eslint.config.*` spreads `createAuraShadcnLintConfig` (or equivalent); `eslint.aura-shadcn.mjs` / `shadcn-lint` rule present when using the registry item
 
 Optional smoke: `pnpm dlx shadcn@latest add @aura/button` only if the user asked to install a component; do not add random UI.
 
@@ -191,9 +197,12 @@ Optional smoke: `pnpm dlx shadcn@latest add @aura/button` only if the user asked
 | .cursor/mcp.json | … | … | … |
 | @shadcn/lint + Aura eslint fragment | … | … | … |
 
-**Manual step for you:** enable shadcn MCP in Cursor Settings (if not already green).
+**Manual step for you:** enable shadcn MCP in Cursor
+Settings (if not already green).
 
-**Next:** paste a component URL to port it, or describe a landing page; the agent can plan and generate its identity-aligned image set.
+**Next:** paste a component URL to port it, or
+describe a landing page; the agent can plan and
+generate its identity-aligned image set.
 ```
 
 Stop when the table is accurate. Do not claim MCP is connected if the user still needs to flip the Settings toggle.

@@ -282,6 +282,34 @@ select {
   font-size: max(1rem, 17px);
 }
 
+/*
+ * MDX prose corrections. Unlayered so they beat the fumadocs typography
+ * plugin, which emits its prose rules in the Tailwind utilities layer.
+ */
+
+/* Paths such as `packages/registry/registry/default/components/` offer no
+ * break opportunity, so an unwrapped inline token widens the whole document
+ * and the page scrolls horizontally on narrow viewports. */
+.prose :not(pre) > code {
+  overflow-wrap: anywhere;
+}
+
+/* Markdown task lists render a bare native checkbox, which the Aura form
+ * styles size like a text field (100% wide, calc(var(--aura) * 4) tall).
+ * Keep it at its intrinsic size and drop the bullet it duplicates. */
+.prose ul.contains-task-list {
+  list-style: none;
+  padding-inline-start: 0;
+}
+
+.prose .task-list-item input[type="checkbox"] {
+  width: auto;
+  height: auto;
+  padding: 0;
+  vertical-align: middle;
+  cursor: default;
+}
+
 @layer components {
   article {
     --spacing: 4px;
