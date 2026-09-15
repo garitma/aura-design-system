@@ -31,6 +31,8 @@ a
     border 2px solid
     transition: transform 250ms cubic-bezier(.2,.8,.4,1);
     justify-content: center;
+    // Icons and labels are laid out by the button, never by margins on the icon.
+    gap: var(--aura-button-gap, calc(var(--aura) * 0.5))
     &:disabled
         @extend .disabled
     &:hover&:hover:not(:disabled)
