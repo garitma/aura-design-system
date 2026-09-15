@@ -29,8 +29,8 @@ export const HoverCardDemo = () => (
           <p className="text-sm">
             Designed and built with all the love in the world by @shadcn.
           </p>
-          <div className="flex items-center pt-1">
-            <CalendarIcon className="mr-2 icon" />{" "}
+          <div className="flex items-center gap-0.5 pt-1">
+            <CalendarIcon className="icon" />
             <span className="text-xs text-gray-11">Joined December 2021</span>
           </div>
         </div>
