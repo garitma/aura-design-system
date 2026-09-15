@@ -145,6 +145,8 @@ Sizes use **height utilities** aligned to the **13px grid** (e.g. `h-4`, `h-3`, 
 
 Icon-only buttons should embed **Radix** icons with **`className="icon"`** (no `size` prop).
 
+**Icon + label spacing:** the button owns it. `.button` (and the `button-fill` / `button-pill` / `button-link` / `button-menu` variants) declare **`gap: var(--aura-button-gap)`**, default **`6.5px`** (half a 13px unit). Write **`<Button><PlusIcon className="icon" />Add</Button>`** and add **nothing** else—**never** `mr-*` / `ml-*` on the icon. `Badge` carries the same **`gap-0.5`**. `aura/no-icon-margin` reports (and auto-fixes) manual margins; `ml-auto` / `mr-auto` stay allowed for pushing a trailing icon to the end.
+
 ### Empty (`@aura/empty`)
 
 Composable **empty states** for lists, tables, and panels. **`Empty`** is a centered column with **`border-dashed`** at **`gray-6`**, **`gray-2`** fill, and **`p-2`** on the **13px** grid. **`EmptyHeader`** groups **`EmptyMedia`** (default transparent wrap or **`variant="icon"`** on **`gray-3`**), **`EmptyTitle`** (**`.h5`**, **`gray-12`**), and **`EmptyDescription`** (**`text-sm`**, **`gray-11`**, underlined links that **`hover:text-primary`**). **`EmptyContent`** holds actions—typically a primary **`Button variant='fill'`** and an optional secondary **`variant='pill'`**, with **`gap-1`** between controls when they sit in one row.
@@ -155,7 +157,7 @@ Default **`Card`** uses **`bg-gray-2`**, **`border-gray-6`**, **`rounded-md`**, 
 
 ### Inputs and controls
 
-Aura exposes component-level tokens such as **`--aura-input-radius`**, **`--aura-input-bg`**, **`--aura-input-placeholder-color`**, **`--aura-outline`** (focus), and **`--aura-button-radius`**. Prefer **gray/accent steps** for borders and fills rather than arbitrary hex. **Editorial** recipes (filled **`gray-3`**, **ghost** border at **~10%** opacity, **focus** ring **2px** **`primary`/`accent`**) map cleanly to these tokens when you implement them in app CSS.
+Aura exposes component-level tokens such as **`--aura-input-radius`**, **`--aura-input-bg`**, **`--aura-input-placeholder-color`**, **`--aura-outline`** (focus), **`--aura-button-radius`**, and **`--aura-button-gap`** (icon-to-label spacing inside buttons). Prefer **gray/accent steps** for borders and fills rather than arbitrary hex. **Editorial** recipes (filled **`gray-3`**, **ghost** border at **~10%** opacity, **focus** ring **2px** **`primary`/`accent`**) map cleanly to these tokens when you implement them in app CSS.
 
 ### Editorial surfaces vs control chrome (dual mode)
 
@@ -260,6 +262,7 @@ Aura favors **subtle borders** (**gray 6–8**) and **light shadows** where comp
 - Don't rely on **harsh, tight, high-opacity** neutral **drop shadows**; prefer **soft, tinted, low-opacity** depth (§6) when adding custom elevation.
 - Don't use **0** border-radius on **outer** marketing or page chrome—stay at least **`rounded-sm`** / **`--radius-sm`** (§6).
 - Don't pass **`size={24}`** or width/height on icons—use **`icon`** + typography classes.
+- Don't separate an icon from its label with **`mr-*`** / **`ml-*`**—`Button` and `Badge` already carry the gap, and your own rows should use **`gap-0.5`** on the container.
 - Don't animate **layout properties** (top/left/width/height) except documented exceptions (e.g. Radix **collapsible height** to **`var(--radix-*-content-height)`**).
 - Don't autoplay distracting motion; respect **reduced motion**.
 - For **registry tables and dense lists**, avoid **defaulting to 1px row dividers**—prefer **`py-1`–`py-1.5`** (or similar on the 13px scale) between rows; **`Separator`** remains appropriate between **unrelated** content blocks when product agrees.

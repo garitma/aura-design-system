@@ -22,6 +22,14 @@ alwaysApply: true
   - Medium icon: `className="icon h4"`
   - Large icon: `className="icon h1"`
 
+## Icon Spacing
+
+* **MUST**: Space an icon from its label with `gap` on the container, never with a margin on the icon.
+* **NEVER**: Add `ml-*`, `mr-*`, `mx-*`, `ms-*` or `me-*` to an icon to separate it from text (`aura/no-icon-margin` reports it).
+* **MUST**: Inside `Button` and `Badge`, add nothing—the control already owns the gap (`--aura-button-gap`, `6.5px`, on `.button` and its `button-fill` / `button-pill` / `button-link` / `button-menu` variants; `gap-0.5` on `Badge`).
+* **MUST**: When composing your own icon + text row, put `gap-0.5` (6.5px) on the flex container. Remember `gap-2` is **26px** on the 13px grid, not 8px.
+* **EXCEPTION**: `ml-auto` / `mr-auto` are layout, not spacing—use them to push a trailing icon (e.g. a chevron) to the end.
+
 ## Implementation
 
 ```tsx
@@ -29,8 +37,11 @@ alwaysApply: true
 import { CheckIcon } from "@radix-ui/react-icons";
 <CheckIcon className="icon" />
 <CheckIcon className="icon h1" />
+<Button><CheckIcon className="icon" />Save</Button>
+<div className="flex items-center gap-0.5"><CheckIcon className="icon" />Saved</div>
 
 // Incorrect
 <CheckIcon size={24} />
 <CheckIcon width={24} height={24} />
+<Button><CheckIcon className="icon mr-1" />Save</Button>
 ```

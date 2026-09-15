@@ -15,3 +15,4 @@ After making UI changes, run `pnpm lint` from `apps/www` and fix `@shadcn/lint` 
 - Prefer theme tokens over raw colors; prefer the 13px spacing scale over arbitrary values.
 - Do not restyle design-system components with padding/colors/typography — use variants/sizes, or layout/width only.
 - Form controls (`Input`, `Textarea`, `SelectTrigger`, etc.) own their padding; add a size/variant on the component if the design needs different padding.
+- `Button` and `Badge` own the gap between their icon and their label; never add `mr-*`/`ml-*` to the icon. For your own icon rows use `gap-0.5` (6.5px) on the container.
