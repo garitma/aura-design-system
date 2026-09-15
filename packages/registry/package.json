@@ -94,6 +94,7 @@
     "@types/node": "^20.0.0",
     "@types/react": "^19.0.0",
     "@vitejs/plugin-react": "^5.1.1",
+    "eslint": "^9.39.5",
     "jsdom": "^27.2.0",
     "pptxgenjs": "^4.0.1",
     "typescript": "^5.0.0",
