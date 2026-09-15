@@ -37,7 +37,7 @@ export function ShoppingTag() {
               </div>
               <span className="text-sm font-medium text-gray-12">$120</span>
             </div>
-            <Button className="w-full gap-0.5">
+            <Button className="w-full">
               <ShoppingBag className="icon" />
               Add to Cart
             </Button>
@@ -46,7 +46,7 @@ export function ShoppingTag() {
       </div>
 
       <div className="absolute bottom-2 left-2">
-        <Button className="gap-0.5">
+        <Button>
           <Tag className="icon" />
           <span>Shop Look</span>
         </Button>

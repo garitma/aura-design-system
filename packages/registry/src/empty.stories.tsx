@@ -41,7 +41,7 @@ export const WithActions = () => {
       </EmptyHeader>
       <EmptyContent>
         <div className="flex flex-wrap items-center justify-center gap-1">
-          <Button variant="fill" type="button" className="gap-1">
+          <Button variant="fill" type="button">
             <PlusIcon className="icon" aria-hidden />
             Add item
           </Button>

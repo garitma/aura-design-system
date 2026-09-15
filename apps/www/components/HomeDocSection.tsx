@@ -35,7 +35,7 @@ export default function HomeDocSection({
           </div>
         </div>
         <Button variant="pill" size="default" asChild className="shrink-0">
-          <Link href={href} className="inline-flex items-center gap-1">
+          <Link href={href}>
             View
             <ArrowRightIcon className="icon" />
           </Link>

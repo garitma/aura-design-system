@@ -277,6 +277,7 @@ ${generateExtraVars("gray", lightColors)}
   /* Aura Component Tokens - Mapped to 12-step system */
   --aura-input-radius: 6.5px;
   --aura-button-radius: 6.5px;
+  --aura-button-gap: 6.5px;
   --aura-input-bg: var(--accent-2);
   --aura-input-placeholder-color: var(--gray-11);
   --aura-radius: 0.5rem;

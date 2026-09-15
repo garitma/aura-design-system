@@ -97,8 +97,8 @@ export function ComponentPreview({
         >
           <React.Suspense
             fallback={
-              <div className="flex w-full items-center justify-center text-sm text-muted-foreground">
-                <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+              <div className="flex w-full items-center justify-center gap-0.5 text-sm text-muted-foreground">
+                <ReloadIcon className="icon animate-spin" />
                 Loading...
               </div>
             }

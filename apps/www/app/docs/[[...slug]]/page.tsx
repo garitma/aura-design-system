@@ -105,14 +105,14 @@ export default async function Page(props: PageProps) {
           {links?.doc && (
             <Badge variant="secondary" className="rounded-full" asChild>
               <a href={links.doc} target="_blank" rel="noreferrer">
-                Docs <ArrowTopRightIcon className="icon ml-0.5" />
+                Docs <ArrowTopRightIcon className="icon" />
               </a>
             </Badge>
           )}
           {links?.api && (
             <Badge variant="secondary" className="rounded-full" asChild>
               <a href={links.api} target="_blank" rel="noreferrer">
-                API Reference <ArrowTopRightIcon className="icon ml-0.5" />
+                API Reference <ArrowTopRightIcon className="icon" />
               </a>
             </Badge>
           )}

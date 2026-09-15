@@ -16,6 +16,16 @@ description: Enforce Aura Tailwind policy with @shadcn/lint (no arbitrary values
 * **MUST**: Do not restyle design-system components with padding, colors, or typography via `className` — use **variants/sizes**, or **layout/width** only.
 * **MUST**: Form controls (`Input`, `Textarea`, `SelectTrigger`, `MaskInput`, `SegmentedInput`) **own their padding**. Use layout/width only. If the design needs different padding, **add a size/variant on the component** — do not override padding at the call site.
 * **MUST**: Never put `text-sm` / `text-xs` on editable form controls (Aura floor is **17px**).
+* **MUST**: Never add a horizontal margin to an icon inside `Button` or `Badge` — the control owns the icon/label gap, and `aura/no-icon-margin` reports it (auto-fixable). Space your own icon rows with `gap-0.5` on the container.
+
+## Rules shipped by `eslint.aura-shadcn.mjs`
+
+| Rule | What it catches |
+| --- | --- |
+| `shadcn/no-arbitrary-values` | Values off the 13px scale (`p-[16px]`). |
+| `shadcn/no-raw-colors` | Raw palette colors instead of `accent-*` / `gray-*` / semantic tokens. |
+| `shadcn/no-restyle` | Restyling design-system components through `className`. |
+| `aura/no-icon-margin` | `ml-*` / `mr-*` / `mx-*` / `ms-*` / `me-*` on an icon inside a control that already has a gap. `ml-auto` / `mr-auto` stay allowed. |
 
 ## Setup (if missing)
 

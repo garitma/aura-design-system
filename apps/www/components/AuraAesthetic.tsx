@@ -643,7 +643,7 @@ function ComponentsShowcase() {
                     <span className="text-xs text-gray-11">OR</span>
                     <Separator className="flex-1" />
                   </div>
-                  <Button type="button" size="sm" variant="pill" className="gap-0.5">
+                  <Button type="button" size="sm" variant="pill">
                     <GitHubLogoIcon className="icon" />
                     Continue with GitHub
                   </Button>
@@ -829,7 +829,7 @@ export default function AuraAesthetic() {
             <Button type="button" variant="pill" onClick={resetDefaults}>
               Reset
             </Button>
-            <Button type="button" className="gap-0.5" onClick={downloadCSS}>
+            <Button type="button" onClick={downloadCSS}>
               <DownloadIcon className="icon" />
               Download CSS
             </Button>
