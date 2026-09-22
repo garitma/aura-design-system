@@ -1,0 +1,177 @@
+---
+title: pstack
+description: How Lauren Tan’s pstack and /poteto-mode fit Aura — install, trust model, and how they work with Aura rules, skills, lint, and the agent blueprint.
+icon: Route
+---
+
+# pstack
+
+How Aura uses Lauren Tan’s **pstack** so developers and agents ship design-system work with trust—not more slop.
+
+Aura already gives agents a **visual contract** (rules, `DESIGN.md`, [`@shadcn/lint`](/docs/lint)) and **procedures** (skills like [`port-component-to-aura`](/docs/mcp), the [Agent blueprint](/docs/mcp-agent-blueprint)). **pstack** adds the missing layer: **engineering playbooks + verification**—the same habits Lauren Tan open-sourced as a Cursor plugin so agents can investigate, design, implement, prove, and ship like a careful teammate.
+
+This page is context for humans and for agents. Prefer `/poteto-mode` for multi-step or risky changes. Keep Aura skills for porting UI and brand images. Keep lint and rules as the **Gardener** gates.
+
+Audit and install steps for a whole project live in the [Agent blueprint](/docs/mcp-agent-blueprint)—this page does not duplicate that runbook.
+
+## What pstack is
+
+**pstack** is a Cursor marketplace plugin (skills + playbooks + principles). The main entry is:
+
+```text
+/poteto-mode
+```
+
+You describe the goal and how you’ll know it’s done. `poteto-mode` picks a playbook (bug fix, feature, refactor, investigation, perf, …), builds a visible task list, calls specialist skills when needed, and **demands evidence** before “done.”
+
+Internally Lauren called her mode `/lauren-mode`; in the public plugin it is `/poteto-mode`.
+
+pstack is **not** a replacement for:
+
+| Aura layer | Job |
+| --- | --- |
+| [MCP](/docs/mcp) + shadcn | Catalog / fetch registry items |
+| [Rules](/docs/rules) + `DESIGN.md` | Always-on Aura visual constraints |
+| Aura skills | `port-component-to-aura`, `generate-brand-images`, … |
+| [`@shadcn/lint`](/docs/lint) | Machine-check spacing / colors / restyle |
+| [Agent blueprint](/docs/mcp-agent-blueprint) | Audit + install AI context on a project |
+
+pstack sits **beside** those: playbooks for hard work, verification on the real artifact, multi-model review when needed.
+
+Marketplace: [pstack on Cursor](https://cursor.com/marketplace/cursor/pstack) (plugin id `9717366`).
+
+## Why Aura cares (trust before scale)
+
+Lauren’s thesis (shipping thousands of PRs with cloud agents): **trust is the bottleneck**. Spawning more agents without verification and a paved codebase creates regressions and “slop PRs.”
+
+Patterns that map cleanly onto a design system:
+
+1. **Codebase as memory** — Agents extend what they see. Clean Aura patterns get copied; hacks go viral.
+2. **Gardener** — Someone (or CI + lint) keeps one paved path; delete anti-patterns before agents multiply them.
+3. **Hierarchy of correction** (strong → weak): make bad code impossible in architecture → linters → rules/Bugbot → skills → style guide / human review alone.
+4. **Verification** — “CI green” is not enough. Drive the real UI (Ladle stories, docs, package exports) and capture proof.
+5. **Feature map** — Materialized map of how to reach and assert features so agents can navigate DS surfaces.
+
+Aura’s tokens, registry ownership model, and `@shadcn/lint` are already Gardener tools. pstack teaches agents **how to work**; Aura rules teach them **what good UI looks like**.
+
+## Install (easy path)
+
+### 1. Cursor plugin (preferred)
+
+In a Cursor chat on your Aura consumer app **or** the [`garitma/aura-design-system`](https://github.com/garitma/aura-design-system) monorepo:
+
+```text
+/add-plugin pstack
+```
+
+Pick **pstack**, then:
+
+```text
+/setup-pstack
+```
+
+That writes optional model-role overrides to `~/.cursor/rules/pstack-models.mdc`. Start a **new chat**, then:
+
+```text
+/poteto-mode <what you want>
+Done means <something the agent can run or inspect>.
+Keep <behavior that must not change>.
+```
+
+Marketplace plugin id: `9717366` (also listed as pstack for Grok Bot). Account install helps Grok Bots; still run `/setup-pstack` in the IDE for local model roles.
+
+### 2. Wire Aura AI context first (if the project is incomplete)
+
+For an existing app, prefer the agent runbook:
+
+```text
+Ejecuta https://auradesignsystem.com/docs/mcp-agent-blueprint
+```
+
+That audits/installs Aura rules, skills, `DESIGN.md`, shadcn MCP, lint, and also **audits pstack** (see blueprint § E). Use that page for the full check table.
+
+Targeted AI context without full theme rewrite:
+
+```bash
+pnpm dlx shadcn@latest add \
+  @aura/rules \
+  @aura/skills \
+  @aura/rule-design-md \
+  @aura/eslint-shadcn-lint
+```
+
+(`@aura/skills` includes `port-component-to-aura` and `generate-brand-images`. See [MCP](/docs/mcp) and [Lint](/docs/lint).)
+
+### 3. Cloud agents caveat
+
+Cloud Agents run on a remote VM. Marketplace plugins **sometimes do not load** there even when installed locally. If `/poteto-mode` is missing on a cloud agent:
+
+- Prompt in plain words: “use pstack / poteto-mode …”
+- Prefer [cursor.com/agents](https://cursor.com/agents) if desktop autocomplete hides the skill
+- Optional (team decision): thin repo skill under `.cursor/skills/` or monorepo `AGENTS.md` requiring poteto-mode — **do not** vendor the entire pstack plugin into every consumer app by default
+
+### 4. Monorepo `AGENTS.md`
+
+On `garitma/aura-design-system`, keep a short [`AGENTS.md`](https://github.com/garitma/aura-design-system/blob/canary/AGENTS.md) + Aura constraint skills (tokens, exports, stories, no drive-by API changes). That is Aura-specific pavement; pstack remains the general engineering router.
+
+## How to work day to day
+
+### Humans
+
+- Small UI tweak → Aura skill / normal Cursor chat + `pnpm lint`.
+- Multi-step, bug with unclear cause, refactor, or “ship while I sleep” → `/poteto-mode` with an explicit **Done means**.
+- After UI edits → always `pnpm lint` (Aura `@shadcn/lint` policy).
+
+### Agents (read this)
+
+When this page is in context or the user asks for rigorous Aura work:
+
+1. Prefer `/poteto-mode` for non-trivial tasks; put **Done means** in the same message.
+2. Obey Aura [rules](/docs/rules) / `DESIGN.md` / [lint](/docs/lint) (13px spacing, accent/gray tokens, no restyle on form controls, mobile inputs ≥ 17px).
+3. **Consumer project:** write into app aliases; do not invent Ladle/registry metadata.
+4. **Aura monorepo:** registry mode — component + `Default` story + metadata + `registry:generate` / `registry:build` as in [MCP](/docs/mcp) docs.
+5. Do not claim verification you did not run. Prefer real Ladle stories, docs pages, or export checks.
+6. Never invent API keys. Never force-push.
+
+### Example prompts
+
+Read-only orientation:
+
+```text
+/poteto-mode how does @aura button spacing and variants map to the 13px scale in this repo?
+Done means cite real file paths. Do not edit.
+```
+
+Consumer change:
+
+```text
+/poteto-mode port this dialog to Aura tokens in our app.
+Done means it compiles, matches DESIGN.md, and pnpm lint is clean for touched files.
+```
+
+Monorepo registry:
+
+```text
+/poteto-mode add a new @aura checkbox following existing registry patterns.
+Done means Default story + metadata + registry generate/build succeed.
+```
+
+## Useful pstack commands (cheat sheet)
+
+You do not need all of these daily. `/poteto-mode` routes most work.
+
+| Command | Use when |
+| --- | --- |
+| `/poteto-mode` | Default router for non-trivial work |
+| `/setup-pstack` | First-time model/role setup |
+| `/add-plugin pstack` | Install marketplace plugin |
+
+For the full skill set and playbooks, see the [pstack marketplace page](https://cursor.com/marketplace/cursor/pstack) and [pstack guide](https://github.com/cursor/plugins/tree/main/pstack/docs/guide).
+
+## Related
+
+- [Agent blueprint](/docs/mcp-agent-blueprint) — audit + install Aura AI context + pstack check
+- [MCP](/docs/mcp) — shadcn MCP, rules, and Aura skills
+- [Lint](/docs/lint) — `@shadcn/lint` Gardener gates
+- [Rules](/docs/rules) — install `@aura/rules`
+- Monorepo [`AGENTS.md`](https://github.com/garitma/aura-design-system/blob/canary/AGENTS.md) — Aura-specific agent constraints

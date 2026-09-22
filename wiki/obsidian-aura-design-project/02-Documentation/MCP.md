@@ -1,12 +1,11 @@
 ---
 title: MCP and skills
-date: 2026-09-11
+date: 2026-09-22
 tags: [dev-log, documentation, architecture]
 ---
 ## Summary
-Public docs: `/docs/lint` (guide), `/docs/mcp` (overview), `/docs/mcp-agent-blueprint` (agent runbook § D). Runbook installs `@aura/eslint-shadcn-lint` + `@shadcn/lint`. Not the CLI `aura blueprint` command.
-
+Public docs: `/docs/lint`, `/docs/mcp`, `/docs/mcp-agent-blueprint` (runbook), and `/docs/pstack` (Getting Started: trust model + easy install for `/poteto-mode`). Blueprint audits/offers marketplace pstack as additive rigor. No Famity; no full vendor.
 
 ## Context
-- Related: [[Site and docs app]] · [[Registry]] · [[CLI]]
-- Implementation Path: `apps/www/content/docs/mcp-agent-blueprint.mdx`, `apps/www/content/docs/mcp.mdx`, `.cursor/skills/port-component-to-aura/SKILL.md`
+- Related: [[Site and docs app]] · [[Registry]] · [[CLI]] · [[Internal progress]]
+- Implementation Path: `apps/www/content/docs/pstack.mdx`, `apps/www/content/docs/mcp-agent-blueprint.mdx`, `AGENTS.md`

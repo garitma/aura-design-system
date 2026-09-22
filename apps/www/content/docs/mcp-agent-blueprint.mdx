@@ -1,6 +1,6 @@
 ---
 title: Agent blueprint
-description: Paste this URL to an agent with “Ejecuta” — audit and install MCP, rules, skills, and DESIGN.md on an existing project.
+description: Paste this URL to an agent with “Ejecuta” — audit and install MCP, rules, skills, DESIGN.md, lint, and optional pstack / poteto-mode on an existing Aura project.
 icon: Bot
 ---
 
@@ -43,9 +43,13 @@ Check and record **present / missing** for each:
 | Gemini image env | `.env.example` names `GOOGLE_API_KEY`; only check whether `.env` has `GOOGLE_API_KEY` or `GEMINI_API_KEY`, never print its value |
 | shadcn MCP | `.cursor/mcp.json` (or user MCP) with `shadcn` → `npx shadcn@latest mcp` |
 | `@shadcn/lint` | Dep `@shadcn/lint` present; `eslint.config.*` registers `shadcn/*` rules; optional `eslint.aura-shadcn.mjs` + `.cursor/rules/shadcn-lint.mdc` |
+| pstack / `/poteto-mode` | Marketplace plugin **pstack** enabled for this Cursor workspace **or** project has a usable poteto-mode entry (e.g. `.cursor/skills/poteto-mode/SKILL.md` or `AGENTS.md` explicitly requiring `/poteto-mode`). Record: `plugin` / `repo-skill` / `missing` |
+| pstack model setup (optional) | User-level `~/.cursor/rules/pstack-models.mdc` exists after `/setup-pstack` — note present/missing; do **not** fail the Aura blueprint if missing |
 | Package manager | Prefer `pnpm`; fall back to npm/yarn if that is what the repo uses |
 
 Also note: Tailwind/Aura CSS already applied? (`globals.css` with accent/gray scales, or prior `aura setup` / `init`).
+
+**Cloud agents:** marketplace plugins may not load reliably on cloud VMs. Prefer detecting repo-local skill / `AGENTS.md`, and report **plugin unknown on cloud VM** honestly — never claim pstack is installed if `/poteto-mode` does not resolve.
 
 ### 2. Install / fix gaps
 
@@ -151,6 +155,30 @@ Keep `no-restyle` / `no-arbitrary-values` **off** under `components/ui/**`. Ensu
 
 Upstream: [shadcn-ui/lint](https://github.com/shadcn-ui/lint). Docs: [Lint](/docs/lint).
 
+#### E. pstack (agent rigor / poteto-mode)
+
+Additive **agent-rigor** layer (verification + playbooks). It does **not** replace `@aura/rules`, Aura skills, `DESIGN.md`, shadcn MCP, or `@shadcn/lint`.
+
+**When to install:** Always offer when missing on an Aura **consumer** or **aura-monorepo** workspace where the user is using Cursor agents. Skip only if the user said “Aura UI context only, no pstack.”
+
+**Easy path (preferred)** — Cursor marketplace plugin `pstack` (id `9717366`). Prefer this over vendoring `backnotprop/pstack` into apps:
+
+```text
+1. In Cursor chat on this project: /add-plugin pstack
+2. Pick pstack in the plugin picker
+3. /setup-pstack
+4. Start a new chat
+5. Smoke: /poteto-mode <small read-only task>. Done means <checkable>. Do not edit unless asked.
+```
+
+**Aura monorepo:** if scenario is `aura-monorepo`, link root [`AGENTS.md`](https://github.com/garitma/aura-design-system/blob/canary/AGENTS.md) (and `.cursor/skills/aura-constraints/`, `.cursor/skills/aura-verification/`) — do **not** duplicate a full pstack vendor into the registry.
+
+**Cloud agent note:** If `/poteto-mode` is not found on a cloud agent, say so in the result table. Workarounds: (1) open [cursor.com/agents](https://cursor.com/agents) and prompt “use /poteto-mode (pstack) …”; (2) optional thin `.cursor/skills/poteto-mode/SKILL.md` committed only when the team opts in — do **not** auto-vendor the full plugin.
+
+**Grok Bot note:** Account install of marketplace plugin `9717366` enables pstack skills for Grok Bots; still run `/setup-pstack` in Cursor IDE for local model roles.
+
+**Do not:** `git clone` pstack into `node_modules` or app `src/`; do not replace Aura lint/rules with pstack principles.
+
 ### 3. Verify
 
 Confirm after installs:
@@ -164,6 +192,8 @@ Confirm after installs:
 - `components.json` includes `@aura`
 - `.cursor/mcp.json` has shadcn MCP (user must enable in UI)
 - `@shadcn/lint` installed; `eslint.config.*` spreads `createAuraShadcnLintConfig` (or equivalent); `eslint.aura-shadcn.mjs` / `shadcn-lint` rule present when using the registry item
+- pstack available: `/poteto-mode` resolves in this environment **or** documented missing with reason (local plugin / cloud gap / user skipped)
+- If installed (or install was offered): agent can state that `/setup-pstack` was offered or completed
 
 Optional smoke: `pnpm dlx shadcn@latest add @aura/button` only if the user asked to install a component; do not add random UI.
 
@@ -176,6 +206,8 @@ Optional smoke: `pnpm dlx shadcn@latest add @aura/button` only if the user asked
 - **Batch landing flow:** inspect the landing, create one manifest for the necessary image set, run `pnpm ai:image -- --manifest <path>`, integrate accepted local assets, then record their paths in the wiki.
 - **Mobile form UX (critical):** `input` / `textarea` / `select` font-size **MUST be ≥ 17px**. Never put `text-sm` or `text-xs` on editable fields—iOS Safari zooms on focus below that size. Keep `html { font-size: 17px; }` and the global floor in `styles/main.css` (`font-size: max(1rem, 17px)`). See [Typography rules](/docs/rules/fundations-typography) and `DESIGN.md`.
 - **Design lint:** after UI edits, run `pnpm lint` (or the app’s lint script) and clear `@shadcn/lint` warnings. Form controls own padding — add a size/variant on the component if spacing must change.
+- **Hard engineering / multi-step changes:** prefer `/poteto-mode` (pstack) with an explicit **Done means** check. Keep Aura skills for porting components (`port-component-to-aura`), brand images, and `DESIGN.md`. Use `@shadcn/lint` + Aura rules as the **Gardener** gates; use pstack for playbooks + verification. After UI edits still run `pnpm lint`.
+- **Verification skill (optional):** `/create-verification-skill` is **project-local**. Inside the Aura monorepo it should target Aura surfaces (Ladle stories, token docs, package exports) — not product-app flows unless the consumer asks.
 - Concepts: [MCP overview](/docs/mcp) · [Rules](/docs/rules) · [Installation](/docs/installation)
 
 ### 5. Final reply to the user (required format)
@@ -196,21 +228,28 @@ Optional smoke: `pnpm dlx shadcn@latest add @aura/button` only if the user asked
 | Gemini image command | … | … | … |
 | .cursor/mcp.json | … | … | … |
 | @shadcn/lint + Aura eslint fragment | … | … | … |
+| pstack / poteto-mode | … | … | … |
+| pstack-models setup (optional) | … | … | … |
 
 **Manual step for you:** enable shadcn MCP in Cursor
-Settings (if not already green).
+Settings (if not already green). If pstack was offered,
+finish `/add-plugin pstack` → `/setup-pstack` in Cursor desktop
+when you are not already set up.
 
 **Next:** paste a component URL to port it, or
 describe a landing page; the agent can plan and
-generate its identity-aligned image set.
+generate its identity-aligned image set. For rigorous /
+multi-step changes, paste a `/poteto-mode … Done means …`
+task after the blueprint finishes.
 ```
 
-Stop when the table is accurate. Do not claim MCP is connected if the user still needs to flip the Settings toggle.
+Stop when the table is accurate. Do not claim MCP is connected if the user still needs to flip the Settings toggle. Do not claim pstack/`/poteto-mode` is available if the plugin did not resolve (especially on cloud agents).
 
 ---
 
 ## Related
 
+- [pstack](/docs/pstack) — what `/poteto-mode` is, why Aura uses it, easy install
 - [Lint](/docs/lint) — `@shadcn/lint` setup and Aura policy
 - [MCP](/docs/mcp) — what MCP/skills/rules are
 - [Rules](/docs/rules) — install `@aura/rules`
