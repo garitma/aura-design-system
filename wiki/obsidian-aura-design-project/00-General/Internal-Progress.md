@@ -4,9 +4,9 @@ date: 2026-09-22
 tags: [dev-log, agents]
 ---
 ## Summary
-Added root `AGENTS.md` plus project-local Cursor skills `aura-constraints` and `aura-verification`, with a thin `.cursor/rules/agents-md.mdc` pointer. Agent paved-path guidance for this monorepo without vendoring pstack or touching product apps.
+Extended `/docs/mcp-agent-blueprint` so `Ejecuta` audits and offers marketplace pstack / `/poteto-mode` (additive; no vendor). Sibling to merged AGENTS.md / Aura-local skills work.
 
 ## Context
-- Related: [[Onboarding]] [[Vision]]
-- Implementation Path: `AGENTS.md`, `.cursor/skills/aura-constraints/SKILL.md`, `.cursor/skills/aura-verification/SKILL.md`
-- Next: humans continue using `/setup-pstack` + `/poteto-mode` in Cursor desktop for marketplace pstack
+- Related: [[MCP]] [[Onboarding]]
+- Implementation Path: `apps/www/content/docs/mcp-agent-blueprint.mdx`
+- Next: Pablo review/merge; humans still finish `/add-plugin pstack` + `/setup-pstack` in Cursor desktop
