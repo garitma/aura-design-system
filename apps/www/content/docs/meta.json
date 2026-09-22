@@ -12,6 +12,7 @@
       "cli",
       "mcp",
       "mcp-agent-blueprint",
+      "pstack",
       "lint",
       "---Handbook---",
       "handbook/index",
