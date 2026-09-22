@@ -1,12 +1,12 @@
 ---
 title: Internal progress
-date: 2026-09-14
-tags: [dev-log]
+date: 2026-09-22
+tags: [dev-log, agents]
 ---
 ## Summary
-Distributed `@shadcn/lint` via registry (`@aura/eslint-shadcn-lint`) and documented install in Agent blueprint § D. Source policy lives in `packages/registry/registry/default/lint/eslint.aura-shadcn.mjs`; `apps/www` imports it.
+Added root `AGENTS.md` plus project-local Cursor skills `aura-constraints` and `aura-verification`, with a thin `.cursor/rules/agents-md.mdc` pointer. Agent paved-path guidance for this monorepo without vendoring pstack or touching product apps.
 
 ## Context
-- Related: [[shadcn-lint]] [[MCP]] [[Registry]]
-- Implementation Path: `apps/www/content/docs/mcp-agent-blueprint.mdx`
-- Next: promote lint rules from `warn` → `error` after baseline cleanup
+- Related: [[Onboarding]] [[Vision]]
+- Implementation Path: `AGENTS.md`, `.cursor/skills/aura-constraints/SKILL.md`, `.cursor/skills/aura-verification/SKILL.md`
+- Next: humans continue using `/setup-pstack` + `/poteto-mode` in Cursor desktop for marketplace pstack
