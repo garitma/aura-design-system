@@ -53,6 +53,9 @@ import {
   AvatarGroupDemoCustomOverflow,
   AvatarGroupDemoWithIcons
 } from "./avatar-group-demo"
+import {
+  BadgeDemo
+} from "./badge-demo"
 import { 
   BadgeOverflowDemo,
   BadgeOverflowDemoWithObjects,
@@ -188,6 +191,9 @@ import {
 import { 
   HoverCardDemo
 } from "./hover-card-demo"
+import {
+  InputDemo
+} from "./input-demo"
 import { 
   InputGroupDemo,
   InputGroupDemoInlineEnd,
@@ -205,6 +211,9 @@ import {
   KbdDemoComplexShortcuts,
   KbdDemoGroup
 } from "./kbd-demo"
+import {
+  LabelDemo
+} from "./label-demo"
 import { 
   MarkerDemo,
   MarkerDemoVariants,
@@ -375,9 +384,15 @@ import {
   SwitchDemoWithDescription,
   SwitchGroupDemo
 } from "./switch-demo"
+import {
+  TableDemo
+} from "./table-demo"
 import { 
   TabsDemo
 } from "./tabs-demo"
+import {
+  TextareaDemo
+} from "./textarea-demo"
 import { 
   ToggleDemo,
   ToggleIconsDemo
@@ -388,6 +403,9 @@ import {
 import { 
   TooltipDemo
 } from "./tooltip-demo"
+import {
+  VisuallyHiddenInputDemo
+} from "./visually-hidden-input-demo"
 
 export const Registry = {
   "accordion-demo": {
@@ -491,6 +509,9 @@ export const Registry = {
   },
   "avatar-group-demo-with-icons": {
     component: AvatarGroupDemoWithIcons,
+  },
+  "badge-demo": {
+    component: BadgeDemo,
   },
   "badge-overflow-demo": {
     component: BadgeOverflowDemo,
@@ -771,6 +792,9 @@ export const Registry = {
   "hover-card-demo": {
     component: HoverCardDemo,
   },
+  "input-demo": {
+    component: InputDemo,
+  },
   "input-group-demo": {
     component: InputGroupDemo,
   },
@@ -809,6 +833,9 @@ export const Registry = {
   },
   "kbd-demo-group": {
     component: KbdDemoGroup,
+  },
+  "label-demo": {
+    component: LabelDemo,
   },
   "marker-demo": {
     component: MarkerDemo,
@@ -1146,8 +1173,14 @@ export const Registry = {
   "switch-demo-switch-group": {
     component: SwitchGroupDemo,
   },
+  "table-demo": {
+    component: TableDemo,
+  },
   "tabs-demo": {
     component: TabsDemo,
+  },
+  "textarea-demo": {
+    component: TextareaDemo,
   },
   "toggle-demo": {
     component: ToggleDemo,
@@ -1160,6 +1193,9 @@ export const Registry = {
   },
   "tooltip-demo": {
     component: TooltipDemo,
+  },
+  "visually-hidden-input-demo": {
+    component: VisuallyHiddenInputDemo,
   },
 } as const
 

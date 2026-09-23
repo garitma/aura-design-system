@@ -1,0 +1,3 @@
+header:
+  description: A responsive table for organizing related data into rows and columns.
+extends: _templates/content.yml

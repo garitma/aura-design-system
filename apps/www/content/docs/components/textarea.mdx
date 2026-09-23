@@ -1,0 +1,88 @@
+---
+title: Textarea
+description: A multi-line text input for longer form content.
+---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="textarea-demo" description="A multi-line text input for longer form content.">
+
+```tsx
+import { Textarea } from "@/components/ui/Textarea"
+
+export function TextareaDemo() {
+  return (
+    <Textarea
+      aria-label="Review notes"
+      placeholder="Add notes for the component review..."
+    />
+  )
+}
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/textarea
+```
+
+
+
+### Manual
+
+<Steps>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Textarea component into your `components/ui/Textarea.tsx` file.
+
+```tsx
+/**
+ * @description Multi-line text input.
+ */
+import * as React from "react";
+
+import { cn } from "@/utils/class-names";
+
+const Textarea = React.forwardRef<
+  HTMLTextAreaElement,
+  React.ComponentProps<"textarea">
+>(({ className, ...props }, ref) => {
+  return (
+    <textarea
+      data-slot="textarea"
+      ref={ref}
+      className={cn(
+        "flex min-h-20 w-full rounded-md border border-gray-6 bg-gray-1 px-2 py-1.5 text-gray-12 placeholder:text-gray-11 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-8 disabled:cursor-not-allowed disabled:opacity-50",
+        className,
+      )}
+      {...props}
+    />
+  );
+});
+Textarea.displayName = "Textarea";
+
+export { Textarea };
+
+```
+  </Step>
+</Steps>
+

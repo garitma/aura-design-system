@@ -1,6 +1,8 @@
 import { Badge } from "../registry/default/components/ui/Badge"
 
-export const Default = () => <Badge>Badge</Badge>
+export function Default() {
+    return <Badge>Badge</Badge>
+}
 
 export const Secondary = () => <Badge variant="secondary">Secondary</Badge>
 

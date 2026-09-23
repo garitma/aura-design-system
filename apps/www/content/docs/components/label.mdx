@@ -7,6 +7,30 @@ import { ComponentPreview } from "@/components/ComponentPreview"
 import { ComponentSource } from "@/components/ComponentSource"
 import { Steps, Step } from "fumadocs-ui/components/steps"
 
+## Preview
+
+<ComponentPreview name="label-demo" description="Renders an accessible label associated with form controls.">
+
+```tsx
+import { Input } from "@/components/ui/Input"
+import { Label } from "@/components/ui/Label"
+
+export function LabelDemo() {
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-0.5">
+      <Label htmlFor="label-preview-email">Email address</Label>
+      <Input
+        id="label-preview-email"
+        type="email"
+        placeholder="name@example.com"
+      />
+    </div>
+  )
+}
+```
+
+</ComponentPreview>
+
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
 ```bash
