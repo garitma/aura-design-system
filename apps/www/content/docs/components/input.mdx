@@ -7,6 +7,26 @@ import { ComponentPreview } from "@/components/ComponentPreview"
 import { ComponentSource } from "@/components/ComponentSource"
 import { Steps, Step } from "fumadocs-ui/components/steps"
 
+## Preview
+
+<ComponentPreview name="input-demo" description="Displays a form input field or a component that looks like an input field.">
+
+```tsx
+import { Input } from "@/components/ui/Input"
+
+export function InputDemo() {
+  return (
+    <Input
+      aria-label="Email address"
+      type="email"
+      placeholder="name@example.com"
+    />
+  )
+}
+```
+
+</ComponentPreview>
+
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
 ```bash

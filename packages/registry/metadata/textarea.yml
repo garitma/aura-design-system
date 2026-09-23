@@ -1,0 +1,3 @@
+header:
+  description: A multi-line text input for longer form content.
+extends: _templates/content.yml
