@@ -1,12 +1,13 @@
 ---
 title: Internal progress
-date: 2026-09-22
-tags: [dev-log, agents]
+date: 2026-09-23
+tags: [dev-log, documentation]
 ---
 ## Summary
-Added Getting Started `/docs/pstack` (nav after Agent blueprint) and extended the agent blueprint to audit/offer marketplace pstack. Docs only; no vendor, no Famity.
+Added generated Preview sections for Badge, Input, Label, and Visually Hidden Input. Created Table and Textarea docs with Preview, installation, and manual source sections so all six component routes are available for UX review.
 
 ## Context
-- Related: [[MCP]] [[Onboarding]]
-- Implementation Path: `apps/www/content/docs/pstack.mdx`, `apps/www/content/docs/meta.json`, `apps/www/content/docs/mcp-agent-blueprint.mdx`
-- Next: Pablo review/merge of PR #81
+- Related: [[Bootstrap]]
+- Implementation Path: `packages/registry/src/*.stories.tsx`, `packages/registry/metadata/`, `apps/www/content/docs/components/`
+- Verification: Production build passed; all six local routes returned 200 and rendered usable previews.
+- Next: Review and merge PR #82.
