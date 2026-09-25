@@ -5,7 +5,7 @@ import {
   useMemo,
 } from "react";
 import { Languages, Sidebar as SidebarIcon } from "lucide-react";
-import Link from "fumadocs-core/link";
+import { BrandLockup } from "@/components/brand/BrandLockup";
 import type * as PageTree from "fumadocs-core/page-tree";
 import { NavProvider } from "@/components/layout/contexts/layout";
 import { TreeContextProvider } from "fumadocs-ui/contexts/tree";
@@ -208,13 +208,12 @@ export function DocsLayout({
     const content = (
       <SidebarContent {...rest}>
         <SidebarHeader>
-          <div className="flex">
-            <Link
+          <div className="flex min-w-0 items-center gap-0.5">
+            <BrandLockup
               href={nav.url ?? "/"}
-              className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap font-medium me-auto"
-            >
-              {nav.title}
-            </Link>
+              compact
+              className="me-auto min-w-0"
+            />
             {nav.children}
             {collapsible && (
               <SidebarCollapseTrigger
@@ -300,14 +299,9 @@ export function DocsLayout({
         {nav.enabled !== false &&
           (nav.component ?? (
             <Navbar className="h-(--fd-nav-height) on-root:[--fd-nav-height:56px] md:on-root:[--fd-nav-height:0px] md:hidden">
-              <Link
-                href={nav.url ?? "/"}
-                className="inline-flex shrink-0 items-center gap-2.5 whitespace-nowrap font-semibold"
-              >
-                {nav.title}
-              </Link>
-              <div className="flex-1">{nav.children}</div>
-              <div className="flex items-center gap-0.5">
+              <BrandLockup href={nav.url ?? "/"} className="min-w-0" />
+              <div className="min-w-0 flex-1">{nav.children}</div>
+              <div className="flex shrink-0 items-center gap-0.5">
               <SearchDialogTriggerIcon />
              
               {sidebarEnabled && (

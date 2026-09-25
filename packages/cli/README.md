@@ -17,7 +17,7 @@ pnpm dlx @aura-design/cli@latest spacing
 ## Documentation
 
 - Public docs: [auradesignsystem.com/docs/cli](https://auradesignsystem.com/docs/cli)
-- Source: `packages/cli` in [aura-design-system](https://github.com/garitma/aura-design-system)
+- Source: `packages/cli` in [aura-design-system](https://github.com/somosgented/aura-design-system)
 
 ## Develop
 

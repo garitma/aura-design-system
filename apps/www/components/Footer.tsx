@@ -14,7 +14,7 @@ export default function Footer() {
           <div className="flex items-center gap-4">
             <Button variant="pill" size="icon" asChild>
               <Link
-                href="https://github.com/garitma/aura-design-system"
+                href="https://github.com/somosgented/aura-design-system"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"

@@ -21,10 +21,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/garitma/aura-design-system.git"
+    "url": "git+https://github.com/somosgented/aura-design-system.git"
   },
   "bugs": {
-    "url": "https://github.com/garitma/aura-design-system/issues"
+    "url": "https://github.com/somosgented/aura-design-system/issues"
   },
   "scripts": {
     "build": "tsc --build && rm -rf dist/templates && mkdir -p dist/templates && cp -R templates/. dist/templates/",

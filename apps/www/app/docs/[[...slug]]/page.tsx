@@ -84,7 +84,7 @@ export default async function Page(props: PageProps) {
   const attributes = parseFrontmatter(raw);
   const links = attributes.links || {};
   const markdownUrl = getPageMarkdownUrl(page).url;
-  const githubUrl = `https://github.com/garitma/aura-design-system/blob/canary/apps/www/content/docs/${page.path}`;
+  const githubUrl = `https://github.com/somosgented/aura-design-system/blob/canary/apps/www/content/docs/${page.path}`;
 
   return (
     <DocsPage

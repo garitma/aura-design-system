@@ -1,6 +1,6 @@
 # Vision
 
-**Aura** is Garitma’s design system: a **registry-first**, **shadcn-style** workflow (copy source into consuming apps, own the code, update via CLI). This repo holds the **documentation site**, **registry**, **CLI**, **styled-system** tokens, and **component/design** packages.
+**Aura** is Somos Gente Digital’s design system: a **registry-first**, **shadcn-style** workflow (copy source into consuming apps, own the code, update via CLI). This repo holds the **documentation site**, **registry**, **CLI**, **styled-system** tokens, and **component/design** packages.
 
 ## Why this shape
 
