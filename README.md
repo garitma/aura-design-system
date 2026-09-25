@@ -23,9 +23,9 @@ Internal notes, onboarding, identity, and how the docs site fits together are in
 
 ## Releases & community
 
-- [Releases](https://github.com/garitma/aura-design-system/releases)
-- [Issues](https://github.com/garitma/aura-design-system/issues)
+- [Releases](https://github.com/somosgented/aura-design-system/releases)
+- [Issues](https://github.com/somosgented/aura-design-system/issues)
 
 ## License
 
-[MIT](LICENSE) · Copyright © 2020-present Garitma.
+[MIT](LICENSE) · Copyright © 2020-present Somos Gente Digital.

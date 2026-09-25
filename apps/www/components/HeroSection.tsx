@@ -69,7 +69,7 @@ export default function HeroSection() {
           </Button>
           <Button variant="pill" size="lg" asChild>
             <Link
-              href="https://github.com/garitma/aura-design-system"
+              href="https://github.com/somosgented/aura-design-system"
               target="_blank"
               rel="noopener noreferrer"
             >

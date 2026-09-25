@@ -5,7 +5,7 @@ import chalk from "chalk";
 
 /** Canonical Aura shadcn config (same source as the docs site). */
 export const AURA_COMPONENTS_JSON_URL =
-  "https://raw.githubusercontent.com/garitma/aura-design-system/main/apps/www/components.json";
+  "https://raw.githubusercontent.com/somosgented/aura-design-system/main/apps/www/components.json";
 
 export function registerLinkCommand(program: Command) {
   program

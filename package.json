@@ -1,16 +1,16 @@
 {
   "name": "aura-design-project",
   "version": "0.0.0",
-  "description": "Garitma's Design system",
+  "description": "Somos Gente Digital's Design system",
   "author": "Pablo Orozco <me@pablopvsky.com",
   "license": "MIT",
   "homepage": "https://auradesignsystem.com",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/garitma/aura-design-system.git"
+    "url": "git+https://github.com/somosgented/aura-design-system.git"
   },
   "bugs": {
-    "url": "https://github.com/garitma/aura-design-system/issues"
+    "url": "https://github.com/somosgented/aura-design-system/issues"
   },
   "scripts": {
     "dev": "pnpm npx turbo dev",

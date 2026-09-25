@@ -1,12 +1,12 @@
 ---
 title: Internal progress
-date: 2026-09-22
+date: 2026-09-25
 tags: [dev-log, agents]
 ---
 ## Summary
-Added Getting Started `/docs/pstack` (nav after Agent blueprint) and extended the agent blueprint to audit/offer marketplace pstack. Docs only; no vendor, no Famity.
+Replaced the docs/marketing header wordmark with an Aura + Somos Gente Digital “Made by” lockup. GitHub org links in the site and package metadata now point at `somosgented/aura-design-system`.
 
 ## Context
-- Related: [[MCP]] [[Onboarding]]
-- Implementation Path: `apps/www/content/docs/pstack.mdx`, `apps/www/content/docs/meta.json`, `apps/www/content/docs/mcp-agent-blueprint.mdx`
-- Next: Pablo review/merge of PR #81
+- Related: [[Sgd-cobrand]] [[Site and docs app]] [[Vision]]
+- Implementation Path: `apps/www/components/brand/BrandLockup.tsx`
+- Next: Visual check of the header at 320px and at the `lg` nav breakpoint; Pablo review of the draft PR.

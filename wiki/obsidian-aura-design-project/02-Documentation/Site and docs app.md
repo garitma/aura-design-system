@@ -38,3 +38,4 @@ See [[API routes]] and the Bruno collection under `wiki/bruno-aura-design-projec
 - [[CLI]] · [[Registry]] · [[Design md]] — closest neighbors for registry URL, `init`, and DESIGN.md distribution.
 - [[Local development]]
 - [[Onboarding]]
+- [[Sgd-cobrand]] — Aura + Somos Gente Digital header lockup.

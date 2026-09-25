@@ -1,7 +1,7 @@
 import { type HTMLAttributes, useMemo } from "react";
 import { ChevronDown, Languages } from "lucide-react";
-import Link from "fumadocs-core/link";
 import { NavProvider } from "@/components/layout/contexts/layout";
+import { BrandLockup } from "@/components/brand/BrandLockup";
 import type * as PageTree from "fumadocs-core/page-tree";
 import { TreeContextProvider } from "fumadocs-ui/contexts/tree";
 
@@ -124,12 +124,7 @@ export function Header({
 
   return (
     <Navbar>
-      <Link
-        href={nav.url ?? "/"}
-        className="inline-flex shrink-0 items-center gap-1 whitespace-nowrap font-semibold"
-      >
-        {nav.title}
-      </Link>
+      <BrandLockup href={nav.url ?? "/"} className="min-w-0" />
       {nav.children}
       <ul className="hidden flex-row items-center gap-0.5 px-2 lg:flex">
         {navItems
@@ -160,7 +155,7 @@ export function Header({
           ))}
         </ul>
       </div>
-      <ul className="flex flex-row items-center ms-auto lg:hidden gap-0.5">
+      <ul className="ms-auto flex shrink-0 flex-row items-center gap-0.5 lg:hidden">
         <SearchDialogTriggerIcon />
 
         {(tree || menuItems.length > 0 || navItems.length > 0) && (

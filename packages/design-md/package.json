@@ -10,7 +10,7 @@
   "homepage": "https://auradesignsystem.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/garitma/aura-design-system.git",
+    "url": "https://github.com/somosgented/aura-design-system.git",
     "directory": "packages/design-md"
   }
 }
