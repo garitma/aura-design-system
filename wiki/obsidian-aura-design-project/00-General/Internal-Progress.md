@@ -5,12 +5,18 @@ retention: 10
 tags: [dev-log, logic]
 ---
 ## Summary
-Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface]]). The shipped theme uses the Somos Gente Digital dark ramp with light mode generated from accent `#4015ca` and gray `#7254cb` ([[Sgd-palette]]). Docs and home share one theme store for accent, gray, background, and light/dark ([[Shared-Theme-Store]]). Charts live under `/docs/charts`.
+Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface]]). Blueprint now also installs a reconciled Emil Kowalski set plus Vercel React best practices ([[Emil skills]]). The shipped theme uses the Somos Gente Digital dark ramp with light mode generated from accent `#4015ca` and gray `#7254cb` ([[Sgd-palette]]). Docs and home share one theme store ([[Shared-Theme-Store]]); charts live under `/docs/charts`.
 
 ## Active
 
 
 ## Sessions
+### 2026-10-10 · Ship pick-ui-library
+- Pablo added `pick-ui-library` to the reconciled set with an `@aura`-first rule, kept `ask-sonner`, and left `write-swift` and `animate-expo` out. Blueprint now installs thirteen skills. See [[Emil skills]].
+
+### 2026-10-10 · Reconciled Emil and Vercel skills
+- Compared Emil Kowalski’s skills and Vercel `react-best-practices` with the team library and Aura rules. Blueprint copies the merged set into `.cursor/skills/` and updates it on re-run. See [[Emil skills]].
+
 ### 2026-10-10 · Shared theme colors
 - One store in the root layout feeds home, docs, and Theme Settings. Colors persist in localStorage, apply before paint, and follow the storage event. Presets and the image upload live on that store. See [[Shared-Theme-Store]].
 
