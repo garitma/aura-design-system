@@ -21,7 +21,7 @@ tags: [dev-log, documentation, architecture]
 - **`aura init`** — `create-next-app`, then `components.json`, Radix `globals.css`, `shadcn add` for `@aura/class-names` / `page-get-starter` / `css-main` / `rules` / `skills`, then blueprint scaffolding (including [[gdp-ts proofs]]).
 - **`aura setup [--dir]`** — Same Aura apply as `init` on an existing Next app (no `create-next-app`).
 - **`aura link [-o]`** — Downloads canonical Aura `components.json` from the docs-site raw URL.
-- **`aura blueprint [projectDir]`** — Wiki (Bruno + Obsidian), `generate-brand-images` skill, `preflight.ts`, Sonar scripts/config, `.gitignore` / `.env.example`, and gdp-ts (`@gdp-ts/core`, ESLint preset, skill, starter proofs). Options: `--force`, `--suffix`.
+- **`aura blueprint [projectDir]`** — Wiki (Bruno + Obsidian), `generate-brand-images` skill, reconciled Emil Kowalski and Vercel skills (see [[Emil skills]]), `preflight.ts`, Sonar scripts/config, `.gitignore` / `.env.example`, and gdp-ts (`@gdp-ts/core`, ESLint preset, skill, starter proofs). Re-running updates the reconciled skills in place. Options: `--force`, `--suffix`. `--force` is not required for the skill update.
 - **`aura colors`** — `--accent` / `--gray` / `--background` (or prompts); overwrites `globals.css`.
 - **`aura typography generate`** — Interactive fluid `typography.css`.
 - **`aura spacing [target]`** — Remap Tailwind spacing utilities in `.tsx` from 4px to closest 13px token (`--dir`).

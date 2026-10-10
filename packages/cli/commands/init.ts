@@ -133,7 +133,7 @@ export async function applyAuraToProject(appDir: string): Promise<void> {
   );
 
   console.log(
-    "\nScaffolding Aura blueprint (wiki identity, image generation, preflight, Sonar, gdp-ts)...",
+    "\nScaffolding Aura blueprint (wiki identity, image generation, reconciled skills, preflight, Sonar, gdp-ts)...",
   );
   await applyBlueprintToProject(appDir);
 }

@@ -39,6 +39,7 @@ Check and record **present / missing** for each:
 | `DESIGN.md` (root) | File at project root (or install via `@aura/rule-design-md` / `@aura/design-md`) |
 | Cursor rules | `.cursor/rules/*.mdc` (foundations, principles, design-md, etc.) |
 | Cursor skills | `.cursor/skills/port-component-to-aura/SKILL.md` and `.cursor/skills/generate-brand-images/SKILL.md` |
+| Reconciled Emil + Vercel skills | `.cursor/skills/emil-design-eng/SKILL.md` and `.cursor/skills/react-best-practices/SKILL.md` (the rest of the set is installed with them). No second copy under `.agents/skills/` |
 | Image identity | `wiki/obsidian-*/01-Identity/Image-Identity.md`; `status: ready` only when style, palette, composition/motifs, and exclusions are concrete |
 | Gemini image env | `.env.example` names `GOOGLE_API_KEY`; only check whether `.env` has `GOOGLE_API_KEY` or `GEMINI_API_KEY`, never print its value |
 | shadcn MCP | `.cursor/mcp.json` (or user MCP) with `shadcn` → `npx shadcn@latest mcp` |
@@ -183,13 +184,31 @@ Additive **agent-rigor** layer (verification + playbooks). It does **not** repla
 
 **Do not:** `git clone` pstack into `node_modules` or app `src/`; do not replace Aura lint/rules with pstack principles.
 
-#### F. gdp-ts (proof-carrying authz)
+#### F. Reconciled Emil skills and Vercel React practices
+
+Motion, polish, mobile-web feel, worst-case UI data, and React/Next performance come from a reconciled set, not a blind `skills add`. The comparison and the skipped skills are on [Emil Kowalski skills](/docs/emil-skills).
+
+**When to install or update:** Whenever any skill in that set is missing, or when a re-run should pick up the pinned copy. Skip only if the user said “no Emil skills”.
+
+`aura init` and `aura setup` already run this. On an existing app:
+
+```bash
+pnpm dlx @aura-design/cli@latest blueprint .
+```
+
+That writes `.cursor/skills/<name>/` for `emil-design-eng`, `animate`, `review-animations`, `improve-animations`, `find-animation-opportunities`, `animation-vocabulary`, `apple-design`, `prototype`, `mobile-native`, `break-ui`, `ask-sonner`, `pick-ui-library`, and `react-best-practices`. Re-running updates those files in place. `--force` is not required. A same-named folder under `.agents/skills/` is removed so the project does not keep two skills for one job.
+
+Aura foundation rules win when a skill disagrees (13px spacing, accent/gray, fluid type, 17px inputs, animation tokens). `ask-sonner` is only for files that already import `sonner`. gdp-ts proofs win over the Vercel `server-auth-actions` note.
+
+**Do not:** install `write-swift` or `animate-expo`. Do not vendor this set into the Aura registry. `pick-ui-library` uses an `@aura` component before an external library.
+
+#### G. gdp-ts (proof-carrying authz)
 
 Every sensitive function takes a typed proof that the check already ran for those ids. Proofs are never cast. CI is `pnpm typecheck` and `pnpm lint`. This does **not** replace a policy engine, Aura rules, `@shadcn/lint`, or pstack. See [gdp-ts](/docs/gdp-ts).
 
 **When to install:** Whenever `@gdp-ts/core`, the ESLint preset, the skill, or the starter proofs are missing. Skip only if the user said “no gdp-ts”.
 
-`aura init` and `aura setup` already run this. On an existing app, re-run blueprint (it skips files that exist):
+`aura init` and `aura setup` already run this. On an existing app, re-run blueprint (it skips wiki and proof files that exist; it updates the reconciled skills in place):
 
 ```bash
 pnpm dlx @aura-design/cli@latest blueprint .
@@ -214,6 +233,7 @@ Confirm after installs:
 - `.cursor/skills/port-component-to-aura/SKILL.md` exists
 - `.cursor/skills/generate-brand-images/SKILL.md` and its generator script exist
 - `.cursor/skills/verify-aura-ui/SKILL.md` and `.cursor/skills/update-project-brain/SKILL.md` exist when `@aura/skills` was added
+- `.cursor/skills/emil-design-eng/SKILL.md` and `.cursor/skills/react-best-practices/SKILL.md` exist, and `.agents/skills/` does not also contain those names
 - `.agents/skills/shadcn/SKILL.md` exists (or document the gap)
 - `wiki/obsidian-*/01-Identity/Image-Identity.md` exists
 - `package.json` has `ai:image` and `brain:progress`; `.env.example` names `GOOGLE_API_KEY`
@@ -255,6 +275,7 @@ Optional smoke: `pnpm dlx shadcn@latest add @aura/button` only if the user asked
 | DESIGN.md | … | … | … |
 | .cursor/rules | … | … | … |
 | .cursor/skills | … | … | … |
+| Emil + Vercel skills | … | … | … |
 | Blueprint image identity | … | … | … |
 | Gemini image command | … | … | … |
 | .cursor/mcp.json | … | … | … |
@@ -286,6 +307,7 @@ Stop when the table is accurate. Do not claim MCP is connected if the user still
 
 - [pstack](/docs/pstack) — what `/poteto-mode` is, why Aura uses it, easy install
 - [gdp-ts](/docs/gdp-ts) — proof-carrying authz, starter proofs, CI typecheck + lint
+- [Emil Kowalski skills](/docs/emil-skills) — reconciled motion, polish, and React performance skills, and the update command
 - [Lint](/docs/lint) — `@shadcn/lint` setup and Aura policy
 - [MCP](/docs/mcp) — what MCP/skills/rules are
 - [Rules](/docs/rules) — install `@aura/rules`

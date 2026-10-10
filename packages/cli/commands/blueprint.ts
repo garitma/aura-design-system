@@ -4,6 +4,7 @@ import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
 import { dirname, join, resolve } from "path";
 import { fileURLToPath } from "url";
 import { applyGdpToProject } from "./gdp.js";
+import { installReconciledSkills } from "./upstream-skills.js";
 
 const SCRIPTS_TO_MERGE: Record<string, string> = {
   preflight: "tsx scripts/preflight.ts",
@@ -353,7 +354,7 @@ export type ApplyBlueprintOptions = {
   suffix?: string;
 };
 
-/** Scaffold the wiki, image-generation skill, preflight, Sonar config, and gdp-ts. */
+/** Scaffold the wiki, image-generation skill, reconciled upstream skills, preflight, Sonar config, and gdp-ts. */
 export async function applyBlueprintToProject(
   projectRoot: string,
   options: ApplyBlueprintOptions = {},
@@ -379,6 +380,7 @@ export async function applyBlueprintToProject(
 
   scaffoldWiki(projectRoot, suffix, packageName, force);
   scaffoldImageSkill(projectRoot, force);
+  installReconciledSkills(projectRoot);
   scaffoldPreflight(projectRoot, force);
   scaffoldBrainProgress(projectRoot, force);
   scaffoldSonarProperties(projectRoot, force);
@@ -395,7 +397,7 @@ export function registerBlueprintCommand(program: Command) {
   program
     .command("blueprint [projectDir]")
     .description(
-      "Scaffold wiki, identity-aware image generation, preflight, brain:progress, Sonar config, shadcn/ui skills, and gdp-ts proofs",
+      "Scaffold wiki, identity-aware image generation, reconciled Emil and Vercel skills, preflight, brain:progress, Sonar config, shadcn/ui skills, and gdp-ts proofs",
     )
     .option(
       "-f, --force",
