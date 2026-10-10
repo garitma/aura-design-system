@@ -53,7 +53,7 @@ describe("reconciled upstream skills", () => {
     }
   });
 
-  it("does not ship the skipped close calls", () => {
+  it("does not ship the skipped upstream skills", () => {
     for (const skill of SKIPPED_UPSTREAM_SKILLS) {
       assert.equal(existsSync(join(templates, skill.name)), false, skill.name);
     }
@@ -81,6 +81,9 @@ describe("reconciled upstream skills", () => {
     assert.match(mobile, /17px/);
     const sonner = readFileSync(join(templates, "ask-sonner", "SKILL.md"), "utf8");
     assert.match(sonner, /Aura Toast is the product toaster/);
+    const picker = readFileSync(join(templates, "pick-ui-library", "SKILL.md"), "utf8");
+    assert.match(picker, /If the Aura registry \(`@aura`\) already has a component for the need/);
+    assert.equal(RECONCILED_SKILLS.length, 13);
   });
 
   it("installs into .cursor/skills and treats a second run as unchanged", () => {

@@ -4,7 +4,7 @@ date: 2026-10-10
 tags: [dev-log, logic, architecture]
 ---
 ## Summary
-Aura ships a reconciled subset of Emil Kowalski’s skills plus Vercel’s React best practices, pinned and copied by `aura blueprint` into `.cursor/skills/`. Skills that already did the same job were merged or kept. `write-swift`, `animate-expo`, and `pick-ui-library` are not installed; those three, and the scope of `ask-sonner`, are close calls for Pablo. Re-running blueprint updates the set in place.
+Aura ships thirteen reconciled skills: Emil Kowalski’s set plus Vercel’s React best practices, pinned and copied by `aura blueprint` into `.cursor/skills/`. Skills that already did the same job were merged or kept. Pablo added `pick-ui-library` with an `@aura`-first rule and kept `ask-sonner` scoped to existing `sonner` imports. `write-swift` and `animate-expo` stay out. Re-running blueprint updates the set in place.
 
 ## Context
 - Related: [[CLI]] · [[MCP and skills]] · [[Internal progress]]

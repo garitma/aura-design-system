@@ -34,28 +34,23 @@ export const RECONCILED_SKILLS = [
   "mobile-native",
   "break-ui",
   "ask-sonner",
+  "pick-ui-library",
   "react-best-practices",
 ] as const;
 
-/** Close calls. Not installed. Pablo confirms before these ship. */
+/** Pablo skipped these. They are not installed. */
 export const SKIPPED_UPSTREAM_SKILLS = [
   {
     name: "write-swift",
     source: EMIL_SKILLS_REPO,
     reason:
-      "No Swift in Aura or the SGD Next.js apps. No equivalent skill, but nothing here would call it.",
+      "No Swift in Aura or the SGD Next.js apps. Pablo decided not to install it.",
   },
   {
     name: "animate-expo",
     source: EMIL_SKILLS_REPO,
     reason:
-      "React Native and Expo only. The SGD apps are Next.js. Web motion is the `animate` skill.",
-  },
-  {
-    name: "pick-ui-library",
-    source: EMIL_SKILLS_REPO,
-    reason:
-      "Overlaps the shadcn skill and the Aura registry (toast, charts, command, OTP). Shipping it would point agents at Sonner, recharts, and a motion library instead of Aura components.",
+      "React Native and Expo only. The SGD apps are Next.js. Pablo decided not to install it.",
   },
 ] as const;
 

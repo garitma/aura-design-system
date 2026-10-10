@@ -38,6 +38,8 @@ const DESIGN_FILE = `Do not read or write a design file unless someone explicitl
 
 const SONNER_SCOPE = `Aura Toast is the product toaster. Use this Sonner guide only when the file already imports \`sonner\` (DataGrid still does). New toasts use the Aura toast, not a second \`<Toaster />\`.`;
 
+const AURA_REGISTRY = `If the Aura registry (\`@aura\`) already has a component for the need, use it before reaching for an external library.`;
+
 /** Team descriptions. These are the SGD trigger text; Emil's body is merged under them. */
 const TEAM_DESCRIPTION = {
   "emil-design-eng": `description: >-
@@ -94,6 +96,7 @@ const EMIL_SHIPPED = [
   "mobile-native",
   "break-ui",
   "ask-sonner",
+  "pick-ui-library",
 ];
 
 const VERCEL_LICENSE = `MIT License
@@ -158,6 +161,7 @@ function emilNotice(name) {
   const parts = [EMIL_SOURCE];
   if (CRITERIA_SKILLS.has(name)) parts.push(DESIGN_FILE);
   parts.push(AURA_WINS);
+  if (name === "pick-ui-library") parts.push(AURA_REGISTRY);
   if (name === "ask-sonner") parts.push(SONNER_SCOPE);
   return parts.join("\n\n");
 }
