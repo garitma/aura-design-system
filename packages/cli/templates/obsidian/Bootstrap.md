@@ -34,6 +34,7 @@ Sensitive functions (delete a project, change a password, charge) take a gdp-ts 
 - Rules under `.cursor/rules/` hold MUST/SHOULD/NEVER guardrails. `DESIGN.md` is the narrative design SoT.
 - Aura Keep invariants (13px spacing, accent/gray scales, fluid type, `className="icon"`, Project Brain) always win over conflicting upstream skill guidance.
 - Upstream shadcn skill: `.agents/skills/shadcn` (install: `pnpm dlx skills add shadcn/ui`). Use for CLI, registry search/docs, and composition discovery.
+- Reconciled Emil Kowalski skills and Vercel `react-best-practices`: `.cursor/skills/`. `aura blueprint` installs and updates them. Aura Keep wins on conflict. `ask-sonner` is only for files that already import `sonner`.
 - Write loops: `.cursor/skills/update-project-brain`, `.cursor/skills/verify-aura-ui`, `.cursor/skills/aura-forms`.
 - After each session advance, append one entry to [[Internal-Progress]] then run `pnpm brain:progress`.
 

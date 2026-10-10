@@ -78,6 +78,7 @@ Scaffolds Aura project tooling into any repo with a `package.json`:
 
 - `wiki/bruno-*` and `wiki/obsidian-*` (suffix from the package name, first segment stripped), including `00-General/Internal-Progress.md`
 - `.cursor/skills/generate-brand-images/` (identity-aware Gemini landing images)
+- Reconciled [Emil Kowalski skills](/docs/emil-skills) and Vercel `react-best-practices`, copied into `.cursor/skills/`. Re-running blueprint updates those files in place (no `--force`, no second copy)
 - `scripts/preflight.ts` and `scripts/brain-progress.ts` (`pnpm brain:progress`)
 - Upstream [shadcn/ui skills](https://ui.shadcn.com/docs/skills) via `pnpm dlx skills add shadcn/ui` (`.agents/skills/shadcn`)
 - `sonar-project.properties` plus Sonar-related scripts / devDependencies
