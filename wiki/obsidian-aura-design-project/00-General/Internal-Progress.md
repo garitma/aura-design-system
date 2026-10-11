@@ -11,6 +11,11 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 
 ## Sessions
+### 2026-10-11 · Carousel controls, gap, and multi-card demo
+- Below `sm`, previous and next sit in a row under the slides. From `sm` they stay outside at `-left-12` / `-right-12`. Slide gap is 13px (`-ml-1` / `pl-1`). See [[Carousel]].
+- Vertical keyboards use ArrowUp and ArrowDown. The effect cleanup removes `reInit` as well as `select`.
+- The numbered demo no longer wraps the card in `p-1`. `MultipleCards` uses Aura cards with a title and description at `basis-full sm:basis-1/2 md:basis-1/3`.
+
 ### 2026-10-11 · Button group size without context
 - [[Button Group]] clones `size` onto direct `Button` and `ButtonGroupText` children. `Button` no longer calls `createContext`, which the React server build does not export, so the docs home page can keep importing `buttonVariants`.
 
@@ -44,12 +49,9 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 ### 2026-10-11 · Status dot tokens
 - Added `--aura-status-dot-*` in both globals stylesheets, including both dark blocks. [[Status-Dot]] is a 10px dot with optional label and avatar ring. Avatar fallback uses `h6`, Avatar has `sm` / `default` / `lg`, and the grouped avatar story now points at [[Avatar-Group]].
 
-### 2026-10-11 · Autocomplete popup chrome
-- Popup border and shadow paint once. Separator margin is `m-0.5` (6.5px), the Figma list inset. `className` is last on item, separator, label, empty, and status. Trigger and clear share one class string, and addon padding keeps the same size through CSS variables. Disabled items use 50% opacity. Input `sm`, `default`, and `lg` use `h-3`, `h-4`, and `h-5` with `py-0` so the border box matches Button sm, md, and lg, and AutocompleteInput passes that size through. Docs say "An input component". See [[Autocomplete Popup]].
-
 Older sessions: [[Progress-Archive/2026-10]]
 
 ## Context
-- Related: [[Button Group]] [[Bubble]] [[Audit-Breadcrumb]] [[Audit Banner]] [[Button]] [[Charts]] [[Area-charts]] [[Recent-Components-Audit]] [[Segmented-Input]] [[Media-Utilities]] [[Collection-Display]] [[Input-Controls]] [[Autocomplete Popup]] [[Status-Dot]] [[Avatar Group]] [[Sgd-palette]] [[Sgd-cobrand]] [[Site and docs app]] [[Aura Agent Surface]] [[Shared-Theme-Store]] [[Aura overlay]]
+- Related: [[Carousel]] [[Button Group]] [[Bubble]] [[Audit-Breadcrumb]] [[Audit Banner]] [[Button]] [[Charts]] [[Area-charts]] [[Recent-Components-Audit]] [[Segmented-Input]] [[Media-Utilities]] [[Collection-Display]] [[Input-Controls]] [[Autocomplete Popup]] [[Status-Dot]] [[Avatar Group]] [[Sgd-palette]] [[Sgd-cobrand]] [[Site and docs app]] [[Aura Agent Surface]] [[Shared-Theme-Store]] [[Aura overlay]]
 - Implementation Path: `packages/registry/styles/globals.css`
 - Next: confirm the Charts sidebar and a couple chart pages in the docs site. (since 2026-10-09)

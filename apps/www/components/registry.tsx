@@ -142,7 +142,8 @@ import {
   CardDemoImageGrid
 } from "@/components/demos/card-demo"
 import { 
-  CarouselDemo
+  CarouselDemo,
+  CarouselDemoMultipleCards
 } from "@/components/demos/carousel-demo"
 import { 
   ChartDemo
@@ -987,6 +988,9 @@ export const Registry = {
   },
   "carousel-demo": {
     component: CarouselDemo,
+  },
+  "carousel-demo-multiple-cards": {
+    component: CarouselDemoMultipleCards,
   },
   "chart-demo": {
     component: ChartDemo,
