@@ -445,6 +445,13 @@
   html {
     font-size: 17px;
   }
+
+  /* Typography/xs — 12/16 Semi Bold. Same rule as styles/main.css `.xs`. */
+  .xs {
+    font-size: calc(12 / 17 * 1rem);
+    font-weight: 600;
+    line-height: calc(16 / 17 * 1rem);
+  }
   main {
     background-color: var(--gray-1);
   }

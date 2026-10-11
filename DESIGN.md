@@ -103,6 +103,8 @@ font-size: clamp(var(--min), var(--val), var(--max));
 | `h6`, `.h6` | 1.0625rem | 4.03vw | 1.25rem |
 | `p`, `.p` | 1rem | 4.03vw | 1rem |
 
+`.xs` is the fixed micro style (not a clamp): **12px / 16px / semibold** at a 17px root (`calc(12 / 17 * 1rem)`, line-height `calc(16 / 17 * 1rem)`, weight 600). Badges and the overflow count use it.
+
 ### Rules
 
 - **Never** use Tailwind **`text-xl`**, **`text-2xl`**, etc. for primary marketing or page copy.

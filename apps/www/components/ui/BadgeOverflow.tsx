@@ -9,6 +9,13 @@ import { Slot } from "@radix-ui/react-slot";
 import { useComposedRefs } from "@/utils/compose-refs";
 import { cn } from "@/utils/class-names";
 
+/** gap-1 on the 13px scale. */
+const DEFAULT_BADGE_GAP = 13;
+/** .xs line-height 16px + py-0.5 (13px) + 1px border. */
+const DEFAULT_BADGE_HEIGHT = 31;
+/** "+99" at 12px semibold, px-1, and a 1px border. */
+const DEFAULT_OVERFLOW_BADGE_WIDTH = 52;
+
 interface GetBadgeLabel<T> {
   /**
    * Returns a label string for each badge item.
@@ -57,11 +64,13 @@ function BadgeOverflow<T = string>(props: BadgeOverflowProps<T>) {
   const composedRef = useComposedRefs(ref, rootRef);
   const measureRef = React.useRef<HTMLDivElement | null>(null);
   const [containerWidth, setContainerWidth] = React.useState(0);
-  const [badgeGap, setBadgeGap] = React.useState(4);
-  const [badgeHeight, setBadgeHeight] = React.useState(20);
-  const [overflowBadgeWidth, setOverflowBadgeWidth] = React.useState(40);
+  const [badgeGap, setBadgeGap] = React.useState(DEFAULT_BADGE_GAP);
+  const [badgeHeight, setBadgeHeight] = React.useState(DEFAULT_BADGE_HEIGHT);
+  const [overflowBadgeWidth, setOverflowBadgeWidth] = React.useState(
+    DEFAULT_OVERFLOW_BADGE_WIDTH,
+  );
   const [isMeasured, setIsMeasured] = React.useState(false);
-  const [badgeWidths, setBadgeWidths] = React.useState<Map<string, number>>(
+  const [badgeWidths, setBadgeWidths] = React.useState<Map<number, number>>(
     () => new Map(),
   );
 
@@ -73,36 +82,37 @@ function BadgeOverflow<T = string>(props: BadgeOverflowProps<T>) {
 
       const computedStyle = getComputedStyle(rootRef.current);
 
-      const gapValue = computedStyle.gap;
-      const gap = gapValue ? Number.parseFloat(gapValue) : 4;
-      setBadgeGap(Number.isFinite(gap) ? gap : 4);
+      const gapValue = computedStyle.columnGap || computedStyle.gap;
+      const gap = Number.parseFloat(gapValue);
+      setBadgeGap(Number.isFinite(gap) ? gap : DEFAULT_BADGE_GAP);
 
       const paddingLeft = Number.parseFloat(computedStyle.paddingLeft) || 0;
       const paddingRight = Number.parseFloat(computedStyle.paddingRight) || 0;
       const totalPadding = paddingLeft + paddingRight;
 
-      const widthMap = new Map<string, number>();
+      const widthMap = new Map<number, number>();
       const measureChildren = measureRef.current.children;
 
       for (let i = 0; i < items.length; i++) {
         const child = measureChildren[i] as HTMLElement | undefined;
         if (child) {
-          const label = getBadgeLabel(items[i] as T);
-          widthMap.set(label, child.offsetWidth);
+          widthMap.set(i, child.offsetWidth);
         }
       }
       setBadgeWidths(widthMap);
 
       const firstBadge = measureChildren[0] as HTMLElement | undefined;
       if (firstBadge) {
-        setBadgeHeight(firstBadge.offsetHeight || 20);
+        setBadgeHeight(firstBadge.offsetHeight || DEFAULT_BADGE_HEIGHT);
       }
 
       const overflowChild = measureChildren[items.length] as
         | HTMLElement
         | undefined;
       if (overflowChild) {
-        setOverflowBadgeWidth(overflowChild.offsetWidth || 40);
+        setOverflowBadgeWidth(
+          overflowChild.offsetWidth || DEFAULT_OVERFLOW_BADGE_WIDTH,
+        );
       }
 
       const width = rootRef.current.clientWidth - totalPadding;
@@ -138,8 +148,7 @@ function BadgeOverflow<T = string>(props: BadgeOverflowProps<T>) {
       const item = items[i];
       if (item === undefined || item === null) continue;
 
-      const label = getBadgeLabel(item);
-      const badgeWidth = badgeWidths.get(label);
+      const badgeWidth = badgeWidths.get(i);
 
       if (!badgeWidth) {
         continue;
@@ -172,7 +181,6 @@ function BadgeOverflow<T = string>(props: BadgeOverflowProps<T>) {
     };
   }, [
     items,
-    getBadgeLabel,
     containerWidth,
     lineCount,
     badgeGap,
@@ -183,7 +191,7 @@ function BadgeOverflow<T = string>(props: BadgeOverflowProps<T>) {
   const Comp = asChild ? Slot : "div";
 
   const defaultOverflow = (count: number) => (
-    <div className="inline-flex h-5 shrink-0 items-center rounded-full border border-gray-6 bg-gray-3 px-1.5 text-xs font-semibold text-gray-11">
+    <div className="xs inline-flex shrink-0 items-center rounded-full border border-gray-6 bg-gray-3 px-1 py-0.5 text-gray-11">
       +{count}
     </div>
   );
@@ -208,11 +216,8 @@ function BadgeOverflow<T = string>(props: BadgeOverflowProps<T>) {
           data-slot="badge-overflow"
           {...rootProps}
           ref={composedRef}
-          className={cn("flex flex-wrap", className)}
-          style={{
-            gap: badgeGap,
-            ...style,
-          }}
+          className={cn("flex flex-wrap gap-1", className)}
+          style={style}
         >
           {visibleItems.map((item, index) => (
             <React.Fragment key={index}>
@@ -230,9 +235,8 @@ function BadgeOverflow<T = string>(props: BadgeOverflowProps<T>) {
           data-slot="badge-overflow"
           {...rootProps}
           ref={composedRef}
-          className={cn("flex flex-wrap", className)}
+          className={cn("flex flex-wrap gap-1", className)}
           style={{
-            gap: badgeGap,
             minHeight: placeholderHeight,
             ...style,
           }}
