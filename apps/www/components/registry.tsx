@@ -62,6 +62,8 @@ import {
   AvatarGroupDemoVertical,
   AvatarGroupDemoRtl,
   AvatarGroupDemoCustomOverflow,
+  AvatarGroupDemoReverse,
+  AvatarGroupDemoSquare,
   AvatarGroupDemoWithIcons
 } from "@/components/demos/avatar-group-demo"
 import { 
@@ -799,6 +801,12 @@ export const Registry = {
   },
   "avatar-group-demo-custom-overflow": {
     component: AvatarGroupDemoCustomOverflow,
+  },
+  "avatar-group-demo-reverse": {
+    component: AvatarGroupDemoReverse,
+  },
+  "avatar-group-demo-square": {
+    component: AvatarGroupDemoSquare,
   },
   "avatar-group-demo-with-icons": {
     component: AvatarGroupDemoWithIcons,

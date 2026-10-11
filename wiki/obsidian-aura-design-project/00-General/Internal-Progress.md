@@ -11,6 +11,9 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 
 ## Sessions
+### 2026-10-11 · Avatar group cutout and direction
+- Overflow counts use the `.small` label class. Stacking is `direction`; native `dir` passes through. `reverse` and `shape="square"` are in the docs. See [[Avatar Group]].
+
 ### 2026-10-11 · Status dot tokens
 - Added `--aura-status-dot-*` in both globals stylesheets, including both dark blocks. [[Status-Dot]] is a 10px dot with optional label and avatar ring. Avatar fallback uses `h6`, Avatar has `sm` / `default` / `lg`, and the grouped avatar story now points at [[Avatar-Group]].
 
@@ -40,12 +43,9 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 ### 2026-10-10 · Ship pick-ui-library
 - Pablo added `pick-ui-library` to the reconciled set with an `@aura`-first rule, kept `ask-sonner`, and left `write-swift` and `animate-expo` out. Blueprint now installs thirteen skills. See [[Emil skills]].
 
-### 2026-10-10 · Reconciled Emil and Vercel skills
-- Compared Emil Kowalski’s skills and Vercel `react-best-practices` with the team library and Aura rules. Blueprint copies the merged set into `.cursor/skills/` and updates it on re-run. See [[Emil skills]].
-
 Older sessions: [[Progress-Archive/2026-10]]
 
 ## Context
-- Related: [[Charts]] [[Area-charts]] [[Recent-Components-Audit]] [[Segmented-Input]] [[Media-Utilities]] [[Collection-Display]] [[Input-Controls]] [[Autocomplete Popup]] [[Status-Dot]] [[Sgd-palette]] [[Sgd-cobrand]] [[Site and docs app]] [[Aura Agent Surface]] [[Shared-Theme-Store]] [[Aura overlay]]
+- Related: [[Charts]] [[Area-charts]] [[Recent-Components-Audit]] [[Segmented-Input]] [[Media-Utilities]] [[Collection-Display]] [[Input-Controls]] [[Autocomplete Popup]] [[Status-Dot]] [[Avatar Group]] [[Sgd-palette]] [[Sgd-cobrand]] [[Site and docs app]] [[Aura Agent Surface]] [[Shared-Theme-Store]] [[Aura overlay]]
 - Implementation Path: `packages/registry/styles/globals.css`
 - Next: confirm the Charts sidebar and a couple chart pages in the docs site. (since 2026-10-09)
