@@ -137,11 +137,12 @@ Patterns below match registry implementations and docs. Install snippets and ful
 
 Variants (see `buttonVariants` in **`Button.tsx`**):
 
-- **`default`** / **`fill`**: applies **`button-fill`**—**solid** primary background (`--aura-accents-primary`), **2px** border, **inverse** text per registry CSS. **Not** a built-in CSS gradient in the default stylesheet.
+- **`fill`**: applies **`button-fill`**—**solid** primary background (`--aura-accents-primary`), **2px** border, **inverse** text per registry CSS. **Not** a built-in CSS gradient in the default stylesheet. Hover uses **`--aura-button-hover`** (`--accent-10`) so inverse text stays readable in dark mode.
+- **`default`**: deprecated alias of **`fill`**. It still applies `button-fill` and warns in development.
 - **`pill`**: **`button-pill`** plus Tailwind **`border-gray-6`**, **`text-gray-11`**, **`bg-gray-2`**, **`hover:bg-gray-3`** (secondary-style chrome in the shipped component).
 - **`link`** (`button-link`), **`menu`** (`button-menu`).
 
-Sizes use **height utilities** aligned to the **13px grid** (e.g. `h-4`, `h-3`, `xs`–`xl`, `icon`, `icon-md`). Support **`asChild`** (Radix Slot), **`isDisabled`**, **`isLoading`** / **`isLoadingText`**, and legacy **`mode`** as an alias for **`variant`**.
+Sizes use **height utilities** aligned to the **13px grid** (e.g. `h-4`, `h-3`, `xs`–`xl`, `icon`, `icon-md`). The default size is **`h-4`**. Support **`asChild`** (Radix Slot), **`isDisabled`**, and **`isLoading`** / **`isLoadingText`**. **`mode`** is a deprecated alias of **`variant`**: it still applies and warns in development. Pass **`label`** or **`children`**, not both. Icons inside the button use **`size-[1em]`**. Keyboard focus draws **`outline: var(--aura-outline)`**. Disabled opacity and cursor live only in **`.button:disabled`**. Loading stays non-interactive without that opacity fade.
 
 **Design intent (editorial):** **Pill-shaped** primaries and a **linear gradient** fill (**`--accent-9`** → **`--accent-10`**, ~**135deg**) can be added by **extending** `.button-fill` or passing **`className`** overrides—verify contrast with **`--primary-foreground`** / **`--accent-contrast`**.
 
