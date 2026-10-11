@@ -401,6 +401,7 @@
   @import "../registry/default/styles/sidebar.css";
   @import "../registry/default/styles/tooltip.css";
   @import "../registry/default/styles/selection-toolbar.css";
+  @import "../registry/default/styles/action-bar.css";
   @import "../registry/default/styles/file-upload.css";
   @import "../registry/default/styles/chart.css";
 

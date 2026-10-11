@@ -4,7 +4,7 @@
  */
 import * as React from "react";
 import { Checkbox as CheckboxRadix } from "radix-ui";
-import { CheckIcon } from "@radix-ui/react-icons";
+import { CheckIcon, MinusIcon } from "@radix-ui/react-icons";
 
 import { cn } from "@/utils/class-names";
 
@@ -16,7 +16,7 @@ function Checkbox({
     <CheckboxRadix.Root
       data-slot="checkbox"
       className={cn(
-        "border border-gray-a6 flex size-1.5 items-center justify-center rounded outline-none hover:bg-accent-2 cursor-pointer",
+        "border border-gray-a6 flex size-1.5 items-center justify-center rounded outline-none hover:bg-accent-2 cursor-pointer disabled:cursor-not-allowed disabled:opacity-50",
         className
       )}
       {...props}
@@ -32,7 +32,22 @@ function CheckboxIndicator({
 }: React.ComponentProps<typeof CheckboxRadix.Indicator>) {
   return (
     <CheckboxRadix.Indicator {...props}>
-      <CheckIcon className={cn(className, "text-accent-9")} />
+      <CheckIcon
+        aria-hidden
+        data-slot="checkbox-check"
+        className={cn(
+          className,
+          "icon text-accent-9 in-data-[state=indeterminate]:hidden"
+        )}
+      />
+      <MinusIcon
+        aria-hidden
+        data-slot="checkbox-indeterminate"
+        className={cn(
+          className,
+          "icon hidden text-accent-9 in-data-[state=indeterminate]:block"
+        )}
+      />
     </CheckboxRadix.Indicator>
   );
 }
