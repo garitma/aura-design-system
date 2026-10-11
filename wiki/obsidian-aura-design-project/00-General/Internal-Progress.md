@@ -11,6 +11,11 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 
 ## Sessions
+### 2026-10-11 · Select hover, sizes, and item focus
+- Trigger sizes match Input (`h-3`, `h-4`, `h-5`). Hover is gray-3. Placeholder text is gray-11 when `data-placeholder` is set. See [[Select]].
+- Labels use `.small`. Items use `.p`, 26px end padding, and a keyboard ring. Separator margin is `my-0.5`. Demos are `w-16` (208px).
+- `SelectArrow` still depends on Radix `position="popper"`. Item-aligned content does not paint it. `.p` now receives the fluid font-size clamp.
+
 ### 2026-10-11 · Dark chart-1 uses accent-11
 - Dark `--chart-1` points at `--accent-11` in both dark blocks of `globals.css`. Light mode stays `--accent-9`. See [[Charts]] and [[Sgd-palette]].
 - Against dark gray-1 `#100b21`, accent-9 `#4015ca` is 1.99:1 and accent-10 `#3400ab` is 1.59:1. Accent-11 `#a3acff` is 9.07:1, the first step at or above 3:1.
@@ -50,11 +55,8 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 - Current page is `font-semibold` on gray-12, with `aria-current="page"` and no link role. Links underline on hover. Focus is `rounded-sm` with a 2px offset. See [[Audit-Breadcrumb]].
 - The trail uses `.small`. Slotted links inherit that size. `maxItems` and containers under 640px collapse to first › ellipsis › current page. Docs show a slash separator, the collapsed trail, and the mobile trail, with the ellipsis in a labeled dropdown.
 
-### 2026-10-11 · Banner layout, tones, and live region
-- Phone layout stacks the action under a message-and-dismiss row. Static banners no longer announce; `role` and `aria-live` are opt-in. Tones match [[Alert]]. Dismiss reuses Button `size="icon"`. See [[Audit Banner]].
-
 Older sessions: [[Progress-Archive/2026-10]]
 
 ## Context
-- Related: [[Carousel]] [[Card]] [[Calendar]] [[Button Group]] [[Bubble]] [[Audit-Breadcrumb]] [[Audit Banner]] [[Button]] [[Charts]] [[Area-charts]] [[Recent-Components-Audit]] [[Segmented-Input]] [[Media-Utilities]] [[Collection-Display]] [[Input-Controls]] [[Autocomplete Popup]] [[Status-Dot]] [[Avatar Group]] [[Sgd-palette]] [[Sgd-cobrand]] [[Site and docs app]] [[Aura Agent Surface]] [[Shared-Theme-Store]] [[Aura overlay]]
-- Implementation Path: `packages/registry/registry/default/components/ui/Chart.tsx`
+- Related: [[Select]] [[Carousel]] [[Card]] [[Calendar]] [[Button Group]] [[Bubble]] [[Audit-Breadcrumb]] [[Audit Banner]] [[Button]] [[Charts]] [[Area-charts]] [[Recent-Components-Audit]] [[Segmented-Input]] [[Media-Utilities]] [[Collection-Display]] [[Input-Controls]] [[Autocomplete Popup]] [[Status-Dot]] [[Avatar Group]] [[Sgd-palette]] [[Sgd-cobrand]] [[Site and docs app]] [[Aura Agent Surface]] [[Shared-Theme-Store]] [[Aura overlay]]
+- Implementation Path: `packages/registry/registry/default/components/ui/Chart.tsx`, `packages/registry/registry/default/styles/main.css`

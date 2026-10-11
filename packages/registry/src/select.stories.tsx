@@ -25,11 +25,11 @@ export const Default = () => {
     <div className="space-y-1">
       <Label>Choose a fruit</Label>
       <Select value={value} onValueChange={setValue}>
-        <SelectTrigger className="w-40">
+        <SelectTrigger className="w-16">
           <SelectValue placeholder="Select a fruit..." />
           <SelectIcon />
         </SelectTrigger>
-          <SelectContent>
+          <SelectContent position="popper">
             <SelectScrollUpButton />
             <SelectViewport>
               <SelectItem value="apricot">
@@ -61,12 +61,39 @@ export const Default = () => {
   );
 };
 
+export const Placeholder = () => {
+  return (
+    <div className="space-y-1">
+      <Label>Choose a fruit</Label>
+      <Select>
+        <SelectTrigger className="w-16">
+          <SelectValue placeholder="Select a fruit..." />
+          <SelectIcon />
+        </SelectTrigger>
+        <SelectContent position="popper">
+          <SelectViewport>
+            <SelectItem value="apricot">
+              <SelectItemText>Apricot</SelectItemText>
+              <SelectItemIndicator />
+            </SelectItem>
+            <SelectItem value="banana">
+              <SelectItemText>Banana</SelectItemText>
+              <SelectItemIndicator />
+            </SelectItem>
+          </SelectViewport>
+          <SelectArrow />
+        </SelectContent>
+      </Select>
+    </div>
+  );
+};
+
 export const WithDefaultValue = () => {
   return (
     <div className="space-y-1">
       <Label>Choose a fruit</Label>
       <Select defaultValue="banana">
-        <SelectTrigger className="w-40">
+        <SelectTrigger className="w-16">
           <SelectValue placeholder="Select a fruit..." />
           <SelectIcon />
         </SelectTrigger>
@@ -102,7 +129,7 @@ export const WithGroups = () => {
     <div className="space-y-1">
       <Label>Choose a country</Label>
       <Select value={value} onValueChange={setValue}>
-        <SelectTrigger className="w-40">
+        <SelectTrigger className="w-16">
           <SelectValue placeholder="Select a country..." />
           <SelectIcon />
         </SelectTrigger>
@@ -169,7 +196,7 @@ export const WithDisabledItems = () => {
     <div className="space-y-1">
       <Label>Choose a fruit</Label>
       <Select value={value} onValueChange={setValue}>
-        <SelectTrigger className="w-40">
+        <SelectTrigger className="w-16">
           <SelectValue placeholder="Select a fruit..." />
           <SelectIcon />
         </SelectTrigger>
@@ -207,7 +234,7 @@ export const Disabled = () => {
     <div className="space-y-1">
       <Label>Choose a fruit (disabled)</Label>
       <Select disabled>
-        <SelectTrigger className="w-40">
+        <SelectTrigger className="w-16">
           <SelectValue placeholder="Select a fruit..." />
           <SelectIcon />
         </SelectTrigger>
@@ -262,11 +289,11 @@ export const WithLongList = () => {
     <div className="space-y-1">
       <Label>Choose a fruit</Label>
       <Select value={value} onValueChange={setValue}>
-        <SelectTrigger className="w-40">
+        <SelectTrigger className="w-16">
           <SelectValue placeholder="Select a fruit..." />
           <SelectIcon />
         </SelectTrigger>
-          <SelectContent>
+          <SelectContent position="popper">
             <SelectScrollUpButton />
             <SelectViewport>
               {fruits.map((fruit) => (
@@ -291,11 +318,11 @@ export const Complex = () => {
     <div className="space-y-1">
       <Label>Choose a location</Label>
       <Select value={value} onValueChange={setValue}>
-        <SelectTrigger className="w-48">
+        <SelectTrigger className="w-16">
           <SelectValue placeholder="Select a location..." />
           <SelectIcon />
         </SelectTrigger>
-          <SelectContent>
+          <SelectContent position="popper">
             <SelectScrollUpButton />
             <SelectViewport>
               <SelectGroup>
@@ -370,9 +397,63 @@ export const Complex = () => {
   );
 };
 
-
-
-
-
-
-
+export const Sizes = () => {
+  return (
+    <div className="flex flex-col items-start gap-2">
+      <Select defaultValue="apricot">
+        <SelectTrigger size="sm" className="w-16">
+          <SelectValue placeholder="Small" />
+          <SelectIcon />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectViewport>
+            <SelectItem value="apricot">
+              <SelectItemText>Apricot</SelectItemText>
+              <SelectItemIndicator />
+            </SelectItem>
+            <SelectItem value="banana">
+              <SelectItemText>Banana</SelectItemText>
+              <SelectItemIndicator />
+            </SelectItem>
+          </SelectViewport>
+        </SelectContent>
+      </Select>
+      <Select defaultValue="apricot">
+        <SelectTrigger className="w-16">
+          <SelectValue placeholder="Default" />
+          <SelectIcon />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectViewport>
+            <SelectItem value="apricot">
+              <SelectItemText>Apricot</SelectItemText>
+              <SelectItemIndicator />
+            </SelectItem>
+            <SelectItem value="banana">
+              <SelectItemText>Banana</SelectItemText>
+              <SelectItemIndicator />
+            </SelectItem>
+          </SelectViewport>
+        </SelectContent>
+      </Select>
+      <Select defaultValue="apricot">
+        <SelectTrigger size="lg" className="w-16">
+          <SelectValue placeholder="Large" />
+          <SelectIcon />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectViewport>
+            <SelectItem value="apricot">
+              <SelectItemText>Apricot</SelectItemText>
+              <SelectItemIndicator />
+            </SelectItem>
+            <SelectItem value="banana">
+              <SelectItemText>Banana</SelectItemText>
+              <SelectItemIndicator />
+            </SelectItem>
+          </SelectViewport>
+        </SelectContent>
+      </Select>
+    </div>
+  );
+};

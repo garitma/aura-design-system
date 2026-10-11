@@ -16,15 +16,32 @@ function Select({ ...props }: React.ComponentProps<typeof SelectRadix.Root>) {
   return <SelectRadix.Root data-slot="select" {...props} />;
 }
 
+/**
+ * Matches Input sm, default, and lg (`h-3`, `h-4`, `h-5`): 39, 52, and 65px.
+ * Vertical padding is 0 so the spacing height is the border box.
+ */
+const selectTriggerSizeClassName = {
+  sm: "box-border h-3 px-2 py-0",
+  default: "box-border h-4 px-2 py-0",
+  lg: "box-border h-5 px-2 py-0",
+} as const;
+
+type SelectTriggerSize = keyof typeof selectTriggerSizeClassName;
+
 function SelectTrigger({
   className,
+  size = "default",
   ...props
-}: React.ComponentProps<typeof SelectRadix.Trigger>) {
+}: React.ComponentProps<typeof SelectRadix.Trigger> & {
+  size?: SelectTriggerSize;
+}) {
   return (
     <SelectRadix.Trigger
       data-slot="select-trigger"
+      data-size={size}
       className={cn(
-        "flex h-4 w-full items-center justify-between rounded-sm border border-gray-a6 bg-gray-2 px-2 text-gray-12 cursor-pointer focus:outline-2 focus:outline-accent-9 focus:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-50",
+        selectTriggerSizeClassName[size],
+        "p font-normal leading-normal flex w-full items-center justify-between rounded-sm border border-gray-a6 bg-gray-2 text-gray-12 cursor-pointer hover:bg-gray-3 focus:outline-2 focus:outline-accent-9 focus:outline-offset-0 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-gray-2 data-[placeholder]:text-gray-11",
         className
       )}
       {...props}
@@ -39,7 +56,7 @@ function SelectValue({
   return (
     <SelectRadix.Value
       data-slot="select-value"
-      className={cn(className, "text-gray-12")}
+      className={cn(className)}
       {...props}
     />
   );
@@ -66,6 +83,10 @@ function SelectPortal({
   return <SelectRadix.Portal data-slot="select-portal" {...props} />;
 }
 
+/**
+ * Popup list. `SelectArrow` paints only when `position` is `"popper"`.
+ * Radix ignores the arrow for the default `"item-aligned"` position.
+ */
 function SelectContent({
   className,
   ...props
@@ -108,7 +129,7 @@ function SelectItem({
       data-slot="select-item"
       className={cn(
         className,
-        "relative flex w-full cursor-pointer select-none items-center p-0.5 px-2 text-gray-12 outline-none hover:bg-accent-3 focus:bg-accent-3 focus:text-accent-12 data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
+        "p font-normal leading-normal relative flex w-full cursor-pointer select-none items-center py-0.5 px-2 text-gray-12 outline-none hover:bg-accent-3 focus:bg-accent-3 focus:text-accent-12 focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-accent-8 data-[disabled]:pointer-events-none data-[disabled]:opacity-50"
       )}
       {...props}
     >
@@ -161,7 +182,7 @@ function SelectLabel({
   return (
     <SelectRadix.Label
       data-slot="select-label"
-      className={cn(className, "p-0.5 px-2 text-gray-12")}
+      className={cn(className, "small py-0.5 px-2 text-gray-12")}
       {...props}
     />
   );
@@ -174,7 +195,7 @@ function SelectSeparator({
   return (
     <SelectRadix.Separator
       data-slot="select-separator"
-      className={cn(className, "m-0.6 h-px bg-gray-a6")}
+      className={cn(className, "my-0.5 h-px bg-gray-a6")}
       {...props}
     />
   );
@@ -216,6 +237,11 @@ function SelectScrollDownButton({
   );
 }
 
+/**
+ * Arrow linking the menu to the trigger.
+ * Renders only when `SelectContent` uses `position="popper"`.
+ * The default `item-aligned` position does not show this arrow.
+ */
 function SelectArrow({
   className,
   ...props
@@ -247,3 +273,4 @@ export {
   SelectScrollDownButton,
   SelectArrow,
 };
+export type { SelectTriggerSize };
