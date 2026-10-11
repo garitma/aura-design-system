@@ -1,0 +1,4 @@
+header:
+  description: A 10px status dot for queued, building, error, ready, and canceled.
+status: new
+extends: _templates/content.yml

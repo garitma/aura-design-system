@@ -1,16 +1,19 @@
 ---
 title: Internal Progress
-date: 2026-10-10
+date: 2026-10-11
 retention: 10
 tags: [dev-log, logic]
 ---
 ## Summary
-Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface]]). Blueprint now also installs a reconciled Emil Kowalski set plus Vercel React best practices ([[Emil skills]]). The shipped theme uses the Somos Gente Digital dark ramp with light mode generated from accent `#4015ca` and gray `#7254cb` ([[Sgd-palette]]). Docs and home share one theme store ([[Shared-Theme-Store]]); charts live under `/docs/charts`.
+Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface]]). Status dots now use `--aura-status-dot-*` tokens and the [[Status-Dot]] component, including the avatar overlay. The shipped theme uses the Somos Gente Digital dark ramp ([[Sgd-palette]]). Docs and home share one theme store ([[Shared-Theme-Store]]).
 
 ## Active
 
 
 ## Sessions
+### 2026-10-11 · Status dot tokens
+- Added `--aura-status-dot-*` in both globals stylesheets, including both dark blocks. [[Status-Dot]] is a 10px dot with optional label and avatar ring. Avatar fallback uses `h6`, Avatar has `sm` / `default` / `lg`, and the grouped avatar story now points at [[Avatar-Group]].
+
 ### 2026-10-10 · Ship pick-ui-library
 - Pablo added `pick-ui-library` to the reconciled set with an `@aura`-first rule, kept `ask-sonner`, and left `write-swift` and `animate-expo` out. Blueprint now installs thirteen skills. See [[Emil skills]].
 

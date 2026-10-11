@@ -46,7 +46,28 @@ describe("Avatar", () => {
     );
     const fallback = container.querySelector('[data-slot="avatar-fallback"]');
     expect(fallback).toHaveClass("custom-fallback-class");
-    expect(fallback).toHaveClass("flex", "size-full", "bg-gray-3");
+    expect(fallback).toHaveClass("flex", "size-full", "bg-gray-3", "h6");
+  });
+
+  it("sets the size prop on the 13px scale", () => {
+    const { rerender, container } = render(
+      <Avatar size="sm">
+        <AvatarFallback>SM</AvatarFallback>
+      </Avatar>
+    );
+    let avatar = container.querySelector('[data-slot="avatar"]');
+    expect(avatar).toHaveAttribute("data-size", "sm");
+    expect(avatar).toHaveClass("size-2");
+
+    rerender(
+      <Avatar size="lg">
+        <AvatarFallback>LG</AvatarFallback>
+      </Avatar>
+    );
+    avatar = container.querySelector('[data-slot="avatar"]');
+    expect(avatar).toHaveAttribute("data-size", "lg");
+    expect(avatar).toHaveClass("size-4");
+    expect(avatar).not.toHaveClass("size-3");
   });
 
   it("renders with different sizes using custom className", () => {
@@ -57,6 +78,7 @@ describe("Avatar", () => {
     );
     let avatar = container.querySelector('[data-slot="avatar"]');
     expect(avatar).toHaveClass("size-8");
+    expect(avatar).not.toHaveClass("size-3");
 
     rerender(
       <Avatar className="size-12">
