@@ -34,7 +34,9 @@ const buttonVariants = cva(
         md: "h-4",
         lg: "h-5",
         xl: "h-6",
+        // `icon` and `icon-sm` are the 39px (3 × 13px) icon button. `icon-md` is 52px.
         icon: "w-3 h-3 p-0",
+        "icon-sm": "w-3 h-3 p-0",
         "icon-md": "w-4 h-4 p-0",
       },
     },

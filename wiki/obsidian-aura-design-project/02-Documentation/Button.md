@@ -8,6 +8,8 @@ Fill hover uses `--accent-10` (`--aura-button-hover`) so inverse text stays read
 
 `mode` and `variant="default"` still work and warn in development. Pass `variant="fill"`. `label` and `children` together show `children` only. Disabled opacity and cursor live in `.button:disabled`. Loading stays `disabled` with `data-loading` so the spinner does not fade to 50%.
 
+`size="icon"` and `size="icon-sm"` are the 39px icon button. `size="icon-md"` is 52px. Inside [[Button Group]], an omitted size follows the group.
+
 ## Context
 - Related: [[Foundations]] [[Typography]] [[Sgd-palette]]
 - Implementation Path: `packages/registry/registry/default/components/ui/Button.tsx`

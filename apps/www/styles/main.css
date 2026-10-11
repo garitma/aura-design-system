@@ -525,6 +525,86 @@ a:active {
 .button-fill.active {
   background-color: var(--aura-button-hover);
 }
+/* Joined corners and the shared edge. `.button` sets `border-radius` (and the
+   prefixed shorthands) outside `@layer`, so the group's `rounded-*-none` loses.
+   These longhands are more specific, so the inner corners stay square.
+   Fill buttons share one accent-10 edge; the next button drops its start border. */
+[data-slot="button-group"][data-orientation="horizontal"] > .button:not(:first-child) {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-start-start-radius: 0;
+  border-end-start-radius: 0;
+  -webkit-border-top-left-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -moz-border-radius-topleft: 0;
+  -moz-border-radius-bottomleft: 0;
+  border-left-width: 0;
+  border-inline-start-width: 0;
+}
+[data-slot="button-group"][data-orientation="horizontal"] > .button:not(:last-child) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-start-end-radius: 0;
+  border-end-end-radius: 0;
+  -webkit-border-top-right-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  -moz-border-radius-topright: 0;
+  -moz-border-radius-bottomright: 0;
+}
+[data-slot="button-group"][data-orientation="vertical"] > .button:not(:first-child) {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-start-start-radius: 0;
+  border-start-end-radius: 0;
+  -webkit-border-top-left-radius: 0;
+  -webkit-border-top-right-radius: 0;
+  -moz-border-radius-topleft: 0;
+  -moz-border-radius-topright: 0;
+  border-top-width: 0;
+  border-block-start-width: 0;
+}
+[data-slot="button-group"][data-orientation="vertical"] > .button:not(:last-child) {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-end-start-radius: 0;
+  border-end-end-radius: 0;
+  -webkit-border-bottom-left-radius: 0;
+  -webkit-border-bottom-right-radius: 0;
+  -moz-border-radius-bottomleft: 0;
+  -moz-border-radius-bottomright: 0;
+}
+[data-slot="button-group"][data-orientation="horizontal"] > .button-fill:not(:last-child) {
+  border-right-color: var(--accent-10);
+  border-inline-end-color: var(--accent-10);
+}
+[data-slot="button-group"][data-orientation="vertical"] > .button-fill:not(:last-child) {
+  border-bottom-color: var(--accent-10);
+  border-block-end-color: var(--accent-10);
+}
+[data-slot="button-group"] > .button.h-2\.5 {
+  height: calc(var(--aura) * 2.5);
+}
+[data-slot="button-group"] > .button.h-3 {
+  height: calc(var(--aura) * 3);
+}
+[data-slot="button-group"] > .button.h-4 {
+  height: calc(var(--aura) * 4);
+}
+[data-slot="button-group"] > .button.h-5 {
+  height: calc(var(--aura) * 5);
+}
+[data-slot="button-group"] > .button.h-6 {
+  height: calc(var(--aura) * 6);
+}
+[data-slot="button-group"] > .button.w-3 {
+  width: calc(var(--aura) * 3);
+}
+[data-slot="button-group"] > .button.w-4 {
+  width: calc(var(--aura) * 4);
+}
+[data-slot="button-group"] > .button.p-0 {
+  padding: 0;
+}
 .button-pill {
   color: var(--aura-link);
   border-color: var(--aura-link);

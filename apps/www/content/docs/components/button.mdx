@@ -142,7 +142,9 @@ const buttonVariants = cva(
         md: "h-4",
         lg: "h-5",
         xl: "h-6",
+        // `icon` and `icon-sm` are the 39px (3 × 13px) icon button. `icon-md` is 52px.
         icon: "w-3 h-3 p-0",
+        "icon-sm": "w-3 h-3 p-0",
         "icon-md": "w-4 h-4 p-0",
       },
     },
@@ -311,10 +313,20 @@ export const Sizes = () => (
     <Button size="md">Medium</Button>
     <Button size="lg">Large</Button>
     <Button size="xl">Extra Large</Button>
-    <Button size="icon"><MixerHorizontalIcon className="icon" /></Button>
+    <Button size="icon" aria-label="Small icon, 39px">
+      <MixerHorizontalIcon className="icon" />
+    </Button>
+    <Button size="icon-sm" aria-label="Small icon, 39px">
+      <MixerHorizontalIcon className="icon" />
+    </Button>
+    <Button size="icon-md" aria-label="Medium icon, 52px">
+      <MixerHorizontalIcon className="icon" />
+    </Button>
   </div>
 )
 ```
+
+`size="icon"` and `size="icon-sm"` are the 39px icon button (`w-3`, 3 × 13px). `size="icon-md"` is 52px. Icon-only buttons need an `aria-label`.
 
 ### Disabled
 
