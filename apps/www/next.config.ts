@@ -38,6 +38,11 @@ const config: NextConfig = {
 
     return [
       {
+        source: "/docs/components/chart",
+        destination: "/docs/charts",
+        permanent: true,
+      },
+      {
         source: "/docs/components/app-bar",
         destination: "/docs/components",
         permanent: true,

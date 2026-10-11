@@ -1,3 +1,5 @@
 header:
   description: Chart container, tooltip, legend, and series wrappers. Series colors use Aura chart tokens.
+# Shared base for the Charts section. Do not emit /docs/components/chart.
+page: false
 extends: _templates/content.yml

@@ -29,6 +29,9 @@ import {
   ChartLine,
   ChartTooltip,
   ChartTooltipContent,
+  chartAxisTick,
+  chartPlotMargin,
+  chartTickMargin,
   type ChartConfig,
 } from "@/components/ui/Chart";
 import { cn } from "@/utils/class-names";
@@ -65,7 +68,6 @@ const negativeVisitors = [
   { month: "June", visitors: 214 },
 ];
 
-const axisTick = { fontSize: 13, fill: "var(--gray-11)" };
 
 const titles: Record<BarChartVariant, string> = {
   default: "Bar chart",
@@ -100,9 +102,9 @@ function MonthLabel({
   return (
     <text
       x={Number(x) + Number(width) / 2}
-      y={Number(y) - 6.5}
-      fill="var(--gray-11)"
-      fontSize={13}
+      y={Number(y) - chartTickMargin() / 2}
+      fill="var(--chart-tick, var(--gray-11))"
+      fontSize="var(--chart-tick-size, var(--spacing))"
       textAnchor="middle"
     >
       {label}
@@ -157,9 +159,9 @@ function BarChart({
         <LabelList
           dataKey="desktop"
           position="top"
-          offset={6.5}
-          fontSize={13}
-          fill="var(--gray-11)"
+          offset={chartTickMargin() / 2}
+          fontSize="var(--chart-tick-size, var(--spacing))"
+          fill="var(--chart-tick, var(--gray-11))"
         />
       ) : null}
       {variant === "custom" ? (
@@ -172,15 +174,16 @@ function BarChart({
     <ComposedChart
       accessibilityLayer
       data={monthVisitors}
-      margin={{ top: 13, right: 13, left: 13, bottom: 0 }}
+      margin={chartPlotMargin()}
     >
-      <CartesianGrid vertical={false} stroke="var(--gray-6)" />
+      <CartesianGrid vertical={false} stroke="var(--chart-grid, var(--gray-6))" />
       <XAxis
         dataKey="month"
         tickLine={false}
         axisLine={false}
-        tickMargin={13}
-        tick={axisTick}
+        tickMargin={chartTickMargin()}
+        interval="preserveStartEnd"
+        tick={chartAxisTick}
         tickFormatter={(value: string) => value.slice(0, 3)}
       />
       <ChartTooltip content={<ChartTooltipContent indicator="dot" />} />
@@ -199,18 +202,31 @@ function BarChart({
       accessibilityLayer
       data={data}
       layout={horizontal ? "vertical" : "horizontal"}
-      margin={{ top: variant === "label" || variant === "custom" ? 26 : 13, right: 13, left: 13, bottom: 0 }}
+      margin={chartPlotMargin(
+        variant === "label" || variant === "custom"
+          ? { top: chartTickMargin() * 2 }
+          : undefined
+      )}
     >
-      <CartesianGrid vertical={horizontal} stroke="var(--gray-6)" />
+      <CartesianGrid vertical={horizontal} stroke="var(--chart-grid, var(--gray-6))" />
       {horizontal ? (
-        <XAxis type="number" dataKey="desktop" tickLine={false} axisLine={false} tickMargin={13} tick={axisTick} />
+        <XAxis
+          type="number"
+          dataKey="desktop"
+          tickLine={false}
+          axisLine={false}
+          tickMargin={chartTickMargin()}
+          interval="preserveStartEnd"
+          tick={chartAxisTick}
+        />
       ) : (
         <XAxis
           dataKey="month"
           tickLine={false}
           axisLine={false}
-          tickMargin={13}
-          tick={axisTick}
+          tickMargin={chartTickMargin()}
+          interval="preserveStartEnd"
+          tick={chartAxisTick}
           tickFormatter={(value: string) => value.slice(0, 3)}
         />
       )}
@@ -220,9 +236,10 @@ function BarChart({
           dataKey="month"
           tickLine={false}
           axisLine={false}
-          tickMargin={13}
+          tickMargin={chartTickMargin()}
+          interval="preserveStartEnd"
           width={78}
-          tick={axisTick}
+          tick={chartAxisTick}
           tickFormatter={(value: string) => value.slice(0, 3)}
         />
       ) : null}

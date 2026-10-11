@@ -21,6 +21,9 @@ import {
   ChartLine,
   ChartTooltip,
   ChartTooltipContent,
+  chartAxisTick,
+  chartPlotMargin,
+  chartTickMargin,
   type ChartConfig,
 } from "@/components/ui/Chart";
 import {
@@ -69,7 +72,6 @@ const interactiveVisitors = Array.from({ length: 90 }, (_, index) => {
   };
 });
 
-const axisTick = { fontSize: 13, fill: "var(--gray-11)" };
 
 const titles: Record<LineChartVariant, string> = {
   default: "Line chart",
@@ -185,16 +187,19 @@ function LineChart({
           <RechartsLineChart
             accessibilityLayer
             data={plotted}
-            margin={{ top: variant === "label" ? 26 : 13, right: 13, left: 13, bottom: 0 }}
+            margin={chartPlotMargin(
+              variant === "label" ? { top: chartTickMargin() * 2 } : undefined
+            )}
           >
-            <CartesianGrid vertical={false} stroke="var(--gray-6)" />
+            <CartesianGrid vertical={false} stroke="var(--chart-grid, var(--gray-6))" />
             <XAxis
               dataKey={variant === "interactive" ? "date" : "month"}
               tickLine={false}
               axisLine={false}
-              tickMargin={13}
-              minTickGap={variant === "interactive" ? 26 : 0}
-              tick={axisTick}
+              tickMargin={chartTickMargin()}
+              interval="preserveStartEnd"
+              minTickGap={variant === "interactive" ? chartTickMargin() * 2 : 0}
+              tick={chartAxisTick}
               tickFormatter={(value: string) => {
                 if (variant === "interactive") {
                   return new Date(value).toLocaleDateString("en-US", {
@@ -244,9 +249,9 @@ function LineChart({
                   <LabelList
                     dataKey="desktop"
                     position="top"
-                    offset={6.5}
-                    fontSize={13}
-                    fill="var(--gray-11)"
+                    offset={chartTickMargin() / 2}
+                    fontSize="var(--chart-tick-size, var(--spacing))"
+                    fill="var(--chart-tick, var(--gray-11))"
                   />
                 ) : null}
               </ChartLine>

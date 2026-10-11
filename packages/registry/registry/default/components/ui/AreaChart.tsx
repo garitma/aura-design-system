@@ -26,6 +26,9 @@ import {
   ChartLegendContent,
   ChartTooltip,
   ChartTooltipContent,
+  chartAxisTick,
+  chartPlotMargin,
+  chartTickMargin,
   type ChartConfig,
 } from "@/components/ui/Chart";
 import {
@@ -158,8 +161,6 @@ const interactiveVisitors = [
   { date: "2024-06-29", desktop: 103, mobile: 160 },
   { date: "2024-06-30", desktop: 446, mobile: 400 },
 ]
-
-const axisTick = { fontSize: 13, fill: "var(--gray-11)" };
 
 const titles: Record<AreaChartVariant, string> = {
   default: "Area chart",
@@ -303,7 +304,7 @@ function AreaChart({
           <RechartsAreaChart
             accessibilityLayer
             data={plotted}
-            margin={{ top: 13, right: 13, left: variant === "axes" ? 0 : 13, bottom: 0 }}
+            margin={chartPlotMargin(variant === "axes" ? { left: 0 } : undefined)}
             stackOffset={variant === "expanded" ? "expand" : "none"}
           >
             {gradient ? (
@@ -323,14 +324,15 @@ function AreaChart({
                 ))}
               </defs>
             ) : null}
-            <CartesianGrid vertical={false} stroke="var(--gray-6)" strokeDasharray="0" />
+            <CartesianGrid vertical={false} stroke="var(--chart-grid, var(--gray-6))" />
             <XAxis
               dataKey={variant === "interactive" ? "date" : "month"}
               tickLine={false}
               axisLine={false}
-              tickMargin={13}
-              minTickGap={variant === "interactive" ? 26 : 0}
-              tick={axisTick}
+              tickMargin={chartTickMargin()}
+              interval="preserveStartEnd"
+              minTickGap={variant === "interactive" ? chartTickMargin() * 2 : 0}
+              tick={chartAxisTick}
               tickFormatter={(value: string) => {
                 if (variant === "interactive") {
                   return new Date(value).toLocaleDateString("en-US", {
@@ -345,9 +347,10 @@ function AreaChart({
               <YAxis
                 tickLine={false}
                 axisLine={false}
-                tickMargin={13}
+                tickMargin={chartTickMargin()}
+                interval="preserveStartEnd"
                 tickCount={3}
-                tick={axisTick}
+                tick={chartAxisTick}
               />
             ) : null}
             <ChartTooltip
