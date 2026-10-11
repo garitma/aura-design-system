@@ -100,7 +100,7 @@ function BubbleGroup({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 const bubbleVariants = cva(
-  "group/bubble relative flex w-fit max-w-[80%] min-w-0 flex-col gap-0.5 group-data-[align=end]/message:self-end data-[align=end]:self-end data-[variant=ghost]:max-w-full",
+  "group/bubble relative flex w-fit max-w-[80%] min-w-0 flex-col gap-0.5 group-data-[align=end]/message:self-end data-[align=end]:self-end data-[variant=ghost]:max-w-full has-[[data-slot=bubble-reactions][data-side=bottom]]:mb-2 has-[[data-slot=bubble-reactions][data-side=top]]:mt-2",
   {
     variants: {
       variant: {
@@ -109,15 +109,17 @@ const bubbleVariants = cva(
         secondary:
           "*:data-[slot=bubble-content]:bg-gray-3 *:data-[slot=bubble-content]:text-gray-12 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-gray-4",
         muted:
-          "*:data-[slot=bubble-content]:bg-gray-2 *:data-[slot=bubble-content]:text-gray-12 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-gray-3",
+          "*:data-[slot=bubble-content]:border-gray-a4 *:data-[slot=bubble-content]:bg-gray-2 *:data-[slot=bubble-content]:text-gray-12 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-gray-3",
         tinted:
           "*:data-[slot=bubble-content]:bg-accent-3 *:data-[slot=bubble-content]:text-gray-12 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-accent-4",
         outline:
           "*:data-[slot=bubble-content]:border-gray-7 *:data-[slot=bubble-content]:bg-gray-1 *:data-[slot=bubble-content]:text-gray-12 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-gray-3",
         ghost:
-          "border-none *:data-[slot=bubble-content]:rounded-none *:data-[slot=bubble-content]:bg-transparent *:data-[slot=bubble-content]:p-0 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-gray-3 [&>[data-slot=bubble-content]:is(button,a):hover]:text-gray-12",
+          "*:data-[slot=bubble-content]:border-none *:data-[slot=bubble-content]:rounded-none *:data-[slot=bubble-content]:bg-transparent *:data-[slot=bubble-content]:p-0 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-gray-3 [&>[data-slot=bubble-content]:is(button,a):hover]:text-gray-12",
+        // Danger is a surface/contrast pair, not a 12-step ramp. 6% toward
+        // --danger-contrast matches one soft step (gray-2 → gray-3).
         destructive:
-          "*:data-[slot=bubble-content]:bg-danger *:data-[slot=bubble-content]:text-danger-contrast [&>[data-slot=bubble-content]:is(button,a):hover]:bg-danger/80",
+          "*:data-[slot=bubble-content]:bg-danger *:data-[slot=bubble-content]:text-danger-contrast [&>[data-slot=bubble-content]:is(button,a):hover]:bg-[color-mix(in_oklab,var(--danger),var(--danger-contrast)_6%)]",
       },
     },
     defaultVariants: {
@@ -168,7 +170,7 @@ function BubbleContent({
 }
 
 const bubbleReactionsVariants = cva(
-  "absolute z-10 flex w-fit shrink-0 items-center justify-center gap-0.5 rounded-full bg-gray-3 px-0.5 py-0.5 text-sm ring-2 ring-gray-1 has-[button]:p-0",
+  "absolute z-10 flex w-fit max-w-[calc(100%-var(--spacing))] min-w-0 items-center justify-center gap-0.5 overflow-hidden rounded-full bg-gray-3 px-0.5 py-0.5 text-sm ring-2 ring-gray-1 has-[button]:p-0",
   {
     variants: {
       side: {

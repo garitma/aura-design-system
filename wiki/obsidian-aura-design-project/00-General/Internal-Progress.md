@@ -11,6 +11,10 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 
 ## Sessions
+### 2026-10-11 · Bubble borders and reactions
+- Muted content uses `border-gray-a4`. Ghost `border-none` now targets `BubbleContent`. Destructive hover mixes 6% `--danger-contrast` into `--danger` instead of `bg-danger/80`. See [[Bubble]].
+- Reactions reserve `mb-2` or `mt-2` when present. The pill max width is the bubble minus one spacing unit so it stays inside narrow bubbles.
+
 ### 2026-10-11 · Breadcrumb type, focus, and collapse
 - Current page is `font-semibold` on gray-12, with `aria-current="page"` and no link role. Links underline on hover. Focus is `rounded-sm` with a 2px offset. See [[Audit-Breadcrumb]].
 - The trail uses `.small`. Slotted links inherit that size. `maxItems` and containers under 640px collapse to first › ellipsis › current page. Docs show a slash separator, the collapsed trail, and the mobile trail, with the ellipsis in a labeled dropdown.
@@ -41,12 +45,9 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 ### 2026-10-11 · Remove Attachment and fix AspectRatio
 - Removed the Attachment registry component, docs, demos, stories, and `public/r/attachment.json`. Spinner and Button stay. `/docs/components/attachment` redirects to the components index. AspectRatio now imports React, keeps a single demo, and uses `w-full max-w-xs`. See [[Recent-Components-Audit]].
 
-### 2026-10-11 · Remove AppBar
-- Removed the AppBar registry component, its docs page, demos, stories, and metadata. Side sheet, carousel, and app navigation do not depend on it. `/docs/components/app-bar` redirects to the components index. See [[Recent-Components-Audit]].
-
 Older sessions: [[Progress-Archive/2026-10]]
 
 ## Context
-- Related: [[Audit-Breadcrumb]] [[Audit Banner]] [[Button]] [[Charts]] [[Area-charts]] [[Recent-Components-Audit]] [[Segmented-Input]] [[Media-Utilities]] [[Collection-Display]] [[Input-Controls]] [[Autocomplete Popup]] [[Status-Dot]] [[Avatar Group]] [[Sgd-palette]] [[Sgd-cobrand]] [[Site and docs app]] [[Aura Agent Surface]] [[Shared-Theme-Store]] [[Aura overlay]]
+- Related: [[Bubble]] [[Audit-Breadcrumb]] [[Audit Banner]] [[Button]] [[Charts]] [[Area-charts]] [[Recent-Components-Audit]] [[Segmented-Input]] [[Media-Utilities]] [[Collection-Display]] [[Input-Controls]] [[Autocomplete Popup]] [[Status-Dot]] [[Avatar Group]] [[Sgd-palette]] [[Sgd-cobrand]] [[Site and docs app]] [[Aura Agent Surface]] [[Shared-Theme-Store]] [[Aura overlay]]
 - Implementation Path: `packages/registry/styles/globals.css`
 - Next: confirm the Charts sidebar and a couple chart pages in the docs site. (since 2026-10-09)
