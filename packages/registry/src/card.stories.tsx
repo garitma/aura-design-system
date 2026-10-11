@@ -18,7 +18,7 @@ export const WithFooter = () => (
       <CardDescription>Configure your project settings</CardDescription>
     </CardHeader>
     <CardContent>
-      <p className="text-gray-12">
+      <p className="small text-gray-12">
         Your project has been created successfully.
       </p>
     </CardContent>
@@ -31,20 +31,16 @@ export const WithFooter = () => (
 export const WithActions = () => (
   <Card>
     <CardHeader>
-      <div className="flex items-start justify-between">
-        <div className="flex flex-col gap-0.5">
-          <CardTitle>Notifications</CardTitle>
-          <CardDescription>You have 3 unread messages</CardDescription>
-        </div>
-        <CardAction>
-          <Button variant="menu">Mark all read</Button>
-        </CardAction>
-      </div>
+      <CardTitle>Notifications</CardTitle>
+      <CardDescription>You have 3 unread messages</CardDescription>
+      <CardAction>
+        <Button variant="menu">Mark all read</Button>
+      </CardAction>
     </CardHeader>
     <CardContent>
       <div className="space-y-1">
-        <p className="text-gray-12">New comment on your post</p>
-        <p className="text-gray-11">2 minutes ago</p>
+        <p className="small text-gray-12">New comment on your post</p>
+        <p className="small text-gray-11">2 minutes ago</p>
       </div>
     </CardContent>
   </Card>
@@ -53,7 +49,7 @@ export const WithActions = () => (
 export const SimpleCard = () => (
   <Card>
     <CardContent>
-      <p className="text-gray-12">A simple card with just content.</p>
+      <p className="small text-gray-12">A simple card with just content.</p>
     </CardContent>
   </Card>
 );
@@ -66,7 +62,7 @@ export const MultipleCards = () => (
         <CardDescription>This is the first card</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-gray-12">Content for the first card.</p>
+        <p className="small text-gray-12">Content for the first card.</p>
       </CardContent>
     </Card>
     <Card>
@@ -75,7 +71,7 @@ export const MultipleCards = () => (
         <CardDescription>This is the second card</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-gray-12">Content for the second card.</p>
+        <p className="small text-gray-12">Content for the second card.</p>
       </CardContent>
     </Card>
     <Card>
@@ -84,7 +80,7 @@ export const MultipleCards = () => (
         <CardDescription>This is the third card</CardDescription>
       </CardHeader>
       <CardContent>
-        <p className="text-gray-12">Content for the third card.</p>
+        <p className="small text-gray-12">Content for the third card.</p>
       </CardContent>
     </Card>
   </div>
@@ -100,12 +96,12 @@ export const NestedCards = () => (
       <div className="flex flex-col gap-1">
         <Card className="bg-gray-3">
           <CardContent>
-            <p className="text-gray-12">Nested card 1</p>
+            <p className="small text-gray-12">Nested card 1</p>
           </CardContent>
         </Card>
         <Card className="bg-gray-3">
           <CardContent>
-            <p className="text-gray-12">Nested card 2</p>
+            <p className="small text-gray-12">Nested card 2</p>
           </CardContent>
         </Card>
       </div>
@@ -114,13 +110,13 @@ export const NestedCards = () => (
 );
 
 export const InteractiveCard = () => (
-  <Card className="cursor-pointer hover:border-gray-8 transition-colors">
+  <Card interactive>
     <CardHeader>
       <CardTitle>Clickable Card</CardTitle>
       <CardDescription>Hover to see the effect</CardDescription>
     </CardHeader>
     <CardContent>
-      <p className="text-gray-12">
+      <p className="small text-gray-12">
         This card has hover states for interactive experiences.
       </p>
     </CardContent>
@@ -128,14 +124,14 @@ export const InteractiveCard = () => (
 );
 
 export const CardGrid = () => (
-  <div className="grid grid-cols-3 gap-1">
+  <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 md:grid-cols-3">
     {Array.from({ length: 6 }).map((_, i) => (
       <Card key={i}>
         <CardHeader>
           <CardTitle>Card {i + 1}</CardTitle>
         </CardHeader>
         <CardContent>
-          <p className="text-gray-12">Grid item content</p>
+          <p className="small text-gray-12">Grid item content</p>
         </CardContent>
       </Card>
     ))}
@@ -156,7 +152,7 @@ export const Default = () => (
       <CardDescription>Captured in the mountains</CardDescription>
     </CardHeader>
     <CardContent>
-      <p className="text-gray-12">
+      <p className="small text-gray-12">
         A stunning view of nature's beauty captured at golden hour.
       </p>
     </CardContent>
@@ -167,7 +163,7 @@ export const Default = () => (
 );
 
 export const ImageGrid = () => (
-  <div className="grid grid-cols-3 gap-1">
+  <div className="grid grid-cols-1 gap-1 sm:grid-cols-2 md:grid-cols-3">
     {[
       {
         src: "https://images.unsplash.com/photo-1588345921523-c2dcdb7f1dcd?w=800&dpr=2&q=80",

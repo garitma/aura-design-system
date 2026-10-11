@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import {
   Card,
   CardHeader,
@@ -8,7 +8,7 @@ import {
   CardDescription,
   CardContent,
 } from "../registry/default/components/ui/Card";
-import { describe, it, expect } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 
 describe("Card", () => {
   it("renders correctly with default props", () => {
@@ -19,9 +19,11 @@ describe("Card", () => {
       "bg-gray-2",
       "border",
       "border-gray-6",
-      "rounded-md",
+      "rounded-(--radius-md)",
       "overflow-hidden"
     );
+    expect(card).not.toHaveAttribute("data-interactive");
+    expect(card).not.toHaveAttribute("tabindex");
     expect(screen.getByText("Card content")).toBeInTheDocument();
   });
 
@@ -31,7 +33,32 @@ describe("Card", () => {
     );
     const card = container.querySelector('[data-slot="card"]');
     expect(card).toHaveClass("custom-card-class");
-    expect(card).toHaveClass("bg-gray-2", "border", "rounded-md");
+    expect(card).toHaveClass("bg-gray-2", "border", "rounded-(--radius-md)");
+  });
+
+  it("treats interactive cards as clickable", () => {
+    const onClick = vi.fn();
+    render(<Card interactive onClick={onClick}>Clickable</Card>);
+    const card = screen.getByText("Clickable");
+    expect(card).toHaveAttribute("data-interactive", "true");
+    expect(card).toHaveAttribute("tabindex", "0");
+    expect(card).toHaveClass(
+      "hover:border-gray-8",
+      "hover:shadow-[0_2px_8px_var(--gray-a3)]",
+      "focus-visible:ring-2",
+      "focus-visible:ring-gray-8"
+    );
+    card.focus();
+    fireEvent.keyDown(card, { key: "Enter" });
+    fireEvent.keyDown(card, { key: " " });
+    expect(onClick).toHaveBeenCalledTimes(2);
+  });
+
+  it("adds the focus ring when the card has a click handler", () => {
+    render(<Card onClick={() => {}}>Clickable</Card>);
+    const card = screen.getByText("Clickable");
+    expect(card).toHaveAttribute("data-interactive", "true");
+    expect(card).toHaveClass("focus-visible:ring-gray-8");
   });
 
   it("forwards additional props to Card", () => {
@@ -48,7 +75,13 @@ describe("CardHeader", () => {
     const { container } = render(<CardHeader>Header content</CardHeader>);
     const header = container.querySelector('[data-slot="card-header"]');
     expect(header).toBeInTheDocument();
-    expect(header).toHaveClass("flex", "flex-col", "gap-0.5", "p-1");
+    expect(header).toHaveClass(
+      "grid",
+      "gap-y-0.5",
+      "gap-x-1",
+      "p-1",
+      "has-data-[slot=card-action]:grid-cols-[1fr_auto]"
+    );
     expect(screen.getByText("Header content")).toBeInTheDocument();
   });
 
@@ -58,7 +91,13 @@ describe("CardHeader", () => {
     );
     const header = container.querySelector('[data-slot="card-header"]');
     expect(header).toHaveClass("custom-header-class");
-    expect(header).toHaveClass("flex", "flex-col", "gap-0.5", "p-1");
+    expect(header).toHaveClass(
+      "grid",
+      "gap-y-0.5",
+      "gap-x-1",
+      "p-1",
+      "has-data-[slot=card-action]:grid-cols-[1fr_auto]"
+    );
   });
 
   it("forwards additional props to CardHeader", () => {
@@ -74,7 +113,7 @@ describe("CardTitle", () => {
     const title = container.querySelector('[data-slot="card-title"]');
     expect(title).toBeInTheDocument();
     expect(title?.tagName).toBe("H3");
-    expect(title).toHaveClass("text-gray-12", "font-semibold", "leading-none");
+    expect(title).toHaveClass("small", "font-semibold", "text-gray-12", "m-0");
     expect(screen.getByText("Card Title")).toBeInTheDocument();
   });
 
@@ -84,7 +123,7 @@ describe("CardTitle", () => {
     );
     const title = container.querySelector('[data-slot="card-title"]');
     expect(title).toHaveClass("custom-title-class");
-    expect(title).toHaveClass("text-gray-12", "font-semibold", "leading-none");
+    expect(title).toHaveClass("small", "font-semibold", "text-gray-12", "m-0");
   });
 
   it("forwards additional props to CardTitle", () => {
@@ -104,7 +143,7 @@ describe("CardDescription", () => {
     );
     expect(description).toBeInTheDocument();
     expect(description?.tagName).toBe("P");
-    expect(description).toHaveClass("text-gray-11");
+    expect(description).toHaveClass("small", "text-gray-11", "m-0");
     expect(screen.getByText("Card description")).toBeInTheDocument();
   });
 
@@ -118,7 +157,7 @@ describe("CardDescription", () => {
       '[data-slot="card-description"]'
     );
     expect(description).toHaveClass("custom-description-class");
-    expect(description).toHaveClass("text-gray-11");
+    expect(description).toHaveClass("small", "text-gray-11", "m-0");
   });
 
   it("forwards additional props to CardDescription", () => {
@@ -137,7 +176,16 @@ describe("CardAction", () => {
     const { container } = render(<CardAction>Action content</CardAction>);
     const action = container.querySelector('[data-slot="card-action"]');
     expect(action).toBeInTheDocument();
-    expect(action).toHaveClass("flex", "items-center", "gap-0.5");
+    expect(action).toHaveClass(
+      "col-start-2",
+      "row-start-1",
+      "row-span-2",
+      "justify-self-end",
+      "self-start",
+      "flex",
+      "items-center",
+      "gap-0.5"
+    );
     expect(screen.getByText("Action content")).toBeInTheDocument();
   });
 
@@ -147,7 +195,16 @@ describe("CardAction", () => {
     );
     const action = container.querySelector('[data-slot="card-action"]');
     expect(action).toHaveClass("custom-action-class");
-    expect(action).toHaveClass("flex", "items-center", "gap-0.5");
+    expect(action).toHaveClass(
+      "col-start-2",
+      "row-start-1",
+      "row-span-2",
+      "justify-self-end",
+      "self-start",
+      "flex",
+      "items-center",
+      "gap-0.5"
+    );
   });
 
   it("forwards additional props to CardAction", () => {
@@ -162,7 +219,7 @@ describe("CardContent", () => {
     const { container } = render(<CardContent>Content text</CardContent>);
     const content = container.querySelector('[data-slot="card-content"]');
     expect(content).toBeInTheDocument();
-    expect(content).toHaveClass("p-1");
+    expect(content).toHaveClass("small", "p-1", "text-gray-12");
     expect(screen.getByText("Content text")).toBeInTheDocument();
   });
 
@@ -172,7 +229,7 @@ describe("CardContent", () => {
     );
     const content = container.querySelector('[data-slot="card-content"]');
     expect(content).toHaveClass("custom-content-class");
-    expect(content).toHaveClass("p-1");
+    expect(content).toHaveClass("small", "p-1", "text-gray-12");
   });
 
   it("forwards additional props to CardContent", () => {
