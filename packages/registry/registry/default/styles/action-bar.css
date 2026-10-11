@@ -22,3 +22,84 @@
     }
   }
 }
+
+/* Desktop placement. Offsets come from the component as custom properties so
+   this sheet can override them below sm without fighting inline styles. */
+[data-slot="action-bar"][data-side="bottom"] {
+  bottom: var(--action-bar-side-offset, var(--spacing));
+}
+
+[data-slot="action-bar"][data-side="top"] {
+  top: var(--action-bar-side-offset, var(--spacing));
+}
+
+[data-slot="action-bar"][data-align="center"] {
+  left: 50%;
+  translate: -50% 0;
+}
+
+[data-slot="action-bar"][data-align="start"] {
+  left: var(--action-bar-align-offset, 0px);
+}
+
+[data-slot="action-bar"][data-align="end"] {
+  right: var(--action-bar-align-offset, 0px);
+}
+
+/* Below Tailwind sm (640px): inset one spacing unit (13px) and stay inside
+   the viewport. 100vw can include the scrollbar, so max-width uses 100%. */
+@media (width < 40rem) {
+  [data-slot="action-bar"][data-orientation="horizontal"] {
+    box-sizing: border-box;
+    left: var(--spacing);
+    right: auto;
+    width: calc(100vw - (var(--spacing) * 2));
+    max-width: calc(100% - (var(--spacing) * 2));
+    translate: none;
+  }
+
+  [data-slot="action-bar"][data-orientation="horizontal"][data-side="bottom"] {
+    bottom: var(--spacing);
+  }
+
+  [data-slot="action-bar"][data-orientation="horizontal"][data-side="top"] {
+    top: var(--spacing);
+  }
+
+  [data-slot="action-bar"][data-orientation="vertical"] {
+    max-width: calc(100% - (var(--spacing) * 2));
+  }
+
+  [data-slot="action-bar"][data-orientation="horizontal"] [data-slot="action-bar-selection"],
+  [data-slot="action-bar"][data-orientation="horizontal"] [data-slot="action-bar-separator"],
+  [data-slot="action-bar"][data-orientation="horizontal"] [data-slot="action-bar-group"],
+  [data-slot="action-bar"][data-orientation="horizontal"] [data-slot="action-bar-item"] {
+    flex-shrink: 0;
+  }
+
+  [data-slot="action-bar"][data-orientation="horizontal"] [data-slot="action-bar-selection"] {
+    white-space: nowrap;
+  }
+
+  [data-slot="action-bar"][data-orientation="horizontal"] [data-slot="action-bar-item"] {
+    position: relative;
+    padding-inline: var(--spacing);
+  }
+
+  [data-slot="action-bar"][data-orientation="horizontal"] [data-slot="action-bar-item-label"] {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+
+  [data-slot="action-bar"][data-orientation="horizontal"] [data-slot="action-bar-close"] {
+    flex-shrink: 0;
+    margin-inline-start: auto;
+  }
+}

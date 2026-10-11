@@ -639,11 +639,17 @@
           "path": "registry/default/styles/alert-dialog.css",
           "type": "registry:component",
           "target": "./styles/alert-dialog.css"
+        },
+        {
+          "path": "registry/default/styles/overlay.css",
+          "type": "registry:component",
+          "target": "./styles/overlay.css"
         }
       ],
       "css": {
         "@layer components": {
-          "@import \"../styles/alert-dialog.css\"": {}
+          "@import \"../styles/alert-dialog.css\"": {},
+          "@import \"../styles/overlay.css\"": {}
         }
       },
       "dependencies": [
@@ -1162,8 +1168,18 @@
         {
           "path": "registry/default/components/ui/Combobox.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/overlay.css",
+          "type": "registry:component",
+          "target": "./styles/overlay.css"
         }
       ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/overlay.css\"": {}
+        }
+      },
       "dependencies": [
         "@base-ui/react"
       ],
@@ -1185,11 +1201,17 @@
           "path": "registry/default/styles/command.css",
           "type": "registry:component",
           "target": "./styles/command.css"
+        },
+        {
+          "path": "registry/default/styles/overlay.css",
+          "type": "registry:component",
+          "target": "./styles/overlay.css"
         }
       ],
       "css": {
         "@layer components": {
-          "@import \"../styles/command.css\"": {}
+          "@import \"../styles/command.css\"": {},
+          "@import \"../styles/overlay.css\"": {}
         }
       },
       "dependencies": [
@@ -1295,11 +1317,17 @@
           "path": "registry/default/styles/dialog.css",
           "type": "registry:component",
           "target": "./styles/dialog.css"
+        },
+        {
+          "path": "registry/default/styles/overlay.css",
+          "type": "registry:component",
+          "target": "./styles/overlay.css"
         }
       ],
       "css": {
         "@layer components": {
-          "@import \"../styles/dialog.css\"": {}
+          "@import \"../styles/dialog.css\"": {},
+          "@import \"../styles/overlay.css\"": {}
         }
       },
       "dependencies": [
@@ -1335,8 +1363,18 @@
         {
           "path": "registry/default/components/ui/Drawer.tsx",
           "type": "registry:ui"
+        },
+        {
+          "path": "registry/default/styles/overlay.css",
+          "type": "registry:component",
+          "target": "./styles/overlay.css"
         }
       ],
+      "css": {
+        "@layer components": {
+          "@import \"../styles/overlay.css\"": {}
+        }
+      },
       "dependencies": [
         "vaul"
       ],
@@ -2660,11 +2698,17 @@
           "path": "registry/default/styles/sheet.css",
           "type": "registry:component",
           "target": "./styles/sheet.css"
+        },
+        {
+          "path": "registry/default/styles/overlay.css",
+          "type": "registry:component",
+          "target": "./styles/overlay.css"
         }
       ],
       "css": {
         "@layer components": {
-          "@import \"../styles/sheet.css\"": {}
+          "@import \"../styles/sheet.css\"": {},
+          "@import \"../styles/overlay.css\"": {}
         }
       },
       "dependencies": [
@@ -3816,7 +3860,8 @@
       "description": "The CSSMain file.",
       "css": {
         "@layer components": {
-          "@import \"../styles/main.css\"": {}
+          "@import \"../styles/main.css\"": {},
+          "@import \"../styles/overlay.css\"": {}
         }
       },
       "files": [
@@ -3824,6 +3869,11 @@
           "path": "registry/default/styles/main.css",
           "type": "registry:file",
           "target": "styles/main.css"
+        },
+        {
+          "path": "registry/default/styles/overlay.css",
+          "type": "registry:file",
+          "target": "styles/overlay.css"
         }
       ]
     },
