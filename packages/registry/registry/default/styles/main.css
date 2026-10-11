@@ -307,7 +307,8 @@
     display: inline-flex;
   }
   @container (min-width: 640px) {
-    [data-slot="breadcrumb-list"][data-collapse="sm"] [data-breadcrumb="middle"] {
+    [data-slot="breadcrumb-list"][data-collapse="sm"]:not([data-expanded="true"])
+      [data-breadcrumb="middle"] {
       display: inline-flex !important;
     }
     [data-slot="breadcrumb-list"][data-collapse="sm"] [data-breadcrumb="ellipsis"] {
