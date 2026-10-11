@@ -149,7 +149,7 @@ function AlertDialogContent({
       <AlertDialogRadix.Content
         data-slot="alert-dialog-content"
         className={cn(
-          "smash fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] -translate-x-1/2 -translate-y-1/2 bg-gray-1 p-2 rounded-md z-50 data-[state=open]:animate-content-show border border-gray-a6",
+          "smash fixed left-1/2 top-1/2 max-h-[85vh] w-[90vw] max-w-lg -translate-x-1/2 -translate-y-1/2 bg-gray-1 p-2 rounded-md z-50 data-[state=open]:animate-content-show border border-gray-a6",
           className
         )}
         {...props}
@@ -159,16 +159,9 @@ function AlertDialogContent({
 }
 
 function AlertDialogHeader({
-  className,
   ...props
 }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="alert-dialog-header"
-      className={cn("", className)}
-      {...props}
-    />
-  );
+  return <div data-slot="alert-dialog-header" {...props} />;
 }
 
 function AlertDialogFooter({
@@ -201,30 +194,30 @@ function AlertDialogTitle({
 }
 
 function AlertDialogDescription({
-  className,
   ...props
 }: React.ComponentProps<typeof AlertDialogRadix.Description>) {
   return (
     <AlertDialogRadix.Description
       data-slot="alert-dialog-description"
-      className={cn("", className)}
       {...props}
     />
   );
 }
 
 function AlertDialogAction({
-  className,
   ...props
 }: React.ComponentProps<typeof AlertDialogRadix.Action>) {
-  return <AlertDialogRadix.Action className={cn("", className)} {...props} />;
+  return (
+    <AlertDialogRadix.Action data-slot="alert-dialog-action" {...props} />
+  );
 }
 
 function AlertDialogCancel({
-  className,
   ...props
 }: React.ComponentProps<typeof AlertDialogRadix.Cancel>) {
-  return <AlertDialogRadix.Cancel className={cn("", className)} {...props} />;
+  return (
+    <AlertDialogRadix.Cancel data-slot="alert-dialog-cancel" {...props} />
+  );
 }
 
 export {
