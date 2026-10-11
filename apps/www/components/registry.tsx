@@ -52,7 +52,6 @@ import {
   AvatarDemoWithFallback,
   AvatarDemoFallbackOnly,
   AvatarDemoCustomSize,
-  AvatarDemoGrouped,
   AvatarDemoWithStatus,
   AvatarDemoDifferentShapes,
   AvatarDemoCustomFallbackStyles
@@ -615,6 +614,11 @@ import {
   StatusDemo
 } from "@/components/demos/status-demo"
 import { 
+  StatusDotDemo,
+  StatusDotDemoWithRing,
+  StatusDotDemoCustomLabel
+} from "@/components/demos/status-dot-demo"
+import { 
   StepperDemo
 } from "@/components/demos/stepper-demo"
 import { 
@@ -771,9 +775,6 @@ export const Registry = {
   },
   "avatar-demo-custom-size": {
     component: AvatarDemoCustomSize,
-  },
-  "avatar-demo-grouped": {
-    component: AvatarDemoGrouped,
   },
   "avatar-demo-with-status": {
     component: AvatarDemoWithStatus,
@@ -1782,6 +1783,15 @@ export const Registry = {
   },
   "status-demo": {
     component: StatusDemo,
+  },
+  "status-dot-demo": {
+    component: StatusDotDemo,
+  },
+  "status-dot-demo-with-ring": {
+    component: StatusDotDemoWithRing,
+  },
+  "status-dot-demo-custom-label": {
+    component: StatusDotDemoCustomLabel,
   },
   "stepper-demo": {
     component: StepperDemo,

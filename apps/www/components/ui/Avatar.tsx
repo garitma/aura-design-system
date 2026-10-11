@@ -6,15 +6,28 @@ import * as React from "react";
 import { Avatar as AvatarRadix } from "radix-ui";
 import { cn } from "@/utils/class-names";
 
+const avatarSizes = {
+  sm: "size-2",
+  default: "size-3",
+  lg: "size-4",
+} as const;
+
+type AvatarSize = keyof typeof avatarSizes;
+
 function Avatar({
   className,
+  size = "default",
   ...props
-}: React.ComponentProps<typeof AvatarRadix.Root>) {
+}: React.ComponentProps<typeof AvatarRadix.Root> & {
+  size?: AvatarSize;
+}) {
   return (
     <AvatarRadix.Root
       data-slot="avatar"
+      data-size={size}
       className={cn(
-        "inline-flex size-3 items-center justify-center overflow-hidden rounded-full",
+        "inline-flex items-center justify-center overflow-hidden rounded-full",
+        avatarSizes[size],
         className
       )}
       {...props}
@@ -43,7 +56,7 @@ function AvatarFallback({
     <AvatarRadix.Fallback
       data-slot="avatar-fallback"
       className={cn(
-        "flex size-full items-center justify-center bg-gray-3",
+        "flex size-full items-center justify-center bg-gray-3 h6",
         className
       )}
       {...props}
@@ -51,4 +64,4 @@ function AvatarFallback({
   );
 }
 
-export { Avatar, AvatarImage, AvatarFallback };
+export { Avatar, AvatarImage, AvatarFallback, type AvatarSize };
