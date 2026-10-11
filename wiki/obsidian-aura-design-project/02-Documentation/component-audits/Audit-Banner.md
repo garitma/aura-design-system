@@ -1,16 +1,17 @@
 ---
 title: Audit Banner
-date: 2026-10-06
+date: 2026-10-11
 tags: [dev-log, logic, architecture]
 ---
 ## Summary
-Pass. The banner is a status bar on accent step 3 with gray-12 text, a 13px gap, and a 39px dismiss button.
+Banner stays a full-width accent bar by default and gains phone layout, optional announcement, and Alert tones. Static banners no longer use `role="status"`.
 
 ## Findings
-- Pass. `Banner.tsx` uses `role="status"`, `border-b border-accent-7`, `bg-accent-3`, `px-1.5 py-1`, `gap-1`, `text-gray-12`.
-- Pass. Dismiss is `size-3` (39px), `aria-label="Dismiss banner"`, Radix `Cross2Icon` with `className="icon"`, focus ring `ring-accent-8`. No icon margin.
+- The layout is `flex-col items-stretch gap-0.5 p-1`, and from `sm` it is a row with `sm:px-1.5`. A container narrower than 24rem keeps the phone stack: message and dismiss on one row (`flex items-start gap-1`), action below.
+- `role` and `aria-live` are opt-in. Tones `info`, `success`, `warning`, and `danger` use the same background, text, and border tokens as [[Alert]].
+- Dismiss is `Button` `size="icon"` (`w-3 h-3 p-0`), with hover `bg-accent-4` and focus `ring-accent-8`. `dismissState` shows those states in docs. `asChild` and `messageClassName` let the message hold block content.
 
 ## Context
-- Related: [[Recent-Components-Audit]] [[Collection-Display]]
+- Related: [[Recent-Components-Audit]] [[Alert]]
 - Implementation Path: `packages/registry/registry/default/components/ui/Banner.tsx`
 - Docs page: `apps/www/content/docs/components/banner.mdx`
