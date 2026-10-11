@@ -4,7 +4,7 @@ date: 2026-10-06
 tags: [dev-log, logic, architecture]
 ---
 ## Summary
-Aura now ships the shadcn gaps that were missing or only partial: breadcrumb, native select, item, resizable, field, input OTP, attachment, spinner, date picker, direction, and questionnaire. Typography and toast are docs pages. Chart families live in the Charts docs section. See [[Charts]].
+Aura now ships the shadcn gaps that were missing or only partial: breadcrumb, native select, item, resizable, field, input OTP, spinner, date picker, direction, and questionnaire. Typography and toast are docs pages. Chart families live in the Charts docs section. See [[Charts]].
 
 ## Context
 - Related: [[Foundations docs]] [[Registry]]

@@ -42,12 +42,8 @@ import {
   AreaChartDemoInteractive
 } from "./area-chart-demo"
 import { 
-  AspectRatioDemoDefault,
   AspectRatioDemo
 } from "./aspect-ratio-demo"
-import { 
-  AttachmentDemo
-} from "./attachment-demo"
 import { 
   AutocompleteDemo
 } from "./autocomplete-demo"
@@ -762,13 +758,7 @@ export const Registry = {
     component: AreaChartDemoInteractive,
   },
   "aspect-ratio-demo": {
-    component: AspectRatioDemoDefault,
-  },
-  "aspect-ratio-demo-aspect-ratio-demo": {
     component: AspectRatioDemo,
-  },
-  "attachment-demo": {
-    component: AttachmentDemo,
   },
   "autocomplete-demo": {
     component: AutocompleteDemo,

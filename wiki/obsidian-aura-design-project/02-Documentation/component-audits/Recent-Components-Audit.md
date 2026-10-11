@@ -63,7 +63,6 @@ Resolved in the component fix pass. The notes below keep the original cause.
 | speed-dial | Pass | [[Audit-Speed-Dial]] |
 | split-button | Pass | [[Audit-Split-Button]] |
 | toolbar | Pass | [[Audit-Toolbar]] |
-| attachment | Pass | [[Audit-Attachment]] |
 | breadcrumb | Pass | [[Audit-Breadcrumb]] |
 | date-picker | Pass | [[Audit-Date-Picker]] |
 | field | Pass | [[Audit-Field]] |

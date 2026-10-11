@@ -42,6 +42,11 @@ const config: NextConfig = {
         destination: "/docs/components",
         permanent: true,
       },
+      {
+        source: "/docs/components/attachment",
+        destination: "/docs/components",
+        permanent: true,
+      },
       ...utils.map((slug) => ({
         source: `/docs/components/${slug}`,
         destination: `/docs/utils/${slug}`,
