@@ -5,12 +5,17 @@ retention: 10
 tags: [dev-log, logic]
 ---
 ## Summary
-Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface]]). Blueprint now also installs a reconciled Emil Kowalski set plus Vercel React best practices ([[Emil skills]]). The shipped theme uses the Somos Gente Digital dark ramp with light mode generated from accent `#4015ca` and gray `#7254cb` ([[Sgd-palette]]). Modal scrims share `.aura-overlay` ([[Aura overlay]]); status dots use `--aura-status-dot-*` and [[Status-Dot]], including the avatar overlay; docs and home share one theme store ([[Shared-Theme-Store]]).
+Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface]]). Blueprint now also installs a reconciled Emil Kowalski set plus Vercel React best practices ([[Emil skills]]). The shipped theme uses the Somos Gente Digital dark ramp with light mode generated from accent `#4015ca` and gray `#7254cb` ([[Sgd-palette]]). Chart families document `ChartContainer`, tooltip, and legend under `/docs/charts`; `/docs/components/chart` redirects there ([[Charts]]).
 
 ## Active
 
 
 ## Sessions
+### 2026-10-11 · Chart docs live under Charts
+- `/docs/components/chart` is gone from the components catalog and redirects to `/docs/charts`. `Chart.tsx` stays the shared base. The Charts index documents `ChartContainer`, tooltip, and legend. See [[Charts]].
+- Markers use `--chart-marker` (8px) and `--chart-marker-line` (2px). `tokenColor` keeps plain CSS colors and warns in development when it drops a value.
+- Plot inset, ticks, and gridlines read chart tokens. Category axes use `preserveStartEnd`. The container is square below `sm`, then 16:9.
+
 ### 2026-10-11 · Carousel controls, gap, and multi-card demo
 - Below `sm`, previous and next sit in a row under the slides. From `sm` they stay outside at `-left-12` / `-right-12`. Slide gap is 13px (`-ml-1` / `pl-1`). See [[Carousel]].
 - Vertical keyboards use ArrowUp and ArrowDown. The effect cleanup removes `reInit` as well as `select`.
@@ -49,12 +54,8 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 - `mode` and `variant="default"` still work with a dev warning. `label` plus `children` shows children once. Disabled chrome is only `.button:disabled`. Loading stays non-interactive without the 50% fade.
 - Calendar days use the `.small` size. Month navigation is Button size `icon` with ChevronLeft and ChevronRight and no underline.
 
-### 2026-10-11 · Badge scale and xs type
-- Badge padding is `px-1` / `py-0.5` / `gap-0.5` on the 13px scale, so the pill is about 31px tall. `.xs` is 12/16 semibold. Outline uses `border-gray-12`, focus uses `ring-accent-a8`, and `destructive` aliases `status="danger"`. Overflow widths are keyed by index. See [[Badge]].
-
 Older sessions: [[Progress-Archive/2026-10]]
 
 ## Context
 - Related: [[Carousel]] [[Card]] [[Calendar]] [[Button Group]] [[Bubble]] [[Audit-Breadcrumb]] [[Audit Banner]] [[Button]] [[Charts]] [[Area-charts]] [[Recent-Components-Audit]] [[Segmented-Input]] [[Media-Utilities]] [[Collection-Display]] [[Input-Controls]] [[Autocomplete Popup]] [[Status-Dot]] [[Avatar Group]] [[Sgd-palette]] [[Sgd-cobrand]] [[Site and docs app]] [[Aura Agent Surface]] [[Shared-Theme-Store]] [[Aura overlay]]
-- Implementation Path: `packages/registry/styles/globals.css`
-- Next: confirm the Charts sidebar and a couple chart pages in the docs site. (since 2026-10-09)
+- Implementation Path: `packages/registry/registry/default/components/ui/Chart.tsx`

@@ -20,7 +20,7 @@ Five series tokens live on `:root` in `packages/registry/styles/globals.css`. Th
 
 Under `prefers-color-scheme: dark`, `--chart-2` through `--chart-5` use the lighter status-contrast values (`#8cb4ff`, `#67cf9d`, `#efe08e`, `#ff9469`) so strokes stay visible on the dark gray canvas. `--chart-1` keeps following `--accent-9`.
 
-A chart config passes those tokens through. The container writes `--color-<series>` for the plot. Colors that are not a `var(--token)` are ignored.
+A chart config passes those tokens through. The container writes `--color-<series>` for the plot. A plain CSS color (`#4015ca`, `rgb()`, `hsl()`, or a named color) is kept. Anything else is dropped, and development builds warn.
 
 ## Axes, grid, and surface
 
@@ -28,7 +28,8 @@ A chart config passes those tokens through. The container writes `--color-<serie
 | --- | --- |
 | Grid | Gray step 6, solid |
 | Tick labels | Gray step 11, 13px (`text-xs` is the utility size; ticks are set at 13px) |
-| Tooltip | `gray-1` surface, gray step 6 border, `rounded-sm`. Values use `font-mono` |
+| Tooltip | `gray-1` surface, gray step 6 border, `rounded-sm`. Values use `font-mono` and `tabular-nums` |
+| Markers | `--chart-marker` is 8px. The line marker is `--chart-marker-line` (2px). These are not 13px spacing steps |
 | Plot focus | Accent step 8, 2px outline |
 | Card | Chart families sit in `Card`: `gray-2` fill, gray step 6 border, `--radius-md` |
 
@@ -45,7 +46,6 @@ There is no separate annotation, axis-title, or chart-palette scale beyond these
 ## Related
 
 - [Charts](/docs/charts)
-- [Chart](/docs/components/chart)
 - [Color](/docs/foundations/color)
 - [Theming](/docs/foundations/theming)
 - [Motion](/docs/foundations/motion)

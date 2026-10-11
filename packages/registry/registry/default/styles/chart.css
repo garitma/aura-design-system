@@ -1,9 +1,22 @@
+:root {
+  /* 8px swatch and 2px line. The 13px spacing scale (size-0.5, h-1) is too coarse for markers. */
+  --chart-marker: 8px;
+  --chart-marker-line: 2px;
+  --chart-inset: var(--spacing);
+  --chart-tick-size: var(--spacing);
+  --chart-tick: var(--gray-11);
+  --chart-grid: var(--gray-6);
+  --chart-grid-dash: 0;
+}
+
 [data-slot="chart"] .recharts-cartesian-axis-tick text {
-  fill: var(--gray-11);
+  fill: var(--chart-tick);
+  font-size: var(--chart-tick-size);
 }
 
 [data-slot="chart"] .recharts-cartesian-grid line {
-  stroke: var(--gray-6);
+  stroke: var(--chart-grid);
+  stroke-dasharray: var(--chart-grid-dash);
 }
 
 [data-slot="chart"] .recharts-curve.recharts-tooltip-cursor {
@@ -19,14 +32,15 @@
 [data-slot="chart"] .recharts-polar-grid-concentric-circle,
 [data-slot="chart"] .recharts-polar-grid-angle line,
 [data-slot="chart"] .recharts-radial-bar-background-sector {
-  stroke: var(--gray-6);
+  stroke: var(--chart-grid);
 }
 
 [data-slot="chart"] .recharts-polar-angle-axis-tick text,
 [data-slot="chart"] .recharts-polar-radius-axis-tick text,
 [data-slot="chart"] .recharts-pie-label-text,
 [data-slot="chart"] .recharts-radial-bar-label {
-  fill: var(--gray-11);
+  fill: var(--chart-tick);
+  font-size: var(--chart-tick-size);
 }
 
 [data-slot="chart"] .recharts-surface:focus,

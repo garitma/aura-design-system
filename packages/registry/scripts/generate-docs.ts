@@ -96,6 +96,8 @@ interface Metadata {
   status?: string;
   /** Docs sidebar group. `utils` pages live under `/docs/utils`. */
   group?: string;
+  /** When false, keep the registry component and skip its docs page. */
+  page?: boolean;
   content?: MetadataContent[];
 }
 
@@ -243,6 +245,11 @@ function parseMetadata(componentName: string): Metadata | null {
     const groupMatch = yamlContent.match(/^group:\s*(.+)$/m);
     if (groupMatch) {
       metadata.group = groupMatch[1].trim();
+    }
+
+    const pageMatch = yamlContent.match(/^page:\s*(.+)$/m);
+    if (pageMatch && pageMatch[1].trim() === "false") {
+      metadata.page = false;
     }
 
     // Parse links section
@@ -2460,6 +2467,19 @@ function generateDocs() {
       continue;
     }
 
+    if (metadata.page === false) {
+      for (const dir of [DOCS_OUTPUT_PATH, UTILS_DOCS_OUTPUT_PATH, CHARTS_DOCS_OUTPUT_PATH]) {
+        const stalePath = path.join(dir, mdxFileName);
+        if (fs.existsSync(stalePath)) {
+          fs.unlinkSync(stalePath);
+          console.log(`[INFO] Removed docs page ${stalePath}`);
+        }
+      }
+      console.log(`[SKIP] Skipping ${mdxFileName} - page: false`);
+      skipped++;
+      continue;
+    }
+
     const outputDir = docsDirForGroup(metadata.group);
     const mdxFilePath = path.join(outputDir, mdxFileName);
     removeStaleDoc(kebabName, outputDir);
@@ -2524,6 +2544,7 @@ function collectIndexEntries(group?: string): IndexEntry[] {
 
   for (const component of getUIComponentFiles()) {
     const metadata = parseMetadata(component.name);
+    if (metadata?.page === false) continue;
     if (group) {
       if (metadata?.group !== group) continue;
     } else if (metadata?.group && SIDEBAR_GROUPS.has(metadata.group)) {
@@ -2644,7 +2665,20 @@ function generateChartsIndex() {
     title: "Charts",
     description: "Area, bar, line, pie, radar, and radial charts, plus tooltip patterns.",
     heading: "Charts",
-    intro: "Chart families sit in their own section. They share the chart container, tooltip, and legend from the Chart component.",
+    intro: `Chart families sit in their own section. They share one base, \`Chart.tsx\` (\`@aura/chart\`). Components does not list a separate Chart page; \`/docs/components/chart\` redirects here.
+
+### Chart container
+
+\`ChartContainer\` wraps the Recharts plot. \`config\` maps each series key to a label and a color: \`var(--chart-1)\` through \`var(--chart-5)\`, or a plain CSS color such as \`#4015ca\`. \`label\` is the accessible name. The container writes \`--color-<key>\` for the series. On small screens the frame is square; from the \`sm\` breakpoint it is 16:9.
+
+### Tooltip
+
+\`ChartTooltip\` is the Recharts tooltip. \`ChartTooltipContent\` paints the Aura surface (gray step 1, gray step 6 border) and one marker per series: dot, line, or dashed. Markers use \`--chart-marker\` (8px) and \`--chart-marker-line\` (2px).
+
+### Legend
+
+\`ChartLegend\` is the Recharts legend. \`ChartLegendContent\` shows that same marker, or the series icon, beside the label from \`config\`.
+`,
     linkPrefix: "./",
     entries,
     label: "charts index.mdx",

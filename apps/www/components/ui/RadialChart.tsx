@@ -105,7 +105,7 @@ function RadialChart({
               barSize={stacked ? 26 : 13}
             >
               {variant === "grid" ? (
-                <PolarGrid gridType="circle" stroke="var(--gray-6)" />
+                <PolarGrid gridType="circle" stroke="var(--chart-grid, var(--gray-6))" />
               ) : null}
               <ChartTooltip
                 content={
@@ -141,7 +141,7 @@ function RadialChart({
                     <LabelList
                       dataKey="browser"
                       position="insideStart"
-                      fontSize={13}
+                      fontSize="var(--chart-tick-size, var(--spacing))"
                       fill="var(--gray-12)"
                       className="capitalize"
                     />
