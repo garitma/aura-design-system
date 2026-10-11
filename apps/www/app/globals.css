@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @import "../styles/fumadocs-preset.css";
+@import "../../../packages/registry/registry/default/styles/overlay.css";
 
 @theme inline {
   --spacing: 13px;
@@ -200,6 +201,9 @@
   --gray-indicator: #936cff;
   --gray-track: #936cff;
 
+  /* Modal scrim. Dark gray-1 (#100B21) at 8%, fixed in light and dark. Not var(--gray-1). */
+  --aura-overlay: rgb(16 11 33 / 0.08);
+
   --info: #e8ebfe;
   --info-contrast: #0927ec;
   --success: #e8fef7;
@@ -304,6 +308,9 @@
     --gray-indicator: #7254cb;
     --gray-track: #7254cb;
 
+    /* Same scrim as light. Do not follow --gray-1, which flips to near-white in light mode. */
+    --aura-overlay: rgb(16 11 33 / 0.08);
+
     --info: #0d2157;
     --info-contrast: #8cb4ff;
     --success: #0b2e1e;
@@ -384,6 +391,9 @@
     --gray-surface: rgba(0, 0, 0, 0.05);
     --gray-indicator: #7254cb;
     --gray-track: #7254cb;
+
+    /* Same scrim as light. Do not follow --gray-1, which flips to near-white in light mode. */
+    --aura-overlay: rgb(16 11 33 / 0.08);
 
     --info: #0d2157;
     --info-contrast: #8cb4ff;
@@ -469,6 +479,7 @@ select {
   @import "../styles/dialog.css" ;
   @import "../../../packages/registry/registry/default/styles/responsive-dropdown-menu.css";
   @import "../../../packages/registry/registry/default/styles/selection-toolbar.css";
+  @import "../../../packages/registry/registry/default/styles/action-bar.css";
   @import "../../../packages/registry/registry/default/styles/chart.css";
   @import "../../../packages/registry/registry/default/styles/marquee.animation.css";
 

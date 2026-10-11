@@ -19,6 +19,34 @@ const THUMB_NAME = "AngleSliderThumb";
 const PAGE_KEYS = ["PageUp", "PageDown"];
 const ARROW_KEYS = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
 
+/** Inset on the 13px scale: 1.5 × `--spacing` (19.5px), the step for the old 20px inset. */
+const ANGLE_SLIDER_PADDING = "calc(var(--spacing) * 1.5)";
+const ANGLE_SLIDER_PADDING_PX = 19.5;
+
+const ROOT_SIZE_STYLE = {
+  width: "calc((var(--angle-slider-size) + var(--angle-slider-padding)) * 2)",
+  height: "calc((var(--angle-slider-size) + var(--angle-slider-padding)) * 2)",
+} as const;
+
+const ANGLE_SLIDER_VALUE_STYLE: React.CSSProperties = {
+  position: "absolute",
+  left: "calc(var(--angle-slider-size) + var(--angle-slider-padding))",
+  top: "calc(var(--angle-slider-size) + var(--angle-slider-padding))",
+  transform: "translate(-50%, -50%)",
+};
+
+function readAngleSliderPadding(root: HTMLElement) {
+  const probe = document.createElement("div");
+  probe.style.position = "absolute";
+  probe.style.visibility = "hidden";
+  probe.style.pointerEvents = "none";
+  probe.style.width = "var(--angle-slider-padding)";
+  root.appendChild(probe);
+  const padding = Math.round(probe.getBoundingClientRect().width * 100) / 100;
+  probe.remove();
+  return padding;
+}
+
 type Direction = "ltr" | "rtl";
 
 interface DivProps extends React.ComponentProps<"div"> {
@@ -93,6 +121,7 @@ interface StoreState {
   max: number;
   step: number;
   size: number;
+  padding: number;
   thickness: number;
   startAngle: number;
   endAngle: number;
@@ -186,7 +215,7 @@ function AngleSlider(props: AngleSliderProps) {
     onValueChange,
     onValueCommit,
     min = 0,
-    max = 100,
+    max = 360,
     step = 1,
     minStepsBetweenThumbs = 0,
     size = 60,
@@ -220,6 +249,7 @@ function AngleSlider(props: AngleSliderProps) {
     disabled,
     inverted,
     size,
+    padding: ANGLE_SLIDER_PADDING_PX,
     thickness,
     startAngle,
     endAngle,
@@ -553,8 +583,16 @@ function AngleSlider(props: AngleSliderProps) {
     [propsRef, onSliderEnd],
   );
 
+  useIsomorphicLayoutEffect(() => {
+    if (!sliderElement) return;
+    const padding = readAngleSliderPadding(sliderElement);
+    if (padding > 0) {
+      store.setState("padding", padding);
+    }
+  }, [sliderElement, size, store]);
+
   const RootPrimitive = asChild ? SlotPrimitive.Slot : "div";
-  const { children, ...restRootProps } = rootProps;
+  const { children, style: styleProp, ...restRootProps } = rootProps;
 
   return (
     <StoreContext.Provider value={store}>
@@ -570,10 +608,14 @@ function AngleSlider(props: AngleSliderProps) {
             disabled && "opacity-50",
             className,
           )}
-          style={{
-            width: `${size * 2 + 40}px`,
-            height: `${size * 2 + 40}px`,
-          }}
+          style={
+            {
+              "--angle-slider-padding": ANGLE_SLIDER_PADDING,
+              ...styleProp,
+              "--angle-slider-size": `${size}px`,
+              ...ROOT_SIZE_STYLE,
+            } as React.CSSProperties
+          }
           onKeyDown={onKeyDown}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
@@ -591,11 +633,12 @@ function AngleSliderTrack(props: React.ComponentProps<"svg">) {
 
   const disabled = useStore((state) => state.disabled);
   const size = useStore((state) => state.size);
+  const padding = useStore((state) => state.padding);
   const thickness = useStore((state) => state.thickness);
   const startAngle = useStore((state) => state.startAngle);
   const endAngle = useStore((state) => state.endAngle);
 
-  const center = size + 20;
+  const center = size + padding;
   const trackRadius = size;
 
   const totalAngle = (endAngle - startAngle + 360) % 360 || 360;
@@ -629,7 +672,6 @@ function AngleSliderTrack(props: React.ComponentProps<"svg">) {
           cy={center}
           r={trackRadius}
           fill="none"
-          stroke="currentColor"
           strokeWidth={thickness}
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
@@ -640,7 +682,6 @@ function AngleSliderTrack(props: React.ComponentProps<"svg">) {
           data-slot="angle-slider-track-rail"
           d={`M ${startX} ${startY} A ${trackRadius} ${trackRadius} 0 ${largeArcFlag} 1 ${endX} ${endY}`}
           fill="none"
-          stroke="currentColor"
           strokeWidth={thickness}
           strokeLinecap="round"
           vectorEffect="non-scaling-stroke"
@@ -660,11 +701,12 @@ function AngleSliderRange(props: React.ComponentProps<"path">) {
   const max = useStore((state) => state.max);
   const disabled = useStore((state) => state.disabled);
   const size = useStore((state) => state.size);
+  const padding = useStore((state) => state.padding);
   const thickness = useStore((state) => state.thickness);
   const startAngle = useStore((state) => state.startAngle);
   const endAngle = useStore((state) => state.endAngle);
 
-  const center = size + 20;
+  const center = size + padding;
   const trackRadius = size;
 
   const sortedValues = [...values].sort((a, b) => a - b);
@@ -701,7 +743,6 @@ function AngleSliderRange(props: React.ComponentProps<"path">) {
       data-slot="angle-slider-range"
       d={`M ${startX} ${startY} A ${trackRadius} ${trackRadius} 0 ${largeArcFlag} 1 ${endX} ${endY}`}
       fill="none"
-      stroke="currentColor"
       strokeWidth={thickness}
       strokeLinecap="round"
       vectorEffect="non-scaling-stroke"
@@ -725,7 +766,6 @@ function AngleSliderThumb(props: AngleSliderThumbProps) {
   const max = useStore((state) => state.max);
   const step = useStore((state) => state.step);
   const disabled = useStore((state) => state.disabled);
-  const size = useStore((state) => state.size);
 
   const thumbId = React.useId();
   const [thumbElement, setThumbElement] = React.useState<ThumbElement | null>(
@@ -760,15 +800,14 @@ function AngleSliderThumb(props: AngleSliderThumbProps) {
 
     const angle = store.getAngleFromValue(value);
     const position = store.getPositionFromAngle(angle);
-    const center = size + 20;
 
     return {
       position: "absolute",
-      left: `${center + position.x}px`,
-      top: `${center + position.y}px`,
+      left: `calc(var(--angle-slider-size) + var(--angle-slider-padding) + ${position.x}px)`,
+      top: `calc(var(--angle-slider-size) + var(--angle-slider-padding) + ${position.y}px)`,
       transform: "translate(-50%, -50%)",
     };
-  }, [value, store, size]);
+  }, [value, store]);
 
   const onFocus = React.useCallback(
     (event: React.FocusEvent<ThumbElement>) => {
@@ -799,7 +838,7 @@ function AngleSliderThumb(props: AngleSliderThumbProps) {
         {...thumbProps}
         ref={composedRef}
         className={cn(
-          "block size-1.5 shrink-0 rounded-full border border-accent-9 bg-gray-1 ring-accent-8/50 transition-[color,box-shadow] hover:ring-2 focus-visible:ring-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
+          "block size-1.5 shrink-0 rounded-full border border-accent-9 bg-gray-1 ring-accent-a6 transition-[color,box-shadow] hover:ring-2 focus-visible:ring-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
           className,
         )}
         onFocus={onFocus}
@@ -843,10 +882,7 @@ function AngleSliderValue(props: AngleSliderValueProps) {
   } = props;
 
   const values = useStore((state) => state.values);
-  const size = useStore((state) => state.size);
   const disabled = useStore((state) => state.disabled);
-
-  const center = size + 20;
 
   const displayValue = React.useMemo(() => {
     if (formatValue) {
@@ -861,16 +897,6 @@ function AngleSliderValue(props: AngleSliderValueProps) {
     return `${sortedValues[0]}${unit} - ${sortedValues[sortedValues.length - 1]}${unit}`;
   }, [values, formatValue, unit]);
 
-  const valueStyle = React.useMemo<React.CSSProperties>(
-    () => ({
-      position: "absolute",
-      left: `${center}px`,
-      top: `${center}px`,
-      transform: "translate(-50%, -50%)",
-    }),
-    [center],
-  );
-
   const ValuePrimitive = asChild ? SlotPrimitive.Slot : "div";
 
   return (
@@ -883,7 +909,7 @@ function AngleSliderValue(props: AngleSliderValueProps) {
         className,
       )}
       style={{
-        ...valueStyle,
+        ...ANGLE_SLIDER_VALUE_STYLE,
         ...style,
       }}
     >

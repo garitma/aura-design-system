@@ -1,0 +1,85 @@
+/*
+ * Shared modal scrim for every Aura overlay.
+ *
+ * --aura-overlay is rgb(16 11 33 / 0.08): dark gray-1 (#100B21) at 8%.
+ * The same value is set in light and dark in registry globals. It is not
+ * var(--gray-1), because gray-1 is near-white in light mode.
+ * Declared here as well so the tint ships with this file.
+ * backdrop-filter matches backdrop-blur-xs (--blur-xs is 4px).
+ * Enter fade is opacity 0 to 1, 150ms, cubic-bezier(0.16, 1, 0.3, 1).
+ *
+ * `@theme animatons` (the typo) still registered --animate-* tokens. Tailwind v4
+ * ignores unknown @theme words; it does not drop the custom properties.
+ * sheet.css and alert-dialog.css use `@theme animations`.
+ */
+
+:root {
+  --aura-overlay: rgb(16 11 33 / 0.08);
+}
+
+@keyframes aura-overlay-show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes aura-overlay-hide {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.aura-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: var(--aura-overlay);
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+}
+
+.aura-overlay[data-state="open"] {
+  animation: aura-overlay-show 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/*
+ * vaul injects an unlayered 500ms fadeIn/fadeOut on [data-vaul-overlay].
+ * !important keeps the 150ms fade when this file is imported inside a layer.
+ */
+.aura-overlay[data-vaul-overlay][data-vaul-snap-points][data-state="open"] {
+  animation: aura-overlay-show 150ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.aura-overlay[data-vaul-overlay][data-vaul-snap-points][data-state="closed"] {
+  animation: aura-overlay-hide 150ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.aura-overlay[data-starting-style],
+.aura-overlay[data-ending-style] {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .aura-overlay:is([data-open], [data-closed], [data-starting-style], [data-ending-style]) {
+    transition: opacity 150ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aura-overlay,
+  .aura-overlay[data-state="open"],
+  .aura-overlay[data-state="closed"],
+  .aura-overlay[data-starting-style],
+  .aura-overlay[data-ending-style],
+  .aura-overlay[data-vaul-overlay][data-vaul-snap-points][data-state="open"],
+  .aura-overlay[data-vaul-overlay][data-vaul-snap-points][data-state="closed"] {
+    animation: none !important;
+    transition: none;
+    opacity: 1;
+  }
+}

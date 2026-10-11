@@ -8,7 +8,7 @@ Motion clarifies cause and effect. It is interruptible and driven by input. Aura
 
 ## Best practices
 
-- Provide a reduced-motion variant. Shipped overlay styles set `animation: none` under `@media (prefers-reduced-motion: reduce)`.
+- Provide a reduced-motion variant. `.aura-overlay` sets `animation: none` and `transition: none` under `@media (prefers-reduced-motion: reduce)`.
 - Enter and exit content with opacity plus `transform: scale()`. Scrims can be opacity alone.
 - Interactive hover and active states use scale. Buttons in `main.css` go to `scale(1.03)` on hover and `scale(0.97)` on active.
 - Durations step in **250ms** where the foundation rule applies. Easing follows the kind of change: `ease-in-out` for tooltips in the written rule, `cubic-bezier(0.16, 1, 0.3, 1)` for dialogs, `ease` for collapsible and accordion in the written rule, `cubic-bezier(0.4, 0, 0.6, 1)` for button color transitions in the written rule.
@@ -18,11 +18,11 @@ The tables below are the values in the stylesheets. They do not all match the 25
 
 ## Dialog and alert dialog
 
-`packages/registry/registry/default/styles/dialog.css` and `alert-dialog.css` share:
+Scrims share `.aura-overlay` in `packages/registry/registry/default/styles/overlay.css`. Dialog content still uses `dialog.css` and `alert-dialog.css`:
 
 | Token | Duration | Easing | From → to |
 | --- | --- | --- | --- |
-| `--animate-overlay-show` | 150ms | `cubic-bezier(0.16, 1, 0.3, 1)` | opacity 0 → 1 |
+| `.aura-overlay` | 150ms | `cubic-bezier(0.16, 1, 0.3, 1)` | opacity 0 → 1, `background-color: var(--aura-overlay)`, `backdrop-filter: blur(4px)` |
 | `--animate-content-show` | 150ms | `cubic-bezier(0.16, 1, 0.3, 1)` | opacity 0 and `scale(0.96)` → opacity 1 and `scale(1)` |
 
 Tooltip uses the same curve: show 150ms, hide 120ms, both scaling from `0.96` (`tooltip.css`). The docs-site copies under `apps/www/styles/` match the dialog pair.
