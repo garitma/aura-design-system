@@ -14,7 +14,7 @@ function Toolbar({
       aria-label={label}
       data-slot="toolbar"
       className={cn(
-        "inline-flex items-center gap-0.5 rounded-sm border border-gray-6 bg-gray-1 p-0.5",
+        "inline-flex flex-wrap items-center gap-2 rounded-sm border border-gray-6 bg-gray-1 p-0.5",
         className,
       )}
       {...props}

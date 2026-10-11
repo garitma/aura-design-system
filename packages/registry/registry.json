@@ -928,6 +928,7 @@
         "class-variance-authority"
       ],
       "registryDependencies": [
+        "@aura/button",
         "@aura/class-names",
         "@aura/separator"
       ]

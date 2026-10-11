@@ -14,6 +14,9 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/utils/class-names";
 import { Spinner } from "@/components/ui/Spinner";
 
+/** Provided by ButtonGroup. `null` when a button is not grouped. */
+const ButtonGroupContext = React.createContext<"default" | "sm" | null>(null);
+
 const buttonVariants = cva(
   "button focus-visible:[outline:var(--aura-outline)] [&_svg]:size-[1em]",
   {
@@ -34,7 +37,9 @@ const buttonVariants = cva(
         md: "h-4",
         lg: "h-5",
         xl: "h-6",
+        // `icon` and `icon-sm` are the 39px (3 × 13px) icon button. `icon-md` is 52px.
         icon: "w-3 h-3 p-0",
+        "icon-sm": "w-3 h-3 p-0",
         "icon-md": "w-4 h-4 p-0",
       },
     },
@@ -81,6 +86,36 @@ function resolveButtonContent(
   return hasChildren ? children : label;
 }
 
+type ButtonSize = NonNullable<VariantProps<typeof buttonVariants>["size"]>;
+
+const ICON_BUTTON_SIZES = new Set<ButtonSize>(["icon", "icon-sm", "icon-md"]);
+
+function isIconOnlyContent(node: React.ReactNode): boolean {
+  const items = React.Children.toArray(node).filter(
+    (child) => child !== null && child !== undefined && child !== false && child !== "",
+  );
+  if (items.length === 0) return false;
+  return items.every((child) => {
+    if (typeof child === "string" || typeof child === "number") return false;
+    if (!React.isValidElement(child)) return false;
+    if (typeof child.type === "string" && (child.type === "svg" || child.type === "img")) {
+      return true;
+    }
+    const className = (child.props as { className?: unknown }).className;
+    return typeof className === "string" && className.split(/\s+/).includes("icon");
+  });
+}
+
+function resolveGroupedSize(
+  size: ButtonSize | null | undefined,
+  groupSize: "default" | "sm" | null,
+  iconOnly: boolean,
+): ButtonSize | null | undefined {
+  if (!groupSize || size) return size;
+  if (iconOnly) return groupSize === "sm" ? "icon-sm" : "icon-md";
+  return groupSize === "sm" ? "sm" : "md";
+}
+
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props: ButtonProps, ref) => {
     const {
@@ -115,12 +150,26 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     }
 
     const content = resolveButtonContent(label, children);
+    const groupSize = React.useContext(ButtonGroupContext);
+    const iconOnly = isIconOnlyContent(asChild ? null : content);
+    const resolvedSize = resolveGroupedSize(size, groupSize, iconOnly);
+
+    if (
+      groupSize &&
+      (iconOnly || (resolvedSize != null && ICON_BUTTON_SIZES.has(resolvedSize))) &&
+      !rest["aria-label"] &&
+      !rest["aria-labelledby"]
+    ) {
+      warnOnce(
+        "Button: an icon-only button in a ButtonGroup needs an aria-label.",
+      );
+    }
 
     return (
       <Comp
         data-slot="button"
         className={cn(
-          buttonVariants({ variant: effectiveVariant, size, className }),
+          buttonVariants({ variant: effectiveVariant, size: resolvedSize, className }),
         )}
         ref={ref}
         {...rest}
@@ -149,6 +198,6 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
 Button.displayName = "Button";
 
-export { Button, buttonVariants };
+export { Button, ButtonGroupContext, buttonVariants };
 export type { ButtonProps };
 export default Button;

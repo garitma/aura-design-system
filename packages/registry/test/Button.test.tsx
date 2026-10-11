@@ -51,6 +51,27 @@ describe("Button", () => {
 
     rerender(<Button size="xl">XL</Button>);
     expect(screen.getByRole("button", { name: "XL" })).toHaveClass("h-6");
+
+    rerender(<Button size="icon" aria-label="Icon" />);
+    expect(screen.getByRole("button", { name: "Icon" })).toHaveClass(
+      "w-3",
+      "h-3",
+      "p-0",
+    );
+
+    rerender(<Button size="icon-sm" aria-label="Icon small" />);
+    expect(screen.getByRole("button", { name: "Icon small" })).toHaveClass(
+      "w-3",
+      "h-3",
+      "p-0",
+    );
+
+    rerender(<Button size="icon-md" aria-label="Icon medium" />);
+    expect(screen.getByRole("button", { name: "Icon medium" })).toHaveClass(
+      "w-4",
+      "h-4",
+      "p-0",
+    );
   });
 
   it("handles onClick event", () => {

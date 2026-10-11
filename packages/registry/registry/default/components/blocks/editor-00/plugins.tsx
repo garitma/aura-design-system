@@ -53,12 +53,12 @@ export function Plugins({ onChange }: { onChange?: (state: any) => void }) {
     <>
       <ToolbarPlugin>
         {({ blockType }) => (
-          <div className="flex items-center gap-0.5 overflow-auto px-1 top-0 z-5 bg-gray-1 rounded-t-md p-0.5 border-b border-gray-a6 justify-between">
+          <div className="flex flex-wrap items-center gap-2 px-1 top-0 z-5 bg-gray-1 rounded-t-md p-0.5 border-b border-gray-a6 justify-between">
             <div>
               <HistoryToolbarPlugin />
             </div>
 
-            <div className=" items-center gap-0.5 flex">
+            <div className="flex flex-wrap items-center gap-2">
               <BlockFormatDropDown>
                 <FormatParagraph />
                 <FormatHeading levels={["h1", "h2", "h3"]} />

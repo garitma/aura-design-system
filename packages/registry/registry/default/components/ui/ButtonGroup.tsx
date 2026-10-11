@@ -1,8 +1,16 @@
+import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "@/utils/class-names"
+import { ButtonGroupContext } from "@/components/ui/Button"
 import { Separator } from "@/components/ui/Separator"
+
+/**
+ * `default` maps child buttons to `md` / `icon-md` (52px).
+ * `sm` maps them to `sm` / `icon-sm` (39px). `icon` is the same 39px control.
+ */
+type ButtonGroupSize = "default" | "sm"
 
 const buttonGroupVariants = cva(
   "flex w-fit items-stretch [&>*]:focus-visible:z-10 [&>*]:focus-visible:relative [&>[data-slot=select-trigger]:not([class*='w-'])]:w-fit [&>input]:flex-1 has-[select[aria-hidden=true]:last-child]:[&>[data-slot=select-trigger]:last-of-type]:rounded-r-md has-[>[data-slot=button-group]]:gap-2",
@@ -23,17 +31,24 @@ const buttonGroupVariants = cva(
 
 function ButtonGroup({
   className,
-  orientation,
+  orientation = "horizontal",
+  size = "default",
   ...props
-}: React.ComponentProps<"div"> & VariantProps<typeof buttonGroupVariants>) {
+}: React.ComponentProps<"div"> &
+  VariantProps<typeof buttonGroupVariants> & {
+    size?: ButtonGroupSize
+  }) {
   return (
-    <div
-      role="group"
-      data-slot="button-group"
-      data-orientation={orientation}
-      className={cn(buttonGroupVariants({ orientation }), className)}
-      {...props}
-    />
+    <ButtonGroupContext.Provider value={size}>
+      <div
+        role="group"
+        data-slot="button-group"
+        data-orientation={orientation}
+        data-size={size}
+        className={cn(buttonGroupVariants({ orientation }), className)}
+        {...props}
+      />
+    </ButtonGroupContext.Provider>
   )
 }
 
@@ -44,12 +59,14 @@ function ButtonGroupText({
 }: React.ComponentProps<"div"> & {
   asChild?: boolean
 }) {
+  const size = React.useContext(ButtonGroupContext)
   const Comp = asChild ? Slot : "div"
 
   return (
     <Comp
       className={cn(
-        "bg-muted flex items-center gap-2 rounded-md border px-4 text-sm font-medium shadow-xs [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
+        "flex items-center gap-0.5 rounded-sm border border-gray-6 bg-gray-2 px-2 font-medium [&_svg]:pointer-events-none",
+        size === "sm" ? "h-3" : "h-4",
         className
       )}
       {...props}
@@ -67,7 +84,7 @@ function ButtonGroupSeparator({
       data-slot="button-group-separator"
       orientation={orientation}
       className={cn(
-        "bg-input relative !m-0 self-stretch data-[orientation=vertical]:h-auto",
+        "relative !m-0 self-stretch bg-gray-6 data-[orientation=vertical]:h-auto",
         className
       )}
       {...props}
@@ -81,3 +98,4 @@ export {
   ButtonGroupText,
   buttonGroupVariants,
 }
+export type { ButtonGroupSize }

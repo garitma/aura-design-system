@@ -11,6 +11,11 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 
 ## Sessions
+### 2026-10-11 · Button group size, corners, and dividers
+- `size` on [[Button Group]] passes `md`/`icon-md` or `sm`/`icon-sm` to buttons. Text height is `h-4` or `h-3`. `icon` and `icon-sm` are the 39px icon button, and icon-only buttons need an `aria-label`.
+- Docs and toolbars use `flex-wrap gap-2`. Text and separators use `bg-gray-2`, `bg-gray-6`, and `rounded-sm`.
+- Joined corners are squared in unlayered CSS so they beat `.button`'s radius. Fill buttons share an accent-10 edge.
+
 ### 2026-10-11 · Button contrast, focus, and calendar type
 - Fill hover is `--accent-10` so dark gray-contrast text is no longer on accent-11. Focus uses `--aura-outline` on `:focus-visible`. The scale respects reduced motion, and one `transition` keeps the background fade. See [[Button]].
 - `mode` and `variant="default"` still work with a dev warning. `label` plus `children` shows children once. Disabled chrome is only `.button:disabled`. Loading stays non-interactive without the 50% fade.
@@ -40,9 +45,6 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 ### 2026-10-11 · Shared modal scrim
 - `.aura-overlay` is the scrim for AlertDialog, Dialog, Sheet (mobile Sidebar), Drawer, Command, and ComboboxBackdrop. Tint is `--aura-overlay: rgb(16 11 33 / 0.08)` in light and dark, plus a 4px blur and a 150ms fade. See [[Aura overlay]].
 - AlertDialog action and cancel expose `data-slot`. Header and description drop empty `cn("")`. Content caps at `max-w-lg` and stays `w-[90vw]` on small screens. The title element is unchanged.
-
-### 2026-10-11 · Alert alignment and default status
-- Removed `space-y-0.5` from the horizontal `Alert` root so the icon lines up with the title. Variants keep a single border color; default uses `border-gray-6`. Description and title use the `p` scale, with the title bold. `AlertStatus` now includes `default`, and the docs demo orders default, info, success, warning, danger. See [[Alert]].
 
 Older sessions: [[Progress-Archive/2026-10]]
 
