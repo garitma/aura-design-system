@@ -92,12 +92,12 @@ export const BadgeOverflowDemoInteractiveTags = () => {
         items={tags}
         lineCount={2}
         renderBadge={(item) => (
-          <Badge variant="secondary" className="gap-1 pr-1">
+          <Badge variant="secondary">
             {item}
             <button
               type="button"
               aria-label={`Remove ${item}`}
-              className="inline-flex rounded-full p-0.5 hover:bg-gray-5"
+              className="inline-flex size-1.5 shrink-0 items-center justify-center rounded-full hover:bg-gray-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-a8"
               onClick={() =>
                 setTags((current) => current.filter((tag) => tag !== item))
               }

@@ -290,6 +290,12 @@
     font-weight: 500;
     line-height: 1.4rem;
   }
+  /* Typography/xs — 12px Inter Semi Bold, line-height 16px at a 17px root. */
+  .xs {
+    font-size: calc(12 / 17 * 1rem);
+    font-weight: 600;
+    line-height: calc(16 / 17 * 1rem);
+  }
   p {
     margin: var(--aura) 0;
   }
