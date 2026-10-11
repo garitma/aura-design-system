@@ -156,7 +156,7 @@ Composable **empty states** for lists, tables, and panels. **`Empty`** is a cent
 
 ### Card (`@aura/card`)
 
-Default **`Card`** uses **`bg-gray-2`**, **`border-gray-6`**, **`rounded-md`**, and **`CardFooter`** includes **`border-t border-gray-6`**. For an **editorial “registry unit”** (no chrome lines, tonal lift only), **override** with e.g. **`border-0`**, **`rounded-xl`**, **`bg-gray-3`** on **`gray-1`**, and rely on **padding + spacing**—**design target**; always reconcile with the installed **`Card.tsx`** when upgrading.
+Default **`Card`** uses **`bg-gray-2`**, **`border-gray-6`**, **`rounded-(--radius-md)`** (**`--radius-md`**, 13px), and **`CardFooter`** includes **`border-t border-gray-6`**. **`CardTitle`** is **`.small`** semibold. **`CardDescription`** and body copy use **`.small`**. **`CardAction`** is the right-hand slot of **`CardHeader`** (top right). For an **editorial “registry unit”** (no chrome lines, tonal lift only), **override** with e.g. **`border-0`**, **`rounded-xl`**, **`bg-gray-3`** on **`gray-1`**, and rely on **padding + spacing**—**design target**; always reconcile with the installed **`Card.tsx`** when upgrading.
 
 ### Inputs and controls
 
