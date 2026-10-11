@@ -18,7 +18,9 @@ describe("Checkbox", () => {
       "rounded",
       "outline-none",
       "hover:bg-accent-2",
-      "cursor-pointer"
+      "cursor-pointer",
+      "disabled:cursor-not-allowed",
+      "disabled:opacity-50"
     );
   });
 
@@ -89,6 +91,10 @@ describe("Checkbox", () => {
     const checkbox = screen.getByRole("checkbox");
     expect(checkbox).toBeDisabled();
     expect(checkbox).toHaveAttribute("data-disabled", "");
+    expect(checkbox).toHaveClass(
+      "disabled:cursor-not-allowed",
+      "disabled:opacity-50"
+    );
   });
 
   it("does not trigger onCheckedChange when disabled", () => {
@@ -101,9 +107,15 @@ describe("Checkbox", () => {
   });
 
   it("handles indeterminate state", () => {
-    render(<Checkbox checked="indeterminate" />);
+    const { container } = render(<Checkbox checked="indeterminate" />);
     const checkbox = screen.getByRole("checkbox");
     expect(checkbox).toHaveAttribute("data-state", "indeterminate");
+    expect(
+      container.querySelector('[data-slot="checkbox-indeterminate"]')
+    ).toBeInTheDocument();
+    expect(
+      container.querySelector('[data-slot="checkbox-check"]')
+    ).toHaveClass("in-data-[state=indeterminate]:hidden");
   });
 
   it("forwards additional props to Checkbox", () => {

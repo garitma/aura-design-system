@@ -5,6 +5,7 @@ import {
   TrashIcon,
 } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/Button";
+import { Checkbox } from "@/components/ui/Checkbox";
 import {
   ActionBar,
   ActionBarClose,
@@ -38,15 +39,17 @@ export const ActionBarDemo = () => {
           const checked = selected.includes(row.id);
           return (
             <li key={row.id}>
-              <label className="flex cursor-pointer items-center gap-1 rounded-sm px-1 py-0.5 text-sm text-gray-12 hover:bg-gray-3">
-                <input
-                  type="checkbox"
+              <div className="flex items-center gap-1 rounded-sm px-1 py-0.5 text-sm text-gray-12 hover:bg-gray-3">
+                <Checkbox
+                  id={`invoice-${row.id}`}
                   checked={checked}
-                  onChange={() => toggle(row.id)}
-                  className="size-1 accent-accent-9"
+                  onCheckedChange={() => toggle(row.id)}
+                  aria-label={`Select ${row.name}`}
                 />
-                {row.name}
-              </label>
+                <label htmlFor={`invoice-${row.id}`} className="cursor-pointer">
+                  {row.name}
+                </label>
+              </div>
             </li>
           );
         })}

@@ -46,6 +46,11 @@ export const AlertStatusStatusesDemo = () => {
       <AlertStatus
         title="Dummy Title"
         description="This is a dummy description to demonstrate the Alert component."
+        status="default"
+      />
+      <AlertStatus
+        title="Dummy Title"
+        description="This is a dummy description to demonstrate the Alert component."
         status="info"
       />
       <AlertStatus
@@ -56,12 +61,12 @@ export const AlertStatusStatusesDemo = () => {
       <AlertStatus
         title="Dummy Title"
         description="This is a dummy description to demonstrate the Alert component."
-        status="danger"
+        status="warning"
       />
       <AlertStatus
         title="Dummy Title"
         description="This is a dummy description to demonstrate the Alert component."
-        status="warning"
+        status="danger"
       />
     </div>
   );
