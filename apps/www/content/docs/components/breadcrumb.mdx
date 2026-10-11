@@ -35,11 +35,14 @@ const breadcrumbFocus =
 function BreadcrumbMore({ items }: { items: string[] }) {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger
-        aria-label="Show more breadcrumbs"
-        className={breadcrumbFocus}
-      >
-        <BreadcrumbEllipsis />
+      <DropdownMenuTrigger asChild>
+        <button
+          type="button"
+          aria-label="Show more breadcrumbs"
+          className={breadcrumbFocus}
+        >
+          <BreadcrumbEllipsis />
+        </button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
         {items.map((item) => (
