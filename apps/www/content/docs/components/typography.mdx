@@ -20,8 +20,9 @@ The full rules, the 17px form floor, and the font stacks are on [Typography](/do
 | `.h6` | `h6` | Label heading |
 | `.p` | `p` | Body |
 | `.small` | | Small label |
+| `.xs` | | Micro label |
 
-`text-sm` and `text-xs` are the only Tailwind sizes for small UI text. They stay off `input`, `textarea`, and `select`. `.small` is the small-label class: 14px, weight 500, line-height `1.4rem` (23.8px at a 17px root).
+`text-sm` and `text-xs` are the only Tailwind sizes for small UI text. They stay off `input`, `textarea`, and `select`. `.small` is the small-label class: 14px, weight 500, line-height `1.4rem` (23.8px at a 17px root). `.xs` is the micro style: 12px, semibold, line-height 16px (`calc(12 / 17 * 1rem)` and `calc(16 / 17 * 1rem)` at a 17px root). Badges use `.xs`.
 
 ## Specimen
 
@@ -48,3 +49,5 @@ The full rules, the 17px form floor, and the font stacks are on [Typography](/do
 <p className="text-xs">Micro labels use text-xs.</p>
 
 <p className="small">Small labels use the small class.</p>
+
+<p className="xs">Micro labels use the xs class.</p>

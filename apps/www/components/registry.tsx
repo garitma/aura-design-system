@@ -67,7 +67,9 @@ import {
   AvatarGroupDemoWithIcons
 } from "@/components/demos/avatar-group-demo"
 import { 
-  BadgeDemo
+  BadgeDemo,
+  BadgeDemoVariants,
+  BadgeDemoStatus
 } from "@/components/demos/badge-demo"
 import { 
   BadgeOverflowDemo,
@@ -813,6 +815,12 @@ export const Registry = {
   },
   "badge-demo": {
     component: BadgeDemo,
+  },
+  "badge-demo-variants": {
+    component: BadgeDemoVariants,
+  },
+  "badge-demo-status": {
+    component: BadgeDemoStatus,
   },
   "badge-overflow-demo": {
     component: BadgeOverflowDemo,

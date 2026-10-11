@@ -20,7 +20,7 @@ Shipped in `packages/registry/styles/main.css`. `--val` is `4.03vw` (the file wr
 | `h6`, `.h6` | `1.0625rem` | `4.03vw` | `1.25rem` |
 | `p`, `.p` | `1rem` | `4.03vw` | `1rem` |
 
-The clamp selector lists `body h1` through `body h6`, `body p`, and `body .h1` through `body .h6`. Class `.p` declares the same custom properties for a paragraph-sized node that is not a `p`.
+The clamp selector lists `body h1` through `body h6`, `body p`, and `body .h1` through `body .h6`. Class `.p` declares the same custom properties for a paragraph-sized node that is not a `p`. `.small` is 14px medium with line-height `1.4rem`. `.xs` is the micro style: 12px, semibold, line-height 16px.
 
 Stylus (`fundations/_typo.styl`) still computes `--min` as a fraction of the visual scale (`h1`–`h4` at 0.65, `h5` at 0.75, `h6` at 0.85) and sets `--val` to `3.03vw + 1rem`. The maxes match the CSS table (`tokens/_typography.styl`: `visualScale-h1 = 3.052rem` down to `visualScale-base = 1rem`). The compiled registry CSS is what consumers load; its `--val` is `4.03vw` without the extra `1rem`.
 
