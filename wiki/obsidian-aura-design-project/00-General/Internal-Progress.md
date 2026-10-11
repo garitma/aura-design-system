@@ -11,6 +11,9 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 
 ## Sessions
+### 2026-10-11 · Button group size without context
+- [[Button Group]] clones `size` onto direct `Button` and `ButtonGroupText` children. `Button` no longer calls `createContext`, which the React server build does not export, so the docs home page can keep importing `buttonVariants`.
+
 ### 2026-10-11 · Button group size, corners, and dividers
 - `size` on [[Button Group]] passes `md`/`icon-md` or `sm`/`icon-sm` to buttons. Text height is `h-4` or `h-3`. `icon` and `icon-sm` are the 39px icon button, and icon-only buttons need an `aria-label`.
 - Docs and toolbars use `flex-wrap gap-2`. Text and separators use `bg-gray-2`, `bg-gray-6`, and `rounded-sm`.
@@ -41,10 +44,6 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 ### 2026-10-11 · Remove AppBar
 - Removed the AppBar registry component, its docs page, demos, stories, and metadata. Side sheet, carousel, and app navigation do not depend on it. `/docs/components/app-bar` redirects to the components index. See [[Recent-Components-Audit]].
-
-### 2026-10-11 · Shared modal scrim
-- `.aura-overlay` is the scrim for AlertDialog, Dialog, Sheet (mobile Sidebar), Drawer, Command, and ComboboxBackdrop. Tint is `--aura-overlay: rgb(16 11 33 / 0.08)` in light and dark, plus a 4px blur and a 150ms fade. See [[Aura overlay]].
-- AlertDialog action and cancel expose `data-slot`. Header and description drop empty `cn("")`. Content caps at `max-w-lg` and stays `w-[90vw]` on small screens. The title element is unchanged.
 
 Older sessions: [[Progress-Archive/2026-10]]
 
