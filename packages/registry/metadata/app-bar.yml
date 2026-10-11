@@ -1,3 +1,0 @@
-header:
-  description: A top bar in three sizes that gains a shadow when content scrolls under it.
-extends: _templates/content.yml

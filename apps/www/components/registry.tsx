@@ -29,11 +29,6 @@ import {
   AngleSliderDemoWithForm
 } from "@/components/demos/angle-slider-demo"
 import { 
-  AppBarDemo,
-  AppBarDemoMedium,
-  AppBarDemoLarge
-} from "@/components/demos/app-bar-demo"
-import { 
   AreaChartDemo,
   AreaChartDemoNatural,
   AreaChartDemoLinear,
@@ -47,12 +42,8 @@ import {
   AreaChartDemoInteractive
 } from "@/components/demos/area-chart-demo"
 import { 
-  AspectRatioDemoDefault,
   AspectRatioDemo
 } from "@/components/demos/aspect-ratio-demo"
-import { 
-  AttachmentDemo
-} from "@/components/demos/attachment-demo"
 import { 
   AutocompleteDemo
 } from "@/components/demos/autocomplete-demo"
@@ -730,15 +721,6 @@ export const Registry = {
   "angle-slider-demo-with-form": {
     component: AngleSliderDemoWithForm,
   },
-  "app-bar-demo": {
-    component: AppBarDemo,
-  },
-  "app-bar-demo-medium": {
-    component: AppBarDemoMedium,
-  },
-  "app-bar-demo-large": {
-    component: AppBarDemoLarge,
-  },
   "area-chart-demo": {
     component: AreaChartDemo,
   },
@@ -773,13 +755,7 @@ export const Registry = {
     component: AreaChartDemoInteractive,
   },
   "aspect-ratio-demo": {
-    component: AspectRatioDemoDefault,
-  },
-  "aspect-ratio-demo-aspect-ratio-demo": {
     component: AspectRatioDemo,
-  },
-  "attachment-demo": {
-    component: AttachmentDemo,
   },
   "autocomplete-demo": {
     component: AutocompleteDemo,

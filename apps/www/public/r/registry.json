@@ -710,26 +710,6 @@
       ]
     },
     {
-      "name": "attachment",
-      "type": "registry:ui",
-      "title": "Attachment",
-      "description": "The Attachment component.",
-      "files": [
-        {
-          "path": "registry/default/components/ui/Attachment.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "dependencies": [
-        "@radix-ui/react-icons"
-      ],
-      "registryDependencies": [
-        "@aura/button",
-        "@aura/class-names",
-        "@aura/spinner"
-      ]
-    },
-    {
       "name": "autocomplete",
       "type": "registry:ui",
       "title": "Autocomplete",

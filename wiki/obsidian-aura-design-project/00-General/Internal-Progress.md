@@ -11,6 +11,12 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 
 ## Sessions
+### 2026-10-11 · Remove Attachment and fix AspectRatio
+- Removed the Attachment registry component, docs, demos, stories, and `public/r/attachment.json`. Spinner and Button stay. `/docs/components/attachment` redirects to the components index. AspectRatio now imports React, keeps a single demo, and uses `w-full max-w-xs`. See [[Recent-Components-Audit]].
+
+### 2026-10-11 · Remove AppBar
+- Removed the AppBar registry component, its docs page, demos, stories, and metadata. Side sheet, carousel, and app navigation do not depend on it. `/docs/components/app-bar` redirects to the components index. See [[Recent-Components-Audit]].
+
 ### 2026-10-11 · Shared modal scrim
 - `.aura-overlay` is the scrim for AlertDialog, Dialog, Sheet (mobile Sidebar), Drawer, Command, and ComboboxBackdrop. Tint is `--aura-overlay: rgb(16 11 33 / 0.08)` in light and dark, plus a 4px blur and a 150ms fade. See [[Aura overlay]].
 - AlertDialog action and cancel expose `data-slot`. Header and description drop empty `cn("")`. Content caps at `max-w-lg` and stays `w-[90vw]` on small screens. The title element is unchanged.
