@@ -79,7 +79,11 @@ import {
   BadgeOverflowDemoInteractiveTags
 } from "./badge-overflow-demo"
 import { 
-  BannerDemo
+  BannerDemo,
+  BannerDemoMobile,
+  BannerDemoDismissStates,
+  BannerDemoTones,
+  BannerDemoRichMessage
 } from "./banner-demo"
 import { 
   BarChartDemo,
@@ -94,7 +98,10 @@ import {
   BarChartDemoNegative
 } from "./bar-chart-demo"
 import { 
-  BreadcrumbDemo
+  BreadcrumbDemo,
+  BreadcrumbDemoCustomSeparator,
+  BreadcrumbDemoCollapsed,
+  BreadcrumbDemoMobile
 } from "./breadcrumb-demo"
 import { 
   BubbleDemo,
@@ -843,6 +850,18 @@ export const Registry = {
   "banner-demo": {
     component: BannerDemo,
   },
+  "banner-demo-mobile": {
+    component: BannerDemoMobile,
+  },
+  "banner-demo-dismiss-states": {
+    component: BannerDemoDismissStates,
+  },
+  "banner-demo-tones": {
+    component: BannerDemoTones,
+  },
+  "banner-demo-rich-message": {
+    component: BannerDemoRichMessage,
+  },
   "bar-chart-demo": {
     component: BarChartDemo,
   },
@@ -875,6 +894,15 @@ export const Registry = {
   },
   "breadcrumb-demo": {
     component: BreadcrumbDemo,
+  },
+  "breadcrumb-demo-custom-separator": {
+    component: BreadcrumbDemoCustomSeparator,
+  },
+  "breadcrumb-demo-collapsed": {
+    component: BreadcrumbDemoCollapsed,
+  },
+  "breadcrumb-demo-mobile": {
+    component: BreadcrumbDemoMobile,
   },
   "bubble-demo": {
     component: BubbleDemo,

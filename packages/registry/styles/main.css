@@ -8,7 +8,7 @@
   --aura-bg: #fff;
   --aura-text-primary: #030303;
   --aura-text-primary-inverse: #fff;
-  --aura-accents-primary: #333;
+  --aura-accents-primary: var(--accent-9, #4015ca);
   --aura-accents-secondary: #0882ba;
   --aura-accents-success: #045d3c;
   --aura-accents-success-bg: #e8fef7;
@@ -29,7 +29,7 @@
   --aura-outline: #0927ec solid 2px;
   --aura-button-hover: #323232;
   --aura-link: var(--aura-text-primary);
-  --aura-link-hover: #ededf5;
+  --aura-link-hover: var(--accent-2, #f7f8ff);
   --aura-selector: #d1fdef;
   --aura-loader: #d1fdef;
   --aura-skeleton-start: #c2cfd6;
@@ -289,6 +289,34 @@ h6,
   font-weight: 500;
   line-height: 1.4rem;
 }
+/* Slotted breadcrumb anchors inherit .small when asChild replaces the link. */
+[data-slot="breadcrumb-list"].small [data-slot="breadcrumb-link"],
+[data-slot="breadcrumb-list"].small [data-slot="breadcrumb-page"] {
+  font-size: inherit !important;
+  line-height: inherit !important;
+}
+[data-slot="breadcrumb-list"][data-collapse="sm"] {
+  container-type: inline-size;
+}
+[data-slot="breadcrumb-list"][data-collapse="sm"]:not([data-expanded="true"])
+  [data-breadcrumb="middle"] {
+  display: none !important;
+}
+[data-slot="breadcrumb-list"][data-collapse="sm"] [data-breadcrumb="ellipsis"] {
+  display: inline-flex;
+}
+@container (min-width: 640px) {
+  [data-slot="breadcrumb-list"][data-collapse="sm"]:not([data-expanded="true"])
+    [data-breadcrumb="middle"] {
+    display: inline-flex !important;
+  }
+  [data-slot="breadcrumb-list"][data-collapse="sm"] [data-breadcrumb="ellipsis"] {
+    display: none !important;
+  }
+}
+[data-slot="breadcrumb-list"][data-expanded="true"] [data-breadcrumb="ellipsis"] {
+  display: none !important;
+}
 /* Typography/xs — 12px Inter Semi Bold, line-height 16px at a 17px root. */
 .xs {
   font-size: calc(12 / 17 * 1rem);
@@ -414,15 +442,14 @@ a:active {
   border-radius: var(--aura-button-radius);
   -webkit-border-radius: var(--aura-button-radius);
   -moz-border-radius: var(--aura-button-radius);
-  transition: 300ms background cubic-bezier(0.4, 0, 0.6, 1) linear;
-  -webkit-transition: 300ms background cubic-bezier(0.4, 0, 0.6, 1) linear;
-  -moz-transition: 300ms background cubic-bezier(0.4, 0, 0.6, 1) linear;
+  transition: background-color 300ms cubic-bezier(0.4, 0, 0.6, 1), transform 250ms cubic-bezier(0.2, 0.8, 0.4, 1);
+  -webkit-transition: background-color 300ms cubic-bezier(0.4, 0, 0.6, 1), transform 250ms cubic-bezier(0.2, 0.8, 0.4, 1);
+  -moz-transition: background-color 300ms cubic-bezier(0.4, 0, 0.6, 1), transform 250ms cubic-bezier(0.2, 0.8, 0.4, 1);
   font-weight: 600;
   display: inline-flex;
   height: calc(var(--aura) * 4);
   padding: 0 calc(var(--aura) * 2);
   border: 2px solid;
-  transition: transform 250ms cubic-bezier(0.2, 0.8, 0.4, 1);
   justify-content: center;
   gap: var(--aura-button-gap, calc(var(--aura) * 0.5));
 }
@@ -451,6 +478,43 @@ a:active {
   transform: scale(0.97);
   outline: var(--aura-outline);
 }
+.button:focus-visible,
+.button-fill:focus-visible,
+.button-pill:focus-visible,
+.button-link:focus-visible,
+.button-menu:focus-visible {
+  outline: var(--aura-outline);
+}
+@media (prefers-reduced-motion: reduce) {
+  .button:hover.button:hover:not(:disabled),
+  .button-fill:hover.button-fill:hover:not(:disabled),
+  .button-pill:hover.button-pill:hover:not(:disabled),
+  .button-link:hover.button-link:hover:not(:disabled),
+  .button-menu:hover.button-menu:hover:not(:disabled),
+  .button:active.button:hover:not(:disabled),
+  .button-fill:active.button-fill:hover:not(:disabled),
+  .button-pill:active.button-pill:hover:not(:disabled),
+  .button-link:active.button-link:hover:not(:disabled),
+  .button-menu:active.button-menu:hover:not(:disabled) {
+    transform: none;
+  }
+}
+.button[data-loading]:disabled,
+.button-fill[data-loading]:disabled,
+.button-pill[data-loading]:disabled,
+.button-link[data-loading]:disabled,
+.button-menu[data-loading]:disabled {
+  opacity: 1;
+  cursor: default;
+}
+/* Calendar day numbers use the .small size, not the button's body semibold. */
+.button[data-day],
+.button-menu[data-day] {
+  font-size: calc(14 / 17 * 1rem);
+  font-weight: 500;
+  line-height: 1.4rem;
+}
+
 .button-fill {
   border-color: var(--aura-accents-primary);
   color: var(--aura-text-primary-inverse);
