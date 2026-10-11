@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "registry/default/components/ui/Input.tsx",
-      "content": "/**\n * @description Displays a form input field or a component that looks like an input field.\n */\nimport * as React from \"react\";\n\nimport { cn } from \"@/utils/class-names\";\n\nfunction Input({ className, ...props }: React.ComponentProps<\"input\">) {\n  return <input data-slot=\"input\" className={cn(className)} {...props} />;\n}\n\nexport { Input };\n",
+      "content": "/**\n * @description Displays a form input field or a component that looks like an input field.\n */\nimport * as React from \"react\";\n\nimport { cn } from \"@/utils/class-names\";\n\n/**\n * Matches Button sm, md, and lg (`h-3`, `h-4`, `h-5`).\n * Vertical padding is 0 so the spacing height is the border box, same as Button.\n */\nconst inputSizeClassName = {\n  sm: \"box-border h-3 px-2 py-0\",\n  default: \"box-border h-4 px-2 py-0\",\n  lg: \"box-border h-5 px-2 py-0\",\n} as const;\n\ntype InputSize = keyof typeof inputSizeClassName;\n\nfunction Input({\n  className,\n  size = \"default\",\n  ...props\n}: Omit<React.ComponentProps<\"input\">, \"size\"> & {\n  size?: InputSize;\n}) {\n  return (\n    <input\n      data-slot=\"input\"\n      data-size={size}\n      className={cn(inputSizeClassName[size], className)}\n      {...props}\n    />\n  );\n}\n\nexport { Input };\nexport type { InputSize };\n",
       "type": "registry:ui"
     }
   ]
