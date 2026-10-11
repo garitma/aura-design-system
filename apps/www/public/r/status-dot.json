@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "status-dot",
+  "type": "registry:ui",
+  "title": "StatusDot",
+  "description": "The StatusDot component.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/StatusDot.tsx",
+      "content": "/**\n * @description A 10px status dot for queued, building, error, ready, and canceled.\n */\nimport * as React from \"react\";\nimport { cva } from \"class-variance-authority\";\nimport { cn } from \"@/utils/class-names\";\n\nconst STATES = {\n  queued: { label: \"Queued\", message: \"Queued.\" },\n  building: { label: \"Building\", message: \"In progress.\" },\n  error: { label: \"Error\", message: \"Failed.\" },\n  ready: { label: \"Ready\", message: \"Ready.\" },\n  canceled: { label: \"Canceled\", message: \"Canceled.\" },\n} as const;\n\ntype StatusDotState = keyof typeof STATES;\n\nconst dot = cva(\"inline-block size-[10px] shrink-0 rounded-full\", {\n  variants: {\n    state: {\n      queued: \"bg-status-dot-queued\",\n      building: \"bg-status-dot-building\",\n      error: \"bg-status-dot-error\",\n      ready: \"bg-status-dot-ready\",\n      canceled: \"bg-status-dot-canceled\",\n    },\n    ring: { true: \"ring-2 ring-status-dot-ring\", false: \"\" },\n  },\n  defaultVariants: { state: \"queued\", ring: false },\n});\n\ninterface StatusDotProps extends React.ComponentProps<\"span\"> {\n  state?: StatusDotState;\n  /** `true` uses the state name. A string replaces it. */\n  label?: boolean | string;\n  /** Light ring for overlaying the dot on an avatar. */\n  ring?: boolean;\n}\n\nfunction StatusDot({\n  state = \"queued\",\n  label,\n  ring,\n  className,\n  ...props\n}: StatusDotProps) {\n  const s = STATES[state];\n  return (\n    <span\n      data-slot=\"status-dot\"\n      data-state={state}\n      role=\"status\"\n      aria-label={s.label}\n      title={s.message}\n      className={cn(\"inline-flex items-center gap-[8px]\", className)}\n      {...props}\n    >\n      <span\n        data-slot=\"status-dot-indicator\"\n        aria-hidden\n        className={dot({ state, ring })}\n      />\n      {label ? (\n        <span className=\"text-sm font-medium text-gray-12\">\n          {label === true ? s.label : label}\n        </span>\n      ) : null}\n    </span>\n  );\n}\n\nexport { StatusDot, type StatusDotState };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -4,6 +4,7 @@
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import {
+  BookmarkIcon,
   CheckCircledIcon,
   CrossCircledIcon,
   ExclamationTriangleIcon,
@@ -12,17 +13,14 @@ import {
 
 import { cn } from "@/utils/class-names";
 
-const alertVariants = cva("flex gap-1 space-y-0.5 p-1 rounded-md border", {
+const alertVariants = cva("flex items-start gap-1 p-1 rounded-md border", {
   variants: {
     variant: {
-      default: "bg-background text-foreground",
-      info: "bg-info text-info-contrast border-info-contrast border border-info-contrast",
-      success:
-        "bg-success text-success-contrast border-success-contrast border border-success-contrast",
-      warning:
-        "bg-warning text-warning-contrast border-warning-contrast border border-warning-contrast",
-      danger:
-        "bg-danger text-danger-contrast border-danger-contrast border border-danger-contrast",
+      default: "bg-background text-foreground border-gray-6",
+      info: "bg-info text-info-contrast border-info-contrast",
+      success: "bg-success text-success-contrast border-success-contrast",
+      warning: "bg-warning text-warning-contrast border-warning-contrast",
+      danger: "bg-danger text-danger-contrast border-danger-contrast",
     },
   },
   defaultVariants: {
@@ -49,7 +47,7 @@ function AlertTitle({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="alert-title"
-      className={cn("font-bold", className)}
+      className={cn("p font-bold", className)}
       {...props}
     />
   );
@@ -59,16 +57,44 @@ function AlertDescription({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  return <div data-slot="alert-description" {...props} />;
+  return (
+    <div
+      data-slot="alert-description"
+      className={cn("p", className)}
+      {...props}
+    />
+  );
 }
 
 function AlertContent({ className, ...props }: React.ComponentProps<"div">) {
-  return <div data-slot="alert-content" {...props} />;
+  return (
+    <div
+      data-slot="alert-content"
+      className={cn("flex min-w-0 flex-1 flex-col gap-0.5", className)}
+      {...props}
+    />
+  );
 }
 
 function AlertIcon({ className, ...props }: React.ComponentProps<"div">) {
-  return <div data-slot="alert-icon" {...props} />;
+  return (
+    <div
+      data-slot="alert-icon"
+      className={cn("shrink-0", className)}
+      {...props}
+    />
+  );
 }
+
+const alertStatusIcons = {
+  default: BookmarkIcon,
+  info: InfoCircledIcon,
+  success: CheckCircledIcon,
+  warning: ExclamationTriangleIcon,
+  danger: CrossCircledIcon,
+} as const;
+
+type AlertStatusName = keyof typeof alertStatusIcons;
 
 // Local AlertStatus component definition
 const AlertStatus = ({
@@ -79,17 +105,10 @@ const AlertStatus = ({
 }: {
   title: string;
   description: string;
-  status: "info" | "success" | "danger" | "warning";
+  status: AlertStatusName;
   icon?: React.ElementType;
 }) => {
-  const Icon =
-    icon ||
-    {
-      info: InfoCircledIcon,
-      success: CheckCircledIcon,
-      warning: ExclamationTriangleIcon,
-      danger: CrossCircledIcon,
-    }[status];
+  const Icon = icon || alertStatusIcons[status];
 
   return (
     <Alert variant={status}>

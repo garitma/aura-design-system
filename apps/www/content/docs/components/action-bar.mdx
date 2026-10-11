@@ -19,6 +19,7 @@ import {
   TrashIcon,
 } from "@radix-ui/react-icons";
 import { Button } from "@/components/ui/Button";
+import { Checkbox } from "@/components/ui/Checkbox";
 import {
   ActionBar,
   ActionBarClose,
@@ -44,15 +45,17 @@ export function ActionBarDemo() {
           const checked = selected.includes(row.id);
           return (
             <li key={row.id}>
-              <label className="flex cursor-pointer items-center gap-1 rounded-sm px-1 py-0.5 text-sm text-gray-12 hover:bg-gray-3">
-                <input
-                  type="checkbox"
+              <div className="flex items-center gap-1 rounded-sm px-1 py-0.5 text-sm text-gray-12 hover:bg-gray-3">
+                <Checkbox
+                  id={`invoice-${row.id}`}
                   checked={checked}
-                  onChange={() => toggle(row.id)}
-                  className="size-1 accent-accent-9"
+                  onCheckedChange={() => toggle(row.id)}
+                  aria-label={`Select ${row.name}`}
                 />
-                {row.name}
-              </label>
+                <label htmlFor={`invoice-${row.id}`} className="cursor-pointer">
+                  {row.name}
+                </label>
+              </div>
             </li>
           );
         })}
@@ -96,6 +99,8 @@ export function ActionBarDemo() {
 ```
 
 </ComponentPreview>
+
+Below the `sm` breakpoint (640px) the bar insets itself by one spacing unit (13px) on the left, right, and its anchored side, and its width stays within the viewport. Selection text stays fully visible. Action labels are visually hidden (the button `aria-label` remains), with 13px of horizontal padding on each action, and the close button stays pinned to the end.
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
@@ -561,16 +566,13 @@ function ActionBar(props: ActionBarProps) {
               : "flex flex-col items-start gap-1 px-0.5 py-1",
             className,
           )}
-          style={{
-            [side]: `${sideOffset}px`,
-            ...(align === "center" && {
-              left: "50%",
-              translate: "-50% 0",
-            }),
-            ...(align === "start" && { left: `${alignOffset}px` }),
-            ...(align === "end" && { right: `${alignOffset}px` }),
-            ...style,
-          }}
+          style={
+            {
+              "--action-bar-side-offset": `${sideOffset}px`,
+              "--action-bar-align-offset": `${alignOffset}px`,
+              ...style,
+            } as React.CSSProperties
+          }
         />,
         portalContainer,
       )}
@@ -588,7 +590,7 @@ function ActionBarSelection(props: DivProps) {
       data-slot="action-bar-selection"
       {...selectionProps}
       className={cn(
-        "flex items-center gap-0.5 rounded-sm border border-gray-6 bg-gray-2 px-1 py-0.5 text-sm font-medium tabular-nums text-gray-12",
+        "flex shrink-0 items-center gap-0.5 whitespace-nowrap rounded-sm border border-gray-6 bg-gray-2 px-1 py-0.5 text-sm font-medium tabular-nums text-gray-12",
         className,
       )}
     />
@@ -761,6 +763,20 @@ function ActionBarGroup(props: DivProps) {
   );
 }
 
+function renderActionBarItemChildren(children: React.ReactNode) {
+  return React.Children.map(children, (child, index) => {
+    if (typeof child === "string" || typeof child === "number") {
+      if (typeof child === "string" && child.trim() === "") return child;
+      return (
+        <span key={index} data-slot="action-bar-item-label">
+          {child}
+        </span>
+      );
+    }
+    return child;
+  });
+}
+
 interface ActionBarItemProps extends Omit<
   React.ComponentProps<typeof Button>,
   "onSelect"
@@ -778,6 +794,7 @@ function ActionBarItem(props: ActionBarItemProps) {
     className,
     disabled,
     ref,
+    children,
     ...itemProps
   } = props;
 
@@ -932,7 +949,9 @@ function ActionBarItem(props: ActionBarItemProps) {
       onFocus={onFocus}
       onKeyDown={onKeyDown}
       onMouseDown={onMouseDown}
-    />
+    >
+      {renderActionBarItemChildren(children)}
+    </Button>
   );
 }
 
@@ -1013,7 +1032,13 @@ export {
   ActionBarSelection,
   ActionBarSeparator,
 };
+```
+  </Step>
+  <Step>
+    Copy `styles/action-bar.css` and import it once in your global stylesheet. The CLI does this from the registry `css` entry. Placement and the narrow-viewport layout live in that file.
 
+```css
+@import "../styles/action-bar.css";
 ```
   </Step>
 </Steps>

@@ -35,11 +35,13 @@ const people = [
 
 function PersonAvatar({
   person,
+  className,
 }: {
   person: (typeof people)[number];
+  className?: string;
 }) {
   return (
-    <Avatar>
+    <Avatar className={className}>
       <AvatarImage src={person.src} alt={person.alt} />
       <AvatarFallback>{person.fallback}</AvatarFallback>
     </Avatar>
@@ -74,12 +76,12 @@ export const AvatarGroupDemoVertical = () => (
 
 export const AvatarGroupDemoRtl = () => (
   <div className="flex flex-col gap-4">
-    <AvatarGroup dir="rtl">
+    <AvatarGroup direction="rtl">
       {people.slice(0, 4).map((person) => (
         <PersonAvatar key={person.fallback} person={person} />
       ))}
     </AvatarGroup>
-    <AvatarGroup orientation="vertical" dir="rtl">
+    <AvatarGroup orientation="vertical" direction="rtl">
       {people.slice(0, 3).map((person) => (
         <PersonAvatar key={person.fallback} person={person} />
       ))}
@@ -91,7 +93,7 @@ export const AvatarGroupDemoCustomOverflow = () => (
   <AvatarGroup
     max={3}
     renderOverflow={(count) => (
-      <div className="inline-flex size-full items-center justify-center rounded-full bg-accent-9 text-xs font-medium text-accent-contrast">
+      <div className="small inline-flex size-full items-center justify-center rounded-full bg-accent-9 text-accent-contrast">
         +{count}
       </div>
     )}
@@ -100,6 +102,44 @@ export const AvatarGroupDemoCustomOverflow = () => (
       <PersonAvatar key={person.fallback} person={person} />
     ))}
   </AvatarGroup>
+)
+
+export const AvatarGroupDemoReverse = () => (
+  <div className="flex flex-col gap-4">
+    <AvatarGroup reverse>
+      {people.slice(0, 4).map((person) => (
+        <PersonAvatar key={person.fallback} person={person} />
+      ))}
+    </AvatarGroup>
+    <AvatarGroup orientation="vertical" reverse>
+      {people.slice(0, 3).map((person) => (
+        <PersonAvatar key={person.fallback} person={person} />
+      ))}
+    </AvatarGroup>
+  </div>
+)
+
+export const AvatarGroupDemoSquare = () => (
+  <div className="flex flex-col gap-4">
+    <AvatarGroup shape="square" max={4}>
+      {people.map((person) => (
+        <PersonAvatar
+          key={person.fallback}
+          person={person}
+          className="rounded-none"
+        />
+      ))}
+    </AvatarGroup>
+    <AvatarGroup shape="square">
+      {people.slice(0, 3).map((person) => (
+        <PersonAvatar
+          key={person.fallback}
+          person={person}
+          className="rounded-md"
+        />
+      ))}
+    </AvatarGroup>
+  </div>
 )
 
 export const AvatarGroupDemoWithIcons = () => (

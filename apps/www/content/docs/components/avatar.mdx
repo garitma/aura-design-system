@@ -20,7 +20,6 @@ import {
   AvatarImage,
   AvatarFallback,
 } from "@/components/ui/Avatar";
-import { AvatarGroup as AvatarGroupRoot } from "@/components/ui/AvatarGroup";
 
 export function AvatarDemo() {
   return (
@@ -81,15 +80,28 @@ import * as React from "react";
 import { Avatar as AvatarRadix } from "radix-ui";
 import { cn } from "@/utils/class-names";
 
+const avatarSizes = {
+  sm: "size-2",
+  default: "size-3",
+  lg: "size-4",
+} as const;
+
+type AvatarSize = keyof typeof avatarSizes;
+
 function Avatar({
   className,
+  size = "default",
   ...props
-}: React.ComponentProps<typeof AvatarRadix.Root>) {
+}: React.ComponentProps<typeof AvatarRadix.Root> & {
+  size?: AvatarSize;
+}) {
   return (
     <AvatarRadix.Root
       data-slot="avatar"
+      data-size={size}
       className={cn(
-        "inline-flex size-3 items-center justify-center overflow-hidden rounded-full",
+        "inline-flex items-center justify-center overflow-hidden rounded-full",
+        avatarSizes[size],
         className
       )}
       {...props}
@@ -118,7 +130,7 @@ function AvatarFallback({
     <AvatarRadix.Fallback
       data-slot="avatar-fallback"
       className={cn(
-        "flex size-full items-center justify-center bg-gray-3",
+        "flex size-full items-center justify-center bg-gray-3 h6",
         className
       )}
       {...props}
@@ -126,13 +138,15 @@ function AvatarFallback({
   );
 }
 
-export { Avatar, AvatarImage, AvatarFallback };
+export { Avatar, AvatarImage, AvatarFallback, type AvatarSize };
 
 ```
   </Step>
 </Steps>
 
 ## Usage
+
+Overlapping avatars are documented on [Avatar Group](/docs/components/avatar-group).
 
 ### WithFallback
 
@@ -160,21 +174,21 @@ export const FallbackOnly = () => (
 ```tsx
 export const CustomSize = () => (
   <div className="flex gap-4 items-center">
-    <Avatar className="size-8">
+    <Avatar size="sm">
       <AvatarImage
         src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?w=128&h=128&fit=crop"
         alt="Small avatar"
       />
       <AvatarFallback>SM</AvatarFallback>
     </Avatar>
-    <Avatar className="size-12">
+    <Avatar>
       <AvatarImage
         src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?w=128&h=128&fit=crop"
-        alt="Medium avatar"
+        alt="Default avatar"
       />
       <AvatarFallback>MD</AvatarFallback>
     </Avatar>
-    <Avatar className="size-16">
+    <Avatar size="lg">
       <AvatarImage
         src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?w=128&h=128&fit=crop"
         alt="Large avatar"
@@ -182,42 +196,6 @@ export const CustomSize = () => (
       <AvatarFallback>LG</AvatarFallback>
     </Avatar>
   </div>
-)
-```
-
-### Grouped
-
-```tsx
-export const Grouped = () => (
-  <AvatarGroupRoot max={4}>
-    <Avatar>
-      <AvatarImage
-        src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?w=128&h=128&fit=crop"
-        alt="User 1"
-      />
-      <AvatarFallback>U1</AvatarFallback>
-    </Avatar>
-    <Avatar>
-      <AvatarImage
-        src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&h=128&fit=crop"
-        alt="User 2"
-      />
-      <AvatarFallback>U2</AvatarFallback>
-    </Avatar>
-    <Avatar>
-      <AvatarImage
-        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop"
-        alt="User 3"
-      />
-      <AvatarFallback>U3</AvatarFallback>
-    </Avatar>
-    <Avatar>
-      <AvatarFallback>U4</AvatarFallback>
-    </Avatar>
-    <Avatar>
-      <AvatarFallback>U5</AvatarFallback>
-    </Avatar>
-  </AvatarGroupRoot>
 )
 ```
 
@@ -230,31 +208,31 @@ export const WithStatus = () => (
       <Avatar>
         <AvatarImage
           src="https://images.unsplash.com/photo-1492633423870-43d1cd2775eb?w=128&h=128&fit=crop"
-          alt="Online user"
+          alt="Ready user"
         />
         <AvatarFallback>ON</AvatarFallback>
       </Avatar>
-      <span className="absolute bottom-0 right-0 block size-1 rounded-full bg-green-500 ring-2 ring-white" />
+      <StatusDot state="ready" ring className="absolute bottom-0 right-0" />
     </div>
     <div className="relative">
       <Avatar>
         <AvatarImage
           src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=128&h=128&fit=crop"
-          alt="Away user"
+          alt="Building user"
         />
         <AvatarFallback>AW</AvatarFallback>
       </Avatar>
-      <span className="absolute bottom-0 right-0 block size-1 rounded-full bg-yellow-500 ring-2 ring-white" />
+      <StatusDot state="building" ring className="absolute bottom-0 right-0" />
     </div>
     <div className="relative">
       <Avatar>
         <AvatarImage
           src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=128&h=128&fit=crop"
-          alt="Offline user"
+          alt="Canceled user"
         />
         <AvatarFallback>OF</AvatarFallback>
       </Avatar>
-      <span className="absolute bottom-0 right-0 block size-1 rounded-full bg-gray-400 ring-2 ring-white" />
+      <StatusDot state="canceled" ring className="absolute bottom-0 right-0" />
     </div>
   </div>
 )

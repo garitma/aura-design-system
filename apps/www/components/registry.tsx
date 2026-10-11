@@ -29,11 +29,6 @@ import {
   AngleSliderDemoWithForm
 } from "@/components/demos/angle-slider-demo"
 import { 
-  AppBarDemo,
-  AppBarDemoMedium,
-  AppBarDemoLarge
-} from "@/components/demos/app-bar-demo"
-import { 
   AreaChartDemo,
   AreaChartDemoNatural,
   AreaChartDemoLinear,
@@ -47,12 +42,8 @@ import {
   AreaChartDemoInteractive
 } from "@/components/demos/area-chart-demo"
 import { 
-  AspectRatioDemoDefault,
   AspectRatioDemo
 } from "@/components/demos/aspect-ratio-demo"
-import { 
-  AttachmentDemo
-} from "@/components/demos/attachment-demo"
 import { 
   AutocompleteDemo
 } from "@/components/demos/autocomplete-demo"
@@ -61,7 +52,6 @@ import {
   AvatarDemoWithFallback,
   AvatarDemoFallbackOnly,
   AvatarDemoCustomSize,
-  AvatarDemoGrouped,
   AvatarDemoWithStatus,
   AvatarDemoDifferentShapes,
   AvatarDemoCustomFallbackStyles
@@ -72,6 +62,8 @@ import {
   AvatarGroupDemoVertical,
   AvatarGroupDemoRtl,
   AvatarGroupDemoCustomOverflow,
+  AvatarGroupDemoReverse,
+  AvatarGroupDemoSquare,
   AvatarGroupDemoWithIcons
 } from "@/components/demos/avatar-group-demo"
 import { 
@@ -624,6 +616,11 @@ import {
   StatusDemo
 } from "@/components/demos/status-demo"
 import { 
+  StatusDotDemo,
+  StatusDotDemoWithRing,
+  StatusDotDemoCustomLabel
+} from "@/components/demos/status-dot-demo"
+import { 
   StepperDemo
 } from "@/components/demos/stepper-demo"
 import { 
@@ -730,15 +727,6 @@ export const Registry = {
   "angle-slider-demo-with-form": {
     component: AngleSliderDemoWithForm,
   },
-  "app-bar-demo": {
-    component: AppBarDemo,
-  },
-  "app-bar-demo-medium": {
-    component: AppBarDemoMedium,
-  },
-  "app-bar-demo-large": {
-    component: AppBarDemoLarge,
-  },
   "area-chart-demo": {
     component: AreaChartDemo,
   },
@@ -773,13 +761,7 @@ export const Registry = {
     component: AreaChartDemoInteractive,
   },
   "aspect-ratio-demo": {
-    component: AspectRatioDemoDefault,
-  },
-  "aspect-ratio-demo-aspect-ratio-demo": {
     component: AspectRatioDemo,
-  },
-  "attachment-demo": {
-    component: AttachmentDemo,
   },
   "autocomplete-demo": {
     component: AutocompleteDemo,
@@ -795,9 +777,6 @@ export const Registry = {
   },
   "avatar-demo-custom-size": {
     component: AvatarDemoCustomSize,
-  },
-  "avatar-demo-grouped": {
-    component: AvatarDemoGrouped,
   },
   "avatar-demo-with-status": {
     component: AvatarDemoWithStatus,
@@ -822,6 +801,12 @@ export const Registry = {
   },
   "avatar-group-demo-custom-overflow": {
     component: AvatarGroupDemoCustomOverflow,
+  },
+  "avatar-group-demo-reverse": {
+    component: AvatarGroupDemoReverse,
+  },
+  "avatar-group-demo-square": {
+    component: AvatarGroupDemoSquare,
   },
   "avatar-group-demo-with-icons": {
     component: AvatarGroupDemoWithIcons,
@@ -1806,6 +1791,15 @@ export const Registry = {
   },
   "status-demo": {
     component: StatusDemo,
+  },
+  "status-dot-demo": {
+    component: StatusDotDemo,
+  },
+  "status-dot-demo-with-ring": {
+    component: StatusDotDemoWithRing,
+  },
+  "status-dot-demo-custom-label": {
+    component: StatusDotDemoCustomLabel,
   },
   "stepper-demo": {
     component: StepperDemo,
