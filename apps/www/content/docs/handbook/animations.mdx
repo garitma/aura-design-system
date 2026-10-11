@@ -9,12 +9,13 @@ Component enter/exit and overlay animations are defined as CSS custom properties
 
 In the www app, these four files are imported inside `@layer components` in [apps/www/app/globals.css](apps/www/app/globals.css) (lines 278–281):
 
+- `../../../packages/registry/registry/default/styles/overlay.css` (shared scrim)
 - `../styles/accordion.css`
 - `../styles/alert-dialog.css`
 - `../styles/collapsible.css`
 - `../styles/dialog.css`
 
-The animation theme block in each file uses `@theme animatons` (the token names below are as defined in the codebase). Keyframes are defined in `@layer components`.
+Theme blocks use `@theme animations`. Keyframes are defined in `@layer components`. Tailwind v4 ignores an unknown word after `@theme`, so the earlier `@theme animatons` typo still registered `--animate-*` tokens; sheet and alert-dialog now use the correct spelling.
 
 ## Accordion
 
@@ -34,17 +35,19 @@ Uses Radix's content-height variable for smooth height animation (allowed for co
 
 **Files:** `apps/www/styles/alert-dialog.css`, `apps/www/styles/dialog.css`
 
-Both define the same overlay and content tokens:
+Modal scrims do not use those overlay utilities. `AlertDialog`, `Dialog`, `Sheet` (including the mobile `Sidebar` sheet), `Drawer`, `Command`, and `ComboboxBackdrop` share `.aura-overlay` from `packages/registry/registry/default/styles/overlay.css`.
+
+That class sets `background-color: var(--aura-overlay)` and a 4px `backdrop-filter` blur. `--aura-overlay` is `rgb(16 11 33 / 0.08)` (dark gray-1, `#100B21`, at 8%) in both light and dark. It is not `var(--gray-1)`, because gray-1 is near-white in light mode. The enter fade is opacity 0 → 1 in 150ms with `cubic-bezier(0.16, 1, 0.3, 1)`. `@media (prefers-reduced-motion: reduce)` sets `animation: none` and `transition: none`.
+
+Content tokens stay on the dialog stylesheets:
 
 | Token | Keyframes | Duration | Easing |
 |-------|-----------|----------|--------|
-| `--animate-overlay-show` | `overlayShow` | 150ms | cubic-bezier(0.16, 1, 0.3, 1) |
 | `--animate-content-show` | `contentShow` | 150ms | cubic-bezier(0.16, 1, 0.3, 1) |
 
-- **overlayShow:** `opacity: 0` → `opacity: 1`
 - **contentShow:** `opacity: 0` and `transform: scale(0.96)` → `opacity: 1` and `transform: scale(1)`
 
-Components use these via state data attributes. For example, in the registry Dialog: `DialogOverlay` uses `data-[state=open]:animate-overlay-show` and `DialogContent` uses `data-[state=open]:animate-content-show`.
+`DialogContent` and `AlertDialogContent` use `data-[state=open]:animate-content-show`. Each overlay keeps its own `z-50`.
 
 ## Collapsible
 
@@ -62,7 +65,7 @@ Components use these via state data attributes. For example, in the registry Dia
 
 Apply the animation tokens with Tailwind (or equivalent) using the state that Radix exposes, e.g.:
 
-- Overlay: `data-[state=open]:animate-overlay-show`
+- Scrim: class `aura-overlay` (fade is inside `overlay.css`, not a per-component utility)
 - Content: `data-[state=open]:animate-content-show`
 - Accordion/Collapsible content: use the corresponding open/closed or down/up tokens on the content wrapper that has the height transition.
 
