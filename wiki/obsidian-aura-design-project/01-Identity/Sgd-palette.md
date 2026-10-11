@@ -9,4 +9,4 @@ Dark mode in `packages/registry/styles/globals.css` and `apps/www/app/globals.cs
 ## Context
 - Related: [[Sgd-cobrand]] [[Foundations]]
 - Implementation Path: `packages/registry/styles/globals.css`
-- Chart tokens `--chart-1` through `--chart-5` alias `--accent-9` and the status contrast colors. `--ecru` (`#debc7a`) paints text selection. `.dark` and `prefers-color-scheme: dark` share one scale. `:root:not(.light)` keeps an explicit light class from picking up the OS dark query.
+- Chart tokens `--chart-2` through `--chart-5` alias the status contrast colors. Light `--chart-1` is `--accent-9`. Dark `--chart-1` is `--accent-11` so the series clears 3:1 on gray-1. `--ecru` (`#debc7a`) paints text selection. `.dark` and `prefers-color-scheme: dark` share one scale. `:root:not(.light)` keeps an explicit light class from picking up the OS dark query.

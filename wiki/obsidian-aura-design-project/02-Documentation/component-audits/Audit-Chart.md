@@ -10,6 +10,7 @@ The container, tooltip, and legend use gray surfaces and `text-xs` for chart chr
 - Tooltip chrome stays `border-gray-6 bg-gray-1 px-1 py-0.5 text-xs`. `px-1` is the tooltip padding (13px), not the marker. Dot, line, and legend swatches read `--chart-marker` / `--chart-marker-line` from `chart.css`.
 - `tokenColor` keeps `var(--token)` and plain CSS colors. Other values are dropped, with a development warning, so the injected style sheet cannot take a raw string.
 - Plot inset, tick margin, tick type, and grid stroke read `--chart-inset`, `--chart-tick-size`, `--chart-tick`, and `--chart-grid`.
+- Dark `--chart-1` is `--accent-11`. Accent-9 is 1.99:1 and accent-10 is 1.59:1 on dark gray-1 (`#100b21`); accent-11 is 9.07:1. Light mode stays `--accent-9`. See `packages/registry/styles/globals.css`.
 
 ## Context
 - Related: [[Recent-Components-Audit]] [[Area-charts]] [[Charts]]

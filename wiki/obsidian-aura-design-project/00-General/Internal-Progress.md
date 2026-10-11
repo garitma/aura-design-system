@@ -5,12 +5,16 @@ retention: 10
 tags: [dev-log, logic]
 ---
 ## Summary
-Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface]]). Blueprint now also installs a reconciled Emil Kowalski set plus Vercel React best practices ([[Emil skills]]). The shipped theme uses the Somos Gente Digital dark ramp with light mode generated from accent `#4015ca` and gray `#7254cb` ([[Sgd-palette]]). Chart families document `ChartContainer`, tooltip, and legend under `/docs/charts`; `/docs/components/chart` redirects there ([[Charts]]).
+Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface]]). Blueprint now also installs a reconciled Emil Kowalski set plus Vercel React best practices ([[Emil skills]]). The shipped theme uses the Somos Gente Digital dark ramp with light mode generated from accent `#4015ca` and gray `#7254cb` ([[Sgd-palette]]). Chart families document `ChartContainer`, tooltip, and legend under `/docs/charts`; `/docs/components/chart` redirects there, and dark `--chart-1` is accent-11 so the series clears 3:1 on gray-1 ([[Charts]]).
 
 ## Active
 
 
 ## Sessions
+### 2026-10-11 · Dark chart-1 uses accent-11
+- Dark `--chart-1` points at `--accent-11` in both dark blocks of `globals.css`. Light mode stays `--accent-9`. See [[Charts]] and [[Sgd-palette]].
+- Against dark gray-1 `#100b21`, accent-9 `#4015ca` is 1.99:1 and accent-10 `#3400ab` is 1.59:1. Accent-11 `#a3acff` is 9.07:1, the first step at or above 3:1.
+
 ### 2026-10-11 · Chart docs live under Charts
 - `/docs/components/chart` is gone from the components catalog and redirects to `/docs/charts`. `Chart.tsx` stays the shared base. The Charts index documents `ChartContainer`, tooltip, and legend. See [[Charts]].
 - Markers use `--chart-marker` (8px) and `--chart-marker-line` (2px). `tokenColor` keeps plain CSS colors and warns in development when it drops a value.
@@ -48,11 +52,6 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 ### 2026-10-11 · Banner layout, tones, and live region
 - Phone layout stacks the action under a message-and-dismiss row. Static banners no longer announce; `role` and `aria-live` are opt-in. Tones match [[Alert]]. Dismiss reuses Button `size="icon"`. See [[Audit Banner]].
-
-### 2026-10-11 · Button contrast, focus, and calendar type
-- Fill hover is `--accent-10` so dark gray-contrast text is no longer on accent-11. Focus uses `--aura-outline` on `:focus-visible`. The scale respects reduced motion, and one `transition` keeps the background fade. See [[Button]].
-- `mode` and `variant="default"` still work with a dev warning. `label` plus `children` shows children once. Disabled chrome is only `.button:disabled`. Loading stays non-interactive without the 50% fade.
-- Calendar days use the `.small` size. Month navigation is Button size `icon` with ChevronLeft and ChevronRight and no underline.
 
 Older sessions: [[Progress-Archive/2026-10]]
 
