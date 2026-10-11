@@ -426,6 +426,12 @@
     font-weight: 600;
     line-height: calc(16 / 17 * 1rem);
   }
+  /* Typography/xs Regular — weight 400. Same rule as styles/main.css `.xs-regular`. */
+  .xs-regular {
+    font-size: calc(12 / 17 * 1rem);
+    font-weight: 400;
+    line-height: calc(16 / 17 * 1rem);
+  }
 
   main {
     background-color: var(--gray-1);
