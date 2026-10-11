@@ -217,16 +217,13 @@ function ActionBar(props: ActionBarProps) {
               : "flex flex-col items-start gap-1 px-0.5 py-1",
             className,
           )}
-          style={{
-            [side]: `${sideOffset}px`,
-            ...(align === "center" && {
-              left: "50%",
-              translate: "-50% 0",
-            }),
-            ...(align === "start" && { left: `${alignOffset}px` }),
-            ...(align === "end" && { right: `${alignOffset}px` }),
-            ...style,
-          }}
+          style={
+            {
+              "--action-bar-side-offset": `${sideOffset}px`,
+              "--action-bar-align-offset": `${alignOffset}px`,
+              ...style,
+            } as React.CSSProperties
+          }
         />,
         portalContainer,
       )}
@@ -244,7 +241,7 @@ function ActionBarSelection(props: DivProps) {
       data-slot="action-bar-selection"
       {...selectionProps}
       className={cn(
-        "flex items-center gap-0.5 rounded-sm border border-gray-6 bg-gray-2 px-1 py-0.5 text-sm font-medium tabular-nums text-gray-12",
+        "flex shrink-0 items-center gap-0.5 whitespace-nowrap rounded-sm border border-gray-6 bg-gray-2 px-1 py-0.5 text-sm font-medium tabular-nums text-gray-12",
         className,
       )}
     />
@@ -417,6 +414,20 @@ function ActionBarGroup(props: DivProps) {
   );
 }
 
+function renderActionBarItemChildren(children: React.ReactNode) {
+  return React.Children.map(children, (child, index) => {
+    if (typeof child === "string" || typeof child === "number") {
+      if (typeof child === "string" && child.trim() === "") return child;
+      return (
+        <span key={index} data-slot="action-bar-item-label">
+          {child}
+        </span>
+      );
+    }
+    return child;
+  });
+}
+
 interface ActionBarItemProps extends Omit<
   React.ComponentProps<typeof Button>,
   "onSelect"
@@ -434,6 +445,7 @@ function ActionBarItem(props: ActionBarItemProps) {
     className,
     disabled,
     ref,
+    children,
     ...itemProps
   } = props;
 
@@ -588,7 +600,9 @@ function ActionBarItem(props: ActionBarItemProps) {
       onFocus={onFocus}
       onKeyDown={onKeyDown}
       onMouseDown={onMouseDown}
-    />
+    >
+      {renderActionBarItemChildren(children)}
+    </Button>
   );
 }
 
