@@ -173,6 +173,29 @@ describe("Autocomplete", () => {
     ).toHaveClass("size-2.5", "end-0.5");
   });
 
+  it("inherits Input heights for sm, default, and lg", () => {
+    const { rerender } = render(
+      <Autocomplete items={items}>
+        <AutocompleteInput aria-label="Search items" size="sm" />
+      </Autocomplete>,
+    );
+    expect(screen.getByRole("combobox")).toHaveClass("h-3");
+
+    rerender(
+      <Autocomplete items={items}>
+        <AutocompleteInput aria-label="Search items" />
+      </Autocomplete>,
+    );
+    expect(screen.getByRole("combobox")).toHaveClass("h-4");
+
+    rerender(
+      <Autocomplete items={items}>
+        <AutocompleteInput aria-label="Search items" size="lg" />
+      </Autocomplete>,
+    );
+    expect(screen.getByRole("combobox")).toHaveClass("h-5");
+  });
+
   it("does not ship the off-scale spacing or doubled chrome in source", () => {
     expect(source).not.toContain("m-0.6");
     expect(source).not.toContain("opacity-64");

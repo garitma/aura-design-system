@@ -22,6 +22,30 @@ const items = [
   { label: "Pear", value: "pear" },
 ];
 
+export const Sizes = () => {
+  return (
+    <div className="flex w-full flex-col gap-2">
+      <Autocomplete items={items}>
+        <AutocompleteInput
+          aria-label="Small search"
+          placeholder="Small"
+          size="sm"
+        />
+      </Autocomplete>
+      <Autocomplete items={items}>
+        <AutocompleteInput aria-label="Default search" placeholder="Default" />
+      </Autocomplete>
+      <Autocomplete items={items}>
+        <AutocompleteInput
+          aria-label="Large search"
+          placeholder="Large"
+          size="lg"
+        />
+      </Autocomplete>
+    </div>
+  );
+};
+
 export const Default = () => {
   return (
     <Autocomplete items={items}>

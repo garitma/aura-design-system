@@ -44,6 +44,10 @@ function AutocompleteInput({
   ref?: React.Ref<HTMLInputElement>;
 }) {
   const sizeValue = (size ?? "default") as "sm" | "default" | "lg" | number;
+  const inputSize =
+    sizeValue === "sm" || sizeValue === "lg" || sizeValue === "default"
+      ? sizeValue
+      : "default";
 
   return (
     <div
@@ -70,7 +74,7 @@ function AutocompleteInput({
         )}
         data-slot="autocomplete-input"
         data-size={typeof sizeValue === "string" ? sizeValue : undefined}
-        render={<Input />}
+        render={<Input size={inputSize} />}
         {...props}
       />
       {showTrigger && (
