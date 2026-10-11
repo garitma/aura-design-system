@@ -11,6 +11,9 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 
 ## Sessions
+### 2026-10-11 · Angle slider tokens
+- Inset and box size now come from `--angle-slider-padding` and `--angle-slider-size`. Rail stroke is one class, the thumb ring uses `ring-accent-a6`, and `max` defaults to 360. See [[Angle-Slider]].
+
 ### 2026-10-11 · Remove Attachment and fix AspectRatio
 - Removed the Attachment registry component, docs, demos, stories, and `public/r/attachment.json`. Spinner and Button stay. `/docs/components/attachment` redirects to the components index. AspectRatio now imports React, keeps a single demo, and uses `w-full max-w-xs`. See [[Recent-Components-Audit]].
 
