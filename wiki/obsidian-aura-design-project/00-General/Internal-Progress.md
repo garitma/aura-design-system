@@ -1,6 +1,6 @@
 ---
 title: Internal Progress
-date: 2026-10-10
+date: 2026-10-11
 retention: 10
 tags: [dev-log, logic]
 ---
@@ -11,6 +11,9 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 
 ## Sessions
+### 2026-10-11 · Angle slider tokens
+- Inset and box size now come from `--angle-slider-padding` and `--angle-slider-size`. Rail stroke is one class, the thumb ring uses `ring-accent-a6`, and `max` defaults to 360. See [[Angle-Slider]].
+
 ### 2026-10-10 · Ship pick-ui-library
 - Pablo added `pick-ui-library` to the reconciled set with an `@aura`-first rule, kept `ask-sonner`, and left `write-swift` and `animate-expo` out. Blueprint now installs thirteen skills. See [[Emil skills]].
 
