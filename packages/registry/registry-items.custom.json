@@ -20,7 +20,8 @@
       "description": "The CSSMain file.",
       "css": {
         "@layer components": {
-          "@import \"../styles/main.css\"": {}
+          "@import \"../styles/main.css\"": {},
+          "@import \"../styles/overlay.css\"": {}
         }
       },
       "files": [
@@ -28,6 +29,11 @@
           "path": "registry/default/styles/main.css",
           "type": "registry:file",
           "target": "styles/main.css"
+        },
+        {
+          "path": "registry/default/styles/overlay.css",
+          "type": "registry:file",
+          "target": "styles/overlay.css"
         }
       ]
     },

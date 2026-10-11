@@ -274,6 +274,19 @@ function getComponentItemsFromPath(dirPath: string, registryPrefix: string, item
           }
         };
       }
+
+      // Ship the shared scrim with every component that uses .aura-overlay.
+      const componentSource = fs.readFileSync(filePath, "utf8");
+      if (componentSource.includes("aura-overlay")) {
+        item.files?.push({
+          path: "registry/default/styles/overlay.css",
+          type: "registry:component",
+          target: "./styles/overlay.css",
+        });
+        item.css = item.css ?? { "@layer components": {} };
+        const layer = item.css["@layer components"] as Record<string, unknown>;
+        layer['@import "../styles/overlay.css"'] = {};
+      }
       
       // Only add dependencies field if there are external dependencies
       if (dependencies.length > 0) {
