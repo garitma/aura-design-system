@@ -44,19 +44,17 @@ Both implementations animate `height` to `var(--radix-accordion-content-height)`
 
 ## Buttons
 
-`.button` and its variants in `main.css` declare two `transition` lines. The second replaces the first, so the transition that applies is:
+`.button` and its variants in `main.css` use one `transition` so the background fade and the scale both run:
 
 ```css
-transition: transform 250ms cubic-bezier(0.2, 0.8, 0.4, 1);
+transition: background-color 300ms cubic-bezier(0.4, 0, 0.6, 1), transform 250ms cubic-bezier(0.2, 0.8, 0.4, 1);
 ```
 
-The earlier line, `300ms background cubic-bezier(0.4, 0, 0.6, 1)`, is the easing the animation rule names for buttons. It does not win in the current stylesheet because it is overwritten.
-
-Hover (when not disabled): `transform: scale(1.03)`. Active: `transform: scale(0.97)` and `outline: var(--aura-outline)`.
+Hover (when not disabled): `transform: scale(1.03)`. Active: `transform: scale(0.97)` and `outline: var(--aura-outline)`. Keyboard focus uses the same outline on `:focus-visible`. Under `prefers-reduced-motion: reduce`, hover and active scales are `transform: none`.
 
 ## Reduced motion
 
-Dialog, alert dialog, accordion, collapsible, tooltip, popover, sheet, sidebar, command, selection toolbar, action bar, file upload, mention, and the responsive dropdown each ship a `prefers-reduced-motion: reduce` block. Accordion also shortens the chevron transition to `0.01ms` under that query. `MessageScroller` uses `motion-reduce:transition-none` on its jump control.
+Buttons, dialog, alert dialog, accordion, collapsible, tooltip, popover, sheet, sidebar, command, selection toolbar, action bar, file upload, mention, and the responsive dropdown each ship a `prefers-reduced-motion: reduce` block. Accordion also shortens the chevron transition to `0.01ms` under that query. `MessageScroller` uses `motion-reduce:transition-none` on its jump control.
 
 ## Related
 

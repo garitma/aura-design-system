@@ -17,7 +17,15 @@ export const Sizes = () => (
     <Button size="md">Medium</Button>
     <Button size="lg">Large</Button>
     <Button size="xl">Extra Large</Button>
-    <Button size="icon"><MixerHorizontalIcon className="icon" /></Button>
+    <Button size="icon" aria-label="Small icon, 39px">
+      <MixerHorizontalIcon className="icon" />
+    </Button>
+    <Button size="icon-sm" aria-label="Small icon, 39px">
+      <MixerHorizontalIcon className="icon" />
+    </Button>
+    <Button size="icon-md" aria-label="Medium icon, 52px">
+      <MixerHorizontalIcon className="icon" />
+    </Button>
   </div>
 );
 

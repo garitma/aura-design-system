@@ -8,8 +8,10 @@ describe("Button", () => {
     render(<Button>Click me</Button>);
     const button = screen.getByRole("button", { name: "Click me" });
     expect(button).toBeInTheDocument();
-    expect(button).toHaveClass("button-fill"); // Default variant
-    expect(button).toHaveClass("h-3"); // Default size (sm)
+    expect(button).toHaveClass("button-fill"); // Default variant is fill
+    expect(button).toHaveClass("h-4"); // Default size
+    expect(button.className).toContain("focus-visible:[outline:var(--aura-outline)]");
+    expect(button.className).toContain("[&_svg]:size-[1em]");
   });
 
   it("applies variant classes correctly", () => {
@@ -49,6 +51,27 @@ describe("Button", () => {
 
     rerender(<Button size="xl">XL</Button>);
     expect(screen.getByRole("button", { name: "XL" })).toHaveClass("h-6");
+
+    rerender(<Button size="icon" aria-label="Icon" />);
+    expect(screen.getByRole("button", { name: "Icon" })).toHaveClass(
+      "w-3",
+      "h-3",
+      "p-0",
+    );
+
+    rerender(<Button size="icon-sm" aria-label="Icon small" />);
+    expect(screen.getByRole("button", { name: "Icon small" })).toHaveClass(
+      "w-3",
+      "h-3",
+      "p-0",
+    );
+
+    rerender(<Button size="icon-md" aria-label="Icon medium" />);
+    expect(screen.getByRole("button", { name: "Icon medium" })).toHaveClass(
+      "w-4",
+      "h-4",
+      "p-0",
+    );
   });
 
   it("handles onClick event", () => {
@@ -80,16 +103,48 @@ describe("Button", () => {
     render(<Button isDisabled>Disabled Button</Button>);
     const button = screen.getByRole("button", { name: "Disabled Button" });
     expect(button).toBeDisabled();
-    expect(button).toHaveClass("opacity-50", "cursor-not-allowed");
+    expect(button).not.toHaveClass("opacity-50");
+    expect(button).not.toHaveClass("cursor-not-allowed");
+    expect(button).not.toHaveAttribute("data-loading");
   });
 
-  it("handles isLoading prop", () => {
+  it("keeps loading non-interactive without the disabled fade", () => {
     render(<Button isLoading>Loading Button</Button>);
     const button = screen.getByRole("button", { name: "Loading Button" });
     expect(button).toBeDisabled();
-    expect(button).toHaveClass("opacity-50", "cursor-not-allowed");
-    // Check for the reload icon
+    expect(button).toHaveAttribute("data-loading", "true");
+    expect(button).toHaveAttribute("aria-busy", "true");
+    expect(button).not.toHaveClass("opacity-50");
+    expect(button).not.toHaveClass("cursor-not-allowed");
     const icon = button.querySelector(".animate-spin");
     expect(icon).toBeInTheDocument();
+  });
+
+  it("does not render label and children twice", () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    render(<Button label="Save">Save</Button>);
+    expect(screen.getByRole("button", { name: "Save" }).textContent).toBe(
+      "Save",
+    );
+    expect(warn).toHaveBeenCalled();
+    warn.mockRestore();
+
+    render(<Button label="Only label" />);
+    expect(screen.getByRole("button", { name: "Only label" })).toBeInTheDocument();
+  });
+
+  it("keeps deprecated mode and default variant working", () => {
+    const warn = vi.spyOn(console, "warn").mockImplementation(() => {});
+    const { rerender } = render(<Button mode="pill">Mode</Button>);
+    expect(screen.getByRole("button", { name: "Mode" })).toHaveClass(
+      "button-pill",
+    );
+
+    rerender(<Button variant="default">Legacy</Button>);
+    expect(screen.getByRole("button", { name: "Legacy" })).toHaveClass(
+      "button-fill",
+    );
+    expect(warn).toHaveBeenCalled();
+    warn.mockRestore();
   });
 });
