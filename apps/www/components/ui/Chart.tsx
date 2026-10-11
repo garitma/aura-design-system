@@ -71,12 +71,87 @@ function useChart() {
   return context;
 }
 
+const VAR_COLOR =
+  /^var\(--[a-zA-Z0-9_-]+(?:\s*,\s*(?:#[0-9a-fA-F]{3,8}|[a-zA-Z]+))?\)$/;
+const HEX_COLOR = /^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/;
+const NAMED_COLOR = /^[a-zA-Z]+$/;
+const FUNC_COLOR =
+  /^(?:rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch|color|color-mix)\((?:[^()]|\([^()]*\))+\)$/;
+
+function isSafeChartColor(value: string) {
+  if (/[;{}\\]|url\s*\(|\/\*|\*\//i.test(value)) return false;
+  return (
+    VAR_COLOR.test(value) ||
+    HEX_COLOR.test(value) ||
+    NAMED_COLOR.test(value) ||
+    FUNC_COLOR.test(value)
+  );
+}
+
 function tokenColor(color: string | undefined) {
   if (!color) return undefined;
   const value = color.trim();
-  if (/^var\(--[a-zA-Z0-9-_]+\)$/.test(value)) return value;
+  if (!value) return undefined;
+  if (isSafeChartColor(value)) return value;
+  if (process.env.NODE_ENV !== "production") {
+    console.warn(
+      `[chart] Ignored color "${value}". Use a var(--token), hex, rgb(), hsl(), or a CSS named color.`
+    );
+  }
   return undefined;
 }
+
+const CHART_INSET_FALLBACK = 13;
+let chartInsetCache: number | undefined;
+
+function measureCssPx(expression: string, fallback: number) {
+  if (typeof document === "undefined") return fallback;
+  const probe = document.createElement("div");
+  probe.style.position = "absolute";
+  probe.style.visibility = "hidden";
+  probe.style.pointerEvents = "none";
+  probe.style.inlineSize = expression;
+  document.documentElement.appendChild(probe);
+  const width = probe.getBoundingClientRect().width;
+  probe.remove();
+  return Number.isFinite(width) && width > 0 ? width : fallback;
+}
+
+/** Pixel size of `--chart-inset`, which follows `--spacing`. */
+function chartInsetPx() {
+  if (chartInsetCache != null) return chartInsetCache;
+  const value = measureCssPx(
+    "var(--chart-inset, var(--spacing, 13px))",
+    CHART_INSET_FALLBACK
+  );
+  if (typeof document !== "undefined") chartInsetCache = value;
+  return value;
+}
+
+function chartTickMargin() {
+  return chartInsetPx();
+}
+
+function chartPlotMargin(overrides?: {
+  top?: number;
+  right?: number;
+  left?: number;
+  bottom?: number;
+}) {
+  const inset = chartInsetPx();
+  return {
+    top: inset,
+    right: inset,
+    left: inset,
+    bottom: 0,
+    ...overrides,
+  };
+}
+
+const chartAxisTick = {
+  fill: "var(--chart-tick, var(--gray-11))",
+  fontSize: "var(--chart-tick-size, var(--spacing))",
+};
 
 function ChartContainer({
   id,
@@ -100,7 +175,7 @@ function ChartContainer({
         data-slot="chart"
         data-chart={chartId}
         className={cn(
-          "flex aspect-video w-full justify-center text-xs text-gray-11",
+          "flex aspect-square w-full justify-center text-xs text-gray-11 sm:aspect-video",
           className
         )}
         aria-label={label}
@@ -262,14 +337,19 @@ function ChartTooltipContent({
                       !hideIndicator && (
                         <div
                           className={cn(
-                            "shrink-0 rounded-sm",
-                            indicator === "dot" && "size-0.5",
-                            indicator === "line" && "h-1 w-px",
+                            "shrink-0 rounded-full",
                             indicator === "dashed" &&
-                              "h-1 w-0 border border-dashed bg-transparent"
+                              "w-0 border border-dashed bg-transparent"
                           )}
                           style={
                             {
+                              width:
+                                indicator === "dot"
+                                  ? "var(--chart-marker, 8px)"
+                                  : indicator === "line"
+                                    ? "var(--chart-marker-line, 2px)"
+                                    : undefined,
+                              height: "var(--chart-marker, 8px)",
                               backgroundColor:
                                 indicator === "dashed" ? "transparent" : indicatorColor,
                               borderColor: indicatorColor,
@@ -354,8 +434,12 @@ function ChartLegendContent({
                 <Icon className="icon" />
               ) : (
                 <div
-                  className="size-0.5 shrink-0 rounded-sm"
-                  style={{ backgroundColor: swatch }}
+                  className="shrink-0 rounded-full"
+                  style={{
+                    width: "var(--chart-marker, 8px)",
+                    height: "var(--chart-marker, 8px)",
+                    backgroundColor: swatch,
+                  }}
                 />
               )}
               {itemConfig?.label}
@@ -496,5 +580,8 @@ export {
   ChartStyle,
   ChartTooltip,
   ChartTooltipContent,
+  chartAxisTick,
+  chartPlotMargin,
+  chartTickMargin,
   useChart,
 };

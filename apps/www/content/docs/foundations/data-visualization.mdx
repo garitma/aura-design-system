@@ -12,15 +12,15 @@ Five series tokens live on `:root` in `packages/registry/styles/globals.css`. Th
 
 | Token | Points at | Role |
 | --- | --- | --- |
-| `--chart-1` | `--accent-9` (`--primary`) | First series, brand |
+| `--chart-1` | `--accent-9` in light; `--accent-11` in dark | First series, brand |
 | `--chart-2` | `--info-contrast` | Second series |
 | `--chart-3` | `--success-contrast` | Third series |
 | `--chart-4` | `--warning-contrast` | Fourth series |
 | `--chart-5` | `--danger-contrast` | Fifth series |
 
-Under `prefers-color-scheme: dark`, `--chart-2` through `--chart-5` use the lighter status-contrast values (`#8cb4ff`, `#67cf9d`, `#efe08e`, `#ff9469`) so strokes stay visible on the dark gray canvas. `--chart-1` keeps following `--accent-9`.
+Under `.dark` and `prefers-color-scheme: dark`, `--chart-1` is `--accent-11` (`#a3acff`). Dark `--accent-9` (`#4015ca`) is 1.99:1 and `--accent-10` (`#3400ab`) is 1.59:1 on `--gray-1` (`#100b21`). Accent-11 is 9.07:1, the first step that clears the 3:1 floor for chart graphics. `--chart-2` through `--chart-5` use the lighter status-contrast values (`#8cb4ff`, `#67cf9d`, `#efe08e`, `#ff9469`).
 
-A chart config passes those tokens through. The container writes `--color-<series>` for the plot. Colors that are not a `var(--token)` are ignored.
+A chart config passes those tokens through. The container writes `--color-<series>` for the plot. A plain CSS color (`#4015ca`, `rgb()`, `hsl()`, or a named color) is kept. Anything else is dropped, and development builds warn.
 
 ## Axes, grid, and surface
 
@@ -28,7 +28,8 @@ A chart config passes those tokens through. The container writes `--color-<serie
 | --- | --- |
 | Grid | Gray step 6, solid |
 | Tick labels | Gray step 11, 13px (`text-xs` is the utility size; ticks are set at 13px) |
-| Tooltip | `gray-1` surface, gray step 6 border, `rounded-sm`. Values use `font-mono` |
+| Tooltip | `gray-1` surface, gray step 6 border, `rounded-sm`. Values use `font-mono` and `tabular-nums` |
+| Markers | `--chart-marker` is 8px. The line marker is `--chart-marker-line` (2px). These are not 13px spacing steps |
 | Plot focus | Accent step 8, 2px outline |
 | Card | Chart families sit in `Card`: `gray-2` fill, gray step 6 border, `--radius-md` |
 
@@ -45,7 +46,6 @@ There is no separate annotation, axis-title, or chart-palette scale beyond these
 ## Related
 
 - [Charts](/docs/charts)
-- [Chart](/docs/components/chart)
 - [Color](/docs/foundations/color)
 - [Theming](/docs/foundations/theming)
 - [Motion](/docs/foundations/motion)
