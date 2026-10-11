@@ -27,13 +27,11 @@ export function CarouselDemo() {
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index}>
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-2">
-                  <span className="h1 font-semibold">{index + 1}</span>
-                </CardContent>
-              </Card>
-            </div>
+            <Card>
+              <CardContent className="flex aspect-square items-center justify-center p-2">
+                <span className="h1 font-semibold">{index + 1}</span>
+              </CardContent>
+            </Card>
           </CarouselItem>
         ))}
       </CarouselContent>
@@ -70,38 +68,52 @@ pnpm install @radix-ui/react-icons
 ```tsx
 /**
  * @description Displays a button or a component that looks like a button.
+ *
+ * `mode` is a deprecated alias of `variant`. `variant="default"` is a
+ * deprecated alias of `fill`. Both still render and warn in development.
+ * Disabled chrome (opacity and cursor) lives only in `.button:disabled`.
+ * Loading sets `disabled` so the control stays non-interactive, and
+ * `data-loading` so it does not fade to the disabled opacity.
  */
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/utils/class-names";
+import { Spinner } from "@/components/ui/Spinner";
 
-const buttonVariants = cva("button", {
-  variants: {
-    variant: {
-      default: "button-fill",
-      fill: "button-fill",
-      pill: "button-pill border border-gray-6 text-gray-11 bg-gray-2 hover:bg-gray-3",
-      link: "button-link",
-      menu: "button-menu",
+const buttonVariants = cva(
+  "button focus-visible:[outline:var(--aura-outline)] [&_svg]:size-[1em]",
+  {
+    variants: {
+      variant: {
+        default: "button-fill",
+        fill: "button-fill",
+        pill: "button-pill border border-gray-6 text-gray-11 bg-gray-2 hover:bg-gray-3",
+        link: "button-link",
+        menu: "button-menu",
+        split: "button-fill button-split-action",
+        splitMenu: "button-fill button-split-menu",
+      },
+      size: {
+        default: "h-4",
+        xs: "h-2.5",
+        sm: "h-3",
+        md: "h-4",
+        lg: "h-5",
+        xl: "h-6",
+        // `icon` and `icon-sm` are the 39px (3 × 13px) icon button. `icon-md` is 52px.
+        icon: "w-3 h-3 p-0",
+        "icon-sm": "w-3 h-3 p-0",
+        "icon-md": "w-4 h-4 p-0",
+      },
     },
-    size: {
-      default: "h-4",
-      xs: "h-2.5",
-      sm: "h-3",
-      md: "h-4",
-      lg: "h-5",
-      xl: "h-6",
-      icon: "w-3 h-3 p-0",
-      "icon-md": "w-4 h-4 p-0",
+    defaultVariants: {
+      variant: "fill",
+      size: "default",
     },
   },
-  defaultVariants: {
-    variant: "default",
-    size: "default",
-  },
-});
+);
 
 interface ButtonProps
   extends React.ComponentProps<"button">,
@@ -110,10 +122,34 @@ interface ButtonProps
   isDisabled?: boolean;
   isLoading?: boolean;
   isLoadingText?: string | React.ReactNode;
+  /** @deprecated Use `variant`. Still applied, and warns in development. */
   mode?: VariantProps<typeof buttonVariants>["variant"];
   label?: string | React.ReactNode;
 }
 
+const deprecationWarnings = new Set<string>();
+
+function warnOnce(message: string) {
+  if (process.env.NODE_ENV === "production") return;
+  if (deprecationWarnings.has(message)) return;
+  deprecationWarnings.add(message);
+  console.warn(message);
+}
+
+function resolveButtonContent(
+  label: React.ReactNode,
+  children: React.ReactNode,
+): React.ReactNode {
+  const hasLabel = label != null && label !== false;
+  const hasChildren = children != null && children !== false;
+  if (hasLabel && hasChildren) {
+    warnOnce(
+      "Button: `label` and `children` both set the visible text. Pass one. `children` is shown.",
+    );
+    return children;
+  }
+  return hasChildren ? children : label;
+}
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (props: ButtonProps, ref) => {
@@ -128,34 +164,57 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       isLoadingText,
       children,
       label,
+      disabled: disabledProp,
       ...rest
     } = props;
     const Comp = asChild ? Slot : "button";
-    const disabled = isDisabled || isLoading || props.disabled;
+    const explicitlyDisabled = Boolean(isDisabled || disabledProp);
+    const loading = Boolean(isLoading);
+    const nonInteractive = explicitlyDisabled || loading;
     const effectiveVariant = variant ?? mode;
+
+    if (mode !== undefined) {
+      warnOnce(
+        "Button: `mode` is deprecated and duplicates `variant`. Pass `variant` instead. `mode` still works.",
+      );
+    }
+    if (variant === "default" || mode === "default") {
+      warnOnce(
+        'Button: variant "default" is deprecated and matches "fill". Pass `variant="fill"`. "default" still works.',
+      );
+    }
+
+    const content = resolveButtonContent(label, children);
 
     return (
       <Comp
         data-slot="button"
         className={cn(
           buttonVariants({ variant: effectiveVariant, size, className }),
-          disabled && "opacity-50 cursor-not-allowed"
         )}
         ref={ref}
-        disabled={disabled}
         {...rest}
+        data-loading={loading && !explicitlyDisabled ? true : undefined}
+        aria-busy={loading ? true : undefined}
+        disabled={nonInteractive}
       >
         {asChild ? (
           children
         ) : (
           <>
-      
-            {isLoading && isLoadingText ? isLoadingText : <>{label}{children}</>}
+            {isLoading && isLoadingText ? (
+              isLoadingText
+            ) : (
+              <>
+                {isLoading ? <Spinner /> : null}
+                {content}
+              </>
+            )}
           </>
         )}
       </Comp>
     );
-  }
+  },
 );
 
 Button.displayName = "Button";
@@ -263,15 +322,18 @@ function Carousel({
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === "ArrowLeft") {
+      const prevKey = orientation === "vertical" ? "ArrowUp" : "ArrowLeft"
+      const nextKey = orientation === "vertical" ? "ArrowDown" : "ArrowRight"
+
+      if (event.key === prevKey) {
         event.preventDefault()
         scrollPrev()
-      } else if (event.key === "ArrowRight") {
+      } else if (event.key === nextKey) {
         event.preventDefault()
         scrollNext()
       }
     },
-    [scrollPrev, scrollNext]
+    [orientation, scrollPrev, scrollNext]
   )
 
   React.useEffect(() => {
@@ -287,6 +349,7 @@ function Carousel({
 
     return () => {
       api?.off("select", onSelect)
+      api?.off("reInit", onSelect)
     }
   }, [api, onSelect])
 
@@ -306,7 +369,12 @@ function Carousel({
     >
       <div
         onKeyDownCapture={handleKeyDown}
-        className={cn("relative", className)}
+        className={cn(
+          "relative",
+          orientation === "horizontal" &&
+            "max-sm:flex max-sm:flex-wrap max-sm:items-center max-sm:justify-center max-sm:gap-1",
+          className
+        )}
         role="region"
         aria-roledescription="carousel"
         data-slot="carousel"
@@ -324,13 +392,16 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       ref={carouselRef}
-      className="overflow-hidden"
+      className={cn(
+        "overflow-hidden",
+        orientation === "horizontal" && "max-sm:order-1 max-sm:basis-full max-sm:min-w-0"
+      )}
       data-slot="carousel-content"
     >
       <div
         className={cn(
           "flex",
-          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
+          orientation === "horizontal" ? "-ml-1" : "-mt-1 flex-col",
           className
         )}
         {...props}
@@ -349,7 +420,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="carousel-item"
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
-        orientation === "horizontal" ? "pl-4" : "pt-4",
+        orientation === "horizontal" ? "pl-1" : "pt-1",
         className
       )}
       {...props}
@@ -371,10 +442,10 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "rounded-full absolute touch-manipulation",
+        "rounded-full touch-manipulation",
         orientation === "horizontal"
-          ? "top-1/2 -left-12 -translate-y-1/2"
-          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+          ? "max-sm:static max-sm:order-2 max-sm:shrink-0 sm:absolute sm:top-1/2 sm:-left-12 sm:-translate-y-1/2"
+          : "absolute -top-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
       disabled={!canScrollPrev}
@@ -401,10 +472,10 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        "rounded-full absolute touch-manipulation",
+        "rounded-full touch-manipulation",
         orientation === "horizontal"
-          ? "top-1/2 -right-12 -translate-y-1/2"
-          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
+          ? "max-sm:static max-sm:order-2 max-sm:shrink-0 sm:absolute sm:top-1/2 sm:-right-12 sm:-translate-y-1/2"
+          : "absolute -bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
       disabled={!canScrollNext}
@@ -430,4 +501,64 @@ export {
 ```
   </Step>
 </Steps>
+
+## Usage
+
+### MultipleCards
+
+<ComponentPreview name="carousel-demo-multiple-cards" description="Several Aura cards in one carousel. One card on small screens, two from sm, and three from md.">
+
+```tsx
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/Carousel";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/Card";
+
+export const MultipleCards = () => {
+  const slides = [
+    { title: "Mountain View", description: "Scenic landscape" },
+    { title: "Workspace", description: "Modern office setup" },
+    { title: "Technology", description: "Digital innovation" },
+    { title: "Ocean", description: "Coastal views" },
+    { title: "City", description: "Urban nights" },
+  ];
+
+  return (
+    <Carousel opts={{ align: "start" }} className="w-full">
+      <CarouselContent>
+        {slides.map((slide, index) => (
+          <CarouselItem
+            key={slide.title}
+            className="basis-full sm:basis-1/2 md:basis-1/3"
+          >
+            <Card className="flex h-full min-h-13 flex-col">
+              <CardHeader>
+                <CardTitle>{slide.title}</CardTitle>
+                <CardDescription>{slide.description}</CardDescription>
+              </CardHeader>
+              <CardContent className="flex flex-1 items-center justify-center">
+                <p className="text-gray-12">Slide {index + 1}</p>
+              </CardContent>
+            </Card>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious />
+      <CarouselNext />
+    </Carousel>
+  );
+};
+```
+
+</ComponentPreview>
 

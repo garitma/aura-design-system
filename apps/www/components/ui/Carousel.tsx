@@ -77,15 +77,18 @@ function Carousel({
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
-      if (event.key === "ArrowLeft") {
+      const prevKey = orientation === "vertical" ? "ArrowUp" : "ArrowLeft"
+      const nextKey = orientation === "vertical" ? "ArrowDown" : "ArrowRight"
+
+      if (event.key === prevKey) {
         event.preventDefault()
         scrollPrev()
-      } else if (event.key === "ArrowRight") {
+      } else if (event.key === nextKey) {
         event.preventDefault()
         scrollNext()
       }
     },
-    [scrollPrev, scrollNext]
+    [orientation, scrollPrev, scrollNext]
   )
 
   React.useEffect(() => {
@@ -101,6 +104,7 @@ function Carousel({
 
     return () => {
       api?.off("select", onSelect)
+      api?.off("reInit", onSelect)
     }
   }, [api, onSelect])
 
@@ -120,7 +124,12 @@ function Carousel({
     >
       <div
         onKeyDownCapture={handleKeyDown}
-        className={cn("relative", className)}
+        className={cn(
+          "relative",
+          orientation === "horizontal" &&
+            "max-sm:flex max-sm:flex-wrap max-sm:items-center max-sm:justify-center max-sm:gap-1",
+          className
+        )}
         role="region"
         aria-roledescription="carousel"
         data-slot="carousel"
@@ -138,13 +147,16 @@ function CarouselContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       ref={carouselRef}
-      className="overflow-hidden"
+      className={cn(
+        "overflow-hidden",
+        orientation === "horizontal" && "max-sm:order-1 max-sm:basis-full max-sm:min-w-0"
+      )}
       data-slot="carousel-content"
     >
       <div
         className={cn(
           "flex",
-          orientation === "horizontal" ? "-ml-4" : "-mt-4 flex-col",
+          orientation === "horizontal" ? "-ml-1" : "-mt-1 flex-col",
           className
         )}
         {...props}
@@ -163,7 +175,7 @@ function CarouselItem({ className, ...props }: React.ComponentProps<"div">) {
       data-slot="carousel-item"
       className={cn(
         "min-w-0 shrink-0 grow-0 basis-full",
-        orientation === "horizontal" ? "pl-4" : "pt-4",
+        orientation === "horizontal" ? "pl-1" : "pt-1",
         className
       )}
       {...props}
@@ -185,10 +197,10 @@ function CarouselPrevious({
       variant={variant}
       size={size}
       className={cn(
-        "rounded-full absolute touch-manipulation",
+        "rounded-full touch-manipulation",
         orientation === "horizontal"
-          ? "top-1/2 -left-12 -translate-y-1/2"
-          : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
+          ? "max-sm:static max-sm:order-2 max-sm:shrink-0 sm:absolute sm:top-1/2 sm:-left-12 sm:-translate-y-1/2"
+          : "absolute -top-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
       disabled={!canScrollPrev}
@@ -215,10 +227,10 @@ function CarouselNext({
       variant={variant}
       size={size}
       className={cn(
-        "rounded-full absolute touch-manipulation",
+        "rounded-full touch-manipulation",
         orientation === "horizontal"
-          ? "top-1/2 -right-12 -translate-y-1/2"
-          : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
+          ? "max-sm:static max-sm:order-2 max-sm:shrink-0 sm:absolute sm:top-1/2 sm:-right-12 sm:-translate-y-1/2"
+          : "absolute -bottom-12 left-1/2 -translate-x-1/2 rotate-90",
         className
       )}
       disabled={!canScrollNext}

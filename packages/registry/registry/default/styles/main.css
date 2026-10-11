@@ -324,6 +324,12 @@
     font-weight: 600;
     line-height: calc(16 / 17 * 1rem);
   }
+  /* Typography/xs Regular — same size, weight 400. Calendar weekday labels. */
+  .xs-regular {
+    font-size: calc(12 / 17 * 1rem);
+    font-weight: 400;
+    line-height: calc(16 / 17 * 1rem);
+  }
   p {
     margin: var(--aura) 0;
   }
@@ -504,6 +510,22 @@
     font-size: calc(14 / 17 * 1rem);
     font-weight: 500;
     line-height: 1.4rem;
+  }
+  /* Disabled days stay gray-11. .button:disabled would fade them to 50%. */
+  .button[data-day]:disabled,
+  .button-menu[data-day]:disabled {
+    opacity: 1;
+    color: var(--gray-11);
+    text-decoration: line-through;
+  }
+  [data-slot="calendar"] .rdp-button_previous,
+  [data-slot="calendar"] .rdp-button_next {
+    text-decoration: none;
+  }
+  .calendar-dropdown-chevron.icon {
+    font-size: calc(var(--aura) * 1.5);
+    width: 1em;
+    height: 1em;
   }
 
   .button-fill {
