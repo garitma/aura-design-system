@@ -79,7 +79,11 @@ import {
   BadgeOverflowDemoInteractiveTags
 } from "./badge-overflow-demo"
 import { 
-  BannerDemo
+  BannerDemo,
+  BannerDemoMobile,
+  BannerDemoDismissStates,
+  BannerDemoTones,
+  BannerDemoRichMessage
 } from "./banner-demo"
 import { 
   BarChartDemo,
@@ -845,6 +849,18 @@ export const Registry = {
   },
   "banner-demo": {
     component: BannerDemo,
+  },
+  "banner-demo-mobile": {
+    component: BannerDemoMobile,
+  },
+  "banner-demo-dismiss-states": {
+    component: BannerDemoDismissStates,
+  },
+  "banner-demo-tones": {
+    component: BannerDemoTones,
+  },
+  "banner-demo-rich-message": {
+    component: BannerDemoRichMessage,
   },
   "bar-chart-demo": {
     component: BarChartDemo,
