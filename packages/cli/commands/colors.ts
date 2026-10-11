@@ -275,6 +275,9 @@ export function generateGlobalsCss(lightColors: any, darkColors: any) {
     --gray-surface: ${darkColors.graySurface};
     --gray-indicator: ${darkColors.grayScale[8]};
     --gray-track: ${darkColors.grayScale[8]};
+
+    /* Chart graphics need 3:1 on gray-1. Dark steps 9 and 10 miss that on this ramp. */
+    --chart-1: var(--accent-11);
   }
 }
 

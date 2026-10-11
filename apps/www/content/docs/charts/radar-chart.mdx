@@ -51,17 +51,52 @@ pnpm install @radix-ui/react-icons recharts@2.15.4
 ```tsx
 /**
  * @description Displays a card with header, content, and footer sections.
+ * CardAction is the right-hand slot of CardHeader (top right).
  */
 import * as React from "react";
 
 import { cn } from "@/utils/class-names";
 
-function Card({ className, ...props }: React.ComponentProps<"div">) {
+type CardProps = React.ComponentProps<"div"> & {
+  /**
+   * Clickable card. Hover uses a gray-8 border and a soft shadow.
+   * The card is in the tab order and shows a focus-visible ring.
+   */
+  interactive?: boolean;
+};
+
+function Card({
+  className,
+  interactive = false,
+  tabIndex,
+  onKeyDown,
+  onClick,
+  ...props
+}: CardProps) {
+  const clickable = interactive || typeof onClick === "function";
+
   return (
     <div
       data-slot="card"
+      data-interactive={clickable ? "true" : undefined}
+      tabIndex={clickable ? (tabIndex ?? 0) : tabIndex}
+      onClick={onClick}
+      onKeyDown={
+        clickable
+          ? (event) => {
+              onKeyDown?.(event);
+              if (event.defaultPrevented) return;
+              if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                event.currentTarget.click();
+              }
+            }
+          : onKeyDown
+      }
       className={cn(
-        "bg-gray-2 border border-gray-6 rounded-md overflow-hidden",
+        "overflow-hidden border border-gray-6 bg-gray-2 rounded-(--radius-md)",
+        clickable &&
+          "cursor-pointer transition-colors motion-reduce:transition-none hover:border-gray-8 hover:shadow-[0_2px_8px_var(--gray-a3)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-8",
         className
       )}
       {...props}
@@ -73,7 +108,10 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-header"
-      className={cn("flex flex-col gap-0.5 p-1 pb-0", className)}
+      className={cn(
+        "grid auto-rows-min items-start gap-x-1 gap-y-0.5 p-1 pb-0 has-data-[slot=card-action]:grid-cols-[1fr_auto]",
+        className
+      )}
       {...props}
     />
   );
@@ -83,7 +121,7 @@ function CardTitle({ className, ...props }: React.ComponentProps<"h3">) {
   return (
     <h3
       data-slot="card-title"
-      className={cn("text-gray-12 font-semibold leading-none", className)}
+      className={cn("small m-0 font-semibold text-gray-12", className)}
       {...props}
     />
   );
@@ -93,17 +131,23 @@ function CardDescription({ className, ...props }: React.ComponentProps<"p">) {
   return (
     <p
       data-slot="card-description"
-      className={cn("text-gray-11", className)}
+      className={cn("small m-0 text-gray-11", className)}
       {...props}
     />
   );
 }
 
+/**
+ * Right-hand slot of CardHeader. Place it as a direct child so it sits at the top right, beside the title and description.
+ */
 function CardAction({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card-action"
-      className={cn("flex items-center gap-0.5", className)}
+      className={cn(
+        "col-start-2 row-span-2 row-start-1 flex items-center gap-0.5 self-start justify-self-end",
+        className
+      )}
       {...props}
     />
   );
@@ -111,7 +155,11 @@ function CardAction({ className, ...props }: React.ComponentProps<"div">) {
 
 function CardContent({ className, ...props }: React.ComponentProps<"div">) {
   return (
-    <div data-slot="card-content" className={cn("p-1 pt-0", className)} {...props} />
+    <div
+      data-slot="card-content"
+      className={cn("small p-1 pt-0 text-gray-12", className)}
+      {...props}
+    />
   );
 }
 
@@ -120,7 +168,7 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card-footer"
       className={cn(
-        "flex items-center gap-0.5 p-1 border-t border-gray-6",
+        "flex items-center gap-0.5 border-t border-gray-6 p-1",
         className
       )}
       {...props}
@@ -217,12 +265,87 @@ function useChart() {
   return context;
 }
 
+const VAR_COLOR =
+  /^var\(--[a-zA-Z0-9_-]+(?:\s*,\s*(?:#[0-9a-fA-F]{3,8}|[a-zA-Z]+))?\)$/;
+const HEX_COLOR = /^#(?:[0-9a-fA-F]{3}|[0-9a-fA-F]{4}|[0-9a-fA-F]{6}|[0-9a-fA-F]{8})$/;
+const NAMED_COLOR = /^[a-zA-Z]+$/;
+const FUNC_COLOR =
+  /^(?:rgb|rgba|hsl|hsla|hwb|lab|lch|oklab|oklch|color|color-mix)\((?:[^()]|\([^()]*\))+\)$/;
+
+function isSafeChartColor(value: string) {
+  if (/[;{}\\]|url\s*\(|\/\*|\*\//i.test(value)) return false;
+  return (
+    VAR_COLOR.test(value) ||
+    HEX_COLOR.test(value) ||
+    NAMED_COLOR.test(value) ||
+    FUNC_COLOR.test(value)
+  );
+}
+
 function tokenColor(color: string | undefined) {
   if (!color) return undefined;
   const value = color.trim();
-  if (/^var\(--[a-zA-Z0-9-_]+\)$/.test(value)) return value;
+  if (!value) return undefined;
+  if (isSafeChartColor(value)) return value;
+  if (process.env.NODE_ENV !== "production") {
+    console.warn(
+      `[chart] Ignored color "${value}". Use a var(--token), hex, rgb(), hsl(), or a CSS named color.`
+    );
+  }
   return undefined;
 }
+
+const CHART_INSET_FALLBACK = 13;
+let chartInsetCache: number | undefined;
+
+function measureCssPx(expression: string, fallback: number) {
+  if (typeof document === "undefined") return fallback;
+  const probe = document.createElement("div");
+  probe.style.position = "absolute";
+  probe.style.visibility = "hidden";
+  probe.style.pointerEvents = "none";
+  probe.style.inlineSize = expression;
+  document.documentElement.appendChild(probe);
+  const width = probe.getBoundingClientRect().width;
+  probe.remove();
+  return Number.isFinite(width) && width > 0 ? width : fallback;
+}
+
+/** Pixel size of `--chart-inset`, which follows `--spacing`. */
+function chartInsetPx() {
+  if (chartInsetCache != null) return chartInsetCache;
+  const value = measureCssPx(
+    "var(--chart-inset, var(--spacing, 13px))",
+    CHART_INSET_FALLBACK
+  );
+  if (typeof document !== "undefined") chartInsetCache = value;
+  return value;
+}
+
+function chartTickMargin() {
+  return chartInsetPx();
+}
+
+function chartPlotMargin(overrides?: {
+  top?: number;
+  right?: number;
+  left?: number;
+  bottom?: number;
+}) {
+  const inset = chartInsetPx();
+  return {
+    top: inset,
+    right: inset,
+    left: inset,
+    bottom: 0,
+    ...overrides,
+  };
+}
+
+const chartAxisTick = {
+  fill: "var(--chart-tick, var(--gray-11))",
+  fontSize: "var(--chart-tick-size, var(--spacing))",
+};
 
 function ChartContainer({
   id,
@@ -246,7 +369,7 @@ function ChartContainer({
         data-slot="chart"
         data-chart={chartId}
         className={cn(
-          "flex aspect-video w-full justify-center text-xs text-gray-11",
+          "flex aspect-square w-full justify-center text-xs text-gray-11 sm:aspect-video",
           className
         )}
         aria-label={label}
@@ -408,14 +531,19 @@ function ChartTooltipContent({
                       !hideIndicator && (
                         <div
                           className={cn(
-                            "shrink-0 rounded-sm",
-                            indicator === "dot" && "size-0.5",
-                            indicator === "line" && "h-1 w-px",
+                            "shrink-0 rounded-full",
                             indicator === "dashed" &&
-                              "h-1 w-0 border border-dashed bg-transparent"
+                              "w-0 border border-dashed bg-transparent"
                           )}
                           style={
                             {
+                              width:
+                                indicator === "dot"
+                                  ? "var(--chart-marker, 8px)"
+                                  : indicator === "line"
+                                    ? "var(--chart-marker-line, 2px)"
+                                    : undefined,
+                              height: "var(--chart-marker, 8px)",
                               backgroundColor:
                                 indicator === "dashed" ? "transparent" : indicatorColor,
                               borderColor: indicatorColor,
@@ -500,8 +628,12 @@ function ChartLegendContent({
                 <Icon className="icon" />
               ) : (
                 <div
-                  className="size-0.5 shrink-0 rounded-sm"
-                  style={{ backgroundColor: swatch }}
+                  className="shrink-0 rounded-full"
+                  style={{
+                    width: "var(--chart-marker, 8px)",
+                    height: "var(--chart-marker, 8px)",
+                    backgroundColor: swatch,
+                  }}
                 />
               )}
               {itemConfig?.label}
@@ -642,6 +774,9 @@ export {
   ChartStyle,
   ChartTooltip,
   ChartTooltipContent,
+  chartAxisTick,
+  chartPlotMargin,
+  chartTickMargin,
   useChart,
 };
 
@@ -687,6 +822,7 @@ import {
   ChartRadar,
   ChartTooltip,
   ChartTooltipContent,
+  chartAxisTick,
   type ChartConfig,
 } from "@/components/ui/Chart";
 import { cn } from "@/utils/class-names";
@@ -775,12 +911,13 @@ function RadarChart({
             ) : (
               <PolarGrid
                 gridType={variant === "circle" ? "circle" : "polygon"}
-                stroke="var(--gray-6)"
+                stroke="var(--chart-grid, var(--gray-6))"
               />
             )}
             <PolarAngleAxis
               dataKey="month"
-              tick={{ fontSize: 13, fill: "var(--gray-11)" }}
+              interval="preserveStartEnd"
+              tick={chartAxisTick}
               tickFormatter={(value: string) => value.slice(0, 3)}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />

@@ -538,12 +538,14 @@ import {
 } from "@/components/demos/segmented-input-demo"
 import { 
   SelectDemo,
+  SelectDemoPlaceholder,
   SelectDemoWithDefaultValue,
   SelectDemoWithGroups,
   SelectDemoWithDisabledItems,
   SelectDemoDisabled,
   SelectDemoWithLongList,
-  SelectDemoComplex
+  SelectDemoComplex,
+  SelectDemoSizes
 } from "@/components/demos/select-demo"
 import { 
   SelectionToolbarDemo,
@@ -1676,6 +1678,9 @@ export const Registry = {
   "select-demo": {
     component: SelectDemo,
   },
+  "select-demo-placeholder": {
+    component: SelectDemoPlaceholder,
+  },
   "select-demo-with-default-value": {
     component: SelectDemoWithDefaultValue,
   },
@@ -1693,6 +1698,9 @@ export const Registry = {
   },
   "select-demo-complex": {
     component: SelectDemoComplex,
+  },
+  "select-demo-sizes": {
+    component: SelectDemoSizes,
   },
   "selection-toolbar-demo": {
     component: SelectionToolbarDemo,

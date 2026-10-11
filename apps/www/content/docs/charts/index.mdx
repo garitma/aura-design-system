@@ -5,7 +5,20 @@ description: Area, bar, line, pie, radar, and radial charts, plus tooltip patter
 
 ## Charts
 
-Chart families sit in their own section. They share the chart container, tooltip, and legend from the Chart component.
+Chart families sit in their own section. They share one base, `Chart.tsx` (`@aura/chart`). Components does not list a separate Chart page; `/docs/components/chart` redirects here.
+
+### Chart container
+
+`ChartContainer` wraps the Recharts plot. `config` maps each series key to a label and a color: `var(--chart-1)` through `var(--chart-5)`, or a plain CSS color such as `#4015ca`. `label` is the accessible name. The container writes `--color-<key>` for the series. On small screens the frame is square; from the `sm` breakpoint it is 16:9.
+
+### Tooltip
+
+`ChartTooltip` is the Recharts tooltip. `ChartTooltipContent` paints the Aura surface (gray step 1, gray step 6 border) and one marker per series: dot, line, or dashed. Markers use `--chart-marker` (8px) and `--chart-marker-line` (2px).
+
+### Legend
+
+`ChartLegend` is the Recharts legend. `ChartLegendContent` shows that same marker, or the series icon, beside the label from `config`.
+
 
 ### [Area Chart](./area-chart)
 

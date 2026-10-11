@@ -17,6 +17,9 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
+  chartAxisTick,
+  chartPlotMargin,
+  chartTickMargin,
   type ChartConfig,
 } from "@/components/ui/Chart";
 import { cn } from "@/utils/class-names";
@@ -43,7 +46,6 @@ const monthVisitors = [
   { month: "June", desktop: 214, mobile: 140 },
 ];
 
-const axisTick = { fontSize: 13, fill: "var(--gray-11)" };
 
 const titles: Record<ChartTooltipsVariant, string> = {
   default: "Tooltip",
@@ -110,15 +112,16 @@ function ChartTooltips({
           <RechartsBarChart
             accessibilityLayer
             data={monthVisitors}
-            margin={{ top: 13, right: 13, left: 13, bottom: 0 }}
+            margin={chartPlotMargin()}
           >
-            <CartesianGrid vertical={false} stroke="var(--gray-6)" />
+            <CartesianGrid vertical={false} stroke="var(--chart-grid, var(--gray-6))" />
             <XAxis
               dataKey="month"
               tickLine={false}
               axisLine={false}
-              tickMargin={13}
-              tick={axisTick}
+              tickMargin={chartTickMargin()}
+              interval="preserveStartEnd"
+              tick={chartAxisTick}
               tickFormatter={(value: string) => value.slice(0, 3)}
             />
             <ChartTooltip

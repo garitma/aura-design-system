@@ -5,6 +5,9 @@ import {
   ChartContainer,
   ChartTooltip,
   ChartTooltipContent,
+  chartAxisTick,
+  chartPlotMargin,
+  chartTickMargin,
   type ChartConfig,
 } from "../registry/default/components/ui/Chart";
 
@@ -26,14 +29,15 @@ const chartConfig = {
 
 export const Default = () => (
   <ChartContainer config={chartConfig} label="Desktop visitors" className="w-full">
-    <AreaChart accessibilityLayer data={chartData} margin={{ top: 13, right: 13, left: 13, bottom: 0 }}>
-      <CartesianGrid vertical={false} stroke="var(--gray-6)" strokeDasharray="0" />
+    <AreaChart accessibilityLayer data={chartData} margin={chartPlotMargin()}>
+      <CartesianGrid vertical={false} stroke="var(--chart-grid, var(--gray-6))" />
       <XAxis
         dataKey="month"
         tickLine={false}
         axisLine={false}
-        tickMargin={13}
-        tick={{ fontSize: 13, fill: "var(--gray-11)" }}
+        tickMargin={chartTickMargin()}
+        interval="preserveStartEnd"
+        tick={chartAxisTick}
         tickFormatter={(value: string) => value.slice(0, 3)}
       />
       <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />

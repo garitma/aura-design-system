@@ -20,6 +20,7 @@ import {
   ChartRadar,
   ChartTooltip,
   ChartTooltipContent,
+  chartAxisTick,
   type ChartConfig,
 } from "@/components/ui/Chart";
 import { cn } from "@/utils/class-names";
@@ -108,12 +109,13 @@ function RadarChart({
             ) : (
               <PolarGrid
                 gridType={variant === "circle" ? "circle" : "polygon"}
-                stroke="var(--gray-6)"
+                stroke="var(--chart-grid, var(--gray-6))"
               />
             )}
             <PolarAngleAxis
               dataKey="month"
-              tick={{ fontSize: 13, fill: "var(--gray-11)" }}
+              interval="preserveStartEnd"
+              tick={chartAxisTick}
               tickFormatter={(value: string) => value.slice(0, 3)}
             />
             <ChartTooltip cursor={false} content={<ChartTooltipContent indicator="line" />} />
