@@ -290,6 +290,33 @@
     font-weight: 500;
     line-height: 1.4rem;
   }
+  /* Slotted breadcrumb anchors inherit .small when asChild replaces the link. */
+  [data-slot="breadcrumb-list"].small [data-slot="breadcrumb-link"],
+  [data-slot="breadcrumb-list"].small [data-slot="breadcrumb-page"] {
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+  [data-slot="breadcrumb-list"][data-collapse="sm"] {
+    container-type: inline-size;
+  }
+  [data-slot="breadcrumb-list"][data-collapse="sm"]:not([data-expanded="true"])
+    [data-breadcrumb="middle"] {
+    display: none !important;
+  }
+  [data-slot="breadcrumb-list"][data-collapse="sm"] [data-breadcrumb="ellipsis"] {
+    display: inline-flex;
+  }
+  @container (min-width: 640px) {
+    [data-slot="breadcrumb-list"][data-collapse="sm"] [data-breadcrumb="middle"] {
+      display: inline-flex !important;
+    }
+    [data-slot="breadcrumb-list"][data-collapse="sm"] [data-breadcrumb="ellipsis"] {
+      display: none !important;
+    }
+  }
+  [data-slot="breadcrumb-list"][data-expanded="true"] [data-breadcrumb="ellipsis"] {
+    display: none !important;
+  }
   /* Typography/xs — 12px Inter Semi Bold, line-height 16px at a 17px root. */
   .xs {
     font-size: calc(12 / 17 * 1rem);

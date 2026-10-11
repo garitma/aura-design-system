@@ -11,6 +11,10 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 
 ## Sessions
+### 2026-10-11 · Breadcrumb type, focus, and collapse
+- Current page is `font-semibold` on gray-12, with `aria-current="page"` and no link role. Links underline on hover. Focus is `rounded-sm` with a 2px offset. See [[Audit-Breadcrumb]].
+- The trail uses `.small`. Slotted links inherit that size. `maxItems` and containers under 640px collapse to first › ellipsis › current page. Docs show a slash separator, the collapsed trail, and the mobile trail, with the ellipsis in a labeled dropdown.
+
 ### 2026-10-11 · Badge scale and xs type
 - Badge padding is `px-1` / `py-0.5` / `gap-0.5` on the 13px scale, so the pill is about 31px tall. `.xs` is 12/16 semibold. Outline uses `border-gray-12`, focus uses `ring-accent-a8`, and `destructive` aliases `status="danger"`. Overflow widths are keyed by index. See [[Badge]].
 
@@ -38,10 +42,6 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 ### 2026-10-11 · Alert alignment and default status
 - Removed `space-y-0.5` from the horizontal `Alert` root so the icon lines up with the title. Variants keep a single border color; default uses `border-gray-6`. Description and title use the `p` scale, with the title bold. `AlertStatus` now includes `default`, and the docs demo orders default, info, success, warning, danger. See [[Alert]].
-
-### 2026-10-11 · Action bar viewport and checkbox states
-- The horizontal action bar insets by 13px below 640px and no longer overflows the viewport. Item labels hide on that breakpoint; the close control stays pinned. See [[Action Bar]].
-- Checkbox gained a minus icon for `checked="indeterminate"` and a 50% disabled style. The action bar example uses that Checkbox. See [[Checkbox]].
 
 Older sessions: [[Progress-Archive/2026-10]]
 
