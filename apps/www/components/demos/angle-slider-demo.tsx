@@ -9,7 +9,7 @@ import {
 import { Button } from "@/components/ui/Button";
 
 export const AngleSliderDemo = () => (
-  <AngleSlider defaultValue={[45]} max={360}>
+  <AngleSlider defaultValue={[45]}>
     <AngleSliderTrack>
       <AngleSliderRange />
     </AngleSliderTrack>
@@ -23,7 +23,7 @@ export const AngleSliderDemoControlled = () => {
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <AngleSlider value={value} onValueChange={setValue} max={360}>
+      <AngleSlider value={value} onValueChange={setValue}>
         <AngleSliderTrack>
           <AngleSliderRange />
         </AngleSliderTrack>
@@ -53,7 +53,7 @@ export const AngleSliderDemoControlled = () => {
 };
 
 export const AngleSliderDemoRangeSelection = () => (
-  <AngleSlider defaultValue={[40, 200]} max={360} minStepsBetweenThumbs={10}>
+  <AngleSlider defaultValue={[40, 200]} minStepsBetweenThumbs={10}>
     <AngleSliderTrack>
       <AngleSliderRange />
     </AngleSliderTrack>
@@ -65,14 +65,14 @@ export const AngleSliderDemoRangeSelection = () => (
 
 export const AngleSliderDemoThemes = () => (
   <div className="flex flex-wrap items-center justify-center gap-4">
-    <AngleSlider defaultValue={[72]} max={360}>
+    <AngleSlider defaultValue={[72]}>
       <AngleSliderTrack className="*:data-[slot=angle-slider-track-rail]:stroke-gray-5">
         <AngleSliderRange className="stroke-accent-9" />
       </AngleSliderTrack>
       <AngleSliderThumb className="border-accent-9 bg-gray-1" />
       <AngleSliderValue className="text-accent-11" />
     </AngleSlider>
-    <AngleSlider defaultValue={[210]} max={360}>
+    <AngleSlider defaultValue={[210]}>
       <AngleSliderTrack className="*:data-[slot=angle-slider-track-rail]:stroke-gray-6">
         <AngleSliderRange className="stroke-gray-12" />
       </AngleSliderTrack>
@@ -94,7 +94,7 @@ export const AngleSliderDemoWithForm = () => {
         setSubmitted(String(data.get("heading") ?? ""));
       }}
     >
-      <AngleSlider name="heading" defaultValue={[90]} max={360}>
+      <AngleSlider name="heading" defaultValue={[90]}>
         <AngleSliderTrack>
           <AngleSliderRange />
         </AngleSliderTrack>

@@ -19,7 +19,7 @@ import { AspectRatio } from "@/components/ui/AspectRatio";
 
 export function AspectRatioDemo() {
   return (
-  <div className="w-[300px] overflow-hidden rounded-md">
+  <div className="w-full max-w-xs overflow-hidden rounded-md">
     <AspectRatio ratio={16 / 9}>
       <img
         className="size-full object-cover"
@@ -58,6 +58,7 @@ pnpm install @radix-ui/react-aspect-ratio
 /**
  * @description Displays content within a desired ratio.
  */
+import * as React from "react";
 import * as AspectRatioPrimitive from "@radix-ui/react-aspect-ratio";
 
 function AspectRatio({
@@ -78,7 +79,7 @@ export { AspectRatio };
 
 ```tsx
 export const AspectRatioDemo = () => (
-  <div className="w-[300px] overflow-hidden rounded-md">
+  <div className="w-full max-w-xs overflow-hidden rounded-md">
     <AspectRatio ratio={16 / 9}>
       <img
         className="size-full object-cover"

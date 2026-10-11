@@ -4,7 +4,7 @@ date: 2026-10-06
 tags: [dev-log, logic, architecture]
 ---
 ## Summary
-57 docs pages first added on 2026-10-05 and 2026-10-06 and still under `apps/www/content/docs/components` were audited one by one. The 21 fails from that pass are fixed in the component and docs sources. 57 pass. Evidence is the MDX page, the demo in `apps/www/components/demos`, and the registry source the page pastes. The docs app was booted after the fix. The OTP preview measured six cells at 39px by 39px. The earlier failure capture remains at `/cursor/stores/self/media/otp-affordance-not-ok-ref.png`.
+Docs pages first added on 2026-10-05 and 2026-10-06 and still under `apps/www/content/docs/components` were audited one by one. The 21 fails from that pass are fixed in the component and docs sources. The status table lists the pages that remain. Evidence is the MDX page, the demo in `apps/www/components/demos`, and the registry source the page pastes. The docs app was booted after the fix. The OTP preview measured six cells at 39px by 39px. The earlier failure capture remains at `/cursor/stores/self/media/otp-affordance-not-ok-ref.png`.
 
 Utils moved to `apps/www/content/docs/utils` by the menu split are out of this pass: client-only, direction, hitbox, pending, portal, presence, visually-hidden.
 
@@ -52,7 +52,6 @@ Resolved in the component fix pass. The notes below keep the original cause.
 | search | Pass | [[Audit-Search]] |
 | shape | Pass | [[Audit-Shape]] |
 | time-picker | Pass | [[Audit-Time-Picker]] |
-| app-bar | Pass | [[Audit-App-Bar]] |
 | expressive-carousel | Pass | [[Audit-Expressive-Carousel]] |
 | navigation-bar | Pass | [[Audit-Navigation-Bar]] |
 | navigation-rail | Pass | [[Audit-Navigation-Rail]] |
@@ -64,7 +63,6 @@ Resolved in the component fix pass. The notes below keep the original cause.
 | speed-dial | Pass | [[Audit-Speed-Dial]] |
 | split-button | Pass | [[Audit-Split-Button]] |
 | toolbar | Pass | [[Audit-Toolbar]] |
-| attachment | Pass | [[Audit-Attachment]] |
 | breadcrumb | Pass | [[Audit-Breadcrumb]] |
 | date-picker | Pass | [[Audit-Date-Picker]] |
 | field | Pass | [[Audit-Field]] |
