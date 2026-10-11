@@ -1,6 +1,6 @@
 ---
 title: Internal Progress
-date: 2026-10-10
+date: 2026-10-11
 retention: 10
 tags: [dev-log, logic]
 ---
@@ -11,6 +11,10 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 
 ## Sessions
+### 2026-10-11 · Action bar viewport and checkbox states
+- The horizontal action bar insets by 13px below 640px and no longer overflows the viewport. Item labels hide on that breakpoint; the close control stays pinned. See [[Action Bar]].
+- Checkbox gained a minus icon for `checked="indeterminate"` and a 50% disabled style. The action bar example uses that Checkbox. See [[Checkbox]].
+
 ### 2026-10-10 · Ship pick-ui-library
 - Pablo added `pick-ui-library` to the reconciled set with an `@aura`-first rule, kept `ask-sonner`, and left `write-swift` and `animate-expo` out. Blueprint now installs thirteen skills. See [[Emil skills]].
 
