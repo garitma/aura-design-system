@@ -1,6 +1,6 @@
 ---
 title: Internal Progress
-date: 2026-10-10
+date: 2026-10-11
 retention: 10
 tags: [dev-log, logic]
 ---
@@ -11,6 +11,9 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 
 ## Sessions
+### 2026-10-11 · Remove AppBar
+- Removed the AppBar registry component, its docs page, demos, stories, and metadata. Side sheet, carousel, and app navigation do not depend on it. `/docs/components/app-bar` redirects to the components index. See [[Recent-Components-Audit]].
+
 ### 2026-10-10 · Ship pick-ui-library
 - Pablo added `pick-ui-library` to the reconciled set with an `@aura`-first rule, kept `ask-sonner`, and left `write-swift` and `animate-expo` out. Blueprint now installs thirteen skills. See [[Emil skills]].
 

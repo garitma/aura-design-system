@@ -677,24 +677,6 @@
       ]
     },
     {
-      "name": "app-bar",
-      "type": "registry:ui",
-      "title": "AppBar",
-      "description": "The AppBar component.",
-      "files": [
-        {
-          "path": "registry/default/components/ui/AppBar.tsx",
-          "type": "registry:ui"
-        }
-      ],
-      "dependencies": [
-        "class-variance-authority"
-      ],
-      "registryDependencies": [
-        "@aura/class-names"
-      ]
-    },
-    {
       "name": "area-chart",
       "type": "registry:ui",
       "title": "AreaChart",

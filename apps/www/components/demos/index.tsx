@@ -29,11 +29,6 @@ import {
   AngleSliderDemoWithForm
 } from "./angle-slider-demo"
 import { 
-  AppBarDemo,
-  AppBarDemoMedium,
-  AppBarDemoLarge
-} from "./app-bar-demo"
-import { 
   AreaChartDemo,
   AreaChartDemoNatural,
   AreaChartDemoLinear,
@@ -732,15 +727,6 @@ export const Registry = {
   },
   "angle-slider-demo-with-form": {
     component: AngleSliderDemoWithForm,
-  },
-  "app-bar-demo": {
-    component: AppBarDemo,
-  },
-  "app-bar-demo-medium": {
-    component: AppBarDemoMedium,
-  },
-  "app-bar-demo-large": {
-    component: AppBarDemoLarge,
   },
   "area-chart-demo": {
     component: AreaChartDemo,
