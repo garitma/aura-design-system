@@ -120,7 +120,7 @@ function ComboboxBackdrop({
   return (
     <Combobox.Backdrop
       data-slot="combobox-backdrop"
-      className={cn(className)}
+      className={cn("aura-overlay z-50", className)}
       {...props}
     />
   );
