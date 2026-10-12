@@ -270,7 +270,7 @@ export function SidebarContentMobile({
         <div
           data-state={state}
           aria-hidden="true"
-          className="fixed inset-0 z-40 h-dvh bg-gray-a8 data-[state=open]:animate-fd-fade-in data-[state=closed]:animate-fd-fade-out motion-reduce:animate-none"
+          className="aura-overlay z-40 h-dvh data-[state=closed]:animate-fd-fade-out motion-reduce:animate-none"
           onClick={() => setOpen(false)}
         />
       </Presence>
