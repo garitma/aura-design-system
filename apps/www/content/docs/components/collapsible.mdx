@@ -47,8 +47,8 @@ export function CollapsibleDemo() {
           </Button>
         </CollapsibleTrigger>
       </div>
-      <CollapsibleContent className="pt-1">
-        <ul className="small space-y-0.5 font-normal text-gray-11">
+      <CollapsibleContent>
+        <ul className="small space-y-0.5 pt-1 font-normal text-gray-11">
           {items.map((item) => (
             <li key={item} className="flex items-center gap-0.5">
               <span
@@ -106,8 +106,8 @@ export function CollapsibleDemoOpen() {
           </Button>
         </CollapsibleTrigger>
       </div>
-      <CollapsibleContent className="pt-1">
-        <ul className="small space-y-0.5 font-normal text-gray-11">
+      <CollapsibleContent>
+        <ul className="small space-y-0.5 pt-1 font-normal text-gray-11">
           {items.map((item) => (
             <li key={item} className="flex items-center gap-0.5">
               <span
@@ -128,56 +128,21 @@ export function CollapsibleDemoOpen() {
 
 ### Controlled
 
+Extract the Preview markup into `TechnologiesCollapsible` with `open` and `onOpenChange` props, then own that state in the parent.
+
+<ComponentPreview name="collapsible-demo-controlled" description="Collapsible whose open state lives in the parent.">
+
 ```tsx
 import { useState } from "react";
-import {
-  Collapsible,
-  CollapsibleTrigger,
-  CollapsibleContent,
-} from "@/components/ui/Collapsible";
-import { Button } from "@/components/ui/Button";
 
 export function CollapsibleDemoControlled() {
   const [isOpen, setIsOpen] = useState(false);
 
-  const items = [
-    "React",
-    "TypeScript",
-    "Tailwind CSS",
-    "Radix UI",
-    "Vite",
-    "Vitest",
-  ];
-
-  return (
-    <Collapsible className="w-full" open={isOpen} onOpenChange={setIsOpen}>
-      <div className="flex w-full items-center justify-between gap-1">
-        <span className="small font-semibold text-gray-12">
-          Technologies ({items.length})
-        </span>
-        <CollapsibleTrigger asChild>
-          <Button variant="menu" size="sm">
-            {isOpen ? "Hide All" : "Show All"}
-          </Button>
-        </CollapsibleTrigger>
-      </div>
-      <CollapsibleContent className="pt-1">
-        <ul className="small space-y-0.5 font-normal text-gray-11">
-          {items.map((item) => (
-            <li key={item} className="flex items-center gap-0.5">
-              <span
-                aria-hidden="true"
-                className="size-0.5 shrink-0 rounded-full bg-accent-9"
-              />
-              {item}
-            </li>
-          ))}
-        </ul>
-      </CollapsibleContent>
-    </Collapsible>
-  );
+  return <TechnologiesCollapsible open={isOpen} onOpenChange={setIsOpen} />;
 }
 ```
+
+</ComponentPreview>
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
