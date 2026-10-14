@@ -11,6 +11,10 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 
 ## Sessions
+### 2026-10-14 · Collapsible matches Figma from one source
+- [[Collapsible]] content puts the consumer `className` last so it can override the animation utilities. The docs app re-exports the registry file, and the www copy step skips that re-export.
+- Preview starts closed. Open starts open. A controlled `open` / `onOpenChange` example stays in the stories. Trigger is menu/sm Show All or Hide All, with `.small` type, `text-gray-11` items, and an accent-9 dot. Root width is fluid.
+
 ### 2026-10-14 · No code comments
 - Workaround comments about our own code are deleted or solved by refactor. Comments about external constraints stay, with the reason stated. See [[No code comments]] and [[Aura Agent Surface]].
 - `.cursor/rules/no-comments.mdc` is always applied, listed in `AGENTS.md`, synced into the registry rules bundle, and copied by `aura blueprint` from `packages/cli/templates/cursor/rules/`.
@@ -53,13 +57,8 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 ### 2026-10-11 · Button group size without context
 - [[Button Group]] clones `size` onto direct `Button` and `ButtonGroupText` children. `Button` no longer calls `createContext`, which the React server build does not export, so the docs home page can keep importing `buttonVariants`.
 
-### 2026-10-11 · Button group size, corners, and dividers
-- `size` on [[Button Group]] passes `md`/`icon-md` or `sm`/`icon-sm` to buttons. Text height is `h-4` or `h-3`. `icon` and `icon-sm` are the 39px icon button, and icon-only buttons need an `aria-label`.
-- Docs and toolbars use `flex-wrap gap-2`. Text and separators use `bg-gray-2`, `bg-gray-6`, and `rounded-sm`.
-- Joined corners are squared in unlayered CSS so they beat `.button`'s radius. Fill buttons share an accent-10 edge.
-
 Older sessions: [[Progress-Archive/2026-10]]
 
 ## Context
-- Related: [[Select]] [[Carousel]] [[Card]] [[Calendar]] [[Button Group]] [[Bubble]] [[Audit-Breadcrumb]] [[Audit Banner]] [[Button]] [[Charts]] [[Area-charts]] [[Recent-Components-Audit]] [[Segmented-Input]] [[Media-Utilities]] [[Collection-Display]] [[Input-Controls]] [[Autocomplete Popup]] [[Status-Dot]] [[Avatar Group]] [[Sgd-palette]] [[Sgd-cobrand]] [[Site and docs app]] [[Aura Agent Surface]] [[Shared-Theme-Store]] [[Aura overlay]]
+- Related: [[Collapsible]] [[Select]] [[Carousel]] [[Card]] [[Calendar]] [[Button Group]] [[Bubble]] [[Audit-Breadcrumb]] [[Audit Banner]] [[Button]] [[Charts]] [[Area-charts]] [[Recent-Components-Audit]] [[Segmented-Input]] [[Media-Utilities]] [[Collection-Display]] [[Input-Controls]] [[Autocomplete Popup]] [[Status-Dot]] [[Avatar Group]] [[Sgd-palette]] [[Sgd-cobrand]] [[Site and docs app]] [[Aura Agent Surface]] [[Shared-Theme-Store]] [[Aura overlay]]
 - Implementation Path: `packages/registry/registry/default/components/ui/Chart.tsx`, `packages/registry/registry/default/styles/main.css`

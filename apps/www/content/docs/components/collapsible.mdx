@@ -36,20 +36,25 @@ export function CollapsibleDemo() {
   ];
 
   return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <div className="flex items-center justify-between gap-1">
-        <h4 className="text-sm font-semibold">Technologies ({items.length})</h4>
+    <Collapsible className="w-full" open={isOpen} onOpenChange={setIsOpen}>
+      <div className="flex w-full items-center justify-between gap-1">
+        <span className="small font-semibold text-gray-12">
+          Technologies ({items.length})
+        </span>
         <CollapsibleTrigger asChild>
           <Button variant="menu" size="sm">
-            {isOpen ? "Hide" : "Show"} All
+            {isOpen ? "Hide All" : "Show All"}
           </Button>
         </CollapsibleTrigger>
       </div>
-      <CollapsibleContent>
-        <ul className="pt-1 space-y-0.5 text-sm text-gray-11">
-          {items.map((item, index) => (
-            <li key={index} className="flex items-center gap-0.5">
-              <span className="size-0.5 rounded-full bg-accent-9" />
+      <CollapsibleContent className="pt-1">
+        <ul className="small space-y-0.5 font-normal text-gray-11">
+          {items.map((item) => (
+            <li key={item} className="flex items-center gap-0.5">
+              <span
+                aria-hidden="true"
+                className="size-0.5 shrink-0 rounded-full bg-accent-9"
+              />
               {item}
             </li>
           ))}
@@ -61,6 +66,118 @@ export function CollapsibleDemo() {
 ```
 
 </ComponentPreview>
+
+## Usage
+
+### Open
+
+<ComponentPreview name="collapsible-demo-open" description="Collapsible starting open.">
+
+```tsx
+import { useState } from "react";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/Collapsible";
+import { Button } from "@/components/ui/Button";
+
+export function CollapsibleDemoOpen() {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const items = [
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Radix UI",
+    "Vite",
+    "Vitest",
+  ];
+
+  return (
+    <Collapsible className="w-full" open={isOpen} onOpenChange={setIsOpen}>
+      <div className="flex w-full items-center justify-between gap-1">
+        <span className="small font-semibold text-gray-12">
+          Technologies ({items.length})
+        </span>
+        <CollapsibleTrigger asChild>
+          <Button variant="menu" size="sm">
+            {isOpen ? "Hide All" : "Show All"}
+          </Button>
+        </CollapsibleTrigger>
+      </div>
+      <CollapsibleContent className="pt-1">
+        <ul className="small space-y-0.5 font-normal text-gray-11">
+          {items.map((item) => (
+            <li key={item} className="flex items-center gap-0.5">
+              <span
+                aria-hidden="true"
+                className="size-0.5 shrink-0 rounded-full bg-accent-9"
+              />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+}
+```
+
+</ComponentPreview>
+
+### Controlled
+
+```tsx
+import { useState } from "react";
+import {
+  Collapsible,
+  CollapsibleTrigger,
+  CollapsibleContent,
+} from "@/components/ui/Collapsible";
+import { Button } from "@/components/ui/Button";
+
+export function CollapsibleDemoControlled() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const items = [
+    "React",
+    "TypeScript",
+    "Tailwind CSS",
+    "Radix UI",
+    "Vite",
+    "Vitest",
+  ];
+
+  return (
+    <Collapsible className="w-full" open={isOpen} onOpenChange={setIsOpen}>
+      <div className="flex w-full items-center justify-between gap-1">
+        <span className="small font-semibold text-gray-12">
+          Technologies ({items.length})
+        </span>
+        <CollapsibleTrigger asChild>
+          <Button variant="menu" size="sm">
+            {isOpen ? "Hide All" : "Show All"}
+          </Button>
+        </CollapsibleTrigger>
+      </div>
+      <CollapsibleContent className="pt-1">
+        <ul className="small space-y-0.5 font-normal text-gray-11">
+          {items.map((item) => (
+            <li key={item} className="flex items-center gap-0.5">
+              <span
+                aria-hidden="true"
+                className="size-0.5 shrink-0 rounded-full bg-accent-9"
+              />
+              {item}
+            </li>
+          ))}
+        </ul>
+      </CollapsibleContent>
+    </Collapsible>
+  );
+}
+```
 
 ## Installation
 Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
@@ -99,9 +216,6 @@ export function cn(...inputs: ClassValue[]) {
 
 ```tsx
 "use client";
-/**
- * @description An interactive component which expands and collapses content.
- */
 import { Collapsible as CollapsibleRadix } from "radix-ui";
 
 import { cn } from "@/utils/class-names";
@@ -130,8 +244,8 @@ function CollapsibleContent({
   return (
     <CollapsibleRadix.CollapsibleContent
       className={cn(
-        className,
-        "overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down"
+        "overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down",
+        className
       )}
       data-slot="collapsible-content"
       {...props}
