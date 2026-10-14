@@ -6,33 +6,44 @@ import {
 } from "@/components/ui/Collapsible";
 import { Button } from "@/components/ui/Button";
 
-export const CollapsibleDemo = () => {
-  const [isOpen, setIsOpen] = useState(false);
+const TECHNOLOGIES = [
+  "React",
+  "TypeScript",
+  "Tailwind CSS",
+  "Radix UI",
+  "Vite",
+  "Vitest",
+] as const;
 
-  const items = [
-    "React",
-    "TypeScript",
-    "Tailwind CSS",
-    "Radix UI",
-    "Vite",
-    "Vitest",
-  ];
+type TechnologiesCollapsibleProps = {
+  open: boolean;
+  onOpenChange: (open: boolean) => void;
+};
 
+function TechnologiesCollapsible({
+  open,
+  onOpenChange,
+}: TechnologiesCollapsibleProps) {
   return (
-    <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-      <div className="flex items-center justify-between gap-1">
-        <h4 className="text-sm font-semibold">Technologies ({items.length})</h4>
+    <Collapsible className="w-full" open={open} onOpenChange={onOpenChange}>
+      <div className="flex w-full items-center justify-between gap-1">
+        <span className="small font-semibold text-gray-12">
+          Technologies ({TECHNOLOGIES.length})
+        </span>
         <CollapsibleTrigger asChild>
           <Button variant="menu" size="sm">
-            {isOpen ? "Hide" : "Show"} All
+            {open ? "Hide All" : "Show All"}
           </Button>
         </CollapsibleTrigger>
       </div>
       <CollapsibleContent>
-        <ul className="pt-1 space-y-0.5 text-sm text-gray-11">
-          {items.map((item, index) => (
-            <li key={index} className="flex items-center gap-0.5">
-              <span className="size-0.5 rounded-full bg-accent-9" />
+        <ul className="small space-y-0.5 pt-1 font-normal text-gray-11">
+          {TECHNOLOGIES.map((item) => (
+            <li key={item} className="flex items-center gap-0.5">
+              <span
+                aria-hidden="true"
+                className="size-0.5 shrink-0 rounded-full bg-accent-9"
+              />
               {item}
             </li>
           ))}
@@ -40,4 +51,24 @@ export const CollapsibleDemo = () => {
       </CollapsibleContent>
     </Collapsible>
   );
+}
+
+function TechnologiesCollapsibleWithState({
+  defaultOpen = false,
+}: {
+  defaultOpen?: boolean;
+}) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  return <TechnologiesCollapsible open={isOpen} onOpenChange={setIsOpen} />;
+}
+
+export const CollapsibleDemo = () => <TechnologiesCollapsibleWithState />;
+
+export const CollapsibleDemoOpen = () => (
+  <TechnologiesCollapsibleWithState defaultOpen />
+);
+
+export const CollapsibleDemoControlled = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  return <TechnologiesCollapsible open={isOpen} onOpenChange={setIsOpen} />;
 };
