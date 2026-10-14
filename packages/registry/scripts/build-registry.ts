@@ -678,29 +678,6 @@ function getAnimationStyleItems(): RegistryItem[] {
     });
 }
 
-function destinationConsumesRegistrySource(sourcePath: string, destPath: string): boolean {
-  if (!fs.existsSync(destPath)) return false;
-
-  const stat = fs.lstatSync(destPath);
-  if (stat.isSymbolicLink()) {
-    return fs.realpathSync(destPath) === fs.realpathSync(sourcePath);
-  }
-
-  const content = fs.readFileSync(destPath, "utf8");
-  const fromMatch = content.match(/from\s+["'](\.[^"']+)["']/);
-  if (!fromMatch) return false;
-
-  const resolved = path.resolve(path.dirname(destPath), fromMatch[1]);
-  const resolvedFile = fs.existsSync(resolved)
-    ? resolved
-    : fs.existsSync(`${resolved}.tsx`)
-      ? `${resolved}.tsx`
-      : null;
-  if (!resolvedFile) return false;
-
-  return fs.realpathSync(resolvedFile) === fs.realpathSync(sourcePath);
-}
-
 function copyDirectoryRecursively(sourceDir: string, destDir: string, excludeDirs: string[] = []): { copied: number; overwritten: number } {
   let copied = 0;
   let overwritten = 0;
@@ -791,10 +768,6 @@ function copyComponentsToWww() {
     for (const file of componentFiles) {
       const sourcePath = path.join(UI_COMPONENTS_PATH, file);
       const destPath = path.join(WWW_UI_COMPONENTS_PATH, file);
-
-      if (destinationConsumesRegistrySource(sourcePath, destPath)) {
-        continue;
-      }
 
       const exists = fs.existsSync(destPath);
       fs.copyFileSync(sourcePath, destPath);
