@@ -117,7 +117,7 @@ font-size: clamp(var(--min), var(--val), var(--max));
 
 ### Font stack
 
-Docs and registry reference **`Inter`** as the primary sans stack; quotes may use a serif stack (`--aura-font-quotes`). Root docs set **`html { font-size: 17px; }`** in the base layer—respect that context when mixing `rem` with design specs. That root size is also why `1rem` form controls already meet the **17px** mobile floor.
+Docs and registry reference **`Gabarito`** as the primary sans stack (`--font-gabarito` from `next/font` when the app loads it, then `"Gabarito"`, then system fallbacks). Quotes may use a serif stack (`--aura-font-quotes`). Root docs set **`html { font-size: 17px; }`** in the base layer—respect that context when mixing `rem` with design specs. That root size is also why `1rem` form controls already meet the **17px** mobile floor.
 
 ### Editorial / registry hierarchy
 

@@ -1,6 +1,6 @@
 ---
 title: Typography
-description: Fluid clamp scale, Inter, a 17px root, and the floor on editable form controls.
+description: Fluid clamp scale, Gabarito, a 17px root, and the floor on editable form controls.
 icon: Type
 ---
 
@@ -29,12 +29,14 @@ Stylus (`fundations/_typo.styl`) still computes `--min` as a fraction of the vis
 ## Fonts
 
 ```css
---font-sans: Inter, sans-serif;
---aura-font-stack: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+--font-sans: var(--font-gabarito, "Gabarito"), sans-serif;
+--aura-font-stack: var(--font-gabarito, "Gabarito"), -apple-system, BlinkMacSystemFont, "Segoe UI",
   "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
   "Helvetica Neue", sans-serif;
 --aura-font-quotes: serif;
 ```
+
+Next apps load Gabarito with `next/font/google` (`subsets: ["latin"]`, `variable: "--font-gabarito"`) and put that class on `<html>`. `var(--font-gabarito, "Gabarito")` uses the loaded face when the variable is set, and the named family otherwise. Registry `main.css` starts the same stack at `"Gabarito"` with the system fallbacks, for apps that are not on `next/font`.
 
 `html` and `pre` use `--aura-font-stack`. `blockquote` uses `--aura-font-quotes`, uppercase, weight 600, and the `h4` clamp. Paragraphs take `margin: var(--aura) 0` (13px). `ul:not(.default)` drops list markers and padding. `html` also sets `-webkit-font-smoothing: antialiased`, `text-size-adjust: 100%`, and `text-rendering: optimizelegibility`.
 
