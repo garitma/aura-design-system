@@ -11,6 +11,9 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 
 ## Sessions
+### 2026-10-14 · Trace and Code Block canary sync
+- Merged the Collapsible API and story additions from canary while retaining every Trace and Code Block demo registration. `TraceCollapsible` remains compatible with the updated Radix-backed primitive. See [[Trace and Code Block]] and [[Collapsible]].
+
 ### 2026-10-14 · Trace and Code Block
 - `@aura/trace` lists agent steps with icon, title, description, and status. Rows expand, link, open a dialog, and nest. See [[Trace and Code Block]].
 - A running title shimmers. Reduced motion keeps the title readable and skips the chevron turn. Error text uses the danger contrast token.
@@ -55,11 +58,8 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 - Range endpoints are a rounded accent block beside the square gray-3 middle band. Today does not add a strip when it is selected.
 - Disabled days are gray-11, struck through, and fully opaque. Dropdown captions show the short month and a 19.5px chevron. Focus matches Button's 2px outline. Nav buttons do not underline.
 
-### 2026-10-11 · Button group size without context
-- [[Button Group]] clones `size` onto direct `Button` and `ButtonGroupText` children. `Button` no longer calls `createContext`, which the React server build does not export, so the docs home page can keep importing `buttonVariants`.
-
 Older sessions: [[Progress-Archive/2026-10]]
 
 ## Context
-- Related: [[Select]] [[Carousel]] [[Card]] [[Calendar]] [[Button Group]] [[Bubble]] [[Audit-Breadcrumb]] [[Audit Banner]] [[Button]] [[Charts]] [[Area-charts]] [[Recent-Components-Audit]] [[Segmented-Input]] [[Media-Utilities]] [[Collection-Display]] [[Input-Controls]] [[Autocomplete Popup]] [[Status-Dot]] [[Avatar Group]] [[Sgd-palette]] [[Sgd-cobrand]] [[Site and docs app]] [[Aura Agent Surface]] [[Shared-Theme-Store]] [[Aura overlay]]
+- Related: [[Collapsible]] [[Select]] [[Carousel]] [[Card]] [[Calendar]] [[Button Group]] [[Bubble]] [[Audit-Breadcrumb]] [[Audit Banner]] [[Button]] [[Charts]] [[Area-charts]] [[Recent-Components-Audit]] [[Segmented-Input]] [[Media-Utilities]] [[Collection-Display]] [[Input-Controls]] [[Autocomplete Popup]] [[Status-Dot]] [[Avatar Group]] [[Sgd-palette]] [[Sgd-cobrand]] [[Site and docs app]] [[Aura Agent Surface]] [[Shared-Theme-Store]] [[Aura overlay]]
 - Implementation Path: `packages/registry/registry/default/components/ui/Chart.tsx`, `packages/registry/registry/default/styles/main.css`

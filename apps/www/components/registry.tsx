@@ -189,7 +189,9 @@ import {
   CodeBlockDemoLogs
 } from "@/components/demos/code-block-demo"
 import { 
-  CollapsibleDemo
+  CollapsibleDemo,
+  CollapsibleDemoOpen,
+  CollapsibleDemoControlled
 } from "@/components/demos/collapsible-demo"
 import { 
   ColorPickerDemo
@@ -1103,6 +1105,12 @@ export const Registry = {
   },
   "collapsible-demo": {
     component: CollapsibleDemo,
+  },
+  "collapsible-demo-open": {
+    component: CollapsibleDemoOpen,
+  },
+  "collapsible-demo-controlled": {
+    component: CollapsibleDemoControlled,
   },
   "color-picker-demo": {
     component: ColorPickerDemo,
