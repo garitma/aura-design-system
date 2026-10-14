@@ -43,7 +43,7 @@ const gray = {
   12: "27005F",
 };
 
-const SANS = "Inter";
+const SANS = "Gabarito";
 const MONO = "Menlo";
 
 // 13px grid expressed in inches at 96dpi: 13px = 0.1354in

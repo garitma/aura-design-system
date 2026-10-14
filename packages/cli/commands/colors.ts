@@ -10,7 +10,7 @@ export function generateGlobalsCss(lightColors: any, darkColors: any) {
 
 @theme inline {
   --spacing: 13px;
-  --font-sans: Inter, sans-serif;
+  --font-sans: var(--font-gabarito, "Gabarito"), sans-serif;
   --info: #e8ebfe;
   --info-contrast: #0927ec;
   --success: #e8fef7;
@@ -179,7 +179,7 @@ export function generateGlobalsCss(lightColors: any, darkColors: any) {
 
   /* Aura Design System - Root Tokens */
   --aura: 13px;
-  --aura-font-stack: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  --aura-font-stack: var(--font-gabarito, "Gabarito"), -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
   --aura-font-quotes: serif;

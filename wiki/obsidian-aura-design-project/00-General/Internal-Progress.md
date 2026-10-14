@@ -1,16 +1,21 @@
 ---
 title: Internal Progress
-date: 2026-10-11
+date: 2026-10-14
 retention: 10
 tags: [dev-log, logic]
 ---
 ## Summary
-Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface]]). Blueprint now also installs a reconciled Emil Kowalski set plus Vercel React best practices ([[Emil skills]]). The shipped theme uses the Somos Gente Digital dark ramp with light mode generated from accent `#4015ca` and gray `#7254cb` ([[Sgd-palette]]). Chart families document `ChartContainer`, tooltip, and legend under `/docs/charts`; `/docs/components/chart` redirects there, and dark `--chart-1` is accent-11 so the series clears 3:1 on gray-1 ([[Charts]]).
+Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface]]). Blueprint now also installs a reconciled Emil Kowalski set plus Vercel React best practices ([[Emil skills]]). The shipped theme uses the Somos Gente Digital dark ramp with light mode generated from accent `#4015ca` and gray `#7254cb` ([[Sgd-palette]]). Typography is Gabarito, loaded on the docs site with `next/font` as `--font-gabarito` ([[Typography]]).
 
 ## Active
 
 
 ## Sessions
+### 2026-10-14 · Typography uses Gabarito
+- The sans face is Gabarito, the same family as next-sgd. See [[Typography]].
+- `apps/www/app/layout.tsx` loads `Gabarito` from `next/font/google` with `variable: "--font-gabarito"` on `<html>`. Body uses `font-sans`, which reads that variable first.
+- `--aura-font-stack` in registry `main.css` starts with `"Gabarito"` and keeps the system fallbacks. Next styles use `var(--font-gabarito, "Gabarito")`.
+
 ### 2026-10-11 · Select hover, sizes, and item focus
 - Trigger sizes match Input (`h-3`, `h-4`, `h-5`). Hover is gray-3. Placeholder text is gray-11 when `data-placeholder` is set. See [[Select]].
 - Labels use `.small`. Items use `.p`, 26px end padding, and a keyboard ring. Separator margin is `my-0.5`. Demos are `w-16` (208px).
@@ -50,10 +55,6 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 ### 2026-10-11 · Bubble borders and reactions
 - Muted content uses `border-gray-a4`. Ghost `border-none` now targets `BubbleContent`. Destructive hover mixes 6% `--danger-contrast` into `--danger` instead of `bg-danger/80`. See [[Bubble]].
 - Reactions reserve `mb-2` or `mt-2` when present. The pill max width is the bubble minus one spacing unit so it stays inside narrow bubbles.
-
-### 2026-10-11 · Breadcrumb type, focus, and collapse
-- Current page is `font-semibold` on gray-12, with `aria-current="page"` and no link role. Links underline on hover. Focus is `rounded-sm` with a 2px offset. See [[Audit-Breadcrumb]].
-- The trail uses `.small`. Slotted links inherit that size. `maxItems` and containers under 640px collapse to first › ellipsis › current page. Docs show a slash separator, the collapsed trail, and the mobile trail, with the ellipsis in a labeled dropdown.
 
 Older sessions: [[Progress-Archive/2026-10]]
 
