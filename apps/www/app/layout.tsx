@@ -1,6 +1,6 @@
 import "@/app/globals.css";
 import { RootProvider } from "fumadocs-ui/provider/next";
-import { IBM_Plex_Sans } from "next/font/google";
+import { Gabarito } from "next/font/google";
 import type { Metadata } from "next";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
@@ -10,9 +10,9 @@ import { AuraThemeProvider } from "@/components/theme/AuraThemeProvider";
 import { AURA_THEME_BOOT_SCRIPT } from "@/lib/aura-theme-boot";
 import { siteDescription, siteName, siteOgImage } from "@/utils/site";
 
-const ibmPlexSans = IBM_Plex_Sans({
+const gabarito = Gabarito({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  variable: "--font-gabarito",
 });
 
 export const metadata: Metadata = {
@@ -37,8 +37,8 @@ export const metadata: Metadata = {
 
 export default function Layout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={`${ibmPlexSans.className} flex flex-col min-h-screen`}>
+    <html lang="en" className={gabarito.variable} suppressHydrationWarning>
+      <body className="font-sans flex flex-col min-h-screen">
         <Script id="aura-theme-colors" strategy="beforeInteractive">
           {AURA_THEME_BOOT_SCRIPT}
         </Script>
