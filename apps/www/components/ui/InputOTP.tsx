@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description One-time code entry built from SegmentedInput.
- */
 import * as React from "react";
 import { MinusIcon } from "@radix-ui/react-icons";
 

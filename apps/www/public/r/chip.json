@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "chip",
+  "type": "registry:ui",
+  "title": "Chip",
+  "description": "The Chip component.",
+  "dependencies": [
+    "@radix-ui/react-icons",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Chip.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { CheckIcon, Cross2Icon } from \"@radix-ui/react-icons\";\nimport { cn } from \"@/utils/class-names\";\n\nconst chipVariants = cva(\n  \"inline-flex items-center gap-0.5 rounded-full border px-1.5 py-0.5 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8 motion-reduce:transition-none\",\n  {\n    variants: {\n      variant: {\n        assist:\n          \"border-gray-6 bg-gray-1 text-gray-12 hover:bg-gray-3\",\n        filter:\n          \"border-gray-6 bg-gray-2 text-gray-12 hover:bg-gray-3 data-[selected=true]:border-transparent data-[selected=true]:bg-gray-12 data-[selected=true]:text-gray-1\",\n        input: \"border-gray-6 bg-gray-3 text-gray-12\",\n      },\n    },\n    defaultVariants: {\n      variant: \"assist\",\n    },\n  },\n);\n\ntype ChipProps = React.ComponentProps<\"button\"> &\n  VariantProps<typeof chipVariants> & {\n    selected?: boolean;\n    onRemove?: () => void;\n    removeLabel?: string;\n  };\n\nfunction Chip({\n  className,\n  variant = \"assist\",\n  selected,\n  onRemove,\n  removeLabel = \"Remove\",\n  children,\n  ...props\n}: ChipProps) {\n  if (variant === \"input\") {\n    return (\n      <span\n        data-slot=\"chip\"\n        data-variant=\"input\"\n        className={cn(chipVariants({ variant }), className)}\n      >\n        <span>{children}</span>\n        <button\n          type=\"button\"\n          aria-label={removeLabel}\n          className=\"inline-flex size-2 items-center justify-center rounded-full hover:bg-gray-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8\"\n          onClick={onRemove}\n        >\n          <Cross2Icon className=\"icon\" />\n        </button>\n      </span>\n    );\n  }\n\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"chip\"\n      data-variant={variant}\n      data-selected={selected ? \"true\" : \"false\"}\n      aria-pressed={variant === \"filter\" ? Boolean(selected) : undefined}\n      className={cn(chipVariants({ variant }), className)}\n      {...props}\n    >\n      {variant === \"filter\" && selected ? <CheckIcon className=\"icon\" /> : null}\n      {children}\n    </button>\n  );\n}\n\nexport { Chip, chipVariants };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

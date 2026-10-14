@@ -9,7 +9,6 @@ import type { ProjectId } from "@/lib/ids";
 
 const PlanIncludesEntitlement = defineProof("PlanIncludesEntitlement");
 
-/** The plan that owns project `P` includes the delete-project entitlement. */
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type -- gdp-ts recipe: a distinct interface per proof kind
 export interface PlanIncludesEntitlement<P>
   extends Proof<"PlanIncludesEntitlement", [P]> {}

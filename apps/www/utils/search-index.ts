@@ -1,9 +1,3 @@
-/**
- * The components catalog (`/docs/components`) repeats every component title and
- * description. Those headings are a second search hit for the same page
- * (`/docs/components/button`, etc.). Keep the real component docs and the
- * catalog's own intro; drop the mirrored entries.
- */
 export const COMPONENT_CATALOG_URL = "/docs/components";
 
 export interface StructuredHeading {
@@ -45,7 +39,6 @@ export interface SearchTextPart {
   highlight: boolean;
 }
 
-/** Split fumadocs `highlightMarkdown` output into plain and highlighted runs. */
 export function splitSearchMarks(content: string): SearchTextPart[] {
   if (!content.includes("<mark>")) {
     return [{ content, highlight: false }];
@@ -115,10 +108,6 @@ function isCatalogMirrorHit(result: CatalogSearchHit, keys: ComponentMirrorKeys)
   return keys.titles.has(plain) || keys.descriptions.has(plain);
 }
 
-/**
- * Drop catalog hits that repeat a component page. If that was the only reason
- * the catalog page matched, drop its title row too.
- */
 export function filterComponentCatalogDuplicates<T extends CatalogSearchHit>(
   results: T[],
   query: string,

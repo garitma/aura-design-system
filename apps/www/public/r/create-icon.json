@@ -4,10 +4,13 @@
   "type": "registry:lib",
   "title": "create-icon",
   "description": "Utility: create-icon",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
   "files": [
     {
       "path": "registry/default/utils/create-icon.tsx",
-      "content": "",
+      "content": "import * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\ntype CreateIconOptions = {\n  viewBox?: string;\n};\n\nfunction createIcon(\n  displayName: string,\n  path: React.ReactNode,\n  options: CreateIconOptions = {},\n) {\n  const Icon = React.forwardRef<SVGSVGElement, React.ComponentProps<\"svg\">>(\n    ({ className, ...props }, ref) => (\n      <svg\n        ref={ref}\n        xmlns=\"http://www.w3.org/2000/svg\"\n        viewBox={options.viewBox ?? \"0 0 15 15\"}\n        fill=\"currentColor\"\n        aria-hidden={props[\"aria-label\"] ? undefined : true}\n        focusable=\"false\"\n        className={cn(\"icon\", className)}\n        {...props}\n      >\n        {path}\n      </svg>\n    ),\n  );\n  Icon.displayName = displayName;\n  return Icon;\n}\n\nexport { createIcon };\n",
       "type": "registry:lib"
     }
   ]

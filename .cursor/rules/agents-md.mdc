@@ -6,7 +6,7 @@ description: Monorepo agents start at AGENTS.md; consumer Aura surface is aura-a
 
 # Agent entrypoint
 
-* **MUST**: Read and follow root **`AGENTS.md`** for monorepo agent policy (scope, public APIs, tokens, stories, a11y, no product apps).
+* **MUST**: Read and follow root **`AGENTS.md`** for monorepo agent policy (scope, public APIs, tokens, stories, a11y, no product apps, no code comments).
 * **MUST**: Use project skills `.cursor/skills/aura-constraints/` and `.cursor/skills/aura-verification/` when editing or verifying design-system packages.
 * **MUST**: Treat `.cursor/rules/aura-agent-surface.mdc` as the ownership map — rules are guardrails; skills are execution; `DESIGN.md` is narrative SoT.
 * **SHOULD**: Use `.agents/skills/shadcn` for shadcn CLI / registry / presets; Aura Keep invariants still win on icons, forms, spacing, typography, and restyle.

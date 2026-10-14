@@ -9,7 +9,6 @@ import { getCellAccessibleLabel, getCellKey } from "./data-grid-utils";
 interface DataGridCellWrapperProps<TData>
   extends DataGridCellProps<TData>,
     React.ComponentProps<"div"> {
-  /** When set, the wrapper is exposed as a single checkbox control (no nested interactive buttons). */
   cellInteractionRole?: "checkbox";
   ariaChecked?: boolean;
 }

@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description A dropdown menu on desktop and a stacked drawer on mobile.
- */
 import * as React from "react";
 import { createPortal } from "react-dom";
 import { Slot } from "@radix-ui/react-slot";

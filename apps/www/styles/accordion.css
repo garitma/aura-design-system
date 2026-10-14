@@ -1,4 +1,4 @@
-@theme animatons {
+@theme {
   --animate-accordion-open: slideDownAccordion 250ms ease-in-out;
   --animate-accordion-closed: slideUpAccordion 250ms ease-in-out;
 }

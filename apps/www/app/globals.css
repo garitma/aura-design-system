@@ -101,14 +101,12 @@
 }
 
 :root {
-  /* Aura Design System - Root Tokens */
   --aura: 13px;
   --aura-font-stack: var(--font-gabarito, "Gabarito"), -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
   --aura-font-quotes: serif;
 
-  /* Aura Background & Text - Mapped to gray scale */
   --aura-bg: var(--gray-1);
   --aura-text-primary: var(--gray-12);
   --aura-text-primary-inverse: var(--gray-contrast);
@@ -116,7 +114,6 @@
   --aura-accents-primary: var(--accent-9);
   --aura-accents-secondary: var(--accent-9);
 
-  /* Aura Component Tokens - Mapped to 12-step system */
   --aura-input-radius: 6.5px;
   --aura-button-radius: 6.5px;
   --aura-button-gap: 6.5px;
@@ -134,11 +131,6 @@
   --aura-skeleton-end: var(--gray-5);
   --aura-input-border-color: var(--gray-a6);
 
-  /*
-   * Light scale: Aura generator from SGD seeds accent #4015ca, gray #7254cb, bg #ffffff.
-   * Dark scale (.dark / prefers-color-scheme): hand-set from SGD globals.css (Pablo 2026-10-10).
-   * Same values as packages/registry/styles/globals.css.
-   */
   --accent-1: #fdfdff;
   --accent-2: #f7f8ff;
   --accent-3: #eef1ff;
@@ -201,7 +193,6 @@
   --gray-indicator: #936cff;
   --gray-track: #936cff;
 
-  /* Modal scrim. Dark gray-1 (#100B21) at 8%, fixed in light and dark. Not var(--gray-1). */
   --aura-overlay: rgb(16 11 33 / 0.08);
 
   --info: #e8ebfe;
@@ -308,7 +299,6 @@
     --gray-indicator: #7254cb;
     --gray-track: #7254cb;
 
-    /* Same scrim as light. Do not follow --gray-1, which flips to near-white in light mode. */
     --aura-overlay: rgb(16 11 33 / 0.08);
 
     --info: #0d2157;
@@ -327,7 +317,7 @@
     --aura-status-dot-canceled: #333333;
     --aura-status-dot-ring: var(--gray-1);
 
-    /* Chart graphics need 3:1 on gray-1. Dark accent-9 is 1.99:1 and accent-10 is 1.59:1. */
+    /* WCAG non-text contrast needs 3:1 on gray-1. Dark accent-9 is 1.99:1 and accent-10 is 1.59:1. */
     --chart-1: var(--accent-11);
   }
 }
@@ -395,7 +385,6 @@
     --gray-indicator: #7254cb;
     --gray-track: #7254cb;
 
-    /* Same scrim as light. Do not follow --gray-1, which flips to near-white in light mode. */
     --aura-overlay: rgb(16 11 33 / 0.08);
 
     --info: #0d2157;
@@ -414,10 +403,9 @@
     --aura-status-dot-canceled: #333333;
     --aura-status-dot-ring: var(--gray-1);
 
-    /* Chart graphics need 3:1 on gray-1. Dark accent-9 is 1.99:1 and accent-10 is 1.59:1. */
+    /* WCAG non-text contrast needs 3:1 on gray-1. Dark accent-9 is 1.99:1 and accent-10 is 1.59:1. */
     --chart-1: var(--accent-11);
 }
-
 
 @layer base {
   @import "../styles/main.css";
@@ -426,13 +414,11 @@
     font-size: 17px;
   }
 
-  /* Typography/xs — 12/16 Semi Bold. Same rule as styles/main.css `.xs`. */
   .xs {
     font-size: calc(12 / 17 * 1rem);
     font-weight: 600;
     line-height: calc(16 / 17 * 1rem);
   }
-  /* Typography/xs Regular — weight 400. Same rule as styles/main.css `.xs-regular`. */
   .xs-regular {
     font-size: calc(12 / 17 * 1rem);
     font-weight: 400;
@@ -471,9 +457,6 @@ select {
   overflow-wrap: anywhere;
 }
 
-/* Markdown task lists render a bare native checkbox, which the Aura form
- * styles size like a text field (100% wide, calc(var(--aura) * 4) tall).
- * Keep it at its intrinsic size and drop the bullet it duplicates. */
 .prose ul.contains-task-list {
   list-style: none;
   padding-inline-start: 0;

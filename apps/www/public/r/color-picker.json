@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "color-picker",
+  "type": "registry:ui",
+  "title": "ColorPicker",
+  "description": "The ColorPicker component.",
+  "registryDependencies": [
+    "@aura/class-names",
+    "@aura/color-swatch"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/ColorPicker.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\nimport { ColorSwatch } from \"@/components/ui/ColorSwatch\";\n\nconst presets = [\"#4015ca\", \"#3D63DD\", \"#30A46C\", \"#E54D2E\", \"#F5D90A\", \"#111111\"];\n\nfunction ColorPicker({\n  className,\n  value,\n  defaultValue = \"#4015ca\",\n  onValueChange,\n  label = \"Color\",\n}: {\n  className?: string;\n  value?: string;\n  defaultValue?: string;\n  onValueChange?: (value: string) => void;\n  label?: string;\n}) {\n  const [uncontrolled, setUncontrolled] = React.useState(defaultValue);\n  const [text, setText] = React.useState(value ?? defaultValue);\n  const current = value ?? uncontrolled;\n  const id = React.useId();\n\n  const commit = (next: string) => {\n    if (value === undefined) setUncontrolled(next);\n    setText(next);\n    onValueChange?.(next);\n  };\n\n  return (\n    <div data-slot=\"color-picker\" className={cn(\"flex w-fit flex-col gap-0.5\", className)}>\n      <label htmlFor={id}>{label}</label>\n      <div className=\"flex items-center gap-0.5\">\n        <input\n          type=\"color\"\n          aria-label={`${label} picker`}\n          value={current}\n          className=\"size-4 shrink-0 cursor-pointer bg-transparent p-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8\"\n          onChange={(event) => commit(event.target.value)}\n        />\n        <input\n          id={id}\n          value={text}\n          spellCheck={false}\n          className=\"default w-12 rounded-sm border border-gray-7 bg-gray-1 px-1 py-0.5 text-gray-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8\"\n          onChange={(event) => {\n            const next = event.target.value;\n            setText(next);\n            if (/^#[0-9a-fA-F]{6}$/.test(next)) commit(next);\n          }}\n        />\n      </div>\n      <div className=\"flex items-center gap-0.5\" role=\"group\" aria-label=\"Preset colors\">\n        {presets.map((preset) => (\n          <ColorSwatch\n            key={preset}\n            color={preset}\n            label={preset}\n            selected={current.toLowerCase() === preset.toLowerCase()}\n            onClick={() => commit(preset)}\n          />\n        ))}\n      </div>\n    </div>\n  );\n}\n\nexport { ColorPicker };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

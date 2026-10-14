@@ -1,7 +1,5 @@
 // Copyright (c) 2021, garitma.com.
-// Buttons
 // Licensed under MIT - see LICENSE.txt 
-// Aura Design System
 
 a
     text-decoration: none
@@ -23,7 +21,6 @@ a
     font: inherit
     mixin-align-items(center)
     mixin-border-radius(var(--aura-button-radius))
-    // One transition list. A second `transition` declaration would drop the background fade.
     transition: background-color 300ms cubic-bezier(0.4, 0, 0.6, 1), transform 250ms cubic-bezier(0.2, 0.8, 0.4, 1)
     -webkit-transition: background-color 300ms cubic-bezier(0.4, 0, 0.6, 1), transform 250ms cubic-bezier(0.2, 0.8, 0.4, 1)
     -moz-transition: background-color 300ms cubic-bezier(0.4, 0, 0.6, 1), transform 250ms cubic-bezier(0.2, 0.8, 0.4, 1)
@@ -33,7 +30,6 @@ a
     padding 0 calc(var(--aura) * 2)
     border 2px solid
     justify-content: center;
-    // Icons and labels are laid out by the button, never by margins on the icon.
     gap: var(--aura-button-gap, calc(var(--aura) * 0.5))
     &:disabled
         @extend .disabled
@@ -63,7 +59,6 @@ a
     &:hover:not(:disabled), &.active
         background-color var(--aura-button-hover)
 
-// Joined ButtonGroup corners beat the button radius shorthand.
 [data-slot="button-group"][data-orientation="horizontal"] > .button:not(:first-child)
     border-top-left-radius: 0
     border-bottom-left-radius: 0

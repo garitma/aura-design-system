@@ -1,6 +1,3 @@
-/**
- * @description Multi-line text input.
- */
 import * as React from "react";
 
 import { cn } from "@/utils/class-names";

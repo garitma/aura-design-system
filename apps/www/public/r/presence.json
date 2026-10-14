@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "presence",
+  "type": "registry:ui",
+  "title": "Presence",
+  "description": "The Presence component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Presence.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction Presence({\n  className,\n  present,\n  children,\n}: {\n  className?: string;\n  present: boolean;\n  children?: React.ReactNode;\n}) {\n  const [shown, setShown] = React.useState(present);\n\n  React.useEffect(() => {\n    if (present) {\n      setShown(true);\n      return;\n    }\n    const reduced = window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches;\n    if (reduced) setShown(false);\n  }, [present]);\n\n  if (!shown) return null;\n\n  return (\n    <div\n      data-slot=\"presence\"\n      data-present={present ? \"\" : undefined}\n      className={cn(\n        \"transition duration-300 motion-reduce:transition-none\",\n        present ? \"scale-100 opacity-100\" : \"scale-95 opacity-0\",\n        className,\n      )}\n      onTransitionEnd={() => {\n        if (!present) setShown(false);\n      }}\n    >\n      {children}\n    </div>\n  );\n}\n\nexport { Presence };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

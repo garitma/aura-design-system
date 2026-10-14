@@ -20,7 +20,6 @@ describe("AspectRatio", () => {
         <div>Content</div>
       </AspectRatio>
     );
-    // The AspectRatio component from Radix UI creates a wrapper div
     const wrapper = container.querySelector('[data-slot="aspect-ratio"]');
     expect(wrapper).toBeInTheDocument();
   });

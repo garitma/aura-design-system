@@ -1,23 +1,12 @@
-/**
- * @description Displays a badge or a component that looks like a badge.
- */
 import * as React from "react"
 import { Slot } from "@radix-ui/react-slot"
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/utils/class-names"
 
-/**
- * Danger fill shared by `variant="destructive"` and `status="danger"`.
- * `destructive` is the variant alias of the danger status. Prefer `status`
- * for semantic state and `variant` for chrome (default, secondary, outline).
- */
 const badgeDanger =
     "border-transparent bg-danger text-danger-contrast hover:bg-danger/80"
 
 const badgeVariants = cva(
-    // 13px scale: px-1 is 13px (replaces px-2.5 / 32.5px). py-0.5 is 6.5px
-    // and gap-0.5 is the icon gap. With .xs (12/16) and a 1px border the
-    // badge is 16 + 13 + 2 = 31px tall.
     "inline-flex items-center gap-0.5 rounded-full border px-1 py-0.5 xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-a8 motion-reduce:transition-none",
     {
         variants: {

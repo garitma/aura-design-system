@@ -22,11 +22,9 @@ describe("Accordion", () => {
       </Accordion>
     );
 
-    // Expect triggers to be in the document
     expect(screen.getByText("Trigger 1")).toBeInTheDocument();
     expect(screen.getByText("Trigger 2")).toBeInTheDocument();
 
-    // Initially, content should not be visible (collapsible)
     expect(screen.queryByText("Content 1")).not.toBeInTheDocument();
     expect(screen.queryByText("Content 2")).not.toBeInTheDocument();
   });
@@ -48,9 +46,7 @@ describe("Accordion", () => {
     const trigger1 = screen.getByText("Trigger 1");
     fireEvent.click(trigger1);
 
-    // After clicking trigger 1, its content should be visible
     expect(screen.getByText("Content 1")).toBeVisible();
-    // Other content should still be hidden for single type
     expect(screen.queryByText("Content 2")).not.toBeInTheDocument();
   });
 
@@ -76,7 +72,6 @@ describe("Accordion", () => {
     expect(screen.queryByText("Content 2")).not.toBeInTheDocument();
 
     fireEvent.click(trigger2);
-    // After clicking trigger 2, content 1 should be hidden, and content 2 visible
     expect(screen.queryByText("Content 1")).not.toBeInTheDocument();
     expect(screen.getByText("Content 2")).toBeVisible();
   });
@@ -96,7 +91,7 @@ describe("Accordion", () => {
     fireEvent.click(trigger1);
     expect(screen.getByText("Content 1")).toBeVisible();
 
-    fireEvent.click(trigger1); // Click again
+    fireEvent.click(trigger1);
     expect(screen.queryByText("Content 1")).not.toBeInTheDocument();
   });
 
@@ -119,16 +114,13 @@ describe("Accordion", () => {
 
     fireEvent.click(trigger1);
     expect(screen.getByText("Content 1")).toBeVisible();
-    expect(screen.queryByText("Content 2")).not.toBeInTheDocument(); // Initially hidden
+    expect(screen.queryByText("Content 2")).not.toBeInTheDocument();
 
     fireEvent.click(trigger2);
-    // Both contents should be visible for 'multiple' type
     expect(screen.getByText("Content 1")).toBeVisible();
     expect(screen.getByText("Content 2")).toBeVisible();
   });
 
-  // You might want to add tests for accessibility attributes like aria-expanded,
-  // as the Accordion component uses Radix UI Primitives which are designed for accessibility.
   it("sets aria-expanded attribute correctly on trigger", () => {
     render(
       <Accordion type="single" collapsible>

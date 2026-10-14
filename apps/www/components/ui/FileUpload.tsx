@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description Composable file upload with dropzone, list, previews, and progress.
- */
 import * as React from "react";
 import {
   ArchiveIcon,

@@ -104,10 +104,6 @@ function TableCaption({
   )
 }
 
-/**
- * Responsive table card layout for mobile screens
- * Displays table data as cards on screens smaller than medium
- */
 interface ResponsiveTableCardProps {
   headers: Array<{
     id: string;
@@ -171,7 +167,6 @@ function ResponsiveTableCard({
           )}
           {row.cells.map((cell, cellIndex) => {
             const header = headers[cellIndex];
-            // Skip empty header columns (like actions column header)
             if (!header || (!header.header && header.id === "actions")) {
               return (
                 <div key={cell.id} className="flex justify-end pt-1">

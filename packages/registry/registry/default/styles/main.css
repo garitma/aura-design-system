@@ -285,13 +285,11 @@
     --val: 4.029999999999999vw;
     --max: 1rem;
   }
-  /* Typography/Small — 14px Gabarito Medium, line-height 23.8px at a 17px root. */
   .small {
     font-size: calc(14 / 17 * 1rem);
     font-weight: 500;
     line-height: 1.4rem;
   }
-  /* Slotted breadcrumb anchors inherit .small when asChild replaces the link. */
   [data-slot="breadcrumb-list"].small [data-slot="breadcrumb-link"],
   [data-slot="breadcrumb-list"].small [data-slot="breadcrumb-page"] {
     font-size: inherit !important;
@@ -319,13 +317,11 @@
   [data-slot="breadcrumb-list"][data-expanded="true"] [data-breadcrumb="ellipsis"] {
     display: none !important;
   }
-  /* Typography/xs — 12px Gabarito Semi Bold, line-height 16px at a 17px root. */
   .xs {
     font-size: calc(12 / 17 * 1rem);
     font-weight: 600;
     line-height: calc(16 / 17 * 1rem);
   }
-  /* Typography/xs Regular — same size, weight 400. Calendar weekday labels. */
   .xs-regular {
     font-size: calc(12 / 17 * 1rem);
     font-weight: 400;
@@ -505,14 +501,12 @@
     opacity: 1;
     cursor: default;
   }
-  /* Calendar day numbers use the .small size, not the button's body semibold. */
   .button[data-day],
   .button-menu[data-day] {
     font-size: calc(14 / 17 * 1rem);
     font-weight: 500;
     line-height: 1.4rem;
   }
-  /* Disabled days stay gray-11. .button:disabled would fade them to 50%. */
   .button[data-day]:disabled,
   .button-menu[data-day]:disabled {
     opacity: 1;
@@ -538,10 +532,6 @@
   .button-fill.active {
     background-color: var(--aura-button-hover);
   }
-  /* Joined corners and the shared edge. `.button` sets `border-radius` (and the
-     prefixed shorthands) outside `@layer`, so the group's `rounded-*-none` loses.
-     These longhands are more specific, so the inner corners stay square.
-     Fill buttons share one accent-10 edge; the next button drops its start border. */
   [data-slot="button-group"][data-orientation="horizontal"] > .button:not(:first-child) {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;

@@ -40,15 +40,9 @@ import { buttonVariants } from "@/components/ui/Button";
 export interface HomeLayoutProps extends BaseLayoutProps {
   nav?: Partial<
     NavOptions & {
-      /**
-       * Open mobile menu when hovering the trigger
-       */
       enableHoverToOpen?: boolean;
     }
   >;
-  /**
-   * Page tree for sidebar navigation (used in mobile menu)
-   */
   tree?: PageTree.Root;
 }
 

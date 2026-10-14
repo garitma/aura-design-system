@@ -13,7 +13,6 @@ type PageProps = {
   params: Promise<{ slug?: string[] }>;
 };
 
-// Simple frontmatter parser
 function parseFrontmatter(raw: string) {
   const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n/;
   const match = raw.match(frontmatterRegex);
@@ -25,7 +24,6 @@ function parseFrontmatter(raw: string) {
   const yamlContent = match[1];
   const attributes: Record<string, any> = {};
 
-  // Parse YAML content line by line
   const lines = yamlContent.split("\n");
   let inLinks = false;
   const links: Record<string, string> = {};
@@ -34,21 +32,17 @@ function parseFrontmatter(raw: string) {
     const line = lines[i];
     const trimmed = line.trim();
 
-    // Skip empty lines and comments
     if (!trimmed || trimmed.startsWith("#")) continue;
 
-    // Check if we're entering the links object
     if (trimmed === "links:" || trimmed.match(/^links:\s*$/)) {
       inLinks = true;
       continue;
     }
 
-    // Check if we're leaving the links object (next top-level key)
     if (inLinks && trimmed.match(/^\w+:/) && !line.startsWith("  ")) {
       inLinks = false;
     }
 
-    // Parse links object properties
     if (inLinks) {
       const nestedMatch = line.match(/^\s+(\w+):\s*(.+)$/);
       if (nestedMatch) {
@@ -56,7 +50,6 @@ function parseFrontmatter(raw: string) {
         links[key] = value.replace(/^["']|["']$/g, "");
       }
     } else {
-      // Parse top-level key-value pairs
       const keyValueMatch = trimmed.match(/^(\w+):\s*(.+)$/);
       if (keyValueMatch) {
         const [, key, value] = keyValueMatch;
@@ -79,7 +72,6 @@ export default async function Page(props: PageProps) {
 
   const MDX = page.data.body;
 
-  // Extract links from frontmatter
   const raw = await page.data.getText("raw");
   const attributes = parseFrontmatter(raw);
   const links = attributes.links || {};
@@ -121,7 +113,6 @@ export default async function Page(props: PageProps) {
       <DocsBody>
         <MDX
           components={getMDXComponents({
-            // this allows you to link to other pages with relative file paths
             a: createRelativeLink(source, page),
           })}
         />

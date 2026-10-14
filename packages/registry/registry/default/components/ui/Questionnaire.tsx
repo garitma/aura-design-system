@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description One question at a time, built on Stepper.
- */
 import * as React from "react";
 
 import { Button } from "@/components/ui/Button";

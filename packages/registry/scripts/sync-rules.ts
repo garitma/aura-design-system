@@ -9,8 +9,6 @@ const WORKSPACE_ROOT = path.resolve(__dirname, "../../..");
 const CURSOR_RULES_PATH = path.join(WORKSPACE_ROOT, ".cursor/rules");
 const REGISTRY_RULES_PATH = path.join(__dirname, "../registry/default/rules");
 
-/** Consumer-facing rules under .cursor/rules/ that ship via the registry.
- *  Monorepo-only rules (e.g. agents-md.mdc) stay local and are omitted here. */
 const RULE_FILES = [
   "aura-agent-surface.mdc",
   "components-forms.mdc",
@@ -20,6 +18,7 @@ const RULE_FILES = [
   "fundations-colors.mdc",
   "fundations-layout-spacing.mdc",
   "fundations-typography.mdc",
+  "no-comments.mdc",
   "principles.mdc",
   "self-documenting-system.mdc",
   "shadcn-lint.mdc",

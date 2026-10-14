@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description A group of connected input fields that appear as a single segmented visual unit.
- */
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 import {
@@ -135,8 +132,6 @@ function SegmentedInput(props: SegmentedInputProps) {
 
 const segmentedInputItemVariants = cva(
   [
-    // `default` opts out of legacy main.css `input:not(.default)` (padding/outline
-    // that otherwise leave 26px top/bottom and push the caret above the field).
     "default relative min-w-0 flex-1 rounded-md border border-gray-7 bg-gray-1 text-gray-12 transition-colors outline-none",
     "selection:bg-accent-4 selection:text-gray-12 placeholder:text-gray-11",
     "focus-visible:z-10 focus-visible:border-gray-8 focus-visible:ring-2 focus-visible:ring-gray-8",
@@ -148,8 +143,6 @@ const segmentedInputItemVariants = cva(
       position: {
         isolated: "",
         first: "rounded-e-none",
-        // Keep all side borders; -ms-px overlaps the shared edge so focus
-        // still shows a full box (border-l-0 left the middle cell open).
         middle: "-ms-px rounded-none",
         last: "-ms-px rounded-s-none",
       },
@@ -159,7 +152,6 @@ const segmentedInputItemVariants = cva(
       },
       size: {
         // Aura --spacing 13px: avoid text-xs/text-sm on editable inputs (iOS zoom)
-        // py-0 + leading-none: px-* alone does not clear legacy vertical padding
         sm: "h-2.5 px-1 py-0 leading-none",
         default: "h-3 px-1 py-0 leading-none",
         lg: "h-4 px-1.5 py-0 leading-none",

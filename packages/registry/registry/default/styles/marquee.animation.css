@@ -1,4 +1,4 @@
-@theme animatons {
+@theme {
   --animate-marquee: aura-marquee 12s linear infinite;
 }
 

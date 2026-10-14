@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scheme-from-seed",
+  "type": "registry:lib",
+  "title": "scheme-from-seed",
+  "description": "Utility: scheme-from-seed",
+  "dependencies": [
+    "colorjs.io"
+  ],
+  "files": [
+    {
+      "path": "registry/default/utils/scheme-from-seed.ts",
+      "content": "import Color from \"colorjs.io\";\n\ntype ThemeTriple = {\n  accent: string;\n  gray: string;\n  background: string;\n};\n\nfunction hex(color: Color) {\n  return color.to(\"srgb\").toString({ format: \"hex\" });\n}\n\nfunction schemeFromSeed(seed: string) {\n  const base = new Color(seed.startsWith(\"#\") ? seed : `#${seed}`).to(\"oklch\");\n  const chroma = Number.isFinite(base.coords[1]) ? base.coords[1] : 0.12;\n  const hue = Number.isFinite(base.coords[2]) ? base.coords[2] : 280;\n\n  const light: ThemeTriple = {\n    accent: hex(new Color(\"oklch\", [0.55, Math.min(0.18, Math.max(0.08, chroma)), hue])),\n    gray: hex(new Color(\"oklch\", [0.42, Math.min(0.04, chroma * 0.2), hue])),\n    background: hex(new Color(\"oklch\", [0.985, Math.min(0.015, chroma * 0.08), hue])),\n  };\n\n  const dark: ThemeTriple = {\n    accent: hex(new Color(\"oklch\", [0.72, Math.min(0.16, Math.max(0.08, chroma)), hue])),\n    gray: hex(new Color(\"oklch\", [0.72, Math.min(0.03, chroma * 0.15), hue])),\n    background: hex(new Color(\"oklch\", [0.18, Math.min(0.04, chroma * 0.2), hue])),\n  };\n\n  return { light, dark };\n}\n\nasync function seedFromImage(file: Blob) {\n  const bitmap = await createImageBitmap(file);\n  const size = 24;\n  const canvas = document.createElement(\"canvas\");\n  canvas.width = size;\n  canvas.height = size;\n  const context = canvas.getContext(\"2d\", { willReadFrequently: true });\n  if (!context) {\n    bitmap.close();\n    throw new Error(\"Canvas is unavailable.\");\n  }\n  context.drawImage(bitmap, 0, 0, size, size);\n  bitmap.close();\n  const { data } = context.getImageData(0, 0, size, size);\n  let red = 0;\n  let green = 0;\n  let blue = 0;\n  let count = 0;\n  for (let index = 0; index < data.length; index += 4) {\n    if (data[index + 3] < 128) continue;\n    red += data[index];\n    green += data[index + 1];\n    blue += data[index + 2];\n    count += 1;\n  }\n  if (!count) return \"#4015ca\";\n  const channel = (value: number) =>\n    Math.round(value / count)\n      .toString(16)\n      .padStart(2, \"0\");\n  return `#${channel(red)}${channel(green)}${channel(blue)}`;\n}\n\nexport { schemeFromSeed, seedFromImage };\nexport type { ThemeTriple };\n",
+      "type": "registry:lib"
+    }
+  ]
+}

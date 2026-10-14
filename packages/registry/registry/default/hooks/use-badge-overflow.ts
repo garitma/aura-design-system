@@ -2,9 +2,9 @@ import * as React from "react";
 
 const badgeWidthCache = new Map<string, number>();
 
-const DEFAULT_CONTAINER_PADDING = 16; // px-2 = 8px * 2
-const DEFAULT_BADGE_GAP = 4; // gap-1 = 4px
-const DEFAULT_OVERFLOW_BADGE_WIDTH = 40; // Approximate width of "+N" badge
+const DEFAULT_CONTAINER_PADDING = 16;
+const DEFAULT_BADGE_GAP = 4;
+const DEFAULT_OVERFLOW_BADGE_WIDTH = 40;
 
 interface MeasureBadgeWidthProps {
   label: string;

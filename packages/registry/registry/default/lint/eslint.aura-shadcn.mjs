@@ -1,24 +1,4 @@
-/**
- * Aura @shadcn/lint policy fragment.
- *
- * Install: pnpm dlx shadcn@latest add @aura/eslint-shadcn-lint
- * Deps:   pnpm add -D @shadcn/lint  (ESLint >= 9.30, Node >= 20.19)
- *
- * Merge into eslint.config.mjs:
- *
- *   import { plugin as shadcn } from "@shadcn/lint"
- *   import { createAuraShadcnLintConfig } from "./eslint.aura-shadcn.mjs"
- *
- *   export default [
- *     ...existingConfig,
- *     ...createAuraShadcnLintConfig(shadcn),
- *   ]
- *
- * Adjust `settings.shadcn.ui` / `components/ui/**` override if your tree differs.
- *
- * Besides the `@shadcn/lint` rules, this fragment ships the local `aura` plugin
- * with `aura/no-icon-margin` (see below).
- */
+/** Requires @shadcn/lint with ESLint >= 9.30 and Node >= 20.19. */
 
 const formControlRestyle = {
   pattern: "^(Input|Textarea|SelectTrigger|MaskInput|SegmentedInput)$",
@@ -33,13 +13,6 @@ const formControlRestyle = {
   },
 };
 
-/**
- * Aura controls own the space between their icon and their label: `.button`
- * and the `button-fill|pill|link|menu` variants declare
- * `gap: var(--aura-button-gap)`, and `Badge` carries `gap-0.5`. A horizontal
- * margin on the icon stacks on top of that gap, so it drifts off the 13px grid
- * and ends up different at every call site.
- */
 const CONTROL_CLASS = /^button(?:-(?:fill|pill|link|menu))?$/;
 const HORIZONTAL_MARGIN = /^-?m[lrxse]-(.+)$/;
 const ICON_COMPONENT = /Icon$/;
@@ -109,7 +82,6 @@ function classTokens(openingElement) {
     .filter(Boolean);
 }
 
-/** Strips Tailwind variants (`md:`, `hover:`) so `md:-ml-1` reads as `-ml-1`. */
 function baseUtility(token) {
   return token.replace(/^(?:[^:\s[\]]+:)+/, "");
 }
@@ -162,7 +134,6 @@ const noIconMargin = {
 
         const offenders = classTokens(node).filter((token) => {
           const match = HORIZONTAL_MARGIN.exec(baseUtility(token));
-          // `ml-auto` / `mx-auto` position the icon, they do not space it.
           return match !== null && match[1] !== "auto";
         });
         if (offenders.length === 0) return;
@@ -184,7 +155,6 @@ const noIconMargin = {
                 .replace("{{component}}", component),
             },
             fix(fixer) {
-              // Only a plain string className can be rewritten safely.
               if (attribute.value?.type !== "Literal") return null;
               const next = attribute.value.value
                 .split(/\s+/)
@@ -205,7 +175,7 @@ export const auraPlugin = {
 };
 
 /**
- * @param {unknown} shadcnPlugin - `import { plugin as shadcn } from "@shadcn/lint"`
+ * @param {unknown} shadcnPlugin
  * @returns {import("eslint").Linter.Config[]}
  */
 export function createAuraShadcnLintConfig(shadcnPlugin) {

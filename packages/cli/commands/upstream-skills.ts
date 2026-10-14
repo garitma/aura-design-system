@@ -10,18 +10,12 @@ import {
 import { dirname, join, relative } from "path";
 import { fileURLToPath } from "url";
 
-/** Pinned upstream. Re-vendor with packages/cli/scripts/vendor-upstream-skills.mjs */
 export const EMIL_SKILLS_REPO = "https://github.com/emilkowalski/skills";
 export const EMIL_SKILLS_SHA = "e8a175de22ae1e49370fc144c1f3bb9aeedf988d";
 export const VERCEL_SKILLS_REPO = "https://github.com/vercel-labs/agent-skills";
 export const VERCEL_REACT_SKILLS_SHA =
   "063bee94c3f4df8453406c830b0a7df0f2860278";
 
-/**
- * Reconciled set the blueprint installs. Folder name under `.cursor/skills/`.
- * `react-best-practices` keeps the upstream folder; its skill `name` is
- * `vercel-react-best-practices`.
- */
 export const RECONCILED_SKILLS = [
   "emil-design-eng",
   "animate",
@@ -38,7 +32,6 @@ export const RECONCILED_SKILLS = [
   "react-best-practices",
 ] as const;
 
-/** Pablo skipped these. They are not installed. */
 export const SKIPPED_UPSTREAM_SKILLS = [
   {
     name: "write-swift",
@@ -181,12 +174,6 @@ function removeDuplicateCopies(projectRoot: string): string[] {
   return removed;
 }
 
-/**
- * Copy the reconciled skills into `.cursor/skills/`. Re-running updates files
- * in place when the pin changes and leaves them untouched when they match.
- * A same-named copy under `.agents/skills/` is removed so the project does
- * not carry two skills for one job.
- */
 export function installReconciledSkills(
   projectRoot: string,
 ): InstallReconciledSkillsResult {

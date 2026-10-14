@@ -6,13 +6,6 @@ import { cn } from "@/utils/class-names"
 import { Button, type ButtonProps } from "@/components/ui/Button"
 import { Separator } from "@/components/ui/Separator"
 
-/**
- * `default` maps child buttons to `md` / `icon-md` (52px).
- * `sm` maps them to `sm` / `icon-sm` (39px). `icon` is the same 39px control.
- *
- * Size is cloned onto direct `Button` and `ButtonGroupText` children.
- * `Button` stays free of `createContext`, which React's server build does not export.
- */
 type ButtonGroupSize = "default" | "sm"
 
 const buttonGroupVariants = cva(

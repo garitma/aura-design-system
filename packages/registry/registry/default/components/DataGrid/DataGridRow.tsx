@@ -48,22 +48,18 @@ export const DataGridRow = React.memo(DataGridRowImpl, (prev, next) => {
   const prevRowIndex = prev.virtualItem.index;
   const nextRowIndex = next.virtualItem.index;
 
-  // Re-render if row identity changed
   if (prev.row.id !== next.row.id) {
     return false;
   }
 
-  // Re-render if row data (original) reference changed
   if (prev.row.original !== next.row.original) {
     return false;
   }
 
-  // Re-render if virtual position changed (handles transform updates)
   if (prev.virtualItem.start !== next.virtualItem.start) {
     return false;
   }
 
-  // Re-render if focus state changed for this row
   const prevHasFocus = prev.focusedCell?.rowIndex === prevRowIndex;
   const nextHasFocus = next.focusedCell?.rowIndex === nextRowIndex;
 
@@ -71,14 +67,12 @@ export const DataGridRow = React.memo(DataGridRowImpl, (prev, next) => {
     return false;
   }
 
-  // Re-render if focused column changed within this row
   if (nextHasFocus && prevHasFocus) {
     if (prev.focusedCell?.columnId !== next.focusedCell?.columnId) {
       return false;
     }
   }
 
-  // Re-render if editing state changed for this row
   const prevHasEditing = prev.editingCell?.rowIndex === prevRowIndex;
   const nextHasEditing = next.editingCell?.rowIndex === nextRowIndex;
 
@@ -86,65 +80,52 @@ export const DataGridRow = React.memo(DataGridRowImpl, (prev, next) => {
     return false;
   }
 
-  // Re-render if editing column changed within this row
   if (nextHasEditing && prevHasEditing) {
     if (prev.editingCell?.columnId !== next.editingCell?.columnId) {
       return false;
     }
   }
 
-  // Re-render if this row's selected cells changed
-  // Using stable Set reference that only includes this row's cells
   if (prev.cellSelectionKeys !== next.cellSelectionKeys) {
     return false;
   }
 
-  // Re-render if column visibility changed
   if (prev.columnVisibility !== next.columnVisibility) {
     return false;
   }
 
-  // Re-render if row height changed
   if (prev.rowHeight !== next.rowHeight) {
     return false;
   }
 
-  // Re-render if column pinning state changed
   if (prev.columnPinning !== next.columnPinning) {
     return false;
   }
 
-  // Re-render if readOnly changed
   if (prev.readOnly !== next.readOnly) {
     return false;
   }
 
-  // Re-render if search match columns changed for this row
   if (prev.searchMatchColumns !== next.searchMatchColumns) {
     return false;
   }
 
-  // Re-render if active search match changed for this row
   if (prev.activeSearchMatch?.columnId !== next.activeSearchMatch?.columnId) {
     return false;
   }
 
-  // Re-render if direction changed
   if (prev.dir !== next.dir) {
     return false;
   }
 
-  // Re-render if adjustLayout state changed
   if (prev.adjustLayout !== next.adjustLayout) {
     return false;
   }
 
-  // Re-render if stretchColumns changed
   if (prev.stretchColumns !== next.stretchColumns) {
     return false;
   }
 
-  // Skip re-render - props are equal
   return true;
 }) as typeof DataGridRowImpl;
 
@@ -191,9 +172,6 @@ function DataGridRowImpl<TData>({
 
   const isRowSelected = row.getIsSelected();
 
-  // Memoize visible cells to avoid recreating cell array on every render
-  // Though TanStack returns new Cell wrappers, memoizing the array helps React's reconciliation
-  // biome-ignore lint/correctness/useExhaustiveDependencies: columnVisibility and columnPinning are used for calculating the visible cells
   const visibleCells = React.useMemo(
     () => row.getVisibleCells(),
     [row, columnVisibility, columnPinning],

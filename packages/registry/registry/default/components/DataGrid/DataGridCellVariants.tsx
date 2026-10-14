@@ -40,10 +40,6 @@ import {
   parseLocalDate,
 } from "./data-grid-utils";
 
-/**
- * Text cells (short + long) use a popover textarea so truncated grid content
- * can be edited in full, consistent with select/date overlays.
- */
 function GridPopoverTextareaCell<TData>({
   cell,
   tableMeta,
@@ -77,7 +73,6 @@ function GridPopoverTextareaCell<TData>({
   }, 300);
 
   const onSave = React.useCallback(() => {
-    // Immediately save any pending changes and close the popover
     if (!readOnly && value !== initialValue) {
       tableMeta?.onDataUpdate?.({ rowIndex, columnId, value });
     }
@@ -85,7 +80,6 @@ function GridPopoverTextareaCell<TData>({
   }, [tableMeta, value, initialValue, rowIndex, columnId, readOnly]);
 
   const onCancel = React.useCallback(() => {
-    // Restore the original value
     setValue(initialValue ?? "");
     if (!readOnly) {
       tableMeta?.onDataUpdate?.({ rowIndex, columnId, value: initialValue });
@@ -98,7 +92,6 @@ function GridPopoverTextareaCell<TData>({
       if (open && !readOnly) {
         tableMeta?.onCellEditingStart?.(rowIndex, columnId);
       } else {
-        // Immediately save any pending changes when closing
         if (!readOnly && value !== initialValue) {
           tableMeta?.onDataUpdate?.({ rowIndex, columnId, value });
         }
@@ -117,8 +110,7 @@ function GridPopoverTextareaCell<TData>({
       const length = textareaRef.current.value.length;
       textareaRef.current.setSelectionRange(length, length);
 
-      // Insert pending character using execCommand so it's part of undo history
-      // Use requestAnimationFrame to ensure focus has fully settled
+      // execCommand is the only insertion that joins the textarea's native undo history.
       if (pendingCharRef.current) {
         const char = pendingCharRef.current;
         pendingCharRef.current = null;
@@ -147,8 +139,6 @@ function GridPopoverTextareaCell<TData>({
         !event.ctrlKey &&
         !event.metaKey
       ) {
-        // Store the character to be inserted after textarea focuses
-        // This ensures it's part of the textarea's undo history
         pendingCharRef.current = event.key;
       }
     },
@@ -156,7 +146,6 @@ function GridPopoverTextareaCell<TData>({
   );
 
   const onBlur = React.useCallback(() => {
-    // Immediately save any pending changes on blur
     if (!readOnly && value !== initialValue) {
       tableMeta?.onDataUpdate?.({ rowIndex, columnId, value });
     }
@@ -188,7 +177,6 @@ function GridPopoverTextareaCell<TData>({
         onSave();
       } else if (event.key === "Tab") {
         event.preventDefault();
-        // Save any pending changes
         if (value !== initialValue) {
           tableMeta?.onDataUpdate?.({ rowIndex, columnId, value });
         }
@@ -197,7 +185,6 @@ function GridPopoverTextareaCell<TData>({
         });
         return;
       }
-      // Stop propagation to prevent grid navigation
       event.stopPropagation();
     },
     [onSave, onCancel, value, initialValue, tableMeta, rowIndex, columnId],
@@ -358,11 +345,9 @@ export function NumberCell<TData>({
   const onWrapperKeyDown = React.useCallback(
     (event: React.KeyboardEvent<HTMLDivElement>) => {
       if (!isEditing && isFocused) {
-        // Handle Backspace to start editing with empty value
         if (event.key === "Backspace") {
           setValue("");
         } else if (event.key.length === 1 && !event.ctrlKey && !event.metaKey) {
-          // Handle typing to pre-fill the value when editing starts
           setValue(event.key);
         }
       }
@@ -1266,14 +1251,12 @@ export function DateCell<TData>({
     setValue(initialValue ?? "");
   }
 
-  // Parse date as local time to avoid timezone shifts
   const selectedDate = value ? (parseLocalDate(value) ?? undefined) : undefined;
 
   const onDateSelect = React.useCallback(
     (date: Date | undefined) => {
       if (!date || readOnly) return;
 
-      // Format using local date components to avoid timezone issues
       const formattedDate = formatDateToString(date);
       setValue(formattedDate);
       tableMeta?.onDataUpdate?.({ rowIndex, columnId, value: formattedDate });
@@ -1794,8 +1777,6 @@ export function FileCell<TData>({
   const onEscapeKeyDown: NonNullable<
     React.ComponentProps<typeof PopoverContent>["onEscapeKeyDown"]
   > = React.useCallback((event) => {
-    // Prevent the escape key from propagating to the data grid's keyboard handler
-    // which would call blurCell() and remove focus from the cell
     event.stopPropagation();
   }, []);
 

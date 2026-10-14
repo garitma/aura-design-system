@@ -152,7 +152,6 @@ export function getColumnPinningStyle<TData>(params: {
   column: Column<TData>;
   withBorder?: boolean;
   dir?: Direction;
-  /** Solid fill for sticky cells so scrolling content does not show through */
   pinnedSurface?: "header" | "body";
 }): React.CSSProperties {
   const { column, dir = "ltr", withBorder = false, pinnedSurface = "body" } =
@@ -443,7 +442,6 @@ export function getUrlHref(urlString: string): string {
 
   const trimmed = urlString.trim();
 
-  // Reject dangerous protocols (extra safety, though our http:// prefix would neutralize them)
   if (/^(javascript|data|vbscript|file):/i.test(trimmed)) {
     return "";
   }
@@ -462,7 +460,6 @@ export function parseLocalDate(dateStr: unknown): Date | null {
   const [year, month, day] = dateStr.split("-").map(Number);
   if (!year || !month || !day) return null;
   const date = new Date(year, month - 1, day);
-  // Verify date wasn't auto-corrected (e.g. Feb 30 -> Mar 1)
   if (
     date.getFullYear() !== year ||
     date.getMonth() !== month - 1 ||

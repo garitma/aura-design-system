@@ -36,7 +36,6 @@ import {
   TextNode,
 } from "lexical"
 
-// import brokenImage from '@/registry/new-york-v4/editor/images/image-broken.svg';
 import { ContentEditable } from "@/components/Editor/editor-ui/content-editable"
 import { ImageResizer } from "@/components/Editor/editor-ui/image-resizer"
 import { $isImageNode } from "@/components/Editor/nodes/image-node"
@@ -143,7 +142,6 @@ export default function ImageComponent({
   const [isResizing, setIsResizing] = useState<boolean>(false)
   const [editor] = useLexicalComposerContext()
   
-  // Hook personalizado para manejar el contexto de colaboración de manera segura
   const useSafeCollaborationContext = () => {
     try {
       return useCollaborationContext()
@@ -158,32 +156,27 @@ export default function ImageComponent({
   const [isLoadError, setIsLoadError] = useState<boolean>(false)
   const isEditable = useLexicalEditable()
 
-  // Función para extraer el s3Folder y fileName de la URL
   const getS3InfoFromUrl = (url: string): { s3Folder: string; fileName: string } => {
     try {
       const urlObj = new URL(url)
       const pathname = urlObj.pathname
       
-      // Remover el primer slash y dividir por '/'
       const pathParts = pathname.substring(1).split('/')
       
       if (pathParts.length >= 2) {
         const s3Folder = pathParts[0]
-        const fileName = pathParts[pathParts.length - 1] // Último elemento es el fileName
+        const fileName = pathParts[pathParts.length - 1]
         return { s3Folder, fileName }
       }
       
-      // Fallback si no tiene el formato esperado
       return { s3Folder: 'images', fileName: pathParts[pathParts.length - 1] || '' }
     } catch {
-      // Si no es una URL válida, intentar extraer de otra manera
       const parts = url.split('/')
       const fileName = parts[parts.length - 1] || ''
       return { s3Folder: 'images', fileName }
     }
   }
 
-  // Función para eliminar imagen de S3
   const deleteImageFromS3 = async (imageSrc: string) => {
     try {
       const { s3Folder, fileName } = getS3InfoFromUrl(imageSrc)
@@ -207,7 +200,6 @@ export default function ImageComponent({
         const event: KeyboardEvent = payload
         event.preventDefault()
         
-        // Recopilar las URLs de las imágenes antes de eliminarlas
         const imageUrls: string[] = []
         deleteSelection.getNodes().forEach((node) => {
           if ($isImageNode(node)) {
@@ -223,7 +215,6 @@ export default function ImageComponent({
           })
         })
         
-        // Eliminar las imágenes de S3 después de remover los nodos
         imageUrls.forEach(url => {
           deleteImageFromS3(url)
         })
@@ -243,7 +234,6 @@ export default function ImageComponent({
         latestSelection.getNodes().length === 1
       ) {
         if (showCaption) {
-          // Move focus into nested editor
           $setSelection(null)
           event.preventDefault()
           caption.focus()
@@ -353,8 +343,7 @@ export default function ImageComponent({
         DRAGSTART_COMMAND,
         (event) => {
           if (event.target === imageRef.current) {
-            // TODO This is just a temporary workaround for FF to behave like other browsers.
-            // Ideally, this handles drag & drop too (and all browsers).
+            // Firefox starts a native drag of the <img>; cancel it so it behaves like other browsers.
             event.preventDefault()
             return true
           }
@@ -414,7 +403,6 @@ export default function ImageComponent({
     nextWidth: "inherit" | number,
     nextHeight: "inherit" | number
   ) => {
-    // Delay hiding the resize bars for click case
     setTimeout(() => {
       setIsResizing(false)
     }, 200)

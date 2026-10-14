@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description A floating toolbar that appears on text selection with formatting and utility actions.
- */
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {

@@ -186,7 +186,6 @@ const completeFormSchema = {
   required: ["name", "email", "terms", "interests"],
 };
 
-
 export const FormDemo = () => {
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -214,7 +213,6 @@ export const FormDemo = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -278,7 +276,6 @@ export const FormDemoMultipleFields = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -410,7 +407,6 @@ export const FormDemoWithSwitch = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -468,7 +464,6 @@ export const FormDemoWithCheckbox = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -551,7 +546,6 @@ export const FormDemoWithCheckboxGroup = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -626,7 +620,6 @@ export const FormDemoWithSelect = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -694,7 +687,6 @@ export const FormDemoWithLoading = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 2000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -789,7 +781,6 @@ export const FormDemoCompleteForm = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -877,7 +868,6 @@ export const FormDemoWithComboboxSingle = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -938,7 +928,6 @@ export const FormDemoWithComboboxMultiple = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -948,7 +937,6 @@ export const FormDemoWithComboboxMultiple = () => {
     fetchStatus: formData.fetchStatus,
     error: formData.error,
   };
-
 
   return (
     <Form
@@ -1001,7 +989,6 @@ export const FormDemoWithSignaturePad = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -1045,7 +1032,6 @@ export const FormDemoWithSortableList = () => {
 
   const { priorities } = formData.getFields();
 
-  // Initialize with array value for sortable list
   React.useEffect(() => {
     if (!Array.isArray(priorities.value)) {
       priorities.setValue(["High Priority", "Medium Priority", "Low Priority"] as any);
@@ -1058,7 +1044,6 @@ export const FormDemoWithSortableList = () => {
   );
   const formErrors = errors || undefined;
 
-  // Filter errors for the priorities field
   const prioritiesErrors = React.useMemo(() => {
     if (!formErrors) return undefined;
     return formErrors.filter(
@@ -1077,7 +1062,6 @@ export const FormDemoWithSortableList = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -1142,7 +1126,6 @@ export const FormDemoWithEditor = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());

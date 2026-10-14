@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description Composable PowerPoint viewer and editor built on @diceui/pptx.
- */
 import * as React from "react";
 import { Presentation as PresentationPrimitive } from "@diceui/pptx";
 import { ViewVerticalIcon } from "@radix-ui/react-icons";

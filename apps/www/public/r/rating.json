@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rating",
+  "type": "registry:ui",
+  "title": "Rating",
+  "description": "The Rating component.",
+  "dependencies": [
+    "@radix-ui/react-icons"
+  ],
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Rating.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { StarFilledIcon, StarIcon } from \"@radix-ui/react-icons\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction Rating({\n  className,\n  value,\n  defaultValue = 0,\n  max = 5,\n  onValueChange,\n  label = \"Rating\",\n  readOnly = false,\n}: {\n  className?: string;\n  value?: number;\n  defaultValue?: number;\n  max?: number;\n  onValueChange?: (value: number) => void;\n  label?: string;\n  readOnly?: boolean;\n}) {\n  const [uncontrolled, setUncontrolled] = React.useState(defaultValue);\n  const current = value ?? uncontrolled;\n  const set = (next: number) => {\n    if (readOnly) return;\n    if (value === undefined) setUncontrolled(next);\n    onValueChange?.(next);\n  };\n\n  return (\n    <div\n      role=\"radiogroup\"\n      aria-label={label}\n      data-slot=\"rating\"\n      className={cn(\"inline-flex items-center gap-0.5\", className)}\n      onKeyDown={(event) => {\n        if (readOnly) return;\n        if (event.key === \"ArrowRight\" || event.key === \"ArrowUp\") {\n          event.preventDefault();\n          set(Math.min(max, current + 1 || 1));\n        } else if (event.key === \"ArrowLeft\" || event.key === \"ArrowDown\") {\n          event.preventDefault();\n          set(Math.max(1, current - 1));\n        }\n      }}\n    >\n      {Array.from({ length: max }, (_, index) => {\n        const score = index + 1;\n        const filled = score <= current;\n        const Icon = filled ? StarFilledIcon : StarIcon;\n        return (\n          <button\n            key={score}\n            type=\"button\"\n            role=\"radio\"\n            aria-checked={current === score}\n            aria-label={`${score} of ${max}`}\n            disabled={readOnly}\n            className=\"inline-flex size-3 items-center justify-center rounded-sm text-accent-9 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8\"\n            onClick={() => set(score)}\n          >\n            <Icon className=\"icon\" />\n          </button>\n        );\n      })}\n    </div>\n  );\n}\n\nexport { Rating };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

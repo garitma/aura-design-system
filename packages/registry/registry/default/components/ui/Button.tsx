@@ -1,12 +1,3 @@
-/**
- * @description Displays a button or a component that looks like a button.
- *
- * `mode` is a deprecated alias of `variant`. `variant="default"` is a
- * deprecated alias of `fill`. Both still render and warn in development.
- * Disabled chrome (opacity and cursor) lives only in `.button:disabled`.
- * Loading sets `disabled` so the control stays non-interactive, and
- * `data-loading` so it does not fade to the disabled opacity.
- */
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 
@@ -34,7 +25,6 @@ const buttonVariants = cva(
         md: "h-4",
         lg: "h-5",
         xl: "h-6",
-        // `icon` and `icon-sm` are the 39px (3 × 13px) icon button. `icon-md` is 52px.
         icon: "w-3 h-3 p-0",
         "icon-sm": "w-3 h-3 p-0",
         "icon-md": "w-4 h-4 p-0",

@@ -21,38 +21,12 @@ interface FormFieldSortableListProps<T = string>
   controlProps?: FormRadix.FormControlProps;
   field?: FieldProps;
   errors?: ErrorObject<string, Record<string, any>, unknown>[];
-  /**
-   * Render function for each item. Receives the item value and returns ReactNode.
-   * @example renderItem={(item) => <span>{item}</span>}
-   */
   renderItem?: (item: T, index: number) => React.ReactNode;
-  /**
-   * Callback to get unique identifier for each item. Required when using array of objects.
-   * @example getItemValue={(item) => item.id}
-   */
   getItemValue?: (item: T) => UniqueIdentifier;
-  /**
-   * Orientation of the sortable list
-   * @default "vertical"
-   */
   orientation?: "vertical" | "horizontal" | "mixed";
-  /**
-   * Whether to show drag overlay
-   * @default true
-   */
   showOverlay?: boolean;
-  /**
-   * Whether to show drag handle
-   * @default true
-   */
   showHandle?: boolean;
-  /**
-   * Custom className for items
-   */
   itemClassName?: string;
-  /**
-   * Custom className for the sortable content container
-   */
   contentClassName?: string;
 }
 
@@ -82,7 +56,6 @@ export const FormFieldSortableList = React.forwardRef<
     const hasError = field?.touch && errors && errors.length > 0;
     const name = props.name || field?.name || "";
 
-    // Ensure field value is an array
     const fieldValue = React.useMemo(() => {
       if (!field?.value) return [];
       return Array.isArray(field.value) ? field.value : [];
@@ -91,8 +64,6 @@ export const FormFieldSortableList = React.forwardRef<
     const handleValueChange = React.useCallback(
       (value: any[]) => {
         if (field?.setValue) {
-          // Sortable lists use arrays, but field.setValue expects string | boolean
-          // We'll cast it since sortable lists specifically need array values
           field.setValue(value as any);
         }
       },

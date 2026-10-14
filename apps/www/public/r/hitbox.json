@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "hitbox",
+  "type": "registry:ui",
+  "title": "Hitbox",
+  "description": "The Hitbox component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Hitbox.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction Hitbox({ children }: { children: React.ReactElement<{ className?: string }> }) {\n  return React.cloneElement(children, {\n    className: cn(\n      children.props.className,\n      \"relative before:absolute before:-inset-1 before:content-['']\",\n    ),\n  });\n}\n\nexport { Hitbox };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

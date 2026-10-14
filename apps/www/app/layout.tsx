@@ -29,7 +29,6 @@ export const metadata: Metadata = {
     siteName,
     images: [siteOgImage],
   },
-  // Images, title and description are inherited per page from `openGraph`.
   twitter: {
     card: "summary_large_image",
   },

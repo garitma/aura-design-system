@@ -1,11 +1,3 @@
-/**
- * Example caller for `deleteProject`. Name the ids in the handler (not in
- * middleware), turn a null proof into a response, and do the sensitive work
- * inside the callback. Names and proofs cannot leave that callback.
- *
- * Wire this to a route, a Server Action, or a job. The demo store accepts
- * session `sess_demo`, user `user_demo`, and project `prj_demo`.
- */
 import { name } from "@gdp-ts/core";
 import { deleteProject } from "@/data/delete-project";
 import { ProjectId, SessionId, UserId } from "@/lib/ids";

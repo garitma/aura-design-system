@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "pending",
+  "type": "registry:ui",
+  "title": "Pending",
+  "description": "The Pending component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Pending.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction Pending({\n  className,\n  pending = false,\n  children,\n  label = \"Loading\",\n}: {\n  className?: string;\n  pending?: boolean;\n  children?: React.ReactNode;\n  label?: string;\n}) {\n  return (\n    <span\n      aria-busy={pending || undefined}\n      data-slot=\"pending\"\n      data-pending={pending ? \"\" : undefined}\n      className={cn(\"inline-flex items-center gap-0.5\", className)}\n    >\n      {pending ? (\n        <span\n          aria-hidden\n          className=\"size-1 animate-spin rounded-full border-2 border-gray-6 border-t-accent-9 motion-reduce:animate-none\"\n        />\n      ) : null}\n      <span className={pending ? \"text-gray-11\" : undefined}>{children}</span>\n      {pending ? <span className=\"sr-only\">{label}</span> : null}\n    </span>\n  );\n}\n\nexport { Pending };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

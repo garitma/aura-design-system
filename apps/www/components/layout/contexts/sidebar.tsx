@@ -23,9 +23,6 @@ interface SidebarContextValue {
   setOpen: Dispatch<SetStateAction<boolean>>;
   collapsed: boolean;
   setCollapsed: Dispatch<SetStateAction<boolean>>;
-  /**
-   * When set to false, don't close the sidebar when navigate to another page
-   */
   closeOnRedirect: RefObject<boolean>;
 }
 

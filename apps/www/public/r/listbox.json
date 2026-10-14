@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "listbox",
+  "type": "registry:ui",
+  "title": "Listbox",
+  "description": "The Listbox component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Listbox.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\ntype ListboxItem = {\n  value: string;\n  label: string;\n  disabled?: boolean;\n};\n\nfunction Listbox({\n  className,\n  items,\n  value,\n  defaultValue,\n  onValueChange,\n  label = \"Options\",\n}: {\n  className?: string;\n  items: ListboxItem[];\n  value?: string;\n  defaultValue?: string;\n  onValueChange?: (value: string) => void;\n  label?: string;\n}) {\n  const [uncontrolled, setUncontrolled] = React.useState(defaultValue ?? items[0]?.value);\n  const current = value ?? uncontrolled;\n  const enabled = items.filter((item) => !item.disabled);\n  const refs = React.useRef(new Map<string, HTMLButtonElement>());\n\n  const select = (next: string) => {\n    if (value === undefined) setUncontrolled(next);\n    onValueChange?.(next);\n    refs.current.get(next)?.focus();\n  };\n\n  const move = (delta: number) => {\n    const index = enabled.findIndex((item) => item.value === current);\n    const next = enabled[(index + delta + enabled.length) % enabled.length];\n    if (next) select(next.value);\n  };\n\n  return (\n    <div\n      role=\"listbox\"\n      aria-label={label}\n      data-slot=\"listbox\"\n      className={cn(\n        \"flex w-full max-w-xl flex-col rounded-sm border border-gray-6 bg-gray-1 p-0.5\",\n        className,\n      )}\n      onKeyDown={(event) => {\n        if (event.key === \"ArrowDown\") {\n          event.preventDefault();\n          move(1);\n        } else if (event.key === \"ArrowUp\") {\n          event.preventDefault();\n          move(-1);\n        }\n      }}\n    >\n      {items.map((item) => {\n        const selected = item.value === current;\n        return (\n          <button\n            key={item.value}\n            ref={(node) => {\n              if (node) refs.current.set(item.value, node);\n              else refs.current.delete(item.value);\n            }}\n            type=\"button\"\n            role=\"option\"\n            tabIndex={selected ? 0 : -1}\n            aria-selected={selected}\n            disabled={item.disabled}\n            className=\"rounded-sm px-1 py-0.5 text-start text-gray-12 hover:bg-gray-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8 disabled:opacity-50 aria-selected:bg-accent-3\"\n            onClick={() => select(item.value)}\n          >\n            {item.label}\n          </button>\n        );\n      })}\n    </div>\n  );\n}\n\nexport { Listbox };\nexport type { ListboxItem };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

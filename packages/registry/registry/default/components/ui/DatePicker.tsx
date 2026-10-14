@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description A single date chosen from Calendar inside a Popover.
- */
 import * as React from "react";
 import { CalendarIcon } from "@radix-ui/react-icons";
 

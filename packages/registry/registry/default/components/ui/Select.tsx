@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Displays a list of options for the user to pick from—triggered by a button.
- */
 import * as React from "react";
 import { Select as SelectRadix } from "radix-ui";
 import {
@@ -16,10 +13,6 @@ function Select({ ...props }: React.ComponentProps<typeof SelectRadix.Root>) {
   return <SelectRadix.Root data-slot="select" {...props} />;
 }
 
-/**
- * Matches Input sm, default, and lg (`h-3`, `h-4`, `h-5`): 39, 52, and 65px.
- * Vertical padding is 0 so the spacing height is the border box.
- */
 const selectTriggerSizeClassName = {
   sm: "box-border h-3 px-2 py-0",
   default: "box-border h-4 px-2 py-0",
@@ -237,11 +230,6 @@ function SelectScrollDownButton({
   );
 }
 
-/**
- * Arrow linking the menu to the trigger.
- * Renders only when `SelectContent` uses `position="popper"`.
- * The default `item-aligned` position does not show this arrow.
- */
 function SelectArrow({
   className,
   ...props

@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description Overlapping avatars with truncation, orientation, and custom overflow.
- */
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -52,7 +49,6 @@ const avatarGroupVariants = cva("flex items-center", {
   },
 });
 
-/** Non-circle radii. `rounded-full` is the round avatar, not a square shape. */
 const SQUARE_RADIUS =
   /(?:^|\s)rounded(?:-(?:none|sm|md|lg|xl|2xl|3xl))?(?=\s|$)/;
 
@@ -96,9 +92,6 @@ function cutoutMaskImage(options: {
   const cutsStart = reverse ? direction !== "ltr" : direction === "ltr";
 
   if (isSquare) {
-    // Same midline depth as the circular bite, plus 2px, so squares overlap
-    // instead of sitting edge to edge. A straight edge follows `rounded-none`
-    // and the flat side of a `rounded-md` stack; outer corners stay on the avatar.
     const cut = `${Number((Math.max(maskRadius - maskOffset, 0) + 2).toFixed(2))}px`;
     if (orientation === "vertical") {
       return cutsStart
@@ -135,17 +128,10 @@ function cutoutMaskImage(options: {
 interface AvatarGroupProps
   extends React.ComponentProps<"div">,
     VariantProps<typeof avatarGroupVariants> {
-  /** Pixel size applied to each item (default matches Aura `size-3` = 39px). */
   size?: number;
-  /** Max visible slots including the overflow indicator when truncating. */
   max?: number;
   asChild?: boolean;
   reverse?: boolean;
-  /**
-   * Cutout shape. `round` (default) uses a circular mask. `square` uses a
-   * straight mask and drops `rounded-full`, so `rounded-none` and `rounded-md`
-   * avatars keep a gap. Square radii on a child are detected either way.
-   */
   shape?: AvatarGroupShape;
   renderOverflow?: (count: number) => React.ReactNode;
 }

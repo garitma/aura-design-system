@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rule-no-comments",
+  "type": "registry:file",
+  "title": "Rule: No Comments",
+  "description": "Aura rule: No Comments. Install to .cursor/rules/ for Cursor AI guidance.",
+  "files": [
+    {
+      "path": "registry/default/rules/no-comments.mdc",
+      "content": "---\nalwaysApply: true\ntitle: No code comments\ndescription: Fix the root cause instead of commenting on it. Only external constraints, directives, licenses, and generated code carry comments.\n---\n\n# No code comments\n\n## Why\n\nAgents replicate the patterns already in a file. A comment that explains a temporary workaround makes the hack look sanctioned, so the next change adds \"just one more workaround\" beside it. The comment then goes stale while the hack spreads.\n\n## What to do instead\n\n* **MUST**: Fix the root cause from first principles so neither the hack nor its comment remains.\n* **MUST**: Express intent through names, types, and tests. Extract a well-named function or constant instead of explaining a block.\n* **MUST**: Encode \"do not remove\" or \"keep this shape\" constraints as a type, a test, or a lint rule, not a comment.\n* **MUST NOT**: Leave TODO, FIXME, HACK, or commented-out code.\n* **MUST NOT**: Add a lint or TypeScript suppression to make a workaround pass. An unjustified suppression is a workaround.\n\n## Triage an existing comment\n\n* **Delete outright** when it narrates the code, restates a name, or is stale.\n* **Solve by refactor** when it explains a workaround in our own code. Fix it in the same change when the fix is small. Otherwise record the file, the workaround, and the proposed refactor in the PR, then delete the comment.\n\n## Allowed comments\n\n* An external constraint this repo cannot change: a browser quirk, a third-party or library bug, or a platform or spec limit. State the external reason, for example \"iOS Safari zooms inputs under 16px\".\n* Functional directives: `'use client'`, `'use server'`, `/// <reference …>`, JSDoc types in plain JS, `@deprecated`, and `@ts-expect-error` / `eslint-disable` only when the code cannot pass without them, with the reason.\n* License headers.\n* Generated code. Regenerate it from its source; do not hand-edit it.\n",
+      "type": "registry:file",
+      "target": ".cursor/rules/no-comments.mdc"
+    }
+  ]
+}

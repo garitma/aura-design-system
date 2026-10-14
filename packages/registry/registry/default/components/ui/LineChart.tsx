@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Line chart family: natural, linear, step, multiple, dots, custom dots, labels, and an interactive range.
- */
 import * as React from "react";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
 import { CartesianGrid, LabelList, LineChart as RechartsLineChart, XAxis } from "recharts";
@@ -71,7 +68,6 @@ const interactiveVisitors = Array.from({ length: 90 }, (_, index) => {
     mobile: Math.max(mobile, 24),
   };
 });
-
 
 const titles: Record<LineChartVariant, string> = {
   default: "Line chart",

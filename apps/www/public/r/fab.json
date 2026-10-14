@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fab",
+  "type": "registry:ui",
+  "title": "Fab",
+  "description": "The Fab component.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Fab.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/utils/class-names\";\n\nconst fabVariants = cva(\n  \"inline-flex items-center justify-center gap-0.5 rounded-full bg-accent-9 text-accent-contrast shadow-md transition hover:bg-accent-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8 motion-reduce:transition-none\",\n  {\n    variants: {\n      size: {\n        default: \"size-4\",\n        sm: \"size-3\",\n        lg: \"h-5 min-w-5 px-1.5\",\n      },\n      position: {\n        fixed: \"fixed end-2 bottom-2 z-40\",\n        absolute: \"absolute end-2 bottom-2 z-10\",\n        inline: \"relative\",\n      },\n    },\n    defaultVariants: {\n      size: \"default\",\n      position: \"fixed\",\n    },\n  },\n);\n\nfunction Fab({\n  className,\n  size,\n  position,\n  label,\n  children,\n  ...props\n}: React.ComponentProps<\"button\"> &\n  VariantProps<typeof fabVariants> & { label?: string }) {\n  const extended = Boolean(label);\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"fab\"\n      data-extended={extended ? \"\" : undefined}\n      className={cn(\n        fabVariants({\n          size: extended ? \"lg\" : size,\n          position,\n        }),\n        className,\n      )}\n      {...props}\n    >\n      {children}\n      {label ? <span>{label}</span> : null}\n    </button>\n  );\n}\n\nexport { Fab, fabVariants };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

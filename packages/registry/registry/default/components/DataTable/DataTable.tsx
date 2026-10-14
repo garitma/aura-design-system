@@ -60,31 +60,18 @@ export interface DataTableProps<TData> {
   columns: ColumnDef<TData, unknown>[];
   data: TData[];
   className?: string;
-  /** Optional heading above the toolbar. */
   title?: React.ReactNode;
-  /** Muted line under the title (e.g. segment label). */
   description?: React.ReactNode;
-  /** Placeholder for the global filter input. */
   searchPlaceholder?: string;
-  /** Toggle search field (default: true). */
   showSearch?: boolean;
-  /** Debounce for global filter (default: 300). */
   searchDebounceMs?: number;
-  /** Preset sort options (e.g. newest / oldest). Each option sets `sorting` when selected. */
   sortOptions?: DataTableSortOption[];
-  /** When provided, shows a refresh control that calls this handler. */
   onRefresh?: () => void | Promise<void>;
-  /** Replaces the default empty state when there are no rows. */
   emptyState?: React.ReactNode;
-  /** Initial page size (default: 10). */
   initialPageSize?: number;
-  /** Optional initial sorting (overrides first `sortOptions` entry when set). */
   initialSorting?: SortingState;
-  /** Custom range summary in the footer (see `DataTablePagination`). */
   renderPaginationSummary?: DataTablePaginationProps<TData>["renderSummary"];
-  /** Row-count options for the footer page-size select (default: 10, 20, 50, 100). */
   pageSizeOptions?: DataTablePaginationProps<TData>["pageSizeOptions"];
-  /** Extra controls after search / refresh (e.g. primary actions). Sort lives in the footer. */
   toolbarEnd?: React.ReactNode;
 }
 

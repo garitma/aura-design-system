@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "speed-dial",
+  "type": "registry:ui",
+  "title": "SpeedDial",
+  "description": "The SpeedDial component.",
+  "files": [
+    {
+      "path": "registry/default/components/ui/SpeedDial.tsx",
+      "content": "\"use client\";\n\nexport {\n  SpeedDial,\n  SpeedDialItem,\n  SpeedDialList,\n  SpeedDialTrigger,\n} from \"@/components/ui/FabMenu\";\n",
+      "type": "registry:ui"
+    }
+  ]
+}

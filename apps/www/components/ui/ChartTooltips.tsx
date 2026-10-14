@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Chart tooltip gallery: dot, line, dashed, hidden indicator, label, icons, formatter, and multiple series.
- */
 import { DesktopIcon, MobileIcon } from "@radix-ui/react-icons";
 import { BarChart as RechartsBarChart, CartesianGrid, XAxis } from "recharts";
 
@@ -45,7 +42,6 @@ const monthVisitors = [
   { month: "May", desktop: 209, mobile: 130 },
   { month: "June", desktop: 214, mobile: 140 },
 ];
-
 
 const titles: Record<ChartTooltipsVariant, string> = {
   default: "Tooltip",

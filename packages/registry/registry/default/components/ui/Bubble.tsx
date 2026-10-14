@@ -1,6 +1,3 @@
-/**
- * @description Displays conversational content in a message bubble with variants, alignment, grouping, and reactions.
- */
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
@@ -34,8 +31,6 @@ const bubbleVariants = cva(
           "*:data-[slot=bubble-content]:border-gray-7 *:data-[slot=bubble-content]:bg-gray-1 *:data-[slot=bubble-content]:text-gray-12 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-gray-3",
         ghost:
           "*:data-[slot=bubble-content]:border-none *:data-[slot=bubble-content]:rounded-none *:data-[slot=bubble-content]:bg-transparent *:data-[slot=bubble-content]:p-0 [&>[data-slot=bubble-content]:is(button,a):hover]:bg-gray-3 [&>[data-slot=bubble-content]:is(button,a):hover]:text-gray-12",
-        // Danger is a surface/contrast pair, not a 12-step ramp. 6% toward
-        // --danger-contrast matches one soft step (gray-2 → gray-3).
         destructive:
           "*:data-[slot=bubble-content]:bg-danger *:data-[slot=bubble-content]:text-danger-contrast [&>[data-slot=bubble-content]:is(button,a):hover]:bg-[color-mix(in_oklab,var(--danger),var(--danger-contrast)_6%)]",
       },

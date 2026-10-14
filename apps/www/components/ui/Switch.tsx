@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description A control that allows the user to toggle between on and off states.
- */
 import * as React from "react";
 import { Switch as SwitchPrimitive } from "radix-ui";
 

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "compare-slider",
+  "type": "registry:ui",
+  "title": "CompareSlider",
+  "description": "The CompareSlider component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/CompareSlider.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction CompareSlider({\n  className,\n  before,\n  after,\n  label = \"Compare\",\n  defaultValue = 50,\n}: {\n  className?: string;\n  before: React.ReactNode;\n  after: React.ReactNode;\n  label?: string;\n  defaultValue?: number;\n}) {\n  const [value, setValue] = React.useState(defaultValue);\n  return (\n    <div data-slot=\"compare-slider\" className={cn(\"relative h-16 w-full overflow-hidden rounded-sm\", className)}>\n      <div className=\"absolute inset-0\">{after}</div>\n      <div className=\"absolute inset-0\" style={{ clipPath: `inset(0 ${100 - value}% 0 0)` }}>\n        {before}\n      </div>\n      <input\n        type=\"range\"\n        min={0}\n        max={100}\n        value={value}\n        aria-label={label}\n        className=\"compare-range\"\n        onChange={(event) => setValue(Number(event.target.value))}\n      />\n    </div>\n  );\n}\n\nexport { CompareSlider };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

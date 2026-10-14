@@ -154,8 +154,7 @@ describe("Avatar", () => {
       </Avatar>
     );
 
-    // Radix UI Avatar shows fallback until image loads
-    // In test environment, fallback should be visible
+    // Radix Avatar shows the fallback until the image loads, and jsdom never loads images.
     const fallback = container.querySelector('[data-slot="avatar-fallback"]');
     expect(fallback).toBeInTheDocument();
   });

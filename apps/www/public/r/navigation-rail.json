@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navigation-rail",
+  "type": "registry:ui",
+  "title": "NavigationRail",
+  "description": "The NavigationRail component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/NavigationRail.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction NavigationRail({\n  className,\n  expanded = false,\n  label = \"Primary\",\n  ...props\n}: React.ComponentProps<\"nav\"> & { expanded?: boolean; label?: string }) {\n  return (\n    <nav\n      aria-label={label}\n      data-slot=\"navigation-rail\"\n      data-expanded={expanded ? \"true\" : \"false\"}\n      className={cn(\n        \"group flex h-full flex-col gap-0.5 border-e border-gray-6 bg-gray-1 p-0.5\",\n        expanded ? \"w-16\" : \"w-5\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction NavigationRailItem({\n  className,\n  active,\n  children,\n  ...props\n}: React.ComponentProps<\"button\"> & { active?: boolean }) {\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"navigation-rail-item\"\n      aria-current={active ? \"page\" : undefined}\n      className={cn(\n        \"inline-flex items-center gap-0.5 rounded-sm px-1 py-0.5 text-gray-11 hover:bg-gray-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8 aria-[current=page]:bg-accent-3 aria-[current=page]:text-accent-11\",\n        className,\n      )}\n      {...props}\n    >\n      {children}\n    </button>\n  );\n}\n\nfunction NavigationRailLabel({\n  className,\n  ...props\n}: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      data-slot=\"navigation-rail-label\"\n      className={cn(\"group-data-[expanded=false]:sr-only\", className)}\n      {...props}\n    />\n  );\n}\n\nexport { NavigationRail, NavigationRailItem, NavigationRailLabel };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

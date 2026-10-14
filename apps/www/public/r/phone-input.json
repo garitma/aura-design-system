@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "phone-input",
+  "type": "registry:ui",
+  "title": "PhoneInput",
+  "description": "The PhoneInput component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/PhoneInput.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nconst callingCodes = [\n  { value: \"1\", label: \"United States +1\" },\n  { value: \"34\", label: \"Spain +34\" },\n  { value: \"44\", label: \"United Kingdom +44\" },\n  { value: \"52\", label: \"Mexico +52\" },\n  { value: \"81\", label: \"Japan +81\" },\n];\n\nfunction PhoneInput({\n  className,\n  code,\n  defaultCode = \"1\",\n  onCodeChange,\n  label = \"Phone\",\n  ...props\n}: Omit<React.ComponentProps<\"input\">, \"type\"> & {\n  code?: string;\n  defaultCode?: string;\n  onCodeChange?: (code: string) => void;\n  label?: string;\n}) {\n  const [uncontrolledCode, setUncontrolledCode] = React.useState(defaultCode);\n  const currentCode = code ?? uncontrolledCode;\n  const id = React.useId();\n  return (\n    <div data-slot=\"phone-input\" className={cn(\"flex w-full max-w-xl flex-col gap-0.5\", className)}>\n      <label htmlFor={id}>{label}</label>\n      <div className=\"flex items-stretch gap-0.5\">\n        <select\n          aria-label=\"Calling code\"\n          value={currentCode}\n          className=\"default w-auto shrink-0 rounded-sm border border-gray-7 bg-gray-1 px-1 text-gray-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8\"\n          onChange={(event) => {\n            if (code === undefined) setUncontrolledCode(event.target.value);\n            onCodeChange?.(event.target.value);\n          }}\n        >\n          {callingCodes.map((item) => (\n            <option key={item.value} value={item.value}>\n              {item.label}\n            </option>\n          ))}\n        </select>\n        <input\n          id={id}\n          type=\"tel\"\n          inputMode=\"tel\"\n          autoComplete=\"tel-national\"\n          className=\"default min-w-0 flex-1 rounded-sm border border-gray-7 bg-gray-1 px-1 py-0.5 text-gray-12 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8\"\n          {...props}\n        />\n      </div>\n    </div>\n  );\n}\n\nexport { PhoneInput, callingCodes };\n",
+      "type": "registry:ui"
+    }
+  ]
+}
