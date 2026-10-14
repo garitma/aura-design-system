@@ -9,7 +9,7 @@
 
 ## What it does
 
-Holds the **default registry tree** under `registry/` (UI primitives, blocks, Cursor rules as `.mdc`, Cursor skills as `SKILL.md` folders, theming templates such as `components.json`, and packaged `DESIGN.md`). Maintainers run **sync scripts** to copy foundation files from `.cursor/rules`, `.cursor/skills`, and `packages/design` into that tree, then **generate** the registry JSON and **build** static files into **`apps/www/public/r`**, which [auradesignsystem.com](https://auradesignsystem.com/) serves for end users. `registry:generate` copies UI sources into `apps/www/components/ui`. [[Collapsible]] is the exception: the docs file re-exports the registry module, and the copy step leaves that re-export in place.
+Holds the **default registry tree** under `registry/` (UI primitives, blocks, Cursor rules as `.mdc`, Cursor skills as `SKILL.md` folders, theming templates such as `components.json`, and packaged `DESIGN.md`). Maintainers run **sync scripts** to copy foundation files from `.cursor/rules`, `.cursor/skills`, and `packages/design` into that tree, then **generate** the registry JSON and **build** static files into **`apps/www/public/r`**, which [auradesignsystem.com](https://auradesignsystem.com/) serves for end users. `registry:generate` copies UI sources into `apps/www/components/ui`, so the docs app never imports `packages/registry` source directly. `turbo prune` in `apps/www/Dockerfile` leaves that source out of the image.
 
 **Ladle** (`src/*.stories.tsx`) provides a fast dev loop for components without the full Next docs app. **Docs generation** scripts align generated MDX or rules docs with the `apps/www` content pipeline.
 
