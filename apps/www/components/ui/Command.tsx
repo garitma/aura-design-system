@@ -112,6 +112,9 @@ function Command({
   );
 }
 
+const commandInputClassName =
+  "default w-full border-0! bg-transparent! pl-5! text-gray-12 shadow-none outline-hidden! ring-0 placeholder:text-gray-11 focus:border-0! focus:bg-transparent! focus:shadow-none focus:outline-hidden! focus:ring-0 focus-visible:border-0! focus-visible:bg-transparent! focus-visible:shadow-none focus-visible:outline-hidden! focus-visible:ring-0 disabled:cursor-default disabled:opacity-50";
+
 function CommandInput({
   className,
   placeholder = undefined,
@@ -120,12 +123,9 @@ function CommandInput({
   const { inputRef } = React.useContext(CommandInputContext);
 
   return (
-    <div className="px-1.5 py-0.5">
+    <div className="px-1.5 py-0.5" data-slot="command-input">
       <AutocompleteInput
-        className={cn(
-          "border-transparent! bg-transparent shadow-none before:hidden has-focus-visible:ring-0 pl-5",
-          className,
-        )}
+        className={cn(commandInputClassName, className)}
         placeholder={placeholder}
         ref={inputRef}
         size="lg"
