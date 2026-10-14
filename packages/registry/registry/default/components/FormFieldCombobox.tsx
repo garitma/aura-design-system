@@ -14,22 +14,9 @@ interface FormFieldComboboxProps extends Partial<FormRadix.FormFieldProps> {
   field?: FieldProps;
   errors?: ErrorObject<string, Record<string, any>, unknown>[];
   options: ComboboxOption[];
-  /**
-   * Whether to allow multiple selection
-   * @default false
-   */
   multiple?: boolean;
-  /**
-   * Placeholder text for the combobox
-   */
   placeholder?: string;
-  /**
-   * Whether the combobox is disabled
-   */
   disabled?: boolean;
-  /**
-   * Custom className for the combobox
-   */
   className?: string;
 }
 
@@ -90,3 +77,4 @@ export const FormFieldCombobox = React.forwardRef<
 );
 
 FormFieldCombobox.displayName = "FormFieldCombobox";
+

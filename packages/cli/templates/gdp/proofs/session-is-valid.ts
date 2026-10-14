@@ -8,7 +8,6 @@ import type { SessionId, UserId } from "@/lib/ids";
 
 const SessionIsValid = defineProof("SessionIsValid");
 
-/** Session `S` is live and belongs to user `U`. */
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type -- gdp-ts recipe: a distinct interface per proof kind
 export interface SessionIsValid<S, U> extends Proof<"SessionIsValid", [S, U]> {}
 
@@ -21,3 +20,4 @@ export async function sessionIsValid<S, U>(
     ? SessionIsValid.prove(session, user)
     : null;
 }
+

@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Displays rich content in a portal triggered by a button.
- */
 import * as React from "react";
 import { Popover as PopoverRadix } from "radix-ui";
 import { Cross2Icon } from "@radix-ui/react-icons";
@@ -97,3 +94,4 @@ export {
   PopoverArrow,
   PopoverClose,
 };
+

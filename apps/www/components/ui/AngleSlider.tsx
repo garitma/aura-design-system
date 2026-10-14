@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description A circular slider for selecting an angle or value along an arc.
- */
 import * as React from "react";
 import { Direction as DirectionPrimitive, Slot as SlotPrimitive } from "radix-ui";
 
@@ -19,7 +16,6 @@ const THUMB_NAME = "AngleSliderThumb";
 const PAGE_KEYS = ["PageUp", "PageDown"];
 const ARROW_KEYS = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"];
 
-/** Inset on the 13px scale: 1.5 × `--spacing` (19.5px), the step for the old 20px inset. */
 const ANGLE_SLIDER_PADDING = "calc(var(--spacing) * 1.5)";
 const ANGLE_SLIDER_PADDING_PX = 19.5;
 
@@ -927,3 +923,4 @@ export {
   AngleSliderValue,
   useStore as useAngleSlider,
 };
+

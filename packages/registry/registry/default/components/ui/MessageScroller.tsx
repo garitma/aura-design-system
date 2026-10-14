@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description A chat scroll container that anchors turns, follows streamed output, and jumps to messages.
- */
 import * as React from "react";
 import { ArrowDownIcon } from "@radix-ui/react-icons";
 import {
@@ -126,3 +123,4 @@ export {
   useMessageScrollerScrollable,
   useMessageScrollerVisibility,
 };
+

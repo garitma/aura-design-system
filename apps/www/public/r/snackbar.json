@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "snackbar",
+  "type": "registry:ui",
+  "title": "Snackbar",
+  "description": "The Snackbar component.",
+  "dependencies": [
+    "@radix-ui/react-icons"
+  ],
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Snackbar.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Cross2Icon } from \"@radix-ui/react-icons\";\nimport { cn } from \"@/utils/class-names\";\n\ntype SnackbarProps = React.ComponentProps<\"div\"> & {\n  open?: boolean;\n  onOpenChange?: (open: boolean) => void;\n  action?: React.ReactNode;\n  position?: \"fixed\" | \"inline\";\n};\n\nfunction Snackbar({\n  className,\n  open = true,\n  onOpenChange,\n  action,\n  position = \"fixed\",\n  children,\n  ...props\n}: SnackbarProps) {\n  if (!open) return null;\n  return (\n    <div\n      role=\"status\"\n      data-slot=\"snackbar\"\n      className={cn(\n        \"z-50 flex max-w-full items-center gap-1 rounded-sm bg-gray-12 px-1.5 py-1 text-gray-1 shadow-md\",\n        position === \"fixed\"\n          ? \"fixed inset-x-2 bottom-2 mx-auto w-fit\"\n          : \"relative w-fit\",\n        className,\n      )}\n      {...props}\n    >\n      <p className=\"m-0\">{children}</p>\n      {action}\n      {onOpenChange ? (\n        <button\n          type=\"button\"\n          aria-label=\"Dismiss\"\n          className=\"inline-flex size-2 items-center justify-center rounded-sm text-gray-1 hover:bg-gray-a3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8\"\n          onClick={() => onOpenChange(false)}\n        >\n          <Cross2Icon className=\"icon\" />\n        </button>\n      ) : null}\n    </div>\n  );\n}\n\nfunction SnackbarAction({\n  className,\n  ...props\n}: React.ComponentProps<\"button\">) {\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"snackbar-action\"\n      className={cn(\n        \"font-medium text-accent-9 hover:text-accent-10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { Snackbar, SnackbarAction };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

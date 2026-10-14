@@ -1,9 +1,5 @@
 "use client";
 
-/**
- * @see https://github.com/shadcn-ui/ui/blob/main/apps/www/components/component-source.tsx
- */
-
 import type * as React from "react";
 
 import { CodeBlock } from "@/components/ui/Codeblock";

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "shape",
+  "type": "registry:ui",
+  "title": "Shape",
+  "description": "The Shape component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Shape.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nconst shapePaths = {\n  circle: \"circle(50% at 50% 50%)\",\n  square: \"inset(0% round 12%)\",\n  diamond: \"polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)\",\n  arch: \"polygon(0% 100%, 0% 42%, 18% 14%, 50% 0%, 82% 14%, 100% 42%, 100% 100%)\",\n  pill: \"inset(18% 0% round 999px)\",\n} as const;\n\ntype ShapeName = keyof typeof shapePaths;\n\nfunction Shape({\n  className,\n  name = \"circle\",\n  size = \"default\",\n  ...props\n}: React.ComponentProps<\"div\"> & {\n  name?: ShapeName;\n  size?: \"sm\" | \"default\" | \"lg\";\n}) {\n  return (\n    <div\n      data-slot=\"shape\"\n      data-shape={name}\n      data-size={size}\n      style={{ clipPath: shapePaths[name] }}\n      className={cn(\n        \"bg-accent-9 transition duration-300 ease-in-out motion-reduce:transition-none\",\n        size === \"sm\" && \"size-3\",\n        size === \"default\" && \"size-8\",\n        size === \"lg\" && \"size-12\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction ShapeMorph({\n  names = [\"circle\", \"diamond\", \"arch\", \"pill\", \"square\"],\n  interval = 900,\n}: {\n  names?: ShapeName[];\n  interval?: number;\n}) {\n  const [index, setIndex] = React.useState(0);\n  React.useEffect(() => {\n    const query = window.matchMedia(\"(prefers-reduced-motion: reduce)\");\n    if (query.matches) return;\n    const timer = window.setInterval(() => {\n      setIndex((current) => (current + 1) % names.length);\n    }, interval);\n    return () => window.clearInterval(timer);\n  }, [interval, names.length]);\n\n  return <Shape name={names[index]} size=\"sm\" />;\n}\n\nexport { Shape, ShapeMorph, shapePaths };\nexport type { ShapeName };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -68,7 +68,6 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
   __maxWidth: number
   __showCaption: boolean
   __caption: LexicalEditor
-  // Captions cannot yet be used within editor cells
   __captionsEnabled: boolean
 
   static getType(): string {
@@ -119,8 +118,7 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
 
   static importDOM(): DOMConversionMap | null {
     return {
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      img: (node: Node) => ({
+      img: () => ({
         conversion: $convertImageElement,
         priority: 0,
       }),
@@ -180,8 +178,6 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
     const writable = this.getWritable()
     writable.__showCaption = showCaption
   }
-
-  // View
 
   createDOM(config: EditorConfig): HTMLElement {
     const span = document.createElement("span")
@@ -256,3 +252,4 @@ export function $isImageNode(
 ): node is ImageNode {
   return node instanceof ImageNode
 }
+

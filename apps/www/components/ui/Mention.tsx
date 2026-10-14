@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Adds accessible, trigger-based mentions to a text input.
- */
 import * as React from "react";
 import * as MentionPrimitive from "@diceui/mention";
 
@@ -101,3 +98,4 @@ export {
   MentionLabel,
   MentionPortal,
 };
+

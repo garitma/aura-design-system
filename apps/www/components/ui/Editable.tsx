@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description Inline text that switches between preview and edit modes.
- */
 import * as React from "react";
 import {
   Direction as DirectionPrimitive,
@@ -830,3 +827,4 @@ export {
   EditableTrigger,
   useStore as useEditable,
 };
+

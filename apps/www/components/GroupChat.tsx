@@ -15,7 +15,6 @@ export function GroupChat() {
       className="flex flex-col h-full bg-gray-2 text-gray-12 border-gray-6 overflow-hidden"
       data-block="group-chat"
     >
-      {/* Header */}
       <div className="p-1.5 border-b border-gray-6 flex items-center justify-between bg-gray-2 z-10">
         <div className="flex items-center gap-1">
           <div className="flex -space-x-2 overflow-hidden">
@@ -54,7 +53,6 @@ export function GroupChat() {
         </div>
       </div>
 
-      {/* Messages */}
       <ScrollArea className="flex-1 p-1.5">
         <div className="space-y-1.5">
           <div className="flex gap-1">
@@ -89,7 +87,6 @@ export function GroupChat() {
         </div>
       </ScrollArea>
 
-      {/* Input */}
       <div className="p-1 bg-gray-2">
         <div className="relative flex items-center gap-0.5">
           <Button variant="menu" className="px-1">
@@ -107,3 +104,4 @@ export function GroupChat() {
     </Card>
   );
 }
+

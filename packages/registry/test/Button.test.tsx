@@ -8,8 +8,8 @@ describe("Button", () => {
     render(<Button>Click me</Button>);
     const button = screen.getByRole("button", { name: "Click me" });
     expect(button).toBeInTheDocument();
-    expect(button).toHaveClass("button-fill"); // Default variant is fill
-    expect(button).toHaveClass("h-4"); // Default size
+    expect(button).toHaveClass("button-fill");
+    expect(button).toHaveClass("h-4");
     expect(button.className).toContain("focus-visible:[outline:var(--aura-outline)]");
     expect(button.className).toContain("[&_svg]:size-[1em]");
   });
@@ -96,7 +96,7 @@ describe("Button", () => {
     const link = screen.getByRole("link", { name: "Link Button" });
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute("href", "/test");
-    expect(link).toHaveClass("button-fill"); // Should still have button classes
+    expect(link).toHaveClass("button-fill");
   });
 
   it("handles isDisabled prop", () => {
@@ -148,3 +148,4 @@ describe("Button", () => {
     warn.mockRestore();
   });
 });
+

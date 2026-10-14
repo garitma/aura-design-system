@@ -25,7 +25,6 @@ export const DEFAULT_THEME_COLORS: ThemeColorsByMode = {
 const STORAGE_KEY = AURA_THEME_COLORS_KEY;
 const CHANGE_EVENT = "aura-theme-colors-change";
 
-/** Backgrounds at or above this relative luminance use the light scale. */
 const LIGHT_BACKGROUND_LUMINANCE = 0.4;
 
 let pinnedAppearance: "light" | "dark" | null = null;
@@ -79,7 +78,6 @@ function clearCorruptStorage() {
   try {
     localStorage.removeItem(STORAGE_KEY);
   } catch {
-    // ignore quota / privacy mode failures
   }
 }
 
@@ -130,7 +128,6 @@ function writeToStorage(next: ThemeColorsByMode) {
     try {
       localStorage.setItem(STORAGE_KEY, serializeTheme(safeNext));
     } catch {
-      // ignore quota / privacy mode failures
     }
   }
   emitChange();
@@ -140,7 +137,6 @@ export function pinAppearance(mode: "light" | "dark") {
   pinnedAppearance = mode;
 }
 
-/** Prefer a preset's mode until next-themes resolves to the same value. */
 export function consumePaintAppearance(
   resolved: string | undefined
 ): "light" | "dark" | null {
@@ -192,7 +188,6 @@ export function isValidHex(hex: string) {
   );
 }
 
-/** Always returns `#rrggbb` (expands 3-digit hex). Safe for `<input type="color">`. */
 export function normalizeHex(value: string) {
   const raw = value.trim();
   const withHash = raw.startsWith("#") ? raw : `#${raw}`;
@@ -206,7 +201,6 @@ export function normalizeHex(value: string) {
   return `#${body}`.toLowerCase();
 }
 
-/** Native color inputs require `#rrggbb`; never pass short or invalid values. */
 export function toColorInputValue(value: string, fallback = "#4015ca") {
   if (!isValidHex(value)) return normalizeHex(fallback);
   return normalizeHex(value);
@@ -677,3 +671,4 @@ export function useAuraThemeColors() {
     downloadCSS,
   };
 }
+

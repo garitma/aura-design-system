@@ -154,8 +154,6 @@ describe("Avatar", () => {
       </Avatar>
     );
 
-    // Radix UI Avatar shows fallback until image loads
-    // In test environment, fallback should be visible
     const fallback = container.querySelector('[data-slot="avatar-fallback"]');
     expect(fallback).toBeInTheDocument();
   });
@@ -210,3 +208,4 @@ describe("Avatar", () => {
     expect(fallback).toBeInTheDocument();
   });
 });
+

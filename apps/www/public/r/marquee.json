@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marquee",
+  "type": "registry:ui",
+  "title": "Marquee",
+  "description": "The Marquee component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Marquee.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction Marquee({\n  className,\n  children,\n  label = \"Marquee\",\n}: {\n  className?: string;\n  children: React.ReactNode;\n  label?: string;\n}) {\n  return (\n    <div\n      data-slot=\"marquee\"\n      aria-label={label}\n      tabIndex={0}\n      className={cn(\"overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8\", className)}\n    >\n      <div data-animate=\"marquee\" className=\"flex w-max gap-2\">\n        <div className=\"flex gap-2\">{children}</div>\n        <div className=\"flex gap-2\" aria-hidden>\n          {children}\n        </div>\n      </div>\n    </div>\n  );\n}\n\nexport { Marquee };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

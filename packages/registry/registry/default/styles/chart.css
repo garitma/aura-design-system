@@ -1,5 +1,4 @@
 :root {
-  /* 8px swatch and 2px line. The 13px spacing scale (size-0.5, h-1) is too coarse for markers. */
   --chart-marker: 8px;
   --chart-marker-line: 2px;
   --chart-inset: var(--spacing);
@@ -55,3 +54,4 @@
     transition-duration: 0.01ms;
   }
 }
+

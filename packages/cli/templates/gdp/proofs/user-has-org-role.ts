@@ -8,7 +8,6 @@ import type { OrgId, UserId } from "@/lib/ids";
 
 const UserHasOrgRole = defineProof("UserHasOrgRole");
 
-/** User `U` is an Owner or Member of org `O`. */
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type -- gdp-ts recipe: a distinct interface per proof kind
 export interface UserHasOrgRole<U, O> extends Proof<"UserHasOrgRole", [U, O]> {}
 
@@ -21,3 +20,4 @@ export async function userHasOrgRole<U, O>(
     ? UserHasOrgRole.prove(user, org)
     : null;
 }
+

@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Radial chart family: rings, labels, grid, center total, rounded shape, and stacked series.
- */
 import { ArrowUpIcon } from "@radix-ui/react-icons";
 import {
   LabelList,
@@ -172,3 +169,4 @@ function RadialChart({
 }
 
 export { RadialChart };
+

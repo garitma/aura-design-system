@@ -1,6 +1,5 @@
 import * as React from "react"
 
-// Component demos
 import { 
   AccordionDemo,
   AccordionDemoMultiple,
@@ -1922,3 +1921,4 @@ export type RegistryItem = {
 }
 
 export type RegistryName = keyof typeof Registry
+

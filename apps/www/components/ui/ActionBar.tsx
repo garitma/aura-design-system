@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description A floating toolbar for bulk actions on selected items.
- */
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import { useDirection } from "@radix-ui/react-direction";
@@ -683,3 +680,4 @@ export {
   ActionBarSelection,
   ActionBarSeparator,
 };
+

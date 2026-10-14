@@ -1,6 +1,3 @@
-/**
- * @description Displays a message in a conversation, with optional avatar, header, footer, and alignment.
- */
 import * as React from "react";
 
 import { cn } from "@/utils/class-names";
@@ -93,3 +90,4 @@ export {
   MessageFooter,
   MessageHeader,
 };
+

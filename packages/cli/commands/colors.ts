@@ -356,7 +356,6 @@ export function registerColorsCommand(program: Command) {
         background = background || answers.background;
       }
 
-      // Generate color scales for light mode
       const lightColors = generateRadixColors({ 
         appearance: 'light', 
         accent, 
@@ -364,7 +363,6 @@ export function registerColorsCommand(program: Command) {
         background 
       });
 
-      // Generate color scales for dark mode
       const darkColors = generateRadixColors({ 
         appearance: 'dark', 
         accent, 
@@ -372,10 +370,8 @@ export function registerColorsCommand(program: Command) {
         background 
       });
 
-      // Generate the full globals.css content
       const globalsCss = generateGlobalsCss(lightColors, darkColors);
 
-      // Find and write to globals.css
       const projectDir = process.cwd();
       const globalsPath = findGlobalsCssPath(projectDir);
 
@@ -388,3 +384,4 @@ export function registerColorsCommand(program: Command) {
       console.log(`\n  File: ${globalsPath}`);
     });
 }
+

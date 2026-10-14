@@ -54,14 +54,12 @@
   --animate-fd-enterFromRight: fd-enterFromRight 250ms ease;
 
   --animate-fd-sidebar-in: fd-sidebar-in 250ms cubic-bezier(0.16, 1, 0.3, 1);
-  /* forwards keeps the panel off-screen until Presence unmounts after exit */
   --animate-fd-sidebar-out: fd-sidebar-out 250ms cubic-bezier(0.16, 1, 0.3, 1)
     forwards;
 
   --animate-fd-exitToLeft: fd-exitToLeft 250ms ease;
   --animate-fd-exitToRight: fd-exitToRight 250ms ease;
 
-  /* Fumadocs Colors */
   --color-fd-background: var(--gray-1);
   --color-fd-foreground: var(--gray-12);
   --color-fd-card: var(--gray-2);
@@ -340,9 +338,9 @@
 
 @variant dark (&:where(.dark, .dark *));
 
-/* Apply styles to :root */
 @custom-variant on-root {
   :root:has(&) {
     @slot;
   }
 }
+

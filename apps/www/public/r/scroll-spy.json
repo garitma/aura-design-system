@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroll-spy",
+  "type": "registry:ui",
+  "title": "ScrollSpy",
+  "description": "The ScrollSpy component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/ScrollSpy.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\ntype ScrollSpyItem = { id: string; label: string };\n\nfunction ScrollSpy({\n  className,\n  items,\n  label = \"On this page\",\n}: {\n  className?: string;\n  items: ScrollSpyItem[];\n  label?: string;\n}) {\n  const [active, setActive] = React.useState(items[0]?.id);\n  const signature = items.map((item) => item.id).join(\"|\");\n  React.useEffect(() => {\n    const nodes = signature\n      .split(\"|\")\n      .filter(Boolean)\n      .map((id) => document.getElementById(id))\n      .filter((node): node is HTMLElement => Boolean(node));\n    if (!nodes.length) return;\n    const observer = new IntersectionObserver(\n      (entries) => {\n        const visible = entries\n          .filter((entry) => entry.isIntersecting)\n          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];\n        if (visible?.target.id) setActive(visible.target.id);\n      },\n      { rootMargin: \"-20% 0px -60% 0px\" },\n    );\n    nodes.forEach((node) => observer.observe(node));\n    return () => observer.disconnect();\n  }, [signature]);\n\n  return (\n    <nav aria-label={label} data-slot=\"scroll-spy\" className={cn(\"flex flex-col gap-0.5\", className)}>\n      {items.map((item) => (\n        <a\n          key={item.id}\n          href={`#${item.id}`}\n          aria-current={active === item.id ? \"true\" : undefined}\n          className=\"rounded-sm px-1 py-0.5 text-gray-11 hover:bg-gray-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8 aria-[current=true]:bg-accent-3 aria-[current=true]:text-accent-11\"\n        >\n          {item.label}\n        </a>\n      ))}\n    </nav>\n  );\n}\n\nexport { ScrollSpy };\nexport type { ScrollSpyItem };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

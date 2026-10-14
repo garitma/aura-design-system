@@ -7,7 +7,6 @@ import { generateGlobalsCss } from "./colors.js";
 import { generateRadixColors } from "../utils/color-utils.js";
 import { applyBlueprintToProject } from "./blueprint.js";
 
-/** Apply Aura components.json, globals.css, and shadcn registry packages to an existing app root. */
 export async function applyAuraToProject(appDir: string): Promise<void> {
   const packageJsonPath = join(appDir, "package.json");
 
@@ -145,7 +144,6 @@ async function initializeAura() {
   try {
     const projectDir = process.cwd();
 
-    // Get list of directories before shadcn init
     const beforeDirs = readdirSync(projectDir)
       .filter((item) => {
         const itemPath = join(projectDir, item);
@@ -153,7 +151,6 @@ async function initializeAura() {
       })
       .sort();
 
-    // Run shadcn init interactively - stdio: 'inherit' allows user to interact
     await execa(
       "pnpm",
       [
@@ -166,7 +163,6 @@ async function initializeAura() {
       }
     );
 
-    // Get list of directories after shadcn init to find the newly created folder
     const afterDirs = readdirSync(projectDir)
       .filter((item) => {
         const itemPath = join(projectDir, item);
@@ -174,16 +170,13 @@ async function initializeAura() {
       })
       .sort();
 
-    // Find the newly created directory
     const newDirs = afterDirs.filter((dir) => !beforeDirs.includes(dir));
     
     let appDir = projectDir;
     if (newDirs.length > 0) {
-      // Use the first newly created directory (most likely the app folder)
       appDir = join(projectDir, newDirs[0]);
       console.log(`\n✓ Detected new app folder: ${newDirs[0]}`);
       console.log(`✓ Changing to directory: ${appDir}`);
-      // Change to the app directory
       process.chdir(appDir);
     } else {
       const packageJsonPath = join(projectDir, "package.json");
@@ -213,3 +206,4 @@ export function registerInitCommand(program: Command) {
       await initializeAura();
     });
 }
+

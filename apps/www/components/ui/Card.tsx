@@ -1,16 +1,8 @@
-/**
- * @description Displays a card with header, content, and footer sections.
- * CardAction is the right-hand slot of CardHeader (top right).
- */
 import * as React from "react";
 
 import { cn } from "@/utils/class-names";
 
 type CardProps = React.ComponentProps<"div"> & {
-  /**
-   * Clickable card. Hover uses a gray-8 border and a soft shadow.
-   * The card is in the tab order and shows a focus-visible ring.
-   */
   interactive?: boolean;
 };
 
@@ -86,9 +78,6 @@ function CardDescription({ className, ...props }: React.ComponentProps<"p">) {
   );
 }
 
-/**
- * Right-hand slot of CardHeader. Place it as a direct child so it sits at the top right, beside the title and description.
- */
 function CardAction({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -134,3 +123,4 @@ export {
   CardDescription,
   CardContent,
 };
+

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "media-player",
+  "type": "registry:ui",
+  "title": "MediaPlayer",
+  "description": "The MediaPlayer component.",
+  "registryDependencies": [
+    "@aura/button",
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/MediaPlayer.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\nimport { Button } from \"@/components/ui/Button\";\n\nfunction formatTime(seconds: number) {\n  if (!Number.isFinite(seconds) || seconds < 0) return \"0:00\";\n  const whole = Math.floor(seconds);\n  const minutes = Math.floor(whole / 60);\n  const remain = whole % 60;\n  return `${minutes}:${remain.toString().padStart(2, \"0\")}`;\n}\n\nfunction MediaPlayer({\n  className,\n  src,\n  label = \"Media player\",\n}: {\n  className?: string;\n  src?: string;\n  label?: string;\n}) {\n  const media = React.useRef<HTMLAudioElement>(null);\n  const [playing, setPlaying] = React.useState(false);\n  const [muted, setMuted] = React.useState(false);\n  const [time, setTime] = React.useState(0);\n  const [duration, setDuration] = React.useState(0);\n\n  const toggle = () => {\n    const node = media.current;\n    if (!node) return;\n    if (node.paused) void node.play();\n    else node.pause();\n  };\n\n  return (\n    <div\n      role=\"group\"\n      aria-label={label}\n      data-slot=\"media-player\"\n      className={cn(\"flex w-full max-w-xl flex-col gap-0.5 rounded-sm border border-gray-6 bg-gray-1 p-1\", className)}\n    >\n      <audio\n        ref={media}\n        src={src}\n        preload=\"metadata\"\n        onPlay={() => setPlaying(true)}\n        onPause={() => setPlaying(false)}\n        onTimeUpdate={(event) => setTime(event.currentTarget.currentTime)}\n        onDurationChange={(event) => setDuration(event.currentTarget.duration)}\n        onVolumeChange={(event) => setMuted(event.currentTarget.muted)}\n      />\n      <div className=\"flex items-center gap-0.5\">\n        <Button type=\"button\" size=\"sm\" aria-label={playing ? \"Pause\" : \"Play\"} onClick={toggle}>\n          {playing ? \"Pause\" : \"Play\"}\n        </Button>\n        <Button\n          type=\"button\"\n          variant=\"pill\"\n          size=\"sm\"\n          aria-pressed={muted}\n          aria-label={muted ? \"Unmute\" : \"Mute\"}\n          onClick={() => {\n            if (media.current) media.current.muted = !media.current.muted;\n          }}\n        >\n          {muted ? \"Unmute\" : \"Mute\"}\n        </Button>\n        <span className=\"text-gray-11\">\n          {formatTime(time)} / {formatTime(duration)}\n        </span>\n      </div>\n      <input\n        type=\"range\"\n        min={0}\n        max={duration || 0}\n        step={0.1}\n        value={Math.min(time, duration || 0)}\n        aria-label=\"Seek\"\n        className=\"w-full\"\n        onChange={(event) => {\n          const next = Number(event.target.value);\n          if (media.current) media.current.currentTime = next;\n          setTime(next);\n        }}\n      />\n    </div>\n  );\n}\n\nexport { MediaPlayer };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

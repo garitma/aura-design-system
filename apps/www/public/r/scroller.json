@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "scroller",
+  "type": "registry:ui",
+  "title": "Scroller",
+  "description": "The Scroller component.",
+  "dependencies": [
+    "@radix-ui/react-icons"
+  ],
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Scroller.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { ChevronLeftIcon, ChevronRightIcon } from \"@radix-ui/react-icons\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction Scroller({\n  className,\n  label = \"Scroller\",\n  children,\n}: {\n  className?: string;\n  label?: string;\n  children: React.ReactNode;\n}) {\n  const ref = React.useRef<HTMLDivElement>(null);\n  const move = (direction: number) => {\n    const root = ref.current;\n    if (!root) return;\n    const reduced = window.matchMedia(\"(prefers-reduced-motion: reduce)\").matches;\n    root.scrollBy({ left: direction * root.clientWidth * 0.8, behavior: reduced ? \"auto\" : \"smooth\" });\n  };\n  return (\n    <div data-slot=\"scroller\" className={cn(\"flex items-center gap-0.5\", className)}>\n      <button\n        type=\"button\"\n        aria-label=\"Scroll back\"\n        className=\"inline-flex size-3 items-center justify-center rounded-sm border border-gray-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8\"\n        onClick={() => move(-1)}\n      >\n        <ChevronLeftIcon className=\"icon\" />\n      </button>\n      <div\n        ref={ref}\n        role=\"region\"\n        aria-label={label}\n        tabIndex={0}\n        className=\"flex gap-0.5 overflow-x-auto\"\n        onKeyDown={(event) => {\n          if (event.key === \"ArrowRight\") move(1);\n          if (event.key === \"ArrowLeft\") move(-1);\n        }}\n      >\n        {children}\n      </div>\n      <button\n        type=\"button\"\n        aria-label=\"Scroll forward\"\n        className=\"inline-flex size-3 items-center justify-center rounded-sm border border-gray-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8\"\n        onClick={() => move(1)}\n      >\n        <ChevronRightIcon className=\"icon\" />\n      </button>\n    </div>\n  );\n}\n\nexport { Scroller };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

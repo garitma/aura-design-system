@@ -12,7 +12,6 @@ export function registerTypographyCommand(program: Command) {
     .command('generate')
     .description('Generate a custom typography.css file based on Aura philosophy')
     .action(async () => {
-      // Prompt for small, p, and scale
       const answers = await inquirer.prompt([
         {
           type: 'input',
@@ -86,22 +85,17 @@ export function registerTypographyCommand(program: Command) {
         },
       ]);
 
-      // Calculate scale and generate CSS file
       const small = parseFloat(answers.small);
       const p = parseFloat(answers.p);
       let headingSizes = [];
       if (answers.scaleType === 'ratio') {
-        // Start from h6, go up to h1
         const ratio = parseFloat(answers.ratio);
-        // We'll use h6 = p * 1.0625 (Aura's default h6 is 1.0625rem, p is 1rem)
         let h6 = p * 1.0625;
         headingSizes = [h6];
         for (let i = 1; i < 6; i++) {
           headingSizes.push(headingSizes[i - 1] * ratio);
         }
-        // Now headingSizes = [h6, h5, h4, h3, h2, h1]
       } else {
-        // Explicit values
         headingSizes = [
           parseFloat(answers.h6),
           parseFloat(answers.h5),
@@ -111,7 +105,6 @@ export function registerTypographyCommand(program: Command) {
           parseFloat(answers.h1),
         ];
       }
-      // h6 to h1, so reverse for h1..h6
       const headings = ['h6', 'h5', 'h4', 'h3', 'h2', 'h1'];
       const headingVars = headings.map((tag, i) => {
         const val = headingSizes[i];
@@ -122,7 +115,6 @@ export function registerTypographyCommand(program: Command) {
           max: val.toFixed(3) + 'rem',
         };
       });
-      // Build CSS
       let css = `body h1,
 body h2,
 body h3,
@@ -140,7 +132,6 @@ body .h6 {
 }
 
 `;
-      // Headings (h1..h6)
       for (let i = 5; i >= 0; i--) {
         const { tag, min, val, max } = headingVars[i];
         css += `${tag}, .${tag} {
@@ -151,7 +142,6 @@ body .h6 {
 
 `;
       }
-      // Paragraph
       css += `p, .p {
   --min: ${p}rem;
   --val: ${p}rem;
@@ -159,14 +149,12 @@ body .h6 {
 }
 
 `;
-      // Small
       css += `small, .small {
   --min: ${small}rem;
   --val: ${small}rem;
   --max: ${small}rem;
 }
 `;
-      // Write to typography.css
       const outPath = path.join(process.cwd(), 'typography.css');
       fs.writeFileSync(outPath, css, 'utf-8');
       console.log(`\nTypography CSS generated at ${outPath}`);

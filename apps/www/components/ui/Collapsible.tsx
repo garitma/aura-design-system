@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description An interactive component which expands and collapses content.
- */
 import { Collapsible as CollapsibleRadix } from "radix-ui";
 
 import { cn } from "@/utils/class-names";
@@ -40,3 +37,4 @@ function CollapsibleContent({
 }
 
 export { Collapsible, CollapsibleTrigger, CollapsibleContent };
+

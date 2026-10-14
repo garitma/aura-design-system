@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description A single-select combobox component that allows users to search and select one option from a list.
- */
 import * as React from "react";
 import { useId, useRef } from "react";
 import {
@@ -64,17 +61,14 @@ export const ComboboxSingle = React.forwardRef<
     const inputId = id || useId();
     const isControlled = controlledValue !== undefined;
 
-    // Get current value (controlled or default)
     const currentValue = isControlled ? controlledValue : defaultValue;
 
-    // Get selected option
     const selectedOption: ComboboxOption | undefined = React.useMemo(() => {
       return currentValue
         ? options.find((opt) => opt.value === currentValue)
         : undefined;
     }, [options, currentValue]);
 
-    // Handle value change
     const handleValueChange = (newValue: ComboboxOption | null) => {
       if (onChange) {
         const newValueString = newValue ? newValue.value : "";
@@ -142,3 +136,4 @@ export const ComboboxSingle = React.forwardRef<
 );
 
 ComboboxSingle.displayName = "ComboboxSingle";
+

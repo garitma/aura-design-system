@@ -220,9 +220,6 @@ export function MobileNavigationMenuTrigger({
   enableHover = false,
   ...props
 }: ComponentProps<typeof NavigationMenuTrigger> & {
-  /**
-   * Enable hover to trigger
-   */
   enableHover?: boolean;
 }) {
   return (
@@ -247,3 +244,4 @@ export function MobileNavigationMenuContent(
     </NavigationMenuContent>
   );
 }
+

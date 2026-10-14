@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "search",
+  "type": "registry:ui",
+  "title": "Search",
+  "description": "The Search component.",
+  "registryDependencies": [
+    "@aura/class-names",
+    "@aura/command"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Search.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\nimport {\n  Command,\n  CommandCollection,\n  CommandEmpty,\n  CommandGroup,\n  CommandInput,\n  CommandItem,\n  CommandList,\n  CommandPanel,\n} from \"@/components/ui/Command\";\n\ntype SearchItem = {\n  value: string;\n  label: string;\n};\n\nfunction Search({\n  className,\n  items,\n  placeholder = \"Search\",\n  label = \"Search\",\n  empty = \"No results.\",\n  defaultExpanded = false,\n}: {\n  className?: string;\n  items: SearchItem[];\n  placeholder?: string;\n  label?: string;\n  empty?: string;\n  defaultExpanded?: boolean;\n}) {\n  const [expanded, setExpanded] = React.useState(defaultExpanded);\n  return (\n    <div\n      data-slot=\"search\"\n      data-expanded={expanded ? \"true\" : \"false\"}\n      className={cn(\"w-full max-w-xl rounded-sm border border-gray-6 bg-gray-1\", className)}\n    >\n      <Command items={[{ value: \"Results\", items }]} open={expanded} onOpenChange={setExpanded}>\n        <CommandInput\n          aria-label={label}\n          placeholder={placeholder}\n          onFocus={() => setExpanded(true)}\n          onKeyDown={(event) => {\n            if (event.key === \"Escape\") setExpanded(false);\n          }}\n        />\n        {expanded ? (\n          <CommandPanel>\n            <CommandEmpty>{empty}</CommandEmpty>\n            <CommandList>\n              {(group: { value: string; items: SearchItem[] }) => (\n                <CommandGroup key={group.value} items={group.items}>\n                  <CommandCollection>\n                    {(item: SearchItem) => (\n                      <CommandItem\n                        key={item.value}\n                        value={item.value}\n                        onClick={() => setExpanded(false)}\n                      >\n                        {item.label}\n                      </CommandItem>\n                    )}\n                  </CommandCollection>\n                </CommandGroup>\n              )}\n            </CommandList>\n          </CommandPanel>\n        ) : null}\n      </Command>\n    </div>\n  );\n}\n\nexport { Search };\nexport type { SearchItem };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

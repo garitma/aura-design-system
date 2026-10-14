@@ -5,11 +5,6 @@ import { source } from "@/utils/source";
 
 import { ThemeColorSwitcher } from "@/components/ThemeColorSwitcher";
 
-/**
- * Home uses DocsLayout (same LayoutBody / #nd-docs-layout as /docs), not
- * components/layout/home. Desktop sidebar collapse full-width and the mobile
- * drawer gutter fix therefore apply on `/` without a separate home shell.
- */
 export default function Layout({ children }: LayoutProps<"/">) {
   return (
     <DocsLayout
@@ -25,3 +20,4 @@ export default function Layout({ children }: LayoutProps<"/">) {
     </DocsLayout>
   );
 }
+

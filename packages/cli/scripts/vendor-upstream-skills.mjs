@@ -1,18 +1,4 @@
 #!/usr/bin/env node
-/**
- * Rebuild the reconciled skill trees under templates/cursor/skills
- * and mirror them to the repo's .cursor/skills.
- *
- * Pins (do not float):
- *   emilkowalski/skills @ e8a175de22ae1e49370fc144c1f3bb9aeedf988d
- *   vercel-labs/agent-skills skills/react-best-practices
- *     @ 063bee94c3f4df8453406c830b0a7df0f2860278
- *
- * Usage (from a checkout of those repos):
- *   EMIL_DIR=/tmp/emilkowalski-skills \
- *   VERCEL_DIR=/tmp/vercel-agent-skills \
- *   node packages/cli/scripts/vendor-upstream-skills.mjs
- */
 import { cpSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -40,7 +26,6 @@ const SONNER_SCOPE = `Aura Toast is the product toaster. Use this Sonner guide o
 
 const AURA_REGISTRY = `If the Aura registry (\`@aura\`) already has a component for the need, use it before reaching for an external library.`;
 
-/** Team descriptions. These are the SGD trigger text; Emil's body is merged under them. */
 const TEAM_DESCRIPTION = {
   "emil-design-eng": `description: >-
   Use this when shaping or reviewing a design system or a screen: polish,
@@ -72,7 +57,6 @@ const TEAM_DESCRIPTION = {
   edit a design file by itself.`,
 };
 
-/** Skills whose job is judgment. They keep the design-file ban in the body. */
 const CRITERIA_SKILLS = new Set([
   "emil-design-eng",
   "animation-vocabulary",
@@ -83,7 +67,6 @@ const CRITERIA_SKILLS = new Set([
   "prototype",
 ]);
 
-/** Installed. Order is the blueprint order. */
 const EMIL_SHIPPED = [
   "emil-design-eng",
   "animate",
@@ -298,3 +281,4 @@ const shipped = readdirSync(templateRoot).filter((name) =>
 );
 console.log(`vendored ${shipped.length} skills into ${relative(repoRoot, templateRoot)}`);
 console.log(shipped.sort().join("\n"));
+

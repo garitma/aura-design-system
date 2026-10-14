@@ -1,6 +1,3 @@
-/**
- * @description Displays a statistic with label, value, optional indicator, trend, and description.
- */
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
@@ -156,3 +153,4 @@ export {
   StatValue,
   statIndicatorVariants,
 };
+

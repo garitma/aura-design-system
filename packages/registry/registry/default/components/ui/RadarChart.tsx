@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Radar chart family: default, dots, lines, multiple series, legend, circle grid, filled grid, and icons.
- */
 import { ArrowUpIcon, DesktopIcon, MobileIcon } from "@radix-ui/react-icons";
 import { PolarAngleAxis, PolarGrid, RadarChart as RechartsRadarChart } from "recharts";
 
@@ -154,3 +151,4 @@ function RadarChart({
 }
 
 export { RadarChart };
+

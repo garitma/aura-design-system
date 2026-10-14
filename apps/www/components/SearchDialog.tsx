@@ -111,7 +111,6 @@ interface SearchDialogProps {
 export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
   const [query, setQuery] = useState("");
 
-  // Fetch search results
   const {
     data: searchResults,
     error,
@@ -127,7 +126,6 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
     }
   );
 
-  // Fetch quick links (suggestions)
   const { data: quickLinks = [] } = useSWR<QuickLink[]>(
     "/api/quick-links",
     quickLinksFetcher,
@@ -137,21 +135,18 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
     }
   );
 
-  // Reset query when dialog closes
   useEffect(() => {
     if (!open) {
       setQuery("");
     }
   }, [open]);
 
-  // Handle keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
         onOpenChange(!open);
       }
-      // Handle ESC key to close dialog
       if (e.key === "Escape" && open) {
         e.preventDefault();
         onOpenChange(false);
@@ -162,7 +157,6 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [open, onOpenChange]);
 
-  // Transform search results to items
   const searchItems: SearchItem[] = useMemo(() => {
     if (!searchResults) return [];
     return searchResults.map((result) => ({
@@ -175,12 +169,10 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
     }));
   }, [searchResults]);
 
-  // Group items for Command component
   const groupedItems: Group[] = useMemo(() => {
     const groups: Group[] = [];
 
     if (query.trim()) {
-      // When searching, show search results
       if (searchItems.length > 0) {
         groups.push({
           value: "Results",
@@ -188,7 +180,6 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
         });
       }
     } else {
-      // When not searching, show quick links as suggestions
       if (quickLinks.length > 0) {
         groups.push({
           value: "Quick Links",
@@ -202,7 +193,6 @@ export function SearchDialog({ open, onOpenChange }: SearchDialogProps) {
 
   function handleItemClick(item: QuickLink | SearchItem) {
     onOpenChange(false);
-    // Navigation will be handled by the Link component
   }
 
   const showEmptyState =
@@ -406,3 +396,4 @@ export function SearchDialogTriggerIcon({
     </>
   );
 }
+

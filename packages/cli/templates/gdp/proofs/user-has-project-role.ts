@@ -9,7 +9,6 @@ import type { ProjectId, UserId } from "@/lib/ids";
 
 const UserHasProjectRole = defineProof("UserHasProjectRole");
 
-/** User `U` is an Owner or Member of project `P`. */
 // eslint-disable-next-line @typescript-eslint/no-empty-object-type -- gdp-ts recipe: a distinct interface per proof kind
 export interface UserHasProjectRole<U, P>
   extends Proof<"UserHasProjectRole", [U, P]> {}
@@ -23,3 +22,4 @@ export async function userHasProjectRole<U, P>(
     ? UserHasProjectRole.prove(user, project)
     : null;
 }
+

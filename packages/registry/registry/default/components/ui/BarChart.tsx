@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Bar chart family: vertical, horizontal, multiple, stacked, labels, mixed, active, and negative.
- */
 import { ArrowUpIcon } from "@radix-ui/react-icons";
 import {
   BarChart as RechartsBarChart,
@@ -67,7 +64,6 @@ const negativeVisitors = [
   { month: "May", visitors: -209 },
   { month: "June", visitors: 214 },
 ];
-
 
 const titles: Record<BarChartVariant, string> = {
   default: "Bar chart",
@@ -300,3 +296,4 @@ function BarChart({
 }
 
 export { BarChart };
+

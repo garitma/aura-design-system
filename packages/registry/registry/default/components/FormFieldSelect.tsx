@@ -28,25 +28,10 @@ interface FormFieldSelectProps extends Partial<FormRadix.FormFieldProps> {
   field?: FieldProps;
   errors?: ErrorObject<string, Record<string, any>, unknown>[];
   options: SelectOption[];
-  /**
-   * Placeholder text for the select
-   */
   placeholder?: string;
-  /**
-   * Whether the select is disabled
-   */
   disabled?: boolean;
-  /**
-   * Default value for the select
-   */
   defaultValue?: string;
-  /**
-   * Controlled value for the select
-   */
   value?: string;
-  /**
-   * Custom className for the select
-   */
   className?: string;
 }
 

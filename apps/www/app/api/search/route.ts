@@ -36,7 +36,6 @@ async function readStructuredData(page: {
 }
 
 const server = createFromSource(source, {
-  // https://docs.orama.com/docs/orama-js/supported-languages
   language: 'english',
   async buildIndex(page) {
     const structuredData = await readStructuredData(page);
@@ -69,3 +68,4 @@ export async function GET(request: Request) {
     filterComponentCatalogDuplicates(results, query, mirrorKeys),
   );
 }
+

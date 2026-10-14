@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rule-no-comments",
+  "type": "registry:file",
+  "title": "Rule: No Comments",
+  "description": "Aura rule: No Comments. Install to .cursor/rules/ for Cursor AI guidance.",
+  "files": [
+    {
+      "path": "registry/default/rules/no-comments.mdc",
+      "content": "---\nalwaysApply: true\ntitle: No code comments\ndescription: Do not write code comments. Express intent through names, types, and structure.\n---\n\n# No code comments\n\nAgents copy what is already in the file. Comments, especially ones that explain a temporary workaround, spread.\n\n* **MUST NOT**: Write code comments. Express intent through names, types, and structure.\n* **MUST NOT**: Leave workaround, TODO, FIXME, or commented-out code. Fix the root cause.\n* **MUST**: Delete a comment that only narrates the next line.\n\n## Allowed\n\n* Directive strings: `'use client'`, `'use server'`.\n* `/// <reference …>`.\n* `@ts-expect-error` or `eslint-disable` only when the code does not type-check or lint without them. Remove the suppression when it is no longer required.\n* License headers.\n* Generated files. Do not hand-edit generated output; regenerate it when the source changes.\n* A comment that records an external constraint this repo cannot change (a browser, a library, or a tool).\n",
+      "type": "registry:file",
+      "target": ".cursor/rules/no-comments.mdc"
+    }
+  ]
+}

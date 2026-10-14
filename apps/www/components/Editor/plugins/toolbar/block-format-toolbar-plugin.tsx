@@ -41,7 +41,6 @@ export function BlockFormatDropDown({
       const elementDOM = activeEditor.getElementByKey(elementKey);
 
       if (elementDOM !== null) {
-        // setSelectedElementKey(elementKey);
         if ($isListNode(element)) {
           const parentList = $getNearestNodeOfType<ListNode>(
             anchorNode,
@@ -85,3 +84,4 @@ export function BlockFormatDropDown({
     </Select>
   );
 }
+

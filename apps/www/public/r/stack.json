@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "stack",
+  "type": "registry:ui",
+  "title": "Stack",
+  "description": "The Stack component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Stack.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction Stack({ className, children, ...props }: React.ComponentProps<\"div\">) {\n  const items = React.Children.toArray(children);\n  return (\n    <div data-slot=\"stack\" className={cn(\"relative h-16 w-16\", className)} {...props}>\n      {items.map((child, index) => (\n        <div\n          key={index}\n          className=\"absolute inset-0 rounded-sm border border-gray-6 bg-gray-1 p-1 shadow-sm\"\n          style={{\n            transform: `translate(calc(var(--aura) * 0.5 * ${index}), calc(var(--aura) * 0.5 * ${index}))`,\n          }}\n        >\n          {child}\n        </div>\n      ))}\n    </div>\n  );\n}\n\nexport { Stack };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

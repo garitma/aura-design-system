@@ -1,0 +1,21 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fab-menu",
+  "type": "registry:ui",
+  "title": "FabMenu",
+  "description": "The FabMenu component.",
+  "dependencies": [
+    "@radix-ui/react-icons"
+  ],
+  "registryDependencies": [
+    "@aura/class-names",
+    "@aura/fab"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/FabMenu.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Cross2Icon, PlusIcon } from \"@radix-ui/react-icons\";\nimport { cn } from \"@/utils/class-names\";\nimport { Fab } from \"@/components/ui/Fab\";\n\ntype FabMenuContextValue = {\n  open: boolean;\n  setOpen: (open: boolean) => void;\n};\n\nconst FabMenuContext = React.createContext<FabMenuContextValue | null>(null);\n\nfunction useFabMenu() {\n  const context = React.useContext(FabMenuContext);\n  if (!context) {\n    throw new Error(\"FabMenu parts must be used within FabMenu.\");\n  }\n  return context;\n}\n\nfunction FabMenu({\n  open: openProp,\n  defaultOpen = false,\n  onOpenChange,\n  children,\n}: {\n  open?: boolean;\n  defaultOpen?: boolean;\n  onOpenChange?: (open: boolean) => void;\n  children: React.ReactNode;\n}) {\n  const [uncontrolled, setUncontrolled] = React.useState(defaultOpen);\n  const open = openProp ?? uncontrolled;\n  const setOpen = React.useCallback(\n    (next: boolean) => {\n      if (openProp === undefined) setUncontrolled(next);\n      onOpenChange?.(next);\n    },\n    [onOpenChange, openProp],\n  );\n\n  return (\n    <FabMenuContext.Provider value={{ open, setOpen }}>\n      <div data-slot=\"fab-menu\" className=\"contents\">\n        {children}\n      </div>\n    </FabMenuContext.Provider>\n  );\n}\n\nfunction FabMenuList({\n  className,\n  position = \"fixed\",\n  ...props\n}: React.ComponentProps<\"div\"> & { position?: \"fixed\" | \"absolute\" }) {\n  const { open } = useFabMenu();\n  if (!open) return null;\n  return (\n    <div\n      data-slot=\"fab-menu-list\"\n      className={cn(\n        \"z-40 flex flex-col items-end gap-1\",\n        position === \"fixed\" ? \"fixed end-2 bottom-7\" : \"absolute end-2 bottom-7\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction FabMenuItem({\n  className,\n  label,\n  children,\n  onClick,\n  ...props\n}: React.ComponentProps<\"button\"> & { label: string }) {\n  const { setOpen } = useFabMenu();\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"fab-menu-item\"\n      className={cn(\n        \"inline-flex items-center gap-0.5 rounded-full bg-gray-2 px-1.5 py-0.5 text-gray-12 shadow-md hover:bg-gray-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8\",\n        className,\n      )}\n      onClick={(event) => {\n        onClick?.(event);\n        if (!event.defaultPrevented) setOpen(false);\n      }}\n      {...props}\n    >\n      {children}\n      <span>{label}</span>\n    </button>\n  );\n}\n\nfunction FabMenuTrigger({\n  className,\n  label = \"Open actions\",\n  closeLabel = \"Close actions\",\n  position = \"fixed\",\n  onClick,\n  ...props\n}: React.ComponentProps<typeof Fab> & {\n  label?: string;\n  closeLabel?: string;\n}) {\n  const { open, setOpen } = useFabMenu();\n  return (\n    <Fab\n      data-slot=\"fab-menu-trigger\"\n      position={position}\n      aria-expanded={open}\n      aria-label={open ? closeLabel : label}\n      className={cn(\n        \"motion-safe:transition-transform motion-reduce:transition-none\",\n        className,\n      )}\n      onClick={(event) => {\n        onClick?.(event);\n        if (!event.defaultPrevented) setOpen(!open);\n      }}\n      {...props}\n    >\n      {open ? (\n        <Cross2Icon className=\"icon\" />\n      ) : (\n        props.children ?? <PlusIcon className=\"icon\" />\n      )}\n    </Fab>\n  );\n}\n\nconst SpeedDial = FabMenu;\nconst SpeedDialList = FabMenuList;\nconst SpeedDialItem = FabMenuItem;\nconst SpeedDialTrigger = FabMenuTrigger;\n\nexport {\n  FabMenu,\n  FabMenuList,\n  FabMenuItem,\n  FabMenuTrigger,\n  SpeedDial,\n  SpeedDialList,\n  SpeedDialItem,\n  SpeedDialTrigger,\n};\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description A status spinner. Buttons reuse it while a submit is in flight.
- */
 import * as React from "react";
 import { SymbolIcon } from "@radix-ui/react-icons";
 
@@ -31,3 +28,4 @@ function Spinner({
 }
 
 export { Spinner };
+

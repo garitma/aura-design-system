@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "masonry",
+  "type": "registry:ui",
+  "title": "Masonry",
+  "description": "The Masonry component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Masonry.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction Masonry({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"masonry\"\n      className={cn(\"columns-2 gap-1\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction MasonryItem({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"masonry-item\"\n      className={cn(\"mb-1 break-inside-avoid rounded-sm bg-gray-3 p-1\", className)}\n      {...props}\n    />\n  );\n}\n\nexport { Masonry, MasonryItem };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

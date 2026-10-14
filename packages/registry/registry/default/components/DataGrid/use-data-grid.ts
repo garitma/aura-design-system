@@ -118,12 +118,6 @@ interface UseDataGridProps<TData>
     event?: React.MouseEvent<HTMLDivElement>,
   ) => Partial<CellPosition> | Promise<Partial<CellPosition> | null> | null;
   onRowsAdd?: (count: number) => void | Promise<void>;
-  /**
-   * Remove rows from your data when the user deletes via context menu
-   * ("Delete rows") or Ctrl/Cmd+Delete (or Backspace) with a row selection,
-   * multi-cell selection, or a focused cell. After this resolves, the grid
-   * clears selection and moves focus.
-   */
   onRowsDelete?: (rows: TData[], rowIndices: number[]) => void | Promise<void>;
   onPaste?: (updates: Array<CellUpdate>) => void | Promise<void>;
   onFilesUpload?: (params: {
@@ -283,8 +277,6 @@ function useDataGrid<TData>({
     () => new Map<number, Set<string>>(),
   );
 
-  // Memoize per-row selection sets to prevent unnecessary row re-renders
-  // Each row gets a stable Set reference that only changes when its cells' selection changes
   const cellSelectionMap = React.useMemo(() => {
     const selectedCells = selectionState.selectedCells;
 
@@ -327,8 +319,6 @@ function useDataGrid<TData>({
     map: Map<string, number>;
   } | null>(null);
 
-  // Pre-compute visual row index map for O(1) lookups (used by select column)
-  // Cache is invalidated when row model identity changes (sorting/filtering)
   const getVisualRowIndex = React.useCallback(
     (rowId: string): number | undefined => {
       const rows = tableRef.current?.getRowModel().rows;
@@ -1081,8 +1071,6 @@ function useDataGrid<TData>({
     ],
   );
 
-  // Release focus guard after delay to allow async data re-renders to settle.
-  // 300ms accounts for db sync and virtualized cell mounting.
   const releaseFocusGuard = React.useCallback((immediate = false) => {
     if (immediate) {
       focusGuardRef.current = false;
@@ -1311,7 +1299,6 @@ function useDataGrid<TData>({
       if (newRowIndex !== rowIndex || newColumnId !== columnId) {
         focusCell(newRowIndex, newColumnId);
 
-        // Calculate and apply scrolls synchronously to avoid flashing
         const container = dataGridRef.current;
         if (!container) return;
 
@@ -1319,7 +1306,6 @@ function useDataGrid<TData>({
         const cellKey = getCellKey(newRowIndex, newColumnId);
         const targetCell = cellMapRef.current.get(cellKey);
 
-        // If target row is not rendered, scroll it into view first
         if (!targetRow) {
           if (rowVirtualizer) {
             const align =
@@ -1337,7 +1323,6 @@ function useDataGrid<TData>({
 
             rowVirtualizer.scrollToIndex(newRowIndex, { align });
 
-            // Wait for row to render before horizontal scroll
             if (newColumnId !== columnId) {
               requestAnimationFrame(() => {
                 const cellKeyRetry = getCellKey(newRowIndex, newColumnId);
@@ -1358,7 +1343,6 @@ function useDataGrid<TData>({
               });
             }
           } else {
-            // Fallback: use direct scroll calculation when virtualizer is not available
             const rowHeightValue = getRowHeightValue(rowHeight);
             const estimatedScrollTop = newRowIndex * rowHeightValue;
             container.scrollTop = estimatedScrollTop;
@@ -1367,7 +1351,6 @@ function useDataGrid<TData>({
           return;
         }
 
-        // Vertical scrolling for rendered rows that changed
         if (newRowIndex !== rowIndex && targetRow) {
           requestAnimationFrame(() => {
             const containerRect = container.getBoundingClientRect();
@@ -1385,7 +1368,6 @@ function useDataGrid<TData>({
               rowRect.top >= viewportTop && rowRect.bottom <= viewportBottom;
 
             if (!isFullyVisible) {
-              // Only apply vertical scroll for vertical navigation
               const isVerticalNavigation =
                 direction === "up" ||
                 direction === "down" ||
@@ -1412,7 +1394,6 @@ function useDataGrid<TData>({
           });
         }
 
-        // Horizontal scrolling for rendered cells
         if (newColumnId !== columnId && targetCell) {
           requestAnimationFrame(() => {
             const scrollDirection = getScrollDirection(direction);
@@ -1642,8 +1623,6 @@ function useDataGrid<TData>({
     [store],
   );
 
-  // Compute search match data for targeted row re-renders
-  // Maps rowIndex -> Set of columnIds that have matches in that row
   const searchMatchesByRow = React.useMemo(() => {
     if (searchMatches.length === 0) return null;
     const rowMap = new Map<number, Set<string>>();
@@ -2036,8 +2015,6 @@ function useDataGrid<TData>({
 
   const defaultColumn: Partial<ColumnDef<TData>> = React.useMemo(
     () => ({
-      // Note: cell is rendered directly in DataGridRow to bypass flexRender's
-      // unstable cell.getContext() (see TanStack Table issue #4794)
       minSize: MIN_COLUMN_SIZE,
       maxSize: MAX_COLUMN_SIZE,
     }),
@@ -2141,7 +2118,6 @@ function useDataGrid<TData>({
     [],
   );
 
-  // Memoize state object to reduce shallow equality checks
   const tableState = React.useMemo<Partial<TableState>>(
     () => ({
       ...propsRef.current.state,
@@ -2192,7 +2168,6 @@ function useDataGrid<TData>({
     tableRef.current = table;
   }
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: columnSizingInfo and columnSizing are used for calculating the column size vars
   const columnSizeVars = React.useMemo(() => {
     const headers = table.getFlatHeaders();
     const colSizes: { [key: string]: number } = {};
@@ -2214,7 +2189,6 @@ function useDataGrid<TData>({
     React.useCallback(() => false, []),
   );
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: columnPinning is used for calculating the adjustLayout
   const adjustLayout = React.useMemo(() => {
     const columnPinning = table.getState().columnPinning;
     return (
@@ -2265,7 +2239,6 @@ function useDataGrid<TData>({
         if (!targetColumnId) return;
         const currentRowCount = propsRef.current.data.length;
 
-        // If the requested row doesn't exist yet, wait for data to update
         if (rowIndex >= currentRowCount && retryCount > 0) {
           await new Promise((resolve) => setTimeout(resolve, 50));
           await onScrollAndFocus(retryCount - 1);
@@ -2284,7 +2257,6 @@ function useDataGrid<TData>({
 
         await new Promise((resolve) => requestAnimationFrame(resolve));
 
-        // Adjust scroll position to account for sticky header/footer
         const container = dataGridRef.current;
         const targetRow = rowMapRef.current.get(safeRowIndex);
 
@@ -2306,10 +2278,8 @@ function useDataGrid<TData>({
 
           if (!isFullyVisible) {
             if (rowRect.top < viewportTop) {
-              // Row is partially hidden by header - scroll up
               container.scrollTop -= viewportTop - rowRect.top;
             } else if (rowRect.bottom > viewportBottom) {
-              // Row is partially hidden by footer - scroll down
               container.scrollTop += rowRect.bottom - viewportBottom;
             }
           }
@@ -2353,7 +2323,6 @@ function useDataGrid<TData>({
       try {
         result = await propsRef.current.onRowAdd(event);
       } catch {
-        // Callback threw an error, don't proceed with scroll/focus
         return;
       }
 
@@ -2361,8 +2330,6 @@ function useDataGrid<TData>({
 
       onSelectionClear();
 
-      // Trust the returned rowIndex from the callback
-      // onScrollToRow will handle retries if the row isn't rendered yet
       const targetRowIndex = result.rowIndex ?? initialRowCount;
       const targetColumnId = result.columnId;
 
@@ -2413,8 +2380,6 @@ function useDataGrid<TData>({
         return;
       }
 
-      // Cell editing keyboard events (Enter, Tab, Escape) are handled by the cell variants
-      // to ensure proper value commitment before navigation
       if (currentState.editingCell) return;
 
       if (
@@ -2565,7 +2530,6 @@ function useDataGrid<TData>({
             });
           })
           .catch(() => {
-            // Callback threw an error, don't proceed with scroll/focus
           });
         return;
       }
@@ -3074,7 +3038,6 @@ function useDataGrid<TData>({
     }
   }, [store, propsRef, data, columns, navigableColumnIds, focusCell]);
 
-  // Restore focus to container when virtualized cells are unmounted
   React.useEffect(() => {
     const container = dataGridRef.current;
     if (!container) return;
@@ -3135,7 +3098,6 @@ function useDataGrid<TData>({
           event.clientY,
         );
 
-        // Compensate for event.target bubbling up
         const isInsidePopover = elements.some((element) =>
           getIsInPopover(element),
         );
@@ -3210,7 +3172,6 @@ function useDataGrid<TData>({
     table.getState().sorting,
   ]);
 
-  // Calculate virtual values outside of child render to avoid flushSync issues
   const virtualTotalSize = rowVirtualizer.getTotalSize();
   const virtualItems = rowVirtualizer.getVirtualItems();
   const measureElement = rowVirtualizer.measureElement;
@@ -3268,3 +3229,4 @@ function useDataGrid<TData>({
 
 export { useDataGrid };
 export type { UseDataGridProps };
+

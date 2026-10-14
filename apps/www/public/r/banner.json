@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "banner",
+  "type": "registry:ui",
+  "title": "Banner",
+  "description": "The Banner component.",
+  "dependencies": [
+    "@radix-ui/react-icons",
+    "@radix-ui/react-slot",
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@aura/button",
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Banner.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Cross2Icon } from \"@radix-ui/react-icons\";\nimport { Slot } from \"@radix-ui/react-slot\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\n\nimport { cn } from \"@/utils/class-names\";\nimport { Button } from \"@/components/ui/Button\";\n\nconst bannerVariants = cva(\"border-b\", {\n  variants: {\n    tone: {\n      default: \"border-accent-7 bg-accent-3 text-gray-12\",\n      info: \"border-info-contrast bg-info text-info-contrast\",\n      success: \"border-success-contrast bg-success text-success-contrast\",\n      warning: \"border-warning-contrast bg-warning text-warning-contrast\",\n      danger: \"border-danger-contrast bg-danger text-danger-contrast\",\n    },\n  },\n  defaultVariants: {\n    tone: \"default\",\n  },\n});\n\ninterface BannerProps\n  extends React.ComponentProps<\"div\">,\n    VariantProps<typeof bannerVariants> {\n  action?: React.ReactNode;\n  onDismiss?: () => void;\n  messageClassName?: string;\n  asChild?: boolean;\n  dismissState?: \"default\" | \"hover\" | \"focus\";\n}\n\nfunction Banner({\n  className,\n  children,\n  action,\n  onDismiss,\n  tone,\n  messageClassName,\n  asChild = false,\n  dismissState = \"default\",\n  ...props\n}: BannerProps) {\n  const Message = asChild ? Slot : \"p\";\n\n  return (\n    <div\n      {...props}\n      data-slot=\"banner\"\n      data-tone={tone ?? \"default\"}\n      className={cn(\"@container w-full\", bannerVariants({ tone }), className)}\n    >\n      <div\n        data-slot=\"banner-layout\"\n        className=\"flex flex-col items-stretch gap-0.5 p-1 sm:flex-row sm:items-center sm:gap-1 sm:px-1.5 @max-sm:!flex-col @max-sm:!items-stretch @max-sm:!gap-0.5 @max-sm:!p-1\"\n      >\n        <div\n          data-slot=\"banner-row\"\n          className=\"flex w-full min-w-0 items-start gap-1 sm:contents @max-sm:!flex @max-sm:!w-full @max-sm:!items-start @max-sm:!gap-1\"\n        >\n          <Message\n            data-slot=\"banner-message\"\n            className={cn(\"m-0 min-w-0 flex-1 p\", messageClassName)}\n          >\n            {children}\n          </Message>\n          {onDismiss ? (\n            <Button\n              type=\"button\"\n              size=\"icon\"\n              variant=\"link\"\n              data-slot=\"banner-dismiss\"\n              aria-label=\"Dismiss banner\"\n              className={cn(\n                \"shrink-0 text-inherit no-underline hover:bg-accent-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8 sm:order-last\",\n                dismissState === \"hover\" && \"bg-accent-4\",\n                dismissState === \"focus\" && \"ring-2 ring-accent-8\",\n              )}\n              onClick={onDismiss}\n            >\n              <Cross2Icon className=\"icon\" aria-hidden />\n            </Button>\n          ) : null}\n        </div>\n        {action ? (\n          <div data-slot=\"banner-action\" className=\"w-fit shrink-0\">\n            {action}\n          </div>\n        ) : null}\n      </div>\n    </div>\n  );\n}\n\nexport { Banner };\nexport type { BannerProps };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

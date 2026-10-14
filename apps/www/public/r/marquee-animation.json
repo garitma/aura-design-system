@@ -1,0 +1,13 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "marquee-animation",
+  "type": "registry:style",
+  "cssVars": {
+    "theme": {
+      "--animate-marquee": "aura-marquee 12s linear infinite"
+    }
+  },
+  "css": {
+    "@keyframes aura-marquee": {}
+  }
+}

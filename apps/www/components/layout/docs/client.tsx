@@ -40,16 +40,12 @@ export function LayoutBody(props: ComponentProps<"main">) {
       {...props}
       className={cn(
         "flex flex-1 flex-col pt-(--fd-nav-height) transition-[padding] fd-default-layout",
-        // Mobile uses an overlay drawer — never reserve sidebar gutter below md.
         "max-md:[--fd-sidebar-width:0px]",
         !collapsed && "md:mx-(--fd-layout-offset)",
         props.className
       )}
       style={{
         ...props.style,
-        // Open: reserve the desktop sidebar gutter.
-        // Collapsed / mobile: no gutter — content fills the viewport (mobile also
-        // forces --fd-sidebar-width: 0 via max-md, so open drawer stays overlay-only).
         paddingInlineStart: collapsed ? "0px" : "var(--fd-sidebar-width)",
       }}
     >
@@ -138,3 +134,4 @@ function LayoutTab({
     </Link>
   );
 }
+

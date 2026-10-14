@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "key-value",
+  "type": "registry:ui",
+  "title": "KeyValue",
+  "description": "The KeyValue component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/KeyValue.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction KeyValue({ className, label = \"Details\", ...props }: React.ComponentProps<\"dl\"> & { label?: string }) {\n  return (\n    <dl\n      aria-label={label}\n      data-slot=\"key-value\"\n      className={cn(\"flex w-full max-w-xl flex-col\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction KeyValueItem({\n  className,\n  label,\n  children,\n}: {\n  className?: string;\n  label: string;\n  children: React.ReactNode;\n}) {\n  return (\n    <div\n      data-slot=\"key-value-item\"\n      className={cn(\"flex items-baseline justify-between gap-1 border-b border-gray-6 py-0.5\", className)}\n    >\n      <dt className=\"text-gray-11\">{label}</dt>\n      <dd className=\"m-0 text-gray-12\">{children}</dd>\n    </div>\n  );\n}\n\nexport { KeyValue, KeyValueItem };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

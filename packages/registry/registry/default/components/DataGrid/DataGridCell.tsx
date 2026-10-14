@@ -16,7 +16,6 @@ import {
 import type { DataGridCellProps } from "./types";
 
 export const DataGridCell = React.memo(DataGridCellImpl, (prev, next) => {
-  // Fast path: check stable primitive props first
   if (prev.isFocused !== next.isFocused) return false;
   if (prev.isEditing !== next.isEditing) return false;
   if (prev.isSelected !== next.isSelected) return false;
@@ -27,8 +26,6 @@ export const DataGridCell = React.memo(DataGridCellImpl, (prev, next) => {
   if (prev.columnId !== next.columnId) return false;
   if (prev.rowHeight !== next.rowHeight) return false;
 
-  // Check cell value using row.original instead of getValue() for stability
-  // getValue() is unstable and recreates on every render, breaking memoization
   const prevValue = (prev.cell.row.original as Record<string, unknown>)[
     prev.columnId
   ];
@@ -39,7 +36,6 @@ export const DataGridCell = React.memo(DataGridCellImpl, (prev, next) => {
     return false;
   }
 
-  // Check cell/row identity
   if (prev.cell.row.id !== next.cell.row.id) return false;
 
   return true;
@@ -113,3 +109,4 @@ function DataGridCellImpl<TData>({
     />
   );
 }
+

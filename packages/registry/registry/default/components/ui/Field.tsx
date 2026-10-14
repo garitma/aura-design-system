@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Standalone field layout. Use beside Form, not instead of FormField.
- */
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 
@@ -184,3 +181,4 @@ export {
   FieldContent,
   FieldTitle,
 };
+

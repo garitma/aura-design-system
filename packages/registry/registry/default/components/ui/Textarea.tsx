@@ -1,6 +1,3 @@
-/**
- * @description Multi-line text input.
- */
 import * as React from "react";
 
 import { cn } from "@/utils/class-names";
@@ -24,3 +21,4 @@ const Textarea = React.forwardRef<
 Textarea.displayName = "Textarea";
 
 export { Textarea };
+

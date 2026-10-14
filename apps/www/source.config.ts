@@ -6,17 +6,10 @@ import {
 } from 'fumadocs-mdx/config';
 import { z } from 'zod';
 
-// You can customise Zod schemas for frontmatter and `meta.json` here
-// see https://fumadocs.dev/docs/mdx/collections
 export const docs = defineDocs({
   dir: "content/docs",
   docs: {
     schema: frontmatterSchema.extend({
-      /**
-       * Sidebar status badge. Use `new` for component, chart, and util docs
-       * added in the current and previous week. Older pages omit it.
-       * Rendered by `statusBadgesPlugin` in `utils/source.tsx`.
-       */
       status: z.enum(["new", "beta", "deprecated", "experimental"]).optional(),
     }),
     postprocess: {
@@ -30,6 +23,6 @@ export const docs = defineDocs({
 
 export default defineConfig({
   mdxOptions: {
-    // MDX options
   },
 });
+

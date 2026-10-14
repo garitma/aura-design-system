@@ -140,7 +140,7 @@ export function InsertImageUploadedDialogBody({
         console.log("Imagen subida exitosamente:", result.imageUrl)
         setSrc(result.imageUrl)
         setUploadedFileName(result.fileName)
-        setAltText(file.name) // Usar el nombre del archivo como alt text por defecto
+        setAltText(file.name)
       } else {
         console.error("Error en la respuesta del servidor:", result.error)
         alert("Error al subir la imagen: " + (result.error || "Error desconocido"))
@@ -164,7 +164,6 @@ export function InsertImageUploadedDialogBody({
     if (!src || !uploadedFileName) return
 
     try {
-      // Extraer fileName y s3Folder de la URL
       const urlParts = src.split('/')
       const fileName = urlParts[urlParts.length - 1]
       const s3Folder = urlParts[urlParts.length - 2]
@@ -193,7 +192,6 @@ export function InsertImageUploadedDialogBody({
 
   return (
     <div className="grid gap-4 py-4">
-      {/* Input de archivo - solo visible cuando no hay imagen cargada */}
       {!src && (
         <div className="grid gap-2">
           <Label htmlFor="image-upload">Cargar Imagen</Label>
@@ -208,7 +206,6 @@ export function InsertImageUploadedDialogBody({
         </div>
       )}
 
-      {/* Estado de carga - solo visible durante la carga */}
       {isUploading && (
         <div className="flex items-center justify-center gap-2 text-sm text-gray-11 py-8">
           <div className="w-6 h-6 border-2 border-gray-7 border-t-accent-9 rounded-full animate-spin"></div>
@@ -216,7 +213,6 @@ export function InsertImageUploadedDialogBody({
         </div>
       )}
       
-      {/* Previsualización de imagen - solo visible cuando hay imagen cargada */}
       {src && !isUploading && (
         <div className="grid gap-2">
           <div className="inline-block relative m-auto">
@@ -236,7 +232,6 @@ export function InsertImageUploadedDialogBody({
         </div>
       )}
 
-      {/* Campo de texto alternativo - solo visible cuando hay imagen cargada */}
       {src && !isUploading && (
         <div className="grid gap-2">
           <Label htmlFor="alt-text">Texto Alternativo</Label>
@@ -250,7 +245,6 @@ export function InsertImageUploadedDialogBody({
         </div>
       )}
       
-      {/* Botón de confirmar - solo visible cuando hay imagen cargada */}
       {src && !isUploading && (
         <Button
           type="submit"
@@ -304,7 +298,6 @@ export function ImagesPlugin({
   const [previousImageUrls, setPreviousImageUrls] = useState<Set<string>>(new Set())
   const [isInitialized, setIsInitialized] = useState(false)
 
-  // Función para obtener todas las URLs de imágenes del editor
   const getCurrentImageUrls = (editorState: any): Set<string> => {
     const currentImageUrls = new Set<string>()
     const root = editorState._nodeMap
@@ -361,14 +354,11 @@ export function ImagesPlugin({
         },
         COMMAND_PRIORITY_HIGH
       ),
-      // Listener para detectar eliminación de imágenes y limpiar S3
       editor.registerUpdateListener(({ editorState }) => {
         editorState.read(() => {
           const currentImageUrls = getCurrentImageUrls(editorState)
 
-          // Solo procesar eliminaciones después de la inicialización
           if (isInitialized) {
-            // Comparar con las URLs anteriores para detectar eliminaciones
             const deletedUrls = new Set<string>()
             previousImageUrls.forEach((url) => {
               if (!currentImageUrls.has(url)) {
@@ -376,17 +366,14 @@ export function ImagesPlugin({
               }
             })
 
-            // Eliminar imágenes huérfanas de S3
             deletedUrls.forEach((url) => {
               console.log("Imagen eliminada del editor, limpiando de S3:", url)
               handleImageDeleteFromS3(url)
             })
           } else {
-            // Primera vez: solo inicializar el estado
             setIsInitialized(true)
           }
 
-          // Actualizar el estado de URLs anteriores
           setPreviousImageUrls(currentImageUrls)
         })
       })
@@ -396,11 +383,9 @@ export function ImagesPlugin({
   return null
 }
 
-// Función para verificar si una URL es de S3
 const isS3ImageUrl = (url: string): boolean => {
   try {
     const urlObj = new URL(url)
-    // Verificar si es una URL de S3 (contiene s3.amazonaws.com o el bucket name)
     return urlObj.hostname.includes('s3.amazonaws.com') || 
            urlObj.hostname.includes('amazonaws.com') ||
            urlObj.pathname.includes('diagnosis-images')
@@ -409,10 +394,8 @@ const isS3ImageUrl = (url: string): boolean => {
   }
 }
 
-// Función para eliminar imagen de S3
 const handleImageDeleteFromS3 = async (imageUrl: string) => {
   try {
-    // Extraer fileName y s3Folder de la URL
     const urlParts = imageUrl.split('/')
     const fileName = urlParts[urlParts.length - 1]
     const s3Folder = urlParts[urlParts.length - 2]
@@ -567,3 +550,4 @@ function getDragSelection(event: DragEvent): Range | null | undefined {
 
   return range
 }
+

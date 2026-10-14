@@ -43,13 +43,13 @@ export function MarkdownTogglePlugin({
         $convertFromMarkdownString(
           firstChild.getTextContent(),
           transformers,
-          undefined, // node
+          undefined,
           shouldPreserveNewLinesInMarkdown
         )
       } else {
         const markdown = $convertToMarkdownString(
           transformers,
-          undefined, //node
+          undefined,
           shouldPreserveNewLinesInMarkdown
         )
         const codeNode = $createCodeNode("markdown")
@@ -60,8 +60,7 @@ export function MarkdownTogglePlugin({
         }
       }
     })
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [editor, shouldPreserveNewLinesInMarkdown])
+  }, [editor, shouldPreserveNewLinesInMarkdown, transformers])
 
   return (
     <Button
@@ -75,3 +74,4 @@ export function MarkdownTogglePlugin({
     </Button>
   )
 }
+

@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description Input that formats values with built-in or custom mask patterns.
- */
 import * as React from "react";
 import { Slot as SlotPrimitive } from "radix-ui";
 
@@ -124,7 +121,6 @@ function getCachedCurrencySymbols(opts: TransformOptions): CurrencySymbols {
     if (decimalPart) decimalSeparator = decimalPart.value;
     if (groupPart) groupSeparator = groupPart.value;
   } catch {
-    // Keep defaults
   }
 
   const symbols: CurrencySymbols = {
@@ -352,7 +348,6 @@ const MASK_PATTERNS: Record<MaskPatternKey, MaskPattern> = {
 
         if (decimalPart) localeDecimalSeparator = decimalPart.value;
       } catch {
-        // Keep defaults
       }
 
       const cleaned = value.replace(REGEX_CACHE.nonCurrencyChars, "");
@@ -1294,7 +1289,6 @@ function MaskInput(props: MaskInputProps) {
         }
         newCursorPosition = position;
       } catch {
-        // fallback to end
       }
 
       target.setSelectionRange(newCursorPosition, newCursorPosition);
@@ -1516,3 +1510,4 @@ export {
   type MaskPattern,
   toUnmaskedIndex,
 };
+

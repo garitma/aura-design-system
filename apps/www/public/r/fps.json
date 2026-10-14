@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "fps",
+  "type": "registry:ui",
+  "title": "Fps",
+  "description": "The Fps component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Fps.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction Fps({ className, label = \"Frames per second\" }: { className?: string; label?: string }) {\n  const [fps, setFps] = React.useState(0);\n\n  React.useEffect(() => {\n    let frames = 0;\n    let last = performance.now();\n    let frame = 0;\n    const tick = (now: number) => {\n      frames += 1;\n      const elapsed = now - last;\n      if (elapsed >= 250) {\n        setFps(Math.round((frames * 1000) / elapsed));\n        frames = 0;\n        last = now;\n      }\n      frame = window.requestAnimationFrame(tick);\n    };\n    frame = window.requestAnimationFrame(tick);\n    return () => window.cancelAnimationFrame(frame);\n  }, []);\n\n  return (\n    <span\n      role=\"meter\"\n      aria-label={label}\n      aria-valuemin={0}\n      aria-valuenow={fps}\n      data-slot=\"fps\"\n      className={cn(\"inline-flex items-center gap-0.5 rounded-sm border border-gray-6 bg-gray-2 px-1 py-0.5\", className)}\n    >\n      <span aria-hidden className=\"size-1 rounded-full bg-accent-9\" />\n      {fps} fps\n    </span>\n  );\n}\n\nexport { Fps };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

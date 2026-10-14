@@ -28,16 +28,8 @@ interface EditOnGitHubOptions
   owner: string;
   repo: string;
 
-  /**
-   * SHA or ref (branch or tag) name.
-   *
-   * @defaultValue main
-   */
   sha?: string;
 
-  /**
-   * File path in the repo
-   */
   path: string;
 }
 
@@ -56,21 +48,10 @@ export interface DocsPageProps {
   tableOfContent?: Partial<TableOfContentOptions>;
   tableOfContentPopover?: Partial<TableOfContentPopoverOptions>;
 
-  /**
-   * Extend the page to fill all available space
-   *
-   * @defaultValue false
-   */
   full?: boolean;
 
-  /**
-   * Replace or disable breadcrumb
-   */
   breadcrumb?: Partial<BreadcrumbOptions>;
 
-  /**
-   * Footer navigation, you can disable it by passing `false`
-   */
   footer?: Partial<FooterOptions>;
 
   editOnGithub?: EditOnGitHubOptions;
@@ -82,22 +63,13 @@ export interface DocsPageProps {
 }
 
 type TableOfContentOptions = Pick<AnchorProviderProps, "single"> & {
-  /**
-   * Custom content in TOC container, before the main TOC
-   */
   header?: ReactNode;
 
-  /**
-   * Custom content in TOC container, after the main TOC
-   */
   footer?: ReactNode;
 
   enabled: boolean;
   component: ReactNode;
 
-  /**
-   * @defaultValue 'normal'
-   */
   style?: "normal" | "clerk";
 };
 
@@ -128,7 +100,6 @@ export function DocsPage({
   article,
   children,
 }: DocsPageProps) {
-  // disable TOC on full mode, you can still enable it with `enabled` option.
   tocEnabled ??=
     !full &&
     (toc.length > 0 ||
@@ -216,9 +187,6 @@ export function EditOnGitHub(props: ComponentProps<"a">) {
   );
 }
 
-/**
- * Add typography styles
- */
 export const DocsBody = forwardRef<HTMLDivElement, ComponentProps<"div">>(
   (props, ref) => (
     <div ref={ref} {...props} className={cn("prose flex-1", props.className)}>
@@ -233,7 +201,6 @@ export const DocsDescription = forwardRef<
   HTMLParagraphElement,
   ComponentProps<"p">
 >((props, ref) => {
-  // don't render if no description provided
   if (props.children === undefined) return null;
 
   return (
@@ -265,9 +232,6 @@ export const DocsTitle = forwardRef<HTMLHeadingElement, ComponentProps<"h1">>(
 
 DocsTitle.displayName = "DocsTitle";
 
-/**
- * For separate MDX page
- */
 export function withArticle(props: ComponentProps<"main">): ReactNode {
   return (
     <main {...props} className={cn("container py-3.5", props.className)}>
@@ -275,3 +239,4 @@ export function withArticle(props: ComponentProps<"main">): ReactNode {
     </main>
   );
 }
+

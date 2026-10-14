@@ -1,6 +1,3 @@
-/**
- * @description Renders an accessible label associated with form controls.
- */
 import * as React from "react";
 
 import { cn } from "@/utils/class-names";
@@ -10,3 +7,4 @@ function Label({ className, ...props }: React.ComponentProps<"label">) {
 }
 
 export { Label };
+

@@ -1,6 +1,5 @@
 import { cn } from "@/utils/class-names"
 
-/** Indeterminate loading shimmer: Tailwind `animate-pulse` is an allowed exception (infinite loop). */
 function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
   return (
     <div
@@ -12,3 +11,4 @@ function Skeleton({ className, ...props }: React.ComponentProps<"div">) {
 }
 
 export { Skeleton }
+

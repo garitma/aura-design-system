@@ -22,10 +22,6 @@ import {
 
 const markdownCache = new Map<string, Promise<string>>();
 
-/**
- * Aura-styled docs page actions: copy Markdown + open in Cursor / Claude / ChatGPT.
- * Pattern from https://fumadocs.dev/docs/integrations/llms#page-actions
- */
 export function MarkdownCopyButton({
   markdownUrl,
   className,
@@ -251,3 +247,4 @@ function CursorIcon(props: ComponentProps<"svg">) {
     </svg>
   );
 }
+

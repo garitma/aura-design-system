@@ -24,6 +24,18 @@ const eslintConfig = [
     ],
   },
   ...createAuraShadcnLintConfig(shadcn),
+  {
+    files: ["**/*.{js,jsx,ts,tsx,mjs,cjs}"],
+    rules: {
+      "no-warning-comments": [
+        "error",
+        {
+          terms: ["todo", "fixme", "hack", "xxx", "workaround"],
+          location: "anywhere",
+        },
+      ],
+    },
+  },
 ];
 
 export default eslintConfig;

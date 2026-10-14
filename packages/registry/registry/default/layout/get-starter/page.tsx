@@ -1,7 +1,6 @@
 export default function Home() {
     return (
       <div className="min-h-screen bg-gray-1 text-gray-12 font-sans selection:bg-accent-5 selection:text-accent-12">
-        {/* Navigation */}
         <nav className="fixed top-0 w-full z-50 border-b border-gray-6 bg-gray-1/80 backdrop-blur-md">
           <div className="max-w-7xl mx-auto px-2 h-[52px] flex items-center justify-between">
             <div className="flex items-center gap-1">
@@ -15,7 +14,6 @@ export default function Home() {
         </nav>
   
         <main className="pt-4 pb-4 px-2 max-w-7xl mx-auto flex flex-col gap-4">
-          {/* Hero Section */}
           <section className="relative rounded-xl bg-gray-2 border border-gray-6 overflow-hidden p-4 sm:p-6 flex flex-col items-center text-center gap-2 mt-4">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_0%,var(--accent-a3),transparent_70%)]"></div>
   
@@ -40,7 +38,6 @@ export default function Home() {
             </div>
           </section>
   
-          {/* Features Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-2">
             <div className="p-3 rounded-lg bg-gray-2 border border-gray-6 hover:border-accent-8 transition-colors group">
               <div className="size-3 rounded-md bg-accent-3 flex items-center justify-center mb-2 group-hover:bg-accent-4 transition-colors">
@@ -73,7 +70,6 @@ export default function Home() {
             </div>
           </div>
   
-          {/* Interactive Demo Section */}
           <section className="grid grid-cols-1 lg:grid-cols-2 gap-2">
             <div className="p-4 rounded-xl bg-gray-12 text-gray-1 flex flex-col justify-center gap-2">
               <h2 className="text-2xl font-bold">Dark Mode Native</h2>

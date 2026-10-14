@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description A native select. The closed control uses the same field chrome as other inputs.
- */
 import * as React from "react";
 import { ChevronDownIcon } from "@radix-ui/react-icons";
 
@@ -33,3 +30,4 @@ function NativeSelectOption(props: React.ComponentProps<"option">) {
 }
 
 export { NativeSelect, NativeSelectGroup, NativeSelectOption };
+

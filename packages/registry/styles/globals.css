@@ -100,11 +100,6 @@
 }
 
 :root {
-  /*
-   * Light scale: Aura generator from SGD seeds accent #4015ca, gray #7254cb, bg #ffffff.
-   * Dark scale (.dark / prefers-color-scheme): hand-set from SGD globals.css (Pablo 2026-10-10).
-   * Danger dark is opaque #3c1405 (source wrote #3c140550); accent-5 is #3300aa (source #30a).
-   */
   --accent-1: #fdfdff;
   --accent-2: #f7f8ff;
   --accent-3: #eef1ff;
@@ -167,7 +162,6 @@
   --gray-indicator: #936cff;
   --gray-track: #936cff;
 
-  /* Modal scrim. Dark gray-1 (#100B21) at 8%, fixed in light and dark. Not var(--gray-1). */
   --aura-overlay: rgb(16 11 33 / 0.08);
 
   --info: #e8ebfe;
@@ -194,14 +188,12 @@
   --secundary: var(--accent-8);
   --secundary-foreground: var(--accent-contrast);
 
-  /* Chart series. Step 9 brand, then status contrast so .dark and the theme switcher retint them. */
   --chart-1: var(--accent-9);
   --chart-2: var(--info-contrast);
   --chart-3: var(--success-contrast);
   --chart-4: var(--warning-contrast);
   --chart-5: var(--danger-contrast);
 
-  /* Ladle tokens */
   --ladle-bg-color-primary: var(--gray-1);
   --ladle-bg-color-secondary: var(--gray-2);
   --ladle-color-primary: var(--gray-12);
@@ -210,14 +202,12 @@
   --ladle-color-accent: var(--primary);
   --ladle-blueprint: var(--gray-11);
 
-  /* Aura Design System - Root Tokens */
   --aura: 13px;
   --aura-font-stack: "Gabarito", -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
   --aura-font-quotes: serif;
 
-  /* Aura Background & Text - Mapped to gray scale */
   --aura-bg: var(--gray-1);
   --aura-text-primary: var(--accent-12);
   --aura-text-primary-inverse: var(--gray-contrast);
@@ -225,7 +215,6 @@
   --aura-accents-primary: var(--accent-9);
   --aura-accents-secondary: var(--accent-9);
 
-  /* Aura Component Tokens - Mapped to 12-step system */
   --aura-input-radius: 6.5px;
   --aura-button-radius: 6.5px;
   --aura-button-gap: 6.5px;
@@ -315,7 +304,6 @@
     --gray-indicator: #7254cb;
     --gray-track: #7254cb;
 
-    /* Same scrim as light. Do not follow --gray-1, which flips to near-white in light mode. */
     --aura-overlay: rgb(16 11 33 / 0.08);
 
     --info: #0d2157;
@@ -334,7 +322,6 @@
     --aura-status-dot-canceled: #333333;
     --aura-status-dot-ring: var(--gray-1);
 
-    /* Chart graphics need 3:1 on gray-1. Dark accent-9 is 1.99:1 and accent-10 is 1.59:1. */
     --chart-1: var(--accent-11);
   }
 }
@@ -403,7 +390,6 @@
     --gray-indicator: #7254cb;
     --gray-track: #7254cb;
 
-    /* Same scrim as light. Do not follow --gray-1, which flips to near-white in light mode. */
     --aura-overlay: rgb(16 11 33 / 0.08);
 
     --info: #0d2157;
@@ -422,7 +408,6 @@
     --aura-status-dot-canceled: #333333;
     --aura-status-dot-ring: var(--gray-1);
 
-    /* Chart graphics need 3:1 on gray-1. Dark accent-9 is 1.99:1 and accent-10 is 1.59:1. */
     --chart-1: var(--accent-11);
   }
 
@@ -452,13 +437,11 @@
     font-size: 17px;
   }
 
-  /* Typography/xs — 12/16 Semi Bold. Same rule as styles/main.css `.xs`. */
   .xs {
     font-size: calc(12 / 17 * 1rem);
     font-weight: 600;
     line-height: calc(16 / 17 * 1rem);
   }
-  /* Typography/xs Regular — weight 400. Same rule as styles/main.css `.xs-regular`. */
   .xs-regular {
     font-size: calc(12 / 17 * 1rem);
     font-weight: 400;
@@ -488,3 +471,4 @@ select {
     padding: 0!important;
   }
 }
+

@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Pie chart family: pie, joined slices, labels, legend, donut, active slice, center total, and stacked rings.
- */
 import { ArrowUpIcon } from "@radix-ui/react-icons";
 import { PieChart as RechartsPieChart, Sector } from "recharts";
 
@@ -176,3 +173,4 @@ function PieChart({
 }
 
 export { PieChart };
+

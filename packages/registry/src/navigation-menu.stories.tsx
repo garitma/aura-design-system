@@ -17,7 +17,6 @@ export const Default = () => {
   return (
     <NavigationMenu className="relative z-10 w-full justify-end flex">
       <NavigationMenuList className="center m-0 flex p-1">
-        {/* Product Menu Item */}
         <NavigationMenuItem>
           <NavigationMenuTrigger>
             <li>
@@ -41,7 +40,6 @@ export const Default = () => {
           </NavigationMenuContent>
         </NavigationMenuItem>
 
-        {/* Solutions Menu Item */}
         <NavigationMenuItem>
           <NavigationMenuTrigger>
             <li>
@@ -62,12 +60,10 @@ export const Default = () => {
           </NavigationMenuContent>
         </NavigationMenuItem>
 
-        {/* Company Menu Item (No Submenu) */}
         <NavigationMenuItem>
           <NavigationMenuLink href="#">Company</NavigationMenuLink>
         </NavigationMenuItem>
 
-        {/* Blog Menu Item (No Submenu) */}
         <NavigationMenuItem>
           <NavigationMenuLink href="#">Blog</NavigationMenuLink>
         </NavigationMenuItem>
@@ -226,3 +222,4 @@ export function NavigationMenuDemo() {
     </NavigationMenu>
   );
 }
+

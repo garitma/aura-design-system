@@ -26,9 +26,6 @@ const GDP_ARRAY_SNIPPET = `...gdp({
 
 const GDP_ESLINT_CONFIG = `${GDP_IMPORT}import tseslint from "typescript-eslint";
 
-// Proof-carrying authz (gdp-ts). typescript-eslint parses .ts files first;
-// the preset only adds rules. Default mode flags forging or minting proofs.
-// https://github.com/rauchg/gdp-ts
 export default [
   ...tseslint.configs.recommended,
   ${GDP_ARRAY_SNIPPET}
@@ -36,7 +33,6 @@ export default [
 `;
 
 const GDP_ESLINT_FRAGMENT = `${GDP_IMPORT}
-/** Spread into the app's flat ESLint config, after typescript-eslint. */
 export function createGdpTsLintConfig() {
   return [
     ${GDP_ARRAY_SNIPPET}
@@ -139,7 +135,6 @@ async function ensureDependency(
   }
 }
 
-/** Directory `@/` maps to, so scaffolded `lib/`, `proofs/`, and `data/` resolve. */
 export function appSourceRoot(projectRoot: string): string {
   const tsconfigPath = join(projectRoot, "tsconfig.json");
   if (existsSync(tsconfigPath)) {
@@ -227,7 +222,6 @@ function insertSnippet(src: string, openIndex: number, snippet: string): string 
   return `${before}\n  ${snippet}\n${after}`;
 }
 
-/** Insert the gdp preset into a flat ESLint config. Returns null if the shape is unknown. */
 export function patchEslintSource(src: string): string | null {
   if (src.includes("@gdp-ts/core/lint/eslint") || src.includes("createGdpTsLintConfig")) {
     return src;
@@ -330,11 +324,6 @@ async function installSkill(projectRoot: string, force: boolean): Promise<void> 
   console.log("  gdp-ts skill: installed");
 }
 
-/**
- * Install `@gdp-ts/core`, wire the ESLint preset, install the agent skill,
- * and write the starter proofs. Called from `aura blueprint` (and therefore
- * from `aura init` / `aura setup`).
- */
 export async function applyGdpToProject(projectRoot: string, force: boolean): Promise<void> {
   console.log("\ngdp-ts (proof-carrying authz)");
   scaffoldProofs(projectRoot, force);
@@ -352,3 +341,4 @@ export async function applyGdpToProject(projectRoot: string, force: boolean): Pr
   await wireEslint(projectRoot);
   await installSkill(projectRoot, force);
 }
+

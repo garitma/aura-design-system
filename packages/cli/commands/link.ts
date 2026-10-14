@@ -3,7 +3,6 @@ import { mkdirSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 import chalk from "chalk";
 
-/** Canonical Aura shadcn config (same source as the docs site). */
 export const AURA_COMPONENTS_JSON_URL =
   "https://raw.githubusercontent.com/somosgented/aura-design-system/main/apps/www/components.json";
 
@@ -51,3 +50,4 @@ export function registerLinkCommand(program: Command) {
       console.log(chalk.green(`Wrote ${outPath}`));
     });
 }
+

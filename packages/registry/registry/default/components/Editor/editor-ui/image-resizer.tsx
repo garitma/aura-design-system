@@ -71,7 +71,6 @@ export function ImageResizer({
     startY: 0,
   })
   const editorRootElement = editor.getRootElement()
-  // Find max width, accounting for editor padding.
   const maxWidthContainer = maxWidth
     ? maxWidth
     : editorRootElement !== null
@@ -85,43 +84,36 @@ export function ImageResizer({
   const minWidth = 100
   const minHeight = 100
 
-  // Función para extraer el s3Folder y fileName de la URL
   const getS3InfoFromUrl = (url: string): { s3Folder: string; fileName: string } => {
     try {
       const urlObj = new URL(url)
       const pathname = urlObj.pathname
 
-      // Remover el primer slash y dividir por '/'
       const pathParts = pathname.substring(1).split('/')
 
       if (pathParts.length >= 2) {
         const s3Folder = pathParts[0]
-        const fileName = pathParts[pathParts.length - 1] // Último elemento es el fileName
+        const fileName = pathParts[pathParts.length - 1]
         return { s3Folder, fileName }
       }
 
-      // Fallback si no tiene el formato esperado
       return { s3Folder: 'images', fileName: pathParts[pathParts.length - 1] || '' }
     } catch {
-      // Si no es una URL válida, intentar extraer de otra manera
       const parts = url.split('/')
       const fileName = parts[parts.length - 1] || ''
       return { s3Folder: 'images', fileName }
     }
   }
 
-  // Función para eliminar la imagen
   const handleDeleteImage = async () => {
     try {
       const { s3Folder, fileName } = getS3InfoFromUrl(src)
 
-      // Llamar a la API para eliminar la imagen
       const response = await fetch(`/api/images/delete?fileName=${encodeURIComponent(fileName)}&s3Folder=${encodeURIComponent(s3Folder)}`, {
         method: 'DELETE',
       })
 
       if (response.ok) {
-        // Si la eliminación fue exitosa, remover el nodo de imagen del editor
         editor.update(() => {
           const node = $getNodeByKey(nodeKey)
           if ($isImageNode(node)) {
@@ -234,7 +226,6 @@ export function ImageResizer({
 
     if (image !== null && positioning.isResizing) {
       const zoom = calculateZoomLevel(image)
-      // Corner cursor
       if (isHorizontal && isVertical) {
         let diff = Math.floor(positioning.startX - event.clientX / zoom)
         diff = positioning.direction & Direction.east ? -diff : diff
@@ -364,3 +355,4 @@ export function ImageResizer({
     </div>
   )
 }
+

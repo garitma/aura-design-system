@@ -231,7 +231,6 @@ export function PageLastUpdate({
   const [date, setDate] = useState("");
 
   useEffect(() => {
-    // to the timezone of client
     setDate(new Date(value).toLocaleDateString());
   }, [value]);
 
@@ -247,9 +246,6 @@ export function PageLastUpdate({
 
 type Item = Pick<PageTree.Item, "name" | "description" | "url">;
 export interface FooterProps extends ComponentProps<"div"> {
-  /**
-   * Items including information for the next and previous page
-   */
   items?: {
     previous?: Item;
     next?: Item;
@@ -420,3 +416,4 @@ export function PageTOC(props: ComponentProps<"div">) {
     </div>
   );
 }
+

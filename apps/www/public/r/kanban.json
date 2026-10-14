@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "kanban",
+  "type": "registry:ui",
+  "title": "Kanban",
+  "description": "The Kanban component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Kanban.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\ntype KanbanCard = { id: string; title: string };\ntype KanbanColumn = { id: string; title: string; cards: KanbanCard[] };\n\nfunction Kanban({\n  className,\n  columns,\n  onMove,\n  label = \"Board\",\n}: {\n  className?: string;\n  columns: KanbanColumn[];\n  onMove?: (cardId: string, columnId: string) => void;\n  label?: string;\n}) {\n  return (\n    <div role=\"group\" aria-label={label} data-slot=\"kanban\" className={cn(\"flex gap-1\", className)}>\n      {columns.map((column, columnIndex) => (\n        <section key={column.id} aria-label={column.title} className=\"flex w-16 flex-col gap-0.5 rounded-sm bg-gray-2 p-0.5\">\n          <p className=\"m-0 px-0.5 font-medium text-gray-12\">{column.title}</p>\n          {column.cards.map((card) => {\n            const previous = columns[columnIndex - 1];\n            const next = columns[columnIndex + 1];\n            return (\n              <article key={card.id} className=\"rounded-sm border border-gray-6 bg-gray-1 p-0.5\">\n                <p className=\"m-0\">{card.title}</p>\n                <div className=\"mt-0.5 flex flex-wrap gap-0.5\">\n                  {previous ? (\n                    <button\n                      type=\"button\"\n                      className=\"inline-flex min-h-2 items-center whitespace-nowrap rounded-sm px-0.5 hover:bg-gray-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8\"\n                      aria-label={`Move ${card.title} to ${previous.title}`}\n                      onClick={() => onMove?.(card.id, previous.id)}\n                    >\n                      {`To ${previous.title}`}\n                    </button>\n                  ) : null}\n                  {next ? (\n                    <button\n                      type=\"button\"\n                      className=\"inline-flex min-h-2 items-center whitespace-nowrap rounded-sm px-0.5 hover:bg-gray-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8\"\n                      aria-label={`Move ${card.title} to ${next.title}`}\n                      onClick={() => onMove?.(card.id, next.id)}\n                    >\n                      {`To ${next.title}`}\n                    </button>\n                  ) : null}\n                </div>\n              </article>\n            );\n          })}\n        </section>\n      ))}\n    </div>\n  );\n}\n\nexport { Kanban };\nexport type { KanbanCard, KanbanColumn };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

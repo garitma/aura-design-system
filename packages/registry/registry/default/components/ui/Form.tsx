@@ -302,8 +302,6 @@ export const FormCheckboxGroup = React.forwardRef<
     const handleValueChange = React.useCallback(
       (value: string[]) => {
         if (field?.setValue) {
-          // Checkbox groups use arrays, but field.setValue expects string | boolean
-          // We'll cast it since checkbox groups specifically need array values
           field.setValue(value as any);
         }
       },
@@ -471,3 +469,4 @@ export const FormAlert = ({ formData, ...props }: FormAlertProps) => {
     <AlertStatus status="danger" {...props} description={formData.error} />
   );
 };
+

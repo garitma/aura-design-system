@@ -1,0 +1,22 @@
+---
+alwaysApply: true
+title: No code comments
+description: Do not write code comments. Express intent through names, types, and structure.
+---
+
+# No code comments
+
+Agents copy what is already in the file. Comments, especially ones that explain a temporary workaround, spread.
+
+* **MUST NOT**: Write code comments. Express intent through names, types, and structure.
+* **MUST NOT**: Leave workaround, TODO, FIXME, or commented-out code. Fix the root cause.
+* **MUST**: Delete a comment that only narrates the next line.
+
+## Allowed
+
+* Directive strings: `'use client'`, `'use server'`.
+* `/// <reference …>`.
+* `@ts-expect-error` or `eslint-disable` only when the code does not type-check or lint without them. Remove the suppression when it is no longer required.
+* License headers.
+* Generated files. Do not hand-edit generated output; regenerate it when the source changes.
+* A comment that records an external constraint this repo cannot change (a browser, a library, or a tool).

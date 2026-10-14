@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description A visually hidden input that mirrors a control for form submission.
- */
 import * as React from "react";
 
 type InputValue = string[] | string;
@@ -160,3 +157,4 @@ function VisuallyHiddenInput<T = InputValue>(
 }
 
 export { VisuallyHiddenInput };
+

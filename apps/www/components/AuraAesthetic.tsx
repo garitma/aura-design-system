@@ -250,7 +250,6 @@ function ColorSwatch({
             .trim();
           await navigator.clipboard.writeText(computed || varName);
         } catch {
-          // clipboard may be unavailable
         }
       }}
     >
@@ -404,7 +403,6 @@ function ComponentsShowcase() {
 
   return (
     <div className="grid w-full grid-cols-1 items-start gap-2 lg:grid-cols-3 lg:gap-2.5">
-      {/* Left */}
       <div className="flex min-w-0 flex-col gap-1.5">
         <div className="flex min-w-0 items-center gap-1">
           <InputGroup className="min-w-0 flex-1">
@@ -517,7 +515,6 @@ function ComponentsShowcase() {
         </div>
       </div>
 
-      {/* Center */}
       <div className="flex min-w-0 flex-col gap-1.5">
         <div className="hidden min-w-0 items-center gap-1 md:flex">
           <div className="flex min-w-0 flex-1 items-center gap-0.5 overflow-x-auto rounded-md border border-gray-6 bg-gray-1 p-0.5">
@@ -656,7 +653,6 @@ function ComponentsShowcase() {
         </div>
       </div>
 
-      {/* Right */}
       <div className="flex min-w-0 flex-col gap-1.5">
         <Tabs defaultValue="colors">
           <TabsList className="flex w-full justify-start overflow-x-auto">
@@ -902,3 +898,4 @@ export default function AuraAesthetic() {
     </section>
   );
 }
+

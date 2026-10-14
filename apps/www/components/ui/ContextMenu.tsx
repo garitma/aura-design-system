@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Displays a menu to the user triggered by right-click or long-press.
- */
 import * as React from "react";
 import { ContextMenu as ContextMenuRadix } from "radix-ui";
 import {
@@ -232,3 +229,4 @@ export {
   ContextMenuSubTrigger,
   ContextMenuRadioGroup,
 };
+

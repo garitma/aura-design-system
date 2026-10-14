@@ -1,7 +1,4 @@
 "use client"
-/**
- * @description Augments native scroll functionality for custom cross-browser styling.
- */
 import * as React from "react"
 import { ScrollArea as ScrollAreaPrimitive } from "radix-ui"
 
@@ -50,3 +47,4 @@ const ScrollBar = React.forwardRef<
 ScrollBar.displayName = ScrollAreaPrimitive.ScrollAreaScrollbar.displayName
 
 export { ScrollArea, ScrollBar, ScrollViewport }
+

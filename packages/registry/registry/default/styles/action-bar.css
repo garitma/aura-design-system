@@ -23,8 +23,6 @@
   }
 }
 
-/* Desktop placement. Offsets come from the component as custom properties so
-   this sheet can override them below sm without fighting inline styles. */
 [data-slot="action-bar"][data-side="bottom"] {
   bottom: var(--action-bar-side-offset, var(--spacing));
 }
@@ -103,3 +101,4 @@
     margin-inline-start: auto;
   }
 }
+

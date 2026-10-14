@@ -1,9 +1,3 @@
-/**
- * Scaffold a new rule: creates registry/default/rules/<name>.mdc and
- * metadata/<name>.rule.yml from templates. Run from packages/registry:
- *   npx tsx scripts/new-rule.ts <rule-name>
- * Example: npx tsx scripts/new-rule.ts my-foundation
- */
 import fs from "fs";
 import path from "path";
 import { fileURLToPath } from "url";
@@ -90,3 +84,4 @@ header:
 }
 
 main();
+

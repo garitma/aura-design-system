@@ -50,15 +50,6 @@ const darkGrayColors = Object.fromEntries(
 const darkModeEasing = [1, 0, 1, 0] as [number, number, number, number];
 const lightModeEasing = [0, 2, 0, 2] as [number, number, number, number];
 
-/**
- * MAIN FUNCTION: Generates a complete Radix-style color system from 3 input colors
- * 
- * @param appearance - "light" or "dark" mode
- * @param accent - Hex color for accent (e.g., "#3D63DD")
- * @param gray - Hex color for gray scale (e.g., "#8B8D98")
- * @param background - Hex color for background (e.g., "#FFFFFF" or "#111111")
- * @returns Object with 12-step scales in multiple formats (hex, wide gamut, alpha)
- */
 export const generateRadixColors = ({
 	appearance,
 	...args
@@ -72,7 +63,6 @@ export const generateRadixColors = ({
 	const grayScales = appearance === "light" ? lightGrayColors : darkGrayColors;
 	const backgroundColor = new Color(args.background).to("oklch");
 
-	// Generate gray scale
 	const grayBaseColor = new Color(args.gray).to("oklch");
 	const grayScaleColors = getScaleFromColor(
 		grayBaseColor,
@@ -80,7 +70,6 @@ export const generateRadixColors = ({
 		backgroundColor,
 	);
 
-	// Generate accent scale
 	const accentBaseColor = new Color(args.accent).to("oklch");
 
 	let accentScaleColors = getScaleFromColor(
@@ -89,10 +78,8 @@ export const generateRadixColors = ({
 		backgroundColor,
 	);
 
-	// Enforce srgb for the background color
 	const backgroundHex = backgroundColor.to("srgb").toString({ format: "hex" });
 
-	// Handle pure white or black accent colors
 	const accentBaseHex = accentBaseColor.to("srgb").toString({ format: "hex" });
 	if (accentBaseHex === "#000" || accentBaseHex === "#fff") {
 		accentScaleColors = grayScaleColors.map((color) =>
@@ -100,7 +87,6 @@ export const generateRadixColors = ({
 		) as ArrayOf12<Color>;
 	}
 
-	// Get step 9 (primary button color) and contrast color
 	const [accent9Color, accentContrastColor] = getStep9Colors(
 		accentScaleColors,
 		accentBaseColor,
@@ -109,7 +95,6 @@ export const generateRadixColors = ({
 	accentScaleColors[8] = accent9Color;
 	accentScaleColors[9] = getButtonHoverColor(accent9Color, [accentScaleColors]);
 
-	// Limit saturation of the text colors (steps 11 & 12)
 	accentScaleColors[10].coords[1] = Math.min(
 		Math.max(accentScaleColors[8].coords[1], accentScaleColors[7].coords[1]),
 		accentScaleColors[10].coords[1],
@@ -119,7 +104,6 @@ export const generateRadixColors = ({
 		accentScaleColors[11].coords[1],
 	);
 
-	// Convert to various formats
 	const accentScaleHex = accentScaleColors.map((color) =>
 		color.to("srgb").toString({ format: "hex" }),
 	) as ArrayOf12<string>;
@@ -191,11 +175,6 @@ export const generateRadixColors = ({
 	};
 };
 
-/**
- * Determines step 9 color (primary action color) and its contrast color
- * Uses perceptual color difference (deltaEOK) to decide if we should use
- * the user's exact color or the scale's default step 9
- */
 function getStep9Colors(
 	scale: ArrayOf12<Color>,
 	accentBaseColor: Color,
@@ -203,7 +182,6 @@ function getStep9Colors(
 	const referenceBackgroundColor = scale[0];
 	const distance = accentBaseColor.deltaEOK(referenceBackgroundColor) * 100;
 
-	// If accent is too close to background (white-on-white or black-on-black)
 	if (distance < 25) {
 		return [scale[8], getTextColor(scale[8])];
 	}
@@ -211,18 +189,12 @@ function getStep9Colors(
 	return [accentBaseColor, getTextColor(accentBaseColor)];
 }
 
-/**
- * Creates a subtle hover state color for step 10
- * Slightly adjusts lightness and chroma based on the source color
- */
 function getButtonHoverColor(source: Color, scales: ArrayOf12<Color>[]) {
 	const [L, C, H] = source.coords;
 	const newL = L > 0.4 ? L - 0.03 / (L + 0.1) : L + 0.03 / (L + 0.1);
 	const newC = L > 0.4 && !isNaN(H) ? C * 0.93 + 0 : C;
 	const buttonHoverColor = new Color("oklch", [newL, newC, H]);
 
-	// Find closest in-scale color to donate the chroma and hue
-	// Especially useful when the source color is pure white or black
 	let closestColor = buttonHoverColor;
 	let minDistance = Infinity;
 
@@ -241,15 +213,6 @@ function getButtonHoverColor(source: Color, scales: ArrayOf12<Color>[]) {
 	return buttonHoverColor;
 }
 
-/**
- * CORE ALGORITHM: Finds the best matching Radix scale and adapts it to your color
- * 
- * Uses geometric trigonometry to:
- * 1. Find the two closest Radix color scales
- * 2. Determine if mixing them would get closer to your target
- * 3. Adjust hue, chroma, and lightness to match your input
- * 4. Apply background-aware lightness curves
- */
 function getScaleFromColor(
 	source: Color,
 	scales: Record<string, ArrayOf12<Color>>,
@@ -257,7 +220,6 @@ function getScaleFromColor(
 ) {
 	let allColors: { scale: string; color: Color; distance: number }[] = [];
 
-	// Find distances to all colors in all scales
 	Object.entries(scales).forEach(([name, scale]) => {
 		for (const color of scale) {
 			const distance = source.deltaEOK(color);
@@ -267,13 +229,11 @@ function getScaleFromColor(
 
 	allColors.sort((a, b) => a.distance - b.distance);
 
-	// Remove duplicate scales (keep only closest occurrence)
 	let closestColors = allColors.filter(
 		(color, i, arr) =>
 			i === arr.findIndex((value) => value.scale === color.scale),
 	);
 
-	// Remove redundant gray scales from comparison
 	const grayScaleNamesStr = grayScaleNames as readonly string[];
 	const allAreGrays = closestColors.every((color) =>
 		grayScaleNamesStr.includes(color.scale),
@@ -287,15 +247,10 @@ function getScaleFromColor(
 	let colorA = closestColors[0];
 	let colorB = closestColors[1];
 
-	// TRIGONOMETRY SECTION:
-	// Determine if mixing the two closest scales would get us closer to the source
-	// 
-	// Triangle sides (named after opposite angles):
 	const a = colorB.distance;
 	const b = colorA.distance;
 	const c = colorA.color.deltaEOK(colorB.color);
 
-	// Law of cosines to get angles
 	const cosA = (b ** 2 + c ** 2 - a ** 2) / (2 * b * c);
 	const radA = Math.acos(cosA);
 	const sinA = Math.sin(radA);
@@ -304,48 +259,41 @@ function getScaleFromColor(
 	const radB = Math.acos(cosB);
 	const sinB = Math.sin(radB);
 
-	// Tangents determine the mixing ratio
 	const tanC1 = cosA / sinA;
 	const tanC2 = cosB / sinB;
 
-	// If ratio is 0 or negative, triangle is obtuse - don't mix
 	const ratio = Math.max(0, tanC1 / tanC2) * 0.5;
 
-	// Mix the two closest scales
 	const scaleA = scales[colorA.scale];
 	const scaleB = scales[colorB.scale];
 	const scale = arrayOf12.map((i) =>
 		new Color(Color.mix(scaleA[i], scaleB[i], ratio)).to("oklch"),
 	) as ArrayOf12<Color>;
 
-	// Find the closest color in our mixed scale
 	const baseColor = scale
 		.slice()
 		.sort((a, b) => source.deltaEOK(a) - source.deltaEOK(b))[0];
 
-	// Calculate chroma ratio
 	const ratioC = source.coords[1] / baseColor.coords[1];
 
-	// ADJUST HUE AND CHROMA to match source color
 	scale.forEach((color) => {
 		color.coords[1] = Math.min(
 			source.coords[1] * 1.5,
 			color.coords[1] * ratioC,
 		);
-		color.coords[2] = source.coords[2]; // Use exact hue from source
+		color.coords[2] = source.coords[2];
 	});
 
-	// LIGHT MODE: Adjust lightness curve
 	if (scale[0].coords[0] > 0.5) {
 		const lightnessScale = scale.map(({ coords }) => coords[0]);
 		const backgroundL = Math.max(0, Math.min(1, backgroundColor.coords[0]));
 		const newLightnessScale = transposeProgressionStart(
 			backgroundL,
-			[1, ...lightnessScale], // Add white as step 0
+			[1, ...lightnessScale],
 			lightModeEasing,
 		);
 
-		newLightnessScale.shift(); // Remove the white step we added
+		newLightnessScale.shift();
 
 		newLightnessScale.forEach((lightness, i) => {
 			scale[i].coords[0] = lightness;
@@ -354,12 +302,10 @@ function getScaleFromColor(
 		return scale;
 	}
 
-	// DARK MODE: Dynamic lightness curve adjustment
 	let ease: typeof darkModeEasing = [...darkModeEasing];
 	const referenceBackgroundColorL = scale[0].coords[0];
 	const backgroundColorL = Math.max(0, Math.min(1, backgroundColor.coords[0]));
 
-	// If background is lighter than expected, blend toward linear easing
 	const ratioL = backgroundColorL / referenceBackgroundColorL;
 
 	if (ratioL > 1) {
@@ -386,10 +332,6 @@ function getScaleFromColor(
 	return scale;
 }
 
-/**
- * Determines if text on the given background should be white or dark
- * Uses APCA contrast algorithm for accessibility
- */
 function getTextColor(background: Color) {
 	const white = new Color("oklch", [1, 0, 0]);
 
@@ -401,13 +343,6 @@ function getTextColor(background: Color) {
 	return white;
 }
 
-/**
- * Converts a solid color to a semi-transparent version that blends perfectly
- * over the specified background color
- * 
- * Formula: target = background * (1 - alpha) + foreground * alpha
- * Solves for: foreground and alpha given target and background
- */
 function getAlphaColor(
 	targetRgb: number[],
 	backgroundRgb: number[],
@@ -429,7 +364,6 @@ function getAlphaColor(
 		throw Error("Color is undefined");
 	}
 
-	// Determine if we're lightening or darkening the background
 	let desiredRgb = 0;
 	if (tr > br || tg > bg || tb > bb) {
 		desiredRgb = rgbPrecision;
@@ -443,7 +377,6 @@ function getAlphaColor(
 		(alpha) => alpha === alphaR,
 	);
 
-	// Simplified math for pure grays
 	if (!targetAlpha && isPureGray) {
 		const V = desiredRgb / rgbPrecision;
 		return [V, V, V, alphaR] as const;
@@ -468,7 +401,6 @@ function getAlphaColor(
 	const blendedG = blendAlpha(G, A, bg);
 	const blendedB = blendAlpha(B, A, bb);
 
-	// Correct for rounding errors in light mode
 	if (desiredRgb === 0) {
 		if (tr <= br && tr !== blendedR) {
 			R = tr > blendedR ? R + 1 : R - 1;
@@ -481,7 +413,6 @@ function getAlphaColor(
 		}
 	}
 
-	// Correct for rounding errors in dark mode
 	if (desiredRgb === rgbPrecision) {
 		if (tr >= br && tr !== blendedR) {
 			R = tr > blendedR ? R + 1 : R - 1;
@@ -494,7 +425,6 @@ function getAlphaColor(
 		}
 	}
 
-	// Convert back to 0-1 values
 	R = R / rgbPrecision;
 	G = G / rgbPrecision;
 	B = B / rgbPrecision;
@@ -502,10 +432,6 @@ function getAlphaColor(
 	return [R, G, B, A] as const;
 }
 
-/**
- * Mimics how browsers actually blend transparent colors
- * Note: Browsers round each channel independently before blending!
- */
 function blendAlpha(
 	foreground: number,
 	alpha: number,
@@ -520,9 +446,6 @@ function blendAlpha(
 	return background * (1 - alpha) + foreground * alpha;
 }
 
-/**
- * Convert solid color to sRGB alpha color
- */
 function getAlphaColorSrgb(
 	targetColor: string,
 	backgroundColor: string,
@@ -539,9 +462,6 @@ function getAlphaColorSrgb(
 	return formatHex(new Color("srgb", [r, g, b], a).toString({ format: "hex" }));
 }
 
-/**
- * Convert solid color to P3 wide gamut alpha color
- */
 function getAlphaColorP3(
 	targetColor: string,
 	backgroundColor: string,
@@ -550,7 +470,7 @@ function getAlphaColorP3(
 	const [r, g, b, a] = getAlphaColor(
 		new Color(targetColor).to("p3").coords,
 		new Color(backgroundColor).to("p3").coords,
-		255, // Browsers use 0-255 internally even for P3
+		255,
 		1000,
 		targetAlpha,
 	);
@@ -562,9 +482,6 @@ function getAlphaColorP3(
 	);
 }
 
-/**
- * Format short hex codes to long form (#fff → #ffffff)
- */
 function formatHex(str: string) {
 	if (!str.startsWith("#")) {
 		return str;
@@ -590,14 +507,6 @@ function formatHex(str: string) {
 	return str;
 }
 
-/**
- * Adjusts a lightness progression to start at a new value
- * Uses Bezier easing for smooth transitions
- * 
- * @param to - Target starting lightness (usually background color)
- * @param arr - Array of lightness values to adjust
- * @param curve - Bezier curve control points [x1, y1, x2, y2]
- */
 export function transposeProgressionStart(
 	to: number,
 	arr: number[],
@@ -611,10 +520,6 @@ export function transposeProgressionStart(
 	});
 }
 
-/**
- * Convert Color object to OKLCH string with percentage lightness
- * e.g., "oklch(65.2% 0.15 250.4)"
- */
 function toOklchString(color: Color) {
 	const L = +(color.coords[0] * 100).toFixed(1);
 	return color
@@ -622,3 +527,4 @@ function toOklchString(color: Color) {
 		.toString({ precision: 4 })
 		.replace(/(\S+)(.+)/, `oklch(${L}%$2`);
 }
+

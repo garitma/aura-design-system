@@ -12,9 +12,6 @@ interface FormFieldEditorProps extends Partial<FormRadix.FormFieldProps> {
   controlProps?: FormRadix.FormControlProps;
   field?: FieldProps;
   errors?: ErrorObject<string, Record<string, any>, unknown>[];
-  /**
-   * Custom className for the editor field
-   */
   className?: string;
 }
 
