@@ -179,6 +179,16 @@ import {
   ClientOnlyDemo
 } from "@/components/demos/client-only-demo"
 import { 
+  CodeBlockDemo,
+  CodeBlockDemoTerminal,
+  CodeBlockDemoDiff,
+  CodeBlockDemoHighlighted,
+  CodeBlockDemoWrap,
+  CodeBlockDemoSmall,
+  CodeBlockDemoFloatingActions,
+  CodeBlockDemoLogs
+} from "@/components/demos/code-block-demo"
+import { 
   CollapsibleDemo,
   CollapsibleDemoOpen,
   CollapsibleDemoControlled
@@ -682,6 +692,14 @@ import {
   TourDemo
 } from "@/components/demos/tour-demo"
 import { 
+  TraceDemo,
+  TraceDemoStatus,
+  TraceDemoCollapsibleOutput,
+  TraceDemoNested,
+  TraceDemoLink,
+  TraceDemoDialogStep
+} from "@/components/demos/trace-demo"
+import { 
   VisuallyHiddenDemo
 } from "@/components/demos/visually-hidden-demo"
 import { 
@@ -1060,6 +1078,30 @@ export const Registry = {
   },
   "client-only-demo": {
     component: ClientOnlyDemo,
+  },
+  "code-block-demo": {
+    component: CodeBlockDemo,
+  },
+  "code-block-demo-terminal": {
+    component: CodeBlockDemoTerminal,
+  },
+  "code-block-demo-diff": {
+    component: CodeBlockDemoDiff,
+  },
+  "code-block-demo-highlighted": {
+    component: CodeBlockDemoHighlighted,
+  },
+  "code-block-demo-wrap": {
+    component: CodeBlockDemoWrap,
+  },
+  "code-block-demo-small": {
+    component: CodeBlockDemoSmall,
+  },
+  "code-block-demo-floating-actions": {
+    component: CodeBlockDemoFloatingActions,
+  },
+  "code-block-demo-logs": {
+    component: CodeBlockDemoLogs,
   },
   "collapsible-demo": {
     component: CollapsibleDemo,
@@ -1915,6 +1957,24 @@ export const Registry = {
   },
   "tour-demo": {
     component: TourDemo,
+  },
+  "trace-demo": {
+    component: TraceDemo,
+  },
+  "trace-demo-status": {
+    component: TraceDemoStatus,
+  },
+  "trace-demo-collapsible-output": {
+    component: TraceDemoCollapsibleOutput,
+  },
+  "trace-demo-nested": {
+    component: TraceDemoNested,
+  },
+  "trace-demo-link": {
+    component: TraceDemoLink,
+  },
+  "trace-demo-dialog-step": {
+    component: TraceDemoDialogStep,
   },
   "visually-hidden-demo": {
     component: VisuallyHiddenDemo,

@@ -2,7 +2,7 @@
 
 import type * as React from "react";
 
-import { CodeBlock } from "@/components/ui/Codeblock";
+import { CodeBlock } from "@/components/ui/MdxCodeBlock";
 import { cn } from "@/utils/class-names";
 
 interface ComponentSourceProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -1,0 +1,96 @@
+@keyframes aura-trace-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+[data-slot="trace-line"] {
+  color: var(--gray-11);
+}
+
+[data-slot="trace-line"][data-status="done"] {
+  color: var(--gray-12);
+}
+
+[data-slot="trace-line"][data-status="error"] {
+  color: var(--danger-contrast);
+}
+
+[data-slot="trace-line"][data-status="pending"] {
+  opacity: 0.6;
+}
+
+[data-slot="trace-line"][data-status="running"] [data-slot="trace-title"] {
+  background-image: linear-gradient(
+    90deg,
+    var(--gray-11) 0%,
+    var(--gray-12) 45%,
+    var(--gray-11) 90%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: aura-trace-shimmer 1.6s linear infinite;
+}
+
+[data-slot="trace"] :is(a, button):has(> [data-slot="trace-line"]) {
+  display: inline-flex;
+  width: fit-content;
+  max-width: 100%;
+  min-width: 0;
+  align-items: center;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  text-align: start;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: calc(var(--spacing) * 0.5);
+  outline: none;
+}
+
+[data-slot="trace"] :is(a, button):hover > [data-slot="trace-line"]:not([data-status="error"]) {
+  color: var(--gray-12);
+}
+
+[data-slot="trace"] :is(a, button):hover > [data-slot="trace-line"][data-status="error"] {
+  color: var(--danger-contrast);
+}
+
+[data-slot="trace"] :is(a, button):has(> [data-slot="trace-line"]):focus-visible {
+  outline: var(--aura-outline);
+}
+
+[data-slot="trace-chevron"] {
+  display: inline-flex;
+  transition: transform 250ms ease;
+}
+
+[data-slot="trace-collapsible-trigger"][data-state="open"] [data-slot="trace-chevron"] {
+  transform: rotate(90deg);
+}
+
+[data-slot="trace-collapsible-content"] {
+  color: var(--gray-11);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-slot="trace-line"][data-status="running"] [data-slot="trace-title"] {
+    animation: none;
+    background-image: none;
+    color: var(--gray-12);
+    -webkit-text-fill-color: currentColor;
+  }
+
+  [data-slot="trace-chevron"] {
+    transition: none;
+  }
+}

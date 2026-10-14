@@ -1,0 +1,490 @@
+---
+title: Trace
+description: A list of agent steps. Each row has an icon, a title, an optional description, and a status.
+status: new
+---
+
+import { ComponentPreview } from "@/components/ComponentPreview"
+import { ComponentSource } from "@/components/ComponentSource"
+import { Steps, Step } from "fumadocs-ui/components/steps"
+
+## Preview
+
+<ComponentPreview name="trace-demo" description="A list of agent steps. Each row has an icon, a title, an optional description, and a status.">
+
+```tsx
+import {
+  ArrowTopRightIcon,
+  CheckCircledIcon,
+  CodeIcon,
+  CrossCircledIcon,
+  DotFilledIcon,
+  FileTextIcon,
+  GlobeIcon,
+  MagnifyingGlassIcon,
+  ReaderIcon,
+  SymbolIcon,
+} from "@radix-ui/react-icons";
+import {
+  CodeBlock,
+  CodeBlockContent,
+} from "@/components/ui/CodeBlock";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/Dialog";
+import {
+  Trace,
+  TraceCollapsible,
+  TraceCollapsibleContent,
+  TraceCollapsibleTrigger,
+  TraceDescription,
+  TraceIcon,
+  TraceLine,
+  TraceTitle,
+} from "@/components/ui/Trace";
+
+export function TraceDemo() {
+  return (
+  <div className="w-full max-w-lg">
+    <Trace>
+      <TraceCollapsible defaultOpen>
+        <TraceCollapsibleTrigger>
+          <TraceLine>
+            <TraceIcon>
+              <ReaderIcon className="icon" />
+            </TraceIcon>
+            <TraceTitle>Worked for 12s</TraceTitle>
+            <TraceDescription>1 command failed</TraceDescription>
+          </TraceLine>
+        </TraceCollapsibleTrigger>
+        <TraceCollapsibleContent>
+          <Trace>
+            <TraceLine status="done">
+              <TraceIcon>
+                <CheckCircledIcon className="icon" />
+              </TraceIcon>
+              <TraceTitle>Ran pnpm --version</TraceTitle>
+              <TraceDescription>10.2.1</TraceDescription>
+            </TraceLine>
+            <TraceLine status="error">
+              <TraceIcon>
+                <CrossCircledIcon className="icon" />
+              </TraceIcon>
+              <TraceTitle>Failed to run pnpm install --frozen-lockfile</TraceTitle>
+            </TraceLine>
+            <TraceLine status="running">
+              <TraceIcon>
+                <SymbolIcon className="icon" />
+              </TraceIcon>
+              <TraceTitle>Running pnpm install</TraceTitle>
+            </TraceLine>
+            <TraceLine status="pending">
+              <TraceIcon>
+                <DotFilledIcon className="icon" />
+              </TraceIcon>
+              <TraceTitle>Run pnpm test</TraceTitle>
+            </TraceLine>
+          </Trace>
+        </TraceCollapsibleContent>
+      </TraceCollapsible>
+    </Trace>
+  </div>
+)
+}
+```
+
+</ComponentPreview>
+
+## Installation
+Make sure that `namespace` is set in your component.json file. Namespace docs: [Learn more about namespaces](/docs/namespace)
+```bash
+pnpm dlx shadcn@latest add @aura/trace
+```
+
+### Manual
+
+<Steps>
+  <Step>
+    Install the following dependencies:
+
+    ```bash
+pnpm install @radix-ui/react-icons
+    ```
+  </Step>
+  <Step>
+    Copy and paste the class names utility into your `utils/class-names.ts` file.
+
+```ts
+import { clsx, type ClassValue } from "clsx"
+import { twMerge } from "tailwind-merge"
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs))
+}
+
+
+```
+  </Step>
+  <Step>
+    Copy and paste the collapsible component into your `components/ui/Collapsible.tsx` file.
+
+```tsx
+"use client";
+import { Collapsible as CollapsibleRadix } from "radix-ui";
+
+import { cn } from "@/utils/class-names";
+
+function Collapsible({
+  ...props
+}: React.ComponentProps<typeof CollapsibleRadix.Root>) {
+  return <CollapsibleRadix.Root data-slot="collapsible" {...props} />;
+}
+
+function CollapsibleTrigger({
+  ...props
+}: React.ComponentProps<typeof CollapsibleRadix.CollapsibleTrigger>) {
+  return (
+    <CollapsibleRadix.CollapsibleTrigger
+      data-slot="collapsible-trigger"
+      {...props}
+    />
+  );
+}
+
+function CollapsibleContent({
+  className,
+  ...props
+}: React.ComponentProps<typeof CollapsibleRadix.CollapsibleContent>) {
+  return (
+    <CollapsibleRadix.CollapsibleContent
+      className={cn(
+        className,
+        "overflow-hidden data-[state=closed]:animate-collapsible-up data-[state=open]:animate-collapsible-down"
+      )}
+      data-slot="collapsible-content"
+      {...props}
+    />
+  );
+}
+
+export { Collapsible, CollapsibleTrigger, CollapsibleContent };
+
+```
+  </Step>
+  <Step>
+    Copy and paste the Trace component into your `components/ui/Trace.tsx` file.
+
+```tsx
+import * as React from "react";
+import { ChevronRightIcon } from "@radix-ui/react-icons";
+
+import { cn } from "@/utils/class-names";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/Collapsible";
+
+type TraceStatus = "running" | "error" | "pending" | "done";
+
+function Trace({ className, ...props }: React.ComponentProps<"div">) {
+  return (
+    <div
+      data-slot="trace"
+      className={cn("flex w-full min-w-0 flex-col gap-1", className)}
+      {...props}
+    />
+  );
+}
+
+function TraceLine({
+  className,
+  status,
+  ...props
+}: React.ComponentProps<"span"> & {
+  status?: TraceStatus;
+}) {
+  return (
+    <span
+      data-slot="trace-line"
+      data-status={status}
+      className={cn(
+        "flex w-fit max-w-full min-w-0 items-center gap-0.5 text-left text-sm",
+        className
+      )}
+      {...props}
+    />
+  );
+}
+
+function TraceIcon({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="trace-icon"
+      aria-hidden="true"
+      className={cn("inline-flex shrink-0 items-center justify-center", className)}
+      {...props}
+    />
+  );
+}
+
+function TraceTitle({ className, ...props }: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="trace-title"
+      className={cn("min-w-0 truncate", className)}
+      {...props}
+    />
+  );
+}
+
+function TraceDescription({
+  className,
+  ...props
+}: React.ComponentProps<"span">) {
+  return (
+    <span
+      data-slot="trace-description"
+      className={cn("shrink-0 tabular-nums", className)}
+      {...props}
+    />
+  );
+}
+
+function TraceCollapsible({
+  className,
+  ...props
+}: React.ComponentProps<typeof Collapsible>) {
+  return (
+    <Collapsible
+      {...props}
+      data-slot="trace-collapsible"
+      className={cn("flex w-full min-w-0 flex-col", className)}
+    />
+  );
+}
+
+function TraceCollapsibleTrigger({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof CollapsibleTrigger>) {
+  return (
+    <CollapsibleTrigger
+      {...props}
+      data-slot="trace-collapsible-trigger"
+      className={cn(
+        "inline-flex w-fit max-w-full min-w-0 items-center gap-0.5 text-left",
+        className
+      )}
+    >
+      {children}
+      <span data-slot="trace-chevron" aria-hidden="true" className="shrink-0">
+        <ChevronRightIcon className="icon" />
+      </span>
+    </CollapsibleTrigger>
+  );
+}
+
+function TraceCollapsibleContent({
+  className,
+  children,
+  ...props
+}: React.ComponentProps<typeof CollapsibleContent>) {
+  return (
+    <CollapsibleContent {...props}>
+      <div
+        data-slot="trace-collapsible-content"
+        className={cn(
+          "mt-0.5 mb-0.5 ms-1 min-w-0 border-s border-gray-6 ps-1 text-sm leading-relaxed",
+          className
+        )}
+      >
+        {children}
+      </div>
+    </CollapsibleContent>
+  );
+}
+
+export {
+  Trace,
+  TraceLine,
+  TraceIcon,
+  TraceTitle,
+  TraceDescription,
+  TraceCollapsible,
+  TraceCollapsibleTrigger,
+  TraceCollapsibleContent,
+};
+export type { TraceStatus };
+
+```
+  </Step>
+</Steps>
+
+## Usage
+
+### Status
+
+```tsx
+export const Status = () => (
+  <div className="w-full max-w-lg">
+    <Trace>
+      <TraceLine status="done">
+        <TraceIcon>
+          <CheckCircledIcon className="icon" />
+        </TraceIcon>
+        <TraceTitle>Ran pnpm install</TraceTitle>
+      </TraceLine>
+      <TraceLine status="error">
+        <TraceIcon>
+          <CrossCircledIcon className="icon" />
+        </TraceIcon>
+        <TraceTitle>Failed to run pnpm lint</TraceTitle>
+      </TraceLine>
+      <TraceLine status="running">
+        <TraceIcon>
+          <SymbolIcon className="icon" />
+        </TraceIcon>
+        <TraceTitle>Running pnpm build</TraceTitle>
+      </TraceLine>
+      <TraceLine status="pending">
+        <TraceIcon>
+          <DotFilledIcon className="icon" />
+        </TraceIcon>
+        <TraceTitle>Run pnpm test</TraceTitle>
+      </TraceLine>
+    </Trace>
+  </div>
+)
+```
+
+### CollapsibleOutput
+
+```tsx
+export const CollapsibleOutput = () => (
+  <div className="w-full max-w-lg">
+    <Trace>
+      <TraceCollapsible>
+        <TraceCollapsibleTrigger>
+          <TraceLine status="done">
+            <TraceIcon>
+              <CodeIcon className="icon" />
+            </TraceIcon>
+            <TraceTitle>Ran node --version</TraceTitle>
+          </TraceLine>
+        </TraceCollapsibleTrigger>
+        <TraceCollapsibleContent>
+          <CodeBlock size="sm">
+            <CodeBlockContent>v24.18.0</CodeBlockContent>
+          </CodeBlock>
+        </TraceCollapsibleContent>
+      </TraceCollapsible>
+    </Trace>
+  </div>
+)
+```
+
+### Nested
+
+```tsx
+export const Nested = () => (
+  <div className="w-full max-w-lg">
+    <Trace>
+      <TraceCollapsible defaultOpen>
+        <TraceCollapsibleTrigger>
+          <TraceLine>
+            <TraceIcon>
+              <MagnifyingGlassIcon className="icon" />
+            </TraceIcon>
+            <TraceTitle>Used 2 sources</TraceTitle>
+          </TraceLine>
+        </TraceCollapsibleTrigger>
+        <TraceCollapsibleContent>
+          <Trace>
+            <TraceLine>
+              <TraceIcon>
+                <GlobeIcon className="icon" />
+              </TraceIcon>
+              <TraceTitle>pnpm install</TraceTitle>
+              <TraceDescription>pnpm.io</TraceDescription>
+            </TraceLine>
+            <TraceLine>
+              <TraceIcon>
+                <FileTextIcon className="icon" />
+              </TraceIcon>
+              <TraceTitle>Read pnpm-lock.yaml</TraceTitle>
+            </TraceLine>
+          </Trace>
+        </TraceCollapsibleContent>
+      </TraceCollapsible>
+    </Trace>
+  </div>
+)
+```
+
+### Link
+
+```tsx
+export const Link = () => (
+  <div className="w-full max-w-lg">
+    <Trace>
+      <a href="https://pnpm.io/cli/install">
+        <TraceLine>
+          <TraceIcon>
+            <FileTextIcon className="icon" />
+          </TraceIcon>
+          <TraceTitle>Read the pnpm install docs</TraceTitle>
+        </TraceLine>
+      </a>
+      <a href="https://pnpm.io" target="_blank" rel="noreferrer">
+        <TraceLine>
+          <TraceTitle>
+            pnpm
+            <span className="sr-only">, opens in a new tab</span>
+          </TraceTitle>
+          <TraceIcon>
+            <ArrowTopRightIcon className="icon" />
+          </TraceIcon>
+        </TraceLine>
+      </a>
+    </Trace>
+  </div>
+)
+```
+
+### DialogStep
+
+```tsx
+export const DialogStep = () => (
+  <div className="w-full max-w-lg">
+    <Trace>
+      <Dialog>
+        <DialogTrigger>
+          <TraceLine>
+            <TraceIcon>
+              <GlobeIcon className="icon" />
+            </TraceIcon>
+            <TraceTitle>Searched the web for cache keys</TraceTitle>
+          </TraceLine>
+        </DialogTrigger>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Searched the web for cache keys</DialogTitle>
+            <DialogDescription>
+              The frozen install fails because package.json changed without a
+              lockfile update.
+            </DialogDescription>
+          </DialogHeader>
+        </DialogContent>
+      </Dialog>
+    </Trace>
+  </div>
+)
+```
+
