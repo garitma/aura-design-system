@@ -35,7 +35,7 @@ Aura is a **design system monorepo**: tokens, UI components, Ladle stories, docs
 - **Accessibility** — Do not ship interactive components without keyboard, focus, and basic a11y (roles, labels, focus rings).
 - **Scope** — No drive-by refactors outside the task. No unrelated package bumps.
 - **No product apps** — Do not add Famity Care, Labelo, or other product-app code here. This repo is the design system only.
-- **No code comments** — Do not write comments. Express intent through names, types, and structure. Never leave a workaround comment; fix the root cause. Allowed exceptions: `'use client'` / `'use server'`, `/// <reference>`, `@ts-expect-error` / `eslint-disable` only when the code still fails without them, license headers, generated files, and external constraints this repo cannot change. See `.cursor/rules/no-comments.mdc`.
+- **No code comments** — Agents replicate existing patterns, so a workaround comment legitimizes the hack and spreads it. Fix the root cause instead, and express intent through names, types, and tests. Encode "do not remove" constraints as a type, test, or lint rule. Unjustified lint or TypeScript suppressions are workarounds too. The only allowed comments are external constraints we cannot change (browser quirks, library bugs, platform or spec limits) with the reason stated, functional directives, license headers, and generated code. See `.cursor/rules/no-comments.mdc`.
 
 ## Cursor rules & skills
 

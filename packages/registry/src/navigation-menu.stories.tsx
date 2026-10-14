@@ -222,4 +222,3 @@ export function NavigationMenuDemo() {
     </NavigationMenu>
   );
 }
-

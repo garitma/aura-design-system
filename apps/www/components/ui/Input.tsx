@@ -29,4 +29,3 @@ function Input({
 
 export { Input };
 export type { InputSize };
-

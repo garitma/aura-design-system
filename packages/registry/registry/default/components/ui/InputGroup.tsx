@@ -172,4 +172,3 @@ export {
   InputGroupInput,
   InputGroupTextarea,
 };
-

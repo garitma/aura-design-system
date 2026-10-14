@@ -296,4 +296,3 @@ function BarChart({
 }
 
 export { BarChart };
-

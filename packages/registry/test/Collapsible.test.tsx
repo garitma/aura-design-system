@@ -382,4 +382,3 @@ describe("Collapsible", () => {
     expect(screen.getByText("Item 2")).toBeInTheDocument();
   });
 });
-

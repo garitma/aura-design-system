@@ -14,4 +14,3 @@ export const siteOgImage = {
   height: 630,
   alt: siteName,
 };
-

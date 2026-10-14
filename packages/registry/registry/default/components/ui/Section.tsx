@@ -49,4 +49,3 @@ const Section = ({
 };
 
 export { Wrapper, WrapperContainer, Section };
-

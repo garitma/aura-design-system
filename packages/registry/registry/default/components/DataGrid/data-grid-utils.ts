@@ -517,4 +517,3 @@ export function getFileIcon(type: string): React.ElementType {
     return ReaderIcon;
   return FileIcon;
 }
-

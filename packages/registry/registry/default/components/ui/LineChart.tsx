@@ -274,4 +274,3 @@ function LineChart({
 }
 
 export { LineChart };
-

@@ -117,4 +117,3 @@ function InputOTP({
 }
 
 export { InputOTP };
-

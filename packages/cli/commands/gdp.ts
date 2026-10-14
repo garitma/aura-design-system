@@ -26,6 +26,7 @@ const GDP_ARRAY_SNIPPET = `...gdp({
 
 const GDP_ESLINT_CONFIG = `${GDP_IMPORT}import tseslint from "typescript-eslint";
 
+// typescript-eslint supplies the parser; the gdp-ts preset only adds rules, so it comes after.
 export default [
   ...tseslint.configs.recommended,
   ${GDP_ARRAY_SNIPPET}
@@ -33,6 +34,7 @@ export default [
 `;
 
 const GDP_ESLINT_FRAGMENT = `${GDP_IMPORT}
+/** Spread after typescript-eslint, which supplies the parser. */
 export function createGdpTsLintConfig() {
   return [
     ${GDP_ARRAY_SNIPPET}
@@ -341,4 +343,3 @@ export async function applyGdpToProject(projectRoot: string, force: boolean): Pr
   await wireEslint(projectRoot);
   await installSkill(projectRoot, force);
 }
-

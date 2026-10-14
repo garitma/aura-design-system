@@ -25,4 +25,3 @@ export const HR: ElementTransformer = {
   },
   type: "element",
 }
-

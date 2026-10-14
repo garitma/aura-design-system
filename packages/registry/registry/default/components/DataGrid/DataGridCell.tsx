@@ -109,4 +109,3 @@ function DataGridCellImpl<TData>({
     />
   );
 }
-

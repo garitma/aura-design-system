@@ -432,6 +432,7 @@ function getAlphaColor(
 	return [R, G, B, A] as const;
 }
 
+/** Browsers round each channel independently before blending. */
 function blendAlpha(
 	foreground: number,
 	alpha: number,
@@ -470,7 +471,7 @@ function getAlphaColorP3(
 	const [r, g, b, a] = getAlphaColor(
 		new Color(targetColor).to("p3").coords,
 		new Color(backgroundColor).to("p3").coords,
-		255,
+		255, // browsers use 0-255 channels even for P3
 		1000,
 		targetAlpha,
 	);
@@ -527,4 +528,3 @@ function toOklchString(color: Color) {
 		.toString({ precision: 4 })
 		.replace(/(\S+)(.+)/, `oklch(${L}%$2`);
 }
-

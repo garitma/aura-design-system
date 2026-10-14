@@ -59,4 +59,3 @@ describe("AspectRatio", () => {
     expect(wrapper).toBeInTheDocument();
   });
 });
-

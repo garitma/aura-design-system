@@ -21,4 +21,3 @@ export async function planIncludesEntitlement<P>(
     ? PlanIncludesEntitlement.prove(project)
     : null;
 }
-

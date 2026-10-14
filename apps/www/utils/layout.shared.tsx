@@ -45,4 +45,3 @@ export function baseOptions(): BaseLayoutProps {
     githubUrl: "https://github.com/somosgented/aura-design-system",
   };
 }
-

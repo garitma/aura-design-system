@@ -416,4 +416,3 @@ export function PageTOC(props: ComponentProps<"div">) {
     </div>
   );
 }
-

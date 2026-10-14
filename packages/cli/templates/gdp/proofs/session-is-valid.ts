@@ -20,4 +20,3 @@ export async function sessionIsValid<S, U>(
     ? SessionIsValid.prove(session, user)
     : null;
 }
-

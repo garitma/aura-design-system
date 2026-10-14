@@ -54,6 +54,7 @@
   --animate-fd-enterFromRight: fd-enterFromRight 250ms ease;
 
   --animate-fd-sidebar-in: fd-sidebar-in 250ms cubic-bezier(0.16, 1, 0.3, 1);
+  /* forwards keeps the panel off-screen until Radix Presence unmounts after exit */
   --animate-fd-sidebar-out: fd-sidebar-out 250ms cubic-bezier(0.16, 1, 0.3, 1)
     forwards;
 
@@ -343,4 +344,3 @@
     @slot;
   }
 }
-

@@ -51,4 +51,3 @@ function syncRules() {
 }
 
 syncRules();
-

@@ -138,4 +138,3 @@ export async function generateMetadata(props: PageProps): Promise<Metadata> {
     },
   };
 }
-

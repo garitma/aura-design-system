@@ -288,4 +288,3 @@ function DataGridRowImpl<TData>({
     </div>
   );
 }
-

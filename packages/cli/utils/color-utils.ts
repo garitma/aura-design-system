@@ -527,4 +527,3 @@ function toOklchString(color: Color) {
 		.toString({ precision: 4 })
 		.replace(/(\S+)(.+)/, `oklch(${L}%$2`);
 }
-

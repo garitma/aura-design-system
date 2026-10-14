@@ -94,4 +94,3 @@ export const FormFieldSignaturePad = React.forwardRef<
 );
 
 FormFieldSignaturePad.displayName = "FormFieldSignaturePad";
-

@@ -22,4 +22,3 @@ export async function userHasProjectRole<U, P>(
     ? UserHasProjectRole.prove(user, project)
     : null;
 }
-

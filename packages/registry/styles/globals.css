@@ -322,6 +322,7 @@
     --aura-status-dot-canceled: #333333;
     --aura-status-dot-ring: var(--gray-1);
 
+    /* WCAG non-text contrast needs 3:1 on gray-1. Dark accent-9 is 1.99:1 and accent-10 is 1.59:1. */
     --chart-1: var(--accent-11);
   }
 }
@@ -408,6 +409,7 @@
     --aura-status-dot-canceled: #333333;
     --aura-status-dot-ring: var(--gray-1);
 
+    /* WCAG non-text contrast needs 3:1 on gray-1. Dark accent-9 is 1.99:1 and accent-10 is 1.59:1. */
     --chart-1: var(--accent-11);
   }
 
@@ -471,4 +473,3 @@ select {
     padding: 0!important;
   }
 }
-

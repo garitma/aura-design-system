@@ -4,6 +4,7 @@ import { fileURLToPath } from "node:url";
 
 import PptxGenJSImport from "pptxgenjs";
 
+// pptxgenjs ships CJS; the default-import shape differs between node and tsx.
 const PptxGenJS = ((PptxGenJSImport as unknown as { default?: typeof PptxGenJSImport })
   .default ?? PptxGenJSImport) as typeof PptxGenJSImport;
 
@@ -39,7 +40,9 @@ const gray = {
 const SANS = "Gabarito";
 const MONO = "Menlo";
 
-const U = 13 / 96;
+const PPTX_PX_PER_INCH = 96;
+const SPACING_PX = 13;
+const U = SPACING_PX / PPTX_PX_PER_INCH;
 const MARGIN = U * 6;
 
 function baseSlide(pptx: Pptx, options: { eyebrow: string }) {
@@ -69,6 +72,7 @@ function baseSlide(pptx: Pptx, options: { eyebrow: string }) {
 }
 
 function build(pptx: Pptx) {
+  // LAYOUT_WIDE is 13.333 x 7.5in; LAYOUT_16x9 is only 10 x 5.625in.
   pptx.layout = "LAYOUT_WIDE";
   pptx.author = "Aura Design System";
   pptx.company = "Aura";
@@ -433,4 +437,3 @@ main().catch((error) => {
   console.error(error);
   process.exit(1);
 });
-

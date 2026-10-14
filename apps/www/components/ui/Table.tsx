@@ -203,4 +203,3 @@ export {
   TableCaption,
   ResponsiveTableCard,
 }
-

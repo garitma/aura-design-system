@@ -239,4 +239,3 @@ export function withArticle(props: ComponentProps<"main">): ReactNode {
     </main>
   );
 }
-

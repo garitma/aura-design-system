@@ -281,4 +281,3 @@ const shipped = readdirSync(templateRoot).filter((name) =>
 );
 console.log(`vendored ${shipped.length} skills into ${relative(repoRoot, templateRoot)}`);
 console.log(shipped.sort().join("\n"));
-

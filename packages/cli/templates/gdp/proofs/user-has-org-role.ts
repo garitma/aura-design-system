@@ -20,4 +20,3 @@ export async function userHasOrgRole<U, O>(
     ? UserHasOrgRole.prove(user, org)
     : null;
 }
-

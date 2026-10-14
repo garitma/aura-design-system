@@ -39,4 +39,3 @@ function SwitchThumb({
 }
 
 export { Switch, SwitchThumb };
-

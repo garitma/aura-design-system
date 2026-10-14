@@ -98,4 +98,3 @@ export {
   MentionLabel,
   MentionPortal,
 };
-

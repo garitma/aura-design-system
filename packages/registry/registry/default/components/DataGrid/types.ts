@@ -256,4 +256,3 @@ export interface FilterValue {
   value?: string | number | string[];
   endValue?: string | number;
 }
-

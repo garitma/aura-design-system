@@ -1,4 +1,4 @@
-@theme animatons {
+@theme {
   --animate-accordion-open: slideDownAccordion 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
   --animate-accordion-closed: slideUpAccordion 200ms cubic-bezier(0.645, 0.045, 0.355, 1);
 }

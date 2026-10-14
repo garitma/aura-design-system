@@ -128,4 +128,3 @@ export function Plugins({ onChange }: { onChange?: (state: any) => void }) {
     </>
   );
 }
-

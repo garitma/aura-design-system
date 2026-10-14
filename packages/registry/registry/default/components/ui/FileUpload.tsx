@@ -1415,4 +1415,3 @@ export {
   FileUploadTrigger,
   useStore as useFileUpload,
 };
-

@@ -247,4 +247,3 @@ function CursorIcon(props: ComponentProps<"svg">) {
     </svg>
   );
 }
-

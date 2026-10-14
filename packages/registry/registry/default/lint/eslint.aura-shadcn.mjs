@@ -1,3 +1,4 @@
+/** Requires @shadcn/lint with ESLint >= 9.30 and Node >= 20.19. */
 
 const formControlRestyle = {
   pattern: "^(Input|Textarea|SelectTrigger|MaskInput|SegmentedInput)$",
@@ -173,6 +174,10 @@ export const auraPlugin = {
   rules: { "no-icon-margin": noIconMargin },
 };
 
+/**
+ * @param {unknown} shadcnPlugin
+ * @returns {import("eslint").Linter.Config[]}
+ */
 export function createAuraShadcnLintConfig(shadcnPlugin) {
   return [
     {
@@ -241,4 +246,3 @@ export function createAuraShadcnLintConfig(shadcnPlugin) {
     },
   ];
 }
-

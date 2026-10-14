@@ -532,10 +532,6 @@
   .button-fill.active {
     background-color: var(--aura-button-hover);
   }
-  /* Joined corners and the shared edge. `.button` sets `border-radius` (and the
-     prefixed shorthands) outside `@layer`, so the group's `rounded-*-none` loses.
-     These longhands are more specific, so the inner corners stay square.
-     Fill buttons share one accent-10 edge; the next button drops its start border. */
   [data-slot="button-group"][data-orientation="horizontal"] > .button:not(:first-child) {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;

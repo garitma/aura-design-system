@@ -898,4 +898,3 @@ export default function AuraAesthetic() {
     </section>
   );
 }
-

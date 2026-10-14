@@ -318,4 +318,3 @@ function SidebarLinkItem({
 }
 
 export { CollapsibleControl, Navbar, SidebarTrigger, type LinkItemType };
-

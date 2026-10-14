@@ -12,10 +12,10 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 ## Sessions
 ### 2026-10-14 · No code comments
-- Explanatory comments are gone from `apps/` and `packages/` source. Names, types, and structure carry intent. See [[No code comments]] and [[Aura Agent Surface]].
+- Workaround comments about our own code are deleted or solved by refactor. Comments about external constraints stay, with the reason stated. See [[No code comments]] and [[Aura Agent Surface]].
 - `.cursor/rules/no-comments.mdc` is always applied, listed in `AGENTS.md`, synced into the registry rules bundle, and copied by `aura blueprint` from `packages/cli/templates/cursor/rules/`.
-- `apps/www` ESLint `no-warning-comments` errors on `todo`, `fixme`, `hack`, `xxx`, and `workaround`.
-- Kept: license headers, required suppressions, and comments about constraints we cannot change (iOS Safari zoom, Turbopack/fumadocs, Radix select arrow, vaul overlay timing, unlayered button radius, gdp-ts proofs).
+- `apps/www` ESLint `no-warning-comments` errors on `todo`, `fixme`, `hack`, `xxx`, and `workaround`. `packages/registry/test/server-safe-components.test.ts` encodes the "Button has no createContext" constraint.
+- Kept: iOS Safari zoom, Firefox image drag, React 19 ref cleanup, Recharts series binding, TanStack Table #4794, Radix Presence and select arrow, vaul overlay timing, WCAG chart contrast, Turbopack/fumadocs setup, licenses, and required suppressions.
 
 ### 2026-10-14 · Typography uses Gabarito
 - The sans face is Gabarito, the same family as next-sgd. See [[Typography]].

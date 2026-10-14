@@ -223,4 +223,3 @@ function isSecondary(item: LinkItemType): boolean {
 
   return item.type === "icon";
 }
-

@@ -134,4 +134,3 @@ export function getColorName(value: string) {
     if (h >= 320 && h < 340) return 'pink';
     return 'red';
 }
-

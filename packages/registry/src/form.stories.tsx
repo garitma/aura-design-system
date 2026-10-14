@@ -1247,4 +1247,3 @@ export const WithEditor = () => {
     </Form>
   );
 };
-

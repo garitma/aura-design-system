@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "registry/default/components/ui/Input.tsx",
-      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/utils/class-names\";\n\nconst inputSizeClassName = {\n  sm: \"box-border h-3 px-2 py-0\",\n  default: \"box-border h-4 px-2 py-0\",\n  lg: \"box-border h-5 px-2 py-0\",\n} as const;\n\ntype InputSize = keyof typeof inputSizeClassName;\n\nfunction Input({\n  className,\n  size = \"default\",\n  ...props\n}: Omit<React.ComponentProps<\"input\">, \"size\"> & {\n  size?: InputSize;\n}) {\n  return (\n    <input\n      data-slot=\"input\"\n      data-size={size}\n      className={cn(inputSizeClassName[size], className)}\n      {...props}\n    />\n  );\n}\n\nexport { Input };\nexport type { InputSize };\n\n",
+      "content": "import * as React from \"react\";\n\nimport { cn } from \"@/utils/class-names\";\n\nconst inputSizeClassName = {\n  sm: \"box-border h-3 px-2 py-0\",\n  default: \"box-border h-4 px-2 py-0\",\n  lg: \"box-border h-5 px-2 py-0\",\n} as const;\n\ntype InputSize = keyof typeof inputSizeClassName;\n\nfunction Input({\n  className,\n  size = \"default\",\n  ...props\n}: Omit<React.ComponentProps<\"input\">, \"size\"> & {\n  size?: InputSize;\n}) {\n  return (\n    <input\n      data-slot=\"input\"\n      data-size={size}\n      className={cn(inputSizeClassName[size], className)}\n      {...props}\n    />\n  );\n}\n\nexport { Input };\nexport type { InputSize };\n",
       "type": "registry:ui"
     }
   ]

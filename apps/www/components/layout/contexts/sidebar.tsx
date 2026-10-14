@@ -66,4 +66,3 @@ export function SidebarProvider({ children }: { children: ReactNode }) {
     </SidebarContext.Provider>
   );
 }
-

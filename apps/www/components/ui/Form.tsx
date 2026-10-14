@@ -469,4 +469,3 @@ export const FormAlert = ({ formData, ...props }: FormAlertProps) => {
     <AlertStatus status="danger" {...props} description={formData.error} />
   );
 };
-

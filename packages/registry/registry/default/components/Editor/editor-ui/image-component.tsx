@@ -343,6 +343,7 @@ export default function ImageComponent({
         DRAGSTART_COMMAND,
         (event) => {
           if (event.target === imageRef.current) {
+            // Firefox starts a native drag of the <img>; cancel it so it behaves like other browsers.
             event.preventDefault()
             return true
           }
@@ -484,4 +485,3 @@ export default function ImageComponent({
     </Suspense>
   )
 }
-

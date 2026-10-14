@@ -172,4 +172,3 @@ export const FormFieldSortableList = React.forwardRef<
 );
 
 FormFieldSortableList.displayName = "FormFieldSortableList";
-

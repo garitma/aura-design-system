@@ -24,6 +24,8 @@ function composeRefs<T>(...refs: PossibleRef<T>[]): React.RefCallback<T> {
       return cleanup;
     });
  
+    // React <19 logs an error when a callback ref returns a value. Only return a
+    // cleanup when a caller's ref uses the React 19 cleanup form.
     if (hasCleanup) {
       return () => {
         for (let i = 0; i < cleanups.length; i++) {

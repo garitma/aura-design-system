@@ -110,6 +110,7 @@ function GridPopoverTextareaCell<TData>({
       const length = textareaRef.current.value.length;
       textareaRef.current.setSelectionRange(length, length);
 
+      // execCommand is the only insertion that joins the textarea's native undo history.
       if (pendingCharRef.current) {
         const char = pendingCharRef.current;
         pendingCharRef.current = null;
@@ -2048,4 +2049,3 @@ export function FileCell<TData>({
     </DataGridCellWrapper>
   );
 }
-

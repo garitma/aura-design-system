@@ -206,4 +206,3 @@ export function registerInitCommand(program: Command) {
       await initializeAura();
     });
 }
-

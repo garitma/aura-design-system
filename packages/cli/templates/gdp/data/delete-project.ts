@@ -18,4 +18,3 @@ export async function deleteProject<S, U, P>(
   void _proofs;
   await markProjectDeleted(project.value);
 }
-

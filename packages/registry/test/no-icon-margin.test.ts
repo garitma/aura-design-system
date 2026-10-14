@@ -48,4 +48,3 @@ ruleTester.run("aura/no-icon-margin", rule, {
     },
   ],
 });
-

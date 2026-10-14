@@ -68,4 +68,3 @@ export function getPageImage(page: InferPageType<typeof source>) {
 export async function getLLMText(page: InferPageType<typeof source>) {
   return docsLlms.page(page);
 }
-

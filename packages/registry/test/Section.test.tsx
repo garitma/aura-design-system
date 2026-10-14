@@ -53,4 +53,3 @@ describe("Section", () => {
     expect(containerDiv).toHaveClass("custom-inner-class");
   });
 });
-

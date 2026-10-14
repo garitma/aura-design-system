@@ -82,4 +82,3 @@ export function NavProvider({
 export function useNav(): NavContextType {
   return useContext(NavContext);
 }
-

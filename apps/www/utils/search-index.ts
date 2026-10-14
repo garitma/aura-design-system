@@ -130,4 +130,3 @@ export function filterComponentCatalogDuplicates<T extends CatalogSearchHit>(
     return terms.some((term) => title.includes(term));
   });
 }
-

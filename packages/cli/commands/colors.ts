@@ -101,7 +101,6 @@ export function generateGlobalsCss(lightColors: any, darkColors: any) {
 }
 
 :root {
-  /* Accent color scale */
   --accent-1: ${lightColors.accentScale[0]};
   --accent-2: ${lightColors.accentScale[1]};
   --accent-3: ${lightColors.accentScale[2]};
@@ -133,7 +132,6 @@ export function generateGlobalsCss(lightColors: any, darkColors: any) {
   --accent-indicator: ${lightColors.accentScale[8]};
   --accent-track: ${lightColors.accentScale[8]};
 
-  /* Gray color scale */
   --gray-1: ${lightColors.grayScale[0]};
   --gray-2: ${lightColors.grayScale[1]};
   --gray-3: ${lightColors.grayScale[2]};
@@ -177,14 +175,12 @@ export function generateGlobalsCss(lightColors: any, darkColors: any) {
   --chart-5: var(--danger-contrast);
   --ecru: #debc7a;
 
-  /* Aura Design System - Root Tokens */
   --aura: 13px;
   --aura-font-stack: var(--font-gabarito, "Gabarito"), -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
   --aura-font-quotes: serif;
 
-  /* Aura Background & Text - Mapped to gray scale */
   --aura-bg: var(--gray-1);
   --aura-text-primary: var(--accent-12);
   --aura-text-primary-inverse: var(--gray-contrast);
@@ -192,7 +188,6 @@ export function generateGlobalsCss(lightColors: any, darkColors: any) {
   --aura-accents-primary: var(--accent-9);
   --aura-accents-secondary: var(--accent-9);
 
-  /* Aura Component Tokens - Mapped to 12-step system */
   --aura-input-radius: 6.5px;
   --aura-button-radius: 6.5px;
   --aura-input-bg: var(--accent-2);
@@ -212,7 +207,6 @@ export function generateGlobalsCss(lightColors: any, darkColors: any) {
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Accent color scale */
     --accent-1: ${darkColors.accentScale[0]};
     --accent-2: ${darkColors.accentScale[1]};
     --accent-3: ${darkColors.accentScale[2]};
@@ -244,7 +238,6 @@ export function generateGlobalsCss(lightColors: any, darkColors: any) {
     --accent-indicator: ${darkColors.accentScale[8]};
     --accent-track: ${darkColors.accentScale[8]};
 
-    /* Gray color scale */
     --gray-1: ${darkColors.grayScale[0]};
     --gray-2: ${darkColors.grayScale[1]};
     --gray-3: ${darkColors.grayScale[2]};
@@ -384,4 +377,3 @@ export function registerColorsCommand(program: Command) {
       console.log(`\n  File: ${globalsPath}`);
     });
 }
-

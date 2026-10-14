@@ -50,4 +50,3 @@ export function registerLinkCommand(program: Command) {
       console.log(chalk.green(`Wrote ${outPath}`));
     });
 }
-

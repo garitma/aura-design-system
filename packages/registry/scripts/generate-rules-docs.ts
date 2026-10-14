@@ -193,4 +193,3 @@ function generateRulesDocs() {
 }
 
 generateRulesDocs();
-

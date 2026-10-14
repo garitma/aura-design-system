@@ -5,9 +5,9 @@ date: 2026-10-14
 tags: [dev-log, architecture, aura]
 ---
 ## Summary
-Source under `apps/` and `packages/` does not carry explanatory comments. Agents copy comments that already exist, so workaround notes spread. Intent belongs in names, types, and structure. The guardrail is `.cursor/rules/no-comments.mdc`, also installed by `aura blueprint` and the `@aura/rules` registry item.
+Agents replicate the patterns already in a file, so a comment explaining a temporary workaround legitimizes the hack and spreads it. Workaround comments about our own code are deleted or solved by refactoring the root cause; larger refactors are listed as a plan in the PR. Comments that record an external constraint we cannot change (browser quirk, library bug, platform or spec limit) stay, with the reason. "Do not remove" constraints are encoded as a type, test, or lint rule.
 
 ## Context
 - Related: [[Aura Agent Surface]]
-- Implementation Path: `.cursor/rules/no-comments.mdc`
-- Allowed exceptions: `'use client'` / `'use server'`, `/// <reference>`, required `@ts-expect-error` / `eslint-disable`, license headers, generated files, and external constraints this repo cannot change.
+- Implementation Path: `.cursor/rules/no-comments.mdc`, `packages/cli/templates/cursor/rules/no-comments.mdc`, `packages/registry/test/server-safe-components.test.ts`
+- Allowed: external constraints with the reason, functional directives (`'use client'`, `/// <reference>`, JSDoc types in JS, `@deprecated`, required suppressions), license headers, generated code.

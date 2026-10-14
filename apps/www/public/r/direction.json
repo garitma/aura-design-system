@@ -10,7 +10,7 @@
   "files": [
     {
       "path": "registry/default/components/ui/Direction.tsx",
-      "content": "\"use client\";\nimport * as React from \"react\";\nimport { Direction } from \"radix-ui\";\n\nfunction DirectionProvider({\n  dir = \"ltr\",\n  children,\n  className,\n  ...props\n}: React.ComponentProps<typeof Direction.Provider> & {\n  className?: string;\n}) {\n  return (\n    <Direction.Provider dir={dir} {...props}>\n      <div dir={dir} data-slot=\"direction\" className={className}>\n        {children}\n      </div>\n    </Direction.Provider>\n  );\n}\n\nexport { DirectionProvider };\n\n",
+      "content": "\"use client\";\nimport * as React from \"react\";\nimport { Direction } from \"radix-ui\";\n\nfunction DirectionProvider({\n  dir = \"ltr\",\n  children,\n  className,\n  ...props\n}: React.ComponentProps<typeof Direction.Provider> & {\n  className?: string;\n}) {\n  return (\n    <Direction.Provider dir={dir} {...props}>\n      <div dir={dir} data-slot=\"direction\" className={className}>\n        {children}\n      </div>\n    </Direction.Provider>\n  );\n}\n\nexport { DirectionProvider };\n",
       "type": "registry:ui"
     }
   ]

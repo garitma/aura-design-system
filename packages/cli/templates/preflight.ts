@@ -282,4 +282,3 @@ runPreflightChecks().catch((error) => {
   console.error(`${colors.red}Fatal error:${colors.reset}`, error);
   process.exit(1);
 });
-

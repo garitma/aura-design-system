@@ -406,4 +406,3 @@ function AreaChart({
 }
 
 export { AreaChart };
-

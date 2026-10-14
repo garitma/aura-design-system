@@ -2015,6 +2015,8 @@ function useDataGrid<TData>({
 
   const defaultColumn: Partial<ColumnDef<TData>> = React.useMemo(
     () => ({
+      // DataGridRow renders cells directly: flexRender's cell.getContext() is
+      // unstable (TanStack Table issue #4794).
       minSize: MIN_COLUMN_SIZE,
       maxSize: MAX_COLUMN_SIZE,
     }),
@@ -3172,6 +3174,8 @@ function useDataGrid<TData>({
     table.getState().sorting,
   ]);
 
+  // Read virtualizer values here, not during child render, so its flushSync
+  // does not run inside a React render.
   const virtualTotalSize = rowVirtualizer.getTotalSize();
   const virtualItems = rowVirtualizer.getVirtualItems();
   const measureElement = rowVirtualizer.measureElement;
@@ -3229,4 +3233,3 @@ function useDataGrid<TData>({
 
 export { useDataGrid };
 export type { UseDataGridProps };
-

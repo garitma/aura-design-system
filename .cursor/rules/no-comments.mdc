@@ -1,22 +1,31 @@
 ---
 alwaysApply: true
 title: No code comments
-description: Do not write code comments. Express intent through names, types, and structure.
+description: Fix the root cause instead of commenting on it. Only external constraints, directives, licenses, and generated code carry comments.
 ---
 
 # No code comments
 
-Agents copy what is already in the file. Comments, especially ones that explain a temporary workaround, spread.
+## Why
 
-* **MUST NOT**: Write code comments. Express intent through names, types, and structure.
-* **MUST NOT**: Leave workaround, TODO, FIXME, or commented-out code. Fix the root cause.
-* **MUST**: Delete a comment that only narrates the next line.
+Agents replicate the patterns already in a file. A comment that explains a temporary workaround makes the hack look sanctioned, so the next change adds "just one more workaround" beside it. The comment then goes stale while the hack spreads.
 
-## Allowed
+## What to do instead
 
-* Directive strings: `'use client'`, `'use server'`.
-* `/// <reference …>`.
-* `@ts-expect-error` or `eslint-disable` only when the code does not type-check or lint without them. Remove the suppression when it is no longer required.
+* **MUST**: Fix the root cause from first principles so neither the hack nor its comment remains.
+* **MUST**: Express intent through names, types, and tests. Extract a well-named function or constant instead of explaining a block.
+* **MUST**: Encode "do not remove" or "keep this shape" constraints as a type, a test, or a lint rule, not a comment.
+* **MUST NOT**: Leave TODO, FIXME, HACK, or commented-out code.
+* **MUST NOT**: Add a lint or TypeScript suppression to make a workaround pass. An unjustified suppression is a workaround.
+
+## Triage an existing comment
+
+* **Delete outright** when it narrates the code, restates a name, or is stale.
+* **Solve by refactor** when it explains a workaround in our own code. Fix it in the same change when the fix is small. Otherwise record the file, the workaround, and the proposed refactor in the PR, then delete the comment.
+
+## Allowed comments
+
+* An external constraint this repo cannot change: a browser quirk, a third-party or library bug, or a platform or spec limit. State the external reason, for example "iOS Safari zooms inputs under 16px".
+* Functional directives: `'use client'`, `'use server'`, `/// <reference …>`, JSDoc types in plain JS, `@deprecated`, and `@ts-expect-error` / `eslint-disable` only when the code cannot pass without them, with the reason.
 * License headers.
-* Generated files. Do not hand-edit generated output; regenerate it when the source changes.
-* A comment that records an external constraint this repo cannot change (a browser, a library, or a tool).
+* Generated code. Regenerate it from its source; do not hand-edit it.

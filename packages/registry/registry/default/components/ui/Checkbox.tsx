@@ -152,4 +152,3 @@ function CheckboxGroupItem({
 }
 
 export { Checkbox, CheckboxIndicator, CheckboxGroup, CheckboxGroupItem };
-

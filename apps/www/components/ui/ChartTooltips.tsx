@@ -154,4 +154,3 @@ function ChartTooltips({
 }
 
 export { ChartTooltips };
-

@@ -525,6 +525,8 @@ function ChartRadialBar({
   );
 }
 
+// Recharts identifies a series by displayName, reads axis ids from defaultProps,
+// and skips a composed child that does not implement getComposedData.
 bindRechartsSeries(ChartArea, Area, "Area");
 bindRechartsSeries(ChartBar, Bar, "Bar");
 bindRechartsSeries(ChartLine, Line, "Line");
@@ -579,4 +581,3 @@ export {
   chartTickMargin,
   useChart,
 };
-

@@ -24,4 +24,3 @@ const urlRegExp = new RegExp(
 export function validateUrl(url: string): boolean {
   return url === "https://" || urlRegExp.test(url)
 }
-

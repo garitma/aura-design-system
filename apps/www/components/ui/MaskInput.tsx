@@ -1510,4 +1510,3 @@ export {
   type MaskPattern,
   toUnmaskedIndex,
 };
-

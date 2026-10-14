@@ -26,4 +26,3 @@ export function generateStaticParams() {
     slug: [...item.slug, "content.md"],
   }));
 }
-

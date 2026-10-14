@@ -10,4 +10,3 @@ export const UserId = (id: string) => id as UserId;
 export const SessionId = (id: string) => id as SessionId;
 export const OrgId = (id: string) => id as OrgId;
 export const ProjectId = (id: string) => id as ProjectId;
-

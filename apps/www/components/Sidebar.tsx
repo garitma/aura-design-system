@@ -256,6 +256,7 @@ export function SidebarContentMobile({
           onClick={() => setOpen(false)}
         />
       </Presence>
+      {/* Element children let Radix Presence unmount after exit; a render prop force-mounts. */}
       <Presence present={open}>
         <aside
           id="nd-sidebar"
@@ -519,6 +520,7 @@ export function SidebarCollapseTrigger(props: ComponentProps<"button">) {
       onClick={(event) => {
         props.onClick?.(event);
         if (event.defaultPrevented) return;
+        // The media query can lag the open overlay during resize and hydration.
         if (isMobile || open) setOpen(false);
         else setCollapsed((prev) => !prev);
       }}
@@ -642,4 +644,3 @@ function PageTreeFolder({
     </SidebarFolder>
   );
 }
-

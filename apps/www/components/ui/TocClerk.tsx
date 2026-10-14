@@ -176,4 +176,3 @@ function TOCItem({
     </Primitive.TOCItem>
   );
 }
-

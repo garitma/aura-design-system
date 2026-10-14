@@ -142,4 +142,3 @@ describe("AlertStatus", () => {
     expect(screen.getByText("Nothing needs attention.")).toHaveClass("p");
   });
 });
-

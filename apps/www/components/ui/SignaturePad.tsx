@@ -304,4 +304,3 @@ const SignaturePad = React.forwardRef<SignaturePadRef, SignaturePadProps>(
 );
 
 export default SignaturePad;
-

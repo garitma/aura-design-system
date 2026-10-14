@@ -136,4 +136,3 @@ export const ComboboxSingle = React.forwardRef<
 );
 
 ComboboxSingle.displayName = "ComboboxSingle";
-

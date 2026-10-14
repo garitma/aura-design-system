@@ -62,4 +62,3 @@ export const DisabledDays = () => (
     disabled={{ before: new Date(2026, 3, 10) }}
   />
 );
-

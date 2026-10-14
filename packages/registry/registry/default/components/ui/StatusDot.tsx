@@ -65,4 +65,3 @@ function StatusDot({
 }
 
 export { StatusDot, type StatusDotState };
-

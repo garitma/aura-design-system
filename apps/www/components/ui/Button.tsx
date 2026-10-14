@@ -44,6 +44,7 @@ interface ButtonProps
   isDisabled?: boolean;
   isLoading?: boolean;
   isLoadingText?: string | React.ReactNode;
+  /** @deprecated Use `variant`. Still applied, and warns in development. */
   mode?: VariantProps<typeof buttonVariants>["variant"];
   label?: string | React.ReactNode;
 }
@@ -143,4 +144,3 @@ Button.displayName = "Button";
 export { Button, buttonVariants };
 export type { ButtonProps };
 export default Button;
-

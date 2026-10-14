@@ -248,4 +248,3 @@ export function CodeBlockTabsTrigger({
 export function CodeBlockTab(props: ComponentProps<typeof TabsContent>) {
   return <TabsContent {...props} />;
 }
-

@@ -239,4 +239,3 @@ export {
   type SegmentedInputProps,
   type SegmentedInputItemProps,
 };
-

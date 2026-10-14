@@ -295,4 +295,3 @@ function AvatarGroupItem(props: AvatarGroupItemProps) {
 
 export { AvatarGroup, avatarGroupVariants };
 export type { AvatarGroupProps };
-

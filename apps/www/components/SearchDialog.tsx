@@ -396,4 +396,3 @@ export function SearchDialogTriggerIcon({
     </>
   );
 }
-

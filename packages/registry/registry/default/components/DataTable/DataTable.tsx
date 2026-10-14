@@ -305,4 +305,3 @@ export function DataTable<TData>({
 }
 
 export { DataTablePagination } from "./DataTablePagination";
-

@@ -355,4 +355,3 @@ export function ImageResizer({
     </div>
   )
 }
-

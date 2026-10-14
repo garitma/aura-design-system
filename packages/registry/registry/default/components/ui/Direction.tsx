@@ -20,4 +20,3 @@ function DirectionProvider({
 }
 
 export { DirectionProvider };
-

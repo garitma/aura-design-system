@@ -1,4 +1,4 @@
-@theme animatons {
+@theme {
     --animate-collapsible-down: slideDownCollapsible 500ms ease;
     --animate-collapsible-up: slideUpCollapsible 500ms ease;
   }
