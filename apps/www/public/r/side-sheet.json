@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "side-sheet",
+  "type": "registry:ui",
+  "title": "SideSheet",
+  "description": "The SideSheet component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/SideSheet.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction SideSheet({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"side-sheet\"\n      className={cn(\"flex h-full min-h-0 min-w-0\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction SideSheetMain({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"side-sheet-main\"\n      className={cn(\"min-w-0 flex-1\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction SideSheetPanel({\n  className,\n  open = true,\n  side = \"end\",\n  label = \"Side panel\",\n  ...props\n}: React.ComponentProps<\"aside\"> & {\n  open?: boolean;\n  side?: \"start\" | \"end\";\n  label?: string;\n}) {\n  return (\n    <aside\n      aria-label={label}\n      data-slot=\"side-sheet-panel\"\n      data-state={open ? \"open\" : \"closed\"}\n      hidden={!open}\n      className={cn(\n        \"flex w-20 shrink-0 flex-col gap-1 bg-gray-1 p-1.5\",\n        side === \"end\" ? \"order-2 border-s border-gray-6\" : \"order-1 border-e border-gray-6\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nexport { SideSheet, SideSheetMain, SideSheetPanel };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

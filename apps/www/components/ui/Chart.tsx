@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Chart container, tooltip, legend, and series wrappers for Recharts, colored with Aura series tokens.
- */
 import * as React from "react";
 import {
   Area,
@@ -117,7 +114,6 @@ function measureCssPx(expression: string, fallback: number) {
   return Number.isFinite(width) && width > 0 ? width : fallback;
 }
 
-/** Pixel size of `--chart-inset`, which follows `--spacing`. */
 function chartInsetPx() {
   if (chartInsetCache != null) return chartInsetCache;
   const value = measureCssPx(

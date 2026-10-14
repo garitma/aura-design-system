@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "portal",
+  "type": "registry:ui",
+  "title": "Portal",
+  "description": "The Portal component.",
+  "files": [
+    {
+      "path": "registry/default/components/ui/Portal.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { createPortal } from \"react-dom\";\n\nfunction Portal({\n  children,\n  container,\n}: {\n  children: React.ReactNode;\n  container?: HTMLElement | null;\n}) {\n  const [target, setTarget] = React.useState<HTMLElement | null>(container ?? null);\n\n  React.useEffect(() => {\n    setTarget(container === undefined ? document.body : container);\n  }, [container]);\n\n  if (!target) return null;\n  return createPortal(children, target);\n}\n\nexport { Portal };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

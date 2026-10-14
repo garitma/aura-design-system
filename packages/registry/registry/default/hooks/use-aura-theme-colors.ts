@@ -26,7 +26,6 @@ export const DEFAULT_THEME_COLORS: ThemeColorsByMode = {
 const STORAGE_KEY = AURA_THEME_COLORS_KEY;
 const CHANGE_EVENT = "aura-theme-colors-change";
 
-/** Backgrounds at or above this relative luminance use the light scale. */
 const LIGHT_BACKGROUND_LUMINANCE = 0.4;
 
 let pinnedAppearance: "light" | "dark" | null = null;
@@ -80,7 +79,6 @@ function clearCorruptStorage() {
   try {
     localStorage.removeItem(STORAGE_KEY);
   } catch {
-    // ignore quota / privacy mode failures
   }
 }
 
@@ -131,7 +129,6 @@ function writeToStorage(next: ThemeColorsByMode) {
     try {
       localStorage.setItem(STORAGE_KEY, serializeTheme(safeNext));
     } catch {
-      // ignore quota / privacy mode failures
     }
   }
   emitChange();
@@ -141,7 +138,6 @@ export function pinAppearance(mode: "light" | "dark") {
   pinnedAppearance = mode;
 }
 
-/** Prefer a preset's mode until next-themes resolves to the same value. */
 export function consumePaintAppearance(
   resolved: string | undefined
 ): "light" | "dark" | null {
@@ -193,7 +189,6 @@ export function isValidHex(hex: string) {
   );
 }
 
-/** Always returns `#rrggbb` (expands 3-digit hex). Safe for `<input type="color">`. */
 export function normalizeHex(value: string) {
   const raw = value.trim();
   const withHash = raw.startsWith("#") ? raw : `#${raw}`;
@@ -207,7 +202,6 @@ export function normalizeHex(value: string) {
   return `#${body}`.toLowerCase();
 }
 
-/** Native color inputs require `#rrggbb`; never pass short or invalid values. */
 export function toColorInputValue(value: string, fallback = "#4015ca") {
   if (!isValidHex(value)) return normalizeHex(fallback);
   return normalizeHex(value);
@@ -494,10 +488,8 @@ export function generateGlobalsCssContent(
 }
 
 :root {
-  /* Accent color scale */
 ${generateScaleVars("accent", lightColors.accentScale, lightColors.accentScaleAlpha)}
 ${generateExtraVars("accent", lightColors)}
-  /* Gray color scale */
 ${generateScaleVars("gray", lightColors.grayScale, lightColors.grayScaleAlpha)}
 ${generateExtraVars("gray", lightColors)}
   --primary: var(--accent-9);
@@ -505,14 +497,12 @@ ${generateExtraVars("gray", lightColors)}
   --secundary: var(--accent-8);
   --secundary-foreground: var(--accent-contrast);
 
-  /* Aura Design System - Root Tokens */
   --aura: 13px;
   --aura-font-stack: var(--font-gabarito, "Gabarito"), -apple-system, BlinkMacSystemFont, "Segoe UI",
     "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
     "Helvetica Neue", sans-serif;
   --aura-font-quotes: serif;
 
-  /* Aura Background & Text - Mapped to gray scale */
   --aura-bg: var(--gray-1);
   --aura-text-primary: var(--accent-12);
   --aura-text-primary-inverse: var(--gray-contrast);
@@ -520,7 +510,6 @@ ${generateExtraVars("gray", lightColors)}
   --aura-accents-primary: var(--accent-9);
   --aura-accents-secondary: var(--accent-9);
 
-  /* Aura Component Tokens - Mapped to 12-step system */
   --aura-input-radius: 6.5px;
   --aura-button-radius: 6.5px;
   --aura-button-gap: 6.5px;
@@ -541,10 +530,8 @@ ${generateExtraVars("gray", lightColors)}
 
 @media (prefers-color-scheme: dark) {
   :root {
-    /* Accent color scale */
 ${generateScaleVars("accent", darkColors.accentScale, darkColors.accentScaleAlpha)}
 ${generateExtraVars("accent", darkColors)}
-    /* Gray color scale */
 ${generateScaleVars("gray", darkColors.grayScale, darkColors.grayScaleAlpha)}
 ${generateExtraVars("gray", darkColors)}
    

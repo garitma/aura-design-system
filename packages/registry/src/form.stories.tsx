@@ -18,7 +18,6 @@ import { FormFieldEditor } from "../registry/default/components/FormFieldEditor"
 import { useFormDynamic } from "../registry/default/hooks/use-dynamic-form";
 import { validateFormData } from "../registry/default/utils/web-validation";
 
-// Schema definitions
 const defaultSchema = {
   type: "object",
   properties: {
@@ -214,7 +213,6 @@ export const Default = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -278,7 +276,6 @@ export const MultipleFields = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -410,7 +407,6 @@ export const WithSwitch = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -468,7 +464,6 @@ export const WithCheckbox = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -551,7 +546,6 @@ export const WithCheckboxGroup = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -626,7 +620,6 @@ export const WithSelect = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -694,7 +687,6 @@ export const WithLoading = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 2000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -789,7 +781,6 @@ export const CompleteForm = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -925,7 +916,6 @@ export const WithComboboxSingle = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -986,7 +976,6 @@ export const WithComboboxMultiple = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -996,7 +985,6 @@ export const WithComboboxMultiple = () => {
     fetchStatus: formData.fetchStatus,
     error: formData.error,
   };
-
 
   return (
     <Form
@@ -1063,7 +1051,6 @@ export const WithSignaturePad = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -1121,7 +1108,6 @@ export const WithSortableList = () => {
 
   const { priorities } = formData.getFields();
 
-  // Initialize with array value for sortable list
   React.useEffect(() => {
     if (!Array.isArray(priorities.value)) {
       priorities.setValue(["High Priority", "Medium Priority", "Low Priority"] as any);
@@ -1134,7 +1120,6 @@ export const WithSortableList = () => {
   );
   const formErrors = errors || undefined;
 
-  // Filter errors for the priorities field
   const prioritiesErrors = React.useMemo(() => {
     if (!formErrors) return undefined;
     return formErrors.filter(
@@ -1153,7 +1138,6 @@ export const WithSortableList = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());
@@ -1232,7 +1216,6 @@ export const WithEditor = () => {
       return;
     }
 
-    // Simulate API call
     await new Promise((resolve) => setTimeout(resolve, 1000));
     formData.setFetchStatus("success");
     console.log("Form submitted:", formData.getValues());

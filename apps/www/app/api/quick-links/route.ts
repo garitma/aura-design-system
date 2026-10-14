@@ -1,19 +1,17 @@
 import { source } from '@/utils/source';
 import { NextResponse } from 'next/server';
 
-export const revalidate = 3600; // Revalidate every hour
+export const revalidate = 3600;
 
 export async function GET() {
   try {
     const pages = source.getPages();
     
-    // Get main pages and component pages
     const quickLinks = pages
       .filter((page) => {
-        // Include main pages and component pages
         const slugs = page.slugs;
         return (
-          slugs.length === 1 || // Main pages like index, installation, etc.
+          slugs.length === 1 ||
           (slugs.length === 2 && (slugs[0] === "components" || slugs[0] === "utils"))
         );
       })
@@ -23,7 +21,7 @@ export async function GET() {
         url: page.url,
         description: page.data.description,
       }))
-      .slice(0, 10); // Limit to 10 quick links
+      .slice(0, 10);
 
     return NextResponse.json(quickLinks);
   } catch (error) {

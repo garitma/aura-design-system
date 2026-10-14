@@ -11,7 +11,6 @@ import {
 import { cn } from "@/utils/class-names";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/Tabs";
 
-// Interface for component preview properties
 interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
   name: RegistryName;
   align?: "center" | "start" | "end";
@@ -19,7 +18,6 @@ interface ComponentPreviewProps extends React.HTMLAttributes<HTMLDivElement> {
   hideCode?: boolean;
 }
 
-// Component to display preview and code of components
 export function ComponentPreview({
   name,
   children,
@@ -32,7 +30,6 @@ export function ComponentPreview({
   const Codes = React.Children.toArray(children) as React.ReactElement[];
   const Code = Codes[0];
 
-  // Memoize the preview component for performance optimization
   const Preview = React.useMemo(() => {
     const Component = Registry[name]?.component;
 
@@ -51,7 +48,6 @@ export function ComponentPreview({
     return <Component />;
   }, [name]);
 
-  // Memoize the code string for performance optimization
   const codeString = React.useMemo(() => {
     if (
       typeof (Code as any)?.props["data-rehype-pretty-code-fragment"] !==

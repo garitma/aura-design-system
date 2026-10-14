@@ -1,6 +1,3 @@
-/**
- * @description Displays a grid container with configurable column layout.
- */
 import * as React from "react";
 
 import { cn } from "@/utils/class-names";

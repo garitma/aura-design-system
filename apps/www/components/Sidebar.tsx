@@ -37,30 +37,12 @@ import { useMediaQuery } from "fumadocs-core/utils/use-media-query";
 import { Presence } from "@radix-ui/react-presence";
 
 export interface SidebarProps {
-  /**
-   * Open folders by default if their level is lower or equal to a specific level
-   * (Starting from 1)
-   *
-   * @defaultValue 0
-   */
   defaultOpenLevel?: number;
 
-  /**
-   * Prefetch links
-   *
-   * @defaultValue true
-   */
   prefetch?: boolean;
 
-  /**
-   * Children to render
-   */
   Content: ReactNode;
 
-  /**
-   * Optional replacement tree for viewports under 768px.
-   * Docs omit this so the mobile button opens the same sidebar content.
-   */
   Mobile?: ReactNode;
 }
 
@@ -274,7 +256,7 @@ export function SidebarContentMobile({
           onClick={() => setOpen(false)}
         />
       </Presence>
-      {/* Element children so Presence unmounts after exit (render-prop force-mounts). */}
+      {/* Element children let Radix Presence unmount after exit; a render prop force-mounts. */}
       <Presence present={open}>
         <aside
           id="nd-sidebar"
@@ -538,8 +520,7 @@ export function SidebarCollapseTrigger(props: ComponentProps<"button">) {
       onClick={(event) => {
         props.onClick?.(event);
         if (event.defaultPrevented) return;
-        // Prefer closing the overlay drawer when it is open (mobile), even if
-        // the media query briefly disagrees during resize/hydration.
+        // The media query can lag the open overlay during resize and hydration.
         if (isMobile || open) setOpen(false);
         else setCollapsed((prev) => !prev);
       }}
@@ -569,9 +550,6 @@ export interface SidebarComponents {
   Separator: FC<{ item: PageTree.Separator }>;
 }
 
-/**
- * Render sidebar items from page tree
- */
 export function SidebarPageTree(props: {
   components?: Partial<SidebarComponents>;
 }) {

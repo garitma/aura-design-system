@@ -57,7 +57,6 @@ function getFirstParagraph(body: string): string | null {
 function getFirstLine(body: string): string {
   const line = body.trim().split("\n").find((l) => l.trim().length > 0);
   const raw = line ? line.trim().slice(0, 160) : "Aura design system rule.";
-  // Avoid using a markdown heading as the description
   if (raw.startsWith("#")) return raw.replace(/^#+\s*/, "").trim() || "Aura design system rule.";
   return raw;
 }
@@ -101,16 +100,10 @@ function processRuleFile(file: string): RuleDoc | null {
   return { name, title, description, body };
 }
 
-/**
- * Remove any existing "## Installation" section from the body so we inject a single canonical one.
- */
 function stripExistingInstallation(body: string): string {
   return body.replace(/\n## Installation\n\n```bash\n[^\n]+\n```\s*/s, "\n").trim();
 }
 
-/**
- * Insert "## Installation" with shadcn add command after the first # heading.
- */
 function injectInstallation(body: string, ruleName: string): string {
   const installationBlock = `
 
@@ -128,7 +121,6 @@ pnpm dlx shadcn@latest add @aura/rule-${ruleName}
   return installationBlock.trim() + "\n\n" + stripped;
 }
 
-/** JSON double-quoted strings are valid YAML scalars and escape colons, quotes, newlines, etc. */
 function yamlScalar(value: string): string {
   return JSON.stringify(value);
 }

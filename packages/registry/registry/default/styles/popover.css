@@ -1,4 +1,4 @@
-@theme animatons {
+@theme {
   --animate-popover-show: popoverShow 150ms cubic-bezier(0.16, 1, 0.3, 1);
   --animate-popover-hide: popoverHide 120ms cubic-bezier(0.16, 1, 0.3, 1);
 }

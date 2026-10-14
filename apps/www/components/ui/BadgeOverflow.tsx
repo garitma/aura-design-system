@@ -1,33 +1,22 @@
 "use client";
 
-/**
- * @description Measures available space and shows badges with an overflow indicator.
- */
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 
 import { useComposedRefs } from "@/utils/compose-refs";
 import { cn } from "@/utils/class-names";
 
-/** gap-1 on the 13px scale. */
 const DEFAULT_BADGE_GAP = 13;
-/** .xs line-height 16px + py-0.5 (13px) + 1px border. */
 const DEFAULT_BADGE_HEIGHT = 31;
-/** "+99" at 12px semibold, px-1, and a 1px border. */
 const DEFAULT_OVERFLOW_BADGE_WIDTH = 52;
 
 interface GetBadgeLabel<T> {
-  /**
-   * Returns a label string for each badge item.
-   * Optional for primitive arrays (strings, numbers); required for object arrays.
-   */
   getBadgeLabel: (item: T) => string;
 }
 
 type BadgeOverflowProps<T = string> = React.ComponentProps<"div"> &
   (T extends object ? GetBadgeLabel<T> : Partial<GetBadgeLabel<T>>) & {
     items: T[];
-    /** How many lines of badges to show before overflowing. */
     lineCount?: number;
     renderBadge: (item: T, label: string) => React.ReactNode;
     renderOverflow?: (count: number) => React.ReactNode;

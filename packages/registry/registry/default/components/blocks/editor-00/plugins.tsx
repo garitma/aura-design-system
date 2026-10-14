@@ -102,7 +102,6 @@ export function Plugins({ onChange }: { onChange?: (state: any) => void }) {
       />
       <HistoryPlugin />
       <ListPlugin />
-      {/* <CheckListPlugin /> */}
       <ClickableLinkPlugin />
       <AutoLinkPlugin />
       <LinkPlugin />
@@ -125,7 +124,6 @@ export function Plugins({ onChange }: { onChange?: (state: any) => void }) {
         ]}
       />
 
-      {/* actions plugins */}
       {onChange && <ConverToMarkdownChangePlugin onChange={onChange} />}
     </>
   );

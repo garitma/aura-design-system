@@ -77,11 +77,9 @@ describe("Checkbox", () => {
     render(<Checkbox onCheckedChange={handleChange} />);
     const checkbox = screen.getByRole("checkbox");
 
-    // First click - check
     fireEvent.click(checkbox);
     expect(handleChange).toHaveBeenCalledWith(true);
 
-    // Second click - uncheck
     fireEvent.click(checkbox);
     expect(handleChange).toHaveBeenCalledWith(false);
   });
@@ -148,7 +146,6 @@ describe("Checkbox", () => {
     const { container } = render(<Checkbox checked={true} />);
     const checkbox = container.querySelector('[data-slot="checkbox"]');
 
-    // CheckboxIndicator should be present in the DOM
     expect(checkbox?.querySelector("svg")).toBeInTheDocument();
   });
 

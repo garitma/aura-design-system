@@ -1,6 +1,5 @@
 import * as React from "react"
 
-// Component demos
 import { 
   AccordionDemo,
   AccordionDemoMultiple,

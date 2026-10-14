@@ -2,13 +2,9 @@
 
 interface DataGridKeyboardShortcutsProps {
   enableSearch?: boolean;
-  /** When the grid supports `onRowsDelete`, document row deletion shortcuts. */
   enableRowsDelete?: boolean;
 }
 
-/**
- * Screen-reader-only summary of data grid keyboard interactions.
- */
 export function DataGridKeyboardShortcuts({
   enableSearch = false,
   enableRowsDelete = false,

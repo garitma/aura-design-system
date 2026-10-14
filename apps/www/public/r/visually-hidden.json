@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "visually-hidden",
+  "type": "registry:ui",
+  "title": "VisuallyHidden",
+  "description": "The VisuallyHidden component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/VisuallyHidden.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction VisuallyHidden({ className, ...props }: React.ComponentProps<\"span\">) {\n  return <span data-slot=\"visually-hidden\" className={cn(\"sr-only\", className)} {...props} />;\n}\n\nexport { VisuallyHidden };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -114,14 +114,11 @@ describe("Collapsible", () => {
       '[data-slot="collapsible-content"]'
     );
 
-    // Initially closed
     expect(content).toHaveAttribute("data-state", "closed");
 
-    // Click to open
     fireEvent.click(trigger);
     expect(content).toHaveAttribute("data-state", "open");
 
-    // Click to close
     fireEvent.click(trigger);
     expect(content).toHaveAttribute("data-state", "closed");
   });

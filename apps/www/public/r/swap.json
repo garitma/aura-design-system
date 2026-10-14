@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "swap",
+  "type": "registry:ui",
+  "title": "Swap",
+  "description": "The Swap component.",
+  "registryDependencies": [
+    "@aura/button",
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Swap.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\nimport { Button } from \"@/components/ui/Button\";\n\nfunction Swap({\n  className,\n  children,\n  label = \"Swap\",\n}: {\n  className?: string;\n  children: React.ReactNode;\n  label?: string;\n}) {\n  const items = React.Children.toArray(children);\n  const [index, setIndex] = React.useState(0);\n  const current = items.length ? index % items.length : 0;\n\n  return (\n    <div data-slot=\"swap\" className={cn(\"flex flex-col items-start gap-0.5\", className)}>\n      <div className=\"relative min-h-8 w-full\">\n        {items.map((item, itemIndex) => (\n          <div\n            key={itemIndex}\n            className={cn(\n              \"transition duration-300 motion-reduce:transition-none\",\n              itemIndex === current ? \"opacity-100\" : \"pointer-events-none absolute inset-0 opacity-0\",\n            )}\n            aria-hidden={itemIndex === current ? undefined : true}\n          >\n            {item}\n          </div>\n        ))}\n      </div>\n      <Button\n        type=\"button\"\n        variant=\"pill\"\n        size=\"sm\"\n        aria-label={label}\n        onClick={() => setIndex((value) => (items.length ? (value + 1) % items.length : 0))}\n      >\n        {label}\n      </Button>\n    </div>\n  );\n}\n\nexport { Swap };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

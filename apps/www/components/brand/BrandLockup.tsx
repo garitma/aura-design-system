@@ -9,9 +9,7 @@ const linkClass =
   "rounded-sm outline-none transition-colors hover:text-accent-11 focus-visible:ring-2 focus-visible:ring-accent-8";
 
 function AuraMark() {
-  // Both tiles fill one fixed box. Visibility follows the `.dark` class that
   // fumadocs' next-themes provider sets before paint, so the toggle does not
-  // branch in React (no hydration mismatch) and the box size stays fixed.
   return (
     <span className="relative inline-block h-1.5 w-1.5 shrink-0 sm:h-2 sm:w-2">
       <img
@@ -54,10 +52,6 @@ export function BrandLockup({
   ...props
 }: ComponentProps<"div"> & {
   href?: string;
-  /**
-   * Narrow slots (docs sidebar): same full logo, slightly shorter so
-   * “Made by” stays on one line.
-   */
   compact?: boolean;
 }) {
   return (

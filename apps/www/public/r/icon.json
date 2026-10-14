@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "icon",
+  "type": "registry:ui",
+  "title": "Icon",
+  "description": "The Icon component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Icon.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction Icon({\n  className,\n  label,\n  size = \"default\",\n  children,\n  ...props\n}: React.ComponentProps<\"span\"> & { label?: string; size?: \"default\" | \"lg\" }) {\n  return (\n    <span\n      data-slot=\"icon\"\n      data-size={size}\n      role={label ? \"img\" : undefined}\n      aria-label={label}\n      aria-hidden={label ? undefined : true}\n      className={cn(\n        \"icon inline-flex items-center justify-center\",\n        size === \"lg\" && \"h4\",\n        className,\n      )}\n      {...props}\n    >\n      {children}\n    </span>\n  );\n}\n\nexport { Icon };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

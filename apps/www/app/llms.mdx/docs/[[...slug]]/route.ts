@@ -8,7 +8,6 @@ export async function GET(
   { params }: { params: Promise<{ slug?: string[] }> }
 ) {
   const { slug } = await params;
-  // remove the appended "content.md"; `/docs/index.md` is rewritten to the root page
   const slugs = slug?.slice(0, -1) ?? [];
   if (slugs.at(-1) === "index") slugs.pop();
   const page = source.getPage(slugs);

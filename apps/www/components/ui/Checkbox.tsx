@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description A control that allows the user to toggle between checked and not checked.
- */
 import * as React from "react";
 import { Checkbox as CheckboxRadix } from "radix-ui";
 import { CheckIcon, MinusIcon } from "@radix-ui/react-icons";

@@ -1,0 +1,22 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "split-button",
+  "type": "registry:ui",
+  "title": "SplitButton",
+  "description": "The SplitButton component.",
+  "dependencies": [
+    "@radix-ui/react-icons"
+  ],
+  "registryDependencies": [
+    "@aura/button",
+    "@aura/class-names",
+    "@aura/dropdown-menu"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/SplitButton.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { ChevronDownIcon } from \"@radix-ui/react-icons\";\nimport { cn } from \"@/utils/class-names\";\nimport { Button, type ButtonProps } from \"@/components/ui/Button\";\nimport {\n  DropdownMenu,\n  DropdownMenuContent,\n  DropdownMenuTrigger,\n} from \"@/components/ui/DropdownMenu\";\n\nfunction SplitButton({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      role=\"group\"\n      data-slot=\"split-button\"\n      className={cn(\n        \"inline-flex items-stretch overflow-hidden rounded-sm\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction SplitButtonAction({ variant, ...props }: ButtonProps) {\n  return (\n    <Button\n      data-slot=\"split-button-action\"\n      variant={variant ?? \"split\"}\n      {...props}\n    />\n  );\n}\n\nfunction SplitButtonMenu({\n  className,\n  label = \"More actions\",\n  children,\n  ...props\n}: React.ComponentProps<typeof DropdownMenuContent> & { label?: string }) {\n  return (\n    <DropdownMenu>\n      <DropdownMenuTrigger asChild>\n        <Button\n          data-slot=\"split-button-menu\"\n          variant=\"splitMenu\"\n          aria-label={label}\n        >\n          <ChevronDownIcon className=\"icon\" />\n        </Button>\n      </DropdownMenuTrigger>\n      <DropdownMenuContent align=\"end\" className={className} {...props}>\n        {children}\n      </DropdownMenuContent>\n    </DropdownMenu>\n  );\n}\n\nexport { SplitButton, SplitButtonAction, SplitButtonMenu };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

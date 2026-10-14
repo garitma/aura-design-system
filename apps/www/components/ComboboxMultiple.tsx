@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description A multi-select combobox component that allows users to search and select multiple options from a list.
- */
 import * as React from "react";
 import { useId, useRef } from "react";
 import {
@@ -67,10 +64,8 @@ export const ComboboxMultiple = React.forwardRef<
     const inputId = id || useId();
     const isControlled = controlledValue !== undefined;
 
-    // Get current value (controlled or default)
     const currentValue = isControlled ? controlledValue : defaultValue;
 
-    // Convert string[] to ComboboxOption[]
     const selectedOptions: ComboboxOption[] = React.useMemo(() => {
       if (!Array.isArray(currentValue) || currentValue.length === 0) {
         return [];
@@ -78,7 +73,6 @@ export const ComboboxMultiple = React.forwardRef<
       return options.filter((opt) => currentValue.includes(opt.value));
     }, [options, currentValue]);
 
-    // Handle value change
     const handleValueChange = (newValue: ComboboxOption[]) => {
       if (onChange) {
         const stringValues = newValue.map((item) => item.value);

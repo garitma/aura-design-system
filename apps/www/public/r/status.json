@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "status",
+  "type": "registry:ui",
+  "title": "Status",
+  "description": "The Status component.",
+  "dependencies": [
+    "class-variance-authority"
+  ],
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Status.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cva, type VariantProps } from \"class-variance-authority\";\nimport { cn } from \"@/utils/class-names\";\n\nconst statusVariants = cva(\"inline-flex items-center gap-0.5\", {\n  variants: {\n    tone: {\n      online: \"text-gray-12\",\n      away: \"text-gray-12\",\n      busy: \"text-gray-12\",\n      offline: \"text-gray-11\",\n    },\n  },\n  defaultVariants: { tone: \"online\" },\n});\n\nconst dot = {\n  online: \"bg-accent-9\",\n  away: \"bg-warning-contrast\",\n  busy: \"bg-danger-contrast\",\n  offline: \"bg-gray-7\",\n} as const;\n\nfunction Status({\n  className,\n  tone = \"online\",\n  children,\n  ...props\n}: React.ComponentProps<\"span\"> & VariantProps<typeof statusVariants>) {\n  const current = tone ?? \"online\";\n  return (\n    <span\n      data-slot=\"status\"\n      data-tone={current}\n      className={cn(statusVariants({ tone: current }), className)}\n      {...props}\n    >\n      <span aria-hidden className={cn(\"size-1 rounded-full\", dot[current])} />\n      {children}\n    </span>\n  );\n}\n\nexport { Status };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

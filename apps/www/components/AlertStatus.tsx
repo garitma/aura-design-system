@@ -31,7 +31,6 @@ const AlertStatus = ({
   showIcon = true,
   ...props
 }: AlertProps) => {
-  // Map status to Alert variant
   const variantMap: Record<
     "info" | "success" | "warning" | "danger" | "other",
     "info" | "success" | "warning" | "danger" | "default"
@@ -43,7 +42,6 @@ const AlertStatus = ({
     other: "default",
   };
 
-  // Map status to default icons
   const iconMap = {
     info: InfoCircledIcon,
     success: CheckCircledIcon,

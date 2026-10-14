@@ -1,6 +1,3 @@
-/**
- * @description A 10px status dot for queued, building, error, ready, and canceled.
- */
 import * as React from "react";
 import { cva } from "class-variance-authority";
 import { cn } from "@/utils/class-names";
@@ -31,9 +28,7 @@ const dot = cva("inline-block size-[10px] shrink-0 rounded-full", {
 
 interface StatusDotProps extends React.ComponentProps<"span"> {
   state?: StatusDotState;
-  /** `true` uses the state name. A string replaces it. */
   label?: boolean | string;
-  /** Light ring for overlaying the dot on an avatar. */
   ring?: boolean;
 }
 

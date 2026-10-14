@@ -39,11 +39,6 @@ export function StylesProvider({
 }
 
 export interface NavProviderProps {
-  /**
-   * Use transparent background
-   *
-   * @defaultValue none
-   */
   transparentMode?: "always" | "top" | "none";
 }
 

@@ -9,9 +9,6 @@ const WORKSPACE_ROOT = path.resolve(__dirname, "../../..");
 const CURSOR_SKILLS_PATH = path.join(WORKSPACE_ROOT, ".cursor/skills");
 const REGISTRY_SKILLS_PATH = path.join(__dirname, "../registry/default/skills");
 
-/** Skill folders under .cursor/skills/ that ship via the registry.
- *  Monorepo-only (aura-constraints, aura-verification) and upstream installs
- *  (shadcn/ui, gdp-ts under .agents/skills) stay out of this list. */
 const SKILL_DIRS = [
   "aura-forms",
   "generate-brand-images",

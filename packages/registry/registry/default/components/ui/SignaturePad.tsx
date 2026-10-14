@@ -38,19 +38,12 @@ const signaturePadVariants = cva("touch-none cursor-pencil", {
 export interface SignaturePadProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange">,
     VariantProps<typeof signaturePadVariants> {
-  /** @public (optional) - Tailwind color utility class for the pen color (e.g. "text-black", "text-primary-500") */
   penColor?: string;
-  /** @public (optional) - Line width in pixels */
   lineWidth?: number;
-  /** @public (optional) - Whether to show the buttons */
   showButtons?: boolean;
-  /** @public (optional) - The icon to display for the save button */
   saveButtonIcon?: React.ReactNode;
-  /** @public (optional) - The icon to display for the clear button */
   clearButtonIcon?: React.ReactNode;
-  /** @public (optional) - Callback function to be called when the signature is saved */
   onSave?: (signature: Base64URLString) => void;
-  /** @public (optional) - Callback function to be called when the signature is changed */
   onChange?: (signature: Base64URLString | null) => void;
 }
 
@@ -86,13 +79,11 @@ const SignaturePad = React.forwardRef<SignaturePadRef, SignaturePadProps>(
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
 
-    // Helper function to resolve CSS variables to actual color values
     const resolveColor = (color: string): string => {
       if (!color.startsWith("var(")) {
         return color;
       }
 
-      // Extract the variable name from var(--variable-name)
       const match = color.match(/var\((--[^)]+)\)/);
       if (!match) return color;
 
@@ -100,15 +91,12 @@ const SignaturePad = React.forwardRef<SignaturePadRef, SignaturePadProps>(
       const canvas = canvasRef.current;
       if (!canvas) return color;
 
-      // Get the computed style from the canvas element
       const computedStyle = getComputedStyle(canvas);
       const resolvedColor = computedStyle.getPropertyValue(variableName).trim();
 
-      // If the variable is not found or empty, return the original
       return resolvedColor || color;
     };
 
-    // Expose the clear, save, toDataURL, isEmpty, and getCanvas methods to the parent component
     useImperativeHandle(ref, () => ({
       clear: handleClear,
       save: handleSave,
@@ -121,7 +109,6 @@ const SignaturePad = React.forwardRef<SignaturePadRef, SignaturePadProps>(
       getCanvas: () => canvasRef.current,
     }));
 
-    // Update the canvas size for High DPI displays
     useEffect(() => {
       const canvas = canvasRef.current;
       if (!canvas) return;
@@ -158,7 +145,6 @@ const SignaturePad = React.forwardRef<SignaturePadRef, SignaturePadProps>(
       };
     }, [penColor, lineWidth]);
 
-    // Get the pointer position on the canvas
     const getPointerPosition = (e: MouseEvent | TouchEvent) => {
       const canvas = canvasRef.current;
       if (!canvas) return null;
@@ -178,7 +164,6 @@ const SignaturePad = React.forwardRef<SignaturePadRef, SignaturePadProps>(
       };
     };
 
-    // Start drawing on the canvas
     const startDrawing = (e: MouseEvent | TouchEvent) => {
       e.preventDefault();
 
@@ -200,7 +185,6 @@ const SignaturePad = React.forwardRef<SignaturePadRef, SignaturePadProps>(
 
       if (!ctx) ctx = canvas?.getContext("2d") as CanvasRenderingContext2D;
 
-      // Ensure strokeStyle is set with resolved color
       if (ctx) {
         ctx.strokeStyle = resolveColor(penColor);
       }

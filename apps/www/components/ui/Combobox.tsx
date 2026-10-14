@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description A combobox component that allows users to search and select from a list of options.
- */
 import * as React from "react";
 import { Combobox } from "@base-ui/react/combobox";
 

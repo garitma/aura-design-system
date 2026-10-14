@@ -124,8 +124,6 @@ describe("AlertStatus", () => {
         icon={BellIcon}
       />,
     );
-    // We can't easily test for the icon component itself without a testid,
-    // but we can check if the alert renders without crashing and contains the text.
     expect(screen.getByText("Notification")).toBeInTheDocument();
     expect(screen.getByRole("alert")).toHaveClass("bg-info");
   });

@@ -1,15 +1,10 @@
-/**
- * Generates the Aura-branded sample deck used by the Presentation stories/docs.
- *
- * Run: npx tsx scripts/generate-presentation-fixture.ts
- */
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 import PptxGenJSImport from "pptxgenjs";
 
-// pptxgenjs ships CJS; interop shape differs between node and tsx.
+// pptxgenjs ships CJS; the default-import shape differs between node and tsx.
 const PptxGenJS = ((PptxGenJSImport as unknown as { default?: typeof PptxGenJSImport })
   .default ?? PptxGenJSImport) as typeof PptxGenJSImport;
 
@@ -22,7 +17,6 @@ const OUTPUTS = [
   path.resolve(__dirname, "../../../apps/www/public/fixtures/sample.pptx"),
 ];
 
-// Aura light theme tokens (apps/www/app/globals.css) — SGD accent #4015ca
 const accent = {
   3: "EEF1FF",
   6: "C5CDFF",
@@ -46,9 +40,10 @@ const gray = {
 const SANS = "Gabarito";
 const MONO = "Menlo";
 
-// 13px grid expressed in inches at 96dpi: 13px = 0.1354in
-const U = 13 / 96;
-const MARGIN = U * 6; // 78px
+const PPTX_PX_PER_INCH = 96;
+const SPACING_PX = 13;
+const U = SPACING_PX / PPTX_PX_PER_INCH;
+const MARGIN = U * 6;
 
 function baseSlide(pptx: Pptx, options: { eyebrow: string }) {
   const slide = pptx.addSlide();
@@ -83,7 +78,6 @@ function build(pptx: Pptx) {
   pptx.company = "Aura";
   pptx.title = "Aura Design System";
 
-  // 1 — Cover
   const cover = pptx.addSlide();
   cover.background = { color: gray[12] };
   cover.addShape("rect", {
@@ -144,7 +138,6 @@ function build(pptx: Pptx) {
     color: accent[6],
   });
 
-  // 2 — Palette
   const palette = baseSlide(pptx, { eyebrow: "01 / Color" });
   palette.addText("Twelve steps, one intent per step.", {
     x: MARGIN,
@@ -224,7 +217,6 @@ function build(pptx: Pptx) {
     });
   });
 
-  // 3 — Typography
   const type = baseSlide(pptx, { eyebrow: "02 / Typography" });
   type.addText("Type scales with the viewport.", {
     x: MARGIN,
@@ -275,7 +267,6 @@ function build(pptx: Pptx) {
     });
   });
 
-  // 4 — Spacing
   const spacing = baseSlide(pptx, { eyebrow: "03 / Spacing" });
   spacing.addText("Everything lands on 13px.", {
     x: MARGIN,
@@ -335,7 +326,6 @@ function build(pptx: Pptx) {
     });
   });
 
-  // 5 — Surfaces
   const surfaces = baseSlide(pptx, { eyebrow: "04 / Surfaces" });
   surfaces.addText("Stack sheets before drawing lines.", {
     x: MARGIN,
@@ -399,7 +389,6 @@ function build(pptx: Pptx) {
     }
   );
 
-  // 6 — Close
   const close = pptx.addSlide();
   close.background = { color: accent[12] };
   close.addShape("rect", {

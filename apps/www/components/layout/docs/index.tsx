@@ -58,9 +58,6 @@ export interface DocsLayoutProps extends BaseLayoutProps {
 
   tabMode?: "top" | "auto";
 
-  /**
-   * Props for the `div` container
-   */
   containerProps?: HTMLAttributes<HTMLDivElement>;
 }
 
@@ -71,19 +68,11 @@ interface SidebarOptions
   component?: ReactNode;
   components?: Partial<SidebarComponents>;
 
-  /**
-   * Root Toggle options
-   */
   tabs?: Option[] | GetSidebarTabsOptions | false;
 
   banner?: ReactNode;
   footer?: ReactNode;
 
-  /**
-   * Support collapsing the sidebar on desktop mode
-   *
-   * @defaultValue true
-   */
   collapsible?: boolean;
 }
 
@@ -116,7 +105,6 @@ export function DocsLayout({
   }, [tree, sidebarTabs]);
   const links = getLinks(props.links ?? [], props.githubUrl);
   const sidebarVariables = cn(
-    // Keep mobile at 0 so LayoutBody padding never reserves a desktop gutter.
     "max-md:[--fd-sidebar-width:0px] md:[--fd-sidebar-width:268px] lg:[--fd-sidebar-width:286px] xl:[--fd-toc-width:268px]"
   );
 

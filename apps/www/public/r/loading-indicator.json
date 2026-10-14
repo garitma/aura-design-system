@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "loading-indicator",
+  "type": "registry:ui",
+  "title": "LoadingIndicator",
+  "description": "The LoadingIndicator component.",
+  "registryDependencies": [
+    "@aura/class-names",
+    "@aura/shape"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/LoadingIndicator.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\nimport { ShapeMorph } from \"@/components/ui/Shape\";\n\nfunction LoadingIndicator({\n  className,\n  label = \"Loading\",\n  ...props\n}: React.ComponentProps<\"div\"> & { label?: string }) {\n  return (\n    <div\n      role=\"status\"\n      data-slot=\"loading-indicator\"\n      className={cn(\"inline-flex items-center gap-0.5\", className)}\n      {...props}\n    >\n      <ShapeMorph />\n      <span className=\"sr-only\">{label}</span>\n    </div>\n  );\n}\n\nexport { LoadingIndicator };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

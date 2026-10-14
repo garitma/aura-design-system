@@ -267,6 +267,15 @@ function scaffoldWiki(
   );
 }
 
+function scaffoldNoCommentsRule(projectRoot: string, force: boolean): void {
+  writeIfMissingOrForce(
+    join(projectRoot, ".cursor", "rules", "no-comments.mdc"),
+    readTpl("cursor/rules/no-comments.mdc"),
+    force,
+    ".cursor/rules/no-comments.mdc",
+  );
+}
+
 function scaffoldImageSkill(projectRoot: string, force: boolean): void {
   const skillDir = join(
     projectRoot,
@@ -354,7 +363,6 @@ export type ApplyBlueprintOptions = {
   suffix?: string;
 };
 
-/** Scaffold the wiki, image-generation skill, reconciled upstream skills, preflight, Sonar config, and gdp-ts. */
 export async function applyBlueprintToProject(
   projectRoot: string,
   options: ApplyBlueprintOptions = {},
@@ -379,6 +387,7 @@ export async function applyBlueprintToProject(
   console.log(`  wiki suffix: ${suffix}\n`);
 
   scaffoldWiki(projectRoot, suffix, packageName, force);
+  scaffoldNoCommentsRule(projectRoot, force);
   scaffoldImageSkill(projectRoot, force);
   installReconciledSkills(projectRoot);
   scaffoldPreflight(projectRoot, force);
@@ -397,7 +406,7 @@ export function registerBlueprintCommand(program: Command) {
   program
     .command("blueprint [projectDir]")
     .description(
-      "Scaffold wiki, identity-aware image generation, reconciled Emil and Vercel skills, preflight, brain:progress, Sonar config, shadcn/ui skills, and gdp-ts proofs",
+      "Scaffold wiki, the no-comments rule, identity-aware image generation, reconciled Emil and Vercel skills, preflight, brain:progress, Sonar config, shadcn/ui skills, and gdp-ts proofs",
     )
     .option(
       "-f, --force",

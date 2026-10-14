@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description Add addons, buttons, and helper content to inputs.
- */
 import * as React from "react";
 import { cva, type VariantProps } from "class-variance-authority";
 

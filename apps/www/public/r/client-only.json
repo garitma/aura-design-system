@@ -1,0 +1,14 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "client-only",
+  "type": "registry:ui",
+  "title": "ClientOnly",
+  "description": "The ClientOnly component.",
+  "files": [
+    {
+      "path": "registry/default/components/ui/ClientOnly.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\n\nfunction ClientOnly({\n  children,\n  fallback = null,\n}: {\n  children: React.ReactNode;\n  fallback?: React.ReactNode;\n}) {\n  const [ready, setReady] = React.useState(false);\n  React.useEffect(() => setReady(true), []);\n  return ready ? children : fallback;\n}\n\nexport { ClientOnly };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

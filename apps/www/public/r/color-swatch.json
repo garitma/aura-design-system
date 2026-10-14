@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "color-swatch",
+  "type": "registry:ui",
+  "title": "ColorSwatch",
+  "description": "The ColorSwatch component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/ColorSwatch.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction ColorSwatch({\n  className,\n  color,\n  label,\n  selected,\n  ...props\n}: React.ComponentProps<\"button\"> & {\n  color: string;\n  label: string;\n  selected?: boolean;\n}) {\n  return (\n    <button\n      type=\"button\"\n      aria-label={label}\n      aria-pressed={selected}\n      data-slot=\"color-swatch\"\n      className={cn(\n        \"inline-flex size-3 items-center justify-center rounded-full border border-gray-7 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8 aria-pressed:ring-2 aria-pressed:ring-accent-9\",\n        className,\n      )}\n      style={{ backgroundColor: color }}\n      {...props}\n    />\n  );\n}\n\nexport { ColorSwatch };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

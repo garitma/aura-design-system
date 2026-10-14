@@ -1,0 +1,20 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "tags-input",
+  "type": "registry:ui",
+  "title": "TagsInput",
+  "description": "The TagsInput component.",
+  "dependencies": [
+    "@radix-ui/react-icons"
+  ],
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/TagsInput.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { Cross2Icon } from \"@radix-ui/react-icons\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction TagsInput({\n  className,\n  value,\n  defaultValue = [],\n  onValueChange,\n  label = \"Tags\",\n  placeholder = \"Add a tag\",\n}: {\n  className?: string;\n  value?: string[];\n  defaultValue?: string[];\n  onValueChange?: (value: string[]) => void;\n  label?: string;\n  placeholder?: string;\n}) {\n  const [uncontrolled, setUncontrolled] = React.useState(defaultValue);\n  const [draft, setDraft] = React.useState(\"\");\n  const tags = value ?? uncontrolled;\n  const id = React.useId();\n\n  const commit = (next: string[]) => {\n    if (value === undefined) setUncontrolled(next);\n    onValueChange?.(next);\n  };\n\n  const add = (raw: string) => {\n    const next = raw.trim();\n    if (!next || tags.includes(next)) return;\n    commit([...tags, next]);\n    setDraft(\"\");\n  };\n\n  return (\n    <div data-slot=\"tags-input\" className={cn(\"flex w-full max-w-xl flex-col gap-0.5\", className)}>\n      <label htmlFor={id}>{label}</label>\n      <div className=\"flex flex-wrap items-center gap-0.5 rounded-sm border border-gray-7 bg-gray-1 p-0.5 focus-within:ring-2 focus-within:ring-accent-8\">\n        {tags.map((tag) => (\n          <span key={tag} className=\"inline-flex items-center gap-0.5 rounded-full bg-gray-3 px-1 py-0.5\">\n            {tag}\n            <button\n              type=\"button\"\n              aria-label={`Remove ${tag}`}\n              className=\"inline-flex size-2 items-center justify-center rounded-full hover:bg-gray-5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8\"\n              onClick={() => commit(tags.filter((item) => item !== tag))}\n            >\n              <Cross2Icon className=\"icon\" />\n            </button>\n          </span>\n        ))}\n        <input\n          id={id}\n          value={draft}\n          placeholder={placeholder}\n          className=\"default min-w-16 flex-1 border-0 bg-transparent px-0.5 py-0.5 text-gray-12 focus-visible:outline-none\"\n          onChange={(event) => setDraft(event.target.value)}\n          onKeyDown={(event) => {\n            if (event.key === \"Enter\" || event.key === \",\") {\n              event.preventDefault();\n              add(draft);\n            } else if (event.key === \"Backspace\" && draft === \"\" && tags.length) {\n              commit(tags.slice(0, -1));\n            }\n          }}\n          onBlur={() => add(draft)}\n        />\n      </div>\n    </div>\n  );\n}\n\nexport { TagsInput };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

@@ -3638,6 +3638,19 @@
       ]
     },
     {
+      "name": "rule-no-comments",
+      "type": "registry:file",
+      "title": "Rule: No Comments",
+      "description": "Aura rule: No Comments. Install to .cursor/rules/ for Cursor AI guidance.",
+      "files": [
+        {
+          "path": "registry/default/rules/no-comments.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/no-comments.mdc"
+        }
+      ]
+    },
+    {
       "name": "rule-principles",
       "type": "registry:file",
       "title": "Rule: Principles",
@@ -3731,6 +3744,11 @@
           "path": "registry/default/rules/fundations-typography.mdc",
           "type": "registry:file",
           "target": ".cursor/rules/fundations-typography.mdc"
+        },
+        {
+          "path": "registry/default/rules/no-comments.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/no-comments.mdc"
         },
         {
           "path": "registry/default/rules/principles.mdc",

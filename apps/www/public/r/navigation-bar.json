@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "navigation-bar",
+  "type": "registry:ui",
+  "title": "NavigationBar",
+  "description": "The NavigationBar component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/NavigationBar.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction NavigationBar({\n  className,\n  label = \"Primary\",\n  ...props\n}: React.ComponentProps<\"nav\"> & { label?: string }) {\n  return (\n    <nav\n      aria-label={label}\n      data-slot=\"navigation-bar\"\n      className={cn(\n        \"flex items-stretch justify-around border-t border-gray-6 bg-gray-1\",\n        className,\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction NavigationBarItem({\n  className,\n  active,\n  children,\n  ...props\n}: React.ComponentProps<\"button\"> & { active?: boolean }) {\n  return (\n    <button\n      type=\"button\"\n      data-slot=\"navigation-bar-item\"\n      aria-current={active ? \"page\" : undefined}\n      className={cn(\n        \"inline-flex min-w-0 flex-1 flex-col items-center gap-0.5 px-0.5 py-0.5 text-gray-11 hover:bg-gray-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent-8 aria-[current=page]:bg-accent-3 aria-[current=page]:text-accent-11\",\n        className,\n      )}\n      {...props}\n    >\n      {children}\n    </button>\n  );\n}\n\nexport { NavigationBar, NavigationBarItem };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

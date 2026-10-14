@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Displays an autocomplete input with a list of options.
- */
 import * as React from "react";
 import { Autocomplete as AutocompletePrimitive } from "@base-ui/react/autocomplete";
 import { Cross1Icon, CaretSortIcon } from "@radix-ui/react-icons";
@@ -13,7 +10,6 @@ import { ScrollArea } from "@/components/ui/ScrollArea";
 const autocompleteIconButtonClassName =
   "-translate-y-1/2 absolute top-1/2 inline-flex size-2.5 shrink-0 cursor-pointer items-center justify-center rounded-md border border-transparent opacity-80 outline-none pointer-coarse:after:absolute pointer-coarse:after:min-h-11 pointer-coarse:after:min-w-11 hover:opacity-100 sm:size-2 [&_svg:not([class*='size-'])]:size-1.5 sm:[&_svg:not([class*='size-'])]:size-1 [&_svg]:pointer-events-none [&_svg]:shrink-0";
 
-/** Addon and input padding, one pixel inside the spacing step so the border stays aligned. */
 const autocompletePaddingVars = {
   "--autocomplete-addon-padding": "calc(var(--spacing) * 3 - 1px)",
   "--autocomplete-addon-padding-sm": "calc(var(--spacing) * 2.5 - 1px)",

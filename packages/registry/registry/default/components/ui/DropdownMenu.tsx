@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Displays a menu of actions or options triggered by a button.
- */
 import * as React from "react";
 import { DropdownMenu as DropdownMenuRadix } from "radix-ui";
 import {

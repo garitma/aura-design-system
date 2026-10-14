@@ -19,15 +19,12 @@ import { cn } from "@/utils/class-names";
 export interface DataTablePaginationProps<TData> {
   table: Table<TData>;
   className?: string;
-  /** Renders the range summary (default: English “Showing … to … of … results”). */
   renderSummary?: (ctx: {
     from: number;
     to: number;
     total: number;
   }) => React.ReactNode;
-  /** Sort dropdown moved from toolbar (optional). */
   sortControl?: React.ReactNode;
-  /** Row-count options for the page-size select (default: 10, 20, 50, 100). */
   pageSizeOptions?: number[];
 }
 

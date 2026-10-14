@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "relative-time-card",
+  "type": "registry:ui",
+  "title": "RelativeTimeCard",
+  "description": "The RelativeTimeCard component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/RelativeTimeCard.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction relativeLabel(date: Date, now = new Date()) {\n  const minutes = Math.round((date.getTime() - now.getTime()) / 60000);\n  const abs = Math.abs(minutes);\n  const formatter = new Intl.RelativeTimeFormat(undefined, { numeric: \"auto\" });\n  if (abs < 60) return formatter.format(minutes, \"minute\");\n  const hours = Math.round(minutes / 60);\n  if (Math.abs(hours) < 24) return formatter.format(hours, \"hour\");\n  return formatter.format(Math.round(hours / 24), \"day\");\n}\n\nfunction RelativeTimeCard({\n  className,\n  date,\n  label = \"Time\",\n}: {\n  className?: string;\n  date: Date;\n  label?: string;\n}) {\n  const time = date.getTime();\n  const iso = new Date(time).toISOString();\n  const [relative, setRelative] = React.useState(iso);\n  const [absolute, setAbsolute] = React.useState(iso);\n\n  React.useEffect(() => {\n    const value = new Date(time);\n    setRelative(relativeLabel(value));\n    setAbsolute(value.toLocaleString());\n  }, [time]);\n\n  return (\n    <span data-slot=\"relative-time-card\" className={cn(\"inline-flex flex-col gap-0.5\", className)}>\n      <time dateTime={iso} aria-label={label}>\n        {relative}\n      </time>\n      <span className=\"rounded-sm border border-gray-6 bg-gray-2 px-1 py-0.5 text-gray-11\">{absolute}</span>\n    </span>\n  );\n}\n\nexport { RelativeTimeCard };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

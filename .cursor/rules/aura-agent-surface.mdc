@@ -23,6 +23,7 @@ These stay encoded in foundation rules and machine-checked where lint allows. Do
 * Strict **13px** spacing base (`unit * 13px`).
 * Icons use `className="icon"` only (type inheritance); no horizontal icon margins inside gap-owning controls.
 * Project Brain lives in `wiki/obsidian-{suffix}/` with `00-General/Internal-Progress.md` updated after each advance.
+* No code comments except external constraints (with the reason), directives, licenses, and generated code. Fix the root cause instead. See `no-comments.mdc`.
 
 ## Upstream shadcn skill (merge)
 
@@ -43,6 +44,7 @@ Do not vendor the shadcn skill, the reconciled Emil skills, or `react-best-pract
 
 ## Routing
 
+* Code comments and workarounds → `.cursor/rules/no-comments.mdc`.
 * UI token questions → `DESIGN.md`, then foundation rules under `.cursor/rules/fundation*`.
 * shadcn CLI / registry / presets / component docs → skill `shadcn` (`.agents/skills/shadcn`).
 * After UI edits → skill `verify-aura-ui` (`pnpm lint`, clear `@shadcn/lint` debt you introduced).

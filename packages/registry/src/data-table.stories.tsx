@@ -141,7 +141,6 @@ export const Default = () => {
           },
         ]}
         onRefresh={() => {
-          // no-op for demo
         }}
         initialPageSize={10}
       />

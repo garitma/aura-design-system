@@ -1,8 +1,5 @@
 "use client";
 
-/**
- * @description A dialog on desktop and a drawer on mobile, sharing one API.
- */
 import * as React from "react";
 
 import { cn } from "@/utils/class-names";

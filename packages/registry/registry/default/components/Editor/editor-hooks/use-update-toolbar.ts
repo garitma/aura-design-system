@@ -1,5 +1,4 @@
 import { useEffect } from "react"
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext"
 import {
   $getSelection,
   BaseSelection,
@@ -12,7 +11,6 @@ import { useToolbarContext } from "@/components/Editor/context/toolbar-context"
 export function useUpdateToolbarHandler(
   callback: (selection: BaseSelection) => void
 ) {
-  const [editor] = useLexicalComposerContext()
   const { activeEditor } = useToolbarContext()
 
   useEffect(() => {
@@ -27,8 +25,7 @@ export function useUpdateToolbarHandler(
       },
       COMMAND_PRIORITY_CRITICAL
     )
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [editor, callback])
+  }, [activeEditor, callback])
 
   useEffect(() => {
     activeEditor.getEditorState().read(() => {

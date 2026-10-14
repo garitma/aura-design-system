@@ -1,6 +1,3 @@
-/**
- * @description Pagination with page links, previous/next controls, and ellipsis.
- */
 import * as React from "react";
 import {
   ChevronLeftIcon,

@@ -9,10 +9,6 @@ export interface NavOptions extends NavProviderProps {
 
   title?: ReactNode;
 
-  /**
-   * Redirect url of title
-   * @defaultValue '/'
-   */
   url?: string;
 
   children?: ReactNode;
@@ -33,43 +29,22 @@ export interface BaseLayoutProps {
     }>;
   }>;
 
-  /**
-   * I18n options
-   *
-   * @defaultValue false
-   */
   i18n?: boolean | I18nConfig;
 
-  /**
-   * GitHub url
-   */
   githubUrl?: string;
 
   links?: LinkItemType[];
-  /**
-   * Replace or disable navbar
-   */
   nav?: Partial<NavOptions>;
 
   children?: ReactNode;
 }
 
 interface BaseItem {
-  /**
-   * Restrict where the item is displayed
-   *
-   * @defaultValue 'all'
-   */
   on?: 'menu' | 'nav' | 'all';
 }
 
 export interface BaseLinkType extends BaseItem {
   url: string;
-  /**
-   * When the item is marked as active
-   *
-   * @defaultValue 'url'
-   */
   active?: 'url' | 'nested-url' | 'none';
   external?: boolean;
 }
@@ -83,15 +58,9 @@ export interface MainItemType extends BaseLinkType {
 
 export interface IconItemType extends BaseLinkType {
   type: 'icon';
-  /**
-   * `aria-label` of icon button
-   */
   label?: string;
   icon: ReactNode;
   text: ReactNode;
-  /**
-   * @defaultValue true
-   */
   secondary?: boolean;
 }
 
@@ -99,9 +68,6 @@ export interface ButtonItemType extends BaseLinkType {
   type: 'button';
   icon?: ReactNode;
   text: ReactNode;
-  /**
-   * @defaultValue false
-   */
   secondary?: boolean;
 }
 
@@ -112,9 +78,6 @@ export interface MenuItemType extends Partial<BaseLinkType> {
 
   items: (
     | (MainItemType & {
-      /**
-       * Options when displayed on navigation menu
-       */
       menu?: HTMLAttributes<HTMLElement> & {
         banner?: ReactNode;
       };
@@ -122,17 +85,11 @@ export interface MenuItemType extends Partial<BaseLinkType> {
     | CustomItemType
   )[];
 
-  /**
-   * @defaultValue false
-   */
   secondary?: boolean;
 }
 
 export interface CustomItemType extends BaseItem {
   type: 'custom';
-  /**
-   * @defaultValue false
-   */
   secondary?: boolean;
   children: ReactNode;
 }
@@ -144,9 +101,6 @@ export type LinkItemType =
   | MenuItemType
   | CustomItemType;
 
-/**
- * Get Links Items with shortcuts
- */
 export function getLinks(
   links: LinkItemType[] = [],
   githubUrl?: string,

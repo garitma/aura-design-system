@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description For sighted users to preview content available behind a link.
- */
 import * as React from "react";
 import { HoverCard as HoverCardRadix } from "radix-ui";
 

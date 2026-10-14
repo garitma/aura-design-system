@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Resizable panels. Drag the handle; keyboard users resize from the focused separator.
- */
 import * as React from "react";
 import { DragHandleDots2Icon } from "@radix-ui/react-icons";
 import * as ResizablePrimitive from "react-resizable-panels";

@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description A navigation trail for the current page.
- */
 import * as React from "react";
 import { Slot } from "@radix-ui/react-slot";
 import { ChevronRightIcon, DotsHorizontalIcon } from "@radix-ui/react-icons";
@@ -87,9 +84,7 @@ function BreadcrumbList({
   children,
   ...props
 }: React.ComponentProps<"ol"> & {
-  /** Collapse to first › ellipsis › current page when the trail is longer than this. */
   maxItems?: number;
-  /** Replaces the generated ellipsis. Use a labeled dropdown trigger for the hidden crumbs. */
   ellipsis?: React.ReactNode;
 }) {
   const [expanded, setExpanded] = React.useState(false);

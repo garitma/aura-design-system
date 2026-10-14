@@ -3,7 +3,6 @@ import type { DateRange } from "react-day-picker";
 
 import { Calendar } from "../registry/default/components/ui/Calendar";
 
-/** Fixed month so Ladle screenshots stay stable (April 2026). */
 const DEMO_MONTH = new Date(2026, 3, 1);
 
 export const Default = () => {

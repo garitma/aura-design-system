@@ -1,0 +1,17 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "timeline",
+  "type": "registry:ui",
+  "title": "Timeline",
+  "description": "The Timeline component.",
+  "registryDependencies": [
+    "@aura/class-names"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Timeline.tsx",
+      "content": "\"use client\";\n\nimport * as React from \"react\";\nimport { cn } from \"@/utils/class-names\";\n\nfunction Timeline({ className, label = \"Timeline\", ...props }: React.ComponentProps<\"ol\"> & { label?: string }) {\n  return (\n    <ol\n      aria-label={label}\n      data-slot=\"timeline\"\n      className={cn(\"flex flex-col gap-1\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction TimelineItem({\n  className,\n  title,\n  time,\n  children,\n}: {\n  className?: string;\n  title: string;\n  time?: string;\n  children?: React.ReactNode;\n}) {\n  return (\n    <li data-slot=\"timeline-item\" className={cn(\"flex gap-1\", className)}>\n      <span aria-hidden className=\"mt-0.5 size-1 shrink-0 rounded-full bg-accent-9\" />\n      <div className=\"flex flex-col gap-0.5\">\n        <div className=\"flex items-baseline gap-0.5\">\n          <span className=\"font-medium\">{title}</span>\n          {time ? <time className=\"text-gray-11\">{time}</time> : null}\n        </div>\n        {children ? <p className=\"m-0 text-gray-11\">{children}</p> : null}\n      </div>\n    </li>\n  );\n}\n\nexport { Timeline, TimelineItem };\n",
+      "type": "registry:ui"
+    }
+  ]
+}

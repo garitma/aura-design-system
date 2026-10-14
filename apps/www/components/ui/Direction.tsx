@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Sets reading direction for Radix primitives and the subtree.
- */
 import * as React from "react";
 import { Direction } from "radix-ui";
 

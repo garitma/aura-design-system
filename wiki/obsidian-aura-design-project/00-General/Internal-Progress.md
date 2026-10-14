@@ -5,12 +5,18 @@ retention: 10
 tags: [dev-log, logic]
 ---
 ## Summary
-Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface]]). Blueprint now also installs a reconciled Emil Kowalski set plus Vercel React best practices ([[Emil skills]]). The shipped theme uses the Somos Gente Digital dark ramp with light mode generated from accent `#4015ca` and gray `#7254cb` ([[Sgd-palette]]). Typography is Gabarito, loaded on the docs site with `next/font` as `--font-gabarito` ([[Typography]]).
+Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface]]), including a ban on code comments ([[No code comments]]). Blueprint now also installs a reconciled Emil Kowalski set plus Vercel React best practices ([[Emil skills]]). The shipped theme uses the Somos Gente Digital dark ramp with light mode generated from accent `#4015ca` and gray `#7254cb` ([[Sgd-palette]]). Typography is Gabarito, loaded on the docs site with `next/font` as `--font-gabarito` ([[Typography]]).
 
 ## Active
 
 
 ## Sessions
+### 2026-10-14 · No code comments
+- Workaround comments about our own code are deleted or solved by refactor. Comments about external constraints stay, with the reason stated. See [[No code comments]] and [[Aura Agent Surface]].
+- `.cursor/rules/no-comments.mdc` is always applied, listed in `AGENTS.md`, synced into the registry rules bundle, and copied by `aura blueprint` from `packages/cli/templates/cursor/rules/`.
+- `apps/www` ESLint `no-warning-comments` errors on `todo`, `fixme`, `hack`, `xxx`, and `workaround`. `packages/registry/test/server-safe-components.test.ts` encodes the "Button has no createContext" constraint.
+- Kept: iOS Safari zoom, Firefox image drag, React 19 ref cleanup, Recharts series binding, TanStack Table #4794, Radix Presence and select arrow, vaul overlay timing, WCAG chart contrast, Turbopack/fumadocs setup, licenses, and required suppressions.
+
 ### 2026-10-14 · Typography uses Gabarito
 - The sans face is Gabarito, the same family as next-sgd. See [[Typography]].
 - `apps/www/app/layout.tsx` loads `Gabarito` from `next/font/google` with `variable: "--font-gabarito"` on `<html>`. Body uses `font-sans`, which reads that variable first.
@@ -51,10 +57,6 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 - `size` on [[Button Group]] passes `md`/`icon-md` or `sm`/`icon-sm` to buttons. Text height is `h-4` or `h-3`. `icon` and `icon-sm` are the 39px icon button, and icon-only buttons need an `aria-label`.
 - Docs and toolbars use `flex-wrap gap-2`. Text and separators use `bg-gray-2`, `bg-gray-6`, and `rounded-sm`.
 - Joined corners are squared in unlayered CSS so they beat `.button`'s radius. Fill buttons share an accent-10 edge.
-
-### 2026-10-11 · Bubble borders and reactions
-- Muted content uses `border-gray-a4`. Ghost `border-none` now targets `BubbleContent`. Destructive hover mixes 6% `--danger-contrast` into `--danger` instead of `bg-danger/80`. See [[Bubble]].
-- Reactions reserve `mb-2` or `mt-2` when present. The pill max width is the bubble minus one spacing unit so it stays inside narrow bubbles.
 
 Older sessions: [[Progress-Archive/2026-10]]
 

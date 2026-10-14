@@ -1,7 +1,4 @@
 "use client";
-/**
- * @description Area chart family: natural, linear, step, stacked, expanded, legend, icons, gradient, axes, and interactive.
- */
 import * as React from "react";
 import {
   ActivityLogIcon,

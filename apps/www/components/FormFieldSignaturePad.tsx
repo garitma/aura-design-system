@@ -14,10 +14,6 @@ interface FormFieldSignaturePadProps
   controlProps?: FormRadix.FormControlProps;
   field?: FieldProps;
   errors?: ErrorObject<string, Record<string, any>, unknown>[];
-  /**
-   * Callback function to be called when the signature is saved
-   * This is in addition to the form field value being updated
-   */
   onSave?: (signature: Base64URLString) => void;
 }
 
