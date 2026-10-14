@@ -5,7 +5,7 @@ import {
   createFileSystemGeneratorCache,
 } from 'fumadocs-typescript';
 
-import { CodeBlock } from "@/components/ui/Codeblock";
+import { CodeBlock } from "@/components/ui/MdxCodeBlock";
 import { ComponentSource } from "@/components/ComponentSource";
 import {
   Heading1,

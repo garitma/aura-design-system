@@ -1,0 +1,4 @@
+status: new
+header:
+  description: Displays code, terminal output, logs, and diffs with a header, line numbers, and a copy action.
+extends: _templates/content.yml

@@ -1,0 +1,4 @@
+status: new
+header:
+  description: A list of agent steps. Each row has an icon, a title, an optional description, and a status.
+extends: _templates/content.yml

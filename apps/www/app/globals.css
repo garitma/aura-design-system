@@ -483,6 +483,8 @@ select {
   @import "../../../packages/registry/registry/default/styles/selection-toolbar.css";
   @import "../../../packages/registry/registry/default/styles/action-bar.css";
   @import "../../../packages/registry/registry/default/styles/chart.css";
+  @import "../../../packages/registry/registry/default/styles/trace.css";
+  @import "../../../packages/registry/registry/default/styles/code-block.css";
   @import "../../../packages/registry/registry/default/styles/marquee.animation.css";
 
   .fd-step:before {
