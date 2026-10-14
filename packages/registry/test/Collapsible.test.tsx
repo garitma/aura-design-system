@@ -76,6 +76,34 @@ describe("Collapsible", () => {
     expect(content).toHaveClass("overflow-hidden");
   });
 
+  it("places consumer className after CollapsibleContent animation classes", () => {
+    const { container } = render(
+      <Collapsible>
+        <CollapsibleTrigger>Toggle</CollapsibleTrigger>
+        <CollapsibleContent className="overflow-visible custom-content-class">
+          Content
+        </CollapsibleContent>
+      </Collapsible>
+    );
+    const content = container.querySelector(
+      '[data-slot="collapsible-content"]'
+    );
+    const className = content?.getAttribute("class") ?? "";
+
+    expect(content).toHaveClass("overflow-visible", "custom-content-class");
+    expect(content).not.toHaveClass("overflow-hidden");
+    expect(content).toHaveClass(
+      "data-[state=closed]:animate-collapsible-up",
+      "data-[state=open]:animate-collapsible-down"
+    );
+    expect(className.indexOf("custom-content-class")).toBeGreaterThan(
+      className.indexOf("animate-collapsible-down")
+    );
+    expect(className.indexOf("overflow-visible")).toBeGreaterThan(
+      className.indexOf("animate-collapsible-down")
+    );
+  });
+
   it("starts closed by default", () => {
     const { container } = render(
       <Collapsible>
