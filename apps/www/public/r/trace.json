@@ -1,0 +1,32 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "trace",
+  "type": "registry:ui",
+  "title": "Trace",
+  "description": "The Trace component.",
+  "dependencies": [
+    "@radix-ui/react-icons"
+  ],
+  "registryDependencies": [
+    "@aura/class-names",
+    "@aura/collapsible"
+  ],
+  "files": [
+    {
+      "path": "registry/default/components/ui/Trace.tsx",
+      "content": "import * as React from \"react\";\nimport { ChevronRightIcon } from \"@radix-ui/react-icons\";\n\nimport { cn } from \"@/utils/class-names\";\nimport {\n  Collapsible,\n  CollapsibleContent,\n  CollapsibleTrigger,\n} from \"@/components/ui/Collapsible\";\n\ntype TraceStatus = \"running\" | \"error\" | \"pending\" | \"done\";\n\nfunction Trace({ className, ...props }: React.ComponentProps<\"div\">) {\n  return (\n    <div\n      data-slot=\"trace\"\n      className={cn(\"flex w-full min-w-0 flex-col gap-1\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction TraceLine({\n  className,\n  status,\n  ...props\n}: React.ComponentProps<\"span\"> & {\n  status?: TraceStatus;\n}) {\n  return (\n    <span\n      data-slot=\"trace-line\"\n      data-status={status}\n      className={cn(\n        \"flex w-fit max-w-full min-w-0 items-center gap-0.5 text-left text-sm\",\n        className\n      )}\n      {...props}\n    />\n  );\n}\n\nfunction TraceIcon({ className, ...props }: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      data-slot=\"trace-icon\"\n      aria-hidden=\"true\"\n      className={cn(\"inline-flex shrink-0 items-center justify-center\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction TraceTitle({ className, ...props }: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      data-slot=\"trace-title\"\n      className={cn(\"min-w-0 truncate\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction TraceDescription({\n  className,\n  ...props\n}: React.ComponentProps<\"span\">) {\n  return (\n    <span\n      data-slot=\"trace-description\"\n      className={cn(\"shrink-0 tabular-nums\", className)}\n      {...props}\n    />\n  );\n}\n\nfunction TraceCollapsible({\n  className,\n  ...props\n}: React.ComponentProps<typeof Collapsible>) {\n  return (\n    <Collapsible\n      {...props}\n      data-slot=\"trace-collapsible\"\n      className={cn(\"flex w-full min-w-0 flex-col\", className)}\n    />\n  );\n}\n\nfunction TraceCollapsibleTrigger({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof CollapsibleTrigger>) {\n  return (\n    <CollapsibleTrigger\n      {...props}\n      data-slot=\"trace-collapsible-trigger\"\n      className={cn(\n        \"inline-flex w-fit max-w-full min-w-0 items-center gap-0.5 text-left\",\n        className\n      )}\n    >\n      {children}\n      <span data-slot=\"trace-chevron\" aria-hidden=\"true\" className=\"shrink-0\">\n        <ChevronRightIcon className=\"icon\" />\n      </span>\n    </CollapsibleTrigger>\n  );\n}\n\nfunction TraceCollapsibleContent({\n  className,\n  children,\n  ...props\n}: React.ComponentProps<typeof CollapsibleContent>) {\n  return (\n    <CollapsibleContent {...props}>\n      <div\n        data-slot=\"trace-collapsible-content\"\n        className={cn(\n          \"mt-0.5 mb-0.5 ms-1 min-w-0 border-s border-gray-6 ps-1 text-sm leading-relaxed\",\n          className\n        )}\n      >\n        {children}\n      </div>\n    </CollapsibleContent>\n  );\n}\n\nexport {\n  Trace,\n  TraceLine,\n  TraceIcon,\n  TraceTitle,\n  TraceDescription,\n  TraceCollapsible,\n  TraceCollapsibleTrigger,\n  TraceCollapsibleContent,\n};\nexport type { TraceStatus };\n",
+      "type": "registry:ui"
+    },
+    {
+      "path": "registry/default/styles/trace.css",
+      "content": "@keyframes aura-trace-shimmer {\n  from {\n    background-position: 100% 0;\n  }\n  to {\n    background-position: 0 0;\n  }\n}\n\n[data-slot=\"trace-line\"] {\n  color: var(--gray-11);\n}\n\n[data-slot=\"trace-line\"][data-status=\"done\"] {\n  color: var(--gray-12);\n}\n\n[data-slot=\"trace-line\"][data-status=\"error\"] {\n  color: var(--danger-contrast);\n}\n\n[data-slot=\"trace-line\"][data-status=\"pending\"] {\n  opacity: 0.6;\n}\n\n[data-slot=\"trace-line\"][data-status=\"running\"] [data-slot=\"trace-title\"] {\n  background-image: linear-gradient(\n    90deg,\n    var(--gray-11) 0%,\n    var(--gray-12) 45%,\n    var(--gray-11) 90%\n  );\n  background-size: 200% 100%;\n  background-repeat: no-repeat;\n  -webkit-background-clip: text;\n  background-clip: text;\n  color: transparent;\n  animation: aura-trace-shimmer 1.6s linear infinite;\n}\n\n[data-slot=\"trace\"] :is(a, button):has(> [data-slot=\"trace-line\"]) {\n  display: inline-flex;\n  width: fit-content;\n  max-width: 100%;\n  min-width: 0;\n  align-items: center;\n  border: 0;\n  background: transparent;\n  padding: 0;\n  margin: 0;\n  font: inherit;\n  color: inherit;\n  text-align: start;\n  text-decoration: none;\n  cursor: pointer;\n  border-radius: calc(var(--spacing) * 0.5);\n  outline: none;\n}\n\n[data-slot=\"trace\"] :is(a, button):hover > [data-slot=\"trace-line\"]:not([data-status=\"error\"]) {\n  color: var(--gray-12);\n}\n\n[data-slot=\"trace\"] :is(a, button):hover > [data-slot=\"trace-line\"][data-status=\"error\"] {\n  color: var(--danger-contrast);\n}\n\n[data-slot=\"trace\"] :is(a, button):has(> [data-slot=\"trace-line\"]):focus-visible {\n  outline: var(--aura-outline);\n}\n\n[data-slot=\"trace-chevron\"] {\n  display: inline-flex;\n  transition: transform 250ms ease;\n}\n\n[data-slot=\"trace-collapsible-trigger\"][data-state=\"open\"] [data-slot=\"trace-chevron\"] {\n  transform: rotate(90deg);\n}\n\n[data-slot=\"trace-collapsible-content\"] {\n  color: var(--gray-11);\n}\n\n@media (prefers-reduced-motion: reduce) {\n  [data-slot=\"trace-line\"][data-status=\"running\"] [data-slot=\"trace-title\"] {\n    animation: none;\n    background-image: none;\n    color: var(--gray-12);\n    -webkit-text-fill-color: currentColor;\n  }\n\n  [data-slot=\"trace-chevron\"] {\n    transition: none;\n  }\n}\n",
+      "type": "registry:component",
+      "target": "./styles/trace.css"
+    }
+  ],
+  "css": {
+    "@layer components": {
+      "@import \"../styles/trace.css\"": {}
+    }
+  }
+}
