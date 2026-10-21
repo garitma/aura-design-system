@@ -1,16 +1,18 @@
 ---
 title: Audit Questionnaire
-date: 2026-10-06
+date: 2026-10-21
 tags: [dev-log, logic, architecture]
 ---
 ## Summary
-Pass. The question title keeps `h2` and uses the `.h6` scale. Computed size on the docs page is 21.25px.
+Aligned with shadcn Questionnaire. Aura wraps `@shadcn/react/questionnaire` with flat part names (`QuestionnaireProgress`, `QuestionnaireChoice`, …), Aura accent/gray tokens, 13px spacing, and Radix `CheckIcon` with `className="icon"`. The old Stepper-based shell is removed.
 
 ## Findings
-- Fixed. `Question` in `Questionnaire.tsx` renders `<h2 id={titleId}>`. The type scale sets h2 from about 1.59rem to 2.44rem. A step title is not the page title.
-- Pass. Progress is `text-sm text-gray-11` ("Question N of M"), which is utility text. Actions are `Button` and `Button` `variant="pill"`. Stepper gap on the root is `gap-2` (26px), which is on the grid. The demo inputs have `aria-label`.
+- Composition matches shadcn: progress, fieldset items, choice cards with radio/checkbox indicators, freeform input, skip/next/submit actions.
+- Docs demo and Ladle `Default` / `Multiple` stories follow the shadcn items map pattern, including letter shortcuts on Default.
+- Inputs stay on the Aura ≥17px floor (`h-4`); no `text-sm` on the freeform control.
 
 ## Context
 - Related: [[Recent-Components-Audit]] [[Shadcn-gaps]]
 - Implementation Path: `packages/registry/registry/default/components/ui/Questionnaire.tsx`
 - Docs page: `apps/www/content/docs/components/questionnaire.mdx`
+- Reference: https://ui.shadcn.com/docs/components/base/questionnaire
