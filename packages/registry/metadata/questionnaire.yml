@@ -1,3 +1,4 @@
+status: new
 header:
-  description: One question at a time, built on Stepper.
+  description: A multi-step questionnaire with single-choice, multiple-choice, freeform, and skippable questions.
 extends: _templates/content.yml
