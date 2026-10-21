@@ -2351,8 +2351,11 @@
       ],
       "registryDependencies": [
         "@aura/button",
-        "@aura/class-names",
-        "@aura/stepper"
+        "@aura/class-names"
+      ],
+      "dependencies": [
+        "@radix-ui/react-icons",
+        "@shadcn/react"
       ]
     },
     {

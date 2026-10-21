@@ -474,7 +474,7 @@ import {
 } from "@/components/demos/qr-code-demo"
 import { 
   QuestionnaireDemo,
-  QuestionnaireDemoShell
+  QuestionnaireDemoMultiple
 } from "@/components/demos/questionnaire-demo"
 import { 
   RadarChartDemo,
@@ -1592,8 +1592,8 @@ export const Registry = {
   "questionnaire-demo": {
     component: QuestionnaireDemo,
   },
-  "questionnaire-demo-shell": {
-    component: QuestionnaireDemoShell,
+  "questionnaire-demo-multiple": {
+    component: QuestionnaireDemoMultiple,
   },
   "radar-chart-demo": {
     component: RadarChartDemo,

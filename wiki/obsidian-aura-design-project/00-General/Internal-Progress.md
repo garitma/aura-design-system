@@ -1,6 +1,6 @@
 ---
 title: Internal Progress
-date: 2026-10-14
+date: 2026-10-21
 retention: 10
 tags: [dev-log, logic]
 ---
@@ -11,6 +11,11 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 
 
 ## Sessions
+### 2026-10-21 · Questionnaire matches shadcn
+- Replaced the Stepper-based Questionnaire with a styled wrap of `@shadcn/react/questionnaire` (progress, choices, freeform, skip/next/submit). See [[Audit-Questionnaire]].
+- Aura tokens, 13px spacing, and `className="icon"` on the Radix check. Docs demo and Ladle stories follow the shadcn composition.
+- Registry JSON depends on `@shadcn/react` and `@aura/button` / `@aura/class-names` (no Stepper).
+
 ### 2026-10-14 · Command search input outline
 - `CommandInput` no longer paints a border, ring, or outline, including `:focus` and `:focus-visible`. The dialog border and the highlighted item stay the focus context. See [[Command]].
 - The field opts out of the legacy input chrome with `default`, keeps size `lg` (`h-5`) and `pl-5!`, and uses gray-12 text with a gray-11 placeholder.
@@ -53,10 +58,6 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 - Below `sm`, previous and next sit in a row under the slides. From `sm` they stay outside at `-left-12` / `-right-12`. Slide gap is 13px (`-ml-1` / `pl-1`). See [[Carousel]].
 - Vertical keyboards use ArrowUp and ArrowDown. The effect cleanup removes `reInit` as well as `select`.
 - The numbered demo no longer wraps the card in `p-1`. `MultipleCards` uses Aura cards with a title and description at `basis-full sm:basis-1/2 md:basis-1/3`.
-
-### 2026-10-11 · Card type, radius, and action slot
-- `CardTitle` is `.small` semibold. `CardDescription` and body copy use `.small`. Radius is `--radius-md` (13px). See [[Card]].
-- `CardAction` is the top-right slot of `CardHeader`. Grids step from 1 to 2 to 3 columns. Interactive cards hover to `border-gray-8` with a soft shadow and a focus-visible ring.
 
 Older sessions: [[Progress-Archive/2026-10]]
 
