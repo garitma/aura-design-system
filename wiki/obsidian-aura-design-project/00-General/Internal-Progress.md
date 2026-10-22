@@ -15,6 +15,11 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 - Pinned the [[Cloud Run]] www runtime and build stages plus the registry and design-md image builders to `node:22.23.4-alpine`, replacing EOL Node 20.
 - No repository `.nvmrc`, `engines.node`, or workflow `node-version` declaration exists to align.
 
+### 2026-10-21 · Questionnaire matches shadcn
+- Replaced the Stepper-based Questionnaire with a styled wrap of `@shadcn/react/questionnaire` (progress, choices, freeform, skip/next/submit). See [[Audit-Questionnaire]].
+- Aura tokens, 13px spacing, and `className="icon"` on the Radix check. Docs demo and Ladle stories follow the shadcn composition.
+- Registry JSON depends on `@shadcn/react` and `@aura/button` / `@aura/class-names` (no Stepper).
+
 ### 2026-10-14 · Command search input outline
 - `CommandInput` no longer paints a border, ring, or outline, including `:focus` and `:focus-visible`. The dialog border and the highlighted item stay the focus context. See [[Command]].
 - The field opts out of the legacy input chrome with `default`, keeps size `lg` (`h-5`) and `pl-5!`, and uses gray-12 text with a gray-11 placeholder.
@@ -52,11 +57,6 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 - `/docs/components/chart` is gone from the components catalog and redirects to `/docs/charts`. `Chart.tsx` stays the shared base. The Charts index documents `ChartContainer`, tooltip, and legend. See [[Charts]].
 - Markers use `--chart-marker` (8px) and `--chart-marker-line` (2px). `tokenColor` keeps plain CSS colors and warns in development when it drops a value.
 - Plot inset, ticks, and gridlines read chart tokens. Category axes use `preserveStartEnd`. The container is square below `sm`, then 16:9.
-
-### 2026-10-11 · Carousel controls, gap, and multi-card demo
-- Below `sm`, previous and next sit in a row under the slides. From `sm` they stay outside at `-left-12` / `-right-12`. Slide gap is 13px (`-ml-1` / `pl-1`). See [[Carousel]].
-- Vertical keyboards use ArrowUp and ArrowDown. The effect cleanup removes `reInit` as well as `select`.
-- The numbered demo no longer wraps the card in `p-1`. `MultipleCards` uses Aura cards with a title and description at `basis-full sm:basis-1/2 md:basis-1/3`.
 
 Older sessions: [[Progress-Archive/2026-10]]
 
