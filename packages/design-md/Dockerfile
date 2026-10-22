@@ -4,7 +4,7 @@
 # Runs scripts/prepare-public.cjs (same as the Vercel buildCommand) and serves
 # public/ on port 3000, including the /dark rewrite and DESIGN.md content type.
 
-FROM node:20-alpine AS prepare
+FROM node:22.23.4-alpine AS prepare
 WORKDIR /src
 COPY packages/design-md/package.json ./package.json
 COPY packages/design-md/scripts ./scripts

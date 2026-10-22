@@ -3,7 +3,7 @@
 #
 # Static Ladle site (`pnpm ladle build -o build`) served on port 3000.
 
-FROM node:20-alpine AS base
+FROM node:22.23.4-alpine AS base
 ENV PNPM_HOME="/pnpm"
 # pnpm 10 keeps global bins in PNPM_HOME; newer pnpm uses PNPM_HOME/bin.
 ENV PATH="$PNPM_HOME:$PNPM_HOME/bin:$PATH"
