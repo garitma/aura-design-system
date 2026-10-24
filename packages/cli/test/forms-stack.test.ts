@@ -11,7 +11,6 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { describe, it } from "node:test";
 import { fileURLToPath } from "node:url";
-import { retireRemovedSkills } from "../commands/blueprint.js";
 import {
   FORM_AGENT_FILES,
   installFormStack,
@@ -113,24 +112,5 @@ describe("forms stack blueprint", () => {
     assert.deepEqual(await installFormStack(root, add), []);
     assert.deepEqual(calls, [["field", "use-dynamic-form", "web-validation"]]);
     assert.equal(readFileSync(join(root, "src/components/ui/Form.tsx"), "utf8"), "custom");
-  }));
-
-  it("removes the retired react-best-practices skill", withProject((root) => {
-    for (const rel of [
-      ".cursor/skills/react-best-practices",
-      ".agents/skills/react-best-practices",
-      ".agents/skills/vercel-react-best-practices",
-    ]) {
-      mkdirSync(join(root, rel), { recursive: true });
-      writeFileSync(join(root, rel, "SKILL.md"), "x");
-    }
-    mkdirSync(join(root, ".cursor/skills/aura-forms"), { recursive: true });
-
-    retireRemovedSkills(root);
-
-    assert.equal(existsSync(join(root, ".cursor/skills/react-best-practices")), false);
-    assert.equal(existsSync(join(root, ".agents/skills/react-best-practices")), false);
-    assert.equal(existsSync(join(root, ".agents/skills/vercel-react-best-practices")), false);
-    assert.ok(existsSync(join(root, ".cursor/skills/aura-forms")));
   }));
 });

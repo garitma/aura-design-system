@@ -169,12 +169,6 @@ const LEGACY_AGENT_PATHS = [
   "scripts/brain-progress.ts",
 ];
 
-const RETIRED_SKILL_PATHS = [
-  ".cursor/skills/react-best-practices",
-  ".agents/skills/react-best-practices",
-  ".agents/skills/vercel-react-best-practices",
-];
-
 export const FEATURE_MAP_DIR = "Feature-Map";
 
 export function scaffoldFeatureMap(
@@ -247,16 +241,6 @@ export function retireProjectBrain(projectRoot: string): void {
     delete pkg.scripts["brain:progress"];
     writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + "\n", "utf-8");
     console.log("  package.json: removed brain:progress");
-  }
-}
-
-export function retireRemovedSkills(projectRoot: string): void {
-  for (const rel of RETIRED_SKILL_PATHS) {
-    const abs = join(projectRoot, rel);
-    if (existsSync(abs)) {
-      rmSync(abs, { recursive: true, force: true });
-      console.log(`  remove (skill no longer shipped): ${rel}`);
-    }
   }
 }
 
@@ -369,7 +353,6 @@ export async function applyBlueprintToProject(
   console.log(`  vault suffix: ${suffix}\n`);
 
   retireProjectBrain(projectRoot);
-  retireRemovedSkills(projectRoot);
   scaffoldFeatureMap(projectRoot, suffix, force);
   scaffoldNoCommentsRule(projectRoot, force);
   syncFormAgentFiles(projectRoot, force);
@@ -392,7 +375,7 @@ export function registerBlueprintCommand(program: Command) {
   program
     .command("blueprint [projectDir]")
     .description(
-      "Scaffold the Obsidian feature map, the feature-map, no-comments, and forms rules, the aura-forms skill and form components, identity-aware image generation, reconciled Emil skills, preflight, Sonar config, shadcn/ui skills, and gdp-ts proofs",
+      "Scaffold the Obsidian feature map, the feature-map, no-comments, and forms rules, the aura-forms skill and form components, identity-aware image generation, on-demand Emil and Vercel audit skills, preflight, Sonar config, shadcn/ui skills, and gdp-ts proofs",
     )
     .option(
       "-f, --force",

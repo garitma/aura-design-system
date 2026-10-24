@@ -1,6 +1,6 @@
 # @aura-design/cli
 
-Aura Design System CLI (`aura`). Bootstraps Next.js apps with Aura registries and tokens, regenerates theme CSS, migrates Tailwind spacing to the 13px scale, and scaffolds the Obsidian feature map, image, and Sonar tooling, the reconciled Emil agent skills, the Aura forms rule, skill, and components, plus gdp-ts proof-carrying authz.
+Aura Design System CLI (`aura`). Bootstraps Next.js apps with Aura registries and tokens, regenerates theme CSS, migrates Tailwind spacing to the 13px scale, and scaffolds the Obsidian feature map, image, and Sonar tooling, the Emil and Vercel on-demand audit skills, the Aura forms rule, skill, and components, plus gdp-ts proof-carrying authz.
 
 ## Usage
 
@@ -13,6 +13,10 @@ pnpm dlx @aura-design/cli@latest colors --accent "#4015ca" --gray "#7254cb" --ba
 pnpm dlx @aura-design/cli@latest typography generate
 pnpm dlx @aura-design/cli@latest spacing
 ```
+
+## On-demand audits
+
+Blueprint installs the Emil skills and `react-best-practices` into `.cursor/skills/` with `disable-model-invocation: true`. They run only when asked, for example `/emil-design-eng Audita la pantalla de checkout antes del PR`. Each returns findings (severity, `file:line`, suggested fix) and edits nothing. See [auradesignsystem.com/docs/audits](https://auradesignsystem.com/docs/audits).
 
 ## Documentation
 
