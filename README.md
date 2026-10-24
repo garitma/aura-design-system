@@ -19,7 +19,7 @@ For details, follow the guides on [auradesignsystem.com](https://auradesignsyste
 
 ## More in this repo
 
-Internal notes, onboarding, identity, and how the docs site fits together are in **[wiki/obsidian-aura-design-project](wiki/obsidian-aura-design-project)** (Obsidian vault).
+The feature map (one note per feature, shown as a table by `Feature-Map.base`) is in **[wiki/obsidian-aura-design-project/Feature-Map](wiki/obsidian-aura-design-project/Feature-Map)** (Obsidian vault).
 
 ## Releases & community
 

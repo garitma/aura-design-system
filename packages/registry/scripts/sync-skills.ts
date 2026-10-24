@@ -13,7 +13,7 @@ const SKILL_DIRS = [
   "aura-forms",
   "generate-brand-images",
   "port-component-to-aura",
-  "update-project-brain",
+  "update-feature-map",
   "verify-aura-ui",
 ];
 

@@ -16,7 +16,7 @@ Aura is a **design system monorepo**: tokens, UI components, Ladle stories, docs
 | CLI | `packages/cli/` |
 | Docs / marketing site | `apps/www/` |
 | Cursor rules & project skills | `.cursor/rules/`, `.cursor/skills/` |
-| Obsidian / Bruno wiki | `wiki/obsidian-aura-design-project/`, `wiki/bruno-aura-design-project/` |
+| Feature map (only docs; update on PR) | `wiki/obsidian-aura-design-project/Feature-Map/` |
 
 `apps/www/AGENTS.md` is Next.js / site lint guidance only. Prefer **this** file for repo-wide agent policy.
 
@@ -42,8 +42,9 @@ Aura is a **design system monorepo**: tokens, UI components, Ladle stories, docs
 - Ownership map: `.cursor/rules/aura-agent-surface.mdc` — `DESIGN.md` narrative SoT; `.cursor/rules/*` guardrails; `.cursor/skills/*` / `.agents/skills/*` execution.
 - Foundation rules live in `.cursor/rules/` (`alwaysApply` where marked). Do not invent a second conflicting design policy.
 - Monorepo skills: `.cursor/skills/aura-constraints/`, `.cursor/skills/aura-verification/`.
-- Consumer skills (registry-synced): `aura-forms`, `verify-aura-ui`, `update-project-brain`, `port-component-to-aura`, `generate-brand-images` — see `packages/registry/scripts/sync-skills.ts`.
+- Consumer skills (registry-synced): `aura-forms`, `verify-aura-ui`, `update-feature-map`, `port-component-to-aura`, `generate-brand-images` — see `packages/registry/scripts/sync-skills.ts`.
 - Upstream skills (blueprint / `skills add`, not registry): `.agents/skills/shadcn` (`pnpm dlx skills add shadcn/ui`) and gdp-ts.
+- Documentation: `.cursor/rules/feature-map.mdc`. On PR, add or update the feature's note in the feature map. Do not read or write other wiki or progress files.
 - **Agent-constraint skills stay local** and are not added to `sync-skills.ts` unless intentionally published.
 
 ## Proof-carrying authz (gdp-ts)

@@ -24,7 +24,6 @@ Guardrails live in `.cursor/rules/shadcn-lint.mdc` and foundation rules. This sk
    * Raw colors → `accent-*` / `gray-*` / semantic tokens from the theme.
    * Icon margin → drop horizontal margin; use container `gap-0.5` or rely on Button/Badge gap.
 4. Re-run `pnpm lint` on the same scope. Treat new restyle/spacing **errors** as blockers. Pre-existing debt outside your files stays out of scope unless the human asks.
-5. If you changed agent docs or the design surface, run skill `update-project-brain`.
 
 ## Form control check
 

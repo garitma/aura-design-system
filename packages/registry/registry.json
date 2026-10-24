@@ -3635,6 +3635,19 @@
       ]
     },
     {
+      "name": "rule-feature-map",
+      "type": "registry:file",
+      "title": "Rule: Feature Map",
+      "description": "Aura rule: Feature Map. Install to .cursor/rules/ for Cursor AI guidance.",
+      "files": [
+        {
+          "path": "registry/default/rules/feature-map.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/feature-map.mdc"
+        }
+      ]
+    },
+    {
       "name": "rule-fundation-animations",
       "type": "registry:file",
       "title": "Rule: Fundation Animations",
@@ -3726,19 +3739,6 @@
       ]
     },
     {
-      "name": "rule-self-documenting-system",
-      "type": "registry:file",
-      "title": "Rule: Self Documenting System",
-      "description": "Aura rule: Self Documenting System. Install to .cursor/rules/ for Cursor AI guidance.",
-      "files": [
-        {
-          "path": "registry/default/rules/self-documenting-system.mdc",
-          "type": "registry:file",
-          "target": ".cursor/rules/self-documenting-system.mdc"
-        }
-      ]
-    },
-    {
       "name": "rule-shadcn-lint",
       "type": "registry:file",
       "title": "Rule: shadcn lint",
@@ -3783,6 +3783,11 @@
           "target": "DESIGN.md"
         },
         {
+          "path": "registry/default/rules/feature-map.mdc",
+          "type": "registry:file",
+          "target": ".cursor/rules/feature-map.mdc"
+        },
+        {
           "path": "registry/default/rules/fundation-animations.mdc",
           "type": "registry:file",
           "target": ".cursor/rules/fundation-animations.mdc"
@@ -3816,11 +3821,6 @@
           "path": "registry/default/rules/principles.mdc",
           "type": "registry:file",
           "target": ".cursor/rules/principles.mdc"
-        },
-        {
-          "path": "registry/default/rules/self-documenting-system.mdc",
-          "type": "registry:file",
-          "target": ".cursor/rules/self-documenting-system.mdc"
         },
         {
           "path": "registry/default/rules/shadcn-lint.mdc",
@@ -3879,15 +3879,15 @@
       ]
     },
     {
-      "name": "skill-update-project-brain",
+      "name": "skill-update-feature-map",
       "type": "registry:file",
-      "title": "Skill: Update Project Brain",
-      "description": "Aura Cursor skill: Update Project Brain. Installs to .cursor/skills/update-project-brain/.",
+      "title": "Skill: Update Feature Map",
+      "description": "Aura Cursor skill: Update Feature Map. Installs to .cursor/skills/update-feature-map/.",
       "files": [
         {
-          "path": "registry/default/skills/update-project-brain/SKILL.md",
+          "path": "registry/default/skills/update-feature-map/SKILL.md",
           "type": "registry:file",
-          "target": ".cursor/skills/update-project-brain/SKILL.md"
+          "target": ".cursor/skills/update-feature-map/SKILL.md"
         }
       ]
     },
@@ -3931,9 +3931,9 @@
           "target": ".cursor/skills/port-component-to-aura/SKILL.md"
         },
         {
-          "path": "registry/default/skills/update-project-brain/SKILL.md",
+          "path": "registry/default/skills/update-feature-map/SKILL.md",
           "type": "registry:file",
-          "target": ".cursor/skills/update-project-brain/SKILL.md"
+          "target": ".cursor/skills/update-feature-map/SKILL.md"
         },
         {
           "path": "registry/default/skills/verify-aura-ui/SKILL.md",
