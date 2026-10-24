@@ -14,7 +14,7 @@ import { tmpdir } from "node:os";
 import { join, relative } from "node:path";
 import { describe, it } from "node:test";
 import { fileURLToPath } from "node:url";
-import { installReconciledSkills, RECONCILED_SKILLS, SKIPPED_UPSTREAM_SKILLS, EMIL_SKILLS_SHA, VERCEL_REACT_SKILLS_SHA } from "../commands/upstream-skills.js";
+import { installReconciledSkills, RECONCILED_SKILLS, SKIPPED_UPSTREAM_SKILLS, EMIL_SKILLS_SHA } from "../commands/upstream-skills.js";
 
 const templates = fileURLToPath(
   new URL("../templates/cursor/skills/", import.meta.url),
@@ -63,15 +63,9 @@ describe("reconciled upstream skills", () => {
     for (const name of RECONCILED_SKILLS) {
       const skill = readFileSync(join(templates, name, "SKILL.md"), "utf8");
       const license = readFileSync(join(templates, name, "LICENSE"), "utf8");
-      if (name === "react-best-practices") {
-        assert.match(skill, new RegExp(VERCEL_REACT_SKILLS_SHA));
-        assert.match(license, /MIT License/);
-        assert.match(license, /Copyright \(c\) Vercel, Inc\./);
-      } else {
-        assert.match(skill, new RegExp(EMIL_SKILLS_SHA));
-        assert.match(license, /Copyright \(c\) 2026 Emil Kowalski/);
-        assert.match(license, /Permission is hereby granted/);
-      }
+      assert.match(skill, new RegExp(EMIL_SKILLS_SHA));
+      assert.match(license, /Copyright \(c\) 2026 Emil Kowalski/);
+      assert.match(license, /Permission is hereby granted/);
     }
     const mobile = readFileSync(
       join(templates, "mobile-native", "SKILL.md"),
@@ -83,7 +77,11 @@ describe("reconciled upstream skills", () => {
     assert.match(sonner, /Aura Toast is the product toaster/);
     const picker = readFileSync(join(templates, "pick-ui-library", "SKILL.md"), "utf8");
     assert.match(picker, /If the Aura registry \(`@aura`\) already has a component for the need/);
-    assert.equal(RECONCILED_SKILLS.length, 13);
+    assert.equal(RECONCILED_SKILLS.length, 12);
+    assert.equal(existsSync(join(templates, "react-best-practices")), false);
+    assert.equal(existsSync(join(repoSkills, "react-best-practices")), false);
+    const breakUi = readFileSync(join(templates, "break-ui", "SKILL.md"), "utf8");
+    assert.match(breakUi, /ajv JSON Schema passed to `validateFormData`/);
   });
 
   it("installs into .cursor/skills and treats a second run as unchanged", () => {

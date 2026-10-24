@@ -5,8 +5,6 @@ import { fileURLToPath } from "node:url";
 
 const EMIL_SHA = "e8a175de22ae1e49370fc144c1f3bb9aeedf988d";
 const EMIL_REPO = "https://github.com/emilkowalski/skills";
-const VERCEL_SHA = "063bee94c3f4df8453406c830b0a7df0f2860278";
-const VERCEL_REPO = "https://github.com/vercel-labs/agent-skills";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const repoRoot = join(here, "..", "..", "..");
@@ -14,7 +12,6 @@ const templateRoot = join(here, "..", "templates", "cursor", "skills");
 const cursorRoot = join(repoRoot, ".cursor", "skills");
 
 const emilDir = process.env.EMIL_DIR ?? "/tmp/emilkowalski-skills";
-const vercelDir = process.env.VERCEL_DIR ?? "/tmp/vercel-agent-skills";
 
 const EMIL_SOURCE = `Source: Emil Kowalski, MIT License, ${EMIL_REPO} @ ${EMIL_SHA} (Copyright (c) 2026 Emil Kowalski). Keep this notice with any substantial copy. The license text is in \`LICENSE\` beside this file.`;
 
@@ -82,33 +79,6 @@ const EMIL_SHIPPED = [
   "pick-ui-library",
 ];
 
-const VERCEL_LICENSE = `MIT License
-
-Copyright (c) Vercel, Inc.
-
-The react-best-practices skill is taken from ${VERCEL_REPO}
-commit ${VERCEL_SHA} (skills/react-best-practices). The upstream README
-states that the repository is MIT. This notice travels with the copy.
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
-`;
-
 function splitFrontmatter(text) {
   if (!text.startsWith("---\n")) {
     throw new Error("missing frontmatter");
@@ -166,6 +136,13 @@ function raiseInputFloor(body) {
     );
 }
 
+function preferAuraValidation(body) {
+  return body.replaceAll(
+    "Look up limits in the validation schema (Zod, Yup, Valibot)",
+    "Look up limits in the validation schema (in Aura, the ajv JSON Schema passed to `validateFormData`; Zod, Yup, or Valibot only where the project already uses them)",
+  );
+}
+
 function buildEmilSkill(name) {
   const raw = readFileSync(join(emilDir, "skills", name, "SKILL.md"), "utf8");
   const { frontmatter, body } = splitFrontmatter(raw);
@@ -174,6 +151,7 @@ function buildEmilSkill(name) {
     : frontmatter;
   let nextBody = body.replace(/^\n/, "");
   if (name === "mobile-native") nextBody = raiseInputFloor(nextBody);
+  if (name === "break-ui") nextBody = preferAuraValidation(nextBody);
   return `---\n${fm}\n---\n\n${emilNotice(name)}\n\n${nextBody.endsWith("\n") ? nextBody : nextBody + "\n"}`;
 }
 
@@ -210,62 +188,8 @@ function copyEmil(name) {
   }
 }
 
-function insertAfterFrontmatter(text, paragraph) {
-  if (!text.startsWith("---\n")) {
-    const line = `<!-- Source: ${VERCEL_REPO} @ ${VERCEL_SHA} — MIT. -->\n`;
-    return text.startsWith("<!-- Source:") ? text : line + text;
-  }
-  const { frontmatter, body } = splitFrontmatter(text);
-  let fm = frontmatter;
-  if (fm.includes("metadata:")) {
-    if (!fm.includes("commit:")) {
-      fm = fm.replace(
-        /metadata:\n/,
-        `metadata:\n  source: ${VERCEL_REPO}\n  commit: ${VERCEL_SHA}\n`,
-      );
-    }
-  }
-  const extra = paragraph ? ` ${paragraph}` : "";
-  const note = body.includes(VERCEL_SHA)
-    ? ""
-    : `\nSource: ${VERCEL_REPO} @ ${VERCEL_SHA} (MIT).${extra}\n`;
-  return `---\n${fm}\n---\n${note}${body.startsWith("\n") ? body : "\n" + body}`;
-}
-
-function copyVercel() {
-  const src = join(vercelDir, "skills", "react-best-practices");
-  const dest = join(templateRoot, "react-best-practices");
-  rmSync(dest, { recursive: true, force: true });
-  cpSync(src, dest, { recursive: true });
-  const skillPath = join(dest, "SKILL.md");
-  const skill = readFileSync(skillPath, "utf8");
-  writeFile(
-    skillPath,
-    insertAfterFrontmatter(
-      skill,
-      "Aura visual rules and gdp-ts proofs still win where this guide overlaps them. `server-auth-actions` does not replace a proof.",
-    ),
-  );
-  writeFile(join(dest, "LICENSE"), VERCEL_LICENSE);
-  const agents = join(dest, "AGENTS.md");
-  writeFile(agents, insertAfterFrontmatter(readFileSync(agents, "utf8"), ""));
-  const rulesDir = join(dest, "rules");
-  for (const entry of readdirSync(rulesDir)) {
-    const abs = join(rulesDir, entry);
-    if (!entry.endsWith(".md")) continue;
-    writeFile(abs, insertAfterFrontmatter(readFileSync(abs, "utf8"), ""));
-  }
-  const metaPath = join(dest, "metadata.json");
-  const meta = JSON.parse(readFileSync(metaPath, "utf8"));
-  meta.source = VERCEL_REPO;
-  meta.commit = VERCEL_SHA;
-  meta.license = "MIT";
-  writeFile(metaPath, JSON.stringify(meta, null, 2) + "\n");
-}
-
 function mirrorToCursorSkills() {
-  const names = [...EMIL_SHIPPED, "react-best-practices"];
-  for (const name of names) {
+  for (const name of EMIL_SHIPPED) {
     const dest = join(cursorRoot, name);
     rmSync(dest, { recursive: true, force: true });
     cpSync(join(templateRoot, name), dest, { recursive: true });
@@ -273,7 +197,6 @@ function mirrorToCursorSkills() {
 }
 
 for (const name of EMIL_SHIPPED) copyEmil(name);
-copyVercel();
 mirrorToCursorSkills();
 
 const shipped = readdirSync(templateRoot).filter((name) =>

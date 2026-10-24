@@ -55,7 +55,7 @@ Read the component and list every value it renders, with its source:
 
 Include the values people forget: counts in headers, relative timestamps, badge and status text, button labels that come from data, tooltips, avatar images, the list itself (its length is a value too).
 
-Look up limits in the validation schema (Zod, Yup, Valibot), database migrations, API types, and form `maxLength` attributes. Note where the frontend and backend disagree; a 50-character input that saves to a 255-character column means something longer will turn up eventually, through an import or the API.
+Look up limits in the validation schema (in Aura, the ajv JSON Schema passed to `validateFormData`; Zod, Yup, or Valibot only where the project already uses them), database migrations, API types, and form `maxLength` attributes. Note where the frontend and backend disagree; a 50-character input that saves to a 255-character column means something longer will turn up eventually, through an import or the API.
 
 **Completion criterion:** every rendered value is in the table, with a source and either a limit or "unbounded".
 
