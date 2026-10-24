@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "rule-feature-map",
+  "type": "registry:file",
+  "title": "Rule: Feature Map",
+  "description": "Aura rule: Feature Map. Install to .cursor/rules/ for Cursor AI guidance.",
+  "files": [
+    {
+      "path": "registry/default/rules/feature-map.mdc",
+      "content": "---\nalwaysApply: true\ntitle: Feature map\ndescription: The only project documentation is a feature map in the Obsidian vault, updated in the PR that changes a feature. No progress logs.\n---\n\n# Feature map\n\nThe only project documentation is the feature map: one short note per feature in `wiki/obsidian-{suffix}/Feature-Map/`, shown as a table by `Feature-Map.base`. `{suffix}` is the `package.json` `name` with its first segment stripped. Aura's vault is `wiki/obsidian-aura-design-project/`.\n\n* **MUST**: When you open or update a PR, add or update the note of each feature the PR changes, inside that PR. Steps live in skill `update-feature-map`.\n* **MUST NOT**: Read or write the feature map before PR time. Code, types, and tests are the source of truth while you work.\n* **MUST NOT**: Read or write other wiki, progress, session, assumption, or decision-log files (for example `Internal-Progress.md`) as part of a task, or run `brain:progress`.\n* **MUST NOT**: Write secrets into notes. Name environment variables only.\n",
+      "type": "registry:file",
+      "target": ".cursor/rules/feature-map.mdc"
+    }
+  ]
+}

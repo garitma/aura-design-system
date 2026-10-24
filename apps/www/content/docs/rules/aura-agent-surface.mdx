@@ -25,7 +25,7 @@ These stay encoded in foundation rules and machine-checked where lint allows. Do
 * Fluid typography via `clamp()` and a global **≥ 17px** floor on editable form controls.
 * Strict **13px** spacing base (`unit * 13px`).
 * Icons use `className="icon"` only (type inheritance); no horizontal icon margins inside gap-owning controls.
-* Project Brain lives in `wiki/obsidian-{suffix}/` with `00-General/Internal-Progress.md` updated after each advance.
+* The only project documentation is the feature map in `wiki/obsidian-{suffix}/Feature-Map/`, updated inside the PR that changes a feature. No progress logs. See `feature-map.mdc`.
 * No code comments except external constraints (with the reason), directives, licenses, and generated code. Fix the root cause instead. See `no-comments.mdc`.
 
 ## Upstream shadcn skill (merge)
@@ -43,7 +43,7 @@ When the shadcn skill conflicts with Aura Keep / foundation rules, **Aura wins**
 | Typography | Fluid `.h1`–`.p`; no `text-xl` on primary copy; inputs ≥ 17px | Layout/`cn()` patterns that do not fight the floor |
 | Restyle | Variants/sizes; `@shadcn/lint` `no-restyle` | `className` for layout/width only (aligned) |
 
-Do not vendor the shadcn skill into `packages/registry` / `sync-skills.ts`. Blueprint installs it the same way as gdp-ts.
+Do not vendor the shadcn skill, the reconciled Emil skills, or `react-best-practices` into `packages/registry` / `sync-skills.ts`. Blueprint installs shadcn and gdp-ts with `skills add`. It copies the reconciled skills from `packages/cli/templates/cursor/skills/` into `.cursor/skills/`. Re-running `aura blueprint` updates that set in place.
 
 ## Routing
 
@@ -51,7 +51,8 @@ Do not vendor the shadcn skill into `packages/registry` / `sync-skills.ts`. Blue
 * UI token questions → `DESIGN.md`, then foundation rules under `.cursor/rules/fundation*`.
 * shadcn CLI / registry / presets / component docs → skill `shadcn` (`.agents/skills/shadcn`).
 * After UI edits → skill `verify-aura-ui` (`pnpm lint`, clear `@shadcn/lint` debt you introduced).
-* After structural or API advances → skill `update-project-brain`.
+* Opening or updating a PR → skill `update-feature-map`.
 * Porting external UI into Aura → skill `port-component-to-aura`.
 * Aura form composition → skill `aura-forms` (guardrails in `components-forms.mdc`).
 * Monorepo DS edits in this repo → skills `aura-constraints` / `aura-verification` + root `AGENTS.md`.
+* Motion, polish, mobile web feel, worst-case UI data, or React/Next performance → the reconciled skills in `.cursor/skills/` (`emil-design-eng`, `animate`, `review-animations`, `improve-animations`, `find-animation-opportunities`, `animation-vocabulary`, `apple-design`, `prototype`, `mobile-native`, `break-ui`, `ask-sonner`, `pick-ui-library`, `react-best-practices`). Aura foundation rules still win on tokens, spacing, type, and the 17px input floor. `pick-ui-library` uses an `@aura` component before an external library.

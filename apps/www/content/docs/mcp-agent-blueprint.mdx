@@ -12,7 +12,7 @@ Ejecuta https://auradesignsystem.com/docs/mcp-agent-blueprint
 
 (Local docs: `http://localhost:4000/docs/mcp-agent-blueprint`.)
 
-This page is an **agent runbook**, not the CLI command `aura blueprint`. The runbook may invoke that command when the project is missing its wiki, image-generation command, preflight, Sonar scaffolding, or gdp-ts proofs.
+This page is an **agent runbook**, not the CLI command `aura blueprint`. The runbook may invoke that command when the project is missing its feature map, image-generation command, preflight, Sonar scaffolding, or gdp-ts proofs.
 
 ---
 
@@ -85,7 +85,7 @@ pnpm dlx shadcn@latest add \
 - `@aura/rule-design-md` → rule + root `DESIGN.md`
 - `@aura/eslint-shadcn-lint` → `eslint.aura-shadcn.mjs` + `.cursor/rules/shadcn-lint.mdc` (see **D** below)
 
-If the blueprint wiki, `Image-Identity.md`, or `pnpm ai:image` is missing, scaffold those project capabilities without rewriting the Aura theme:
+If the feature map, `Image-Identity.md`, or `pnpm ai:image` is missing, scaffold those project capabilities without rewriting the Aura theme:
 
 ```bash
 pnpm dlx @aura-design/cli@latest blueprint .
@@ -208,7 +208,7 @@ Every sensitive function takes a typed proof that the check already ran for thos
 
 **When to install:** Whenever `@gdp-ts/core`, the ESLint preset, the skill, or the starter proofs are missing. Skip only if the user said “no gdp-ts”.
 
-`aura init` and `aura setup` already run this. On an existing app, re-run blueprint (it skips wiki and proof files that exist; it updates the reconciled skills in place):
+`aura init` and `aura setup` already run this. On an existing app, re-run blueprint (it skips feature-map, identity, and proof files that exist, updates the reconciled skills in place, and removes the retired Project Brain rule, skill, and script):
 
 ```bash
 pnpm dlx @aura-design/cli@latest blueprint .
@@ -232,11 +232,11 @@ Confirm after installs:
 - `.cursor/rules/` has Aura foundation rules (including `aura-agent-surface.mdc` when installed via `@aura/rules`)
 - `.cursor/skills/port-component-to-aura/SKILL.md` exists
 - `.cursor/skills/generate-brand-images/SKILL.md` and its generator script exist
-- `.cursor/skills/verify-aura-ui/SKILL.md` and `.cursor/skills/update-project-brain/SKILL.md` exist when `@aura/skills` was added
+- `.cursor/skills/verify-aura-ui/SKILL.md` and `.cursor/skills/update-feature-map/SKILL.md` exist when `@aura/skills` was added
 - `.cursor/skills/emil-design-eng/SKILL.md` and `.cursor/skills/react-best-practices/SKILL.md` exist, and `.agents/skills/` does not also contain those names
 - `.agents/skills/shadcn/SKILL.md` exists (or document the gap)
-- `wiki/obsidian-*/01-Identity/Image-Identity.md` exists
-- `package.json` has `ai:image` and `brain:progress`; `.env.example` names `GOOGLE_API_KEY`
+- `wiki/obsidian-*/01-Identity/Image-Identity.md` and `wiki/obsidian-*/Feature-Map/Feature-Map.base` exist
+- `package.json` has `ai:image` and no `brain:progress`; `.env.example` names `GOOGLE_API_KEY`
 - Root `DESIGN.md` exists (or user declined design-md)
 - `components.json` includes `@aura`
 - `.cursor/mcp.json` has shadcn MCP (user must enable in UI)
@@ -312,4 +312,4 @@ Stop when the table is accurate. Do not claim MCP is connected if the user still
 - [MCP](/docs/mcp) — what MCP/skills/rules are
 - [Rules](/docs/rules) — install `@aura/rules`
 - [Installation](/docs/installation) — `aura` CLI init
-- CLI `aura blueprint` — wiki, preflight, Sonar, and gdp-ts scaffolding (not this runbook)
+- CLI `aura blueprint` — feature map, preflight, Sonar, and gdp-ts scaffolding (not this runbook)
