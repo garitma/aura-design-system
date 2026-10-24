@@ -1,0 +1,43 @@
+---
+title: Audits
+description: On-demand UI, motion, and React/Next performance audits. They run only when you ask, report findings, and never apply fixes on their own.
+icon: ClipboardCheck
+---
+
+Aura ships the [Emil Kowalski skills](/docs/emil-skills) and Vercel's `react-best-practices` as audits, not as standing guidance. `aura blueprint` (and `init` / `setup`) copies them into `.cursor/skills/` with `disable-model-invocation: true`, so an agent loads one only when you ask for it. No always-applied rule or `AGENTS.md` points at them. Day-to-day work follows the Aura rules, `DESIGN.md`, and the `aura-forms` skill.
+
+## What each audit checks
+
+| Skill | Checks |
+| --- | --- |
+| `emil-design-eng` | UI polish and design-engineering decisions on a screen or component |
+| `review-animations` | Motion in a diff or file against exact curves, durations, and springs |
+| `improve-animations` | Motion across the codebase, with a fix plan per finding |
+| `find-animation-opportunities` | Where a screen should and should not animate, with exact values |
+| `apple-design` | Gesture, spring, depth, type, and restraint, Apple-style, for the web |
+| `mobile-native` | Phone feel: tap highlight, `100vh`, safe areas, overscroll, input zoom |
+| `break-ui` | Worst-case data: long names, empty lists, huge counts, missing fields |
+| `react-best-practices` | React and Next.js performance: waterfalls, bundle size, server work, re-renders, server action auth and validation |
+
+`animate`, `prototype`, `animation-vocabulary`, `ask-sonner`, and `pick-ui-library` are installed the same way and also run only on request.
+
+## When to run one
+
+* Before opening a PR that touches UI or animation: `emil-design-eng`, `review-animations`, or `break-ui`.
+* For a performance review, or before merging data-fetching or server-action changes: `react-best-practices`.
+* On a phone-specific bug report: `mobile-native`.
+
+## How to invoke
+
+Type the skill name as a slash command in the agent chat, or name it in the prompt.
+
+```text
+/emil-design-eng Audita la pantalla de checkout (app/checkout/page.tsx) antes de abrir el PR.
+/review-animations Revisa las animaciones de este diff contra los tokens de Aura.
+/break-ui Prueba la tabla de usuarios con datos extremos y dime qué se rompe.
+/react-best-practices Haz una auditoría de rendimiento de app/dashboard y sus server actions.
+```
+
+## What you get back
+
+A findings list. Each finding has a severity (high, medium, low), a `file:line`, the problem, and a suggested fix. The audit does not edit code. You choose which findings to apply, in the same PR or in a follow-up PR. Where an audit disagrees with Aura foundation rules or `DESIGN.md`, Aura wins. For validation, `react-best-practices` points to `validateFormData` with an ajv JSON Schema, not zod.

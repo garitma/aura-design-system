@@ -4,23 +4,24 @@ description: Which Emil Kowalski skills Aura ships, which it skipped, and the co
 icon: Sparkles
 ---
 
-Aura uses [Emil Kowalski’s skills](https://github.com/emilkowalski/skills) for motion, polish, and interface craft. They were compared with the skills already in this repo and with the team’s skill library before anything was copied. Two skills that do the same job are not both installed.
+Aura uses [Emil Kowalski’s skills](https://github.com/emilkowalski/skills) for motion, polish, and interface craft, and [Vercel’s React best practices](https://github.com/vercel-labs/agent-skills/tree/main/skills/react-best-practices) for React and Next.js performance. They were compared with the skills already in this repo and with the team’s skill library before anything was copied. Two skills that do the same job are not both installed.
 
-`aura init`, `aura setup`, and `aura blueprint` copy the reconciled set into `.cursor/skills/`. Docs for the runbook are the [Agent blueprint](/docs/mcp-agent-blueprint). This page is the practice: what each skill is for, when to apply it, and how to update it.
+`aura init`, `aura setup`, and `aura blueprint` copy the reconciled set into `.cursor/skills/` as on-demand [audits](/docs/audits): every `SKILL.md` has `disable-model-invocation: true`, so an agent loads one only when someone asks for it. They are not standing guidance. Docs for the runbook are the [Agent blueprint](/docs/mcp-agent-blueprint). This page is the practice: what each skill is for, when to apply it, and how to update it.
 
 ## Pins and license
 
 | Source | Commit | License |
 | --- | --- | --- |
 | [emilkowalski/skills](https://github.com/emilkowalski/skills) | `e8a175de22ae1e49370fc144c1f3bb9aeedf988d` | MIT. Copyright (c) 2026 Emil Kowalski. The notice is in each skill’s `LICENSE`. |
+| [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) `skills/react-best-practices` | `063bee94c3f4df8453406c830b0a7df0f2860278` | MIT. The upstream README states MIT. Copyright (c) Vercel, Inc. is in that skill’s `LICENSE`. |
 
-The license allows copying. The files in `packages/cli/templates/cursor/skills/` are the copies the blueprint ships. They are not floating installs of `npx skills add`.
+Both licenses allow copying. The files in `packages/cli/templates/cursor/skills/` are the copies the blueprint ships. They are not floating installs of `npx skills add`.
 
-Aura foundation rules and `DESIGN.md` win when a skill disagrees: 13px spacing, accent and gray steps, fluid type, the 17px floor on editable inputs, and the animation tokens (buttons `cubic-bezier(0.4, 0, 0.6, 1)`, dialogs `cubic-bezier(0.16, 1, 0.3, 1)`, about 250ms, CSS `@theme` tokens).
+Aura foundation rules and `DESIGN.md` win when a skill disagrees: 13px spacing, accent and gray steps, fluid type, the 17px floor on editable inputs, and the animation tokens (buttons `cubic-bezier(0.4, 0, 0.6, 1)`, dialogs `cubic-bezier(0.16, 1, 0.3, 1)`, about 250ms, CSS `@theme` tokens). gdp-ts proofs win over the Vercel note `server-auth-actions`.
 
 ## What Aura ships
 
-| Skill | Use it when |
+| Skill | Run it when someone asks for |
 | --- | --- |
 | `emil-design-eng` | Shaping or reviewing polish, component decisions, and which motion belongs. Criteria only. It does not edit a design file. |
 | `animate` | Building a web animation: whether it should exist, then tool, properties, curve, and duration. |
@@ -34,6 +35,7 @@ Aura foundation rules and `DESIGN.md` win when a skill disagrees: 13px spacing, 
 | `break-ui` | Stress-testing a screen with worst-case data: long names, empty lists, huge counts. |
 | `ask-sonner` | A file already imports `sonner` (DataGrid still does). New toasts use the Aura toast. |
 | `pick-ui-library` | Explicitly asked which library fits a frontend task. If `@aura` already has the component, use it before an external library. |
+| `react-best-practices` | A React or Next.js performance or code audit: waterfalls, bundle size, server work, and re-renders. Its compiled guide is `GUIDE.md`, not `AGENTS.md`, so Cursor does not load it as a rule. Its validation example uses `validateFormData` with an ajv JSON Schema, not zod. |
 
 The team library already had adaptations of `emil-design-eng`, `animation-vocabulary`, `apple-design`, `find-animation-opportunities`, `improve-animations`, `review-animations`, and `prototype`. Where those were short pointers at an external criteria file, the full upstream text is now in the skill, and the team’s “do not edit a design file” line stays. Where the team’s body already matched upstream (`animation-vocabulary`, `find-animation-opportunities`), that body stayed. `humanize` is a team prose skill and does not share a job with this set, so blueprint does not install it.
 
@@ -55,6 +57,7 @@ The team library already had adaptations of `emil-design-eng`, `animation-vocabu
 | `mobile-native` | Typography rule (17px) and hover gating | Partial | Merge. 16px inputs raised to 17px. |
 | `break-ui` | None | None | Adopt |
 | `ask-sonner` | Aura Toast docs; DataGrid still imports `sonner` | Partial | Merge, scoped to existing `sonner` imports. Pablo kept it. |
+| `react-best-practices` | `apps/www/AGENTS.md` is a Next.js version note, not a performance guide. gdp-ts is authorization. | None for this job | Adopt |
 
 ## Skipped
 
@@ -62,8 +65,6 @@ Pablo decided these stay out.
 
 - **`write-swift`** has no equivalent, and Aura and the SGD apps do not ship Swift.
 - **`animate-expo`** has no equivalent. It is React Native and Expo. Web motion is `animate`.
-
-Aura used to also ship Vercel’s `react-best-practices`. Pablo removed it because its examples taught zod. Re-running blueprint deletes `.cursor/skills/react-best-practices/` (and any `.agents/skills/react-best-practices/` or `vercel-react-best-practices/`). Its server-actions point (check auth and validate input inside every action) now lives in the `components-forms.mdc` rule and the `aura-forms` skill.
 
 ## Install or update
 

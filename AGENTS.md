@@ -47,6 +47,10 @@ Aura is a **design system monorepo**: tokens, UI components, Ladle stories, docs
 - Documentation: `.cursor/rules/feature-map.mdc`. On PR, add or update the feature's note in the feature map. Do not read or write other wiki or progress files.
 - **Agent-constraint skills stay local** and are not added to `sync-skills.ts` unless intentionally published.
 
+## On-demand audits
+
+The Emil skills (`emil-design-eng`, `review-animations`, `break-ui`, …) and `react-best-practices` are audits, not default practice. They live in `.cursor/skills/` with `disable-model-invocation: true` and run only when someone asks, for example `/review-animations Revisa las animaciones de este diff` or `/react-best-practices Audita el rendimiento de app/dashboard`. Run one before a PR that touches UI or motion, or for a performance review. Each returns findings with a severity, `file:line`, and a suggested fix. Apply them in the same PR or a follow-up; never apply them automatically. Docs: `apps/www/content/docs/audits.mdx`.
+
 ## Proof-carrying authz (gdp-ts)
 
 `aura init`, `aura setup`, and `aura blueprint` install [`@gdp-ts/core`](https://github.com/rauchg/gdp-ts), its ESLint preset, the `rauchg/gdp-ts` skill, and a starter `proofs/` module (session, org role, project role, plan entitlement, and `deleteProject`). Sensitive functions demand those proofs. Do not cast them. CI is typecheck plus lint. Do not vendor the skill into the registry; the CLI installs it with `npx skills add`. Docs: `apps/www/content/docs/gdp-ts.mdx`.
