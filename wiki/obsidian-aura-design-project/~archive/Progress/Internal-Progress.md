@@ -58,7 +58,7 @@ Agent surface is rules-as-guardrails / skills-as-execution ([[Aura Agent Surface
 - Markers use `--chart-marker` (8px) and `--chart-marker-line` (2px). `tokenColor` keeps plain CSS colors and warns in development when it drops a value.
 - Plot inset, ticks, and gridlines read chart tokens. Category axes use `preserveStartEnd`. The container is square below `sm`, then 16:9.
 
-Older sessions: [[Progress-Archive/2026-10]]
+Older sessions: [[2026-10]]
 
 ## Context
 - Related: [[Command]] [[Collapsible]] [[Select]] [[Carousel]] [[Card]] [[Calendar]] [[Button Group]] [[Bubble]] [[Audit-Breadcrumb]] [[Audit Banner]] [[Button]] [[Charts]] [[Area-charts]] [[Recent-Components-Audit]] [[Segmented-Input]] [[Media-Utilities]] [[Collection-Display]] [[Input-Controls]] [[Autocomplete Popup]] [[Status-Dot]] [[Avatar Group]] [[Sgd-palette]] [[Sgd-cobrand]] [[Site and docs app]] [[Aura Agent Surface]] [[Shared-Theme-Store]] [[Aura overlay]]
