@@ -47,9 +47,9 @@ Aura is a **design system monorepo**: tokens, UI components, Ladle stories, docs
 - Documentation: `.cursor/rules/feature-map.mdc`. On PR, add or update the feature's note in the feature map. Do not read or write other wiki or progress files.
 - **Agent-constraint skills stay local** and are not added to `sync-skills.ts` unless intentionally published.
 
-## On-demand audits
+## Third-party audits
 
-The Emil skills (`emil-design-eng`, `review-animations`, `break-ui`, …) and `react-best-practices` are audits, not default practice. They live in `.cursor/skills/` with `disable-model-invocation: true` and run only when someone asks, for example `/review-animations Revisa las animaciones de este diff` or `/react-best-practices Audita el rendimiento de app/dashboard`. Run one before a PR that touches UI or motion, or for a performance review. Each returns findings with a severity, `file:line`, and a suggested fix. Apply them in the same PR or a follow-up; never apply them automatically. Docs: `apps/www/content/docs/audits.mdx`.
+Emil Kowalski’s skills, Vercel’s `vercel-react-best-practices`, and WorkOS’s `workos` skill are not part of Aura. Install each from upstream with `npx skills add` only when you want that audit, invoke it by name (for example `/review-animations Revisa las animaciones de este diff`), and apply findings by hand. Do not commit the installed folders. `aura blueprint` deletes the Emil and Vercel copies older Aura versions wrote into `.cursor/skills/` and `.agents/skills/`. Commands and the findings format: `apps/www/content/docs/audits.mdx`.
 
 ## Proof-carrying authz (gdp-ts)
 

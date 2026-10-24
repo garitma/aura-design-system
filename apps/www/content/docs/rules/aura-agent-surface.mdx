@@ -43,7 +43,7 @@ When the shadcn skill conflicts with Aura Keep / foundation rules, **Aura wins**
 | Typography | Fluid `.h1`–`.p`; no `text-xl` on primary copy; inputs ≥ 17px | Layout/`cn()` patterns that do not fight the floor |
 | Restyle | Variants/sizes; `@shadcn/lint` `no-restyle` | `className` for layout/width only (aligned) |
 
-Do not vendor the shadcn skill, the Emil skills, or `react-best-practices` into `packages/registry` / `sync-skills.ts`. Blueprint installs shadcn and gdp-ts with `skills add`. It copies the Emil and Vercel audit skills from `packages/cli/templates/cursor/skills/` into `.cursor/skills/` with `disable-model-invocation: true`. Re-running `aura blueprint` updates that set in place.
+Do not vendor the shadcn skill into `packages/registry` / `sync-skills.ts`. Blueprint installs shadcn and gdp-ts with `skills add`. Third-party UI, motion, and performance audits are not part of Aura. See `/docs/audits`.
 
 ## Routing
 
@@ -55,4 +55,4 @@ Do not vendor the shadcn skill, the Emil skills, or `react-best-practices` into 
 * Porting external UI into Aura → skill `port-component-to-aura`.
 * Aura forms, server actions, and validation schemas → skill `aura-forms` (guardrails in `components-forms.mdc`).
 * Monorepo DS edits in this repo → skills `aura-constraints` / `aura-verification` + root `AGENTS.md`.
-* UI, motion, or React/Next performance audits → on demand only, when someone asks (`/emil-design-eng`, `/review-animations`, `/react-best-practices`, and the rest of the Emil set). They are not default guidance and their findings are not auto-applied. Aura foundation rules win where they disagree. See `/docs/audits`.
+* Third-party UI, motion, and performance audits → `/docs/audits`. Aura does not install or load them.

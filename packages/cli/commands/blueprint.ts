@@ -5,7 +5,6 @@ import { dirname, join, resolve } from "path";
 import { fileURLToPath } from "url";
 import { installFormStack, syncFormAgentFiles } from "./forms-stack.js";
 import { applyGdpToProject } from "./gdp.js";
-import { installReconciledSkills } from "./upstream-skills.js";
 
 const SCRIPTS_TO_MERGE: Record<string, string> = {
   preflight: "tsx scripts/preflight.ts",
@@ -224,6 +223,40 @@ export function scaffoldFeatureMapAgentFiles(
   );
 }
 
+export const REMOVED_UPSTREAM_SKILLS = [
+  "emil-design-eng",
+  "animate",
+  "review-animations",
+  "improve-animations",
+  "find-animation-opportunities",
+  "animation-vocabulary",
+  "apple-design",
+  "prototype",
+  "mobile-native",
+  "break-ui",
+  "ask-sonner",
+  "pick-ui-library",
+  "react-best-practices",
+  "vercel-react-best-practices",
+] as const;
+
+const REMOVED_SKILL_ROOTS = [".cursor/skills", ".agents/skills"];
+
+export function retireUpstreamSkills(projectRoot: string): string[] {
+  const removed: string[] = [];
+  for (const root of REMOVED_SKILL_ROOTS) {
+    for (const name of REMOVED_UPSTREAM_SKILLS) {
+      const rel = `${root}/${name}`;
+      const abs = join(projectRoot, rel);
+      if (!existsSync(abs)) continue;
+      rmSync(abs, { recursive: true, force: true });
+      removed.push(rel);
+      console.log(`  remove (install from upstream when you want this audit): ${rel}`);
+    }
+  }
+  return removed;
+}
+
 export function retireProjectBrain(projectRoot: string): void {
   for (const rel of LEGACY_AGENT_PATHS) {
     const abs = join(projectRoot, rel);
@@ -353,12 +386,12 @@ export async function applyBlueprintToProject(
   console.log(`  vault suffix: ${suffix}\n`);
 
   retireProjectBrain(projectRoot);
+  retireUpstreamSkills(projectRoot);
   scaffoldFeatureMap(projectRoot, suffix, force);
   scaffoldNoCommentsRule(projectRoot, force);
   syncFormAgentFiles(projectRoot, force);
   scaffoldFeatureMapAgentFiles(projectRoot, force);
   scaffoldImageSkill(projectRoot, force);
-  installReconciledSkills(projectRoot);
   scaffoldPreflight(projectRoot, force);
   scaffoldSonarProperties(projectRoot, force);
   ensureGitignoreLines(projectRoot);
@@ -375,7 +408,7 @@ export function registerBlueprintCommand(program: Command) {
   program
     .command("blueprint [projectDir]")
     .description(
-      "Scaffold the Obsidian feature map, the feature-map, no-comments, and forms rules, the aura-forms skill and form components, identity-aware image generation, on-demand Emil and Vercel audit skills, preflight, Sonar config, shadcn/ui skills, and gdp-ts proofs",
+      "Scaffold the Obsidian feature map, the feature-map, no-comments, and forms rules, the aura-forms skill and form components, identity-aware image generation, preflight, Sonar config, shadcn/ui skills, and gdp-ts proofs",
     )
     .option(
       "-f, --force",
