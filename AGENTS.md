@@ -47,6 +47,10 @@ Aura is a **design system monorepo**: tokens, UI components, Ladle stories, docs
 - Documentation: `.cursor/rules/feature-map.mdc`. On PR, add or update the feature's note in the feature map. Do not read or write other wiki or progress files.
 - **Agent-constraint skills stay local** and are not added to `sync-skills.ts` unless intentionally published.
 
+## Third-party audits
+
+Emil Kowalski’s skills, Vercel’s `vercel-react-best-practices`, and WorkOS’s `workos` skill are not part of Aura. Install each from upstream with `npx skills add` only when you want that audit, invoke it by name (for example `/review-animations Revisa las animaciones de este diff`), and apply findings by hand. Do not commit the installed folders. `aura blueprint` deletes the Emil and Vercel copies older Aura versions wrote into `.cursor/skills/` and `.agents/skills/`. Commands and the findings format: `apps/www/content/docs/audits.mdx`.
+
 ## Proof-carrying authz (gdp-ts)
 
 `aura init`, `aura setup`, and `aura blueprint` install [`@gdp-ts/core`](https://github.com/rauchg/gdp-ts), its ESLint preset, the `rauchg/gdp-ts` skill, and a starter `proofs/` module (session, org role, project role, plan entitlement, and `deleteProject`). Sensitive functions demand those proofs. Do not cast them. CI is typecheck plus lint. Do not vendor the skill into the registry; the CLI installs it with `npx skills add`. Docs: `apps/www/content/docs/gdp-ts.mdx`.

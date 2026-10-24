@@ -132,7 +132,7 @@ export async function applyAuraToProject(appDir: string): Promise<void> {
   );
 
   console.log(
-    "\nScaffolding Aura blueprint (feature map, image identity, reconciled skills, preflight, Sonar, gdp-ts)...",
+    "\nScaffolding Aura blueprint (feature map, image identity, forms stack, preflight, Sonar, gdp-ts)...",
   );
   await applyBlueprintToProject(appDir);
 }

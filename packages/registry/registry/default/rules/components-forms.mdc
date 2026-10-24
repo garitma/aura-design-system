@@ -1,6 +1,6 @@
 ---
-description: Form system guardrails — useFormDynamic, Form, validateFormData. Procedures in skill aura-forms.
-globs: "**/*form*,**/web-validation*"
+description: Form and validation guardrails — useFormDynamic, Form, validateFormData (ajv), server actions. Procedures in skill aura-forms.
+globs: "**/*form*,**/web-validation*,**/actions.ts,**/*-actions.ts,app/**/route.ts,**/validation/**,**/*schema*"
 alwaysApply: false
 title: Form guardrails
 ---
@@ -9,10 +9,13 @@ title: Form guardrails
 
 Forms use **useFormDynamic** for state, **Form** for error distribution, and **validateFormData** from `@/utils/web-validation`. Schema property names must match field names so errors match by `instancePath`.
 
+* **MUST**: Validate with ajv via `validateFormData` / JSON Schema; do not add zod, yup or valibot.
 * **MUST**: Build forms with `useFormDynamic(initialValues, formRef?)` and pass fields from `getFields()` / `field(name)` into Form field components.
 * **MUST**: Validate with `validateFormData(schema, formData.getValues())` and pass returned `errors` to `<Form>`. On failure call `formData.touchForm()`.
+* **MUST**: Keep each JSON Schema in one shared module (for example `lib/validation/<name>.schema.ts`). The client form and the server action import the same schema.
+* **MUST**: Submit to a Next.js server action. Inside every action, check auth and authorization, then re-validate the input with `validateFormData` and the shared schema. Return `{ errors }` in the ajv shape so `<Form>` can show them.
 * **MUST**: Use Form field components (`FormField`, `FormSwitch`, `FormCheckbox`, groups) per control type; do not pass `errors` into each field.
 * **MUST**: Keep editable controls ≥ 17px (see typography guardrails). Do not override control padding via call-site `className`.
 * **SHOULD**: Use `FormAlert` for form-level errors when `fetchStatus === "error"`.
 
-Procedures and full submit examples live in skill `aura-forms`.
+Procedures and the end-to-end example (schema, Form, server action) live in skill `aura-forms`.
