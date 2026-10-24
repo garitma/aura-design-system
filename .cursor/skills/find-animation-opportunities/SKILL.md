@@ -1,12 +1,14 @@
 ---
 name: find-animation-opportunities
 description: >-
-  Use this when a frame is moving into implementation and you need places that
-  should animate, with exact values, and places that should not. Read-only. It
-  does not edit a design file.
+  On-demand audit. Use only when someone asks where a screen should or should
+  not animate, with exact values. Read-only.
+disable-model-invocation: true
 ---
 
 Source: Emil Kowalski, MIT License, https://github.com/emilkowalski/skills @ e8a175de22ae1e49370fc144c1f3bb9aeedf988d (Copyright (c) 2026 Emil Kowalski). Keep this notice with any substantial copy. The license text is in `LICENSE` beside this file.
+
+This is an on-demand audit. Run it only when someone asks for it by name or asks for this kind of review; it is not standing guidance. Report findings as a list, each with a severity (high, medium, low), `file:line`, the problem, and a suggested fix. Do not apply fixes unless the person asks; they land in the same PR or a follow-up.
 
 Do not read or write a design file unless someone explicitly asked for that edit.
 

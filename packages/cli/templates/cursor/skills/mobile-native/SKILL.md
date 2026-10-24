@@ -1,9 +1,14 @@
 ---
 name: mobile-native
-description: Make a web app feel native on a phone — the small CSS and meta-tag fixes that separate "a website in a browser" from something that feels installed. Covers sticky hover states, tap highlight flashes, the 100vh bug, inputs that zoom the page, laggy taps, pull-to-refresh hijacking scroll, content under the notch, long-press selecting button text, carousels that scroll the wrong way, mismatched status bars, and the rule that you test on real hardware. Use when a web app is being built for or reviewed on mobile, when something "works in Chrome but feels wrong on my phone", when building a PWA, a bottom sheet, a carousel, a full-screen layout, or any touch interaction. For motion itself use animate; for React Native use animate-expo.
+description: >-
+  On-demand audit. Use only when someone asks why a web app feels like a website
+  on a phone: tap highlight, 100vh, safe areas, overscroll, input zoom.
+disable-model-invocation: true
 ---
 
 Source: Emil Kowalski, MIT License, https://github.com/emilkowalski/skills @ e8a175de22ae1e49370fc144c1f3bb9aeedf988d (Copyright (c) 2026 Emil Kowalski). Keep this notice with any substantial copy. The license text is in `LICENSE` beside this file.
+
+This is an on-demand audit. Run it only when someone asks for it by name or asks for this kind of review; it is not standing guidance. Report findings as a list, each with a severity (high, medium, low), `file:line`, the problem, and a suggested fix. Do not apply fixes unless the person asks; they land in the same PR or a follow-up.
 
 When this skill disagrees with Aura foundation rules or `DESIGN.md`, Aura wins: the 13px spacing scale, accent and gray steps, fluid type, the 17px floor on editable inputs, and the animation tokens (buttons `cubic-bezier(0.4, 0, 0.6, 1)`, dialogs `cubic-bezier(0.16, 1, 0.3, 1)`, about 250ms, CSS `@theme` tokens). Extend easing tokens the project already defines. Do not invent a parallel scale.
 

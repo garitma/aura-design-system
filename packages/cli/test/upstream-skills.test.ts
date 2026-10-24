@@ -14,7 +14,7 @@ import { tmpdir } from "node:os";
 import { join, relative } from "node:path";
 import { describe, it } from "node:test";
 import { fileURLToPath } from "node:url";
-import { installReconciledSkills, RECONCILED_SKILLS, SKIPPED_UPSTREAM_SKILLS, EMIL_SKILLS_SHA } from "../commands/upstream-skills.js";
+import { installReconciledSkills, RECONCILED_SKILLS, SKIPPED_UPSTREAM_SKILLS, EMIL_SKILLS_SHA, VERCEL_REACT_SKILLS_SHA } from "../commands/upstream-skills.js";
 
 const templates = fileURLToPath(
   new URL("../templates/cursor/skills/", import.meta.url),
@@ -53,6 +53,27 @@ describe("reconciled upstream skills", () => {
     }
   });
 
+  it("ships every reconciled skill as an on-demand audit, never as standing guidance", () => {
+    for (const name of RECONCILED_SKILLS) {
+      const dir = join(templates, name);
+      const skill = readFileSync(join(dir, "SKILL.md"), "utf8");
+      const frontmatter = skill.slice(0, skill.indexOf("\n---\n", 4));
+      assert.match(frontmatter, /^disable-model-invocation: true$/m, name);
+      assert.match(frontmatter, /description: >-\n  On-demand/, name);
+      assert.match(skill, /Report findings as a list, each with a severity/, name);
+      for (const file of walk(dir)) {
+        assert.notEqual(relative(dir, file).split("/").pop(), "AGENTS.md", `${name} ships an AGENTS.md`);
+        assert.doesNotMatch(readFileSync(file, "utf8"), /from ['"]zod['"]/, relative(templates, file));
+      }
+    }
+    const action = readFileSync(
+      join(templates, "react-best-practices", "rules", "server-auth-actions.md"),
+      "utf8",
+    );
+    assert.match(action, /validateFormData\(profileSchema, data\)/);
+    assert.match(action, /verifySession/);
+  });
+
   it("does not ship the skipped upstream skills", () => {
     for (const skill of SKIPPED_UPSTREAM_SKILLS) {
       assert.equal(existsSync(join(templates, skill.name)), false, skill.name);
@@ -63,9 +84,15 @@ describe("reconciled upstream skills", () => {
     for (const name of RECONCILED_SKILLS) {
       const skill = readFileSync(join(templates, name, "SKILL.md"), "utf8");
       const license = readFileSync(join(templates, name, "LICENSE"), "utf8");
-      assert.match(skill, new RegExp(EMIL_SKILLS_SHA));
-      assert.match(license, /Copyright \(c\) 2026 Emil Kowalski/);
-      assert.match(license, /Permission is hereby granted/);
+      if (name === "react-best-practices") {
+        assert.match(skill, new RegExp(VERCEL_REACT_SKILLS_SHA));
+        assert.match(license, /MIT License/);
+        assert.match(license, /Copyright \(c\) Vercel, Inc\./);
+      } else {
+        assert.match(skill, new RegExp(EMIL_SKILLS_SHA));
+        assert.match(license, /Copyright \(c\) 2026 Emil Kowalski/);
+        assert.match(license, /Permission is hereby granted/);
+      }
     }
     const mobile = readFileSync(
       join(templates, "mobile-native", "SKILL.md"),
@@ -77,9 +104,7 @@ describe("reconciled upstream skills", () => {
     assert.match(sonner, /Aura Toast is the product toaster/);
     const picker = readFileSync(join(templates, "pick-ui-library", "SKILL.md"), "utf8");
     assert.match(picker, /If the Aura registry \(`@aura`\) already has a component for the need/);
-    assert.equal(RECONCILED_SKILLS.length, 12);
-    assert.equal(existsSync(join(templates, "react-best-practices")), false);
-    assert.equal(existsSync(join(repoSkills, "react-best-practices")), false);
+    assert.equal(RECONCILED_SKILLS.length, 13);
     const breakUi = readFileSync(join(templates, "break-ui", "SKILL.md"), "utf8");
     assert.match(breakUi, /ajv JSON Schema passed to `validateFormData`/);
   });
@@ -138,6 +163,17 @@ describe("reconciled upstream skills", () => {
       );
       assert.doesNotMatch(readFileSync(drifted, "utf8"), /drifted/);
       assert.equal(hashTree(join(root, ".cursor", "skills")), before);
+
+      const react = join(root, ".cursor", "skills", "react-best-practices");
+      const stampPath = join(react, ".aura-upstream.json");
+      const stamp = JSON.parse(readFileSync(stampPath, "utf8"));
+      stamp.files = [...stamp.files, "AGENTS.md"];
+      writeFileSync(stampPath, JSON.stringify(stamp));
+      writeFileSync(join(react, "AGENTS.md"), "old always-on copy\n");
+      installReconciledSkills(root);
+      assert.equal(existsSync(join(react, "AGENTS.md")), false);
+      assert.ok(existsSync(join(react, "SKILL.md")));
+      assert.ok(existsSync(join(react, "GUIDE.md")));
     } finally {
       rmSync(root, { recursive: true, force: true });
     }

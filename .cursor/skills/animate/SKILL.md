@@ -1,9 +1,15 @@
 ---
 name: animate
-description: Build an animation from scratch, making the decisions in the order that determines whether it feels right — should it animate at all, what purpose, which tool, which properties, which curve and duration, how it interrupts, how it exits. Writes the implementation. Use when asked to animate something, add motion, make a component feel alive, or build a transition. For critiquing existing motion use review-animations; for auditing a whole codebase use improve-animations.
+description: >-
+  On-demand audit and build. Use only when someone asks to design or rework a
+  specific animation: whether it should animate, tool, properties, curve,
+  duration, interruption, and exit.
+disable-model-invocation: true
 ---
 
 Source: Emil Kowalski, MIT License, https://github.com/emilkowalski/skills @ e8a175de22ae1e49370fc144c1f3bb9aeedf988d (Copyright (c) 2026 Emil Kowalski). Keep this notice with any substantial copy. The license text is in `LICENSE` beside this file.
+
+This is an on-demand audit. Run it only when someone asks for it by name or asks for this kind of review; it is not standing guidance. Report findings as a list, each with a severity (high, medium, low), `file:line`, the problem, and a suggested fix. Do not apply fixes unless the person asks; they land in the same PR or a follow-up.
 
 When this skill disagrees with Aura foundation rules or `DESIGN.md`, Aura wins: the 13px spacing scale, accent and gray steps, fluid type, the 17px floor on editable inputs, and the animation tokens (buttons `cubic-bezier(0.4, 0, 0.6, 1)`, dialogs `cubic-bezier(0.16, 1, 0.3, 1)`, about 250ms, CSS `@theme` tokens). Extend easing tokens the project already defines. Do not invent a parallel scale.
 

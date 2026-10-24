@@ -12,6 +12,9 @@ import { fileURLToPath } from "url";
 
 export const EMIL_SKILLS_REPO = "https://github.com/emilkowalski/skills";
 export const EMIL_SKILLS_SHA = "e8a175de22ae1e49370fc144c1f3bb9aeedf988d";
+export const VERCEL_SKILLS_REPO = "https://github.com/vercel-labs/agent-skills";
+export const VERCEL_REACT_SKILLS_SHA =
+  "063bee94c3f4df8453406c830b0a7df0f2860278";
 
 export const RECONCILED_SKILLS = [
   "emil-design-eng",
@@ -26,6 +29,7 @@ export const RECONCILED_SKILLS = [
   "break-ui",
   "ask-sonner",
   "pick-ui-library",
+  "react-best-practices",
 ] as const;
 
 export const SKIPPED_UPSTREAM_SKILLS = [
@@ -45,6 +49,10 @@ export const SKIPPED_UPSTREAM_SKILLS = [
 
 const STAMP = ".aura-upstream.json";
 
+const DUPLICATE_DIRS = [
+  ...RECONCILED_SKILLS,
+  "vercel-react-best-practices",
+];
 
 export type SkillInstallStatus = "write" | "update" | "unchanged";
 
@@ -70,6 +78,13 @@ function walkFiles(dir: string): string[] {
     }
   }
   return out;
+}
+
+function sourceFor(name: string): { repo: string; sha: string } {
+  if (name === "react-best-practices") {
+    return { repo: VERCEL_SKILLS_REPO, sha: VERCEL_REACT_SKILLS_SHA };
+  }
+  return { repo: EMIL_SKILLS_REPO, sha: EMIL_SKILLS_SHA };
 }
 
 function readStamp(path: string): { files?: string[] } | null {
@@ -122,12 +137,13 @@ function syncSkill(projectRoot: string, name: string): SkillInstallStatus {
     }
   }
 
+  const { repo, sha } = sourceFor(name);
   const stamp =
     JSON.stringify(
       {
         name,
-        source: EMIL_SKILLS_REPO,
-        sha: EMIL_SKILLS_SHA,
+        source: repo,
+        sha,
         license: "MIT",
         files: rels,
       },
@@ -149,7 +165,7 @@ function syncSkill(projectRoot: string, name: string): SkillInstallStatus {
 
 function removeDuplicateCopies(projectRoot: string): string[] {
   const removed: string[] = [];
-  for (const name of RECONCILED_SKILLS) {
+  for (const name of DUPLICATE_DIRS) {
     const dup = join(projectRoot, ".agents", "skills", name);
     if (!existsSync(dup)) continue;
     rmSync(dup, { recursive: true, force: true });

@@ -1,10 +1,14 @@
 ---
 name: pick-ui-library
-description: Pick the right library for a given frontend task from a curated, opinionated list — numbers, OTP inputs, charts, command menus, virtualization, drag and drop, toasts, state, styling, and more. Only runs when explicitly invoked; it does not trigger on its own.
+description: >-
+  On-demand audit. Use only when someone asks which library fits a frontend
+  task. An @aura component comes before an external library.
 disable-model-invocation: true
 ---
 
 Source: Emil Kowalski, MIT License, https://github.com/emilkowalski/skills @ e8a175de22ae1e49370fc144c1f3bb9aeedf988d (Copyright (c) 2026 Emil Kowalski). Keep this notice with any substantial copy. The license text is in `LICENSE` beside this file.
+
+This is an on-demand audit. Run it only when someone asks for it by name or asks for this kind of review; it is not standing guidance. Report findings as a list, each with a severity (high, medium, low), `file:line`, the problem, and a suggested fix. Do not apply fixes unless the person asks; they land in the same PR or a follow-up.
 
 When this skill disagrees with Aura foundation rules or `DESIGN.md`, Aura wins: the 13px spacing scale, accent and gray steps, fluid type, the 17px floor on editable inputs, and the animation tokens (buttons `cubic-bezier(0.4, 0, 0.6, 1)`, dialogs `cubic-bezier(0.16, 1, 0.3, 1)`, about 250ms, CSS `@theme` tokens). Extend easing tokens the project already defines. Do not invent a parallel scale.
 

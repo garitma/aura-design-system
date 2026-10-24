@@ -1,9 +1,14 @@
 ---
 name: break-ui
-description: Try to break a piece of UI by feeding it worst-case data — long names, unbreakable emails, one-letter names, missing fields, huge counts, zero items, long labels, non-Latin text, emoji, extreme numbers — then render it behind a "Demo data / Worst case" toggle and report everything that broke, with the fix for each. Use when the user asks to stress-test, break, or find edge cases in a component or screen, or to "try the worst case". For visual design critique use emil-design-eng; for motion use review-animations.
+description: >-
+  On-demand audit. Use only when someone asks to stress-test a screen with
+  worst-case data: long names, empty lists, huge counts, missing fields.
+disable-model-invocation: true
 ---
 
 Source: Emil Kowalski, MIT License, https://github.com/emilkowalski/skills @ e8a175de22ae1e49370fc144c1f3bb9aeedf988d (Copyright (c) 2026 Emil Kowalski). Keep this notice with any substantial copy. The license text is in `LICENSE` beside this file.
+
+This is an on-demand audit. Run it only when someone asks for it by name or asks for this kind of review; it is not standing guidance. Report findings as a list, each with a severity (high, medium, low), `file:line`, the problem, and a suggested fix. Do not apply fixes unless the person asks; they land in the same PR or a follow-up.
 
 When this skill disagrees with Aura foundation rules or `DESIGN.md`, Aura wins: the 13px spacing scale, accent and gray steps, fluid type, the 17px floor on editable inputs, and the animation tokens (buttons `cubic-bezier(0.4, 0, 0.6, 1)`, dialogs `cubic-bezier(0.16, 1, 0.3, 1)`, about 250ms, CSS `@theme` tokens). Extend easing tokens the project already defines. Do not invent a parallel scale.
 

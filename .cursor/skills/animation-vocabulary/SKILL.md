@@ -1,12 +1,14 @@
 ---
 name: animation-vocabulary
 description: >-
-  Use this when a motion effect is described vaguely and needs its exact name
-  before a design or implementation decision. Criteria only; it does not edit a
-  design file.
+  On-demand reference. Use only when someone asks for the exact name of a
+  vaguely described motion effect. Criteria only.
+disable-model-invocation: true
 ---
 
 Source: Emil Kowalski, MIT License, https://github.com/emilkowalski/skills @ e8a175de22ae1e49370fc144c1f3bb9aeedf988d (Copyright (c) 2026 Emil Kowalski). Keep this notice with any substantial copy. The license text is in `LICENSE` beside this file.
+
+This is an on-demand audit. Run it only when someone asks for it by name or asks for this kind of review; it is not standing guidance. Report findings as a list, each with a severity (high, medium, low), `file:line`, the problem, and a suggested fix. Do not apply fixes unless the person asks; they land in the same PR or a follow-up.
 
 Do not read or write a design file unless someone explicitly asked for that edit.
 

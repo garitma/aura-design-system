@@ -1,12 +1,14 @@
 ---
 name: improve-animations
 description: >-
-  Use this when a frame is in implementation and the motion needs an audit plus
-  self-contained fix plans, not a single diff review. Read-only on source. It
-  does not edit a design file.
+  On-demand audit. Use only when someone asks for a codebase-wide motion audit
+  with self-contained fix plans. Read-only on source.
+disable-model-invocation: true
 ---
 
 Source: Emil Kowalski, MIT License, https://github.com/emilkowalski/skills @ e8a175de22ae1e49370fc144c1f3bb9aeedf988d (Copyright (c) 2026 Emil Kowalski). Keep this notice with any substantial copy. The license text is in `LICENSE` beside this file.
+
+This is an on-demand audit. Run it only when someone asks for it by name or asks for this kind of review; it is not standing guidance. Report findings as a list, each with a severity (high, medium, low), `file:line`, the problem, and a suggested fix. Do not apply fixes unless the person asks; they land in the same PR or a follow-up.
 
 Do not read or write a design file unless someone explicitly asked for that edit.
 
