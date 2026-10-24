@@ -79,7 +79,8 @@ Scaffolds Aura project tooling into any repo with a `package.json`:
 - The feature map: `wiki/obsidian-*/Feature-Map/Feature-Map.base` (suffix from the package name, first segment stripped), plus `.cursor/rules/feature-map.mdc` and `.cursor/skills/update-feature-map/`. It is the only project documentation: one note per feature, updated in the PR that changes it. There is no progress log
 - `wiki/obsidian-*/01-Identity/Image-Identity.md` for image generation
 - `.cursor/skills/generate-brand-images/` (identity-aware Gemini landing images)
-- Reconciled [Emil Kowalski skills](/docs/emil-skills) and Vercel `react-best-practices`, copied into `.cursor/skills/`. Re-running blueprint updates those files in place (no `--force`, no second copy)
+- Reconciled [Emil Kowalski skills](/docs/emil-skills), copied into `.cursor/skills/`. Re-running blueprint updates those files in place (no `--force`, no second copy)
+- The forms stack: `.cursor/rules/components-forms.mdc`, `.cursor/skills/aura-forms/`, and the `@aura/form`, `@aura/field`, `@aura/use-dynamic-form`, and `@aura/web-validation` registry items (ajv, ajv-formats, ajv-errors). Missing rule and skill files are written, untouched older Aura copies are updated, and customized copies are kept unless you pass `--force`. Components are added only when missing and when `components.json` has the `@aura` registry
 - `scripts/preflight.ts`
 - Upstream [shadcn/ui skills](https://ui.shadcn.com/docs/skills) via `pnpm dlx skills add shadcn/ui` (`.agents/skills/shadcn`)
 - `sonar-project.properties` plus Sonar-related scripts / devDependencies
@@ -88,11 +89,11 @@ Scaffolds Aura project tooling into any repo with a `package.json`:
 
 Also runs automatically at the end of `init` and `setup`.
 
-On repos bootstrapped by an older CLI, blueprint removes the Project Brain agent files it used to install: `.cursor/rules/self-documenting-system.mdc`, `.cursor/skills/update-project-brain/`, `scripts/brain-progress.ts`, and the `brain:progress` script when it still has the Aura value. Existing wiki notes stay where they are.
+On repos bootstrapped by an older CLI, blueprint removes the Project Brain agent files it used to install: `.cursor/rules/self-documenting-system.mdc`, `.cursor/skills/update-project-brain/`, `scripts/brain-progress.ts`, and the `brain:progress` script when it still has the Aura value. Existing wiki notes stay where they are. It also deletes the retired `react-best-practices` skill from `.cursor/skills/` and `.agents/skills/`.
 
 | Option | Description |
 | --- | --- |
-| `-f, --force` | Overwrite bootstrap files and `scripts/preflight.ts` if they exist |
+| `-f, --force` | Overwrite bootstrap files, a customized forms rule or skill, and `scripts/preflight.ts` if they exist |
 | `--suffix <string>` | Override the `wiki/obsidian-<suffix>` vault suffix |
 
 ```bash
