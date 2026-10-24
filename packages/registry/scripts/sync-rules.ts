@@ -13,6 +13,7 @@ const RULE_FILES = [
   "aura-agent-surface.mdc",
   "components-forms.mdc",
   "design-md.mdc",
+  "feature-map.mdc",
   "fundation-animations.mdc",
   "fundation-icons.mdc",
   "fundations-colors.mdc",
@@ -20,7 +21,6 @@ const RULE_FILES = [
   "fundations-typography.mdc",
   "no-comments.mdc",
   "principles.mdc",
-  "self-documenting-system.mdc",
   "shadcn-lint.mdc",
 ];
 

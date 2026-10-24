@@ -43,6 +43,11 @@ const config: NextConfig = {
         permanent: true,
       },
       {
+        source: "/docs/rules/self-documenting-system",
+        destination: "/docs/rules/feature-map",
+        permanent: true,
+      },
+      {
         source: "/docs/components/app-bar",
         destination: "/docs/components",
         permanent: true,

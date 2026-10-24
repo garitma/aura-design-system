@@ -10,5 +10,6 @@
   "templates": true,
   "note-composer": true,
   "file-recovery": true,
-  "sync": false
+  "sync": false,
+  "bases": true
 }
