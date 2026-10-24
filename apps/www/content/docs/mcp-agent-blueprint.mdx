@@ -12,7 +12,7 @@ Ejecuta https://auradesignsystem.com/docs/mcp-agent-blueprint
 
 (Local docs: `http://localhost:4000/docs/mcp-agent-blueprint`.)
 
-This page is an **agent runbook**, not the CLI command `aura blueprint`. The runbook may invoke that command when the project is missing its wiki, image-generation command, preflight, Sonar scaffolding, or gdp-ts proofs.
+This page is an **agent runbook**, not the CLI command `aura blueprint`. The runbook may invoke that command when the project is missing its feature map, image-generation command, preflight, Sonar scaffolding, or gdp-ts proofs.
 
 ---
 
@@ -39,7 +39,7 @@ Check and record **present / missing** for each:
 | `DESIGN.md` (root) | File at project root (or install via `@aura/rule-design-md` / `@aura/design-md`) |
 | Cursor rules | `.cursor/rules/*.mdc` (foundations, principles, design-md, etc.) |
 | Cursor skills | `.cursor/skills/port-component-to-aura/SKILL.md` and `.cursor/skills/generate-brand-images/SKILL.md` |
-| Reconciled Emil + Vercel skills | `.cursor/skills/emil-design-eng/SKILL.md` and `.cursor/skills/react-best-practices/SKILL.md` (the rest of the set is installed with them). No second copy under `.agents/skills/` |
+| Third-party audits | Not installed by Aura. Older Emil and Vercel copies under `.cursor/skills/` and `.agents/skills/` are gone after blueprint. See [Audits](/docs/audits) |
 | Image identity | `wiki/obsidian-*/01-Identity/Image-Identity.md`; `status: ready` only when style, palette, composition/motifs, and exclusions are concrete |
 | Gemini image env | `.env.example` names `GOOGLE_API_KEY`; only check whether `.env` has `GOOGLE_API_KEY` or `GEMINI_API_KEY`, never print its value |
 | shadcn MCP | `.cursor/mcp.json` (or user MCP) with `shadcn` → `npx shadcn@latest mcp` |
@@ -85,7 +85,7 @@ pnpm dlx shadcn@latest add \
 - `@aura/rule-design-md` → rule + root `DESIGN.md`
 - `@aura/eslint-shadcn-lint` → `eslint.aura-shadcn.mjs` + `.cursor/rules/shadcn-lint.mdc` (see **D** below)
 
-If the blueprint wiki, `Image-Identity.md`, or `pnpm ai:image` is missing, scaffold those project capabilities without rewriting the Aura theme:
+If the feature map, `Image-Identity.md`, or `pnpm ai:image` is missing, scaffold those project capabilities without rewriting the Aura theme:
 
 ```bash
 pnpm dlx @aura-design/cli@latest blueprint .
@@ -184,23 +184,11 @@ Additive **agent-rigor** layer (verification + playbooks). It does **not** repla
 
 **Do not:** `git clone` pstack into `node_modules` or app `src/`; do not replace Aura lint/rules with pstack principles.
 
-#### F. Reconciled Emil skills and Vercel React practices
+#### F. Third-party audits
 
-Motion, polish, mobile-web feel, worst-case UI data, and React/Next performance come from a reconciled set, not a blind `skills add`. The comparison and the skipped skills are on [Emil Kowalski skills](/docs/emil-skills).
+Emil Kowalski’s skills, Vercel’s `vercel-react-best-practices`, and WorkOS’s `workos` skill are not part of Aura. Blueprint does not install them. On re-run it deletes the Emil and Vercel folders an older CLI copied into `.cursor/skills/` and `.agents/skills/`.
 
-**When to install or update:** Whenever any skill in that set is missing, or when a re-run should pick up the pinned copy. Skip only if the user said “no Emil skills”.
-
-`aura init` and `aura setup` already run this. On an existing app:
-
-```bash
-pnpm dlx @aura-design/cli@latest blueprint .
-```
-
-That writes `.cursor/skills/<name>/` for `emil-design-eng`, `animate`, `review-animations`, `improve-animations`, `find-animation-opportunities`, `animation-vocabulary`, `apple-design`, `prototype`, `mobile-native`, `break-ui`, `ask-sonner`, `pick-ui-library`, and `react-best-practices`. Re-running updates those files in place. `--force` is not required. A same-named folder under `.agents/skills/` is removed so the project does not keep two skills for one job.
-
-Aura foundation rules win when a skill disagrees (13px spacing, accent/gray, fluid type, 17px inputs, animation tokens). `ask-sonner` is only for files that already import `sonner`. gdp-ts proofs win over the Vercel `server-auth-actions` note.
-
-**Do not:** install `write-swift` or `animate-expo`. Do not vendor this set into the Aura registry. `pick-ui-library` uses an `@aura` component before an external library.
+Install one from upstream only when someone asks for that audit. The commands, the Spanish prompts, and the findings format are on [Audits](/docs/audits). Do not commit the installed folders, and do not vendor them into this repo.
 
 #### G. gdp-ts (proof-carrying authz)
 
@@ -208,7 +196,7 @@ Every sensitive function takes a typed proof that the check already ran for thos
 
 **When to install:** Whenever `@gdp-ts/core`, the ESLint preset, the skill, or the starter proofs are missing. Skip only if the user said “no gdp-ts”.
 
-`aura init` and `aura setup` already run this. On an existing app, re-run blueprint (it skips wiki and proof files that exist; it updates the reconciled skills in place):
+`aura init` and `aura setup` already run this. On an existing app, re-run blueprint (it skips feature-map, identity, and proof files that exist, and removes the retired Project Brain rule, skill, and script):
 
 ```bash
 pnpm dlx @aura-design/cli@latest blueprint .
@@ -232,11 +220,12 @@ Confirm after installs:
 - `.cursor/rules/` has Aura foundation rules (including `aura-agent-surface.mdc` when installed via `@aura/rules`)
 - `.cursor/skills/port-component-to-aura/SKILL.md` exists
 - `.cursor/skills/generate-brand-images/SKILL.md` and its generator script exist
-- `.cursor/skills/verify-aura-ui/SKILL.md` and `.cursor/skills/update-project-brain/SKILL.md` exist when `@aura/skills` was added
-- `.cursor/skills/emil-design-eng/SKILL.md` and `.cursor/skills/react-best-practices/SKILL.md` exist, and `.agents/skills/` does not also contain those names
+- `.cursor/skills/verify-aura-ui/SKILL.md` and `.cursor/skills/update-feature-map/SKILL.md` exist when `@aura/skills` was added
+- `.cursor/skills/` and `.agents/skills/` do not contain `emil-design-eng`, `react-best-practices`, or `vercel-react-best-practices` unless someone installed that audit for this task and has not committed it
+- `.cursor/rules/components-forms.mdc`, `.cursor/skills/aura-forms/SKILL.md`, and the `form`, `field`, `use-dynamic-form`, and `web-validation` registry items exist
 - `.agents/skills/shadcn/SKILL.md` exists (or document the gap)
-- `wiki/obsidian-*/01-Identity/Image-Identity.md` exists
-- `package.json` has `ai:image` and `brain:progress`; `.env.example` names `GOOGLE_API_KEY`
+- `wiki/obsidian-*/01-Identity/Image-Identity.md` and `wiki/obsidian-*/Feature-Map/Feature-Map.base` exist
+- `package.json` has `ai:image` and no `brain:progress`; `.env.example` names `GOOGLE_API_KEY`
 - Root `DESIGN.md` exists (or user declined design-md)
 - `components.json` includes `@aura`
 - `.cursor/mcp.json` has shadcn MCP (user must enable in UI)
@@ -275,7 +264,8 @@ Optional smoke: `pnpm dlx shadcn@latest add @aura/button` only if the user asked
 | DESIGN.md | … | … | … |
 | .cursor/rules | … | … | … |
 | .cursor/skills | … | … | … |
-| Emil + Vercel skills | … | … | … |
+| Third-party audits | … | … | … |
+| Forms stack (rule, skill, components) | … | … | … |
 | Blueprint image identity | … | … | … |
 | Gemini image command | … | … | … |
 | .cursor/mcp.json | … | … | … |
@@ -307,9 +297,9 @@ Stop when the table is accurate. Do not claim MCP is connected if the user still
 
 - [pstack](/docs/pstack) — what `/poteto-mode` is, why Aura uses it, easy install
 - [gdp-ts](/docs/gdp-ts) — proof-carrying authz, starter proofs, CI typecheck + lint
-- [Emil Kowalski skills](/docs/emil-skills) — reconciled motion, polish, and React performance skills, and the update command
+- [Audits](/docs/audits) — third-party Emil, Vercel, and WorkOS skills, installed from upstream when someone asks
 - [Lint](/docs/lint) — `@shadcn/lint` setup and Aura policy
 - [MCP](/docs/mcp) — what MCP/skills/rules are
 - [Rules](/docs/rules) — install `@aura/rules`
 - [Installation](/docs/installation) — `aura` CLI init
-- CLI `aura blueprint` — wiki, preflight, Sonar, and gdp-ts scaffolding (not this runbook)
+- CLI `aura blueprint` — feature map, preflight, Sonar, and gdp-ts scaffolding (not this runbook)

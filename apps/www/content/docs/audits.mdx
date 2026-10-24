@@ -1,0 +1,87 @@
+---
+title: Audits
+description: Third-party UI, motion, performance, and WorkOS skills. They are not part of Aura. Install them from upstream when you want an audit.
+icon: ClipboardCheck
+---
+
+These skills are not part of Aura. Nothing in `aura init`, `aura setup`, or `aura blueprint` installs them, and no Aura rule loads them. Install one from its upstream repo when you want that audit, run it, then apply the findings yourself.
+
+`aura blueprint` deletes the copies older Aura versions wrote into the project: the Emil skill folders, `.cursor/skills/react-best-practices/` (including `GUIDE.md` or `AGENTS.md`), `.cursor/skills/vercel-react-best-practices/`, and the same names under `.agents/skills/`. A project install of those exact names is removed on the next blueprint. Install with `-g` to keep the skill in your user directory, or remove it when the audit is done.
+
+The `skills` CLI does not document a `.gitignore` entry for this. Do not commit the installed folders.
+
+Commands below were checked against `skills` 1.7.4 (`npx skills add --help` and `npx skills add <repo> --list`). `pnpm dlx skills add` is the same CLI.
+
+## Emil Kowalski
+
+Source: [emilkowalski/skills](https://github.com/emilkowalski/skills). `npx skills add emilkowalski/skills --list` is the current catalog. Aura used to copy twelve of them; install only the ones you want.
+
+```bash
+npx skills add emilkowalski/skills \
+  --skill emil-design-eng \
+  --skill review-animations \
+  --skill improve-animations \
+  --skill find-animation-opportunities \
+  --skill break-ui \
+  --skill mobile-native \
+  --skill apple-design \
+  -a cursor -y --copy
+```
+
+| Skill | What it checks |
+| --- | --- |
+| `emil-design-eng` | UI polish and design-engineering decisions |
+| `review-animations` | Motion in a diff against curves, durations, and springs |
+| `improve-animations` | Motion across the codebase, with a fix plan per finding |
+| `find-animation-opportunities` | Where a screen should and should not animate |
+| `apple-design` | Gesture, spring, depth, type, and restraint, for the web |
+| `mobile-native` | Phone feel: tap highlight, `100vh`, safe areas, overscroll, input zoom |
+| `break-ui` | Worst-case data: long names, empty lists, huge counts, missing fields |
+
+`animate`, `animation-vocabulary`, `ask-sonner`, `pick-ui-library`, and `prototype` are in the same repo. Add another `--skill <name>` for each. Repeat `--skill` is the documented way to install more than one.
+
+Run one before a PR that touches UI or motion:
+
+```text
+/emil-design-eng Audita la pantalla de checkout (app/checkout/page.tsx) antes de abrir el PR.
+/review-animations Revisa las animaciones de este diff contra los tokens de Aura.
+/break-ui Prueba la tabla de usuarios con datos extremos y dime qué se rompe.
+```
+
+## Vercel React performance
+
+Source: [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills), skill `vercel-react-best-practices` (the folder in that repo is `skills/react-best-practices`; the name the CLI installs is `vercel-react-best-practices`). It checks waterfalls, bundle size, server work, re-renders, and auth plus input validation inside server actions. In an Aura app, validation stays `validateFormData` with an ajv JSON Schema. Do not add zod.
+
+```bash
+npx skills add vercel-labs/agent-skills --skill vercel-react-best-practices -a cursor -y --copy
+```
+
+```text
+/vercel-react-best-practices Haz una auditoría de rendimiento de app/dashboard y sus server actions.
+```
+
+## WorkOS
+
+Source: [workos/skills](https://github.com/workos/skills). WorkOS documents `npx skills add workos/skills`, which installs the `workos` skill (AuthKit, SSO, Directory Sync, RBAC, widgets, and the other references that skill routes to). On 2026-10-24, `npx skills add workos/skills --list` listed `workos` and skipped `workos-widgets` because its `SKILL.md` frontmatter does not parse. Install the skill the CLI lists:
+
+```bash
+npx skills add workos/skills --skill workos -a cursor -y --copy
+```
+
+```text
+/workos Revisa esta integración de AuthKit en Next.js y dime qué falta.
+```
+
+Aura does not vendor this skill and blueprint does not install or delete it. Aura's own authorization setup is [gdp-ts](/docs/gdp-ts), which blueprint still installs.
+
+## What you get back
+
+A findings list. Each finding has a severity (high, medium, low), a `file:line`, the problem, and a suggested fix. The audit does not edit code. Apply the findings you accept in the same PR or in a follow-up. Where an audit disagrees with Aura foundation rules or `DESIGN.md`, Aura wins.
+
+Remove one when you are done:
+
+```bash
+npx skills remove --skill review-animations -a cursor -y
+npx skills remove --skill vercel-react-best-practices -a cursor -y
+npx skills remove --skill workos -a cursor -y
+```

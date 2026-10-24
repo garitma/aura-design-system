@@ -16,7 +16,7 @@ Aura is a **design system monorepo**: tokens, UI components, Ladle stories, docs
 | CLI | `packages/cli/` |
 | Docs / marketing site | `apps/www/` |
 | Cursor rules & project skills | `.cursor/rules/`, `.cursor/skills/` |
-| Obsidian / Bruno wiki | `wiki/obsidian-aura-design-project/`, `wiki/bruno-aura-design-project/` |
+| Feature map (only docs; update on PR) | `wiki/obsidian-aura-design-project/Feature-Map/` |
 
 `apps/www/AGENTS.md` is Next.js / site lint guidance only. Prefer **this** file for repo-wide agent policy.
 
@@ -42,9 +42,14 @@ Aura is a **design system monorepo**: tokens, UI components, Ladle stories, docs
 - Ownership map: `.cursor/rules/aura-agent-surface.mdc` — `DESIGN.md` narrative SoT; `.cursor/rules/*` guardrails; `.cursor/skills/*` / `.agents/skills/*` execution.
 - Foundation rules live in `.cursor/rules/` (`alwaysApply` where marked). Do not invent a second conflicting design policy.
 - Monorepo skills: `.cursor/skills/aura-constraints/`, `.cursor/skills/aura-verification/`.
-- Consumer skills (registry-synced): `aura-forms`, `verify-aura-ui`, `update-project-brain`, `port-component-to-aura`, `generate-brand-images` — see `packages/registry/scripts/sync-skills.ts`.
-- Upstream skills (blueprint / `skills add`, not registry): `.agents/skills/shadcn` (`pnpm dlx skills add shadcn/ui`), gdp-ts, and the reconciled Emil Kowalski + Vercel skills under `.cursor/skills/` (`emil-design-eng`, `animate`, `review-animations`, `improve-animations`, `find-animation-opportunities`, `animation-vocabulary`, `apple-design`, `prototype`, `mobile-native`, `break-ui`, `ask-sonner`, `pick-ui-library`, `react-best-practices`). Pins and the comparison live in [emil-skills](apps/www/content/docs/emil-skills.mdx). `write-swift` and `animate-expo` are not installed. `pick-ui-library` uses an `@aura` component before an external library. When an upstream skill conflicts with Aura Keep (icons `className="icon"`, 13px spacing, useFormDynamic forms, fluid type / 17px inputs, animation tokens), **Aura wins**. `ask-sonner` applies only where a file already imports `sonner`. gdp-ts proofs win over the Vercel `server-auth-actions` note.
+- Consumer skills (registry-synced): `aura-forms`, `verify-aura-ui`, `update-feature-map`, `port-component-to-aura`, `generate-brand-images` — see `packages/registry/scripts/sync-skills.ts`.
+- Upstream skills (blueprint / `skills add`, not registry): `.agents/skills/shadcn` (`pnpm dlx skills add shadcn/ui`) and gdp-ts.
+- Documentation: `.cursor/rules/feature-map.mdc`. On PR, add or update the feature's note in the feature map. Do not read or write other wiki or progress files.
 - **Agent-constraint skills stay local** and are not added to `sync-skills.ts` unless intentionally published.
+
+## Third-party audits
+
+Emil Kowalski’s skills, Vercel’s `vercel-react-best-practices`, and WorkOS’s `workos` skill are not part of Aura. Install each from upstream with `npx skills add` only when you want that audit, invoke it by name (for example `/review-animations Revisa las animaciones de este diff`), and apply findings by hand. Do not commit the installed folders. `aura blueprint` deletes the Emil and Vercel copies older Aura versions wrote into `.cursor/skills/` and `.agents/skills/`. Commands and the findings format: `apps/www/content/docs/audits.mdx`.
 
 ## Proof-carrying authz (gdp-ts)
 

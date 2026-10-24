@@ -132,7 +132,7 @@ export async function applyAuraToProject(appDir: string): Promise<void> {
   );
 
   console.log(
-    "\nScaffolding Aura blueprint (wiki identity, image generation, reconciled skills, preflight, Sonar, gdp-ts)...",
+    "\nScaffolding Aura blueprint (feature map, image identity, forms stack, preflight, Sonar, gdp-ts)...",
   );
   await applyBlueprintToProject(appDir);
 }
@@ -200,7 +200,7 @@ export function registerInitCommand(program: Command) {
   program
     .command("init")
     .description(
-      "Initialize Aura Design System with Next.js, Aura context, blueprint wiki, identity-aware image generation, and gdp-ts proofs",
+      "Initialize Aura Design System with Next.js, Aura context, the blueprint feature map, identity-aware image generation, and gdp-ts proofs",
     )
     .action(async () => {
       await initializeAura();

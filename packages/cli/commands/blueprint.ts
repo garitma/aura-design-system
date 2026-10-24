@@ -1,14 +1,13 @@
 import { Command } from "commander";
 import { execa } from "execa";
-import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync, rmSync } from "fs";
 import { dirname, join, resolve } from "path";
 import { fileURLToPath } from "url";
+import { installFormStack, syncFormAgentFiles } from "./forms-stack.js";
 import { applyGdpToProject } from "./gdp.js";
-import { installReconciledSkills } from "./upstream-skills.js";
 
 const SCRIPTS_TO_MERGE: Record<string, string> = {
   preflight: "tsx scripts/preflight.ts",
-  "brain:progress": "tsx scripts/brain-progress.ts",
   "ai:image":
     "node .cursor/skills/generate-brand-images/generate-images.mjs",
   "dev:server": "next dev",
@@ -161,110 +160,121 @@ function ensureEnvExample(projectRoot: string): void {
   console.log("  patch: .env.example (Gemini image key)");
 }
 
-function scaffoldWiki(
+const LEGACY_BRAIN_SCRIPT = "tsx scripts/brain-progress.ts";
+
+const LEGACY_AGENT_PATHS = [
+  ".cursor/rules/self-documenting-system.mdc",
+  ".cursor/skills/update-project-brain",
+  "scripts/brain-progress.ts",
+];
+
+export const FEATURE_MAP_DIR = "Feature-Map";
+
+export function scaffoldFeatureMap(
   projectRoot: string,
   suffix: string,
-  packageName: string,
   force: boolean,
 ): void {
-  const wikiRoot = join(projectRoot, "wiki");
-  const brunoName = `bruno-${suffix}`;
   const obsidianName = `obsidian-${suffix}`;
-  const brunoDir = join(wikiRoot, brunoName);
-  const obsidianDir = join(wikiRoot, obsidianName);
+  const obsidianDir = join(projectRoot, "wiki", obsidianName);
 
-  mkdirSync(wikiRoot, { recursive: true });
-  mkdirSync(brunoDir, { recursive: true });
-  mkdirSync(obsidianDir, { recursive: true });
-
-  const vars = {
-    PACKAGE_NAME: packageName,
-    DATE: new Date().toISOString().slice(0, 10),
-    BRUNO_COLLECTION_NAME: brunoName,
-    OBSIDIAN_VAULT_RELATIVE: `wiki/${obsidianName}`,
-    BRUNO_COLLECTION_RELATIVE: `wiki/${brunoName}`,
-  };
-
-  const opencollection = interpolate(
-    readTpl("bruno/opencollection.yml"),
-    vars,
-  );
-  writeIfMissingOrForce(
-    join(brunoDir, "opencollection.yml"),
-    opencollection,
-    force,
-    `wiki/${brunoName}/opencollection.yml`,
-  );
-
-  writeIfMissingOrForce(
-    join(brunoDir, ".gitignore"),
-    readTpl("bruno/gitignore"),
-    force,
-    `wiki/${brunoName}/.gitignore`,
-  );
-
-  mkdirSync(join(brunoDir, "environments"), { recursive: true });
-  writeIfMissingOrForce(
-    join(brunoDir, "environments", "Local.yml"),
-    readTpl("bruno/environments/Local.yml"),
-    force,
-    `wiki/${brunoName}/environments/Local.yml`,
-  );
-
-  const aiPrompt = interpolate(readTpl("bruno/AI-PROMPT.md"), vars);
-  writeIfMissingOrForce(
-    join(brunoDir, "AI-PROMPT.md"),
-    aiPrompt,
-    force,
-    `wiki/${brunoName}/AI-PROMPT.md`,
-  );
-
-  const dotObsidian = join(obsidianDir, ".obsidian");
-  mkdirSync(dotObsidian, { recursive: true });
   for (const f of ["app.json", "appearance.json", "core-plugins.json"]) {
     const src = join(templatesRoot(), "obsidian", "dotobsidian", f);
-    const dest = join(dotObsidian, f);
-    writeIfMissingOrForce(dest, readFileSync(src, "utf-8"), force, `wiki/${obsidianName}/.obsidian/${f}`);
+    writeIfMissingOrForce(
+      join(obsidianDir, ".obsidian", f),
+      readFileSync(src, "utf-8"),
+      force,
+      `wiki/${obsidianName}/.obsidian/${f}`,
+    );
   }
 
-  const welcome = interpolate(readTpl("obsidian/Welcome.md"), vars);
   writeIfMissingOrForce(
-    join(obsidianDir, "Welcome.md"),
-    welcome,
+    join(obsidianDir, FEATURE_MAP_DIR, `${FEATURE_MAP_DIR}.base`),
+    readTpl("obsidian/Feature-Map.base"),
     force,
-    `wiki/${obsidianName}/Welcome.md`,
+    `wiki/${obsidianName}/${FEATURE_MAP_DIR}/${FEATURE_MAP_DIR}.base`,
   );
 
-  const bootstrap = interpolate(readTpl("obsidian/Bootstrap.md"), vars);
-  writeIfMissingOrForce(
-    join(obsidianDir, "Bootstrap.md"),
-    bootstrap,
-    force,
-    `wiki/${obsidianName}/Bootstrap.md`,
-  );
-
-  const imageIdentity = interpolate(
-    readTpl("obsidian/Image-Identity.md"),
-    vars,
-  );
   writeIfMissingOrForce(
     join(obsidianDir, "01-Identity", "Image-Identity.md"),
-    imageIdentity,
+    interpolate(readTpl("obsidian/Image-Identity.md"), {
+      DATE: new Date().toISOString().slice(0, 10),
+    }),
     false,
     `wiki/${obsidianName}/01-Identity/Image-Identity.md`,
   );
+}
 
-  mkdirSync(join(obsidianDir, "00-General"), { recursive: true });
-  const internalProgress = interpolate(
-    readTpl("obsidian/Internal-Progress.md"),
-    vars,
+export function scaffoldFeatureMapAgentFiles(
+  projectRoot: string,
+  force: boolean,
+): void {
+  writeIfMissingOrForce(
+    join(projectRoot, ".cursor", "rules", "feature-map.mdc"),
+    readTpl("cursor/rules/feature-map.mdc"),
+    force,
+    ".cursor/rules/feature-map.mdc",
   );
   writeIfMissingOrForce(
-    join(obsidianDir, "00-General", "Internal-Progress.md"),
-    internalProgress,
+    join(projectRoot, ".cursor", "skills", "update-feature-map", "SKILL.md"),
+    readTpl("cursor/skills/update-feature-map/SKILL.md"),
     force,
-    `wiki/${obsidianName}/00-General/Internal-Progress.md`,
+    ".cursor/skills/update-feature-map/SKILL.md",
   );
+}
+
+export const REMOVED_UPSTREAM_SKILLS = [
+  "emil-design-eng",
+  "animate",
+  "review-animations",
+  "improve-animations",
+  "find-animation-opportunities",
+  "animation-vocabulary",
+  "apple-design",
+  "prototype",
+  "mobile-native",
+  "break-ui",
+  "ask-sonner",
+  "pick-ui-library",
+  "react-best-practices",
+  "vercel-react-best-practices",
+] as const;
+
+const REMOVED_SKILL_ROOTS = [".cursor/skills", ".agents/skills"];
+
+export function retireUpstreamSkills(projectRoot: string): string[] {
+  const removed: string[] = [];
+  for (const root of REMOVED_SKILL_ROOTS) {
+    for (const name of REMOVED_UPSTREAM_SKILLS) {
+      const rel = `${root}/${name}`;
+      const abs = join(projectRoot, rel);
+      if (!existsSync(abs)) continue;
+      rmSync(abs, { recursive: true, force: true });
+      removed.push(rel);
+      console.log(`  remove (install from upstream when you want this audit): ${rel}`);
+    }
+  }
+  return removed;
+}
+
+export function retireProjectBrain(projectRoot: string): void {
+  for (const rel of LEGACY_AGENT_PATHS) {
+    const abs = join(projectRoot, rel);
+    if (existsSync(abs)) {
+      rmSync(abs, { recursive: true, force: true });
+      console.log(`  remove (replaced by feature map): ${rel}`);
+    }
+  }
+
+  const pkgPath = join(projectRoot, "package.json");
+  const pkg = JSON.parse(readFileSync(pkgPath, "utf-8")) as {
+    scripts?: Record<string, string>;
+  };
+  if (pkg.scripts?.["brain:progress"] === LEGACY_BRAIN_SCRIPT) {
+    delete pkg.scripts["brain:progress"];
+    writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + "\n", "utf-8");
+    console.log("  package.json: removed brain:progress");
+  }
 }
 
 function scaffoldNoCommentsRule(projectRoot: string, force: boolean): void {
@@ -299,17 +309,6 @@ function scaffoldPreflight(projectRoot: string, force: boolean): void {
   const dest = join(scriptsDir, "preflight.ts");
   const body = readTpl("preflight.ts");
   writeIfMissingOrForce(dest, body, force, "scripts/preflight.ts");
-}
-
-function scaffoldBrainProgress(projectRoot: string, force: boolean): void {
-  const scriptsDir = join(projectRoot, "scripts");
-  mkdirSync(scriptsDir, { recursive: true });
-  writeIfMissingOrForce(
-    join(scriptsDir, "brain-progress.ts"),
-    readTpl("scripts/brain-progress.ts"),
-    force,
-    "scripts/brain-progress.ts",
-  );
 }
 
 async function installShadcnSkills(
@@ -384,19 +383,22 @@ export async function applyBlueprintToProject(
 
   console.log(`\n@aura-design/cli blueprint → ${projectRoot}`);
   console.log(`  package: ${packageName}`);
-  console.log(`  wiki suffix: ${suffix}\n`);
+  console.log(`  vault suffix: ${suffix}\n`);
 
-  scaffoldWiki(projectRoot, suffix, packageName, force);
+  retireProjectBrain(projectRoot);
+  retireUpstreamSkills(projectRoot);
+  scaffoldFeatureMap(projectRoot, suffix, force);
   scaffoldNoCommentsRule(projectRoot, force);
+  syncFormAgentFiles(projectRoot, force);
+  scaffoldFeatureMapAgentFiles(projectRoot, force);
   scaffoldImageSkill(projectRoot, force);
-  installReconciledSkills(projectRoot);
   scaffoldPreflight(projectRoot, force);
-  scaffoldBrainProgress(projectRoot, force);
   scaffoldSonarProperties(projectRoot, force);
   ensureGitignoreLines(projectRoot);
   ensureEnvExample(projectRoot);
   await installShadcnSkills(projectRoot, force);
   await applyGdpToProject(projectRoot, force);
+  await installFormStack(projectRoot);
   mergePackageJson(projectRoot);
 
   console.log("\n✓ Blueprint scaffolding complete.\n");
@@ -406,16 +408,16 @@ export function registerBlueprintCommand(program: Command) {
   program
     .command("blueprint [projectDir]")
     .description(
-      "Scaffold wiki, the no-comments rule, identity-aware image generation, reconciled Emil and Vercel skills, preflight, brain:progress, Sonar config, shadcn/ui skills, and gdp-ts proofs",
+      "Scaffold the Obsidian feature map, the feature-map, no-comments, and forms rules, the aura-forms skill and form components, identity-aware image generation, preflight, Sonar config, shadcn/ui skills, and gdp-ts proofs",
     )
     .option(
       "-f, --force",
-      "Overwrite bootstrap files and scripts/preflight.ts if they already exist",
+      "Overwrite bootstrap files, customized forms rule and skill, and scripts/preflight.ts if they already exist",
       false,
     )
     .option(
       "--suffix <string>",
-      "Override wiki folder suffix (default: package.json name with first segment removed)",
+      "Override the wiki/obsidian-<suffix> vault suffix (default: package.json name with first segment removed)",
     )
     .action(async (projectDir: string | undefined, options) => {
       const root = resolve(process.cwd(), projectDir ?? ".");

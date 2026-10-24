@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "skill-update-feature-map",
+  "type": "registry:file",
+  "title": "Skill: Update Feature Map",
+  "description": "Aura Cursor skill: Update Feature Map. Installs to .cursor/skills/update-feature-map/.",
+  "files": [
+    {
+      "path": "registry/default/skills/update-feature-map/SKILL.md",
+      "content": "---\nname: update-feature-map\ndescription: >-\n  Add or update the feature's note in the Obsidian feature map\n  (wiki/obsidian-*/Feature-Map/) when opening or updating a PR. Use only at PR\n  time; never read or write other wiki or progress files.\n---\n\n# Update feature map\n\nRun once per PR, after the code is final. Guardrails live in `.cursor/rules/feature-map.mdc`.\n\n## Steps\n\n1. Open `wiki/obsidian-*/Feature-Map/`. Find the note whose `feature` matches what the PR changes. Read that note only.\n2. Update it, or create `Feature-Map/<Feature-Name>.md` with the shape below. One note per feature, not per PR.\n3. Set `pr` to this PR's URL and `updated` to today. Fix `status`, `routes`, and `components` if they moved.\n4. Keep the body to 2–4 sentences: what the feature does for the user and where it lives. No session log, no history.\n5. Commit the note in the same PR. Do not edit `Feature-Map.base`.\n\n## Note shape\n\n```markdown\n---\nfeature: Checkout\nstatus: shipped\narea: commerce\nroutes: [/checkout]\ncomponents: [app/checkout/page.tsx, components/checkout-form.tsx]\npr: https://github.com/org/repo/pull/123\nupdated: 2026-01-31\n---\nWhat it does for the user, in one or two sentences. Where the entry points live.\n```\n\n* `status`: `planned`, `in-progress`, `shipped`, or `deprecated`.\n* `routes` and `components`: repo-relative paths or URL routes. Use `[]` when none apply.\n\n## Done when\n\n* [ ] Every feature the PR changes has a note with this PR in `pr`.\n* [ ] No other wiki, progress, or assumptions file was read or written.\n",
+      "type": "registry:file",
+      "target": ".cursor/skills/update-feature-map/SKILL.md"
+    }
+  ]
+}

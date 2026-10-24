@@ -1,0 +1,33 @@
+filters:
+  and:
+    - file.inFolder("Feature-Map")
+    - 'file.ext == "md"'
+properties:
+  note.feature:
+    displayName: Feature
+  note.status:
+    displayName: Status
+  note.area:
+    displayName: Area
+  note.routes:
+    displayName: Routes
+  note.components:
+    displayName: Components
+  note.pr:
+    displayName: PR
+  note.updated:
+    displayName: Updated
+views:
+  - type: table
+    name: Features
+    order:
+      - feature
+      - status
+      - area
+      - routes
+      - components
+      - pr
+      - updated
+    sort:
+      - property: updated
+        direction: DESC
